@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Register.css";
 import { useParams } from 'react-router-dom';
-import { useSelector ,useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setloader } from '../../store/login';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
@@ -12,14 +12,15 @@ import PhotoIcon from '@mui/icons-material/Photo';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import PanToolIcon from '@mui/icons-material/PanTool';
-import CircularProgress from '@mui/material/CircularProgress';
+import LoadingButton from '@mui/lab/LoadingButton';
+// import CircularProgress from '@mui/material/CircularProgress';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Teams from "./teams";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import GroupIcon from '@mui/icons-material/Group';
 
 const Register = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',
@@ -31,6 +32,7 @@ const Register = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
+    const [isloading, setisloading] = useState(false)
     const { registerId } = useParams();
     const tournacenter = useSelector((state) => state.tournacenter);
     const [disable, setdisable] = useState(false);
@@ -163,6 +165,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+       
         if (!inp.teamname) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
@@ -210,6 +213,7 @@ const Register = () => {
 
 
         try {
+            setisloading(true);
             const id = toast.loading("Please wait...")
             setdisable(true);
             const response = await fetch(`${tournacenter.apiadress}/Teamregister`, {
@@ -250,9 +254,11 @@ const Register = () => {
             } else {
                 toast.error(responseData.error, { autoClose: 1300 });
             }
+            setisloading(false);
         } catch (error) {
             console.error(error);
             toast.error("Registration failed. Please try again.", { autoClose: 1300 });
+            setisloading(false);
         }
     };
 
@@ -334,8 +340,6 @@ const Register = () => {
         let arr = url.split(",");
         let mime = arr[0].match(/:(.*?);/)[1]
         let data = arr[1]
-        // console.log(mime)
-        // console.log(data)
         let dataStr = atob(data)
         let n = dataStr.length
         let dataArr = new Uint8Array(n)
@@ -517,9 +521,16 @@ const Register = () => {
                                 <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<AddIcon />} disabled={disable} variant="outlined" color="primary">
                                     Add player
                                 </Button></div>
-                            <Button type="submit" startIcon={disable ? <CircularProgress className="loadsymbol" /> : <CloudUploadIcon />} disabled={disable} variant="contained" color="primary">
+                           
+                            <LoadingButton
+                                loading={isloading}
+                                loadingPosition="start"
+                                startIcon={<CloudUploadIcon />}
+                                variant="contained"
+                                type="submit"
+                            >
                                 Register
-                            </Button>
+                            </LoadingButton>
 
                         </form>}
 
@@ -537,7 +548,7 @@ const Register = () => {
                         </div>
                     </div>}
                     {teamlist && <Teams entry={entry} />} </>}
-                     { teamlist && entry.length < 1 && <div className="notfound">
+                {teamlist && entry.length < 1 && <div className="notfound">
                     <div>
                         <SentimentVeryDissatisfiedIcon className="sad" />
                         <h1>Ops! Something is Wrong</h1>
