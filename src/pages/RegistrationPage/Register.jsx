@@ -429,6 +429,12 @@ const Register = () => {
                             <span>Available : {all.slots - filteredentry.length}</span>
                         </div>
                         <Divider variant="middle" />
+
+                        {all.description != "" && <>
+                            <p className="desc">{all.description}</p>
+                            <Divider variant="middle" />
+                        </>}
+
                         {all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <Box
                                 sx={{

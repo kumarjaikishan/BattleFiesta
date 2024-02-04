@@ -46,7 +46,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         inputProps={{ style: { fontSize: 11 } }}
                         onChange={handleChange}
                         value={all.description}
-                        placeholder="Add description or message to show on registration page."
+                        helperText="Add description or message to show on registration page."
                     />
                     <TextField
                         id="outlined-multiline-static"
