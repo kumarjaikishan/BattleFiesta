@@ -64,7 +64,7 @@ const Tournamentstatpage = () => {
     });
     return formattedDate;
   }
-  let localhos = "http://localhost:5173";
+  let localhos = "https://esport-bgmi.vercel.app";
 
   return (
     <div className="tournastat">
