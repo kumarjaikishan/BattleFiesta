@@ -69,21 +69,21 @@ const Signup = ({setlog}) => {
             // console.log(datae);
             if (res.ok) {
                 // setsigninp(init);
-                toast.success("Signup Successful,verify your Email", { autoClose: 3300 })
+                toast.success("Signup Successful,verify your Email", { autoClose: 2800 })
                 setbtnclick(false);
                 setlog(true)
                 dispatch(setloader(false));
             } else {
                 dispatch(setloader(false));
                 setbtnclick(false);
-                toast.warn(datae.msg, { autoClose: 8300 })
+                toast.warn(datae.msg, { autoClose: 3600 })
             }
 
             // console.log(datae);
         } catch (error) {
             dispatch(setloader(false));
             setbtnclick(false);
-            toast.warn(error.msg, { autoClose: 5600 })
+            toast.warn(error.msg, { autoClose: 3600 })
             console.log(error);
         }
 

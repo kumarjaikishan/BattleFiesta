@@ -77,7 +77,7 @@ const Signin = () => {
             // }
              else {
                 console.log(data);
-                toast.warn(data.msg ? data.msg : "ye wala kaise", { autoClose: 1500 });
+                toast.warn(data.msg ? data.msg : "Error Occured", { autoClose: 1500 });
                 setbtnclick(false);
                 dispatch(setloader(false));
             }
