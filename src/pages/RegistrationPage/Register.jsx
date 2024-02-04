@@ -537,6 +537,13 @@ const Register = () => {
                         </div>
                     </div>}
                     {teamlist && <Teams entry={entry} />} </>}
+                     { teamlist && entry.length < 1 && <div className="notfound">
+                    <div>
+                        <SentimentVeryDissatisfiedIcon className="sad" />
+                        <h1>Ops! Something is Wrong</h1>
+                        <p>Registration form does not exits!</p>
+                    </div>
+                </div>}
 
             </div>
         </>
