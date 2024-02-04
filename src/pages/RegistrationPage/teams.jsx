@@ -21,7 +21,6 @@ const Teams = ({ entry }) => {
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1-content"
                             id="panel1-header"
-                            title={player.status}
                             className={`headere ${player.status}`}
                         // style={{ borderRight: "8px solid orange" }}
                         >
@@ -33,8 +32,8 @@ const Teams = ({ entry }) => {
                                 {player.player.map((each, ind) => {
                                     return <div key={ind}>
                                         <span><img src={each.playerLogo ? each.playerLogo:user} alt="" /></span>
-                                        <span>{each.inGameName}</span>
-                                        <span>{each.inGameID}</span>
+                                        <span title='InGameName'>{each.inGameName}</span>
+                                        <span title='InGameID'>{each.inGameID}</span>
                                     </div>
                                 })}
                             </div>

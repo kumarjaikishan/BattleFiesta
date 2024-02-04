@@ -165,7 +165,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-       
+
         if (!inp.teamname) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
@@ -429,7 +429,7 @@ const Register = () => {
                             <span>Available : {all.slots - filteredentry.length}</span>
                         </div>
                         <Divider variant="middle" />
-                        {all.isopen && <form onSubmit={handleRegister}>
+                        {all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <Box
                                 sx={{
                                     '& > :not(style)': { m: 1, width: '25ch' },
@@ -498,10 +498,14 @@ const Register = () => {
                                         autoComplete="off"
                                     >
                                         <TextField size="small" id={`in-game-name-${index}`} value={inp.players[index].inGameName} onChange={(e) => realplayerchange(e, index, 'inGameName')} label="In Game Name*" variant="outlined" />
-                                        <TextField size="small" id={`in-game-id-${index}`} value={inp.players[index].inGameID} onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined" />
+                                        <TextField size="small" id={`in-game-id-${index}`}
+                                            value={inp.players[index].inGameID}
+                                            type='tel'
+                                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                            onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined"
+                                        />
                                         {all.ask_player_logo && <>
                                             <h4>Set a logo for the player</h4>
-                                            {/* {player.playerLogo && <>  <img src={player.playerLogo} alt="" /> <br />  </>} */}
                                             <div id={`playerLogo${index}`}></div>
                                             <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                                                 Upload Logo
@@ -521,7 +525,7 @@ const Register = () => {
                                 <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<AddIcon />} disabled={disable} variant="outlined" color="primary">
                                     Add player
                                 </Button></div>
-                           
+
                             <LoadingButton
                                 loading={isloading}
                                 loadingPosition="start"
@@ -538,6 +542,11 @@ const Register = () => {
                             <div> <PanToolIcon className="stop" /></div>
                             <h1>REGISTRATION CLOSED</h1>
                             <p>The Registration for this tournament has been closed by the Admin</p>
+                        </div>}
+                        {all.slots <= filteredentry.length && <div className="closed">
+                            <div> <SentimentVeryDissatisfiedIcon className="stop" /></div>
+                            <h1>Oops! Slot is Full</h1>
+                            <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>
                         </div>}
 
                         <div className="contacts">

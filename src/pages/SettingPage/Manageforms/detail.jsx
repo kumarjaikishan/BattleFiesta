@@ -119,7 +119,15 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                             onChange={handleChange}
                         />
                     </FormControl>
-                    <button onClick={submit} disabled={loading}>UPDATE</button>
+                    <LoadingButton
+                        loading={loading}
+                        loadingPosition="start"
+                        startIcon={<CloudUploadIcon />}
+                        variant="contained"
+                        onClick={submit}
+                    >
+                        UPDATE
+                    </LoadingButton>
                 </div>
                 <div className="right">
                     <div className="logos">
@@ -139,7 +147,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                                 Upload
                                 <VisuallyHiddenInput type="file" id='tournlogo' accept="image/*" onChange={() => upload("tournlogo")} />
                             </Button>
-                            <p>The Image should be in Square</p>
+                            <p>Tips: The Image should be in Square</p>
                         </div>
                     </div>
                 </div>

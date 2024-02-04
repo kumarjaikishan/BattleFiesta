@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -13,7 +12,8 @@ import { toast } from "react-toastify";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { alltourna } from '../../../store/api'
+import { alltourna } from '../../../store/api';
+import SaveIcon from '@mui/icons-material/Save';
 
 const Pointsystem = ({ setting }) => {
   const tournacenter = useSelector((state) => state.tournacenter);
@@ -233,6 +233,7 @@ const Pointsystem = ({ setting }) => {
             sx={{ m: 1, minWidth: 110 }}
             type="submit"
             loading={isloading}
+            startIcon={<SaveIcon />}
             loadingPosition="start"
             variant="contained"
           >
