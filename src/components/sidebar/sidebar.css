@@ -26,6 +26,7 @@
 .sidebar .clogo .li {
     display: inline-block;
     position: relative;
+    /* border: 1px solid red; */
     transition: 0.3s;
     transition: color 0.4s, top 0s, right 0s, margin-left 0.6s;
     width: 100%;
@@ -50,13 +51,14 @@
 
 .sidebar .link .active .li .name {
     font-family: 'East Sea Dokdo', cursive;
-    font-size: 1.8em;
+    font-size: 1.4em;
 }
 
 .sidebar .link .active .li::before {
     content: '';
     position: absolute;
     width: 20px;
+    /* border: 1px solid red; */
     height: 20px;
     top: -20px;
     right: 10px;
@@ -77,6 +79,7 @@
 
 .sidebar .link .li span {
     position: absolute;
+    /* border: 1px solid red; */
     top: 0;
     height: 100%;
 }
@@ -84,14 +87,16 @@
 .sidebar .link .li .logo,
 .sidebar .clogo .li .logo {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.4em;
+    /* border: 1px solid red; */
     line-height: 55px;
     display: inline-block;
     height: 100%;
 }
 
 .sidebar .clogo .li .logo {
-    width: 120px;
+    width: 100px;
+    /* border: 1px solid red; */
     line-height: 100px;
 }
 
@@ -103,15 +108,17 @@
 .sidebar .link .li .name,
 .sidebar .clogo .li .name {
     text-align: start;
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: 400;
     line-height: 55px;
+    /* border: 1px solid red; */
 }
 
 .sidebar .clogo .li .name {
     width: 90px;
-    font-size: 1.2em;
-    font-weight: 700;
+    /* border: 1px solid red; */
+    font-size: 1.1em;
+    font-weight: 600;
 }
 .sidebar .admin-panel .sub-menu .li{
     /* height: 35px; */

@@ -12,8 +12,8 @@ input{
 :root {
   --navheight: 70px;
   --navheightmobile:70px;
-  --sidebarwide: 200px;
-  --sidebarnarrow: 80px;
+  --sidebarwide: 180px;
+  --sidebarnarrow: 60px;
 }
 
 body {
