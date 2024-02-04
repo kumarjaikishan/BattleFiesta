@@ -22,7 +22,6 @@ const Findtournament = () => {
     const [completedlist, setcompletedlist] = useState([]);
     const [showinglist, setshowinglist] = useState([]);
 
-    const [activecont, setactivecont] = useState(0);
     const handleactive = (index) => {
         let alldiv = document.querySelectorAll(".conta div");
         for (let i = 0; i < alldiv.length; i++) {
