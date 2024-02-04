@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 
 const Signup = ({setlog}) => {
     const dispatch = useDispatch();
-    const useralldetail = useSelector((state) => state.userexplist);
+    const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
         name: "",
         email: "",
@@ -56,7 +56,7 @@ const Signup = ({setlog}) => {
 
         try {
             dispatch(setloader(true));
-            const res = await fetch(`${useralldetail.apiadress}/signup`, {
+            const res = await fetch(`${tournacenter.apiadress}/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
