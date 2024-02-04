@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import { setloader } from '../../../store/login';
 import Button from '@mui/material/Button';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import FeedIcon from '@mui/icons-material/Feed';
@@ -12,9 +13,11 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 const Tournamentstatpage = () => {
+  const dispatch = useDispatch();
   const { tid } = useParams();
   const tournacenter = useSelector((state) => state.tournacenter);
   useEffect(() => {
+    dispatch(setloader(true));
     fetche();
   }, [])
   const [iserror, setiserror] = useState(false);
@@ -44,8 +47,10 @@ const Tournamentstatpage = () => {
       else {
         setiserror(true)
       }
+      dispatch(setloader(false));
     } catch (error) {
       console.log(error);
+      dispatch(setloader(false));
     }
   }
   const changeformat = (date) => {

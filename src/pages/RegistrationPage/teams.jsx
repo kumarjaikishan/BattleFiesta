@@ -4,6 +4,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
+import user from '../../assets/user.png'
+import group from '../../assets/group2.png'
 
 const Teams = ({ entry }) => {
 
@@ -23,14 +25,14 @@ const Teams = ({ entry }) => {
                             className={`headere ${player.status}`}
                         // style={{ borderRight: "8px solid orange" }}
                         >
-                            <img src={player.teamLogo} alt="" /> <span>{player.teamName} </span> <span className={player.status}> { player.status}</span>
+                            <img src={player.teamLogo ? player.teamLogo : group} alt="" /> <span>{player.teamName} </span> <span className={player.status}> { player.status}</span>
                         </AccordionSummary>
                         <AccordionDetails className='detailse'>
                             <div className="playerdata">
                                 <h2>Player List : </h2>
                                 {player.player.map((each, ind) => {
                                     return <div key={ind}>
-                                        <span><img src={each.playerLogo} alt="" /></span>
+                                        <span><img src={each.playerLogo ? each.playerLogo:user} alt="" /></span>
                                         <span>{each.inGameName}</span>
                                         <span>{each.inGameID}</span>
                                     </div>

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Register.css";
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
+import { setloader } from '../../store/login';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -18,6 +19,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import GroupIcon from '@mui/icons-material/Group';
 
 const Register = () => {
+  const dispatch = useDispatch();
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',
@@ -33,6 +35,7 @@ const Register = () => {
     const tournacenter = useSelector((state) => state.tournacenter);
     const [disable, setdisable] = useState(false);
     useEffect(() => {
+        dispatch(setloader(true));
         fetche(registerId);
     }, [])
     const inpinit = {
@@ -146,12 +149,15 @@ const Register = () => {
                         playerLogo: "",
                     }),
                 })
+                dispatch(setloader(false));
             } else {
                 seterrore(true);
+                dispatch(setloader(false));
             }
 
         } catch (error) {
             toast.warn("Tournament Id not Valid", { autoClose: 2300 });
+            dispatch(setloader(false));
         }
     }
 

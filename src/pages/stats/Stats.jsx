@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { styled
 } from '@mui/material';
 import Container from '@mui/material/Container';
@@ -20,11 +20,14 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
+import { setloader } from '../../store/login';
 
 const Stats = () => {
+  const dispatch = useDispatch();
   const { tid } = useParams();
   const [matches, setmatches] = useState([]);
   useEffect(() => {
+    dispatch(setloader(true));
     fetche(tid);
   }, [])
   const [topplayer, settopplayer] = useState([]);
@@ -62,10 +65,12 @@ const Stats = () => {
         findtopplayer(result.matches, result.teamdeatil)
         vdcf(result.teamdeatil);
         setteamdeatil(result.teamdeatil);
+        dispatch(setloader(false));
       }
       // setrule(result.rules)
     } catch (error) {
       console.error('Error:', error);
+      dispatch(setloader(false));
     }
   };
   const vdcf = (arraye) => {

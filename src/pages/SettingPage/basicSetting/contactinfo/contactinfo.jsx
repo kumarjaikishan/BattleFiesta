@@ -11,8 +11,10 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 const Contactinfo = ({ all }) => {
     const tournacenter = useSelector((state) => state.tournacenter);
@@ -23,7 +25,7 @@ const Contactinfo = ({ all }) => {
             link: ""
         }),
     }
-
+    const [isloading, setisloading] = useState(false)
     const [links, setlinks] = useState(init.link)
     const [publicpost, setpublicpost] = useState('');
     useEffect(() => {
@@ -68,7 +70,7 @@ const Contactinfo = ({ all }) => {
     }
     const submite = async (e) => {
         e.preventDefault();
-
+        setisloading(true);
         const token = localStorage.getItem("token");
         try {
             const rese = await fetch(`${tournacenter.apiadress}/updatetournamentformcontacts`, {
@@ -81,6 +83,7 @@ const Contactinfo = ({ all }) => {
             })
             const data = await rese.json();
             if (rese.ok) {
+                setisloading(false)
                 toast.success(data.msg, { autoClose: 1300 });
             }
         } catch (error) {
@@ -174,9 +177,15 @@ const Contactinfo = ({ all }) => {
                             </Button>
                         </Stack>
                         <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
-                            <Button variant="contained" type='submit' startIcon={<DescriptionIcon />}>
-                                Submit
-                            </Button>
+                            <LoadingButton
+                               type='submit'
+                                loading={isloading}
+                                loadingPosition="start"
+                                startIcon={<DescriptionIcon />}
+                                variant="contained"
+                            >
+                                SUBMIT
+                            </LoadingButton>
                         </Stack>
                     </form>
                 </div>

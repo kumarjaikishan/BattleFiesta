@@ -10,7 +10,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
-import { useSelector, useDispatch } from 'react-redux';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useSelector } from 'react-redux';
 
 const EnterResult = ({ setting }) => {
   const [player, setplayer] = useState([]);
@@ -21,6 +22,7 @@ const EnterResult = ({ setting }) => {
   const [selectedTeam, setselectedTeam] = useState();
   const [rows, setRows] = useState([]);
   const [forupload, setforupload] = useState([]);
+  const [isloading, setisloading] = useState(false)
 
   const pointssystem = {
     killpts: setting.killpoints || 1,
@@ -55,7 +57,7 @@ const EnterResult = ({ setting }) => {
 
     const successAction = (data) => {
       // console.log(data.entry);
-      let filterapproved = data.entry.filter((val)=>{
+      let filterapproved = data.entry.filter((val) => {
         return val.status == "approved";
       })
       setplayer(filterapproved);
@@ -69,20 +71,20 @@ const EnterResult = ({ setting }) => {
   }
 
   const fetderfreche = () => {
-    if(player.length > 0){
+    if (player.length > 0) {
       const vcvdv = player.map((item) => {
         return {
           label: item.teamName,
           teamid: item._id,
           players: item.player.map((val, ind) => {
-            return { id: ind, kills: 0, inGameName: val.inGameName, playerId:val.playerId }
+            return { id: ind, kills: 0, inGameName: val.inGameName, playerId: val.playerId }
           })
         }
       })
       // console.log('teamlist:', vcvdv);
       setteamlist(vcvdv);
     }
-   
+
   }
   const [indexe, setindexe] = useState(1);
 
@@ -186,7 +188,7 @@ const EnterResult = ({ setting }) => {
       label: deerfg[0].teamName,
       teamid: deerfg[0]._id,
       players: deerfg[0].player.map((val, ind) => {
-        return { id: ind, kills: 0, inGameName: val.inGameName, playerId:val.playerId }
+        return { id: ind, kills: 0, inGameName: val.inGameName, playerId: val.playerId }
       })
     }
 
@@ -210,11 +212,12 @@ const EnterResult = ({ setting }) => {
     const userid = setting.userid
     const matchmap = map;
     const points = forupload;
-    if(!matchmap){
-    return  toast.warn("Select Map",{autoClose:1500})
+    if (!matchmap) {
+      return toast.warn("Select Map", { autoClose: 1500 })
     }
     // console.log(forupload);
     try {
+      setisloading(true)
       const id = toast.loading("Please wait...")
       const token = localStorage.getItem("token");
       const rese = await fetch(`${tournacenter.apiadress}/addmatches`, {
@@ -233,9 +236,10 @@ const EnterResult = ({ setting }) => {
       if (rese.ok) {
         toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });
       }
-
+      setisloading(false)
     } catch (error) {
       console.log(error);
+      setisloading(false)
       toast.update(id, { render: "Failed", type: "warn", isLoading: false, autoClose: 1600 });
     }
   }
@@ -360,8 +364,17 @@ const EnterResult = ({ setting }) => {
             <Box display="flex"
               justifyContent="center"
               alignItems="center">
-              <Button onClick={savecloud} variant="contained" sx={{ m: 1, minWidth: 110 }} startIcon={<CloudUploadIcon />}>Save To Cloud</Button>
-              <Button onClick={reset} variant="contained" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
+              <LoadingButton
+                sx={{ m: 1, minWidth: 110 }}
+                onClick={savecloud}
+                loading={isloading}
+                loadingPosition="start"
+                startIcon={<CloudUploadIcon />}
+                variant="contained"
+              >
+                Save To Cloud
+              </LoadingButton>
+              <Button onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
             </Box>
           </FormControl>
         </div>

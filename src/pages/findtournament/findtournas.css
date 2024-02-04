@@ -39,7 +39,7 @@
 
     .cards {
         width: 100%;
-
+        height: calc(100% - 55px);
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 1rem;

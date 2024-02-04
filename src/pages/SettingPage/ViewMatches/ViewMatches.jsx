@@ -3,7 +3,9 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import LoadingButton from '@mui/lab/LoadingButton';
+import { setloader } from "../../../store/login";
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import './viewmatches.css'
 import Button from '@mui/material/Button';
@@ -14,7 +16,8 @@ import { toast } from 'react-toastify';
 
 const PointSystem = ({ setting }) => {
   const tournacenter = useSelector((state) => state.tournacenter);
-
+  const dispatch = useDispatch();
+  const [isloading, setisloading] = useState(false)
   const [matches, setmatches] = useState([]);
   const [rules, setrules] = useState([])
   useEffect(() => {
@@ -25,6 +28,7 @@ const PointSystem = ({ setting }) => {
     const tid = setting._id;
 
     try {
+      dispatch(setloader(true));
       const response = await fetch(`${tournacenter.apiadress}/getmatches`, {
         method: "POST",
         headers: {
@@ -38,9 +42,11 @@ const PointSystem = ({ setting }) => {
       if (response.ok) {
         setmatches(responseData.matches)
         setrules(responseData.rules)
+        dispatch(setloader(false));
       }
     } catch (error) {
       console.error(error);
+      dispatch(setloader(false));
     }
   }
 
@@ -81,6 +87,7 @@ const PointSystem = ({ setting }) => {
   }
   const deletee = async (matchid) => {
     try {
+      setisloading(true)
       const response = await fetch(`${tournacenter.apiadress}/deletematch`, {
         method: "POST",
         headers: {
@@ -95,8 +102,10 @@ const PointSystem = ({ setting }) => {
         toast.success(responseData.msg, { autoClose: 1500 });
         feteche();
       }
+      setisloading(false)
     } catch (error) {
       console.error(error);
+      setisloading(false)
     }
   }
 
@@ -104,12 +113,12 @@ const PointSystem = ({ setting }) => {
     <div className='viewmatches'>
       <h2>Matches List</h2>
       {matches.length < 1 && <div className="notfound">
-          <div>
+        <div>
           <SentimentDissatisfiedIcon className="sad" />
-            <h2>No Matches Found for this Tournament</h2>
-            <p>Please Add Matches First.</p>
-          </div>
-        </div>}
+          <h2>No Matches Found for this Tournament</h2>
+          <p>Please Add Matches First.</p>
+        </div>
+      </div>}
       {matches.map((match, ind) => {
         const originalDate = new Date(match.createdAt);
         const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
@@ -156,9 +165,17 @@ const PointSystem = ({ setting }) => {
               <Button variant="outlined" startIcon={<CreateIcon />}>
                 Edit
               </Button>
-              <Button onClick={() => deletee(match._id)} color='warning' variant="outlined" startIcon={<DeleteIcon />}>
-                Delete
-              </Button>
+              <LoadingButton
+                onClick={() => deletee(match._id)}
+                loading={isloading}
+                color='warning'
+                loadingPosition="start"
+                startIcon={<DeleteIcon />}
+                variant="outlined"
+                type="submit"
+              >
+                DELETE
+              </LoadingButton>
             </Stack>
           </AccordionDetails>
         </Accordion>

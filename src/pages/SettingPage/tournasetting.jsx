@@ -50,7 +50,7 @@ const Tournasetting = () => {
   const [loading, setLoading] = useState(false);
   const [active, setactive] = useState(0);
   useEffect(() => {
-    console.log("SETTING",tournacenter.current_tourna_details);
+    // console.log("SETTING",tournacenter.current_tourna_details);
     setinp({
       tid: setting._id,
       title: setting.title,
@@ -73,7 +73,6 @@ const Tournasetting = () => {
   }
   const submit = async () => {
     setLoading(true);
-    const { tid, title, organiser, slots, type, status, visibility, label } = inp
     const url = `${tournacenter.apiadress}/settournament`;
     const method = "POST";
     // const body = { tid, title, organiser, slots, type, status, visibility, label };
@@ -141,7 +140,7 @@ const Tournasetting = () => {
     setactive(index);
     all[index].classList.add("active");
   }
-  let localhos = "http://localhost:5173";
+  let localhos = "https://esport-backend.vercel.app";
 
   function copyUrlToClipboard(page) {
     // Create a temporary input element
@@ -218,7 +217,7 @@ const Tournasetting = () => {
             <p>Points table,Top fraggers, Indivisual team and match performance statistics
               could be found on the link below. You can even Share this link with the Participants.</p>
             <Stack spacing={2} direction="row">
-              <TextField  inputProps={{ style: { color: "red" } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
+              <TextField aria-readonly sx={{width:"250px"}}  inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
             <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small' variant="contained">Visit</Button></a>
@@ -228,7 +227,7 @@ const Tournasetting = () => {
             <header>Registration Page Link</header>
             <p>Teams can register for this tournament using the following link.</p>
             <Stack spacing={2} direction="row">
-              <TextField id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
+              <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
             </Stack>
             <a href={`${localhos}/register/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small' variant="contained">Visit</Button></a>
@@ -239,7 +238,7 @@ const Tournasetting = () => {
             <p>The publick page for tournament can be found here.The visibility of the tournament
               must be set to 'PUBLISHED'. Don't forget to add conetent to the public post.</p>
             <Stack spacing={2} direction="row">
-              <TextField id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
+              <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>
             <a href={`${localhos}/tournaments/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small' variant="contained">Visit</Button></a>

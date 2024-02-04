@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
+import { setloader } from '../../store/login';
 import './findtournas.css'
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Findtournament = () => {
+    const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const [alltournas, setalltournas] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
+        dispatch(setloader(true));
         fetche();
     }, [])
     const [ongoinglist, setongoinglist] = useState([]);
@@ -54,13 +58,15 @@ const Findtournament = () => {
                 })
                 setongoinglist(one); setupcominglist(two); setcompletedlist(three);
                 setshowinglist(two)
+                dispatch(setloader(false));
             }
         } catch (error) {
             console.log(error);
+            dispatch(setloader(false));
         }
     }
     const findtournament = (tid) => {
-       return navigate(`/tournaments/${tid}`)
+        return navigate(`/tournaments/${tid}`)
     }
     return (
         <>
@@ -80,6 +86,13 @@ const Findtournament = () => {
                     </div>
                 </div>
                 <div className="cards">
+                    {showinglist.length < 1 && <div className="notfound">
+                        <div>
+                            <SentimentDissatisfiedIcon className="sad" />
+                            <h2>No Tournament Found</h2>
+                            <p>Please Add Tournament.</p>
+                        </div>
+                    </div>}
                     {showinglist.map((val, ind) => {
                         const formattedDate = new Date(val.createdAt).toLocaleDateString(
                             "en-US",

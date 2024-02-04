@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./registerform.css";
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import {setloader } from "../../../store/login";
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import GroupIcon from '@mui/icons-material/Group';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
@@ -22,6 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const Registerform = ({ setting, showss }) => {
     const tid = setting._id;
+    const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
         tid: "",
@@ -40,9 +42,10 @@ const Registerform = ({ setting, showss }) => {
         links:''
     }
     const [all, setall] = useState(init);
+    const [isloading,setisloading]= useState(false)
 
     useEffect(() => {
-        console.log(tid);
+        dispatch(setloader(true));
         tid && fetche();
     }, [])
 
@@ -53,6 +56,7 @@ const Registerform = ({ setting, showss }) => {
     const [rejectedplayer, setrejectedplayer] = useState([]);
 
     const fetche = async () => {
+        dispatch(setloader(true));
         const url = `${tournacenter.apiadress}/tournamentform`;
         const method = 'POST';
         const body = { tid };
@@ -79,6 +83,7 @@ const Registerform = ({ setting, showss }) => {
                 max_player: actualdata.maximum_players,
                 links:actualdata.links
             })
+            dispatch(setloader(false));
         };
 
         // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
@@ -111,6 +116,7 @@ const Registerform = ({ setting, showss }) => {
     }
     const submit = async (e) => {
         e.preventDefault();
+        setisloading(true)
         const id = toast.loading("Please wait...")
         // console.log(all);
         const url = `${tournacenter.apiadress}/updatetournamentform`;
@@ -120,7 +126,7 @@ const Registerform = ({ setting, showss }) => {
         const successAction = (data) => {
             // toast.success(data.msg, { autoClose: 1300 });
             toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
-            //    console.log(data);
+            setisloading(false)
         };
 
         // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
@@ -216,7 +222,7 @@ const Registerform = ({ setting, showss }) => {
                         </Badge>
                     </div>
                 </div>
-                {active == 0 && <TournaFormSetting all={all} handleChange={handleChange} submit={submit} />}
+                {active == 0 && <TournaFormSetting isloading={isloading} all={all} handleChange={handleChange} submit={submit} />}
                 {active == 1 && <Contactinfo all={all} handleChange={handleChange} submit={submit} />}
                 {active == 2 && <PendingPage decline={decline} showss={showss} statuschange={statuschange} pendingplayer={pendingplayer} />}
                 {active == 3 && <ApprovedPage decline={decline} showss={showss} statuschange={statuschange} approvedPlayer={approvedPlayer} />}

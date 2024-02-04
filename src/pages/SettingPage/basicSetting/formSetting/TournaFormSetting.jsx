@@ -6,11 +6,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormLabel from '@mui/material/FormLabel';
 import './TournaFormSetting.css'
 import { useEffect } from 'react';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
-const TournaFormSetting = ({all,handleChange,submit}) => {
-   useEffect(()=>{
-    //  console.log(all);
-   },[])
+const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
+
+    useEffect(() => {
+        //  console.log(all);
+    }, [])
     return (
         <>
             <div className="maine">
@@ -42,7 +45,7 @@ const TournaFormSetting = ({all,handleChange,submit}) => {
                         multiline
                         name="description"
                         rows={2}
-                        inputProps={{style: {fontSize: 11}}}
+                        inputProps={{ style: { fontSize: 11 } }}
                         onChange={handleChange}
                         value={all.description}
                         placeholder="Add description or message to show on registration page."
@@ -52,7 +55,7 @@ const TournaFormSetting = ({all,handleChange,submit}) => {
                         label="Successful  Message"
                         multiline
                         value={all.success_msg}
-                        inputProps={{style: {fontSize: 11}}}
+                        inputProps={{ style: { fontSize: 11 } }}
                         rows={1}
                         name="success_msg"
                         onChange={handleChange}
@@ -170,7 +173,16 @@ const TournaFormSetting = ({all,handleChange,submit}) => {
                         }}
                         helperText="Maximim no. of players need to be registered."
                     />
-                    <button onClick={submit}> SAVE </button>
+                    <LoadingButton
+                        onClick={submit}
+                        loading={isloading}
+                        loadingPosition="start"
+                        startIcon={<SaveIcon />}
+                        variant="contained"
+                        type="submit"
+                    >
+                        SAVE
+                    </LoadingButton>
                 </Box>
             </div>
         </>

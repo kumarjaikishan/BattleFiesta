@@ -4,11 +4,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { Box } from '@mui/system';
+import LoadingButton from '@mui/lab/LoadingButton';
 import FormHelperText from '@mui/material/FormHelperText';
 import './pointsystem.css'
 import FormControl from '@mui/material/FormControl';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -20,6 +20,7 @@ const Pointsystem = ({ setting }) => {
   const dispatch = useDispatch();
   let obj = {};
   const [points, setpoints] = useState('');
+  const [isloading, setisloading] = useState(false)
   const [formData, setFormData] = useState({
     tiepreference: '',
     killpoints: ''
@@ -49,6 +50,7 @@ const Pointsystem = ({ setting }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setisloading(true)
     errorcheck();
     // console.log(obj);
     if (iserror) {
@@ -78,9 +80,10 @@ const Pointsystem = ({ setting }) => {
           dispatch(alltourna());
           toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });
         }
-
+        setisloading(false)
       } catch (error) {
         console.log(error);
+        setisloading(false)
         toast.update(id, { render: "Failed", type: "warn", isLoading: false, autoClose: 1600 });
       }
     }
@@ -168,7 +171,7 @@ const Pointsystem = ({ setting }) => {
   }
 
   return (
-    <Container className='pointsysytem' component="main" maxWidth="s" style={{height: "100%"}}>
+    <Container className='pointsysytem' component="main" maxWidth="s" style={{ height: "100%" }}>
       <div className='instruction'>
         <p>Format:</p>
         <p> Rank = Place Points </p>
@@ -216,7 +219,8 @@ const Pointsystem = ({ setting }) => {
           <TextField
             label="Points Per Kill"
             variant="outlined"
-            type="number"
+            type='tel'
+            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
             name="killpoints"
             required
             value={formData.killpoints}
@@ -225,9 +229,15 @@ const Pointsystem = ({ setting }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
+          <LoadingButton
+            sx={{ m: 1, minWidth: 110 }}
+            type="submit"
+            loading={isloading}
+            loadingPosition="start"
+            variant="contained"
+          >
+            SUBMIT
+          </LoadingButton>
         </Grid>
       </form>
     </Container>

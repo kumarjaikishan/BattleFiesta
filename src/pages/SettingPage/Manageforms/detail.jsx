@@ -6,12 +6,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import "./detail.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect } from 'react';
 
 const Detail = ({ submit, upload, handleChange, loading, inp }) => {
-    useEffect(()=>{
+    useEffect(() => {
         console.log(inp);
     })
     const VisuallyHiddenInput = styled('input')({
@@ -60,7 +61,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                             value={inp.slots}
                             onChange={handleChange}
                         />
-                       
+
                     </FormControl>
                     <FormControl sx={{ m: 1, mb: 3, maxWidth: 320 }}>
                         <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
@@ -130,7 +131,6 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                                 Upload
                                 <VisuallyHiddenInput type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
                             </Button>
-
                             <p>A cover image for the tournament. Tip: you could include sponsership in the cover image</p>
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>

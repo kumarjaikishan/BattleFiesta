@@ -12,6 +12,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import swal from 'sweetalert';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
@@ -27,6 +29,7 @@ const Home = () => {
     return <Navigate to='/login' />
   }
   const dispatch = useDispatch();
+  const [load,setload]=useState(false)
   const navigate = useNavigate();
   const tournacenter = useSelector((state) => state.tournacenter);
   useEffect(() => {
@@ -36,7 +39,6 @@ const Home = () => {
 
 
   const setdata = (data) => {
-    console.log(data);
     dispatch(settournaid(data));
     navigate('/setting')
   };
@@ -97,6 +99,7 @@ const Home = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setload(true);
     const { name, organiser, slots, type } = inp;
 
     const url = `${tournacenter.apiadress}/addtournament`;
@@ -108,6 +111,7 @@ const Home = () => {
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
+      setload(false);
     };
 
     // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
@@ -206,7 +210,15 @@ const Home = () => {
                 </FormControl>
               </section>
               <Stack spacing={2} direction="row" sx={{ m: 2 }}>
-                <Button variant="contained" type="submit">Create</Button>
+                <LoadingButton
+                  loading={load}
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  variant="contained"
+                  type="submit"
+                >
+                  CREATE
+                </LoadingButton>
                 <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
               </Stack>
             </form>

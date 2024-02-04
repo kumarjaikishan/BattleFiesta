@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
-import loadere from '../src/img/loader.png'
+import Preloader from './preloader';
 import Sidebar from './components/sidebar/sidebar';
 import Home from './pages/dashboard/home';
 import { useEffect } from 'react';
@@ -55,10 +55,10 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<Errorpage />} />
           </Routes>
-          <div style={{ display: log.loader ? "flex" : "none" }} className="loader"><img src={loadere} alt="" /></div>
+          {log.loader && <Preloader />}
         </div>
         <Sidebar />
-      </div >
+      </div>
     </>
   );
 }
