@@ -25,8 +25,7 @@ import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied
 const Home = () => {
   const log = useSelector((state) => state.login);
   if (!log.islogin) {
-    toast.warn("You are not Logged In", { autoClose: 1300 })
-    return <Navigate to='/login' />
+      return <Navigate to='/login' />
   }
   const dispatch = useDispatch();
   const [load,setload]=useState(false)
