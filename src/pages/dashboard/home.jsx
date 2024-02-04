@@ -43,7 +43,7 @@ const Home = () => {
   };
 
   const deletee = (tournaid) => {
-    console.log(tournaid);
+    // console.log(tournaid);
     swal({
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this Tournament!',
