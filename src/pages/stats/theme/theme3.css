@@ -1,0 +1,107 @@
+.conta.theme3 {
+    background: url('../../../assets/drop.jpg');
+    background-size: contain;
+    background-size: 100%;
+    padding: 20px 0px;
+    border-radius: 20px;
+
+    &>div {
+        display: flex;
+        justify-content: center;
+
+        & img {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);
+        }
+    }
+
+    h1,
+    h2 {
+        color: #033438c7;
+        text-align: center;
+        font-size: 4em;
+        -webkit-text-stroke: 1px white;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: #042d31ef;
+        text-transform: uppercase;
+        -webkit-text-stroke: 0px black;
+    }
+
+    table {
+        width: 100%;
+        padding: 5px 10px;
+        text-align: center;
+        border-collapse: separate;
+        border-spacing: 4px 6px;
+
+        & thead {
+
+            color: whitesmoke;
+
+            & tr {
+
+                & th {
+                    background: #013135cb;
+                    padding: 5px 3px;
+                    font-weight: 800;
+                    font-size: 1.1em;
+                    letter-spacing: 2px;
+                    border: 2px solid white;
+                    border-radius: 10px;
+                }
+            }
+        }
+
+        tbody {
+
+            & tr {
+                /* background: -webkit-linear-gradient(#ffdd00d0, #fbaf34a1); */
+
+                color: whitesmoke;
+                border-radius: 10px;
+                /* height: 60px; */
+                margin: 40px 0px;
+
+                & td {
+                    padding: 5px;
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    border-radius: 10px 0px 25px 0px;
+
+
+                    & img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-left: 5px;
+                        margin-right: 10px;
+                    }
+
+                }
+
+                td:nth-child(2) {
+                    display: flex;
+                    align-items: center;
+                }
+
+                td:nth-child(odd) {
+                    background: linear-gradient(to bottom right, #0c7097c0, #013135);
+                    color: white;
+                    border: 2px solid white;
+                }
+
+                td:nth-child(even) {
+                    background: rgba(255, 255, 255, 0.712);
+                    border: 2px solid #013135;
+                    color: #013135;
+                }
+            }
+        }
+    }
+}

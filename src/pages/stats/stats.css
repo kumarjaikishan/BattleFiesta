@@ -1,0 +1,212 @@
+.stats {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+
+  & .controls {
+    padding: 20px 10px;
+  }
+
+  .fragger {
+    width: 100%;
+    margin-top: 10px;
+    background: url('../../assets/grey.jpg');
+    background-size: cover;
+    border-radius: 30px;
+    padding: 20px;
+
+    & h2 {
+      text-align: center;
+      color: whitesmoke;
+      font-size: 2em;
+    }
+
+    .boxes {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-around;
+
+      & .box {
+        width: 160px;
+        /* height: 250px; */
+        border: 1px solid white;
+        border-radius: 10px;
+        overflow: hidden;
+        /* flex: 2; */
+
+        & .img {
+          width: 160px;
+          height: 160px;
+          background: radial-gradient(#e7e9e8,#09eedb);
+          position: relative;
+
+          & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            line-height: 70px;
+            text-align: center;
+            color: whitesmoke;
+            font-size: 1.1em;
+            font-weight: 600;
+            background: linear-gradient(to top, rgb(24, 24, 24), transparent);
+          }
+        }
+
+        .below {
+          /* border: 1px solid red; */
+          font-weight: 700;
+          padding: 5px;
+          font-size: 0.9em;
+          text-transform: uppercase;
+          background: -webkit-linear-gradient(right, rgb(255, 221, 0), rgb(251, 175, 52));
+        }
+      }
+    }
+    
+    .table {
+      width: 100%;
+      /* border: 1px solid yellow; */
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      margin-top: 10px;
+
+      & .tabledata {
+        width: 400px;
+        /* border: 1px solid yellow; */
+
+        & div {
+          width: 100%;
+          background: -webkit-linear-gradient(right, rgb(255, 221, 0), rgb(251, 175, 52));
+          margin: 7px 0px;
+          padding: 2px 5px;
+          border-radius: 10px 0 10px 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 1.1em;
+          font-weight: 600;
+
+         & >span:nth-child(1){
+          display: flex;
+          align-items: center;
+
+          & span{
+            margin-left: 8px;
+
+            & img{
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+            }
+          }
+         } 
+         & >span:nth-child(2){
+          margin-right: 20px;
+         }          
+        }
+
+        .tablehead {
+          color: yellow;
+          background: linear-gradient(180deg, #030c27ab, #0b1b476e 63%, #030c27be);
+          font-size: 1.4em;
+          font-weight: 700;
+          letter-spacing: 2px;
+        }
+      }
+    }
+  }
+
+  .matchtable {
+    width: 100%;
+    border: 1px solid red;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    background: url('../../assets/grey.jpg');
+    background-size: cover;
+
+    & h1,
+    h3 {
+      color: white;
+      text-align: center;
+    }
+
+    .selected {
+      color: grey;
+      background: whitesmoke;
+    }
+
+    .table {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+
+      & table {
+        width: 90%;
+        text-align: center;
+        border-collapse: separate;
+        border-spacing: 0px 8px;
+
+        & thead {
+          color: white;
+
+          & tr {
+            color: yellow;
+            background: linear-gradient(180deg, #030c27ab, #0b1b476e 63%, #030c27be);
+
+            & th {
+              padding: 5px;
+              font-size: 1.4em;
+              font-weight: 700;
+              letter-spacing: 2px;
+            }
+          }
+        }
+
+        tbody {
+
+          & tr {
+            margin: 7px 0px;
+            background: -webkit-linear-gradient(right, rgb(255, 221, 0), rgb(251, 175, 52));
+
+            & td {
+              padding: 4px 10px;
+              font-size: 1.1em;
+              font-weight: 600;
+              letter-spacing: 1px;
+
+              & img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+              }
+            }
+            td:nth-child(1){
+              display: flex;
+              align-items: center;
+
+              & span{
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,145 @@
+.pendingList , .approvedList, .manageteams,.rejectedlist{
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    padding-top: 10px;
+
+    & .box{
+        padding: 20px;
+        width: 700px;
+        height: max-content;
+        border: 1px solid grey;
+        border-radius: 10px;
+
+        & h2{
+            margin-bottom: 5px;
+            color: rgb(64, 62, 62);
+        } 
+        .header{
+
+            & img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50px;
+                margin-right: 20px;
+            }
+            span{
+                font-size: 1.3em;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+        }
+        .details{
+            width: 100%;
+
+            & .teamdata{
+                width: 100%;
+                height: 200px;
+                /* border: 1px solid red; */
+                display: flex;
+                justify-content: space-between;
+
+                & .imageside{
+                    width: 200px;
+                    height: 100%;
+                    /* border: 1px solid blue; */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    & img{
+                        width: 140px;
+                        height: 140px;
+                        object-fit: cover;
+                        border-radius: 20px;
+                        border: 1px solid grey;
+                    }
+                    .icon{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                        border-top: 1px solid grey;
+                        border-bottom: 1px solid grey;
+                        padding: 5px;
+                        margin-top: 10px;
+                    }
+                }
+                .teamside{
+                    width: 320px;
+                    height: 100%;
+                    border-left: 1px solid grey;
+                    /* margin: auto 0px; */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    padding-left: 15px;
+
+                    & span{
+                        display: flex;
+                        /* justify-content: space-be/tween; */
+
+                        & span:nth-child(1){
+                            font-weight: 600;
+                            width: 100px;
+                            /* border: 1px solid red; */
+                        }
+                        & span:nth-child(2){
+                           margin-left: 5px;
+                        }
+                    }
+                }
+                a{
+                    color: green;
+                }
+            }
+            .playerdata{
+                border: 1px solid grey;
+                border-radius: 10px;
+                padding: 5px;
+
+                & h2{
+                    font-size: 1.1em;
+                    margin: 10px 0px;
+                } 
+                div{
+                    border-top: 1px solid grey;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding: 5px 0px;
+
+                    & img{
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        border: 1px solid grey;
+                    }
+                }
+               
+                BUTTON{
+                    margin: 10px 0px;
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+    .middle{
+        text-align: center;
+        color: rgb(56, 54, 54);
+
+        & div{
+            font-size: 2em;
+
+            & .emoji{
+                font-size: 3em;
+            }
+        }
+    }
+}

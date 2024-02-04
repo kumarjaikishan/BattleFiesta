@@ -1,0 +1,103 @@
+.conta.theme4 {
+    background: url('../../../assets/grey.jpg');
+    background-size: contain;
+    background-size: 100%;
+    padding: 20px 0px;
+    border-radius: 20px;
+
+    &>div {
+        display: flex;
+        justify-content: center;
+
+        & img {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+    }
+
+    h1,
+    h2 {
+        color: whitesmoke;
+        text-align: center;
+        font-size: 4em;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: transparent;
+        text-transform: uppercase;
+        -webkit-text-stroke: 0.6px white;
+    }
+
+    table {
+        width: 100%;
+        padding: 5px 10px;
+        text-align: center;
+        border-collapse: separate;
+        border-spacing: 4px 8px;
+
+        & thead {
+            /* background: rgba(0, 0, 0, 0.4); */
+            color: whitesmoke;
+
+            & tr {
+
+                & th {
+                    padding: 5px 3px;
+                    font-weight: 800;
+                    font-size: 1.2em;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+
+        tbody {
+
+            & tr {
+                /* background: -webkit-linear-gradient(#ffdd00d0, #fbaf34a1); */
+
+                color: whitesmoke;
+                border-radius: 10px;
+                /* height: 60px; */
+                margin: 40px 0px;
+
+                & td {
+                    padding: 5px;
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    border-radius: 15px;
+
+
+                    & img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-left: 5px;
+                        margin-right: 10px;
+                    }
+
+                }
+
+                td:nth-child(2) {
+                    display: flex;
+                    align-items: center;
+                }
+
+                td:nth-child(odd) {
+                    background: linear-gradient(to bottom right, #4b4949a6, #1d1b1b);
+                    color: white;
+                    border: 1px solid white;
+                }
+
+                td:nth-child(even) {
+                    background: rgba(255, 255, 255, 0.719);
+                    border: 2px solid #222020;
+                    color: #222020;
+                }
+            }
+        }
+    }
+}

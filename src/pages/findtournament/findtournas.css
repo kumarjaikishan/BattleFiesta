@@ -1,0 +1,277 @@
+.findtournas {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* border: 1px solid red; */
+
+    & .conta {
+        height: 55px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 5px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+
+        & div {
+            /* background-color: grey; */
+            border-radius: 15px;
+            width: 30%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+
+            & span:nth-child(2) {
+                margin-left: 10px;
+
+            }
+        }
+
+        div.active {
+            color: rgb(6, 115, 146);
+            border-bottom: 2px solid rgb(6, 115, 146);
+        }
+    }
+
+    .cards {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 1rem;
+        padding: 0.6em 1em;
+        overflow-y: auto;
+        position: relative;
+        overflow-x: hidden;
+
+        & .card {
+            width: 240px;
+            height: max-content;
+            overflow: hidden;
+            background: white;
+            /* border: 1px solid grey; */
+            padding-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+            position: relative;
+
+            & .img {
+                display: flex;
+                width: 240px;
+                height: 240px;
+                /* border: 2px solid blue; */
+                justify-content: center;
+                position: relative;
+
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                >span {
+                    position: absolute;
+                    display: inline-block;
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                    width: 100%;
+                    height: 50px;
+                    bottom: 0px;
+                    left: 0px;
+                    font-size: 1.3rem;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    font-weight: 700;
+                    line-height: 70px;
+                    padding-left: 10px;
+                    color: white;
+                }
+            }
+
+            .organiser,
+            .time {
+                margin: 7px 0px;
+                padding-left: 10px;
+                color: rgb(58, 56, 56);
+            }
+
+            .time {
+                font-size: 14px;
+            }
+
+            .controller {
+                width: 100%;
+                display: flex;
+
+                & button {
+                    letter-spacing: 1px;
+                    font-size: 0.8em;
+                    background: black;
+                }
+
+                .status {
+                    background: rgb(22, 164, 221);
+                    color: white;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    border-radius: 5px;
+                    line-height: 30px;
+                    padding: 0px 2px;
+                    font-size: 0.7em;
+                }
+
+                .delete {
+                    /* width: 30px; */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    font-size: 1.8em;
+                    padding: 2px;
+                    /* height: 30px; */
+                    cursor: pointer;
+
+                    &:hover {
+                        background: rgb(203, 199, 199);
+                    }
+                }
+
+            }
+
+        }
+    }
+
+}
+
+.tournastat {
+    width: 100%;
+    height: max-content;
+    padding: 2em 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid red; */
+
+    & .img {
+        border-radius: 40px;
+        width: 80%;
+        /* border: 1px solid red; */
+        overflow: hidden;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+
+        & img {
+            width: 100%;
+        }
+    }
+
+    .info {
+        width: 600px;
+        padding: 10px 20px;
+        margin-top: 20px;
+        border: 1px solid rgb(181, 176, 176);
+        color: #212529;
+        border-radius: 5px;
+
+        & .upper {
+            padding: 10px 0px;
+            border-bottom: 2px solid rgb(176, 172, 172);
+  
+
+            & div:nth-child(1) {
+                font-size: 3em;
+                font-weight: 600;
+                text-transform: uppercase;
+
+                & span {
+                    padding: 2px 10px;
+                    font-size: 16px;
+                    background: rgba(3, 93, 98, 0.955);
+                    color: white;
+                    border-radius: 15px;
+                    /* line-height: 50px;
+                    height: 40px; */
+                }
+            }
+
+            div:nth-child(2) {
+                font-size: 2em;
+                font-weight: 500;
+            }
+        }
+
+        .publicpost {
+            padding: 10px 0px;
+
+        }
+
+        .btn {
+            border: 1px solid rgb(196, 193, 193);
+            border-radius: 10px;
+            padding: 20px 0px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+
+    .contacts {
+        margin-top: 10px;
+        width: 100%;
+        border: 1px solid rgb(196, 193, 193);
+        border-radius: 10px;
+        padding: 10px 5px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & div:nth-child(1) {
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        & div:nth-child(2) {
+            font-size: 1.4em;
+            font-weight: 500;
+        }
+
+        .links {
+            width: 100%;
+            height: max-content;
+            display: flex;
+            padding-bottom: 5px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            & a {
+                /* background: red; */
+                display: flex;
+                padding: 3px 8px;
+                letter-spacing: 1px;
+                border-radius: 5px;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: rgb(14, 144, 196);
+                font-weight: 600;
+                cursor: pointer;
+                margin-top: 10px;
+
+                &:hover {
+                    background-color: rgb(4, 60, 82);
+                    color: white;
+                }
+
+                span {
+                    margin: 0 3px;
+                }
+            }
+        }
+        p{
+            font-weight: 500;
+        }
+    }
+}

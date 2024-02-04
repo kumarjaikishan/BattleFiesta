@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+    height: 100vh;
+    overflow: hidden;
+    background-image: linear-gradient(109.6deg, rgba(62, 161, 219, 1) 11.2%, rgba(93, 52, 236, 1) 100.2%);
+}
+
+.sidebar .clogo {
+    position: relative;
+    width: 100%;
+    height: 110px;
+}
+
+.sidebar .link {
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+.sidebar .link .li,
+.sidebar .clogo .li {
+    display: inline-block;
+    position: relative;
+    transition: 0.3s;
+    transition: color 0.4s, top 0s, right 0s, margin-left 0.6s;
+    width: 100%;
+    height: 55px;
+    margin: 2px 0px;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+.sidebar .clogo .li {
+    height: 110px;
+    overflow: hidden;
+}
+
+.sidebar .link .active .li {
+    background: #f0f0f0;
+    color: #2980b9;
+    margin-left: 10px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.sidebar .link .active .li .name {
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 1.8em;
+}
+
+.sidebar .link .active .li::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -20px;
+    right: 10px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 20px 20px 0px 20px #f0f0f0;
+}
+
+.sidebar .link .active .li::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: -20px;
+    right: 10px;
+    border-top-right-radius: 20px;
+    box-shadow: 20px -20px 0px 20px #f0f0f0;
+}
+
+.sidebar .link .li span {
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+.sidebar .link .li .logo,
+.sidebar .clogo .li .logo {
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 55px;
+    display: inline-block;
+    height: 100%;
+}
+
+.sidebar .clogo .li .logo {
+    width: 120px;
+    line-height: 100px;
+}
+
+.sidebar .company {
+    transition: 0.5s;
+    transform: scale(3.5);
+}
+
+.sidebar .link .li .name,
+.sidebar .clogo .li .name {
+    text-align: start;
+    font-size: 1.1em;
+    font-weight: 400;
+    line-height: 55px;
+}
+
+.sidebar .clogo .li .name {
+    width: 90px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+.sidebar .admin-panel .sub-menu .li{
+    /* height: 35px; */
+    /* border: 1px solid red; */
+}
+
+.sidebar .admin-panel>span span:nth-child(3) {
+    position: absolute;
+    right: 5px;
+    top: 80%;
+    transform: translate(-50%,-50%);
+}
+.sidebar .admin-panel .sub-menu{
+    transform: translateX(15px) ;
+    
+    /* border: 1px solid red; */
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar {
+        width: 200px;
+        font-size: 0.8em;
+    }
+
+    .sidebar.narrow {
+        width: 0px;
+    }
+
+    .sidebar .link .name {
+        font-size: 0.4em;
+    }
+
+    .sidebar .link .active .li .name {
+        font-size: 2em;
+    }
+
+    .sidebar .clogo .li .logo {
+        width: 120px;
+        line-height: 100px;
+    }
+
+    .sidebar .link .li .logo {
+        width: 60px;
+        left: 0;
+    }
+
+    .sidebar .link .active .li .name {
+        margin-left: -25px;
+    }
+
+   
+}

@@ -1,0 +1,221 @@
+import React, { useState } from "react";
+import { useEffect } from "react";
+import "./home.css";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { header, setloader } from "../../store/login";
+import apiWrapper from "../../store/apiWrapper";
+import { toast } from "react-toastify";
+import { settournaid } from "../../store/api";
+import { alltourna } from '../../store/api'
+import DeleteIcon from "@mui/icons-material/Delete";
+import swal from 'sweetalert';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import { setcreatenewmodal } from "../../store/api";
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+
+const Home = () => {
+  const log = useSelector((state) => state.login);
+  if (!log.islogin) {
+    toast.warn("You are not Logged In", { autoClose: 1300 })
+    return <Navigate to='/login' />
+  }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const tournacenter = useSelector((state) => state.tournacenter);
+  useEffect(() => {
+    dispatch(header("Dashboard"));
+    dispatch(setloader(false));
+  }, []);
+
+
+  const setdata = (data) => {
+    console.log(data);
+    dispatch(settournaid(data));
+    navigate('/setting')
+  };
+
+  const deletee = (tournaid) => {
+    console.log(tournaid);
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this Tournament!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        const token = localStorage.getItem("token");
+        const id = toast.loading("Please wait...")
+        try {
+          const responsee = await fetch(`${tournacenter.apiadress}/torunadelete`, {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ tournaid })
+          });
+          const vfdvdf = await responsee.json();
+          // console.log(vfdvdf);
+          if (responsee.ok) {
+            dispatch(alltourna());
+            toast.update(id, { render: vfdvdf.msg, type: "success", isLoading: false, autoClose: 1600 });
+          }
+        } catch (error) {
+          console.log(error);
+          toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
+        }
+
+      } else {
+        // swal('Your data is safe!');
+      }
+    });
+  }
+  let defaultlogo = "https://res.cloudinary.com/dusxlxlvm/image/upload/v1699090690/just_yoljye.png";
+
+  const init = {
+    name: "",
+    organiser: "",
+    slots: "",
+    type: ""
+  }
+  const [inp, setinp] = useState(init);
+  const handleChange = (e) => {
+    let naam = e.target.name;
+    let value = e.target.value;
+    setinp({
+      ...inp, [naam]: value
+    })
+  }
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const { name, organiser, slots, type } = inp;
+
+    const url = `${tournacenter.apiadress}/addtournament`;
+    const method = 'POST';
+    const body = { name, type, slots, organiser };
+
+    const successAction = (data) => {
+      toast.success(data.msg, { autoClose: 1300 });
+      dispatch(alltourna());
+      dispatch(setcreatenewmodal(false))
+      setinp(init);
+    };
+
+    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
+
+    await apiWrapper(url, method, body, successAction);
+  }
+  return (
+    <>
+      <div className="home">
+        {tournacenter.alltournaments.length < 1 && <div className="notfound">
+          <div>
+            <SentimentDissatisfiedIcon className="sad" />
+            <h2>No Tournament Found</h2>
+            <p>Please Add Tournament.</p>
+          </div>
+        </div>}
+        {tournacenter.alltournaments &&
+          tournacenter.alltournaments.map((val) => {
+            // Format the date
+            const formattedDate = new Date(val.createdAt).toLocaleDateString(
+              "en-US",
+              {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              }
+            );
+
+            // Format the time
+            const formattedTime = new Date(val.createdAt).toLocaleTimeString(
+              "en-US",
+              {
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+                hour12: true,
+              }
+            );
+            return (
+              <div className="card" key={val._id}>
+
+                <div className="img">
+                  <img
+                    src={val.tournment_logo ? val.tournment_logo : defaultlogo}
+                    alt="logo"
+                  />
+                  <span>{val.title}</span>
+                </div>
+                <h3 className="organiser">by {val.organiser}</h3>
+                <div className="time">
+                  {formattedDate}, {formattedTime}
+                </div>
+                <div className="controller">
+                  <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
+                    <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                    <p className="status">{val.status}</p>
+                    <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                  </Stack>
+                </div>
+              </div>
+            )
+          })}
+        {tournacenter.createnewmodal && <div className="modal">
+          <div className="box">
+            <header>Create Tournament</header>
+            <form onSubmit={handleRegister}>
+              <section>
+                <TextField required sx={{ minWidth: "90%" }} id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
+              </section>
+              <section>
+                <TextField required sx={{ minWidth: "90%" }} id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
+              </section>
+              <section>
+                <TextField required sx={{ minWidth: "90%" }} type="tel"
+                  onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                  id="outlined-basic" onChange={handleChange} name="slots" value={inp.slots} label="Slots" variant="outlined"
+                />
+              </section>
+              <section>
+                <FormControl sx={{ minWidth: "90%" }}>
+                  <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={inp.type}
+                    name="type"
+                    required
+                    label="type"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value="" disabled>Select Type</MenuItem>
+                    <MenuItem value={1}>SOLO</MenuItem>
+                    <MenuItem value={2}>DUO</MenuItem>
+                    <MenuItem value={4}>SQUAD</MenuItem>
+                  </Select>
+                </FormControl>
+              </section>
+              <Stack spacing={2} direction="row" sx={{ m: 2 }}>
+                <Button variant="contained" type="submit">Create</Button>
+                <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
+              </Stack>
+            </form>
+          </div>
+
+        </div>}
+      </div>
+    </>
+  );
+};
+
+export default Home;

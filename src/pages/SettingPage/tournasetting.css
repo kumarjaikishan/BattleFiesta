@@ -1,0 +1,146 @@
+.tournasetting {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+    /* padding: 10px; */
+    position: relative;
+    /* display:flex ; */
+
+    & .controller {
+        position: relative;
+        width: 100%;
+        height: 70px;
+        /* border: 1px solid grey; */
+        box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 5px;
+
+        & .cont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            color: grey;
+
+            &:hover {
+                border-bottom: 2px solid rgb(6, 115, 146);
+                color: rgb(6, 132, 182);
+            }
+
+
+            .icon {
+                font-size: 3em;
+            }
+
+            h3 {
+                font-size: 0.7em;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .material {
+        width: calc(100% - 350px);
+        height: calc(100% - 80px);
+        position: relative;
+        overflow: auto;
+
+        & .ssimage{
+            width: 500px;
+            height: 600px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+            &
+            .inner{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+               
+    
+                & span{
+                    position: absolute;
+                    top: 10px;
+                    right: 20px;
+                    cursor: pointer;
+                   
+    
+                    & .cancel{
+                        font-size: 3em;
+                    }
+                }
+                img{
+                    max-width: 98%;
+                    max-height: 98%;
+                    object-fit: contain;
+                }  
+            }
+        }
+    }
+
+    .links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        /* border: 1px solid blue; */
+        height: calc(100% - 80px);
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 5px;
+
+        & .box {
+            min-width: 300px;
+            height: 200px;
+            border: 1px solid grey;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            color: rgb(69, 66, 66);
+
+            & header {
+                font-weight: 600;
+                font-size: 1.1em;
+                text-align: center;
+            }
+
+            p {
+                font-size: 0.9em;
+                text-align: center;
+            }
+            .copy{
+                cursor: pointer;
+                
+                &:hover{
+                     color :rgb(6, 99, 118);
+                }
+            }
+        }
+    }
+
+    .cont.active {
+        border-bottom: 2px solid rgb(6, 115, 146);
+        color: rgb(6, 132, 182);
+    }
+}

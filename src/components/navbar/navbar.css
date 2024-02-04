@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
+
+.nav {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    /* border: 3px solid red; */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    /* font-family:Arial */
+}
+
+.nav .cont {
+    height: 40px;
+    display: flex;
+    /* border: 1px solid red; */
+    align-items: center;
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 1.7em;
+    letter-spacing: 1px;
+}
+
+.nav .cont span {
+    display: inline-block;
+    padding: 2px;
+    /* height: 40px; */
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.nav .cont span:nth-child(1) {
+    transform: scale(1.4);
+    font-size: 2em;
+}
+
+.nav .cont span:nth-child(1):hover {
+    color: rgb(13, 181, 248);
+    transform: scale(1.5);
+}
+
+.nav .cont span:nth-child(2) {
+    font-weight: 500;
+    font-size: 1.2em;
+    /* line-height: 20px; */
+}
+
+.nav .info {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+
+    & Button {
+        /* background: red; */
+        cursor: pointer;
+
+        &:hover {
+            background: rgb(5, 69, 95);
+        } 
+        .plus {
+            font-size: 2.5em;
+           
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .nav .info {
+        transform: translateX(250px) scale(0.8);
+    }
+
+    .nav.narrow .info {
+        transform: translateX(0px) scale(0.8);
+    }
+
+    .nav .cont span:nth-child(2) {
+        font-size: 1.01em;
+    }
+}
