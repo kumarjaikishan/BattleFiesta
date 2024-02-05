@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import user from '../../../assets/user.png'
+import user from '../../../assets/user.webp'
 import group from '../../../assets/group.png'
 
 const Fragger = ({ topplayer, matches, teamdeatil }) => {

@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
 import apiWrapper from "../../store/apiWrapper";
+import tournlogo from '../../assets/tournlogo.webp'
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
@@ -154,7 +155,7 @@ const Home = () => {
 
                 <div className="img">
                   <img
-                    src={val.tournment_logo ? val.tournment_logo : defaultlogo}
+                    src={val.tournment_logo ? val.tournment_logo : tournlogo}
                     alt="logo"
                   />
                   <span>{val.title}</span>

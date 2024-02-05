@@ -95,14 +95,15 @@
 }
 
 .sidebar .clogo .li .logo {
-    width: 100px;
+    width: 80px;
     /* border: 1px solid red; */
     line-height: 100px;
 }
 
 .sidebar .company {
+    /* border: 1px solid red; */
     transition: 0.5s;
-    transform: scale(3.5);
+    transform: scale(2.5);
 }
 
 .sidebar .link .li .name,
@@ -111,7 +112,6 @@
     font-size: 0.9em;
     font-weight: 400;
     line-height: 55px;
-    /* border: 1px solid red; */
 }
 
 .sidebar .clogo .li .name {
@@ -119,10 +119,6 @@
     /* border: 1px solid red; */
     font-size: 1.1em;
     font-weight: 600;
-}
-.sidebar .admin-panel .sub-menu .li{
-    /* height: 35px; */
-    /* border: 1px solid red; */
 }
 
 .sidebar .admin-panel>span span:nth-child(3) {

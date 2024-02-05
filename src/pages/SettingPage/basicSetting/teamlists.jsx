@@ -14,9 +14,9 @@ import UndoIcon from '@mui/icons-material/Undo';
 import EditIcon from '@mui/icons-material/Edit';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import PhotoIcon from '@mui/icons-material/Photo';
-import group from '../../../assets/group.png'
-import group1 from '../../../assets/group1.png'
-import user from '../../../assets/user.png'
+import group from '../../../assets/group.webp'
+import group1 from '../../../assets/group1.webp'
+import user from '../../../assets/user.webp'
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
     const hgfh = (ide) => {

@@ -70,7 +70,7 @@ const Sidebar = () => {
                                 {' '}
                                 <GrassIcon className="company" />
                             </span>
-                            <span className="name">ESPORT</span>
+                            <span className="name">BattleFiesta</span>
                         </span>
                     </NavLink>
                 </div>
