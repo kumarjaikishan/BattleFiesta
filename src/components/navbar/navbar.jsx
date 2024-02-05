@@ -22,7 +22,6 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={log.narrow ? "nav narrow" : "nav"}>
         <div className='nav'>
           <header>
             <div className="logo">
@@ -39,7 +38,6 @@ const Navbar = () => {
             </nav>
           </header>
         </div>
-      </div>
     </>
   )
 }

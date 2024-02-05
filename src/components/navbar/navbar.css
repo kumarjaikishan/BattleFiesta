@@ -70,15 +70,60 @@
 
 @media only screen and (max-width: 600px) {
 
-    .nav .info {
-        transform: translateX(250px) scale(0.8);
-    }
+    .nav {
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 0px;
 
-    .nav.narrow .info {
-        transform: translateX(0px) scale(0.8);
-    }
-
-    .nav .cont span:nth-child(2) {
-        font-size: 1.01em;
+        & header {
+            width: 100%;
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 10px;
+    
+            & .logo {
+                /* border: 1px solid red; */
+                padding: 0 10px;
+                display: flex;
+                align-items: center;
+                color: white;
+    
+                & img{
+                    width: 60px;
+                }
+                .navlink {
+                    display: flex;
+                    /* border: 1px solid red; */
+                    align-items: end;
+                    /* width: 200px; */
+                    text-decoration: none;
+                }
+            }
+    
+            nav ul .navlink {
+    
+                 &.active li{
+                    border-bottom: 1px solid white;
+                    background: white;
+                    color: var(--primarycolor);
+                 } 
+                 li {
+                    list-style: none;
+                    display: inline-block;
+                    text-decoration: none;
+                    color: white;
+                    margin-left: 20px;
+                    font-size: 15px;
+                    border-radius: 50px;
+                    padding: 4px 8px;
+                    border: 1px solid transparent;
+                    transition: .4s;
+                }
+            }
+        }
     }
 }
