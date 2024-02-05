@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 import char from '../../assets/anime.webp'
 import { NavLink } from 'react-router-dom';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
-import ImageIcon from '@mui/icons-material/Image';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import CalculateIcon from '@mui/icons-material/Calculate';
 import smile from '../../assets/home/smile.webp'
 import forme from '../../assets/home/form.webp'
 import joy from '../../assets/home/joy.webp'
 import trophy from '../../assets/home/trophy.webp'
+import cal from '../../assets/home/cal.webp'
+import gal from '../../assets/home/gal.webp'
+import graph from '../../assets/home/graph.webp'
+import pie from '../../assets/home/pie.webp'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const Home = () => {
                             </p>
                         </div>
                         <div className="card">
-                            <InsertEmoticonIcon className='log' />
+                           <img src={pie} alt="" />
                             <p className="title">
                                 Beautiful Points Table
                             </p>
@@ -68,7 +68,7 @@ const Home = () => {
                             </p>
                         </div>
                         <div className="card">
-                            <InsertEmoticonIcon className='log' />
+                           <img src={graph} alt="" />
                             <p className="title">
                                Detailed Stats
                             </p>
@@ -86,7 +86,7 @@ const Home = () => {
                             </p>
                         </div>
                         <div className="card">
-                            <ImageIcon className='log' />
+                           <img src={gal} alt="" />
                             <p className="title">
                                Support Logos
                             </p>
@@ -104,7 +104,7 @@ const Home = () => {
                             </p>
                         </div>
                         <div className="card">
-                            <CalculateIcon className='log' />
+                          <img src={cal} alt="" />
                             <p className="title">
                               Custom Points System
                             </p>

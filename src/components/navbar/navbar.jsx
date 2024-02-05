@@ -1,13 +1,10 @@
 import React from 'react'
 import './navbar.css';
-import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setnarrow } from '../../store/login';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import { setcreatenewmodal } from '../../store/api';
-import Button from '@mui/material/Button';
 import GrassIcon from '@mui/icons-material/Grass';
+import logo from '../../assets/home/logo.webp'
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -26,8 +23,8 @@ const Navbar = () => {
         <div className='nav'>
           <header>
             <div className="logo">
-              <GrassIcon className="company" />
-              <NavLink className="navlink" to='/' > <h2>BattleFiesta</h2>
+              <NavLink className="navlink" to='/' >
+              <img src={logo} alt="" /> <h2>BattleFiesta</h2>
               </NavLink>
             </div>
             <nav>

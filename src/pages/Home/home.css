@@ -50,6 +50,11 @@
                     background: white;
                     color: var(--primarycolor);
                 }
+                .navlink:nth-child(2){
+                    background: var(--primarycolor);
+                    color: white;
+                    border: 1px solid white;
+                }
             }
         }
 
@@ -76,6 +81,7 @@
 
         & h1{
             font-size: 2em;
+            color: #212529;
         } 
         .cards {
             width: 100%;
@@ -85,8 +91,8 @@
             gap: 2em;
 
             & .card {
-                width: 350px;
-                height: 250px;
+                width: 270px;
+                height: 230px;
                 /* border: 1px solid red; */
                 padding-top: 10px;
 
