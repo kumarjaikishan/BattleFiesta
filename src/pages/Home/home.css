@@ -151,6 +151,7 @@
         } 
         .right{
             width: 600px;
+            padding: 0 10px;
             /* border: 1px solid red; */
 
             & h3{
