@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
-import group from '../../assets/group.png'
+import group from '../../assets/group.webp'
 import './stats.css'
 import './theme/theme1.css'
 import './theme/theme2.css'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import user from '../../../assets/user.webp'
-import group from '../../../assets/group.png'
+import group from '../../../assets/group.webp'
 
 const Fragger = ({ topplayer, matches, teamdeatil }) => {
     const [top, settop] = useState([])

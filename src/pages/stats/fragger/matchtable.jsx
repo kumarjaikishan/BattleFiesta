@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import group from '../../../assets/group.png'
+import group from '../../../assets/group.webp'
 
 const MatchTable = ({ rules, matches, teamdeatil }) => {
     const [row, setrow] = useState([]);

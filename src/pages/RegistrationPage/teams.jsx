@@ -4,8 +4,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
-import user from '../../assets/user.png'
-import group from '../../assets/group2.png'
+import user from '../../assets/user.webp'
+import group from '../../assets/group2.webp'
 
 const Teams = ({ entry }) => {
 
