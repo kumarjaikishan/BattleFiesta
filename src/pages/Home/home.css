@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 .home {
     width: 100%;
     min-height: 100%;
@@ -13,17 +15,23 @@
     .section1 {
 
         & .left-content {
-            width: 600px;
+            width: 540px;
             /* border: 1px solid red; */
             margin-top: 100px;
             margin-left: 40px;
             color: white;
             z-index: 3;
 
-            & h1 {
-                font-size: 2.6em;
-                letter-spacing: 1px;
+            & h2 {
+
+                font-size: 1.9em;
                 margin-bottom: 20px;
+
+                & span {
+                    letter-spacing: 1px;
+                    font-size: 1.4em;
+                    font-family: "Permanent Marker", cursive;
+                }
             }
 
             h3 {
@@ -50,7 +58,8 @@
                     background: white;
                     color: var(--primarycolor);
                 }
-                .navlink:nth-child(2){
+
+                .navlink:nth-child(2) {
                     background: var(--primarycolor);
                     color: white;
                     border: 1px solid white;
@@ -77,12 +86,14 @@
     .section2 {
         text-align: center;
         background: white;
+        color: #212529;
         padding: 20px;
 
-        & h1{
+        & h1 {
             font-size: 2em;
             color: #212529;
-        } 
+        }
+
         .cards {
             width: 100%;
             display: flex;
@@ -96,19 +107,77 @@
                 /* border: 1px solid red; */
                 padding-top: 10px;
 
-                & img{
-                  width: 80px;
+                & img {
+                    width: 80px;
                 }
-                .title{
+
+                .title {
                     font-size: 1.6em;
                     font-weight: 600;
                     margin-bottom: 5px;
                     color: #17191a;
                 }
-                .desc{
+
+                .desc {
                     color: #212529;
                 }
             }
         }
     }
+    .section3, .section4, .section5, .section6{
+        display: flex;  
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        min-height: 400px;
+        padding: 20px 0px;
+        color: white;
+
+        & .left{
+            width: 500px;
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: center;
+
+            & .img{
+                width: 400px;
+                padding: 10px;
+                /* border: 1px solid red; */
+
+                & img{
+                    width: 100%;
+                }
+            }
+        } 
+        .right{
+            width: 600px;
+            /* border: 1px solid red; */
+
+            & h3{
+                font-size: 3em;
+                font-weight: 500;
+                margin-bottom: 10px;
+            } h4{
+                font-weight: 400;
+                margin-bottom: 10px;
+            }
+            p{
+                /* border: 1px solid red; */
+                margin-bottom: 5px;
+                display: flex;
+
+                & img{
+                    border:1px solid white ;
+                    border-radius: 50%;
+                    width: 20px;
+                    margin-right: 7px;
+                }
+            }
+        }
+    }
+    .section4,.section6{
+        background: white;
+        color: #17191a;
+    }
+   
 }

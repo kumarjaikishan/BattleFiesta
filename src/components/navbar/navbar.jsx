@@ -3,12 +3,15 @@ import './navbar.css';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setnarrow } from '../../store/login';
-import GrassIcon from '@mui/icons-material/Grass';
 import logo from '../../assets/home/logo.webp'
+import { setcreatenewmodal } from '../../store/api';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const log = useSelector((state) => state.login);
+  const hjjj = ()=>{
+    
+  }
   const fun = () => {
     if (log.narrow) {
       dispatch(setnarrow(false))
@@ -31,6 +34,7 @@ const Navbar = () => {
               <ul>
                 <NavLink className="navlink" to='/dashboard'><li>Dashboard</li></NavLink>
                 <NavLink className="navlink" to='/tournaments'><li>Find Tournament</li></NavLink>
+                <button onClick={()=> dispatch(setcreatenewmodal(true))}>Create Tournament</button>
               </ul>
             </nav>
           </header>
