@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
 import Sidebar from './components/sidebar/sidebar';
-import Home from './pages/dashboard/home';
+import Dashboard from './pages/dashboard/Dashboard';
+import Home from './pages/Home/home';
 import { useEffect } from 'react';
 import Login from './pages/login/login';
 import { ToastContainer } from 'react-toastify';
@@ -44,6 +45,7 @@ function App() {
         <div className={log.narrow ? "main narrow" : "main"} onClick={sidebarclose}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/setting" element={<Tournasetting />} />
             <Route path="/tournaments" >
               <Route index element={<Findtournament />} />

@@ -24,7 +24,7 @@ const Sidebar = () => {
     const linke = [
         {
             name: 'Dashboard',
-            link: '/',
+            link: '/dashboard',
             logo: 'fa fa-tachometer',
         },
         {

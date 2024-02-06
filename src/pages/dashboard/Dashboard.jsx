@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import "./home.css";
+import "./dashboard.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
@@ -23,7 +23,7 @@ import FormControl from '@mui/material/FormControl';
 import { setcreatenewmodal } from "../../store/api";
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
-const Home = () => {
+const Dashboard = () => {
   const log = useSelector((state) => state.login);
   if (!log.islogin) {
       return <Navigate to='/login' />
@@ -230,4 +230,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;

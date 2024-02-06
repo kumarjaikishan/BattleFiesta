@@ -47,7 +47,7 @@ const Signin = () => {
             return;
         }
         try {
-            dispatch(setloader(true));
+            // dispatch(setloader(true));
             const res = await fetch(`${tournacenter.apiadress}/login`, {
                 method: "POST",
                 headers: {
