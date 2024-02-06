@@ -23,7 +23,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background: #f0f0f0; */
-  background: radial-gradient( #f9d349 20% , #d57e12);
+  /* background: radial-gradient( #f9d349 20% , #d57e12); */
   background: radial-gradient( #1abc9c 20% , #2980b9);
   position: relative;
   width: 100%;
