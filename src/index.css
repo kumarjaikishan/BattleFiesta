@@ -12,8 +12,7 @@ input{
 :root {
   --navheight: 70px;
   --navheightmobile:70px;
-  --sidebarwide: 180px;
-  --sidebarnarrow: 70px;
+  --primarycolor: #2980b9;
 }
 
 body {
@@ -23,7 +22,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f0f0f0;
+  /* background: #f0f0f0; */
+  background: radial-gradient( #f9d349 20% , #d57e12);
+  background: radial-gradient( #1abc9c 20% , #2980b9);
   position: relative;
   width: 100%;
   /* font-size: 18px; */
@@ -39,33 +40,20 @@ code {
 
 .nav {
   height: var(--navheight);
-  left: var(--sidebarwide);
-  width: calc(100% - var(--sidebarwide));
+  left: 0;
+  width: 100%;
 }
 
 .nav.narrow {
   height: var(--navheight);
-  left: var(--sidebarnarrow);
-  width: calc(100% - var(--sidebarnarrow));
 }
 
-.sidebar {
-  width: var(--sidebarwide);
-}
-
-.sidebar.narrow {
-  width: var(--sidebarnarrow);
-}
-
-.sidebar.narrow .company {
-  transform: scale(2.5) translateX(-4px);
-}
 
 .main {
   position: absolute;
   height: calc(100vh - var(--navheight));
-  width: calc(100% - var(--sidebarwide));
-  left: var(--sidebarwide);
+  width: 100%;
+  left:0;
   top: var(--navheight);
   overflow-x: hidden;
   overflow-y: auto;
@@ -99,19 +87,6 @@ code {
   z-index: 50;
 }
 
-.main.narrow {
-  width: calc(100% - var(--sidebarnarrow));
-  left: var(--sidebarnarrow);
-}
-
-.sidebar .link .li .logo {
-  width: var(--sidebarnarrow);
-}
-
-.sidebar .link .li .name {
-  left: var(--sidebarnarrow);
-  width: calc(var(--sidebarwide) - var(--sidebarnarrow));
-}
 button{
   border: none;
    cursor: pointer;
@@ -157,6 +132,9 @@ input{
           font-size: 4em;
       }
   }
+}
+.navlink{
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {

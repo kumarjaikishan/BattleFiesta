@@ -7,6 +7,7 @@ import { setnarrow } from '../../store/login';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { setcreatenewmodal } from '../../store/api';
 import Button from '@mui/material/Button';
+import GrassIcon from '@mui/icons-material/Grass';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -22,15 +23,21 @@ const Navbar = () => {
   return (
     <>
       <div className={log.narrow ? "nav narrow" : "nav"}>
-        <div className="cont">
-          <span onClick={fun}><MenuIcon /></span>
-          <span>{log.head}</span>
+        <div className='nav'>
+          <header>
+            <div className="logo">
+              <GrassIcon className="company" />
+              <NavLink className="navlink" to='/' > <h2>BattleFiesta</h2>
+              </NavLink>
+            </div>
+            <nav>
+              <ul>
+                <NavLink className="navlink" to='/dashboard'><li>Dashboard</li></NavLink>
+                <NavLink className="navlink" to='/tournaments'><li>Find Tournament</li></NavLink>
+              </ul>
+            </nav>
+          </header>
         </div>
-       {log.head =="Dashboard" && <div className="info">
-          <Button sx={{ minWidth: 250 }} title='Create New Tournament' size='large' onClick={() => dispatch(setcreatenewmodal(true))} variant="contained" startIcon={<AddBoxIcon className='plus' />}>
-            New Tournament
-          </Button>
-        </div>}
       </div>
     </>
   )

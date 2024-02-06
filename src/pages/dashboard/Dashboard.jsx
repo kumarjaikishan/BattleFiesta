@@ -120,7 +120,7 @@ const Dashboard = () => {
   }
   return (
     <>
-      <div className="home">
+      <div className="Dashboard">
         {tournacenter.alltournaments.length < 1 && <div className="notfound">
           <div>
             <SentimentDissatisfiedIcon className="sad" />

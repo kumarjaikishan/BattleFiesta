@@ -1,4 +1,4 @@
-.home {
+.Dashboard {
     width: 100%;
     /* border: 1px solid red; */
     height: 100%;
@@ -9,8 +9,7 @@
     position: relative;
     overflow-y: auto;
     overflow-x: hidden;
-
-    
+    background: white;
 
     .card {
         width: 240px;

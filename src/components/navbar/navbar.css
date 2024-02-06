@@ -3,72 +3,61 @@
 .nav {
     position: absolute;
     top: 0;
-    background: #fff;
+    /* background: #fff; */
     /* border: 3px solid red; */
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); */
     transition: 0.2s;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
+
     /* font-family:Arial */
-}
+    header {
+        width: 100%;
+        /* border: 1px solid red; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
 
-.nav .cont {
-    height: 40px;
-    display: flex;
-    /* border: 1px solid red; */
-    align-items: center;
-    font-family: 'East Sea Dokdo', cursive;
-    font-size: 1.7em;
-    letter-spacing: 1px;
-}
+        & .logo {
+            /* border: 1px solid red; */
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            color: white;
 
-.nav .cont span {
-    display: inline-block;
-    padding: 2px;
-    /* height: 40px; */
-    margin-right: 10px;
-    cursor: pointer;
-}
+            & .company {
+                font-size: 4em;
+                margin-right: 10px;
+            }
+            .navlink {
+                text-decoration: none;
+            }
+        }
 
-.nav .cont span:nth-child(1) {
-    transform: scale(1.4);
-    font-size: 2em;
-}
+        nav ul .navlink {
 
-.nav .cont span:nth-child(1):hover {
-    color: rgb(13, 181, 248);
-    transform: scale(1.5);
-}
-
-.nav .cont span:nth-child(2) {
-    font-weight: 500;
-    font-size: 1.2em;
-    /* line-height: 20px; */
-}
-
-.nav .info {
-    width: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-
-    & Button {
-        /* background: red; */
-        cursor: pointer;
-
-        &:hover {
-            background: rgb(5, 69, 95);
-        } 
-        .plus {
-            font-size: 2.5em;
-           
+             &.active li{
+                border-bottom: 2px solid white;
+             } 
+             li {
+                list-style: none;
+                display: inline-block;
+                text-decoration: none;
+                color: white;
+                margin-left: 60px;
+                font-size: 15px;
+                border-bottom: 2px solid transparent;
+                transition: .4s;
+            }
         }
     }
 }
+
+
 
 
 

@@ -4,9 +4,8 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    /* justify-content: center; */
+    background: white;
     align-items: center;
-    /* border: 1px solid red; */
     padding: 20px 0px;
     overflow-y: auto;
     color: rgb(43, 41, 41);

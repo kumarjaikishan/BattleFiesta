@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     overflow: auto;
+    background: white;
     /* border: 1px solid red; */
 
     & .conta {
@@ -149,12 +150,12 @@
 
 .tournastat {
     width: 100%;
-    height: max-content;
+    height: 100%;
     padding: 2em 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 2px solid red; */
+    background: white;
 
     & .img {
         border-radius: 40px;

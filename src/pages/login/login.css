@@ -11,9 +11,9 @@
     border-radius: 20px;
     position: relative;
     width: 420px;
+    background: white;
     height: 500px;
-     background: #ecf0f3; 
-    box-shadow: 0 0 10px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
+    backdrop-filter: blur(10px);
     overflow: hidden;
 }
 .login .logo, .login .want{
@@ -25,7 +25,7 @@
 }
 .login .logo .company{
     font-size: 4em;
-    color: #0984e3;
+    color: var(--primarycolor);
     
 }
 .login .want{
@@ -33,7 +33,8 @@
     padding: 0px 20px;
 }
 .login .want .active{
-   background: #0984e3;
+   background: var(--primarycolor);
+   border: 1px solid white;
    border-radius: 50px;
    color: white;
 }
@@ -86,7 +87,7 @@
     padding: 8px 16px;
     transition: 0.1s;
     text-align: center;
-    background: #0984e3;
+    background:var(--primarycolor);
     border-radius: 15px;
     color: white;
 }

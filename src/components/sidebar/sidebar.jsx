@@ -64,10 +64,8 @@ const Sidebar = () => {
                         style={{ textDecoration: 'none' }}
                         to="/"
                     >
-                        {' '}
                         <span className="li">
                             <span className="logo">
-                                {' '}
                                 <GrassIcon className="company" />
                             </span>
                             <span className="name">BattleFiesta</span>

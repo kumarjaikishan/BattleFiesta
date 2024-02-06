@@ -59,7 +59,7 @@ function App() {
           </Routes>
           {log.loader && <Preloader />}
         </div>
-        <Sidebar />
+        {/* <Sidebar /> */}
       </div>
     </>
   );
