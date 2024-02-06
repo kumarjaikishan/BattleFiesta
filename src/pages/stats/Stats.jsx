@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
-import { styled
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  styled
 } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
@@ -32,7 +33,7 @@ const Stats = () => {
   }, [])
   const [topplayer, settopplayer] = useState([]);
   const [theme, settheme] = useState("theme1");
-  const [title,settitle]= useState('Overall Standings')
+  const [title, settitle] = useState('Overall Standings')
 
   const handleChange = (event) => {
     settheme(event.target.value);
@@ -44,7 +45,7 @@ const Stats = () => {
   const [kuch, setkuch] = useState({});
   const tournacenter = useSelector((state) => state.tournacenter);
   const [teamlogo, setteamlogo] = useState({});
-  const [teamdeatil,setteamdeatil]=useState([]);
+  const [teamdeatil, setteamdeatil] = useState([]);
   let temptemlogo = {};
   const fetche = async (id) => {
     try {
@@ -56,7 +57,7 @@ const Stats = () => {
         body: JSON.stringify({ tid: id })
       });
       const result = await rese.json();
-      console.log(result);
+      // console.log(result);
       if (rese.ok) {
         rules = result.rules
         setkuch(result.rules);
@@ -86,7 +87,7 @@ const Stats = () => {
 
   const funck = (allmatch) => {
     tabledata = [];
-    // console.log(allmatch);
+    console.log(allmatch);
     allmatch.map((val, ind) => {
       val.points.map((value, indes) => {
 
@@ -116,8 +117,18 @@ const Stats = () => {
               }
             }
           })
+
+          let plcpts = parseInt(rules.pointsystem[value.place] || 0);
+          let kallpts = value.kills * rules.killpoints;
+          let wona = 0;
+          let totala = plcpts + kallpts;
+
+          if (value.place == 1) {
+            wona = 1;
+          }
+
           karnahai && tabledata.push({
-            teamname: value.team, placepoints: parseInt(rules.pointsystem[value.place] || 0), killpoints: value.kills * rules.killpoints, teamid: value.teamid, matchplayed: 1, matchwon: 0, total: 0
+            teamname: value.team, placepoints: plcpts, killpoints: kallpts, teamid: value.teamid, matchplayed: 1, matchwon: wona, total: totala
           });
         }
       })
@@ -126,10 +137,11 @@ const Stats = () => {
     // console.log(tabledata);
     // Sort the array using the custom comparator function
     tabledata.sort(comparePlayers);
+    console.log(tabledata);
 
     settablerow(tabledata);
   }
-
+  
   function comparePlayers(playerA, playerB) {
     // Compare total points first
     if (playerA.total !== playerB.total) {
@@ -223,7 +235,7 @@ const Stats = () => {
           </Grid>
           <Grid xs={4}>
             <h3>Set Title</h3>
-            <TextField sx={{ mt: 1 }} id="outlined-basic" label="Title" onChange={(e)=> settitle(e.target.value)} value={title} variant="outlined" />
+            <TextField sx={{ mt: 1 }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
           </Grid>
         </Grid>
       </div>
@@ -239,7 +251,7 @@ const Stats = () => {
               <th>#</th>
               <th style={{ textAlign: "left" }}>Team</th>
               <th>M</th>
-              <th style={{fontSize:"2em"}}>🍗</th>
+              <th style={{ fontSize: "2em" }}>🍗</th>
               <th>Place Pts</th>
               <th>Kill Pts</th>
               <th>Total</th>
@@ -261,7 +273,7 @@ const Stats = () => {
           </tbody>
         </table>
       </Container>
-      <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil}/>
+      <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />
       <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
     </div>
   );

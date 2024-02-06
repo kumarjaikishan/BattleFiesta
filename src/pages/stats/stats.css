@@ -11,7 +11,7 @@
   .fragger {
     width: 100%;
     margin-top: 10px;
-    background: url('../../assets/grey.jpg');
+    background: url('../../assets/grey.webp');
     background-size: cover;
     border-radius: 30px;
     padding: 20px;
@@ -135,7 +135,7 @@
     margin-top: 10px;
     border-radius: 20px;
     padding: 10px;
-    background: url('../../assets/grey.jpg');
+    background: url('../../assets/grey.webp');
     background-size: cover;
 
     & h1,

@@ -44,7 +44,7 @@
 .sidebar .link .active .li {
     background: #f0f0f0;
     color: #2980b9;
-    margin-left: 10px;
+    margin-left: 2px;
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
 }
@@ -58,10 +58,9 @@
     content: '';
     position: absolute;
     width: 20px;
-    /* border: 1px solid red; */
     height: 20px;
     top: -20px;
-    right: 10px;
+    right: 2px;
     border-bottom-right-radius: 20px;
     box-shadow: 20px 20px 0px 20px #f0f0f0;
 }
@@ -72,14 +71,13 @@
     width: 20px;
     height: 20px;
     bottom: -20px;
-    right: 10px;
+    right: 2px;
     border-top-right-radius: 20px;
     box-shadow: 20px -20px 0px 20px #f0f0f0;
 }
 
 .sidebar .link .li span {
     position: absolute;
-    /* border: 1px solid red; */
     top: 0;
     height: 100%;
 }

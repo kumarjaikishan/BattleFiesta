@@ -18,7 +18,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
         setcurrentmatch(event.target.value);
     };
     const handlee = (sdvdf) => {
-        console.log(sdvdf);
+        // console.log(sdvdf);
         let vdvdvdvdfv = [];
         if (!sdvdf) {
             return;
@@ -46,7 +46,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
             })
         })
         setcurrentmatch(0);
-        console.log(vdvdvdvdfv);
+        // console.log(vdvdvdvdfv);
         setrow(vdvdvdvdfv)
     }
 
