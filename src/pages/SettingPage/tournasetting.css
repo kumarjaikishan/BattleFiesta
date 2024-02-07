@@ -99,11 +99,12 @@
         top: 70px;
         right: 0;
         /* border: 1px solid blue; */
-        height: calc(100% - 80px);
+        height: calc(100% - 70px);
         width: 350px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        gap: 3px;
+        /* justify-content: center; */
         align-items: center;
         padding: 5px;
 
@@ -125,7 +126,7 @@
             }
 
             p {
-                font-size: 0.9em;
+                font-size: 0.8em;
                 text-align: center;
             }
             .copy{
@@ -188,7 +189,10 @@
     
             & .cont {
                 padding: 0px 5px;
-            
+
+                &:hover {
+                    border: 2px solid transparent;
+                }
                 .icon {
                     font-size: 1.9em;
                 }
@@ -273,8 +277,7 @@
         }
     
         .cont.active {
-            border-bottom: 2px solid rgb(6, 115, 146);
-            color: rgb(6, 132, 182);
+            border: 2px solid transparent;
         }
     }
 }

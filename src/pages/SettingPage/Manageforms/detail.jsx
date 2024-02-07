@@ -51,7 +51,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                             onChange={handleChange}
                         />
                         <TextField
-                            helperText="Organiser Name of your tournament"
+                            helperText="Max. Slots for your tournament"
                             id="demo-helper-text-misaligned"
                             label="Slots*"
                             sx={{ mb: 3 }}
@@ -134,7 +134,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                         <div className="tourn_banner">
                             <h2>Tournament Banner</h2>
                             {inp.banner ? <img src={inp.banner} alt="" /> : <h3>No Banner has been uploaded for the tournament</h3>}
-                            <Button disabled={loading} component="label" variant="contained"
+                            <Button disabled={loading} component="label" size='small' variant="contained"
                                 startIcon={<CloudUploadIcon />}>
                                 Upload
                                 <VisuallyHiddenInput type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
@@ -143,7 +143,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
                             {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}
-                            <Button disabled={loading} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                            <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<CloudUploadIcon />}>
                                 Upload
                                 <VisuallyHiddenInput type="file" id='tournlogo' accept="image/*" onChange={() => upload("tournlogo")} />
                             </Button>

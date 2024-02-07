@@ -371,10 +371,11 @@ const EnterResult = ({ setting }) => {
                 loadingPosition="start"
                 startIcon={<CloudUploadIcon />}
                 variant="contained"
+                size='small'
               >
                 Save To Cloud
               </LoadingButton>
-              <Button onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
+              <Button size='small' onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
             </Box>
           </FormControl>
         </div>

@@ -220,7 +220,7 @@ const Tournasetting = () => {
               <TextField aria-readonly sx={{width:"250px"}}  inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -230,7 +230,7 @@ const Tournasetting = () => {
               <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
             </Stack>
-            <a href={`${localhos}/register/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/register/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -241,7 +241,7 @@ const Tournasetting = () => {
               <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>
-            <a href={`${localhos}/tournaments/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/tournaments/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small' variant="contained">Visit</Button></a>
           </div>
         </div>
 

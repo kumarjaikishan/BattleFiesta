@@ -94,9 +94,10 @@
                     & img{
                         width: 100px;
                         height: 100px;
-                        margin: 2px 0px;
+                        margin: 5px 0px;
                     }
                     h3{
+                        font-size:16px ;
                         margin: 20px 0px;
                     }
                     h2{
@@ -104,6 +105,7 @@
                     }
                     p{
                         font-size: 12px;
+                        margin-top: 7px;
                     }
                 }
                 .tourna_logo{
