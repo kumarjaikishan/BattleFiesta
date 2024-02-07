@@ -202,7 +202,6 @@
     .home {
 
         & .section1 {
-           
 
             & .left-content {
                 width: 92%;
@@ -262,5 +261,51 @@
                 }
             }
         }
+
+        .section3,
+        .section4,
+        .section5,
+        .section6 {
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0px;
+
+            & .left {
+                width: 98%;
+                display: flex;
+                justify-content: center;
+
+                & .img {
+                    width: 400px;
+                    padding: 10px;
+
+                    & img {
+                        width: 100%;
+                        border: 1px solid grey;
+                        border-radius: 10px;
+                    }
+                }
+            }
+            .right {
+                width: 98%;
+
+                & h3 {
+                    text-align: center;
+                    font-size: 2em;
+                }
+                h4{
+                    text-align: center;
+                }
+                p{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .section4,
+    .section6 {
+        background: white;
+        color: #17191a;
     }
 }

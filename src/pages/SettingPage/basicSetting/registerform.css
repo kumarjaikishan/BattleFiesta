@@ -52,8 +52,13 @@
     }
 }
 .manageteams{
-     
-    &  .header.pending{
+
+
+    & .box{
+        position: relative;
+        min-height: 200px;
+    } 
+     .header.pending{
         border-right: 8px solid orange;
     }
     .header.approved{
@@ -71,9 +76,9 @@
             height: fit-content;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 5px;
             justify-content: start;
-    
+            border-bottom: 1px solid #212529;
     
             & div {
                 display: flex;
@@ -86,32 +91,20 @@
                 border-radius: 10px;
     
                 &:hover {
-                    border-bottom: 2px solid rgb(6, 115, 146);
+                    border-bottom: 2px solid transparent;
                     color: rgb(6, 132, 182);
                 }
     
                 h3 {
                     margin-left: 5px;
-                    font-size: 16px;
+                    font-size: 12px;
                 }
             }
     
             .active {
-                border-bottom: 2px solid rgb(6, 115, 146);
+                border-bottom: 2px solid transparent;
                 color: rgb(6, 115, 146);
             }
-        }
-    }
-    .manageteams{
-         
-        &  .header.pending{
-            border-right: 8px solid orange;
-        }
-        .header.approved{
-            border-right: 8px solid green;
-        }
-        .header.rejected{
-            border-right: 8px solid red;
         }
     }
 }

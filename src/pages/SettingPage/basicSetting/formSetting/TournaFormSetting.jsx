@@ -42,6 +42,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         label="Description"
                         multiline
                         name="description"
+                        sx={{minWidth:"93%"}}
                         rows={2}
                         inputProps={{ style: { fontSize: 11 } }}
                         onChange={handleChange}
@@ -52,6 +53,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         id="outlined-multiline-static"
                         label="Successful  Message"
                         multiline
+                        sx={{minWidth:"93%"}}
                         value={all.success_msg}
                         inputProps={{ style: { fontSize: 11 } }}
                         rows={1}
@@ -149,6 +151,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         id="outlined-number"
                         label="Minimum Players"
                         type="tel"
+                        sx={{minWidth:"93%"}}
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         value={all.min_player}
                         name="min_player"
@@ -161,6 +164,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                     <TextField
                         id="outlined-number"
                         label="Maximum Players"
+                        sx={{minWidth:"93%"}}
                         type="tel"
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         name="max_player"

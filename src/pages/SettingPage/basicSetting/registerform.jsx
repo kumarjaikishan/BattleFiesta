@@ -13,7 +13,9 @@ import ApprovedPage from "./Approvedpage/ApprovedPage";
 import RejectedPage from "./rejectedpage/rejectedpage";
 import Contactinfo from "./contactinfo/contactinfo";
 import Badge from '@mui/material/Badge';
+import PersonOffIcon from '@mui/icons-material/PersonOff';
 import Button from '@mui/material/Button';
+import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -200,7 +202,7 @@ const Registerform = ({ setting, showss }) => {
                         <h3>Setting</h3>
                     </div>
                     <div onClick={() => handleactive(1)}>
-                        <SettingsSuggestIcon />
+                        <PhoneEnabledIcon />
                         <h3>Contact Info</h3>
                     </div>
                     <div onClick={() => handleactive(2)}>
@@ -216,7 +218,7 @@ const Registerform = ({ setting, showss }) => {
                         </Badge>
                     </div>
                     <div onClick={() => handleactive(4)}>
-                        <GroupAddIcon />
+                        <PersonOffIcon />
                         <Badge badgeContent={rejectedplayer.length} color="error">
                             <h3>Rejected &nbsp;</h3>
                         </Badge>

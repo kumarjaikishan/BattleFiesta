@@ -2,6 +2,7 @@ import './home.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { setloader } from '../../store/login';
 import { useEffect } from 'react';
+import Button from '@mui/material/Button';
 import char from '../../assets/anime.webp'
 import { NavLink } from 'react-router-dom';
 import smile from '../../assets/home/smile.webp'
@@ -14,7 +15,8 @@ import graph from '../../assets/home/graph.webp'
 import pie from '../../assets/home/pie.webp'
 import tick from '../../assets/home/tick.webp'
 import tick2 from '../../assets/home/tick2.webp'
-import registerform from '../../assets/home/registerform.webp'
+import registerform from '../../assets/home/registrationform.webp'
+import enterresult from '../../assets/home/enterresult.webp'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -148,7 +150,7 @@ const Home = () => {
                     </div>
                     <div className="left">
                         <div className="img">
-                            <img src={registerform} alt="" />
+                            <img src={enterresult} alt="" />
                         </div>
                     </div>
                 </section>
@@ -165,7 +167,7 @@ const Home = () => {
                         <p> <span><img src={tick2} alt="" /></span> <span>Points table is updated automatically each time you enter results of a new match.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Option to export the points table to an image file.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Detailed analytics.</span></p>
-                        <button>SEE DEMO</button>
+                         <Button variant="contained" size='small'>See Demo</Button>
                     </div>
                 </section>
                 <section className='section6'>

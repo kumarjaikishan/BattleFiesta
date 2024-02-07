@@ -255,7 +255,7 @@ const EnterResult = ({ setting }) => {
       <div className="enterresult">
         <div className="box">
           <h2>Match Info</h2>
-          <FormControl sx={{ m: 1 ,maxWidth: '98%' }} size="small">
+          <FormControl sx={{ m: 1 , minWidth: '98%' }} size="small">
             <InputLabel id="demo-select-small-label">Map</InputLabel>
             <Select
               labelId="demo-select-small-label"

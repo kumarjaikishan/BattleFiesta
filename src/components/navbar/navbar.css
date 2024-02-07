@@ -3,7 +3,8 @@
 .nav {
     position: absolute;
     top: 0;
-    /* border: 1px solid red; */
+    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.2);
     transition: 0.2s;
     overflow: hidden;
     display: flex;
@@ -92,10 +93,11 @@
                 .navlink {
 
                     li {
+                        /* border: 1px solid red; */
                         margin-left: 5px;
                         font-size: 12px;
                         border-radius: 50px;
-                        padding: 4px 8px;
+                        padding: 4px 6px;
                     }
                 }
 
@@ -118,6 +120,9 @@
 
                 & img {
                     width: 40px;
+                }
+                h2{
+                    font-size: 14px;
                 }
             }
 
