@@ -97,9 +97,9 @@
 
         .cards {
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            align-items: center;
             gap: 2em;
 
             & .card {
@@ -249,6 +249,36 @@
 
                 & img {
                     width: 100%;
+                }
+            }
+        }
+        .section2 {
+            padding: 7px;
+    
+            & h1 {
+                font-size: 1.3em;
+            }
+    
+            .cards {
+                grid-template-columns: repeat(2,1fr);
+                gap: 2em;
+    
+                & .card {
+                    width: 200px;
+                    /* border: 1px solid red; */
+    
+                    & img {
+                        width: 70px;
+                    }
+    
+                    .title {
+                        font-size: 1.3em;
+                    }
+    
+                    .desc {
+                        font-size: 12px;
+                        color: #212529;
+                    }
                 }
             }
         }

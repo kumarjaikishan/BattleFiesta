@@ -48,7 +48,7 @@ const Home = () => {
 
                 </section>
                 <section className='section2'>
-                    <h1>What we Offers</h1>
+                    <h1>What we Offers ?</h1>
                     <div className='cards'>
                         <div className="card">
                             <img src={smile} alt="" />
