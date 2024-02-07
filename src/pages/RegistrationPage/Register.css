@@ -203,15 +203,96 @@
                         border: 1px solid grey;
                     }
                 }
-               
-                BUTTON{
-                    margin: 10px 0px;
-                    font-weight: 800;
-                    letter-spacing: 1px;
-                }
             }
         }
 
     }
    
+}
+
+@media only screen and (max-width: 600px) {
+    .registartionform {
+        padding: 10px 0px;
+    
+        & .controler {
+            width: 99%;
+            margin-bottom: 10px;
+        }
+    
+        .form {
+            width: 98%;
+            padding: 5px;
+    
+            .slots{
+                height: 30px;
+                letter-spacing: .5px;
+            }
+            
+            .closed {
+                padding: 20px 5px;
+    
+                & .stop {
+                    font-size: 2.4em;
+                }
+            }
+    
+            .contacts {
+                margin-top: 10px;
+                padding-top: 5px;
+            }
+        }
+    
+        img {
+            width: 150px !important;
+            height: 150px !important;
+            border: 1px solid grey;
+            object-fit: cover;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .teamse {
+            width: 98%;
+            border-radius: 10px;
+            padding: 5px 0px;
+    
+            & .headere {
+                height: 60px;
+    
+                & img {
+                    width: 60px !important;
+                    height: 60px !important;
+                    border-radius: 50%;
+                   
+                }
+                span{
+                    font-size: 1.1em;
+                    letter-spacing: 0.5px;
+                }
+                span:nth-child(3){
+                    font-size: 10px;
+                    font-weight: 700;
+                }
+            }
+    
+            .detailse {
+    
+                &  .playerdata{
+                    border: 1px solid grey;
+                    border-radius: 10px;
+                    padding: 5px;
+    
+                    & h2{
+                        font-size: 1.1em;
+                        margin: 10px 0px;
+                    } 
+                    div{
+                        padding: 5px;
+                    }
+                }
+            }
+    
+        }
+       
+    }
 }

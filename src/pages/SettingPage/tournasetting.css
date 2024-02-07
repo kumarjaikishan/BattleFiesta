@@ -143,3 +143,108 @@
         color: rgb(6, 132, 182);
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .tournasetting {
+        height: max-content;
+
+        & .controller {
+            height: max-content;
+            justify-content: center;
+            padding: 5px;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3,1fr);
+    
+            & .cont {
+                padding: 0px 5px;
+            
+                .icon {
+                    font-size: 1.9em;
+                }
+    
+                h3 {
+                    font-size: 0.6em;
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
+    
+        .material {
+            width: 100%;
+            height: calc(100% - 80px);
+            position: relative;
+            overflow: auto;
+    
+            & .ssimage{
+                width: 500px;
+                height: 600px;
+                border-radius: 10px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(5px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+                &
+                .inner{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                   
+        
+                    & span{
+                        position: absolute;
+                        top: 10px;
+                        right: 20px;
+                        cursor: pointer;
+                       
+        
+                        & .cancel{
+                            font-size: 3em;
+                        }
+                    }
+                    img{
+                        max-width: 98%;
+                        max-height: 98%;
+                        object-fit: contain;
+                    }  
+                }
+            }
+        }
+    
+        .links {
+            position: relative;
+            height:100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+    
+            & .box {
+                width: 98%;
+                padding: 0 5px;
+                height: 200px;
+                margin-top: 5px;
+
+                & header {
+                    font-size: 1.1em;
+                }
+            }
+        }
+    
+        .cont.active {
+            border-bottom: 2px solid rgb(6, 115, 146);
+            color: rgb(6, 132, 182);
+        }
+    }
+}

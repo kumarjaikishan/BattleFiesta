@@ -63,3 +63,55 @@
         border-right: 8px solid red;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .form_setting {
+    
+        & .control {
+            height: fit-content;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: start;
+    
+    
+            & div {
+                display: flex;
+                width: 30%;
+                align-items: center;
+                /* justify-content: center; */
+                border: 1px solid transparent;
+                color: grey;
+                cursor: pointer;
+                border-radius: 10px;
+    
+                &:hover {
+                    border-bottom: 2px solid rgb(6, 115, 146);
+                    color: rgb(6, 132, 182);
+                }
+    
+                h3 {
+                    margin-left: 5px;
+                    font-size: 16px;
+                }
+            }
+    
+            .active {
+                border-bottom: 2px solid rgb(6, 115, 146);
+                color: rgb(6, 115, 146);
+            }
+        }
+    }
+    .manageteams{
+         
+        &  .header.pending{
+            border-right: 8px solid orange;
+        }
+        .header.approved{
+            border-right: 8px solid green;
+        }
+        .header.rejected{
+            border-right: 8px solid red;
+        }
+    }
+}

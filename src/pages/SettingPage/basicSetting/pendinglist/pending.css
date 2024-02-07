@@ -143,3 +143,36 @@
         }
     }
 }
+@media only screen and (max-width: 600px) {
+    .pendingList , .approvedList, .manageteams,.rejectedlist{
+      
+        padding-top: 10px;
+    
+        & .box{
+            padding: 5px;
+            width: 98%;
+    
+            .header{
+    
+                & 
+                span{
+                    font-size: 1.2em;
+                    letter-spacing: .5px;
+                }
+            }
+            
+        }
+        .middle{
+            text-align: center;
+            color: rgb(56, 54, 54);
+    
+            & div{
+                font-size: 2em;
+    
+                & .emoji{
+                    font-size: 3em;
+                }
+            }
+        }
+    }
+}

@@ -255,14 +255,14 @@ const EnterResult = ({ setting }) => {
       <div className="enterresult">
         <div className="box">
           <h2>Match Info</h2>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ m: 1 ,maxWidth: '98%' }} size="small">
             <InputLabel id="demo-select-small-label">Map</InputLabel>
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
               value={map}
               label="Map"
-              size='small'
+              // size='small'
               required
               onChange={handleChange}
             >
@@ -280,7 +280,7 @@ const EnterResult = ({ setting }) => {
             <Divider variant="middle" />
             <TableContainer component={Paper} sx={{ mt: 2, mb: 2 }}>
               <h2>Current Match Standings</h2>
-              <Table sx={{ minWidth: 550 }} aria-label="simple table">
+              <Table sx={{ maxWidth: '98%' }} aria-label="simple table">
                 <TableHead sx={{ color: "grey", background: "red", colorAdjust: "white" }}>
                   <TableRow >
                     <StyledTableCell>#</StyledTableCell>

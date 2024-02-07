@@ -14,9 +14,13 @@
         border: 1px solid grey;
         border-radius: 10px;
         padding: 10px 5px;
-        /* transform: scale(0.7); */
     }
-    TableRow{
-        background: red;
+}
+@media only screen and (max-width: 600px) {
+    .enterresult{
+    
+        & .box{
+            width: 98%;
+        }
     }
 }
