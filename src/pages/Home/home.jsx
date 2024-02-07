@@ -30,9 +30,6 @@ const Home = () => {
         <>
             <div className="home">
                 <section className='section1'>
-                <div className="image">
-                        <img src={char} alt="PUBG Character" />
-                    </div>
                     <div className="left-content">
                         <h2>Welcome to <span>BattleFiesta</span> </h2>
                         <h3>Managing Esport Tournament is Super Easy Now.</h3>
@@ -45,7 +42,9 @@ const Home = () => {
                             <NavLink className="navlink" to='/tournaments'>Find Tournament </NavLink>
                         </div>
                     </div>
-
+                    <div className="image">
+                        <img src={char} alt="PUBG Character" />
+                    </div>
                 </section>
                 <section className='section2'>
                     <h1>What we Offers ?</h1>

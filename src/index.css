@@ -44,11 +44,6 @@ code {
   width: 100%;
 }
 
-.nav.narrow {
-  height: var(--navheight);
-}
-
-
 .main {
   position: absolute;
   height: calc(100vh - var(--navheight));
@@ -148,23 +143,12 @@ input{
 
   .nav {
     height: var(--navheightmobile);
-    left: 200px;
-    width: calc(100% - 200px);
   }
   
-  .nav.narrow {
-    height: var(--navheightmobile);
-    left: 0;
-    width: 100%;
-  }
   .main {
     position: absolute;
     height: calc(100vh - var(--navheightmobile));
     top: var(--navheightmobile);
-    width: 100%;
-    left: 0px;
-  }
-  .main.narrow {
     width: 100%;
     left: 0px;
   }
