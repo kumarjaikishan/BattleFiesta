@@ -3,6 +3,7 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
+    /* border: 1px solid red; */
 
     & .tournainfo{
         overflow-y: auto;
@@ -65,5 +66,51 @@
             }
         } 
         
+    }
+}
+@media only screen and (max-width: 600px) {
+    .tournawrapper{
+        width: 100%;
+        height: min-content;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    
+        & .tournainfo{
+            width: 100%;
+            padding: 10px 0px;
+        }
+        .right{
+            /* border: 1px solid red; */
+            width: 98%;
+            margin: 0 auto;
+        
+            & .logos{
+                padding: 2px;
+                margin-top: 10px;
+        
+                & div{
+                    
+                    & img{
+                        width: 100px;
+                        height: 100px;
+                        margin: 2px 0px;
+                    }
+                    h3{
+                        margin: 20px 0px;
+                    }
+                    h2{
+                       font-size: 20px;
+                    }
+                    p{
+                        font-size: 12px;
+                    }
+                }
+                .tourna_logo{
+                    border-left: 1px solid grey;
+                }
+            } 
+            
+        }
     }
 }

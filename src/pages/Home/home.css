@@ -241,7 +241,7 @@
 
         & .section1 {
             & .left-content {
-                /* padding: 0; */
+                padding: 5px;
                 margin: 0;
                 width: 100%;
                 background: rgba(0,0,0,.3);

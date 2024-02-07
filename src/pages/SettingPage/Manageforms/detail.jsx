@@ -31,7 +31,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
             <div className="tournawrapper">
                 <div className="tournainfo">
                     <h2>Tournament Info</h2>
-                    <FormControl sx={{ m: 1, maxWidth: 320 }}>
+                    <FormControl sx={{ m: 1,width:"96%" }}>
                         <TextField
                             helperText="Name of your tournament"
                             id="demo-helper-text-misaligned"
@@ -63,7 +63,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                         />
 
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, maxWidth: 320 }}>
+                    <FormControl sx={{ m: 1, mb: 3,  Width:"98%"}}>
                         <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -79,7 +79,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                         </Select>
                         <FormHelperText>The type: SOLO,DUO, SQUAD etc</FormHelperText>
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, maxWidth: 320 }}>
+                    <FormControl sx={{ m: 1, mb: 3,  Width:"96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Status*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -95,7 +95,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                         </Select>
                         <FormHelperText>Status of your tournament</FormHelperText>
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, maxWidth: 320 }}>
+                    <FormControl sx={{ m: 1, mb: 3, Width:"96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Visibility*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
