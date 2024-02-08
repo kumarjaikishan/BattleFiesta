@@ -1,4 +1,5 @@
 import './App.css';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
