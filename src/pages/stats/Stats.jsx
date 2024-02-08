@@ -206,18 +206,17 @@ const Stats = () => {
   return (
     <div className='stats'>
       <div className='controls'>
-        <Grid container spacing={2}>
-          <Grid xs={4}>
+        <Grid sx={{Width:'100%', justifyContent: "space-between"}} container spacing={2}>
+          <Grid  xs={3}>
             <h3>Select Theme</h3>
-            <FormControl sx={{ mt: 1 }} >
-              <InputLabel id="demo-simple-select-label">Theme</InputLabel>
+            <FormControl sx={{ mt: 1 , width:"100%" }} size='small' >
+              <InputLabel  id="demo-simple-select-label">Theme</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={theme}
                 label="Theme"
                 onChange={handleChange}
-                sx={{ minWidth: 180 }}
               >
                 <MenuItem value={"theme1"}>Red Carpet</MenuItem>
                 <MenuItem value={"theme4"}>Royal Grey</MenuItem>
@@ -226,16 +225,16 @@ const Stats = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid xs={4}>
-            <h3>Set Custom Background</h3>
-            <Button sx={{ mt: 1 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-              Upload Background
+          <Grid xs={3} >
+            <h3>Set Background</h3>
+            <Button className='btna'  sx={{ mt: 1, width:"100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+              Upload
               <VisuallyHiddenInput type="file" />
             </Button>
           </Grid>
-          <Grid xs={4}>
+          <Grid xs={3}>
             <h3>Set Title</h3>
-            <TextField sx={{ mt: 1 }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
+            <TextField size='small' sx={{ mt: 1 ,width:"100%"}} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
           </Grid>
         </Grid>
       </div>

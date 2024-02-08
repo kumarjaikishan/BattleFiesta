@@ -198,6 +198,9 @@
         background: white;
         color: #17191a;
     }
+    .section6 .left .img{
+        width: 500px;
+    }
 }
 
 @media only screen and (max-width: 800px) {

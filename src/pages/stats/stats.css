@@ -4,17 +4,114 @@
   overflow: auto;
   padding: 10px;
   background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   & .controls {
-    padding: 20px 10px;
+    width: 100%;
+    max-width: 1400px;
+    padding: 10px;
+  }
+
+  .conta {
+    padding: 20px 0px;
+    border-radius: 20px;
+    margin-top: 5px;
+    max-width: 1400px;
+
+
+    &>div {
+      display: flex;
+      justify-content: center;
+
+      & img {
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+    }
+
+    h1,
+    h2 {
+      color: whitesmoke;
+      text-align: center;
+      font-size: 4em;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: transparent;
+      text-transform: uppercase;
+      -webkit-text-stroke: 0.6px white;
+    }
+
+    table {
+      width: 100%;
+      padding: 5px 10px;
+      text-align: center;
+      border: collapse;
+
+      & thead {
+        background: rgba(0, 0, 0, 0.4);
+        color: whitesmoke;
+
+        & tr {
+
+          & th {
+            padding: 5px 3px;
+            font-weight: 800;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+          }
+        }
+      }
+
+      tbody {
+
+        & tr {
+          /* background: -webkit-linear-gradient(#ffdd00d0, #fbaf34a1); */
+          background: rgba(59, 2, 2, 0.595);
+          color: whitesmoke;
+          border-radius: 10px;
+          /* height: 60px; */
+          margin: 40px 0px;
+
+          & td {
+            padding: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 10px 0px 10px 0px;
+            box-shadow: 0px 2px 0px rgba(255, 255, 255, 0.6);
+
+            & img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              margin-left: 5px;
+              margin-right: 10px;
+            }
+
+          }
+
+          td:nth-child(2) {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
   }
 
   .fragger {
     width: 100%;
+    max-width: 1400px;
     margin-top: 10px;
     background: url('../../assets/grey.webp');
     background-size: cover;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 20px;
 
     & h2 {
@@ -41,7 +138,7 @@
         & .img {
           width: 160px;
           height: 160px;
-          background: radial-gradient(#e7e9e8,#09eedb);
+          background: radial-gradient(#e7e9e8, #09eedb);
           position: relative;
 
           & img {
@@ -75,7 +172,7 @@
         }
       }
     }
-    
+
     .table {
       width: 100%;
       /* border: 1px solid yellow; */
@@ -100,23 +197,24 @@
           font-size: 1.1em;
           font-weight: 600;
 
-         & >span:nth-child(1){
-          display: flex;
-          align-items: center;
+          &>span:nth-child(1) {
+            display: flex;
+            align-items: center;
 
-          & span{
-            margin-left: 8px;
+            & span {
+              margin-left: 8px;
 
-            & img{
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
+              & img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+              }
             }
           }
-         } 
-         & >span:nth-child(2){
-          margin-right: 20px;
-         }          
+
+          &>span:nth-child(2) {
+            margin-right: 20px;
+          }
         }
 
         .tablehead {
@@ -132,7 +230,7 @@
 
   .matchtable {
     width: 100%;
-    border: 1px solid red;
+    max-width: 1400px;
     margin-top: 10px;
     border-radius: 20px;
     padding: 10px;
@@ -143,6 +241,7 @@
     h3 {
       color: white;
       text-align: center;
+      letter-spacing: 2px;
     }
 
     .selected {
@@ -191,18 +290,175 @@
               font-weight: 600;
               letter-spacing: 1px;
 
-              & img{
+              & img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
               }
             }
-            td:nth-child(1){
+
+            td:nth-child(1) {
               display: flex;
               align-items: center;
 
-              & span{
+              & span {
                 margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .stats {
+    padding: 7px;
+
+    & .controls {
+      padding: 5px;
+      margin-bottom: 5px;
+
+      & h3 {
+        font-size: .8em;
+      }
+
+      .btna {
+        transform: scale(.8);
+      }
+    }
+
+    .conta {
+      max-width: 100%;
+      padding: 5px 0px;
+      border-radius: 10px;
+
+      &>div {
+
+        & img {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      h1,
+      h2 {
+        font-size: 1.4em;
+        letter-spacing: 1.2px;
+      }
+
+      h2 {
+        font-size: 1.1em;
+      }
+    }
+
+    .fragger {
+      width: 100%;
+      margin-top: 10px;
+      background: url('../../assets/grey.webp');
+      background-size: cover;
+      border-radius: 10px;
+      padding: 5px;
+
+      & h2 {
+        text-align: center;
+        color: whitesmoke;
+        font-size: 1.7em;
+      }
+
+      .boxes {
+        padding: 5px;
+        margin-top: 5px;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-evenly;
+
+        & .box {
+          width: 140px;
+          border-radius: 5px;
+
+          & .img {
+            width: 140px;
+            height: 140px;
+          }
+
+          .below {
+            font-weight: 600;
+            padding: 2px;
+            font-size: 0.7em;
+          }
+        }
+      }
+
+      .table {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 5px;
+
+        & .tabledata {
+          width: 100%;
+
+          .tablehead {
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+
+    .matchtable {
+      width: 100%;
+      margin-top: 5px;
+      border-radius: 10px;
+      padding: 5px;
+
+      & h1,
+      h3 {
+        letter-spacing: .7px;
+        color: white;
+        text-align: center;
+      }
+
+      .table {
+        margin-top: 10px;
+
+
+        & table {
+          width: 100%;
+          border-spacing: 0px 5px;
+
+          & thead {
+
+            & tr {
+
+              & th {
+                padding: 2px;
+                font-size: 1em;
+                letter-spacing: 1px;
+              }
+            }
+          }
+
+          tbody {
+
+            & tr {
+
+              & td {
+                padding: 2px;
+                font-size: .9em;
+                font-weight: 600;
+                letter-spacing: 0px;
+
+                & img {
+                  width: 45px;
+                  height: 45px;
+                }
+              }
+
+              td:nth-child(1) {
+                & span {
+                  margin-left: 6px;
+                }
               }
             }
           }

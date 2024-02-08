@@ -434,8 +434,7 @@ const Register = () => {
                             <p className="desc">{all.description}</p>
                             <Divider variant="middle" />
                         </>}
-
-                        {all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
+                      {all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <Box
                                 sx={{
                                     '& > :not(style)': { m: 1, width: '25ch' },

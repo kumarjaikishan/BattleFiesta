@@ -21,29 +21,33 @@
         width: 550px;
         padding: 10px 20px;
         height: max-content;
-        /* height: 600px; */
-        border: 2px solid grey;
-        border-radius: 20px;
+        margin-top: 10px;
+        border: 1px solid grey;
+        border-radius: 10px 10px 20px 20px;
         position: relative;
-        background: #f0f0f0;
+        /* background: #f0f0f0; */
+        background: white;
 
 
         &::before {
             content: '';
             position: absolute;
-            top: -10px;
-            bottom: -10px;
-            border-radius: 20px;
+            top: -1px;
+            height: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
             left: 0px;
             right: 0px;
-            z-index: -1;
-            background-color: rgb(64, 67, 67);
+            width: 100%;
+            background-color: var(--primarycolor);
         }
-        .desc{
+
+        .desc {
             padding: 10px 10px;
             font-size: 0.8em;
         }
-        .slots{
+
+        .slots {
             height: 30px;
             display: flex;
             justify-content: space-between;
@@ -51,16 +55,19 @@
             letter-spacing: 1px;
             font-weight: 600;
 
-            & span:nth-child(1){
+            & span:nth-child(1) {
                 color: rgb(7, 121, 170);
             }
-            & span:nth-child(2){
+
+            & span:nth-child(2) {
                 color: rgb(203, 134, 8);
             }
-            & span:nth-child(3){
+
+            & span:nth-child(3) {
                 color: green;
             }
         }
+
         .player {
             border: 1px solid grey;
             margin: 5px 0px;
@@ -135,16 +142,18 @@
                 width: 70px !important;
                 height: 70px !important;
                 border-radius: 50%;
-               
+
             }
-            span{
+
+            span {
                 font-size: 1.3em;
                 font-weight: 600;
                 letter-spacing: 1px;
                 line-height: 60px;
                 margin-left: 10px;
             }
-            span:nth-child(3){
+
+            span:nth-child(3) {
                 font-size: 12px;
                 font-weight: 700;
                 padding: 2px 8px;
@@ -153,41 +162,48 @@
                 text-transform: uppercase;
                 border-radius: 10px;
             }
-            span.rejected{
+
+            span.rejected {
                 /* background: rgb(182, 131, 131); */
-                color:rgb(150, 7, 7) ;
+                color: rgb(150, 7, 7);
             }
-            span.approved{
+
+            span.approved {
                 /* background: rgba(80, 158, 80, 0.644); */
-                color:rgb(3, 73, 3) ;
+                color: rgb(3, 73, 3);
             }
-            span.pending{
+
+            span.pending {
                 /* background:rgba(172, 141, 84, 0.705); */
-                color:rgb(187, 125, 9) ;
+                color: rgb(187, 125, 9);
             }
         }
-        .headere.approved{
+
+        .headere.approved {
             border-right: 10px solid green;
         }
-        .headere.pending{
+
+        .headere.pending {
             border-right: 10px solid orange;
         }
-        .headere.rejected{
+
+        .headere.rejected {
             border-right: 10px solid rgb(150, 7, 7);
         }
 
         .detailse {
 
-            &  .playerdata{
+            & .playerdata {
                 border: 1px solid grey;
                 border-radius: 10px;
                 padding: 5px;
 
-                & h2{
+                & h2 {
                     font-size: 1.1em;
                     margin: 10px 0px;
-                } 
-                div{
+                }
+
+                div {
                     border-top: 1px solid grey;
                     width: 100%;
                     display: flex;
@@ -195,7 +211,7 @@
                     align-items: center;
                     padding: 5px 10px;
 
-                    & img{
+                    & img {
                         width: 50px !important;
                         height: 50px !important;
                         object-fit: cover;
@@ -207,41 +223,41 @@
         }
 
     }
-   
+
 }
 
 @media only screen and (max-width: 600px) {
     .registartionform {
         padding: 10px 0px;
-    
+
         & .controler {
             width: 99%;
             margin-bottom: 10px;
         }
-    
+
         .form {
             width: 98%;
             padding: 5px;
-    
-            .slots{
+
+            .slots {
                 height: 30px;
                 letter-spacing: .5px;
             }
-            
+
             .closed {
                 padding: 20px 5px;
-    
+
                 & .stop {
                     font-size: 2.4em;
                 }
             }
-    
+
             .contacts {
                 margin-top: 10px;
                 padding-top: 5px;
             }
         }
-    
+
         img {
             width: 150px !important;
             height: 150px !important;
@@ -250,49 +266,52 @@
             border-radius: 10px;
             overflow: hidden;
         }
-    
+
         .teamse {
             width: 98%;
             border-radius: 10px;
             padding: 5px 0px;
-    
+
             & .headere {
                 height: 60px;
-    
+
                 & img {
                     width: 60px !important;
                     height: 60px !important;
                     border-radius: 50%;
-                   
+
                 }
-                span{
+
+                span {
                     font-size: 1.1em;
                     letter-spacing: 0.5px;
                 }
-                span:nth-child(3){
+
+                span:nth-child(3) {
                     font-size: 10px;
                     font-weight: 700;
                 }
             }
-    
+
             .detailse {
-    
-                &  .playerdata{
+
+                & .playerdata {
                     border: 1px solid grey;
                     border-radius: 10px;
                     padding: 5px;
-    
-                    & h2{
+
+                    & h2 {
                         font-size: 1.1em;
                         margin: 10px 0px;
-                    } 
-                    div{
+                    }
+
+                    div {
                         padding: 5px;
                     }
                 }
             }
-    
+
         }
-       
+
     }
 }

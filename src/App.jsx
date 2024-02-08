@@ -1,9 +1,7 @@
 import './App.css';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
-import Sidebar from './components/sidebar/sidebar';
 import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/Home/home';
 import { useEffect } from 'react';

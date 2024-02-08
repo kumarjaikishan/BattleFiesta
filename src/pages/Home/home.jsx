@@ -17,6 +17,7 @@ import tick from '../../assets/home/tick.webp'
 import tick2 from '../../assets/home/tick2.webp'
 import registerform from '../../assets/home/registrationform.webp'
 import enterresult from '../../assets/home/enterresult.webp'
+import createform from '../../assets/home/createform.webp'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -128,7 +129,7 @@ const Home = () => {
                 <section className='section3'>
                     <div className="left">
                         <div className="img">
-                            <img src={registerform} alt="" />
+                            <img src={createform} alt="" />
                         </div>
                     </div>
                     <div className="right">
@@ -178,6 +179,7 @@ const Home = () => {
                         <p> <span><img src={tick} alt="" /></span> <span>Accept team and player logo.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Set maximum and minimum player required for registration.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Approve registration or decline. Its up to you.</span></p>
+                        <p> <span><img src={tick} alt="" /></span> <span>Teamlist section for participant, to see their Registration Status- Approved, Pending or Rejected</span></p>
                     </div>
                     <div className="left">
                         <div className="img">
