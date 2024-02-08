@@ -19,7 +19,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                 <Box className="box"
                     component="form"
                     sx={{
-                        '& .MuiTextField-root': { m: 1, width: '35%' },
+                        '& .MuiTextField-root': { m: 1 },
                     }}
                     noValidate
                     autoComplete="off"
@@ -42,9 +42,9 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         label="Description"
                         multiline
                         name="description"
-                        sx={{minWidth:"93%"}}
-                        rows={2}
-                        inputProps={{ style: { fontSize: 11 } }}
+                        className='taxi'
+                        rows={3}
+                        inputProps={{ style: { fontSize: "11px" , lineHeight:"12px" } }}
                         onChange={handleChange}
                         value={all.description}
                         helperText="Add description or message to show on registration page."
@@ -53,7 +53,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         id="outlined-multiline-static"
                         label="Successful  Message"
                         multiline
-                        sx={{minWidth:"93%"}}
+                        className='taxi'
                         value={all.success_msg}
                         inputProps={{ style: { fontSize: 11 } }}
                         rows={1}
@@ -61,7 +61,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         onChange={handleChange}
                         placeholder="Add description or message to show after Successful Registration"
                     />
-                    <br /><br />
+                    
                     <h3>Options:</h3>
                     <FormLabel id="demo-row-radio-buttons-group-label">Ask for Email</FormLabel>
                     <RadioGroup
@@ -151,7 +151,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         id="outlined-number"
                         label="Minimum Players"
                         type="tel"
-                        sx={{minWidth:"93%"}}
+                        className='taxi'
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         value={all.min_player}
                         name="min_player"
@@ -164,7 +164,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                     <TextField
                         id="outlined-number"
                         label="Maximum Players"
-                        sx={{minWidth:"93%"}}
+                        className='taxi'
                         type="tel"
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         name="max_player"

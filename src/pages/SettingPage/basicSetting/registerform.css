@@ -8,8 +8,6 @@
     overflow: hidden;
 
     & .control {
-        /* background: blue; */
-        /* border: 1px solid grey; */
         width: 100%;
         height: 50px;
         display: flex;
@@ -18,7 +16,7 @@
 
         & div {
             display: flex;
-            width: 32%;
+            width: 22%;
             align-items: center;
             justify-content: center;
             border: 1px solid transparent;
@@ -52,8 +50,6 @@
     }
 }
 .manageteams{
-
-
     & .box{
         position: relative;
         min-height: 200px;

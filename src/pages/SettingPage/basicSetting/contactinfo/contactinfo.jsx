@@ -27,9 +27,9 @@ const Contactinfo = ({ all }) => {
     }
     const [isloading, setisloading] = useState(false)
     const [links, setlinks] = useState(init.link)
-    const [publicpost, setpublicpost] = useState('');
+    const [publicpost, setpublicpost] = useState(all.publicpost);
     useEffect(() => {
-        // console.log(all);
+        console.log(all);
         bfbbgb();
     }, [])
     const bfbbgb = () => {
@@ -121,17 +121,17 @@ const Contactinfo = ({ all }) => {
                             id="outlined-multiline-static"
                             label="Public Post"
                             multiline
-                            inputProps={{ style: { fontSize: 11 } }}
+                            inputProps={{ style: { fontSize: 11, lineHeight:"12px" } }}
                             value={publicpost}
                             onChange={(e) => setpublicpost(e.target.value)}
-                            sx={{ width: "98%", mt: 1 }}
-                            rows={6}
+                            sx={{ width: "98%", mt: 1, mb:1 }}
+                            rows={10}
                         />
                         <h2>Contact Links</h2>
                         {links.map((val, ind) => {
                             return <section key={ind}>
                                 <Stack direction="row" spacing={2}>
-                                    <TextField required value={val.linkName} onChange={(e) => handlee(e, ind, "linkName")} sx={{ width: "50%" }} id="outlined-basic" label="Link Name" variant="outlined" />
+                                    <TextField  size='small' required value={val.linkName} onChange={(e) => handlee(e, ind, "linkName")} sx={{ width: "50%" }} id="outlined-basic" label="Link Name" variant="outlined" />
                                     <FormControl sx={{ width: "50%" }} >
                                         <InputLabel id="demo-simple-select-label">Link Type</InputLabel>
                                         <Select
@@ -140,6 +140,7 @@ const Contactinfo = ({ all }) => {
                                             value={links[ind].linkType}
                                             label="Link Type"
                                             required
+                                            size='small'
                                             onChange={(e) => handlee(e, ind, 'linkType')}
                                         >
                                             <MenuItem value="whatsapp"> Whatsapp No.</MenuItem>
@@ -155,6 +156,7 @@ const Contactinfo = ({ all }) => {
                                         onChange={(e) => handlee(e, ind, "link")}
                                         fullWidth id="outlined-basic"
                                         label="Link"
+                                        size='small'
                                         variant="outlined"
                                         FormHelperTextProps={{ sx: { color: 'primary.main' } }}
                                         helperText={

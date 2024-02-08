@@ -41,7 +41,8 @@ const Registerform = ({ setting, showss }) => {
         ask_payment_ss: "",
         min_player: "",
         max_player: "",
-        links:''
+        links:'',
+        publicpost:''
     }
     const [all, setall] = useState(init);
     const [isloading,setisloading]= useState(false)
@@ -83,7 +84,8 @@ const Registerform = ({ setting, showss }) => {
                 ask_payment_ss: actualdata.ask_payment_ss,
                 min_player: actualdata.minimum_players,
                 max_player: actualdata.maximum_players,
-                links:actualdata.links
+                links:actualdata.links,
+                publicpost:actualdata.publicpost
             })
             dispatch(setloader(false));
         };

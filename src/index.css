@@ -26,10 +26,8 @@ body {
   background: radial-gradient( #1abc9c 20% , #2980b9);
   position: relative;
   width: 100%;
-  /* font-size: 18px; */
-  height: 100vh;
-  overflow: hidden;
-  user-select: none;
+  min-height: 100vh;
+  /* user-select: none; */
 }
 
 code {
@@ -38,21 +36,19 @@ code {
 }
 
 .nav {
-  height: var(--navheight);
+  position: sticky;
+  top: 0;
   left: 0;
+  height: var(--navheight);
   width: 100%;
+  z-index: 60;
 }
 
 .main {
   position: relative;
-  height: calc(100vh - var(--navheight));
+  min-height: calc(100vh - var(--navheight));
+  /* border: 3px solid red; */
   width: 100%;
-  left:0;
-  top: var(--navheight);
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* border: 3px solid rgb(244, 9, 48); */
-  transition: 0.2s;
 }
 
 .loader {
@@ -132,21 +128,13 @@ input{
 }
 
 @media only screen and (max-width: 600px) {
-  .sidebar {
-    width: 200px;
-  }
-  
-  .sidebar.narrow {
-    width: 0px;
-  }
 
   .nav {
     height: var(--navheightmobile);
   }
   
   .main {
-    height: calc(100vh - var(--navheightmobile));
-    top: var(--navheightmobile);
+    min-height: calc(100vh - var(--navheightmobile));
   }
   .notfound {
     & div{

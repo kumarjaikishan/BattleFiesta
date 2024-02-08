@@ -57,8 +57,8 @@ function App() {
             <Route path="*" element={<Errorpage />} />
           </Routes>
           {log.loader && <Preloader />}
-          <Footbar />
         </div>
+        <Footbar />
       </div>
     </>
   );

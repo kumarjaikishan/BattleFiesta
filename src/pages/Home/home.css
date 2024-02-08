@@ -269,7 +269,7 @@
                 justify-content: end;
 
                 & img {
-                    width: 95%;
+                    width: 100%;
                 }
             }
         }
