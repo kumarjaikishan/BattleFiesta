@@ -6,7 +6,7 @@ const Footbar = () => {
     return (
         <>
             <div className='footer'>
-                <h2>Footer</h2>
+                <p>Developed By Jai kishan kumar</p>
             </div>
         </>
     );

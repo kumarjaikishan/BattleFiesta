@@ -1,7 +1,11 @@
 .footer{
     position: relative;
-    background: yellow;
     width: 100%;
-    min-height: 100px;
-    border: 1px solid red;
+    /* height: 60px; */
+    padding: 3px 10px;
+
+    & p{
+        color: white;
+        text-align: end;
+    }
 }

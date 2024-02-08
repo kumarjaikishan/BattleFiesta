@@ -1,4 +1,3 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
@@ -58,8 +57,8 @@ function App() {
             <Route path="*" element={<Errorpage />} />
           </Routes>
           {log.loader && <Preloader />}
+          <Footbar />
         </div>
-        {/* <Footbar /> */}
       </div>
     </>
   );
