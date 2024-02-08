@@ -42,9 +42,12 @@ code {
   left: 0;
   width: 100%;
 }
+.footer{
+
+}
 
 .main {
-  position: absolute;
+  position: relative;
   height: calc(100vh - var(--navheight));
   width: 100%;
   left:0;

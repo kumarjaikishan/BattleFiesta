@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
 import Dashboard from './pages/dashboard/Dashboard';
+import Footbar from './components/footer/footbar';
 import Home from './pages/Home/home';
 import { useEffect } from 'react';
 import Login from './pages/login/login';
@@ -58,7 +59,7 @@ function App() {
           </Routes>
           {log.loader && <Preloader />}
         </div>
-        {/* <Sidebar /> */}
+        {/* <Footbar /> */}
       </div>
     </>
   );
