@@ -161,41 +161,6 @@
 }
 
 
-@media only screen and (max-width: 600px) {
-    .Dashboard {
-        /* grid-template-columns: repeat(1, 1fr);
-        grid-gap: 1rem;
-        padding: 0.6em; */
-
-        .modal {
-           display: flex;
-           align-items: start;
-
-            & .box {
-                width: 95%;
-                margin-top: 10px;
-
-                & header {
-                    height: 70px;
-                    font-size: 2.3em;
-                }
-
-                form {
-                    padding: 10px 20px;
-
-                    & section {
-                        margin-top: 20px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-
-
-
 @media only screen and (max-width:1200px) {
     .Dashboard {
         grid-template-columns: repeat(3, 1fr);
@@ -210,8 +175,31 @@
 
 @media only screen and (max-width:600px) {
     .Dashboard {
+        min-height: calc(100vh - var(--navheightmobile) );
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 1.5rem;
-        padding-bottom: 5em;
+
+        .modal {
+            display: flex;
+            align-items: start;
+ 
+             & .box {
+                 width: 95%;
+                 margin-top: 10px;
+ 
+                 & header {
+                     height: 70px;
+                     font-size: 2.3em;
+                 }
+ 
+                 form {
+                     padding: 10px 20px;
+ 
+                     & section {
+                         margin-top: 20px;
+                     }
+                 }
+             }
+         }
     }
 }
