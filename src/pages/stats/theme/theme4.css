@@ -1,6 +1,21 @@
 .conta.theme4 {
     background: url('../../../assets/grey.webp');
-    background-size: contain;
+    background-size: cover;
+
+    h1,
+    h2 {
+        color: whitesmoke;
+        text-align: center;
+        font-size: 4em;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: transparent;
+        text-transform: uppercase;
+        -webkit-text-stroke: 0.6px white;
+    }
 
     table {
         width: 100%;
@@ -69,16 +84,26 @@
 
 @media only screen and (max-width: 600px) {
     .conta.theme4 {
+
+        h1 {
+            font-size: 1.4em;
+            letter-spacing: 1.2px;
+          }
     
+          h2 {
+            font-size: 1.1em;
+            letter-spacing: 1.2px;
+          }
+
         table {
             width: 100%;
             padding: 1px 2px;
             border-spacing: 2px 3px;
-    
+
             & thead {
-    
+
                 & tr {
-    
+
                     & th {
                         padding: 0px 3px;
                         font-weight: 600;
@@ -87,18 +112,18 @@
                     }
                 }
             }
-    
+
             tbody {
-    
+
                 & tr {
                     margin: 5px 0px;
-    
+
                     & td {
                         padding: 5px;
                         font-size: .8em;
                         font-weight: 600;
                         border-radius: 15px;
-    
+
                         & img {
                             width: 30px;
                             height: 30px;

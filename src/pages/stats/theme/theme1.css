@@ -2,6 +2,21 @@
   background: url('../../../assets/back-des.webp');
   background-size: cover;
 
+  h1,
+  h2 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 4em;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-size: 2em;
+    color: transparent;
+    text-transform: uppercase;
+    -webkit-text-stroke: 0.6px white;
+  }
+
   table {
     width: 100%;
     padding: 5px 10px;
@@ -59,6 +74,19 @@
 
 @media only screen and (max-width: 600px) {
   .conta.theme1 {
+
+    h1 {
+      font-size: 1.5em;
+      letter-spacing: 1.3px;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 1.1em;
+      letter-spacing: 1.2px;
+      -webkit-text-stroke: 0.2px white;
+    }
+
     table {
       width: 100%;
       padding: 2px;
