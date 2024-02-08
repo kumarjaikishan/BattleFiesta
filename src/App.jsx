@@ -41,7 +41,7 @@ function App() {
       <ToastContainer closeOnClick={true} pauseOnFocusLoss={true} />
       <div className="App" >
         <Navbar />
-        <div className={log.narrow ? "main narrow" : "main"} onClick={sidebarclose}>
+        <div className="main" onClick={sidebarclose}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />

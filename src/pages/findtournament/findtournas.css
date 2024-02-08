@@ -3,7 +3,6 @@
     height: 100%;
     overflow: auto;
     background: white;
-    /* border: 1px solid red; */
 
     & .conta {
         height: 55px;
@@ -132,6 +131,7 @@
 
 .tournastat {
     width: 100%;
+    height: 100%;
     padding: 2em 20px;
     display: flex;
     flex-direction: column;
@@ -375,6 +375,13 @@
                     padding: 2px 6px;
                     font-weight: 500;
                     margin-top: 5px;
+
+                    & span:nth-child(2){
+                        font-size: 14px;
+                    }
+                    .ico{
+                        font-size: 18px;
+                    }
                 }
             }
         }
