@@ -5,9 +5,9 @@ const Footbar = () => {
 
     return (
         <>
-            <div className='footer'>
+            <footer className='footer'>
                 <p>Developed By Jai kishan kumar</p>
-            </div>
+            </footer>
         </>
     );
 };
