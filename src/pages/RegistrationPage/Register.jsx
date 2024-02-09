@@ -37,7 +37,7 @@ const Register = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
-    const [newfresh,setnewfresh]=useState(false);
+    const [newfresh, setnewfresh] = useState(false);
     const [isloading, setisloading] = useState(false)
     const { registerId } = useParams();
     const tournacenter = useSelector((state) => state.tournacenter);
@@ -183,6 +183,9 @@ const Register = () => {
         }
         if (all.ask_phone && !inp.teammobile) {
             return toast.warn("Phone is Required", { autoClose: 2300 });
+        }
+        if (all.ask_phone.length != 10) {
+            return toast.warn("Phone must be 10 digits", { autoClose: 2300 });
         }
         if (all.ask_discord && !inp.teamdiscord) {
             return toast.warn("Discord is Required", { autoClose: 2300 });
@@ -462,8 +465,14 @@ const Register = () => {
 
                                 autoComplete="off"
                             >
-                                {all.ask_phone && <TextField required={all.ask_phone} size="small" id="outlined-basic" name="teammobile" type='tel'
-                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} onChange={realhandlechange} label="Mobile" variant="outlined" />}
+                                {all.ask_phone && <TextField required={all.ask_phone}
+                                    size="small" id="outlined-basic" name="teammobile"
+                                    type='tel'
+                                    value={inp.teammobile}
+                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                    onChange={realhandlechange} label="Mobile" variant="outlined"
+                                    color={inp.teammobile.length == 10 ? "primary" : "warning"}
+                                />}
                                 {all.ask_discord && <TextField required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
                             </Box>
                             <Divider variant="middle" />
@@ -566,7 +575,7 @@ const Register = () => {
 
                         {/* after registration completed show registered team */}
 
-                       {newfresh && <div className="closed">
+                        {newfresh && <div className="closed">
                             <div> <TagFacesIcon className="stop" /></div>
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
