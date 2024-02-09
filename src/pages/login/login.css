@@ -2,17 +2,28 @@
     width: 100%;
     min-height: calc(100vh - var(--navheight));
     /* border: 3px solid red; */
+    background: url('../../assets/loginback.webp');
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 
+    &::before{
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+    }
     .box {
         border-radius: 20px;
         position: relative;
         width: 420px;
-        background: white;
+        background: rgba(255,255,255,.2);
         height: 500px;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
         overflow: hidden;
 
         .logo {
@@ -129,6 +140,7 @@
     .login {
         min-height: calc(100vh - var(--navheightmobile));
         align-items: start;
+        background-position-x: 20%;
 
         .box {
             margin-top: 20px;
