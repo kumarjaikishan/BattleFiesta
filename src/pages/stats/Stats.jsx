@@ -7,20 +7,14 @@ import './theme/theme1.css'
 import './theme/theme2.css'
 import './theme/theme3.css'
 import './theme/theme4.css'
-import { styled} from '@mui/material';
-// import Container from '@mui/material/Container';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select'
-// import Grid from '@mui/material/Unstable_Grid2';
-// import TextField from '@mui/material/TextField';
-// import Button from '@mui/material/Button';
-import {Button,TextField,Grid,Select,FormControl,MenuItem,InputLabel,Container} from '@mui/material';
+import { styled } from '@mui/material';
+import html2canvas from "html2canvas";
+import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
-import { setloader,header } from '../../store/login';
+import { setloader, header } from '../../store/login';
 
 const Stats = () => {
   const dispatch = useDispatch();
@@ -141,7 +135,7 @@ const Stats = () => {
 
     settablerow(tabledata);
   }
-  
+
   function comparePlayers(playerA, playerB) {
     // Compare total points first
     if (playerA.total !== playerB.total) {
@@ -202,15 +196,35 @@ const Stats = () => {
     settopplayer(complete)
     // console.log(complete);
   }
+  const imagedownload = () => {
+    const timenow = new Date();
+    const rand = timenow.getMinutes()
+    // console.log(quality);
+    let quality= 3;
+    const boxElement = document.querySelector('#wrapper');
+    html2canvas(boxElement, { scale: quality, useCORS: true, })
+      .then((canvas) => {
+        const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
+        const anchor = document.createElement('a');
+        anchor.href = dataUrl;
+        anchor.download = `Stats @${rand}.png`; // Change the filename as needed
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+      })
+      .catch((error) => {
+        console.error('Error generating image:', error);
+      });
+  }
 
   return (
     <div className='stats'>
       <div className='controls'>
-        <Grid sx={{Width:'100%', justifyContent: "space-between"}} container spacing={2}>
+        <Grid sx={{ Width: '100%', justifyContent: "space-between" }} container spacing={2}>
           <Grid item xs={3}>
             <h3>Select Theme</h3>
-            <FormControl sx={{ mt: 1 , width:"100%" }} size='small' >
-              <InputLabel  id="demo-simple-select-label">Theme</InputLabel>
+            <FormControl sx={{ mt: 1, width: "100%" }} size='small' >
+              <InputLabel id="demo-simple-select-label">Theme</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -227,18 +241,18 @@ const Stats = () => {
           </Grid>
           <Grid item xs={3} >
             <h3>Set Background</h3>
-            <Button className='btna'  sx={{ mt: 1, width:"100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+            <Button className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
               Upload
               <VisuallyHiddenInput type="file" />
             </Button>
           </Grid>
           <Grid item xs={3}>
             <h3>Set Title</h3>
-            <TextField size='small' sx={{ mt: 1 ,width:"100%"}} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
+            <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
           </Grid>
         </Grid>
       </div>
-      <Container maxWidth="fixed" className={`conta ${theme}`}>
+      <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
           <img src={kuch.tournment_logo} alt="" />
         </div>
@@ -272,6 +286,9 @@ const Stats = () => {
           </tbody>
         </table>
       </Container>
+      <Button onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+        Download
+      </Button>
       <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />
       <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
     </div>

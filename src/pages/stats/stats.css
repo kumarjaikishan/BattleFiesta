@@ -14,7 +14,7 @@
   }
 
   .conta {
-    padding: 20px 0px;
+    padding: 20px 150px;
     border-radius: 20px;
     margin-top: 5px;
     width: 100%;
@@ -110,7 +110,7 @@
     max-width: 1200px;
     margin-top: 10px;
     background: url('../../assets/grey.webp');
-    background-size: cover;
+    background-size: contain;
     border-radius: 20px;
     padding: 20px;
 
@@ -129,11 +129,9 @@
 
       & .box {
         width: 160px;
-        /* height: 250px; */
         border: 1px solid white;
         border-radius: 10px;
         overflow: hidden;
-        /* flex: 2; */
 
         & .img {
           width: 160px;
@@ -257,7 +255,7 @@
 
 
       & table {
-        width: 90%;
+        width: 70%;
         text-align: center;
         border-collapse: separate;
         border-spacing: 0px 8px;
@@ -332,7 +330,7 @@
 
     .conta {
       max-width: 100%;
-      padding: 5px 0px;
+      padding: 5px;
       border-radius: 10px;
 
       &>div {

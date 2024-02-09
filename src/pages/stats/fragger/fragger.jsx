@@ -77,12 +77,12 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
                 </div>
                 <div className="table">
                     <div className="tabledata">
-                        <h2>Top Kills Player</h2>
+                        <h2>Top 10 Player</h2>
                         <div className="tablehead">
                             <span>PLAYER</span>
                             <span>KILLS</span>
                         </div>
-                        {topplayer.map((player, ind) => {
+                        {topplayer.slice(0, 10).map((player, ind) => {
                             return <div key={ind}>
                                 <span>
                                     <span>#{ind + 1}</span>
@@ -94,12 +94,12 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
                         })}
                     </div>
                     <div className="tabledata">
-                        <h2>Top Kills Team</h2>
+                        <h2>Top 10 Team</h2>
                         <div className="tablehead">
                             <span>Team</span>
                             <span>KILLS</span>
                         </div>
-                        {topteam.map((team, ind) => {
+                        {topteam.slice(0, 10).map((team, ind) => {
                             return <div key={ind}>
                                 <span> <span>#{ind + 1}</span> <span><img src={team.logo ? team.logo :group} alt="" /> </span><span>{team.team}</span></span>
                                 <span>{team.kills}</span>
