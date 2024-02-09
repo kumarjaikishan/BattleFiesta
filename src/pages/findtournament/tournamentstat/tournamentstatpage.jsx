@@ -64,7 +64,7 @@ const Tournamentstatpage = () => {
     });
     return formattedDate;
   }
-  let localhos = "https://esport-bgmi.vercel.app";
+  let localhos = tournacenter.linkaddress;
 
   return (
     <div className="tournastat">

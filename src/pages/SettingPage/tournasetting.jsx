@@ -143,7 +143,7 @@ const Tournasetting = () => {
     setactive(index);
     all[index].classList.add("active");
   }
-  let localhos = "https://esport-bgmi.vercel.app";
+  let localhos = tournacenter.linkaddress;
 
   function copyUrlToClipboard(page) {
     // Create a temporary input element
