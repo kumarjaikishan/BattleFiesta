@@ -21,13 +21,14 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
-import { setloader } from '../../store/login';
+import { setloader,header } from '../../store/login';
 
 const Stats = () => {
   const dispatch = useDispatch();
   const { tid } = useParams();
   const [matches, setmatches] = useState([]);
   useEffect(() => {
+    dispatch(header("Stats"));
     dispatch(setloader(true));
     fetche(tid);
   }, [])

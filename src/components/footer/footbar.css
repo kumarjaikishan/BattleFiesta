@@ -9,13 +9,13 @@
     & p{
         color: white;
         text-align: end;
-        line-height: 20px;
+        line-height: 10px;
         font-size: 12px;
     }
 }
 
 @media only screen and (max-width:600px) {
     .footer{
-        height: 30px;
+        height: 20px;
     }
 }

@@ -1,9 +1,11 @@
 .registartionform {
     width: 100%;
     display: flex;
+    min-height: calc(100vh - var(--navheight) );
     position: relative;
     flex-direction: column;
     background: white;
+    /* border: 3px solid red; */
     align-items: center;
     padding: 20px 0px;
     color: rgb(43, 41, 41);
@@ -95,6 +97,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
             padding: 20px 0px;
             color: rgb(43, 41, 41);
 
@@ -108,6 +111,38 @@
             padding-top: 10px;
             border-top: 1px solid grey;
             text-align: center;
+
+            & .links {
+                width: 100%;
+                height: max-content;
+                display: flex;
+                padding-bottom: 5px;
+                flex-wrap: wrap;
+                justify-content: space-around;
+    
+                & a {
+                    /* background: red; */
+                    display: flex;
+                    padding: 3px 8px;
+                    letter-spacing: 1px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: rgb(14, 144, 196);
+                    font-weight: 600;
+                    cursor: pointer;
+                    margin-top: 10px;
+    
+                    &:hover {
+                        background-color: rgb(4, 60, 82);
+                        color: white;
+                    }
+    
+                    span {
+                        margin: 0 3px;
+                    }
+                }
+            }
         }
     }
 
@@ -225,6 +260,7 @@
 @media only screen and (max-width: 600px) {
     .registartionform {
         padding: 10px 0px;
+        min-height: calc(100vh - var(--navheightmobile) );
 
         & .controler {
             width: 99%;
@@ -233,7 +269,7 @@
 
         .form {
             width: 98%;
-            padding: 5px;
+            padding:10px 5px;
 
             .slots {
                 height: 30px;
@@ -251,6 +287,24 @@
             .contacts {
                 margin-top: 10px;
                 padding-top: 5px;
+
+                & .links {
+                   
+                    & a {
+                        padding: 2px 6px;
+                        font-weight: 500;
+                        margin-top: 5px;
+    
+                        & span:nth-child(2) {
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+    
+                        .ico {
+                            font-size: 18px;
+                        }
+                    }
+                }
             }
         }
 

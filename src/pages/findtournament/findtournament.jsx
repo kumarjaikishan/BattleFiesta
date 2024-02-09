@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { setloader } from '../../store/login';
+import { setloader,header } from '../../store/login';
 import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
@@ -14,6 +14,7 @@ const Findtournament = () => {
     const [alltournas, setalltournas] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
+        dispatch(header("Tournaments"));
         dispatch(setloader(true));
         fetche();
     }, [])

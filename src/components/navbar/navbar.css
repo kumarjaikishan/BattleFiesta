@@ -4,7 +4,7 @@
     /* border: 1px solid red; */
     backdrop-filter: blur(10px);
     background: rgba(0,0,0,0.5);
-    /* background: var(--primarycolor); */
+    /* background: #058ce7ae; */
     transition: 0.2s;
     overflow: hidden;
     display: flex;
@@ -109,12 +109,12 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
 
     .nav {
 
         & header {
-            padding: 2px;
+            padding: 2px 5px;
 
             & .logo {
 

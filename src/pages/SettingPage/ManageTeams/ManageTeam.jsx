@@ -49,6 +49,7 @@ const ManageTeam = ({ setting, showss }) => {
         const successAction = (data) => {
           // console.log(data);
           dispatch(alltourna());
+          fetche();
           toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
         };
 

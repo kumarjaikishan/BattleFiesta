@@ -22,6 +22,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
+import { setloader,header } from '../../store/login';
 
 const Tournasetting = () => {
   const log = useSelector((state) => state.login);
@@ -29,6 +30,7 @@ const Tournasetting = () => {
     toast.warn("You are not Logged In", { autoClose: 1300 })
     return <Navigate to='/login' />
   }
+  const dispatch = useDispatch();
   const tournacenter = useSelector((state) => state.tournacenter);
   const [setting, setsetting] = useState(tournacenter.current_tourna_details);
   const [showmodal, setshowmodal] = useState(false);
@@ -50,6 +52,7 @@ const Tournasetting = () => {
   const [loading, setLoading] = useState(false);
   const [active, setactive] = useState(0);
   useEffect(() => {
+    dispatch(header('Setting'))
     // console.log("SETTING",tournacenter.current_tourna_details);
     setinp({
       tid: setting._id,

@@ -1,6 +1,6 @@
 import './home.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { setloader } from '../../store/login';
+import { setloader,header } from '../../store/login';
 import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import char from '../../assets/anime.webp'
@@ -22,6 +22,7 @@ import createform from '../../assets/home/createform.webp'
 const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
+        dispatch(header("Home"))
         dispatch(setloader(false))
     }, [])
     const gradientStyle = {

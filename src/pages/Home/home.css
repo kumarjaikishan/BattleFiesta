@@ -244,7 +244,7 @@
 
         & .section1 {
             & .left-content {
-                padding: 5px;
+                padding: 10px 5px;
                 margin: 0;
                 width: 100%;
                 background: rgba(0,0,0,.3);
@@ -267,9 +267,11 @@
                 width: 100%;
                 display: flex;
                 justify-content: end;
+                /* transform: translateY(-200px); */
 
                 & img {
                     width: 100%;
+                    transform: translateY(10px);
                 }
             }
         }

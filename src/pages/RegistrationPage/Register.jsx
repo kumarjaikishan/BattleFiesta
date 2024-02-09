@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Register.css";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setloader } from '../../store/login';
+import { setloader, header } from '../../store/login';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -13,11 +13,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import PanToolIcon from '@mui/icons-material/PanTool';
 import LoadingButton from '@mui/lab/LoadingButton';
-// import CircularProgress from '@mui/material/CircularProgress';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Teams from "./teams";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import GroupIcon from '@mui/icons-material/Group';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailIcon from '@mui/icons-material/Email';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import TagFacesIcon from '@mui/icons-material/TagFaces';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -32,11 +37,13 @@ const Register = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
+    const [newfresh,setnewfresh]=useState(false);
     const [isloading, setisloading] = useState(false)
     const { registerId } = useParams();
     const tournacenter = useSelector((state) => state.tournacenter);
     const [disable, setdisable] = useState(false);
     useEffect(() => {
+        dispatch(header("Registration"));
         dispatch(setloader(true));
         fetche(registerId);
     }, [])
@@ -68,6 +75,7 @@ const Register = () => {
         isopen: "",
         description: "",
         success_msg: "",
+        links: '',
         ask_email: "",
         ask_phone: "",
         ask_discord: "",
@@ -126,6 +134,7 @@ const Register = () => {
                     isopen: actualdata.isopen,
                     description: actualdata.description,
                     success_msg: actualdata.success_message,
+                    links: actualdata.links,
                     ask_email: actualdata.ask_email,
                     ask_phone: actualdata.ask_phone,
                     ask_discord: actualdata.ask_discord,
@@ -251,6 +260,7 @@ const Register = () => {
                 setdisable(false);
                 setinp(inpinit)
                 fetche(registerId);
+                setnewfresh(true);
             } else {
                 toast.error(responseData.error, { autoClose: 1300 });
             }
@@ -430,11 +440,11 @@ const Register = () => {
                         </div>
                         <Divider variant="middle" />
 
-                        {all.description != "" && <>
+                        {!newfresh && all.description != "" && <>
                             <p className="desc">{all.description}</p>
                             <Divider variant="middle" />
                         </>}
-                      {all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
+                        {!newfresh && all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <Box
                                 sx={{
                                     '& > :not(style)': { m: 1, width: '25ch' },
@@ -527,7 +537,7 @@ const Register = () => {
                                 </div>
                             ))}
                             <div>
-                                <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<AddIcon />} disabled={disable} variant="outlined" color="primary">
+                                <Button title="Add New Player" sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<AddIcon />} disabled={disable} variant="outlined" color="primary">
                                     Add player
                                 </Button></div>
 
@@ -554,11 +564,42 @@ const Register = () => {
                             <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>
                         </div>}
 
+                        {/* after registration completed show registered team */}
+
+                       {newfresh && <div className="closed">
+                            <div> <TagFacesIcon className="stop" /></div>
+                            <h1>Registration Done 👍</h1>
+                            <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
+                        </div>}
+
                         <div className="contacts">
                             <h2>Contact Details</h2>
-                            <p>The organiser has not provided any contact
-                                details for the tournament.</p>
-                            <p>If you are the organiser, check "Contact info" section in the tournament dashboard.</p>
+                            {all.links.length > 0 ? <>
+                                <div className="links">
+                                    {all.links.map((val, ind) => {
+                                        if (val.linkType == "whatsapp") {
+                                            return <a key={ind} href={`https://wa.me/${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                                        }
+                                        if (val.linkType == "instagram") {
+                                            return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                                        }
+                                        if (val.linkType == "phone") {
+                                            return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
+                                        }
+                                        if (val.linkType == "email") {
+                                            return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
+                                        }
+                                        if (val.linkType == "link") {
+                                            return <a key={ind} href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                                        }
+                                    })}
+                                </div>
+                            </> : <>
+                                <p>The organiser has not provided any contact
+                                    details for the tournament.</p>
+                                <p>If you are the organiser, check "Contact info" section in the tournament dashboard.</p>
+                            </>}
+
                         </div>
                     </div>}
                     {teamlist && <Teams entry={entry} />} </>}

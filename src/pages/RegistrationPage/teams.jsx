@@ -33,7 +33,7 @@ const Teams = ({ entry }) => {
                                     return <div key={ind}>
                                         <span><img src={each.playerLogo ? each.playerLogo:user} alt="" /></span>
                                         <span title='InGameName'>{each.inGameName}</span>
-                                        <span title='InGameID'>{each.inGameID}</span>
+                                        <span title='InGameID'>{each.inGameID ? each.inGameID : 'GameID : N/A'}</span>
                                     </div>
                                 })}
                             </div>
