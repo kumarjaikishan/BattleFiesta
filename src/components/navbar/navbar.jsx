@@ -11,7 +11,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const log = useSelector((state) => state.login);
   useEffect(()=>{
-   console.log(log);
+  //  console.log(log);
   },[])
 
   return (

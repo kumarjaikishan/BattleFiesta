@@ -3,7 +3,7 @@
     background-size: cover;
 
     h1,
-    h2 {
+    h2,h3 {
         color: whitesmoke;
         text-align: center;
         font-size: 4em;
@@ -15,7 +15,10 @@
         color: transparent;
         text-transform: uppercase;
         -webkit-text-stroke: 0.6px white;
-    }
+    } 
+    h3{
+        font-size: 1.3em;
+      }
 
     table {
         width: 100%;

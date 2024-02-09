@@ -3,7 +3,7 @@
     background-size: cover;
 
     h1,
-    h2 {
+    h2 ,h3{
         color: transparent;
         text-align: center;
         font-size: 4em;
@@ -17,6 +17,9 @@
         text-transform: uppercase;
         -webkit-text-stroke: 0px black;
     }
+    h3{
+        font-size: 1.3em;
+      }
 
     table {
         width: 100%;

@@ -3,7 +3,7 @@
   background-size: cover;
 
   h1,
-  h2 {
+  h2,h3 {
     color: whitesmoke;
     text-align: center;
     font-size: 4em;
@@ -14,7 +14,10 @@
     font-size: 2em;
     color: transparent;
     text-transform: uppercase;
-    -webkit-text-stroke: 0.6px white;
+    -webkit-text-stroke: 0.7px white;
+  }
+  h3{
+    font-size: 1.3em;
   }
 
   table {
@@ -85,6 +88,9 @@
       font-size: 1.1em;
       letter-spacing: 1.2px;
       -webkit-text-stroke: 0.2px white;
+    }
+    h3{
+      font-size: 1em;
     }
 
     table {

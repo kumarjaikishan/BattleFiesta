@@ -51,7 +51,7 @@ const Stats = () => {
         body: JSON.stringify({ tid: id })
       });
       const result = await rese.json();
-      // console.log(result);
+      console.log(result);
       if (rese.ok) {
         rules = result.rules
         setkuch(result.rules);
@@ -81,7 +81,7 @@ const Stats = () => {
 
   const funck = (allmatch) => {
     tabledata = [];
-    console.log(allmatch);
+    // console.log(allmatch);
     allmatch.map((val, ind) => {
       val.points.map((value, indes) => {
 
@@ -131,7 +131,7 @@ const Stats = () => {
     // console.log(tabledata);
     // Sort the array using the custom comparator function
     tabledata.sort(comparePlayers);
-    console.log(tabledata);
+    // console.log(tabledata);
 
     settablerow(tabledata);
   }
@@ -256,6 +256,7 @@ const Stats = () => {
         <div>
           <img src={kuch.tournment_logo} alt="" />
         </div>
+        <h3>{kuch.title}</h3>
         <h2>{kuch.organiser}</h2>
         <h1>{title}</h1>
         <table>

@@ -33,20 +33,6 @@
       }
     }
 
-    h1,
-    h2 {
-      color: whitesmoke;
-      text-align: center;
-      font-size: 4em;
-      letter-spacing: 2px;
-    }
-
-    h2 {
-      font-size: 2em;
-      color: transparent;
-      text-transform: uppercase;
-      -webkit-text-stroke: 0.6px white;
-    }
 
     table {
       width: 100%;
