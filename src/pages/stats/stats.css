@@ -9,7 +9,7 @@
 
   & .controls {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     padding: 10px;
   }
 
@@ -17,7 +17,8 @@
     padding: 20px 0px;
     border-radius: 20px;
     margin-top: 5px;
-    max-width: 1400px;
+    width: 100%;
+    max-width: 1200px;
 
 
     &>div {
@@ -106,7 +107,7 @@
 
   .fragger {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin-top: 10px;
     background: url('../../assets/grey.webp');
     background-size: cover;
@@ -229,7 +230,7 @@
 
   .matchtable {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin-top: 10px;
     border-radius: 20px;
     padding: 10px;
@@ -316,6 +317,7 @@
     padding: 7px;
 
     & .controls {
+      max-width: 100%;
       padding: 5px;
       margin-bottom: 5px;
 

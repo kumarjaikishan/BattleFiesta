@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { alltourna } from '../../store/api'
 import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const Signin = () => {
     let navigate = useNavigate();
@@ -38,16 +39,11 @@ const Signin = () => {
     }
 
     const submit = async () => {
+        e.preventDefault();
         setbtnclick(true);
         const { email, password } = signinp;
-
-        if (!email || !password) {
-            toast.warn("All fields are Required", { autoClose: 1100 });
-            setbtnclick(false);
-            return;
-        }
+        
         try {
-            // dispatch(setloader(true));
             const res = await fetch(`${tournacenter.apiadress}/login`, {
                 method: "POST",
                 headers: {
@@ -57,7 +53,7 @@ const Signin = () => {
                     email, password
                 })
             })
-            // console.log(res);
+            console.log(res);
             const data = await res.json();
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
@@ -68,14 +64,14 @@ const Signin = () => {
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
                 return navigate('/');
-               
-            } 
-            // else if (res.ok && res.status == 201) {
-            //     dispatch(setloader(false));
-            //     setbtnclick(false);
-            //     toast.warn("Kindly Verify Email First", { autoClose: 3300 });
-            // }
-             else {
+
+            }
+            else if (res.ok && res.status == 201) {
+                dispatch(setloader(false));
+                setbtnclick(false);
+                toast.warn("Kindly Verify Email First", { autoClose: 3300 });
+            }
+            else {
                 console.log(data);
                 toast.warn(data.msg ? data.msg : "Error Occured", { autoClose: 1500 });
                 setbtnclick(false);
@@ -94,40 +90,51 @@ const Signin = () => {
     return (
         <>
             <div className="logine" id='forme'>
-                <TextField
-                    label="Email*"
-                    size="small"
-                    className='filled'
-                    onChange={signhandle}
-                    name="email"
-                    value={signinp.email}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <MailOutlineIcon />
-                        </InputAdornment>,
+                <form onSubmit={submit}>
+                    <TextField
+                        label="Email"
+                        size="small"
+                        className='filled'
+                        onChange={signhandle}
+                        name="email"
+                        type='email'
+                        required
+                        value={signinp.email}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <MailOutlineIcon />
+                            </InputAdornment>,
 
-                    }}
-                />
-                <TextField
-                    label="Password*"
-                    className='filled'
-                    size="small"
-                    type={loginpass ? "password" : null}
-                    onChange={signhandle}
-                    name="password"
-                    value={signinp.password}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <VpnKeyIcon />
-                        </InputAdornment>,
-                        endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => loginpass ? setloginpass(false) : setloginpass(true)}>
-                            {loginpass ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
-                        </InputAdornment>
-                    }}
+                        }}
+                    />
+                    <TextField
+                        label="Password"
+                        className='filled'
+                        size="small"
+                        required
+                        type={loginpass ? "password" : null}
+                        onChange={signhandle}
+                        name="password"
+                        value={signinp.password}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <VpnKeyIcon />
+                            </InputAdornment>,
+                            endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => loginpass ? setloginpass(false) : setloginpass(true)}>
+                                {loginpass ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                            </InputAdornment>
+                        }}
 
-                />
-                <button disabled={btnclick} style={btnclick ? { background: "#cccccc", color: "#666666" } : { background: "#0984e3", color: "white" }} onClick={submit}>Login</button>
-
+                    />
+                    <LoadingButton
+                        loading={btnclick}
+                        type='submit'
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Login
+                    </LoadingButton>
+                </form>
             </div>
         </>
     )

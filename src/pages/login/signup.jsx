@@ -10,8 +10,9 @@ import { setloader, setlogin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-const Signup = ({setlog}) => {
+const Signup = ({ setlog }) => {
     const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
@@ -33,12 +34,12 @@ const Signup = ({setlog}) => {
         })
     }
 
-    const submit = async (event) => {
-        // console.log(signinp);
+    const submite = async (e) => {
+        e.preventDefault();
         setbtnclick(true);
-       
+
         const { name, email, phone, password, cpassword } = signinp;
-        if (!name || !email || !phone || !password ) {
+        if (!name || !email || !phone || !password) {
             toast.warn("All Fields are Required", { autoClose: 1300 })
             setbtnclick(false);
             return;
@@ -86,86 +87,100 @@ const Signup = ({setlog}) => {
             toast.warn(error.msg, { autoClose: 3600 })
             console.log(error);
         }
-
     }
 
     return (
         <>
             <div className="singup">
-                <TextField
-                    label="Name*"
-                    size="small"
-                    className='filled'
-                    onChange={signhandle}
-                    name="name"
-                    value={signinp.name}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <Person4Icon />
-                        </InputAdornment>,
-                    }}
-                />
-                <TextField
-                    label="Email*"
-                    size="small"
-                    className='filled'
-                    onChange={signhandle}
-                    name="email"
-                    value={signinp.email}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <MailOutlineIcon />
-                        </InputAdornment>,
-                    }}
-                />
-                <TextField
-                    label="Phone*"
-                    size="small"
-                    color={signinp.phone.length == 10 ? "primary" : "warning"}
-                    className='filled'
-                    onChange={signhandle}
-                    name="phone"
-                    type='tel'
-                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                    value={signinp.phone}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <LocalPhoneIcon />
-                        </InputAdornment>,
-                    }}
-                />
-                <TextField
-                    label="Password*"
-                    className='filled'
-                    size="small"
-                    onChange={signhandle}
-                    name="password"
-                    type={signuppass ? "password" : null}
-                    value={signinp.password}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <VpnKeyIcon />
-                        </InputAdornment>,
-                        endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => signuppass ? setsignuppass(false) : setsignuppass(true)}>
-                            {signuppass ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
-                        </InputAdornment>
-                    }}
-                />
-                <TextField
-                    label="Confirm Password*"
-                    className='filled'
-                    color={signinp.password == signinp.cpassword ? "primary" : "warning"}
-                    size="small"
-                    onChange={signhandle}
-                    name="cpassword"
-                    value={signinp.cpassword}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <VpnKeyIcon />
-                        </InputAdornment>,
-                    }}
-                />
-                <button disabled={btnclick} style={btnclick ? { background: "#cccccc", color: "#666666" } : { background: "#0984e3", color: "white" }} onClick={() => submit()}>Signup</button>
+                <form onSubmit={submite}>
+                    <TextField
+                        label="Name"
+                        size="small"
+                        className='filled'
+                        onChange={signhandle}
+                        name="name"
+                        required
+                        value={signinp.name}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <Person4Icon />
+                            </InputAdornment>,
+                        }}
+                    />
+                    <TextField
+                        label="Email"
+                        size="small"
+                        className='filled'
+                        onChange={signhandle}
+                        name="email"
+                        type='email'
+                        required
+                        value={signinp.email}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <MailOutlineIcon />
+                            </InputAdornment>,
+                        }}
+                    />
+                    <TextField
+                        label="Phone"
+                        size="small"
+                        color={signinp.phone.length == 10 ? "primary" : "warning"}
+                        className='filled'
+                        onChange={signhandle}
+                        name="phone"
+                        required
+                        type='tel'
+                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                        value={signinp.phone}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <LocalPhoneIcon />
+                            </InputAdornment>,
+                        }}
+                    />
+                    <TextField
+                        label="Password"
+                        className='filled'
+                        size="small"
+                        onChange={signhandle}
+                        name="password"
+                        required
+                        type={signuppass ? "password" : null}
+                        value={signinp.password}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <VpnKeyIcon />
+                            </InputAdornment>,
+                            endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => signuppass ? setsignuppass(false) : setsignuppass(true)}>
+                                {signuppass ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                            </InputAdornment>
+                        }}
+                    />
+                    <TextField
+                        label="Confirm Password"
+                        className='filled'
+                        color={signinp.password == signinp.cpassword ? "primary" : "warning"}
+                        size="small"
+                        onChange={signhandle}
+                        name="cpassword"
+                        required
+                        value={signinp.cpassword}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <VpnKeyIcon />
+                            </InputAdornment>,
+                        }}
+                    />
+                    <LoadingButton
+                        loading={btnclick}
+                        type='submit'
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Signup
+                    </LoadingButton>
+                </form>
             </div>
         </>
     )

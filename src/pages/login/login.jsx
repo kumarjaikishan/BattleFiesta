@@ -10,8 +10,8 @@ const Login = () => {
     const fun = (val) => {
         setlog(val);
     }
-  
- 
+
+
     return (
         <>
             <div className="login">
@@ -24,8 +24,8 @@ const Login = () => {
                         <span className={log ? null : "active"} onClick={() => fun(false)}>Register</span>
                     </div>
                     <div className="both" style={{ transform: log ? "translateX(0%)" : "translateX(-50%)" }}>
-                    <Signin/>
-                        <Signup setlog={setlog}/>
+                        <Signin />
+                        <Signup setlog={setlog} />
                     </div>
                 </div>
             </div>

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  styled
-} from '@mui/material';
-import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
 import group from '../../assets/group.webp'
 import './stats.css'
@@ -11,13 +7,16 @@ import './theme/theme1.css'
 import './theme/theme2.css'
 import './theme/theme3.css'
 import './theme/theme4.css'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select'
-import Grid from '@mui/material/Unstable_Grid2';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { styled} from '@mui/material';
+// import Container from '@mui/material/Container';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select'
+// import Grid from '@mui/material/Unstable_Grid2';
+// import TextField from '@mui/material/TextField';
+// import Button from '@mui/material/Button';
+import {Button,TextField,Grid,Select,FormControl,MenuItem,InputLabel,Container} from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
@@ -208,7 +207,7 @@ const Stats = () => {
     <div className='stats'>
       <div className='controls'>
         <Grid sx={{Width:'100%', justifyContent: "space-between"}} container spacing={2}>
-          <Grid  xs={3}>
+          <Grid item xs={3}>
             <h3>Select Theme</h3>
             <FormControl sx={{ mt: 1 , width:"100%" }} size='small' >
               <InputLabel  id="demo-simple-select-label">Theme</InputLabel>
@@ -226,14 +225,14 @@ const Stats = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid xs={3} >
+          <Grid item xs={3} >
             <h3>Set Background</h3>
             <Button className='btna'  sx={{ mt: 1, width:"100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
               Upload
               <VisuallyHiddenInput type="file" />
             </Button>
           </Grid>
-          <Grid xs={3}>
+          <Grid item xs={3}>
             <h3>Set Title</h3>
             <TextField size='small' sx={{ mt: 1 ,width:"100%"}} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
           </Grid>

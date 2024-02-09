@@ -32,8 +32,8 @@ const tournacenter = createSlice({
         error: null,
         profilepic: "",
         createnewmodal: false,
-        apiadress: "https://esport-backend.vercel.app",
         linkaddress:'https://battlefiesta.vercel.app',
+        apiadress: "https://esport-backend.vercel.app",
         // apiadress: "http://localhost:5000",
     },
     reducers: {
