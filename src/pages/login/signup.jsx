@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 
 const Signup = ({ setlog }) => {
     const dispatch = useDispatch();
@@ -177,6 +178,7 @@ const Signup = ({ setlog }) => {
                         type='submit'
                         loadingPosition="start"
                         variant="contained"
+                        startIcon={<BeachAccessIcon />}
                     >
                         Signup
                     </LoadingButton>

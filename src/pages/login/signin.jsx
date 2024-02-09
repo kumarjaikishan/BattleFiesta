@@ -38,7 +38,7 @@ const Signin = () => {
         })
     }
 
-    const submit = async () => {
+    const submite = async (e) => {
         e.preventDefault();
         setbtnclick(true);
         const { email, password } = signinp;
@@ -90,7 +90,7 @@ const Signin = () => {
     return (
         <>
             <div className="logine" id='forme'>
-                <form onSubmit={submit}>
+                <form onSubmit={submite}>
                     <TextField
                         label="Email"
                         size="small"
@@ -129,6 +129,7 @@ const Signin = () => {
                     <LoadingButton
                         loading={btnclick}
                         type='submit'
+                        startIcon={<VpnKeyIcon />}
                         loadingPosition="start"
                         variant="contained"
                     >
