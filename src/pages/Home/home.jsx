@@ -231,7 +231,7 @@ const Home = () => {
                     <motion.div
                         ref={section3}
                         variants={leftsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control1}
                         className="left">
@@ -242,7 +242,7 @@ const Home = () => {
                     <motion.div
                         ref={section3}
                         variants={rightsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control1}
                         className="right">
@@ -258,7 +258,7 @@ const Home = () => {
                     <motion.div
                         ref={section4}
                         variants={leftsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control2}
                         className="right">
@@ -271,7 +271,7 @@ const Home = () => {
                     <motion.div
                         ref={section4}
                         variants={rightsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control2}
                         className="left">
@@ -284,7 +284,7 @@ const Home = () => {
                     <motion.div
                         ref={section5}
                         variants={leftsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control3}
                         className="left">
@@ -295,7 +295,7 @@ const Home = () => {
                     <motion.div
                         ref={section5}
                         variants={rightsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control3}
                         className="right">
@@ -312,7 +312,7 @@ const Home = () => {
                     <motion.div
                         ref={section6}
                         variants={leftsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control4}
                         className="right">
@@ -327,7 +327,7 @@ const Home = () => {
                     <motion.div
                         ref={section6}
                         variants={rightsection}
-                        transition={{ duration: .9, delay: .5 }}
+                        transition={{ duration: .9, delay: .3 }}
                         initial="hidden"
                         animate={control4}
                         className="left">
