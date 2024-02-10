@@ -119,9 +119,32 @@ const Dashboard = () => {
 
     await apiWrapper(url, method, body, successAction);
   }
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.4,
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
+    visible: { y: 0, x: 0, scale: 1, opacity: 1 }
+  };
+
+  const [howmany, sethowmany] = useState(100);
+
   return (
     <>
-      <div className="Dashboard">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}>
         {tournacenter.alltournaments.length < 1 && <div className="notfound">
           <div>
             <SentimentDissatisfiedIcon className="sad" />
@@ -130,7 +153,7 @@ const Dashboard = () => {
           </div>
         </div>}
         {tournacenter.alltournaments &&
-          tournacenter.alltournaments.map((val) => {
+          tournacenter.alltournaments.slice(0, howmany).map((val) => {
             // Format the date
             const formattedDate = new Date(val.createdAt).toLocaleDateString(
               "en-US",
@@ -152,7 +175,7 @@ const Dashboard = () => {
               }
             );
             return (
-              <div className="card" key={val._id}>
+              <motion.div variants={item} className="card" key={val._id}>
 
                 <div className="img">
                   <img
@@ -172,14 +195,15 @@ const Dashboard = () => {
                     <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
                   </Stack>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
+
         {tournacenter.createnewmodal && <div className="modal">
           <motion.div
-            animate={{ y: 0, scale: 1 }}
-            initial={{ y: 200, scale: 0 }}
-            transition={{ duration: .7, delay: .2 }}
+            initial={{ x: 700, y: -300, scale: 0.1 }}
+            animate={{ x: 0, y: 0, scale: 1 }}
+            transition={{ duration: .5, delay: .2, type:'spring', bounce:.8 }}
             className="box">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
@@ -230,7 +254,9 @@ const Dashboard = () => {
           </motion.div>
 
         </div>}
-      </div>
+        
+      </motion.div>
+      {/* <Button sx={{ height: '30px' }} size="small" onClick={() => sethowmany(howmany + 3)} variant="contained">LoadMore</Button> */}
     </>
   );
 };

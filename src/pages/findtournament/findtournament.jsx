@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { setloader,header } from '../../store/login';
+import { setloader, header } from '../../store/login';
 import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
+import { motion } from 'framer-motion';
 import Stack from '@mui/material/Stack';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
@@ -68,6 +69,22 @@ const Findtournament = () => {
     const findtournament = (tid) => {
         return navigate(`/tournaments/${tid}`)
     }
+    const container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          transition: {
+            delayChildren: 0.4,
+            staggerChildren: 0.3
+          }
+        }
+      };
+    
+      const item = {
+        hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
+        visible: { y: 0, x: 0, scale: 1, opacity: 1 }
+      };
     return (
         <>
             <div className="findtournas">
@@ -85,7 +102,11 @@ const Findtournament = () => {
                         <span>COMPLETED</span>
                     </div>
                 </div>
-                <div className="cards">
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    animate="visible"
+                    className="cards">
                     {showinglist.length < 1 && <div className="notfound">
                         <div>
                             <SentimentDissatisfiedIcon className="sad" />
@@ -114,7 +135,9 @@ const Findtournament = () => {
                             }
                         );
 
-                        return <div className="card" key={val._id}>
+                        return <motion.div
+                        variants={item}
+                         className="card" key={val._id}>
                             <div className="img">
                                 <img
                                     src={val.tournment_logo ? val.tournment_logo : defaultlogo}
@@ -132,9 +155,9 @@ const Findtournament = () => {
                                     <p className="status">{val.status}</p>
                                 </Stack>
                             </div>
-                        </div>
+                        </motion.div>
                     })}
-                </div>
+                </motion.div>
             </div>
         </>
     )

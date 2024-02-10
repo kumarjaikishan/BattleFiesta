@@ -21,7 +21,7 @@
         border-radius: 20px;
         position: relative;
         width: 420px;
-        background: rgba(255,255,255,.2);
+        background: rgba(255,255,255,.4);
         height: 500px;
         backdrop-filter: blur(8px);
         overflow: hidden;
