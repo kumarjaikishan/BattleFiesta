@@ -23,6 +23,7 @@ import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
+import Badge from '@mui/material/Badge';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -431,7 +432,10 @@ const Register = () => {
                 </div>}
                 {!errore && <><div className="controler">
                     <Button onClick={() => setteamlist(false)} startIcon={<FileCopyIcon />} variant="contained" color="primary">Registration Form</Button>
-                    <Button onClick={() => setteamlist(true)} startIcon={<GroupIcon />} variant="outlined" color="secondary">Team List</Button>
+                    {/* <Button onClick={() => setteamlist(true)} startIcon={<GroupIcon />} variant="outlined" color="secondary">Team List {entry.length}</Button> */}
+                    <Badge min={1} badgeContent={entry.length} color="success">
+                        <Button onClick={() => setteamlist(true)} startIcon={<GroupIcon />} variant="outlined" color="secondary">Team List</Button>
+                    </Badge>
                 </div>
                     {!teamlist && <div className="form">
                         <h2>Registration : {all.title}</h2>

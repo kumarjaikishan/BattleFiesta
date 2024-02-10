@@ -23,9 +23,7 @@ import { motion, useInView, useAnimation } from 'framer-motion';
 const Home = () => {
     const dispatch = useDispatch();
     const refer = useRef(null);
-    const section3 = useRef(null);
-    const isInview = useInView(refer, { once: false });
-    const isInview1 = useInView(section3, { once: false });
+    const isInview = useInView(refer);
     useEffect(() => {
         dispatch(header("Home"))
         dispatch(setloader(false))
@@ -36,23 +34,18 @@ const Home = () => {
             control.start('visible');
         }
     }, [isInview])
-    useEffect(() => {
-        if (isInview1) {
-            control.start('visible');
-        }
-    }, [isInview1])
     const gradientStyle = {
         backgroundImage: 'linear-gradient(to right, #ff5f6d, #ffc371)',
         WebkitBackgroundClip: 'text',
         color: 'transparent',
     };
     const container = {
-        hidden: { opacity: 0, scale: .2 },
+        hidden: { opacity: 1, scale: 0},
         visible: {
             opacity: 1,
             scale: 1,
             transition: {
-                delayChildren: 0.3,
+                delayChildren: .4,
                 staggerChildren: 0.3
             }
         }
@@ -69,15 +62,15 @@ const Home = () => {
     return (
         <>
             <div className="home">
-                <section className='section1'>
+                <section className='section1' ref={refer}>
                     <motion.div
                         variants={{
                             hidden: { opacity: 0, x: -200 },
                             visible: { opacity: 1, x: 0 },
                         }}
                         initial='hidden'
-                        animate='visible'
-                        transition={{ duration: 1, delay: .5 }}
+                        animate={control}
+                        transition={{ duration: 1, delay: .2 }}
                         className="left-content">
                         <h2>Welcome to <span>BattleFiesta</span> </h2>
                         <h3>Managing Esport Tournament is Super Easy Now.</h3>
@@ -97,7 +90,6 @@ const Home = () => {
                         }}
                         initial='hidden'
                         animate='visible'
-                        transition={{ duration: 1, delay: 1.2 }}
                         className="image">
                         <img src={char} alt="PUBG Character" />
                     </motion.div>
@@ -105,10 +97,9 @@ const Home = () => {
                 <section className='section2'>
                     <h1>What we Offers ?</h1>
                     <motion.div
-                        ref={refer}
                         variants={container}
                         initial="hidden"
-                        animate={control}
+                        animate="visible"
                         className='cards'>
                         <div className="card">
                             <img src={smile} alt="" />
@@ -184,26 +175,21 @@ const Home = () => {
                         </motion.div>
                     </motion.div>
                 </section>
-                <motion.section
-                    ref={section3}
-                    variants={container}
-                    initial="hidden"
-                    animate={control}
-                    className='section3'>
-                    <motion.div variants={item} className="left">
+                <section className='section3'>
+                    <div className="left">
                         <div className="img">
                             <img src={createform} alt="" />
                         </div>
-                    </motion.div>
-                    <motion.div variants={item} className="right">
+                    </div>
+                    <div className="right">
                         <h3>Create and manage tournaments in a go.</h3>
                         <p> <span><img src={tick2} alt="" /></span> <span>Easy creation using a single form.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Manage multiple matches and teams.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Add your own point system.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Add or disqualify team with a single click.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Manage reports for each and every match.</span></p>
-                    </motion.div>
-                </motion.section>
+                    </div>
+                </section>
                 <section className='section4'>
                     <div className="right">
                         <h3>Adding results of match made easy</h3>

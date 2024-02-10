@@ -21,15 +21,16 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { setcreatenewmodal } from "../../store/api";
+import { motion } from 'framer-motion';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Dashboard = () => {
   const log = useSelector((state) => state.login);
   if (!log.islogin) {
-      return <Navigate to='/login' />
+    return <Navigate to='/login' />
   }
   const dispatch = useDispatch();
-  const [load,setload]=useState(false)
+  const [load, setload] = useState(false)
   const navigate = useNavigate();
   const tournacenter = useSelector((state) => state.tournacenter);
   useEffect(() => {
@@ -175,7 +176,11 @@ const Dashboard = () => {
             )
           })}
         {tournacenter.createnewmodal && <div className="modal">
-          <div className="box">
+          <motion.div
+            animate={{ y: 0, scale: 1 }}
+            initial={{ y: 200, scale: 0 }}
+            transition={{ duration: .7, delay: .2 }}
+            className="box">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
               <section>
@@ -222,7 +227,7 @@ const Dashboard = () => {
                 <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
               </Stack>
             </form>
-          </div>
+          </motion.div>
 
         </div>}
       </div>
