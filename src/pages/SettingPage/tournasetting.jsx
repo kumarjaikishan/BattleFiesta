@@ -114,6 +114,7 @@ const Tournasetting = () => {
 
     const token = localStorage.getItem("token");
     try {
+      const id = toast.loading("Please wait while Uploading...")
       const rese = await fetch(`${tournacenter.apiadress}/settournamentlogos`, {
         method: "POST",
         headers: {
@@ -125,12 +126,12 @@ const Tournasetting = () => {
       console.log(resuke);
       if (rese.ok) {
         konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
-        toast.success("Updated Successfully", { autoClose: 1200 });
+        toast.update(id, { render: "Uploaded Successfully", type: "success", isLoading: false, autoClose: 1600 });
         setLoading(false);
       }
     } catch (error) {
       console.log(error);
-      toast.warn("Error Occured", { autoClose: 1500 });
+      toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
     }
   }
   const handleactive = (index) => {

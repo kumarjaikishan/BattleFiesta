@@ -288,12 +288,12 @@ const Register = () => {
                 setnewfresh(true);
                 getenteries();
             } else {
-                toast.error(responseData.error, { autoClose: 1300 });
+                toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
             }
             setisloading(false);
         } catch (error) {
             console.error(error);
-            toast.error("Registration failed. Please try again.", { autoClose: 1300 });
+            toast.update(id, { render: "Registration failed. Please try again.", type: "error", isLoading: false, autoClose: 1600 });
             setisloading(false);
         }
     };

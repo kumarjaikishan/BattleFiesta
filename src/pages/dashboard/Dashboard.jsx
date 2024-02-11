@@ -23,6 +23,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
+import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Dashboard = () => {
@@ -46,7 +47,6 @@ const Dashboard = () => {
   };
 
   const deletee = (tournaid) => {
-    // console.log(tournaid);
     swal({
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this Tournament!',
@@ -137,7 +137,7 @@ const Dashboard = () => {
     visible: { y: 0, x: 0, scale: 1, opacity: 1 }
   };
 
-  const [howmany, sethowmany] = useState(100);
+  const [howmany, sethowmany] = useState(20);
 
   return (
     <>
@@ -153,58 +153,74 @@ const Dashboard = () => {
             <p>Please Add Tournament.</p>
           </div>
         </div>}
-        {tournacenter.alltournaments &&
-          tournacenter.alltournaments.slice(0, howmany).map((val) => {
-            // Format the date
-            const formattedDate = new Date(val.createdAt).toLocaleDateString(
-              "en-US",
-              {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              }
-            );
+        <div className="controles">
+        <LoadingButton
+                  loading={tournacenter.loading}
+                  onClick={()=>  dispatch(alltourna())}
+                  loadingPosition="start"
+                  startIcon={<Forward10Icon />}
+                  variant="contained"
+                  type="submit"
+                >
+                  REFRESH
+                </LoadingButton>
+        </div>
+        <div className="cards">
+          {tournacenter.alltournaments &&
+            tournacenter.alltournaments.slice(0, howmany).map((val) => {
+              // Format the date
+              const formattedDate = new Date(val.createdAt).toLocaleDateString(
+                "en-US",
+                {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                }
+              );
 
-            // Format the time
-            const formattedTime = new Date(val.createdAt).toLocaleTimeString(
-              "en-US",
-              {
-                hour: "numeric",
-                minute: "numeric",
-                second: "numeric",
-                hour12: true,
-              }
-            );
-            return (
-              <motion.div variants={item} className="card" key={val._id}>
+              // Format the time
+              const formattedTime = new Date(val.createdAt).toLocaleTimeString(
+                "en-US",
+                {
+                  hour: "numeric",
+                  minute: "numeric",
+                  second: "numeric",
+                  hour12: true,
+                }
+              );
+              return (
+                <motion.div variants={item} className="card" key={val._id}>
 
-                <div className="img">
-                  <img
-                    src={val.tournment_logo ? val.tournment_logo : tournlogo}
-                    alt="logo"
-                  />
-                  <span>{val.title}</span>
-                </div>
-                <h3 className="organiser">by {val.organiser}</h3>
-                <div className="time">
-                  {formattedDate}, {formattedTime}
-                </div>
-                <div className="controller">
-                  <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
-                    <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                    <p className="status">{val.status}</p>
-                    <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
-                  </Stack>
-                </div>
-              </motion.div>
-            )
-          })}
+                  <div className="img">
+                    <img
+                      src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                      alt="logo"
+                    />
+                    <span>{val.title}</span>
+                  </div>
+                  <h3 className="organiser">by {val.organiser}</h3>
+                  <div className="time">
+                    {formattedDate}, {formattedTime}
+                  </div>
+                  <div className="controller">
+                    <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
+                      <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                      <p className="status">{val.status}</p>
+                      <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                    </Stack>
+                  </div>
+                </motion.div>
+              )
+            })
+          }
+        </div>
+          <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
 
         {tournacenter.createnewmodal && <div className="modal">
           <motion.div
             initial={{ x: 700, y: -300, scale: 0.1 }}
             animate={{ x: 0, y: 0, scale: 1 }}
-            transition={{ duration: .5, delay: .2, type:'spring', bounce:.8 }}
+            transition={{ duration: .5, delay: .2, type: 'spring', bounce: .8 }}
             className="box">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
@@ -255,7 +271,7 @@ const Dashboard = () => {
           </motion.div>
 
         </div>}
-        
+
       </motion.div>
       {/* <Button sx={{ height: '30px' }} size="small" onClick={() => sethowmany(howmany + 3)} variant="contained">LoadMore</Button> */}
     </>
