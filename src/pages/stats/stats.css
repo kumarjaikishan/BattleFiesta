@@ -68,12 +68,9 @@
       tbody {
 
         & tr {
-          /* background: -webkit-linear-gradient(#ffdd00d0, #fbaf34a1); */
           background: rgba(59, 2, 2, 0.595);
           color: whitesmoke;
           border-radius: 10px;
-          /* height: 60px; */
-          margin: 40px 0px;
 
           & td {
             padding: 5px;

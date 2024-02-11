@@ -44,12 +44,10 @@
 
             & tr {
                 color: whitesmoke;
-                border-radius: 10px;
-                margin: 40px 0px;
 
                 & td {
                     padding: 5px;
-                    font-size: .8em;
+                    font-size: 1.1em;
                     font-weight: 600;
                     border-radius: 15px;
 
