@@ -137,7 +137,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                             <Button disabled={loading} component="label" size='small' variant="contained"
                                 startIcon={<CloudUploadIcon />}>
                                 Upload
-                                <VisuallyHiddenInput type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
+                                <VisuallyHiddenInput accept="image/*" type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
                             </Button>
                             <p>A cover image for the tournament. Tip: you could include sponsership in the cover image</p>
                         </div>
@@ -145,7 +145,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                             {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<CloudUploadIcon />}>
                                 Upload
-                                <VisuallyHiddenInput type="file" id='tournlogo' accept="image/*" onChange={() => upload("tournlogo")} />
+                                <VisuallyHiddenInput accept="image/*" type="file" id='tournlogo'  onChange={() => upload("tournlogo")} />
                             </Button>
                             <p>Tips: The Image should be in Square</p>
                         </div>
