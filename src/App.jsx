@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
-import Dashboard from './pages/dashboard/Dashboard';
+import Dashboard from './pages/dashboard/Dashboard1';
 import Footbar from './components/footer/footbar';
 import Home from './pages/Home/home';
 import { useEffect } from 'react';

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import "./dashboard.css";
+import "./dashboard1.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
@@ -157,6 +157,7 @@ const Dashboard = () => {
           <LoadingButton
             loading={tournacenter.loading}
             onClick={() => dispatch(alltourna())}
+            loadingPosition="start"
             endIcon={<RefreshIcon />}
             variant="contained"
             type="submit"
@@ -164,7 +165,7 @@ const Dashboard = () => {
             REFRESH
           </LoadingButton>
         </div>
-        <motion.div layout className="cards">
+        <motion.div  layout className="cards">
           {tournacenter.alltournaments &&
             tournacenter.alltournaments.slice(0, howmany).map((val) => {
               // Format the date
@@ -188,41 +189,34 @@ const Dashboard = () => {
                 }
               );
               return (
-                <span className="cardhead" key={val._id}>
-                  <span className="cardheader">
-                    <motion.div layout variants={item} className="card" key={val._id}>
-                      <div className="img">
-                        <img
-                          src={val.tournment_logo ? val.tournment_logo : tournlogo}
-                          alt="logo"
-                        />
-                        <span>{val.title}</span>
-                      </div>
-                      <h3 className="organiser">by {val.organiser}</h3>
-                      <div className="time">
-                        {formattedDate}, {formattedTime}
-                      </div>
-                      <div className="controller">
-                        <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
-                          <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                          <p className="status">{val.status}</p>
-                          <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
-                        </Stack>
-                      </div>
-                    </motion.div>
-                    <div className="back">
-                     <div>Teams - 0</div>
-                     <div>Matches - 0</div>
-                    </div>
-                  </span>
-                </span>
+                <motion.div layout  variants={item} className="card" key={val._id}>
+
+                  <div className="img">
+                    <img
+                      src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                      alt="logo"
+                    />
+                    <span>{val.title}</span>
+                  </div>
+                  <h3 className="organiser">by {val.organiser}</h3>
+                  <div className="time">
+                    {formattedDate}, {formattedTime}
+                  </div>
+                  <div className="controller">
+                    <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
+                      <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                      <p className="status">{val.status}</p>
+                      <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                    </Stack>
+                  </div>
+                </motion.div>
               )
             })
           }
         </motion.div>
 
         {tournacenter.alltournaments.length > howmany &&
-          <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
+        <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
         {tournacenter.createnewmodal && <div className="modal">
           <motion.div
