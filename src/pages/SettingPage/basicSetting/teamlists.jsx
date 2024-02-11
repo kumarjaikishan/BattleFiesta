@@ -23,13 +23,6 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
         decline(ide)
     }
     return (<>
-        {teamarray.length < 1 && <div className="notfound">
-            <div>
-                <SentimentDissatisfiedIcon className="sad" />
-                <h2>Sorry, Nothing in this List</h2>
-                <p></p>
-            </div>
-        </div>}
         {teamarray.length > 0 && teamarray.map((player, ind) => {
             return (<Accordion key={ind}
                 style={{ borderRadius: "10px", overflow: "hidden" }}

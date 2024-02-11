@@ -1,10 +1,11 @@
 import Teamlists from '../basicSetting/teamlists';
 import Teamedit from './Teamedit';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
 import { useEffect, useState } from 'react';
 import { alltourna } from '../../../store/api'
+import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 
 const ManageTeam = ({ setting, showss }) => {
   const dispatch = useDispatch();
@@ -76,8 +77,14 @@ const ManageTeam = ({ setting, showss }) => {
       <div className="manageteams">
         <div className="box">
           <h2>All Team List:</h2>
-          {!calledit && <Teamlists teamarray={playerlist} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
+          {!calledit && playerlist && <Teamlists teamarray={playerlist} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
+
+         {playerlist.length < 1 && <div className="middle">
+            <div> <SentimentSatisfiedIcon className='emoji' /> </div>
+            <h2>Nothing To Show</h2>
+            <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>
+          </div>}
         </div>
       </div>
     </>

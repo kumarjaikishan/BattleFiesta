@@ -20,6 +20,7 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import FormControl from '@mui/material/FormControl';
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
@@ -137,7 +138,7 @@ const Dashboard = () => {
     visible: { y: 0, x: 0, scale: 1, opacity: 1 }
   };
 
-  const [howmany, sethowmany] = useState(20);
+  const [howmany, sethowmany] = useState(10);
 
   return (
     <>
@@ -154,16 +155,16 @@ const Dashboard = () => {
           </div>
         </div>}
         <div className="controles">
-        <LoadingButton
-                  loading={tournacenter.loading}
-                  onClick={()=>  dispatch(alltourna())}
-                  loadingPosition="start"
-                  startIcon={<Forward10Icon />}
-                  variant="contained"
-                  type="submit"
-                >
-                  REFRESH
-                </LoadingButton>
+          <LoadingButton
+            loading={tournacenter.loading}
+            onClick={() => dispatch(alltourna())}
+            loadingPosition="start"
+            endIcon={<RefreshIcon />}
+            variant="contained"
+            type="submit"
+          >
+            REFRESH
+          </LoadingButton>
         </div>
         <div className="cards">
           {tournacenter.alltournaments &&
@@ -214,8 +215,10 @@ const Dashboard = () => {
             })
           }
         </div>
-          <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
 
+        {tournacenter.alltournaments.length > howmany &&
+        <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
+        }
         {tournacenter.createnewmodal && <div className="modal">
           <motion.div
             initial={{ x: 700, y: -300, scale: 0.1 }}
@@ -269,11 +272,8 @@ const Dashboard = () => {
               </Stack>
             </form>
           </motion.div>
-
         </div>}
-
       </motion.div>
-      {/* <Button sx={{ height: '30px' }} size="small" onClick={() => sethowmany(howmany + 3)} variant="contained">LoadMore</Button> */}
     </>
   );
 };
