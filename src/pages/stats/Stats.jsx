@@ -220,8 +220,7 @@ const Stats = () => {
   return (
     <div className='stats'>
       <div className='controls'>
-        <Grid sx={{ Width: '100%', justifyContent: "space-between" }} container spacing={2}>
-          <Grid item xs={3}>
+          <div className='conti'>
             <h3>Select Theme</h3>
             <FormControl sx={{ mt: 1, width: "100%" }} size='small' >
               <InputLabel id="demo-simple-select-label">Theme</InputLabel>
@@ -238,19 +237,19 @@ const Stats = () => {
                 <MenuItem value={"theme2"}>Red & White</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
-          <Grid item xs={3} >
+          </div>
+          <div className='conti' >
             <h3>Set Background</h3>
-            <Button className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+            <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
               Upload
               <VisuallyHiddenInput type="file" />
             </Button>
-          </Grid>
-          <Grid item xs={3}>
+          </div>
+          <div className='conti'>
             <h3>Set Title</h3>
             <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
-          </Grid>
-        </Grid>
+          </div>
+    
       </div>
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>

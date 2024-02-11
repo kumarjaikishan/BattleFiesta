@@ -11,6 +11,16 @@
     width: 100%;
     max-width: 1200px;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    & .conti {
+      width: 30%;
+      /* border: 1px solid blue; */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   .conta {
@@ -304,6 +314,12 @@
       max-width: 100%;
       padding: 5px;
       margin-bottom: 5px;
+
+      & .conti {
+        width: 32%;
+        align-items: center;
+      }
+
 
       & h3 {
         font-size: .8em;
