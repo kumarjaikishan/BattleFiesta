@@ -175,7 +175,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-
+        
         if (!inp.teamname) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
@@ -185,7 +185,9 @@ const Register = () => {
         if (all.ask_phone && !inp.teammobile) {
             return toast.warn("Phone is Required", { autoClose: 2300 });
         }
-      
+        if (inp.teammobile.length != 10) {
+            return toast.warn("Phone must be 10 digits", { autoClose: 2300 });
+        }
         if (all.ask_discord && !inp.teamdiscord) {
             return toast.warn("Discord is Required", { autoClose: 2300 });
         }

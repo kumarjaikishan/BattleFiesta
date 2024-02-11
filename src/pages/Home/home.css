@@ -13,7 +13,6 @@
 
     .section1 {
         width: 100%;
-        /* border: 2px solid red; */
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
@@ -80,11 +79,10 @@
             width: calc(100% - 620px);
             height: 100%;
             position: relative;
-            transform: translateY(10px);
             /* border: 3px solid blue; */
 
             & img {
-               
+                transform: translateY(10px);
                 width: 100%;
             }
         }
@@ -198,7 +196,8 @@
         background: white;
         color: #17191a;
     }
-    .section6 .left .img{
+
+    .section6 .left .img {
         width: 500px;
     }
 }
@@ -247,7 +246,7 @@
                 padding: 10px 5px;
                 margin: 0;
                 width: 100%;
-                background: rgba(0,0,0,.3);
+                background: rgba(0, 0, 0, .3);
 
                 & h2 {
                     font-size: 1.5em;
