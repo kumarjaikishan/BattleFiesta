@@ -15,6 +15,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
 import { setloader, header } from '../../store/login';
+import defaultlogo from '../../assets/pubg.webp'
 
 const Stats = () => {
   const dispatch = useDispatch();
@@ -253,7 +254,7 @@ const Stats = () => {
       </div>
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
-          <img src={kuch.tournment_logo} alt="" />
+          <img src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo} alt="" />
         </div>
         <h3>{kuch.title}</h3>
         <h2>{kuch.organiser}</h2>
