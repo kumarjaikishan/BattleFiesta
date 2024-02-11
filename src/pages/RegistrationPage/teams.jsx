@@ -19,7 +19,7 @@ const Teams = ({ entry }) => {
                         <div>
                             <SentimentVeryDissatisfiedIcon className="sad" />
                             <h1>Ops! This List is Empty</h1>
-                            <p>List will Show once any team register</p>
+                            <p>No Team Registered Yet</p>
                         </div>
                     </div>
                 }
