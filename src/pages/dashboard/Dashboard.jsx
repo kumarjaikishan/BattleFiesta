@@ -5,7 +5,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
 import apiWrapper from "../../store/apiWrapper";
-import tournlogo from '../../assets/tournlogo.webp'
+// import tournlogo from '../../assets/tournlogo.webp'
+import tournlogo from '../../assets/pubg.webp'
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
