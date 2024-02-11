@@ -63,7 +63,7 @@ const Signin = () => {
                 dispatch(setloader(true));
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
-                return navigate('/');
+                return navigate('/dashboard');
 
             }
             else if (res.ok && res.status == 201) {
