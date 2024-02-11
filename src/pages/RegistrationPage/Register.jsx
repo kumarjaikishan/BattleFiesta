@@ -103,7 +103,28 @@ const Register = () => {
         // console.log('randomstring',randomString);
         return randomString;
     }
-
+    const getenteries = async () => {
+        try {
+            const rese = await fetch(`${tournacenter.apiadress}/getenteries`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ tid: registerId })
+            })
+            const resuke = await rese.json();
+            if (rese.ok) {
+                let enteries = resuke.enteries;
+                let filtenteries = enteries.filter((val) => {
+                    return val.status != "rejected"
+                })
+                setfilteredentry(filtenteries);
+                setentry(enteries);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const fetche = async (id) => {
         setdisable(true);
         try {
@@ -175,7 +196,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        
+
         if (!inp.teamname) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
@@ -265,6 +286,7 @@ const Register = () => {
                 setinp(inpinit)
                 fetche(registerId);
                 setnewfresh(true);
+                getenteries();
             } else {
                 toast.error(responseData.error, { autoClose: 1300 });
             }
