@@ -43,7 +43,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         multiline
                         name="description"
                         className='taxi'
-                        rows={3}
+                        rows={4}
                         inputProps={{ style: { fontSize: "11px" , lineHeight:"12px" } }}
                         onChange={handleChange}
                         value={all.description}

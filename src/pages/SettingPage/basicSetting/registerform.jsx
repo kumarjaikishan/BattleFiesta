@@ -163,7 +163,7 @@ const Registerform = ({ setting, showss }) => {
                 body: JSON.stringify({ teamID: teamid, value, reasone })
             })
             const result = await rese.json();
-            console.log(rese);
+            // console.log(rese);
             if (rese.ok) {
                 fetche();
                 toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });

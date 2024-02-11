@@ -110,7 +110,7 @@ const PointSystem = ({ setting }) => {
   }
 
   return (
-    <div className='viewmatches'>
+    <div  className='viewmatches'>
       <h2>Matches List</h2>
       {matches.length < 1 && <div className="notfound">
         <div>

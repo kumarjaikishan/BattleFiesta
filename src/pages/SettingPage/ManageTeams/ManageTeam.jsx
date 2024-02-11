@@ -74,13 +74,14 @@ const ManageTeam = ({ setting, showss }) => {
 
   return (
     <>
-      <div className="manageteams">
+      <div
+        className="manageteams">
         <div className="box">
           <h2>All Team List:</h2>
           {!calledit && playerlist && <Teamlists teamarray={playerlist} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
 
-         {playerlist.length < 1 && <div className="middle">
+          {playerlist.length < 1 && <div className="middle">
             <div> <SentimentSatisfiedIcon className='emoji' /> </div>
             <h2>Nothing To Show</h2>
             <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>

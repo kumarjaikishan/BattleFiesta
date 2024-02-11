@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
 import apiWrapper from "../../store/apiWrapper";
-// import tournlogo from '../../assets/tournlogo.webp'
 import tournlogo from '../../assets/pubg.webp'
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
@@ -166,7 +165,7 @@ const Dashboard = () => {
             REFRESH
           </LoadingButton>
         </div>
-        <div className="cards">
+        <motion.div  layout className="cards">
           {tournacenter.alltournaments &&
             tournacenter.alltournaments.slice(0, howmany).map((val) => {
               // Format the date
@@ -190,7 +189,7 @@ const Dashboard = () => {
                 }
               );
               return (
-                <motion.div variants={item} className="card" key={val._id}>
+                <motion.div layout  variants={item} className="card" key={val._id}>
 
                   <div className="img">
                     <img
@@ -214,7 +213,7 @@ const Dashboard = () => {
               )
             })
           }
-        </div>
+        </motion.div>
 
         {tournacenter.alltournaments.length > howmany &&
         <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
@@ -223,7 +222,7 @@ const Dashboard = () => {
           <motion.div
             initial={{ x: 700, y: -300, scale: 0.1 }}
             animate={{ x: 0, y: 0, scale: 1 }}
-            transition={{ duration: .5, delay: .2, type: 'spring', bounce: .8 }}
+            transition={{ duration: .5, delay: .2, type: 'spring', bounce: .5 }}
             className="box">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>

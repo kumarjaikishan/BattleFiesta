@@ -13,7 +13,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import PanToolIcon from '@mui/icons-material/PanTool';
 import LoadingButton from '@mui/lab/LoadingButton';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Teams from "./teams";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import GroupIcon from '@mui/icons-material/Group';
@@ -24,6 +23,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import Badge from '@mui/material/Badge';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -187,7 +187,6 @@ const Register = () => {
                 seterrore(true);
                 dispatch(setloader(false));
             }
-
         } catch (error) {
             toast.warn("Tournament Id not Valid", { autoClose: 2300 });
             dispatch(setloader(false));
@@ -638,14 +637,6 @@ const Register = () => {
                         </div>
                     </div>}
                     {teamlist && <Teams entry={entry} />} </>}
-                {teamlist && entry.length < 1 && <div className="notfound">
-                    <div>
-                        <SentimentVeryDissatisfiedIcon className="sad" />
-                        <h1>Ops! Something is Wrong</h1>
-                        <p>Registration form does not exits!</p>
-                    </div>
-                </div>}
-
             </div>
         </>
     );
