@@ -160,7 +160,7 @@ const Home = () => {
                                 Easy Tournament Management
                             </p>
                             <p className="desc">
-                                Easily manage eSport tournament from a single platform
+                                Effortlessly oversee all aspects of your eSports tournaments through a unified platform.
                             </p>
                         </div>
                         <motion.div variants={item} className="card">
@@ -169,7 +169,7 @@ const Home = () => {
                                 Beautiful Points Table
                             </p>
                             <p className="desc">
-                                Points table are automatically managed as you enter results for each match.
+                                As match results are inputted, the points table updates automatically, simplifying the management process.
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
@@ -178,7 +178,7 @@ const Home = () => {
                                 Detailed Stats
                             </p>
                             <p className="desc">
-                                Get stats page thats shows teams and player statistics. Top performers, Killboard Leaders, and more
+                                Access a comprehensive stats page showcasing team and player statistics, highlighting top performers, killboard leaders, and other crucial metrics.
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
@@ -187,7 +187,7 @@ const Home = () => {
                                 Top Fraggers
                             </p>
                             <p className="desc">
-                                Get top fraggers list in the stats page
+                                Discover the elite players leading the fray with the top fraggers list prominently featured on the stats page.
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
@@ -196,7 +196,7 @@ const Home = () => {
                                 Support Logos
                             </p>
                             <p className="desc">
-                                Set player logos and team Logos or let them upload their logos using registration forms.
+                                Enable logo customization for players and teams during registration, with options to upload their own logos.
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
@@ -205,7 +205,7 @@ const Home = () => {
                                 Registration Form
                             </p>
                             <p className="desc">
-                                Use registration form for accepting registrations for your tournament.
+                                Utilize a registration form to gather entries for your tournament.
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
@@ -214,7 +214,7 @@ const Home = () => {
                                 Custom Points System
                             </p>
                             <p className="desc">
-                                Set your own points system or use default one.
+                                Set your own points system or opt for the default one.
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
@@ -223,7 +223,7 @@ const Home = () => {
                                 All Royal Battle Games
                             </p>
                             <p className="desc">
-                                Use esportsweb for all types of royal battle games or multiplayer TDM games.
+                                Leverage Esportsweb for a wide array of royal battle and multiplayer TDM games.
                             </p>
                         </motion.div>
                     </motion.div>
@@ -248,11 +248,11 @@ const Home = () => {
                         animate={control1}
                         className="right">
                         <h3>Create and manage tournaments in a go.</h3>
-                        <p> <span><img src={tick2} alt="" /></span> <span>Easy creation using a single form.</span></p>
-                        <p> <span><img src={tick2} alt="" /></span> <span>Manage multiple matches and teams.</span></p>
-                        <p> <span><img src={tick2} alt="" /></span> <span>Add your own point system.</span></p>
-                        <p> <span><img src={tick2} alt="" /></span> <span>Add or disqualify team with a single click.</span></p>
-                        <p> <span><img src={tick2} alt="" /></span> <span>Manage reports for each and every match.</span></p>
+                        <p> <span><img src={tick2} alt="" /></span> <span>Create effortlessly with a single form.</span></p>
+                        <p> <span><img src={tick2} alt="" /></span> <span>Effortlessly Manage numerous matches and teams.</span></p>
+                        <p> <span><img src={tick2} alt="" /></span> <span>Customize your point system to suit your needs.</span></p>
+                        <p> <span><img src={tick2} alt="" /></span> <span>Easily add or disqualify teams with just one click.</span></p>
+                        <p> <span><img src={tick2} alt="" /></span> <span>Seamlessly manage reports for each match.</span></p>
                     </motion.div>
                 </section>
                 <section className='section4'>
