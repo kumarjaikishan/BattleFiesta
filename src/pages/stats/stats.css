@@ -38,10 +38,10 @@
       display: flex;
       justify-content: center;
       width: 120px;
-      border-radius: 50%;
       height: 120px;
+      border-radius: 50%;
       overflow: hidden;
-      background: radial-gradient(transparent,rgb(41, 39, 39));
+      background: radial-gradient(transparent, rgb(41, 39, 39));
 
       & img {
         width: 100%;
@@ -339,11 +339,8 @@
       border-radius: 10px;
 
       &>div {
-
-        & img {
-          width: 70px;
-          height: 70px;
-        }
+        width:80px;
+        height: 80px;
       }
     }
 
