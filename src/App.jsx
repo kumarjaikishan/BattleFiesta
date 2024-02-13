@@ -17,6 +17,7 @@ import Register from './pages/RegistrationPage/Register';
 import Stats from './pages/stats/Stats';
 import Tournamentstatpage from './pages/findtournament/tournamentstat/tournamentstatpage';
 import Findtournament from './pages/findtournament/findtournament';
+import Contact from './pages/contact/contact';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function App() {
             </Route>
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/stat/:tid" element={<Stats />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<Errorpage />} />

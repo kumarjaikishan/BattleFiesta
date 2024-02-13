@@ -1,21 +1,121 @@
-.footer{
+.footer {
     position: relative;
     width: 100%;
-    height: 40px;
-    background: var(--primarycolor);
-    padding: 5px 10px;
+    background: rgba(0,0,0,0.2);
+    background: url('../../assets/honeywhite.webp');
+    background-size: cover;
+    padding: 15px 8px;
     margin-top: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-    & p{
-        color: white;
-        text-align: end;
-        line-height: 10px;
-        font-size: 12px;
+    & section {
+        width: 24%;
+        padding: 0 5px;
+        
+
+        & h3 {
+            /* font-size: 1em; */
+            font-weight: 700;
+            width: fit-content;
+            margin: 8px 0px;
+            border-bottom: 2px solid grey;
+        }
+
+        ul {
+            a {
+                text-decoration: none;
+                color: #212529;
+
+                li {
+                    font-weight: 500;
+                    list-style: none;
+                    margin: 5px 0px;
+                }
+            }
+        }
+        span *{
+            margin-left: 10px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    .section1 {
+        .img {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            margin-bottom: 5px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
     }
 }
 
 @media only screen and (max-width:600px) {
-    .footer{
-        height: 20px;
+    .footer {
+        padding: 15px 5px;
+        background: url('../../assets/honeywhite1.webp');
+    
+        & section {
+            margin-top: 10px;
+            width: 95%;
+            padding: 0 5px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            & h3 {
+                text-align: center;
+                font-weight: 700;
+                border-radius: 5px;
+                width: fit-content;
+                margin: 8px 0px;
+            }
+    
+            ul {
+                a {
+                    text-decoration: none;
+                    color: black;
+    
+                    li {
+                        font-weight: 500;
+                        list-style: none;
+                        margin: 5px 0px;
+                    }
+                }
+            }
+            span *{
+                margin-left: 10px;
+            }
+    
+            p {
+                font-weight: 500;
+            }
+        }
+    
+        .section1 {
+            .img {
+                width: 80px;
+                height: 80px;
+                overflow: hidden;
+                margin-bottom: 5px;
+    
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
     }
 }
