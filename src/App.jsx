@@ -3,6 +3,7 @@ import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
 import Dashboard from './pages/dashboard/Dashboard1';
 import Footbar from './components/footer/footbar';
+import Profile from './pages/profile/profile';
 import Home from './pages/Home/home';
 import { useEffect } from 'react';
 import Login from './pages/login/login';
@@ -53,6 +54,7 @@ function App() {
             </Route>
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/stat/:tid" element={<Stats />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />

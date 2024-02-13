@@ -77,7 +77,7 @@ const Contact = () => {
                         onChange={handlechange}
                         value={inp.message}
                         variant="outlined"
-                        rows={12}
+                        rows={10}
                     />
                     <LoadingButton
                         type='submit'

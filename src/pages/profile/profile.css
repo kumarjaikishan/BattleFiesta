@@ -1,0 +1,6 @@
+.profile{
+    width: 100%;
+    min-height: calc(100vh - var(--navheight));
+    position: relative;
+    background: linear-gradient(to right top, #65dfc9,#0ba8c0);
+}
