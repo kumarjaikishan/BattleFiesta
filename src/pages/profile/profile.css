@@ -1,6 +1,298 @@
-.profile{
+.profile {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
     position: relative;
-    background: linear-gradient(to right top, #65dfc9,#0ba8c0);
+    background: linear-gradient(to right top, #65dfc9, #0ba8c0);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
+
+    .circle {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: linear-gradient(to top right, pink, orange);
+    }
+
+    .circle1 {
+        top: 65%;
+        left: 25%;
+        width: 500px;
+        height: 500px;
+    }
+
+    .circle2 {
+        top: 15%;
+        right: 5%;
+        background: linear-gradient(to top right, pink, rgb(21, 10, 233));
+    }
+
+    .menu {
+        width: 900px;
+        height: 50px;
+        /* border: 1px solid red; */
+        display: flex;
+        align-items: center;
+
+        div {
+            margin: 0px 10px;
+            /* background: #0ba8c0; */
+            cursor: pointer;
+            padding: 5px 12px;
+            letter-spacing: 0.7px;
+            border-radius: 10px;
+
+            span {
+                margin-left: 7px;
+                font-weight: 500;
+            }
+
+            i {
+                font-weight: 700;
+            }
+        }
+
+        div.active {
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.3));
+            color: #0ba8c0;
+        }
+    }
+
+    .materials {
+        width: 900px;
+        min-height: 500px;
+        /* border: 1px solid red; */
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 30px;
+
+        .glass {
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.2));
+            padding: 5px 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(15px);
+        }
+
+        h2 {
+            width: 100%;
+            text-transform: capitalize;
+            color: #212529;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+
+        .input {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .half {
+                margin-top: 25px;
+                width: 49%;
+            }
+
+            .full {
+                margin-top: 25px;
+                width: 100%;
+            }
+        }
+
+        .profilepic {
+            height: 400px;
+            /* border: 1px solid red; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            grid-column: span 3;
+
+            .img {
+                margin: 20px 0px;
+                width: 170px;
+                height: 170px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(rgb(231, 0, 231), rgb(255, 155, 0));
+                border-radius: 50%;
+
+                img {
+                    width: 97%;
+                    height: 97%;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .profiledeatil {
+            height: 400px;
+            /* border: 1px solid red; */
+            grid-column: span 5;
+        }
+
+        .social {
+            height: min-content;
+            grid-column: span 5;
+
+            .link {
+                background: rgba(0,0,0,.08);
+                background: linear-gradient(to right bottom,
+                rgba(255, 255, 255, 0.5),
+                rgba(255, 255, 255, 0.2));
+                padding: 0px 10px;
+                height: 55px;
+                margin: 8px 0px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 5px;
+
+                & span:nth-child(1) {
+                    width: 28%;
+                    display: inline-block;
+                    /* border: 1px solid red; */
+                }
+
+                span:nth-child(2) {
+                    width: 65%;
+                    display: inline-block;
+                    /* border: 1px solid red; */
+                }
+
+                span:nth-child(3) {
+                    width: 25px;
+                    cursor: pointer;
+                    height: 25px;
+                    display: inline-block;
+                    /* border: 1px solid red; */
+                }
+            }
+        }
+
+        .privacy {
+            height: min-content;
+            grid-column: span 3;
+            /* border: 1px solid red; */
+        }
+    }
+    button{
+        padding: 5px 14px;
+        letter-spacing: .5px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .profile {
+        min-height: calc(100vh - var(--navheightmobile));
+
+        .circle {
+            width: 250px;
+            height: 250px;
+        }
+
+        .circle1 {
+            top: 65%;
+            left: 25%;
+            width: 500px;
+            height: 500px;
+        }
+
+        .circle2 {
+            top: 15%;
+            right: 5%;
+            background: linear-gradient(to top right, pink, rgb(21, 10, 233));
+        }
+
+        .menu {
+            width: 98%;
+            height: 40px;
+
+            div {
+                margin: 0px 5px;
+                padding: 5px 10px;
+                letter-spacing: 0.5px;
+
+                span {
+                    margin-left: 7px;
+                    font-weight: 500;
+                }
+
+                i {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .materials {
+            width: 100%;
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            padding: 0 10px;
+
+            .glass {
+                padding: 5px 15px;
+            }
+
+            h2 {
+                font-size: 1.1em;
+            }
+
+            button {
+                margin-top: 20px;
+            }
+
+            .input {
+                margin-top: 15px;
+
+                .half {
+                    margin-top: 20px;
+                    width: 100%;
+                }
+
+                .full {
+                    margin-top: 20px;
+                }
+            }
+
+            .profilepic {
+                height: max-content;
+                grid-column: span 8;
+                width: 80%;
+                margin: 0 auto;
+
+                .img {
+                    margin: 10px 0px;
+                    width: 130px;
+                    height: 130px;
+                }
+            }
+
+            .profiledeatil {
+                height: max-content;
+                grid-column: span 8;
+            }
+
+            .privacy {
+                grid-column: span 8;
+            }
+
+            .social {
+                grid-column: span 8;
+            }
+        }
+    }
 }
