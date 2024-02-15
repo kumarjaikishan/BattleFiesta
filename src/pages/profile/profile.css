@@ -77,7 +77,7 @@
             background: linear-gradient(to right bottom,
                     rgba(255, 255, 255, 0.7),
                     rgba(255, 255, 255, 0.2));
-            padding: 5px 15px;
+            padding: 10px 15px;
             border-radius: 10px;
             backdrop-filter: blur(15px);
         }
@@ -93,25 +93,25 @@
         }
 
         .input {
-            margin-top: 20px;
+            margin-top: 10px;
             width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
 
             .half {
-                margin-top: 25px;
+                margin-top: 20px;
                 width: 49%;
             }
 
             .full {
-                margin-top: 25px;
+                margin-top: 20px;
                 width: 100%;
             }
         }
 
         .profilepic {
-            height: 400px;
+            height: 370px;
             /* border: 1px solid red; */
             display: flex;
             flex-direction: column;
@@ -137,7 +137,7 @@
         }
 
         .profiledeatil {
-            height: 400px;
+            height: 370px;
             /* border: 1px solid red; */
             grid-column: span 5;
         }
@@ -182,7 +182,7 @@
         }
 
         .privacy {
-            height: min-content;
+            height: 340px;
             grid-column: span 3;
             /* border: 1px solid red; */
         }
@@ -287,10 +287,12 @@
             }
 
             .privacy {
+                height: max-content;
                 grid-column: span 8;
             }
 
             .social {
+                height: max-content;
                 grid-column: span 8;
             }
         }
