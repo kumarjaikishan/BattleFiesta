@@ -244,7 +244,7 @@
             padding: 0 10px;
 
             .glass {
-                padding: 5px 15px;
+                padding: 15px;
             }
 
             h2 {
@@ -256,7 +256,7 @@
             }
 
             .input {
-                margin-top: 15px;
+                margin-top: 8px;
 
                 .half {
                     margin-top: 20px;
