@@ -42,7 +42,7 @@ const Profile = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
-    
+
     const fetche = async () => {
         const token = localStorage.getItem("token");
         try {
@@ -223,7 +223,7 @@ const Profile = () => {
                 <div className="profilepic glass">
                     <h2>Profile Picture</h2>
                     <div className="img">
-                        <img src={inp.profile}
+                        <img src={inp.profile ? inp.profile : photo}
                             alt="" />
                     </div>
                     <div> <h2>{inp.name}</h2></div>

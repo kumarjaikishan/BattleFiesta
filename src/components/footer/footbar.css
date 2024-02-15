@@ -62,59 +62,22 @@
 
 @media only screen and (max-width:600px) {
     .footer {
-        padding: 15px 5px;
+        padding: 5px;
         background: url('../../assets/honeywhite1.webp');
     
         & section {
             margin-top: 10px;
             width: 95%;
-            padding: 0 5px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-    
-            & h3 {
-                text-align: center;
-                font-weight: 700;
-                border-radius: 5px;
-                width: fit-content;
-                margin: 8px 0px;
-            }
-    
-            ul {
-                a {
-                    text-decoration: none;
-                    color: black;
-    
-                    li {
-                        font-weight: 500;
-                        list-style: none;
-                        margin: 5px 0px;
-                    }
-                }
-            }
-            span *{
-                margin-left: 10px;
-            }
-    
-            p {
-                font-weight: 500;
-            }
         }
     
         .section1 {
             .img {
-                width: 80px;
-                height: 80px;
-                overflow: hidden;
-                margin-bottom: 5px;
-    
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+                width: 50px;
+                height: 50px;
             }
         }
     }
