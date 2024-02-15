@@ -294,6 +294,32 @@
             .social {
                 height: max-content;
                 grid-column: span 8;
+
+                .link {
+                    padding: 10px;
+                    height: min-content;
+                    margin: 8px 0px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-radius: 5px;
+    
+                    & span:nth-child(1) {
+                        width: 98%;
+                        margin-bottom: 12px;
+                    }
+    
+                    span:nth-child(2) {
+                        width: 90%;
+                    }
+    
+                    span:nth-child(3) {
+                        width: 25px;
+                        cursor: pointer;
+                        height: 25px;
+                    }
+                }
             }
         }
     }

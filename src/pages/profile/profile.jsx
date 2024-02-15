@@ -11,6 +11,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { toast } from "react-toastify";
+import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const Profile = () => {
     const tournacenter = useSelector((state) => state.tournacenter);
@@ -22,12 +24,25 @@ const Profile = () => {
         bio: '',
         publicemail: '',
         publicphone: '',
+        profile:'',
         sociallinks: []
     }
     const [inp, setinp] = useState(init)
     useEffect(() => {
         fetche();
     }, [])
+    const VisuallyHiddenInput = styled('input')({
+        clip: 'rect(0 0 0 0)',
+        clipPath: 'inset(50%)',
+        height: 1,
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        whiteSpace: 'nowrap',
+        width: 1,
+    });
+    
     const fetche = async () => {
         const token = localStorage.getItem("token");
         try {
@@ -47,10 +62,11 @@ const Profile = () => {
                     username: data.username,
                     email: data.email,
                     phone: data.phone,
-                    bio:data.bio,
+                    bio: data.bio,
                     publicemail: data.publicemail,
                     publicphone: data.publicphone,
-                    sociallinks: data.sociallinks
+                    sociallinks: data.sociallinks,
+                    profile:data.imgsrc
                 })
             }
         } catch (error) {
@@ -87,10 +103,10 @@ const Profile = () => {
             ...inp, sociallinks: updated
         })
     };
-    const handlechangee=(e)=>{
+    const handlechangee = (e) => {
         const naam = e.target.name;
         const value = e.target.value;
-        setinp({...inp,[naam]:value});
+        setinp({ ...inp, [naam]: value });
     }
     const submit = async (e) => {
         e.preventDefault();
@@ -115,7 +131,75 @@ const Profile = () => {
             toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
             console.log(error);
         }
+    }
 
+    const handleimage = (event) => {
+        let WIDTH = 500;
+        let image_file = event.target.files[0] || event;
+        let newimage = "";
+        let name = Date.now() + image_file.name;
+        // console.log(name);
+        let reader = new FileReader
+        reader.readAsDataURL(image_file)
+        reader.onload = async (event) => {
+            let image_url = event.target.result
+            let image = document.createElement('img');
+            image.src = image_url;
+            // document.querySelector("#wrapper").appendChild(image)
+            image.onload = async (e) => {
+                let canvas = document.createElement("canvas")
+                let ratio = WIDTH / e.target.width
+                canvas.width = WIDTH
+                canvas.height = e.target.height * ratio
+                //    console.log(canvas.height)
+                const context = canvas.getContext("2d")
+                context.drawImage(image, 0, 0, canvas.width, canvas.height)
+
+                let new_image_url = context.canvas.toDataURL("image/jpeg", 100)
+
+                newimage = urlToFile(new_image_url, name);
+
+                // console.log(newimage);
+
+                const id = toast.loading("Uploading Please wait...")
+                try {
+                    const token = localStorage.getItem("token");
+                    const formData = new FormData();
+                    formData.append(`profilepic`,newimage );
+                    const res = await fetch(`${tournacenter.apiadress}/updateprofilepic`, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                        },
+                        body: formData
+                    })
+                    const data = await res.json();
+                    if (res.ok) {
+                        toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+                        console.log(data);
+                        setinp({...inp,profile:data.url});
+                    }
+                } catch (error) {
+                    toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
+                    console.log(error);
+                }
+            }
+        }
+    }
+    const urlToFile = (url, naam) => {
+        let arr = url.split(",");
+        let mime = arr[0].match(/:(.*?);/)[1]
+        let data = arr[1]
+        let dataStr = atob(data)
+        let n = dataStr.length
+        let dataArr = new Uint8Array(n)
+
+        while (n--) {
+            dataArr[n] = dataStr.charCodeAt(n)
+        }
+        let file = new File([dataArr], naam, { type: mime })
+        // console.log(file);
+        return file;
     }
     return (
         <div className="profile">
@@ -139,22 +223,33 @@ const Profile = () => {
                 <div className="profilepic glass">
                     <h2>Profile Picture</h2>
                     <div className="img">
-                        <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1707808966/cqsu4xv8et8e3wctmagy.jpg"
+                        <img src={inp.profile}
                             alt="" />
                     </div>
                     <div> <h2>{inp.name}</h2></div>
-                    <button>Upload</button>
+                    <Button
+                        component="label"
+                        role={undefined}
+                        variant="contained"
+                        tabIndex={-1}
+                        startIcon={<CloudUploadIcon />}
+                    >
+                        Upload file
+                        <VisuallyHiddenInput onChange={handleimage} type="file" />
+                    </Button>
                 </div>
                 <div className="profiledeatil glass">
                     <h2>Profile</h2>
-                    <div className="input">
-                        <TextField onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
-                        <TextField onChange={handlechangee} name='username' value={inp.username} className="half" id="outlined-basic" label="UserName" variant="outlined" />
-                        <TextField onChange={handlechangee} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
-                        <TextField onChange={handlechangee} name='phone' value={inp.phone} type='number' className="half" id="outlined-basic" label="Phone" variant="outlined" />
-                        <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" id="outlined-basic" label="Bio" variant="outlined" />
-                    </div>
-                    <button>Save</button>
+                    <form onSubmit={submit}>
+                        <div className="input">
+                            <TextField onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
+                            <TextField onChange={handlechangee} name='username' value={inp.username} className="half" id="outlined-basic" label="UserName" variant="outlined" />
+                            <TextField contentEditable={false} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
+                            <TextField onChange={handlechangee} name='phone' value={inp.phone} type='number' className="half" id="outlined-basic" label="Phone" variant="outlined" />
+                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" id="outlined-basic" label="Bio" variant="outlined" />
+                        </div>
+                        <button type='submit'>Save</button>
+                    </form>
                 </div>
                 <div className="social glass">
                     <h2>Social Links</h2>
@@ -186,7 +281,7 @@ const Profile = () => {
                                 <span>
                                     <TextField required value={val.link} name='link' fullWidth size='small'
                                         onChange={(e) => handleChange(e, ind)}
-                                        className="half" id="outlined-basic" label="Url" variant="outlined" />
+                                        className="half" id="outlined-basic" label=" Url*.. " variant="outlined" />
                                 </span>
                                 <span title='Remove This' onClick={() => deletelink(ind)}> <CloseIcon /> </span>
                             </div>
