@@ -29,7 +29,7 @@ const Contactinfo = ({ all }) => {
     const [links, setlinks] = useState(init.link)
     const [publicpost, setpublicpost] = useState(all.publicpost);
     useEffect(() => {
-        console.log(all);
+        // console.log(all);
         bfbbgb();
     }, [])
     const bfbbgb = () => {
@@ -132,7 +132,7 @@ const Contactinfo = ({ all }) => {
                             return <section key={ind}>
                                 <Stack direction="row" spacing={2}>
                                     <TextField  size='small' required value={val.linkName} onChange={(e) => handlee(e, ind, "linkName")} sx={{ width: "50%" }} id="outlined-basic" label="Link Name" variant="outlined" />
-                                    <FormControl sx={{ width: "50%" }} >
+                                    <FormControl sx={{ width: "50%" }} size='small' >
                                         <InputLabel id="demo-simple-select-label">Link Type</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
@@ -140,7 +140,6 @@ const Contactinfo = ({ all }) => {
                                             value={links[ind].linkType}
                                             label="Link Type"
                                             required
-                                            size='small'
                                             onChange={(e) => handlee(e, ind, 'linkType')}
                                         >
                                             <MenuItem value="whatsapp"> Whatsapp No.</MenuItem>
@@ -157,6 +156,7 @@ const Contactinfo = ({ all }) => {
                                         fullWidth id="outlined-basic"
                                         label="Link"
                                         size='small'
+                                        color={links[ind].linkType =='phone' && links[ind].link.length != 10 ? "error":'primary'}
                                         variant="outlined"
                                         FormHelperTextProps={{ sx: { color: 'primary.main' } }}
                                         helperText={

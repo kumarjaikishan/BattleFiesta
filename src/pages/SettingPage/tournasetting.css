@@ -23,11 +23,9 @@
             padding: 0px 15px;
             border-radius: 10px;
             cursor: pointer;
-            border: 2px solid transparent;
             color: grey;
 
             &:hover {
-                border-bottom: 2px solid rgb(6, 115, 146);
                 color: rgb(6, 132, 182);
             }
 
@@ -140,7 +138,6 @@
     }
 
     .cont.active {
-        border-bottom: 2px solid rgb(6, 115, 146);
         color: rgb(6, 132, 182);
     }
 }
@@ -276,10 +273,6 @@
                     font-size: 1.1em;
                 }
             }
-        }
-    
-        .cont.active {
-            border: 2px solid transparent;
         }
     }
 }
