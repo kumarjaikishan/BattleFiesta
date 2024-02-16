@@ -25,9 +25,11 @@
                 height: 40px;
                 border-radius: 50px;
                 margin-right: 20px;
+                border: .8px dotted grey;
             }
             span{
                 font-size: 1.3em;
+                line-height: 40px;
                 font-weight: 600;
                 letter-spacing: 1px;
             }
@@ -51,8 +53,7 @@
                     justify-content: center;
                     align-items: center;
 
-                    & img{
-                        width: 140px;
+                    & img{ width: 140px;
                         height: 140px;
                         object-fit: cover;
                         border-radius: 20px;

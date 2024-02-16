@@ -127,6 +127,9 @@ input{
 .navlink{
   color: white;
 }
+.modal{
+  border: 3px solid red;
+}
 
 @media only screen and (max-width: 600px) {
 

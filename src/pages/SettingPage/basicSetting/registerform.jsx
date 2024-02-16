@@ -243,7 +243,7 @@ const Registerform = ({ setting, showss }) => {
                         },
                     }}
                 >
-                    <DialogTitle>Reason</DialogTitle>
+                    {/* <DialogTitle>Reason</DialogTitle> */}
                     <DialogContent>
                         <DialogContentText>
                             Kindly Submit reason , why you are decining or Rejecting the Team

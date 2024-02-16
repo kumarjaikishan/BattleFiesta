@@ -141,69 +141,52 @@
         margin: 10px 0px;
     }
 
-
-
-    .modal {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        /* height: calc(100vh - 70px); */
-        display: flex;
-        justify-content: center;
-        /* align-items: center; */
-        backdrop-filter: blur(5px);
-        background-color: rgba(0, 0, 0, 0.3);
-
-
-        & .box {
-            background: white;
-            margin-top: 20px;
-            width: 500px;
-            height: fit-content;
-            border-radius: 10px;
-            overflow: hidden;
-
-            & header {
-                /* background: red; */
-                background: url('../../assets/formback3.jpg');
-                background-size: 110%;
-                height: 80px;
-                font-size: 2.7em;
-                color: #212529;
-                font-weight: 600;
-                letter-spacing: 1px;
-                line-height: 80px;
-                padding-left: 15px;
-                animation: ani 8s ease-in-out infinite;
-            }
-
-            @keyframes ani {
-                0% {
-                    background-position: top left;
-                }
-
-                100% {
-                    background-position: top right;
-                }
-            }
-
-            form {
-                padding: 10px 20px;
-
-                & section {
-                    margin-top: 20px;
-                }
-            }
-        }
-    }
 }
 
 .Dashboard.modalopen {
     width: 100%;
     max-height: calc(100vh - var(--navheight));
     overflow: hidden;
+}
+
+.dashboardbox {
+    background: white;
+    width: 500px;
+    height: fit-content;
+    border-radius: 5px;
+    overflow: hidden;
+
+    & header {
+        /* background: red; */
+        background: url('../../assets/formback3.jpg');
+        background-size: 110%;
+        height: 80px;
+        font-size: 2.7em;
+        color: #212529;
+        font-weight: 600;
+        letter-spacing: 1px;
+        line-height: 80px;
+        padding-left: 15px;
+        animation: ani 8s ease-in-out infinite;
+    }
+
+    @keyframes ani {
+        0% {
+            background-position: top left;
+        }
+
+        100% {
+            background-position: top right;
+        }
+    }
+
+    form {
+        padding:20px;
+
+        & section {
+            margin-top: 20px;
+        }
+    }
 }
 
 
@@ -233,27 +216,20 @@
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 1.5rem;
         }
+    }
 
-        .modal {
-            display: flex;
-            align-items: start;
+    .dashboardbox {
+        width: 85vw;
 
-            & .box {
-                width: 95%;
-                margin-top: 10px;
+        & header {
+            height: 70px;
+            font-size: 1.8em;
+        }
 
-                & header {
-                    height: 70px;
-                    font-size: 2.3em;
-                }
+        form {
 
-                form {
-                    padding: 10px 20px;
-
-                    & section {
-                        margin-top: 20px;
-                    }
-                }
+            & section {
+                margin-top: 25px;
             }
         }
     }

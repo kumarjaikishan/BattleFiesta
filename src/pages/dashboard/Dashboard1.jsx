@@ -21,6 +21,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import FormControl from '@mui/material/FormControl';
+import Dialogbox from "../utils/dialogbox";
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
 import Forward10Icon from '@mui/icons-material/Forward10';
@@ -165,7 +166,7 @@ const Dashboard = () => {
             REFRESH
           </LoadingButton>
         </div>
-        <motion.div  layout className="cards">
+        <motion.div layout className="cards">
           {tournacenter.alltournaments &&
             tournacenter.alltournaments.slice(0, howmany).map((val) => {
               // Format the date
@@ -189,8 +190,7 @@ const Dashboard = () => {
                 }
               );
               return (
-                <motion.div layout  variants={item} className="card" key={val._id}>
-
+                <motion.div layout variants={item} className="card" key={val._id}>
                   <div className="img">
                     <img
                       src={val.tournment_logo ? val.tournment_logo : tournlogo}
@@ -216,30 +216,35 @@ const Dashboard = () => {
         </motion.div>
 
         {tournacenter.alltournaments.length > howmany &&
-        <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
+          <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
-        {tournacenter.createnewmodal && <div className="modal">
+
+        <Dialogbox
+          className="modale"
+          open={tournacenter.createnewmodal}
+          onClose={() => dispatch(setcreatenewmodal(false))}
+        >
           <motion.div
-            initial={{ x: 700, y: -300, scale: 0.1 }}
-            animate={{ x: 0, y: 0, scale: 1 }}
-            transition={{ duration: .5, delay: .2, type: 'spring', bounce: .5 }}
-            className="box">
+            initial={{  scale: 0.1 }}
+            animate={{  scale: 1 }}
+            transition={{ duration: .5, delay: .2 }}
+            className="dashboardbox">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
               <section>
-                <TextField required sx={{ minWidth: "90%" }} id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
+                <TextField required sx={{ minWidth: "100%" }} id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
               </section>
               <section>
-                <TextField required sx={{ minWidth: "90%" }} id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
+                <TextField required sx={{ minWidth: "100%" }} id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
               </section>
               <section>
-                <TextField required sx={{ minWidth: "90%" }} type="tel"
+                <TextField required sx={{ minWidth: "100%" }} type="tel"
                   onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                   id="outlined-basic" onChange={handleChange} name="slots" value={inp.slots} label="Slots" variant="outlined"
                 />
               </section>
               <section>
-                <FormControl sx={{ minWidth: "90%" }}>
+                <FormControl sx={{ minWidth: "100%" }}>
                   <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
@@ -257,7 +262,7 @@ const Dashboard = () => {
                   </Select>
                 </FormControl>
               </section>
-              <Stack spacing={2} direction="row" sx={{ m: 2 }}>
+              <Stack spacing={2} direction="row" sx={{ mr: 2, mt:2 }}>
                 <LoadingButton
                   loading={load}
                   loadingPosition="start"
@@ -271,7 +276,8 @@ const Dashboard = () => {
               </Stack>
             </form>
           </motion.div>
-        </div>}
+
+        </Dialogbox>
       </motion.div>
     </>
   );
