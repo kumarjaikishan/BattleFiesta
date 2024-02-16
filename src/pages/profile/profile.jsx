@@ -11,11 +11,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { toast } from "react-toastify";
+import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const Profile = () => {
     const tournacenter = useSelector((state) => state.tournacenter);
+    const { handleImage } = useImageUpload();
     const init = {
         name: '',
         username: '',
@@ -24,13 +26,14 @@ const Profile = () => {
         bio: '',
         publicemail: '',
         publicphone: '',
-        profile:'',
+        profile: '',
         sociallinks: []
     }
     const [inp, setinp] = useState(init)
     useEffect(() => {
         fetche();
     }, [])
+
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',
@@ -66,7 +69,7 @@ const Profile = () => {
                     publicemail: data.publicemail,
                     publicphone: data.publicphone,
                     sociallinks: data.sociallinks,
-                    profile:data.imgsrc
+                    profile: data.imgsrc
                 })
             }
         } catch (error) {
@@ -132,75 +135,38 @@ const Profile = () => {
             console.log(error);
         }
     }
+    const handlefilechange = async (event) => {
+        const imageFile = event.target.files[0];
 
-    const handleimage = (event) => {
-        let WIDTH = 500;
-        let image_file = event.target.files[0] || event;
-        let newimage = "";
-        let name = Date.now() + image_file.name;
-        // console.log(name);
-        let reader = new FileReader
-        reader.readAsDataURL(image_file)
-        reader.onload = async (event) => {
-            let image_url = event.target.result
-            let image = document.createElement('img');
-            image.src = image_url;
-            // document.querySelector("#wrapper").appendChild(image)
-            image.onload = async (e) => {
-                let canvas = document.createElement("canvas")
-                let ratio = WIDTH / e.target.width
-                canvas.width = WIDTH
-                canvas.height = e.target.height * ratio
-                //    console.log(canvas.height)
-                const context = canvas.getContext("2d")
-                context.drawImage(image, 0, 0, canvas.width, canvas.height)
+        let resizedfile = await handleImage(500, imageFile);
+        console.log(resizedfile);
 
-                let new_image_url = context.canvas.toDataURL("image/jpeg", 100)
-
-                newimage = urlToFile(new_image_url, name);
-
-                // console.log(newimage);
-
-                const id = toast.loading("Uploading Please wait...")
-                try {
-                    const token = localStorage.getItem("token");
-                    const formData = new FormData();
-                    formData.append(`profilepic`,newimage );
-                    const res = await fetch(`${tournacenter.apiadress}/updateprofilepic`, {
-                        method: "POST",
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                        },
-                        body: formData
-                    })
-                    const data = await res.json();
-                    if (res.ok) {
-                        toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
-                        console.log(data);
-                        setinp({...inp,profile:data.url});
-                    }
-                } catch (error) {
-                    toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
-                    console.log(error);
+        if (resizedfile) {
+            const id = toast.loading("Uploading Please wait...")
+            try {
+                const token = localStorage.getItem("token");
+                const formData = new FormData();
+                formData.append(`profilepic`, resizedfile);
+                const res = await fetch(`${tournacenter.apiadress}/updateprofilepic`, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    body: formData
+                })
+                const data = await res.json();
+                if (res.ok) {
+                    toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+                    console.log(data);
+                    setinp({ ...inp, profile: data.url });
                 }
+            } catch (error) {
+                toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
+                console.log(error);
             }
         }
     }
-    const urlToFile = (url, naam) => {
-        let arr = url.split(",");
-        let mime = arr[0].match(/:(.*?);/)[1]
-        let data = arr[1]
-        let dataStr = atob(data)
-        let n = dataStr.length
-        let dataArr = new Uint8Array(n)
 
-        while (n--) {
-            dataArr[n] = dataStr.charCodeAt(n)
-        }
-        let file = new File([dataArr], naam, { type: mime })
-        // console.log(file);
-        return file;
-    }
     return (
         <div className="profile">
             <div className="circle circle1"></div>
@@ -235,7 +201,7 @@ const Profile = () => {
                         startIcon={<CloudUploadIcon />}
                     >
                         Upload file
-                        <VisuallyHiddenInput onChange={handleimage} type="file" />
+                        <VisuallyHiddenInput onChange={handlefilechange} type="file" />
                     </Button>
                 </div>
                 <div className="profiledeatil glass">

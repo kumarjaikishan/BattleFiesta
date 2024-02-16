@@ -23,10 +23,12 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import Badge from '@mui/material/Badge';
+import useImageUpload from "../utils/imageresizer";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const Register = () => {
     const dispatch = useDispatch();
+    const { handleImage } = useImageUpload();
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',
@@ -297,96 +299,35 @@ const Register = () => {
         }
     };
 
-    const common = (event, id) => {
-        let WIDTH = 250;
+    const common = async (event, id) => {
+        let WIDTH = 180;
         if (id == "paymentss") {
             WIDTH = 600;
         }
-        let image_file = event.target.files[0] || event;
-        let newimage = "";
-        let name = Date.now() + image_file.name;
-        // console.log(name);
-        let reader = new FileReader
-        reader.readAsDataURL(image_file)
-        reader.onload = async (event) => {
-            let image_url = event.target.result
-            let image = document.createElement('img');
-            image.src = image_url;
-            // document.querySelector("#wrapper").appendChild(image)
-            image.onload = async (e) => {
-                let canvas = document.createElement("canvas")
-                let ratio = WIDTH / e.target.width
-                canvas.width = WIDTH
-                canvas.height = e.target.height * ratio
-                //    console.log(canvas.height)
-                const context = canvas.getContext("2d")
-                context.drawImage(image, 0, 0, canvas.width, canvas.height)
+        let image_file = event.target.files[0];
 
-                let new_image_url = context.canvas.toDataURL("image/jpeg", 100)
+        let resizedfile = await handleImage(WIDTH, image_file);
 
-                let new_image = document.createElement("img");
-
-                newimage = urlToFile(new_image_url, name);
-                new_image.src = new_image_url
-                document.querySelector(`#${id}`).innerHTML = "";
-                document.querySelector(`#${id}`).appendChild(new_image);
-                id == "teamlogo" && setinp({ ...inp, selectedTeamLogo: newimage });
-                id == "paymentss" && setinp({ ...inp, paymentss: newimage });
-                // return newimage;
-            }
-        }
+        let new_image = document.createElement("img");
+        const resizedImageSrc = URL.createObjectURL(resizedfile);
+        new_image.src = resizedImageSrc
+        document.querySelector(`#${id}`).innerHTML = "";
+        document.querySelector(`#${id}`).appendChild(new_image);
+        id == "teamlogo" && setinp({ ...inp, selectedTeamLogo: resizedfile });
+        id == "paymentss" && setinp({ ...inp, paymentss: resizedfile });
     }
-    const common2 = (event, id, index) => {
-        let WIDTH = 200;
-        let image_file = event.target.files[0] || event;
-        let newimage = "";
-        let name = Date.now() + image_file.name;
-        // console.log(name);
-        let reader = new FileReader
-        reader.readAsDataURL(image_file)
-        reader.onload = async (event) => {
-            let image_url = event.target.result
-            let image = document.createElement('img');
-            image.src = image_url;
-            // document.querySelector("#wrapper").appendChild(image)
-            image.onload = async (e) => {
-                let canvas = document.createElement("canvas")
-                let ratio = WIDTH / e.target.width
-                canvas.width = WIDTH
-                canvas.height = e.target.height * ratio
-                //    console.log(canvas.height)
-                const context = canvas.getContext("2d")
-                context.drawImage(image, 0, 0, canvas.width, canvas.height)
+    const common2 = async (event, id, index) => {
+        let image_file = event.target.files[0];
 
-                let new_image_url = context.canvas.toDataURL("image/jpeg", 100)
+        let resizedfile = await handleImage(200, image_file);
 
-                let new_image = document.createElement("img");
-
-                newimage = urlToFile(new_image_url, name);
-                new_image.src = new_image_url
-                document.querySelector(`#${id}`).innerHTML = "";
-                document.querySelector(`#${id}`).appendChild(new_image);
-                realplayerchange2(index, newimage)
-                // return newimage;
-            }
-        }
+        let new_image = document.createElement("img");
+        const resizedImageSrc = URL.createObjectURL(resizedfile);
+        new_image.src = resizedImageSrc
+        document.querySelector(`#${id}`).innerHTML = "";
+        document.querySelector(`#${id}`).appendChild(new_image);
+        realplayerchange2(index, resizedfile)
     }
-    const urlToFile = (url, naam) => {
-        let arr = url.split(",");
-        let mime = arr[0].match(/:(.*?);/)[1]
-        let data = arr[1]
-        let dataStr = atob(data)
-        let n = dataStr.length
-        let dataArr = new Uint8Array(n)
-
-        while (n--) {
-            dataArr[n] = dataStr.charCodeAt(n)
-        }
-        let file = new File([dataArr], naam, { type: mime })
-        // console.log(file);
-        return file;
-    }
-
 
     const realhandlechange = (e) => {
         let naam = e.target.name;

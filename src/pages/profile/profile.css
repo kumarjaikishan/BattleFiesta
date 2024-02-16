@@ -125,10 +125,13 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: linear-gradient(rgb(231, 0, 231), rgb(255, 155, 0));
+                background: linear-gradient(to bottom right, rgb(231, 0, 231), rgb(255, 155, 0));
                 border-radius: 50%;
 
                 img {
+                    background: linear-gradient(to right bottom,
+                            rgba(255, 255, 255, 0.7),
+                            rgba(255, 255, 255, 0.3));
                     width: 97%;
                     height: 97%;
                     border-radius: 50%;
@@ -147,10 +150,10 @@
             grid-column: span 5;
 
             .link {
-                background: rgba(0,0,0,.08);
+                background: rgba(0, 0, 0, .08);
                 background: linear-gradient(to right bottom,
-                rgba(255, 255, 255, 0.5),
-                rgba(255, 255, 255, 0.2));
+                        rgba(255, 255, 255, 0.5),
+                        rgba(255, 255, 255, 0.2));
                 padding: 0px 10px;
                 height: 55px;
                 margin: 8px 0px;
@@ -187,7 +190,8 @@
             /* border: 1px solid red; */
         }
     }
-    button{
+
+    button {
         padding: 5px 14px;
         letter-spacing: .5px;
     }
@@ -304,16 +308,16 @@
                     justify-content: space-between;
                     align-items: center;
                     border-radius: 5px;
-    
+
                     & span:nth-child(1) {
                         width: 98%;
                         margin-bottom: 12px;
                     }
-    
+
                     span:nth-child(2) {
                         width: 90%;
                     }
-    
+
                     span:nth-child(3) {
                         width: 25px;
                         cursor: pointer;
