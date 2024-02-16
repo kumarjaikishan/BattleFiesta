@@ -53,7 +53,9 @@
                 
                 & img{
                     width: 300px;
+                    max-width: 97%;
                     height: 300px;
+                    border-radius: 10px;
                     object-fit: cover;
                     margin: 10px 0px;
                 }
@@ -97,14 +99,14 @@
                         margin: 5px 0px;
                     }
                     h3{
-                        font-size:16px ;
+                        font-size:14px ;
                         margin: 20px 0px;
                     }
                     h2{
-                       font-size: 20px;
+                       font-size: 18px;
                     }
                     p{
-                        font-size: 12px;
+                        font-size: 11px;
                         margin-top: 7px;
                     }
                 }

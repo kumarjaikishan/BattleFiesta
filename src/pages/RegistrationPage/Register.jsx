@@ -433,8 +433,8 @@ const Register = () => {
                             >
                                 {all.ask_phone && <TextField required={all.ask_phone}
                                     size="small" id="outlined-basic" name="teammobile"
-                                    type='tel'
                                     value={inp.teammobile}
+                                    type='tel'
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                     color={inp.teammobile.length == 10 ? "primary" : "warning"}

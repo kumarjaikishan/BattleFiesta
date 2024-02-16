@@ -23,6 +23,7 @@ import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader,header } from '../../store/login';
+import useImageUpload from "../utils/imageresizer";
 
 const Tournasetting = () => {
   const log = useSelector((state) => state.login);
@@ -31,6 +32,7 @@ const Tournasetting = () => {
     return <Navigate to='/login' />
   }
   const dispatch = useDispatch();
+  const { handleImage } = useImageUpload();
   const tournacenter = useSelector((state) => state.tournacenter);
   const [setting, setsetting] = useState(tournacenter.current_tourna_details);
   const [showmodal, setshowmodal] = useState(false);
@@ -98,6 +100,10 @@ const Tournasetting = () => {
     let oldimage = "";
     id == "tournbanner" ? konsa = 1 : konsa = 2;
     let newimage = document.querySelector(`#${id}`).files[0];
+
+    if (konsa == 2){
+       newimage = await handleImage(280, newimage);
+    }
 
     if (konsa == 1) {
       oldimage = inp.banner;
@@ -224,7 +230,7 @@ const Tournasetting = () => {
               <TextField aria-readonly sx={{width:"250px"}}  inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small'  variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">

@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 
 const Detail = ({ submit, upload, handleChange, loading, inp }) => {
     useEffect(() => {
-        // console.log(inp);
+        console.log(inp);
     })
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',

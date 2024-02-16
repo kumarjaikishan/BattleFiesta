@@ -27,7 +27,7 @@ const Profile = () => {
         publicemail: '',
         publicphone: '',
         profile: '',
-        sociallinks: []
+        sociallinks: ''
     }
     const [inp, setinp] = useState(init)
     useEffect(() => {
@@ -211,7 +211,10 @@ const Profile = () => {
                             <TextField onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
                             <TextField onChange={handlechangee} name='username' value={inp.username} className="half" id="outlined-basic" label="UserName" variant="outlined" />
                             <TextField contentEditable={false} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
-                            <TextField onChange={handlechangee} name='phone' value={inp.phone} type='number' className="half" id="outlined-basic" label="Phone" variant="outlined" />
+                            <TextField onChange={handlechangee} name='phone'
+                                value={inp.phone} type='tel'
+                                onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                className="half" id="outlined-basic" label="Phone" variant="outlined" />
                             <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" id="outlined-basic" label="Bio" variant="outlined" />
                         </div>
                         <button type='submit'>Save</button>
@@ -267,11 +270,13 @@ const Profile = () => {
                         <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full" id="outlined-basic"
                             helperText="This emaill will be visible on your profile page"
                             label="Public Email" variant="outlined" />
-                        <TextField onChange={handlechangee} type='number' name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
+                        <TextField onChange={handlechangee} type='tel'
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                            name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
                             helperText="This phone number will be visible on your profile page"
                             label="Public Phone" variant="outlined" />
                     </div>
-                    <button>Save</button>
+                    <button onClick={submit}>Save</button>
                 </div>
             </div>
         </div>

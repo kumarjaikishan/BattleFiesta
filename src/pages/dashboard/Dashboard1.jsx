@@ -157,7 +157,7 @@ const Dashboard = () => {
           <LoadingButton
             loading={tournacenter.loading}
             onClick={() => dispatch(alltourna())}
-            loadingPosition="start"
+            loadingPosition="end"
             endIcon={<RefreshIcon />}
             variant="contained"
             type="submit"
