@@ -1,0 +1,35 @@
+.faq {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - var(--navheight));
+    background: white;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+
+    & .accord {
+        height: max-content;
+        width: 900px;
+        /* display: grid;
+       grid-template-columns: repeat(2, 1fr); */
+
+        .accordian {
+            /* width: 440px; */
+            height: auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .faq {
+        padding: 10px 0px;
+
+        & .accord {
+            width: 95%;
+
+            .accordian {
+                height: auto;
+            }
+        }
+    }
+}

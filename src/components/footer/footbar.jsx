@@ -37,7 +37,7 @@ const Footbar = () => {
                         <NavLink className="navlink" to='/dashboard'><li>Dashboard</li></NavLink>
                         <NavLink className="navlink" to='/tournaments'><li>Find Tournament</li></NavLink>
                         <NavLink className="navlink" to='/contact'><li>Contact</li></NavLink>
-                        <a href="#">    <li>FAQ</li>   </a>
+                        <NavLink className="navlink" to='/faq'><li>FAQ</li></NavLink>
                     </ul>
                 </section>
                 <section className="section3">
