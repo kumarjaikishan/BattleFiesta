@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { toast } from "react-toastify";
+import { motion } from 'framer-motion';
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -169,8 +170,22 @@ const Profile = () => {
 
     return (
         <div className="profile">
-            <div className="circle circle1"></div>
-            <div className="circle circle2"></div>
+            <motion.div
+                animate={{
+                    scale: [1, 1.2, 1.2, 1],
+                    rotate: [0, 90, 90, 0],
+                    borderRadius: ['10%', '20%', '40%', '10%']
+                }}
+                transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity }}
+                className="circle circle1"></motion.div>
+            <motion.div
+                animate={{
+                    scale: [1, 1.1, 1.1, 1],
+                    // rotate: [0, 180, 190, 0],
+                    // borderRadius: ['10%', '20%', '40%', '10%']
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="circle circle2"></motion.div>
             <div className="menu">
                 <div>
                     <i className="fa fa-user-o" aria-hidden="true"></i>
