@@ -18,6 +18,7 @@ const Faq = () => {
     return (
         <div className="faq">
             <div className="accord">
+            <h1>Frequently Asked Question</h1>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}

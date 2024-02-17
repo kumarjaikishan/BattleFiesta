@@ -12,7 +12,11 @@
         width: 900px;
         /* display: grid;
        grid-template-columns: repeat(2, 1fr); */
-
+      h1{
+        color: #212529;
+        margin-bottom: 10px;
+        text-align: center;
+      }
         .accordian {
             /* width: 440px; */
             height: auto;
@@ -24,7 +28,7 @@
     .faq {
         padding: 10px 0px;
 
-        & .accord {
+        .accord {
             width: 95%;
 
             .accordian {
