@@ -45,11 +45,13 @@ const Faq = () => {
                     >
                         <Typography >How to create a tournament ?</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails className='details'>
                         <Typography>
-                            <p> 1.  Log in to the dashboard.</p>
-                            <p> 2.  Click on the 'Create a new tournament' card.</p>
-                            <p> 3.  Fill up the details asked. Click 'create'.</p>
+                            <ol type="1">
+                                <li>Log in to the dashboard.</li>
+                                <li>Click on the 'Create a new tournament' card.</li>
+                                <li>Fill up the details asked. Click 'create'.</li>
+                            </ol>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -63,15 +65,17 @@ const Faq = () => {
                             How to add match results ?
                         </Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails className='details'>
                         <Typography>
-                            <p>  1. Log in to your dashboard. </p>
-                            <p>2. Click on 'manage' in the desired tournament card.</p>
-                            <p>3. Go to 'enter results' section.</p>
-                            <p>4. Add team name and their kills count for the respective place.
-                                You can search a team name by either typing the team name or any of the player's name.</p>
-                            <p>5. After adding all the data, click 'finish and save' to save data to the cloud.
-                            </p>
+                            <ol type="1">
+                                <li>Log in to your dashboard. </li>
+                                <li>Click on 'manage' in the desired tournament card.</li>
+                                <li>Go to 'enter results' section.</li>
+                                <li>Add team name and their kills count for the respective place.
+                                    You can search a team name by either typing the team name or any of the player's name.</li>
+                                <li>After adding all the data, click 'finish and save' to save data to the cloud.
+                                </li>
+                            </ol>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -98,13 +102,15 @@ const Faq = () => {
                     >
                         <Typography >How to add participating teams ?</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails className='details'>
                         <Typography>
-                            <p>1.  Log in to your dashboard.</p>
-                            <p>2. Click on 'manage' in the desired tournament card.</p>
-                            <p>3. Go to the 'Teams' section</p>
-                            <p>4. Fill team's name and players' name</p>
-                            <p>5. Click on 'Add Team' to save.</p>
+                            <ol type="1">
+                                <li>Log in to your dashboard.</li>
+                                <li>Click on 'manage' in the desired tournament card.</li>
+                                <li>Go to the 'Teams' section</li>
+                                <li>Fill team's name and players' name</li>
+                                <li>Click on 'Add Team' to save.</li>
+                            </ol>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>

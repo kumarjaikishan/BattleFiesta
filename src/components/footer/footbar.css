@@ -42,6 +42,9 @@
         p {
             font-weight: 500;
         }
+        section{
+            width: 100%;
+        }
     }
 
     .section1 {

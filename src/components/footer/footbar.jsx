@@ -18,9 +18,11 @@ const Footbar = () => {
                         BattleFiesta
                     </h3>
                     <p>Tournament management services for esport</p>
-                    <h3>Follow Us</h3>
-                    <span><InstagramIcon /></span>
-                    <span><YouTubeIcon /></span>
+                    <section>
+                        <h3>Follow Us</h3>
+                        <span><InstagramIcon /></span>
+                        <span><YouTubeIcon /></span>
+                    </section>
                 </section>
                 <section className="section2">
                     <h3>Information</h3>

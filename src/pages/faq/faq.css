@@ -21,6 +21,10 @@
             /* width: 440px; */
             height: auto;
         }
+        .details{
+            padding: 12px 30px;
+            /* border: 2px solid red; */
+        }
     }
 }
 
