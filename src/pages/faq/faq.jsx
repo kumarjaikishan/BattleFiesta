@@ -18,7 +18,7 @@ const Faq = () => {
     return (
         <div className="faq">
             <div className="accord">
-            <h1>Frequently Asked Question</h1>
+                <h1>Frequently Asked Question</h1>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -26,13 +26,14 @@ const Faq = () => {
                         id="panel1bh-header"
                     >
                         <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            General settings
+                            What is BattleFiesta ?
                         </Typography>
-                      </AccordionSummary>
+                    </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-                            Aliquam eget maximus est, id dignissim quam.
+                            BattleFiesta is your go-to platform for effortlessly creating, managing, and tracking esports tournaments.
+                            Say goodbye to manual tasks - it streamlines everything from team management to points calculation, all in one
+                            convenient place. Plus, each tournament gets its own dedicated points table web page for easy access.
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -42,13 +43,13 @@ const Faq = () => {
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
+                        <Typography sx={{ width: '33%', flexShrink: 0 }}>How to create a tournament ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-                            varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-                            laoreet.
+                            <p> 1.  Log in to the dashboard.</p>
+                            <p> 2.  Click on the 'Create a new tournament' card.</p>
+                            <p> 3.  Fill up the details asked. Click 'create'.</p>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -59,13 +60,18 @@ const Faq = () => {
                         id="panel3bh-header"
                     >
                         <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            Advanced settings
+                            How to add match results ?
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-                            amet egestas eros, vitae egestas augue. Duis vel est augue.
+                            <p>  1. Log in to your dashboard. </p>
+                            <p>2. Click on 'manage' in the desired tournament card.</p>
+                            <p>3. Go to 'enter results' section.</p>
+                            <p>4. Add team name and their kills count for the respective place.
+                                You can search a team name by either typing the team name or any of the player's name.</p>
+                            <p>5. After adding all the data, click 'finish and save' to save data to the cloud.
+                            </p>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -75,12 +81,61 @@ const Faq = () => {
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
+                        <Typography sx={{ width: '33%', flexShrink: 0 }}>Why to use BattleFiesta ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-                            amet egestas eros, vitae egestas augue. Duis vel est augue.
+                            Focus on organizing your tournaments while leaving technical tasks like Points Table calculation to our app.
+                            Save time and access all your data securely from any device, anywhere, thanks to cloud storage.
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel4bh-content"
+                        id="panel4bh-header"
+                    >
+                        <Typography sx={{ width: '33%', flexShrink: 0 }}>How to add participating teams ?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            <p>1.  Log in to your dashboard.</p>
+                            <p>2. Click on 'manage' in the desired tournament card.</p>
+                            <p>3. Go to the 'Teams' section</p>
+                            <p>4. Fill team's name and players' name</p>
+                            <p>5. Click on 'Add Team' to save.</p>
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel4bh-content"
+                        id="panel4bh-header"
+                    >
+                        <Typography sx={{ width: '60%', flexShrink: 0 }}>Where do I find automatically generated Points tables ?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            <p> There are two types of points tables available. The first type is for the entire tournament and is accessible to anyone via a separate webpage. You can locate the link to this page in the dashboard under "Tournament."
+                            </p> <br /> <p>
+                                The second type of points table is specific to each match and can be found in the dashboard under "Tournament" as well. However, this points table is only visible to you. You can still share it by taking a screenshot.
+                            </p>
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel4bh-content"
+                        id="panel4bh-header"
+                    >
+                        <Typography sx={{ width: '60%', flexShrink: 0 }}>Is BattleFiesta is safe ?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            Yes, the data is stored securely in the server. For authentication, Google Firebase has been used so that no one else can access your data.
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
