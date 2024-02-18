@@ -25,7 +25,7 @@ const Faq = () => {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                        <Typography >
                             What is BattleFiesta ?
                         </Typography>
                     </AccordionSummary>
@@ -43,7 +43,7 @@ const Faq = () => {
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>How to create a tournament ?</Typography>
+                        <Typography >How to create a tournament ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -59,7 +59,7 @@ const Faq = () => {
                         aria-controls="panel3bh-content"
                         id="panel3bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                        <Typography >
                             How to add match results ?
                         </Typography>
                     </AccordionSummary>
@@ -81,7 +81,7 @@ const Faq = () => {
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>Why to use BattleFiesta ?</Typography>
+                        <Typography >Why to use BattleFiesta ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -96,7 +96,7 @@ const Faq = () => {
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>How to add participating teams ?</Typography>
+                        <Typography >How to add participating teams ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -114,7 +114,7 @@ const Faq = () => {
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
-                        <Typography sx={{ width: '60%', flexShrink: 0 }}>Where do I find automatically generated Points tables ?</Typography>
+                        <Typography >Where do I find automatically generated Points tables ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -131,7 +131,7 @@ const Faq = () => {
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
-                        <Typography sx={{ width: '60%', flexShrink: 0 }}>Is BattleFiesta is safe ?</Typography>
+                        <Typography >Is BattleFiesta is safe ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
