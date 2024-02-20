@@ -27,10 +27,11 @@ const Footbar = () => {
                 <section className="section2">
                     <h3>Information</h3>
                     <ul>
-                        <a href="">  <li>About</li>  </a>
+                        <NavLink className="navlink" to='/about'><li>About Us</li></NavLink>
+                        <NavLink className="navlink" to='/privacy'><li>Privacy Policy</li></NavLink>
+                        <NavLink className="navlink" to='/terms'><li>Terms and Conditions</li></NavLink>
+                        <NavLink className="navlink" to='/refund'><li>Refund and Cancellations</li></NavLink>
                         <a href="">  <li>Plan and Pricing</li>  </a>
-                        <a href="">  <li>Privacy</li>  </a>
-                        <a href="">  <li>Term of use</li> </a>
                     </ul>
                 </section>
                 <section className="section3">
@@ -38,14 +39,13 @@ const Footbar = () => {
                     <ul>
                         <NavLink className="navlink" to='/dashboard'><li>Dashboard</li></NavLink>
                         <NavLink className="navlink" to='/tournaments'><li>Find Tournament</li></NavLink>
-                        <NavLink className="navlink" to='/contact'><li>Contact</li></NavLink>
+                        <NavLink className="navlink" to='/contact'><li>Contact Us</li></NavLink>
                         <NavLink className="navlink" to='/faq'><li>FAQ</li></NavLink>
                     </ul>
                 </section>
                 <section className="section3">
                     <h3>Reach Us</h3>
                     <p>battlefiesta07@gmail.com</p>
-                    <p>7845148758</p>
                 </section>
             </footer>
         </>

@@ -20,6 +20,10 @@ import Tournamentstatpage from './pages/findtournament/tournamentstat/tournament
 import Findtournament from './pages/findtournament/findtournament';
 import Contact from './pages/contact/contact';
 import Faq from './pages/faq/faq';
+import AboutUs from './pages/aboutus/aboutus';
+import PrivacyPolicy from './pages/privacy/privacy';
+import TermsAndConditions from './pages/terms/terms';
+import RefundAndCancellationPolicy from './pages/refund/refund';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,7 +60,11 @@ function App() {
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/stat/:tid" element={<Stats />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
