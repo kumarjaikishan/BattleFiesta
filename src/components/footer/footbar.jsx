@@ -31,7 +31,7 @@ const Footbar = () => {
                         <NavLink className="navlink" to='/privacy'><li>Privacy Policy</li></NavLink>
                         <NavLink className="navlink" to='/terms'><li>Terms and Conditions</li></NavLink>
                         <NavLink className="navlink" to='/refund'><li>Refund and Cancellations</li></NavLink>
-                        <a href="">  <li>Plan and Pricing</li>  </a>
+                        <NavLink className="navlink" to='/plan'><li>Plan and Pricing</li></NavLink>
                     </ul>
                 </section>
                 <section className="section3">

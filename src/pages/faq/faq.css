@@ -10,8 +10,6 @@
     & .accord {
         height: max-content;
         width: 900px;
-        /* display: grid;
-       grid-template-columns: repeat(2, 1fr); */
       h1{
         color: #212529;
         margin-bottom: 10px;
@@ -23,7 +21,6 @@
         }
         .details{
             padding: 12px 30px;
-            /* border: 2px solid red; */
         }
     }
 }

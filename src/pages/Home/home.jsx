@@ -321,6 +321,7 @@ const Home = () => {
                         <h4>With each eSports tournament you will get a dedicated registration form.</h4>
                         <p> <span><img src={tick} alt="" /></span> <span>Accept team's email, discord id, phone number etc.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Accept team and player logo.</span></p>
+                        <p> <span><img src={tick} alt="" /></span> <span>Accept payment Screenshot.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Set maximum and minimum player required for registration.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Approve registration or decline. Its up to you.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Teamlist section for participant, to see their Registration Status- Approved, Pending or Rejected</span></p>
