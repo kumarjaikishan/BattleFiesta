@@ -220,13 +220,13 @@
     
             h1 {
                 margin-top: 5px;
-                font-size: 28px;
-                letter-spacing: 0.7px;
+                font-size: 26px;
+                letter-spacing: 0.3px;
             }
     
             .cards {
                 width: 100%;
-                padding: 20px 5px;
+                padding: 10px 5px;
                 row-gap: 30px;
                 justify-content: space-around;
     
@@ -263,6 +263,10 @@
                 .paymentdetail {
                     width: 97%;
                     padding: 10px 5px;
+
+                    h2{
+                        font-size: 20px;
+                    }
                 }
             }
         }
