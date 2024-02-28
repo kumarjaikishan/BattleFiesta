@@ -222,85 +222,31 @@
             .cards {
                 width: 100%;
                 padding: 20px 5px;
-                gap: 30px;
+                row-gap: 30px;
+                justify-content: space-around;
     
                 .card {
-                    width: 240px;
-    
-    
+                    width: 180px;
+
                     .period {
                         font-size: 18px;
-                        font-weight: 700;
-                        margin-bottom: 5px;
-                        letter-spacing: 1px;
-                        color: var(--secondarycolor);
-                    }
-    
-                    .not {
-                        text-decoration: line-through;
-                        color: grey;
-                        margin: 5px 0px;
+                        letter-spacing: 0.5px;
                     }
     
                     .price {
-                        font-size: 44px;
-                        font-weight: 700;
-                        margin: 5px 0px;
-                        color: var(--secondarycolor);
-                    }
-    
-                    .des {
-                        color: #444;
-                        font-weight: 700;
-                        letter-spacing: 0.8px;
-                        margin: 5px 0px;
-                    }
-    
-                    .renew {
-                        color: #555;
-                        font-size: 13px;
-                        /* margin: 5px 0px; */
-                    }
-    
-                    span {
-                        position: absolute;
-                        transition: 0.4s;
-                        display: inline-block;
-                        background: rgb(232, 228, 228);
-                        color: #212529;
-                        font-size: 12px;
-                        font-weight: 500;
-                        letter-spacing: 0.8px;
-                        width: 150px;
-                        border-radius: 60px;
-                        height: 25px;
-                        line-height: 25px;
-                        width: 70%;
-                        top: -12.5px;
-                        left: 50%;
-                        transform: translateX(-50%);
-    
-                    }
-                }
-    
-                .card.active {
-                    border: 2px solid var(--secondarycolor);
-    
-                    span {
-                        background: var(--secondarycolor);
-                        color: white;
+                        font-size: 30px;
                     }
                 }
             }
     
             .paymentgateway {
                 width: 100%;
-                /* border: 1px solid red; */
+                align-items: center;
                 flex-direction: column;
     
                 .method {
                     height: max-content;
-                    width: 100%;
+                    width: 95%;
     
                     .card {
                         border: 1px solid rgba(0, 0, 0, 0.1);
@@ -311,9 +257,8 @@
                 }
     
                 .paymentdetail {
-                    width: 98%;
+                    width: 97%;
                     padding: 10px 5px;
-    
                 }
             }
         }

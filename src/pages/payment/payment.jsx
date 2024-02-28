@@ -118,27 +118,27 @@ const Payment = () => {
                             <div className="renew">Plan renews at ₹29.00/week on {calculateDate('1 week')}</div>
                         </div>
                         <div className="card" onClick={() => changeactive(1)}>
-                            <span>SAVE ₹30.00</span>
+                            <span>SAVE ₹46.00</span>
                             <div className='period'>1 Month</div>
-                            <div className='not'> ₹100 </div>
+                            <div className='not'> ₹116 </div>
                             <div className='price'>₹70.00</div>
                             <div className='des'>INR/Month</div>
                             <div className="renew">Plan renews at ₹29.00/week on {calculateDate('1 month')}</div>
                         </div>
                         <div className="card" onClick={() => changeactive(2)}>
-                            <span>SAVE ₹50.00</span>
+                            <span>SAVE ₹98.00</span>
                             <div className='period'>3 Months</div>
-                            <div className='not'> ₹300 </div>
+                            <div className='not'> ₹348 </div>
                             <div className='price'>₹250.00</div>
-                            <div className='des'>INR/Month</div>
+                            <div className='des'>INR/ 3 Months</div>
                             <div className="renew">Plan renews at ₹29.00/week on {calculateDate('3 months')}</div>
                         </div>
                         <div className="card" onClick={() => changeactive(3)}>
-                            <span>SAVE ₹300.00</span>
+                            <span>SAVE ₹396.00</span>
                             <div className='period'>6 Months</div>
-                            <div className='not'> ₹600 </div>
+                            <div className='not'> ₹696 </div>
                             <div className='price'>₹300.00</div>
-                            <div className='des'>INR/Month</div>
+                            <div className='des'>INR/ 6 Months</div>
                             <div className="renew">Plan renews at ₹29.00/week on {calculateDate('6 months')}</div>
                         </div>
 
