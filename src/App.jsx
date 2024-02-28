@@ -24,6 +24,7 @@ import AboutUs from './pages/aboutus/aboutus';
 import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
+import Payment from './pages/payment/payment';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/login" element={<Login />} />
