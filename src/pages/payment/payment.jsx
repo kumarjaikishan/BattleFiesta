@@ -19,6 +19,17 @@ const Payment = () => {
         { label: 'The Godfather: Part II', year: 1974 },
     ]
 
+    const init = {
+        fullname: '',
+        phone: '',
+        country: '',
+        state: '',
+        city: '',
+        pincode: '',
+        coupon: ''
+    }
+    const [inp, setinp] = useState(init);
+
     useEffect(() => {
         // Fetch countries from an API
         fetch('https://restcountries.com/v3.1/all')
@@ -79,6 +90,19 @@ const Payment = () => {
         card[ind].classList.add('active')
         // console.log(card[ind].classList);
     }
+    const handleinput = (e) => {
+        let naam = e.target.name;
+        let value = e.target.value;
+
+        setinp((prev) => ({
+            ...prev,
+            [naam]: value
+        }));
+    }
+    const sub = (e) => {
+        e.preventDefault();
+        console.log(inp);
+    }
     return (
         <>
             <div className="payment">
@@ -137,15 +161,15 @@ const Payment = () => {
                             </div>
                         </div>
                         <div className="paymentdetail">
-                            <form action="#">
+                            <form onSubmit={sub}>
                                 <div className='initial'>
                                     <b> <p>BattleFiesta - 1 Week Plan</p></b>
                                     <span> <b>₹500.00</b></span>
                                 </div>
                                 <Divider variant="middle" />
                                 <div className='half'>
-                                    <TextField required size='small' id="outlined-basic" label="Full Name" variant="outlined" sx={{ width: '47%' }} />
-                                    <TextField required size='small' id="outlined-basic" label="Phone Number" variant="outlined" sx={{ width: '47%' }} />
+                                    <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.fullname} name='fullname' label="Full Name" variant="outlined" sx={{ width: '47%' }} />
+                                    <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.phone} name='phone' label="Phone Number" variant="outlined" sx={{ width: '47%' }} />
                                 </div>
                                 <div className='half'>
                                     <Autocomplete
@@ -153,6 +177,9 @@ const Payment = () => {
                                         id="combo-box-demo"
                                         size='small'
                                         required
+                                        onChange={handleinput}
+                                        value={inp.country}
+                                        name='country'
                                         options={top100Films}
                                         sx={{ width: '47%' }}
                                         renderInput={(params) => <TextField {...params} label="Country" />}
@@ -161,15 +188,18 @@ const Payment = () => {
                                         disablePortal
                                         id="combo-box-demo"
                                         size='small'
+                                        value={inp.state}
+                                        name='state'
                                         options={top100Films}
                                         required
+                                        onChange={handleinput}
                                         sx={{ width: '47%' }}
                                         renderInput={(params) => <TextField {...params} label="State" />}
                                     />
                                 </div>
                                 <div className='half'>
-                                    <TextField required size='small' id="outlined-basic" label="City" variant="outlined" sx={{ width: '47%' }} />
-                                    <TextField required size='small' id="outlined-basic" label="Pin Code" variant="outlined" sx={{ width: '47%' }} />
+                                    <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.city} name='city' label="City" variant="outlined" sx={{ width: '47%' }} />
+                                    <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.pincode} name='pincode' label="Pin Code" variant="outlined" sx={{ width: '47%' }} />
                                 </div>
                                 <Divider variant="middle" />
                                 <div className='full'>
@@ -196,8 +226,8 @@ const Payment = () => {
                                 <div style={{ padding: '10px 0px' }}>
                                     <h2>Have a coupon code?</h2>
                                     <div style={{ padding: '10px 0px' }}>
-                                        <TextField size='small' id="outlined-basic" label="Enter a coupon code" variant="outlined" />
-                                        <Button className='btn' sx={{ ml: 4, background: '#2980b9' }} variant="contained">Apply</Button>
+                                        <TextField onChange={handleinput} size='small' id="outlined-basic" label="Enter a coupon code" value={inp.coupon} name='coupon' variant="outlined" />
+                                        <Button disabled={inp.coupon.length > 0 ? false : true} className='btn' sx={{ ml: 4, background: '#2980b9' }} variant="contained">Apply</Button>
                                     </div>
                                 </div>
                                 <Divider variant="middle" />

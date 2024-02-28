@@ -19,6 +19,7 @@
         h1 {
             color: var(--secondarycolor);
             margin-top: 10px;
+            font-weight: 700;
         }
 
         .cards {
@@ -27,14 +28,15 @@
             height: max-content;
             padding: 20px 0px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
 
             .card {
                 cursor: pointer;
-                transition: 0.4s;
+                transition: 0.3s;
                 position: relative;
                 text-align: center;
-                border: 2px solid transparent;
+                border: 2px solid rgba(0, 0, 0, 0.1);
                 width: 230px;
                 padding: 20px 2px;
                 border-radius: 5px;
@@ -78,7 +80,7 @@
 
                 span {
                     position: absolute;
-                    transition: 0.4s;
+                    transition: 0.3s;
                     display: inline-block;
                     background: rgb(232, 228, 228);
                     color: #212529;
@@ -121,7 +123,7 @@
 
                 .card {
                     width: 100%;
-                    border: 2px solid transparent;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
                     padding: 0 10px;
                     padding-left: 15px;
                     height: 60px;
@@ -159,6 +161,7 @@
             .paymentdetail {
                 /* height: 500px; */
                 /* border: 1px solid blue; */
+                border: 1px solid rgba(0, 0, 0, 0.1);
                 width: 65%;
                 border-radius: 10px;
                 padding: 10px;
@@ -198,6 +201,121 @@
             }
         }
     }
+}
 
-
+@media only screen and (max-width: 600px) {
+    .payment {
+        min-height: calc(100vh - var(--navheightmobile));
+        padding: 10px 4px;
+    
+        .btn{
+            background: var(--secondarycolor);
+        }
+    
+        .mater {
+    
+            h1 {
+                margin-top: 5px;
+                font-size: 28px;
+            }
+    
+            .cards {
+                width: 100%;
+                padding: 20px 5px;
+                gap: 30px;
+    
+                .card {
+                    width: 240px;
+    
+    
+                    .period {
+                        font-size: 18px;
+                        font-weight: 700;
+                        margin-bottom: 5px;
+                        letter-spacing: 1px;
+                        color: var(--secondarycolor);
+                    }
+    
+                    .not {
+                        text-decoration: line-through;
+                        color: grey;
+                        margin: 5px 0px;
+                    }
+    
+                    .price {
+                        font-size: 44px;
+                        font-weight: 700;
+                        margin: 5px 0px;
+                        color: var(--secondarycolor);
+                    }
+    
+                    .des {
+                        color: #444;
+                        font-weight: 700;
+                        letter-spacing: 0.8px;
+                        margin: 5px 0px;
+                    }
+    
+                    .renew {
+                        color: #555;
+                        font-size: 13px;
+                        /* margin: 5px 0px; */
+                    }
+    
+                    span {
+                        position: absolute;
+                        transition: 0.4s;
+                        display: inline-block;
+                        background: rgb(232, 228, 228);
+                        color: #212529;
+                        font-size: 12px;
+                        font-weight: 500;
+                        letter-spacing: 0.8px;
+                        width: 150px;
+                        border-radius: 60px;
+                        height: 25px;
+                        line-height: 25px;
+                        width: 70%;
+                        top: -12.5px;
+                        left: 50%;
+                        transform: translateX(-50%);
+    
+                    }
+                }
+    
+                .card.active {
+                    border: 2px solid var(--secondarycolor);
+    
+                    span {
+                        background: var(--secondarycolor);
+                        color: white;
+                    }
+                }
+            }
+    
+            .paymentgateway {
+                width: 100%;
+                /* border: 1px solid red; */
+                flex-direction: column;
+    
+                .method {
+                    height: max-content;
+                    width: 100%;
+    
+                    .card {
+                        border: 1px solid rgba(0, 0, 0, 0.1);
+                        padding: 0 15px;
+                        padding-left: 20px;
+                        margin-bottom: 12px;
+                    }
+                }
+    
+                .paymentdetail {
+                    width: 98%;
+                    padding: 10px 5px;
+    
+                }
+            }
+        }
+    }
 }
