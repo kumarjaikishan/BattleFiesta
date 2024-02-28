@@ -107,10 +107,10 @@ const Payment = () => {
         <>
             <div className="payment">
                 <div className="mater">
-                    <h1>Choose a Period</h1>
+                    <h1>» Choose a Period</h1>
                     <div className="cards">
                         <div className="card active" onClick={() => changeactive(0)}>
-                            <span>SAVE ₹1500.00</span>
+                            
                             <div className='period'>1 WEEK</div>
                             <div className='not'> ₹0 </div>
                             <div className='price'>₹{baseprice}.00</div>
@@ -123,7 +123,7 @@ const Payment = () => {
                             <div className='not'> ₹116 </div>
                             <div className='price'>₹70.00</div>
                             <div className='des'>INR/Month</div>
-                            <div className="renew">Plan renews at ₹29.00/week on {calculateDate('1 month')}</div>
+                            <div className="renew">Plan renews at ₹70.00/month on {calculateDate('1 month')}</div>
                         </div>
                         <div className="card" onClick={() => changeactive(2)}>
                             <span>SAVE ₹98.00</span>
@@ -131,7 +131,7 @@ const Payment = () => {
                             <div className='not'> ₹348 </div>
                             <div className='price'>₹250.00</div>
                             <div className='des'>INR/ 3 Months</div>
-                            <div className="renew">Plan renews at ₹29.00/week on {calculateDate('3 months')}</div>
+                            <div className="renew">Plan renews at ₹250.00/3 months on {calculateDate('3 months')}</div>
                         </div>
                         <div className="card" onClick={() => changeactive(3)}>
                             <span>SAVE ₹396.00</span>
@@ -139,12 +139,12 @@ const Payment = () => {
                             <div className='not'> ₹696 </div>
                             <div className='price'>₹300.00</div>
                             <div className='des'>INR/ 6 Months</div>
-                            <div className="renew">Plan renews at ₹29.00/week on {calculateDate('6 months')}</div>
+                            <div className="renew">Plan renews at ₹300.00/6 months on {calculateDate('6 months')}</div>
                         </div>
 
                     </div>
 
-                    <h1>Select Payment</h1>
+                    <h1>» Select Payment</h1>
                     <div className="paymentgateway">
                         <div className="method">
                             <div className="card">
@@ -155,7 +155,7 @@ const Payment = () => {
                                 <span>Razorpay</span>
                                 <span><img src={razorpay} alt="" /></span>
                             </div>
-                            <div className="card">
+                            <div className="card disable">
                                 <span>PayTM</span>
                                 <span><img src={paytm} alt="" /></span>
                             </div>

@@ -224,13 +224,12 @@ const Tournasetting = () => {
         <div className="links">
           <div className="box">
             <header>Stats Page Link</header>
-            <p>Points table,Top fraggers, Indivisual team and match performance statistics
-              could be found on the link below. You can even Share this link with the Participants.</p>
+            <p>Check out the link for the latest: Points, Top Fraggers, Team Stats, and Match Performances. Share it with the participants!</p>
             <Stack spacing={2} direction="row">
               <TextField aria-readonly sx={{width:"250px"}}  inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button size='small'  variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small'  variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -245,8 +244,7 @@ const Tournasetting = () => {
 
           <div className="box">
             <header>Public Post Link</header>
-            <p>The publick page for tournament can be found here.The visibility of the tournament
-              must be set to 'PUBLISHED'. Don't forget to add conetent to the public post.</p>
+            <p>Find the tournament's public page here. Ensure the tournament visibility is set to 'PUBLISHED' and remember to add content to the public post.</p>
             <Stack spacing={2} direction="row">
               <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />

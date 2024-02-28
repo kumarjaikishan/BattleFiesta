@@ -114,18 +114,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             color: rgb(69, 66, 66);
+            padding: 2px 0px;
 
             & header {
                 font-weight: 600;
                 font-size: 1.1em;
                 text-align: center;
+                /* border: 1px solid red; */
             }
 
             p {
                 font-size: 0.8em;
                 text-align: center;
+                margin: 10px 0px;
             }
             .copy{
                 cursor: pointer;

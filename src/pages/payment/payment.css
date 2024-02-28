@@ -20,6 +20,7 @@
             color: var(--secondarycolor);
             margin-top: 10px;
             font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .cards {
@@ -112,16 +113,15 @@
         .paymentgateway {
             width: 100%;
             margin-top: 10px;
-            /* border: 1px solid red; */
             display: flex;
             justify-content: space-between;
 
             .method {
                 height: 500px;
                 width: 33%;
-                /* border: 1px solid blue; */
 
                 .card {
+                    cursor: pointer;
                     width: 100%;
                     border: 1px solid rgba(0, 0, 0, 0.1);
                     padding: 0 10px;
@@ -155,7 +155,11 @@
                 .card.active {
                     border: 2px solid var(--secondarycolor);
                 }
-
+                .card.disable {
+                    background: rgb(232, 228, 228);
+                    color: #212529;
+                    cursor: not-allowed;
+                }
             }
 
             .paymentdetail {
@@ -217,6 +221,7 @@
             h1 {
                 margin-top: 5px;
                 font-size: 28px;
+                letter-spacing: 0.7px;
             }
     
             .cards {
@@ -255,7 +260,6 @@
                         margin-bottom: 12px;
                     }
                 }
-    
                 .paymentdetail {
                     width: 97%;
                     padding: 10px 5px;
