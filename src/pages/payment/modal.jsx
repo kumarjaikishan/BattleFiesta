@@ -33,7 +33,7 @@ const Paymentmodal = ({ planchoosed, paymodalopen, setpaymodalopen }) => {
                             <img src={logo} alt="" />
                             <h3>{planchoosed.duration} plan - ₹{planchoosed.price}.00</h3>
                             <TextField required id="outlined-basic" size="small" label="Enter UTR/UPI REF no. here" variant="outlined" />
-                            <div>
+                            <div className="just">
                                 <Button type="submit" variant="contained">Submit</Button>
                                 <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>
                             </div>

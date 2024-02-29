@@ -334,4 +334,51 @@
             }
         }
     }
+    .paymodal {
+        width: 80vw;
+        height: 75vh;
+        overflow: auto;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 5px;
+        align-items: center;
+    
+        .left {
+            width: 95%;
+            /* border: 1px solid red; */
+        }
+    
+        .right {
+            /* border: 1px solid red; */
+            width: 97%;
+            height: min-content;
+
+            form {
+               
+                align-items: center;
+                justify-content: space-around;
+                flex-direction: column;
+    
+                img {
+                    width: 50px;
+                    margin-bottom: 10px;
+                }
+                h3{
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+                .just{
+                    margin: 15px 0px;
+                }
+        
+                p {
+                    margin-top: 0;
+                    font-size: 11px;
+                }
+              
+            }
+    
+           
+        }
+    }
 }

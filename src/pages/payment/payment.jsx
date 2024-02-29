@@ -10,10 +10,6 @@ import Button from '@mui/material/Button';
 import Paymentmodal from './modal';
 
 const Payment = () => {
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [states, setStates] = useState([]);
-  const [selectedState, setSelectedState] = useState('');
   const top100Films = [
     { label: 'The Shawshank Redemption', year: 1994 },
     { label: 'The Godfather', year: 1972 },
@@ -23,22 +19,14 @@ const Payment = () => {
   const init = {
     fullname: '',
     phone: '',
-    country: '',
-    state: '',
     city: '',
-    pincode: '',
+    email: '',
     coupon: ''
   }
   const [inp, setinp] = useState(init);
 
   useEffect(() => {
-    // Fetch countries from an API
-    fetch('https://restcountries.com/v3.1/all')
-      .then(response => response.json())
-      .then(data => {
-        setCountries(data.map(country => country.name.common));
-      })
-      .catch(error => console.error('Error fetching countries:', error));
+   
   }, []);
 
   const plandetail = [
@@ -74,21 +62,6 @@ const Payment = () => {
 
   const [planchoosed, setplanchoosed] = useState(plandetail[0]);
 
-
-  const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
-    // Fetch states based on the selected country
-    // fetch(`https://api.first.org/data/v1/states?country=${event.target.value}`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         setStates(data.data.map(state => state.name));
-    //     })
-    //     .catch(error => console.error('Error fetching states:', error));
-  };
-
-  const handleStateChange = (event) => {
-    setSelectedState(event.target.value);
-  };
   const baseprice = 29;
 
   const padZero = (value) => {
@@ -196,38 +169,10 @@ const Payment = () => {
                   <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.fullname} name='fullname' label="Full Name" variant="outlined" sx={{ width: '47%' }} />
                   <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.phone} name='phone' label="Phone Number" variant="outlined" sx={{ width: '47%' }} />
                 </div>
-                {/* <div className='half'>
-                  <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    size='small'
-                    required
-                    onChange={handleinput}
-                    value={inp.country}
-                    name='country'
-                    disableClearable
-                    options={countriese}
-                    sx={{ width: '47%' }}
-                    getOptionLabel={(option) => option.label}
-                    renderInput={(params) => <TextField {...params} label="Country" />}
-                  />
-                  <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    size='small'
-                    value={inp.state}
-                    name='state'
-                    disableClearable
-                    options={top100Films}
-                    required
-                    onChange={handleinput}
-                    sx={{ width: '47%' }}
-                    renderInput={(params) => <TextField {...params} label="State" />}
-                  />
-                </div> */}
+                
                 <div className='half'>
                   <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.city} name='city' label="City" variant="outlined" sx={{ width: '47%' }} />
-                  <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.pincode} name='pincode' label="Pin Code" variant="outlined" sx={{ width: '47%' }} />
+                  <TextField onChange={handleinput} required size='small' id="outlined-basic" value={inp.email} name='email' label="Email" variant="outlined" sx={{ width: '47%' }} />
                 </div>
                 <Divider variant="middle" />
                 <div className='full'>
