@@ -10,10 +10,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { motion } from 'framer-motion';
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const Profile = () => {
@@ -235,6 +237,47 @@ const Profile = () => {
                         <button type='submit'>Save</button>
                     </form>
                 </div>
+                <div className="membership glass">
+                    <h2>Membership</h2>
+                    <div>
+                        <p><span>Plan</span> <span>:</span> <span>1 week plan</span> </p>
+                        <p><span> Plan price</span> <span>:</span> <span>29.00</span> </p>
+                        <p><span> Buy Date</span> <span>:</span> <span>29/02/2024</span> </p>
+                        <p><span> Expiry Date</span> <span>:</span> <span>29/02/2024</span> </p>
+                        <p><span> Status</span> <span>:</span> <span className='active'>Active</span> </p>
+
+                        <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
+                            Buy Membership
+                        </Button></NavLink>
+                    </div>
+                </div>
+                <div className="passchange glass">
+                    <h2>Change Password</h2>
+                    <div>
+                        <TextField required name='link' fullWidth size='small'
+                            className="half" id="outlined-basic" label="Email Address" variant="outlined" />
+                        <p>A verification email will be sent to</p>
+                        <p><b>kumar.jaikishan0@gmail.com</b></p>
+                        <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
+                            Send Password Reset Link
+                        </Button>
+                    </div>
+
+                </div>
+                <div className="privacy glass">
+                    <h2>Privacy</h2>
+                    <div className="input">
+                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full" id="outlined-basic"
+                            helperText="This emaill will be visible on your profile page"
+                            label="Public Email" variant="outlined" />
+                        <TextField onChange={handlechangee} type='tel'
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                            name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
+                            helperText="This phone number will be visible on your profile page"
+                            label="Public Phone" variant="outlined" />
+                    </div>
+                    <button onClick={submit}>Save</button>
+                </div>
                 <div className="social glass">
                     <h2>Social Links</h2>
                     <form onSubmit={submit}>
@@ -278,20 +321,6 @@ const Profile = () => {
                         </div>
                         <button type='submit'>Save</button>
                     </form>
-                </div>
-                <div className="privacy glass">
-                    <h2>Privacy</h2>
-                    <div className="input">
-                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full" id="outlined-basic"
-                            helperText="This emaill will be visible on your profile page"
-                            label="Public Email" variant="outlined" />
-                        <TextField onChange={handlechangee} type='tel'
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
-                            helperText="This phone number will be visible on your profile page"
-                            label="Public Phone" variant="outlined" />
-                    </div>
-                    <button onClick={submit}>Save</button>
                 </div>
             </div>
         </div>

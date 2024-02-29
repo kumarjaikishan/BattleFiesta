@@ -9,6 +9,14 @@
     align-items: center;
     padding: 10px 0px;
 
+    .splbtn {
+        background: rgb(40, 37, 37);
+
+        &:hover {
+            background: rgb(61, 58, 58);
+        }
+    }
+
     .circle {
         position: absolute;
         width: 300px;
@@ -188,6 +196,59 @@
             height: 340px;
             grid-column: span 3;
             /* border: 1px solid red; */
+        }
+
+        .membership {
+            height: 340px;
+            grid-column: span 5;
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            p {
+                margin: 5px 0px;
+                line-height: 30px;
+
+                & span:nth-child(1) {
+                    display: inline-block;
+                    font-weight: 700;
+                    font-size: 18px;
+                    width: 130px;
+                    letter-spacing: 0.4px;
+                }
+
+                & span:nth-child(2) {
+                    font-weight: 700;
+                }
+
+                & span:nth-child(3) {
+                    margin-left: 10px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 0.2px;
+                }
+
+                .active {
+                    color: rgb(1, 59, 1);
+                    padding: 0px 25px;
+                    border-radius: 50px;
+                    background-color: rgba(52, 233, 52, 0.712);
+                }
+            }
+        }
+
+        .passchange {
+            height: 340px;
+            grid-column: span 3;
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            .half {
+                margin-bottom: 20px;
+            }
         }
     }
 

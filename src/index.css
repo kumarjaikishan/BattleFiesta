@@ -85,7 +85,7 @@ code {
   align-items: center;
 } */
 
-button{
+button, .splbtn{
   border: none;
    cursor: pointer;
    outline: none;
@@ -101,6 +101,7 @@ button{
 button:disabled{
   background: grey !important;
 }
+
 button:active,button:hover{
   background: rgb(61, 58, 58);
 }
