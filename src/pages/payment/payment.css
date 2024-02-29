@@ -100,7 +100,8 @@
 
                 }
             }
-            .card:hover{
+
+            .card:hover {
                 transform: scale(1.05);
                 border: 2px solid green;
             }
@@ -250,14 +251,15 @@
                 border: 1px dotted grey;
                 width: 80px;
             }
-    
+
             p {
                 text-align: center;
                 font-size: 14px;
                 margin-top: 10px;
                 color: green;
             }
-            div{
+
+            div {
                 width: 100%;
                 display: flex;
                 /* border: 1px solid red; */
@@ -265,7 +267,7 @@
             }
         }
 
-       
+
     }
 }
 
@@ -334,6 +336,7 @@
             }
         }
     }
+
     .paymodal {
         width: 80vw;
         height: 75vh;
@@ -342,43 +345,41 @@
         justify-content: space-around;
         padding: 5px;
         align-items: center;
-    
+
         .left {
             width: 95%;
             /* border: 1px solid red; */
         }
-    
+
         .right {
             /* border: 1px solid red; */
             width: 97%;
             height: min-content;
 
             form {
-               
                 align-items: center;
                 justify-content: space-around;
                 flex-direction: column;
-    
+
                 img {
                     width: 50px;
                     margin-bottom: 10px;
                 }
-                h3{
+
+                h3 {
                     font-size: 18px;
                     margin-bottom: 10px;
                 }
-                .just{
+
+                .just {
                     margin: 15px 0px;
                 }
-        
+
                 p {
                     margin-top: 0;
                     font-size: 11px;
                 }
-              
             }
-    
-           
         }
     }
 }
