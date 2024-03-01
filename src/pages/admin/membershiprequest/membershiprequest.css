@@ -23,14 +23,34 @@
 
             tr{
 
-                td{
+               & td{
                     border: 1px solid grey;
                     text-align: center;
                     border-radius: 5px;
                     padding: 3px 2px;
                 }
+                & td:last-child{
+                  
+                    i{
+                        padding: 0 5px;
+                    }
+                }
             }
 
         }
+    }
+  
+}
+.membermodal{
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+
+    & >div{
+        display: flex;
+        margin: 10px 0px;
+        justify-content: space-around;
     }
 }

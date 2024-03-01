@@ -32,7 +32,14 @@ const Profile = () => {
         profile: '',
         sociallinks: ''
     }
-    const [inp, setinp] = useState(init)
+    const [inp, setinp] = useState(init);
+    const [membership, setmembership] = useState({
+        plan:'N/A',
+        planprice:'N/A',
+        buydate:'N/A',
+        expirydate:'N/A',
+        status:'N/A'
+    })
     useEffect(() => {
         fetche();
     }, [])
@@ -58,10 +65,11 @@ const Profile = () => {
                     "Authorization": `Bearer ${token}`,
                 }
             })
-            let data = await res.json();
-            data = data.data;
+            let alldata = await res.json();
+            let data = alldata.data;
+            let membere = alldata.member
             if (res.ok) {
-                // console.log(data);
+                console.log(alldata);
                 setinp({
                     ...inp,
                     name: data.name,
@@ -73,6 +81,13 @@ const Profile = () => {
                     publicphone: data.publicphone,
                     sociallinks: data.sociallinks,
                     profile: data.imgsrc
+                })
+                setmembership({
+                    plan:membere.plan_name,
+                    planprice:membere.price,
+                    buydate:membere.buy_date,
+                    expirydate:membere.expire_date,
+                    status:'active'
                 })
             }
         } catch (error) {
@@ -240,11 +255,11 @@ const Profile = () => {
                 <div className="membership glass">
                     <h2>Membership</h2>
                     <div>
-                        <p><span>Plan</span> <span>:</span> <span>1 week plan</span> </p>
-                        <p><span> Plan price</span> <span>:</span> <span>29.00</span> </p>
-                        <p><span> Buy Date</span> <span>:</span> <span>29/02/2024</span> </p>
-                        <p><span> Expiry Date</span> <span>:</span> <span>29/02/2024</span> </p>
-                        <p><span> Status</span> <span>:</span> <span className='active'>Active</span> </p>
+                        <p><span>Plan</span> <span>:</span> <span>{membership.plan} Plan</span> </p>
+                        <p><span> Plan price</span> <span>:</span> <span>₹ {membership.planprice}.00</span> </p>
+                        <p><span> Buy Date</span> <span>:</span> <span>{membership.buydate}</span> </p>
+                        <p><span> Expiry Date</span> <span>:</span> <span>{membership.expirydate} </span> </p>
+                        <p><span> Status</span> <span>:</span> <span className='active'>{membership.status}</span> </p>
 
                         <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
                             Buy Membership
