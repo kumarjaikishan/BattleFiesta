@@ -7,7 +7,7 @@ const islogin = createSlice({
         head:"LogIn",
         narrow:true,
         loader:false,
-        apiadress: "jai",
+        isadmin:false
     },
     reducers:{
         setlogin(state, action){
@@ -21,9 +21,12 @@ const islogin = createSlice({
         },
         setloader(state, action){
            state.loader = action.payload;
+        },
+        setadmin(state, action){
+           state.isadmin = action.payload;
         }
     }
 
 })
-export const {setlogin,header,setnarrow,setloader}= islogin.actions;
+export const {setadmin,setlogin,header,setnarrow,setloader}= islogin.actions;
 export default islogin.reducer;

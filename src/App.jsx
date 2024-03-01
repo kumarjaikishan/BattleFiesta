@@ -25,6 +25,8 @@ import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
+import Admindashboard from './pages/admin/admindashboard/admindashboard';
+import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +59,10 @@ function App() {
             <Route path="/tournaments" >
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
+            </Route>
+            <Route path="/admin" >
+              <Route index element={<Admindashboard />} />
+              <Route path="members" element={<Membershiprequest />} />
             </Route>
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/stat/:tid" element={<Stats />} />

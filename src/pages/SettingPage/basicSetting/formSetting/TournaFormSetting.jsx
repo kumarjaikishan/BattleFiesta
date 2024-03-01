@@ -1,9 +1,3 @@
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import TextField from '@mui/material/TextField';
-// import Box from '@mui/material/Box';
-// import Radio from '@mui/material/Radio';
-// import RadioGroup from '@mui/material/RadioGroup';
-// import FormLabel from '@mui/material/FormLabel';
 import {FormLabel,RadioGroup,Radio,Box,TextField,FormControlLabel} from '@mui/material';
 import './TournaFormSetting.css'
 import { useEffect } from 'react';

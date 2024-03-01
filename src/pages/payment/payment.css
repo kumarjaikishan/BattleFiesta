@@ -210,6 +210,12 @@
                         font-size: 1.1em;
                     }
                 }
+                .cousuc{
+                    color: green;
+                    font-size: 12px;
+                    font-weight: 500;
+                    letter-spacing: 0.4px;
+                }
             }
         }
     }

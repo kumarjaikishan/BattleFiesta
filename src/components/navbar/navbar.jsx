@@ -11,7 +11,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const log = useSelector((state) => state.login);
   useEffect(()=>{
-  //  console.log(log);
+   console.log(log);
   },[])
 
   return (
@@ -32,6 +32,7 @@ const Navbar = () => {
              {log.islogin && log.head=="Dashboard" && <Button className='btna' onClick={() => dispatch(setcreatenewmodal(true))} title='Create New Tournament' variant="contained" endIcon={<SportsEsportsIcon />}>
                 New
               </Button>}
+              {log.islogin &&  <NavLink className="navlink" to='/admin'><li>Admin</li></NavLink> }
             </ul>
           </nav>
         </header>

@@ -2,26 +2,26 @@ import { configureStore } from "@reduxjs/toolkit";
 import login from "./login";
 import tournacenter from './api'
 import storage from 'redux-persist/lib/storage';
-import {persistReducer} from 'redux-persist';
+import { persistReducer } from 'redux-persist';
 import { combineReducers } from "@reduxjs/toolkit";
 
-const persistConfig={
-    key:"tournamente",
-    version:1,
-    storage:storage
+const persistConfig = {
+    key: "tournamtnfete",
+    version: 1,
+    storage: storage
 }
 const reducer = combineReducers({
     login: login,
-    tournacenter:tournacenter
+    tournacenter: tournacenter
 })
 
-const persistedReducer= persistReducer(persistConfig,reducer)
+const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = configureStore({
-    reducer:persistedReducer,
+    reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 })
 export default store;

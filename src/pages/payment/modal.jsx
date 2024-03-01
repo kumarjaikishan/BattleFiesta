@@ -7,10 +7,37 @@ import logo from '../../assets/home/logo.webp'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect } from "react";
+import { toast } from 'react-toastify';
+import { useSelector } from "react-redux";
 
-const Paymentmodal = ({ planchoosed, paymodalopen, setpaymodalopen }) => {
-    const handlee = () => {
+const Paymentmodal = ({handleinput,reset, inp,planchoosed, paymodalopen, setpaymodalopen }) => {
+    
+  const tournacenter = useSelector((state) => state.tournacenter);
+    const handlee =async (e) => {
+        e.preventDefault();
+        const all = {...planchoosed,...inp};
 
+        try {
+            const token = localStorage.getItem("token");
+            const responsee = await fetch(`${tournacenter.apiadress}/manualcheck`, {
+                method: "POST",
+                headers: {
+                  "Authorization": `Bearer ${token}`,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(all)
+              });
+              const data =  await responsee.json();
+              console.log(data);
+              if(responsee.ok){
+                toast.success(data.msg, {autoClose:1300});
+                setpaymodalopen(false);
+                reset();
+              }
+              toast.warn(data.msg, {autoClose:1500});
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>
@@ -25,14 +52,14 @@ const Paymentmodal = ({ planchoosed, paymodalopen, setpaymodalopen }) => {
                             planchoosed.duration == '1 Week' && weekly ||
                             planchoosed.duration == '1 Month' && monthly ||
                             planchoosed.duration == '3 Months' && threemonth ||
-                            planchoosed.duration == '6 Months' && sixmonth 
-                         } alt="" />
+                            planchoosed.duration == '6 Months' && sixmonth
+                        } alt="" />
                     </div>
                     <div className="right">
                         <form onSubmit={handlee}>
                             <img src={logo} alt="" />
                             <h3>{planchoosed.duration} plan - ₹{planchoosed.price}.00</h3>
-                            <TextField required id="outlined-basic" size="small" label="Enter UTR/UPI REF no. here" variant="outlined" />
+                            <TextField onChange={handleinput} required id="outlined-basic" name="txn_no" size="small" label="Enter UTR/UPI REF no. here" variant="outlined" />
                             <div className="just">
                                 <Button type="submit" variant="contained">Submit</Button>
                                 <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>
