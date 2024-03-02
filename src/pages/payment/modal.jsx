@@ -10,31 +10,36 @@ import { useEffect } from "react";
 import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 
-const Paymentmodal = ({handleinput,reset, inp,planchoosed, paymodalopen, setpaymodalopen }) => {
-    
-  const tournacenter = useSelector((state) => state.tournacenter);
-    const handlee =async (e) => {
+const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalopen, setpaymodalopen }) => {
+
+    const tournacenter = useSelector((state) => state.tournacenter);
+    const handlee = async (e) => {
         e.preventDefault();
-        const all = {...planchoosed,...inp};
+        let inpreplace = { ...inp };
+        if (inp.coupon == 0) {
+            inpreplace.couponname = ""
+        }
+        console.log(planchoosed);
 
         try {
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${tournacenter.apiadress}/manualcheck`, {
                 method: "POST",
                 headers: {
-                  "Authorization": `Bearer ${token}`,
-                  "Content-Type": "application/json"
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(all)
-              });
-              const data =  await responsee.json();
-              console.log(data);
-              if(responsee.ok){
-                toast.success(data.msg, {autoClose:1300});
+                body: JSON.stringify({ plan_id: planchoosed._id, coupon: inpreplace.couponname, txn_id:inpreplace.txn_no })
+            });
+            const data = await responsee.json();
+            console.log(data);
+            if (responsee.ok) {
+                toast.success(data.msg, { autoClose: 1300 });
                 setpaymodalopen(false);
                 reset();
-              }
-              toast.warn(data.msg, {autoClose:1500});
+            } else {
+                toast.warn(data.msg, { autoClose: 1500 });
+            }
         } catch (error) {
             console.log(error);
         }
@@ -51,8 +56,8 @@ const Paymentmodal = ({handleinput,reset, inp,planchoosed, paymodalopen, setpaym
                         <img src={
                             planchoosed.duration == '1 Week' && weekly ||
                             planchoosed.duration == '1 Month' && monthly ||
-                            planchoosed.duration == '3 Months' && threemonth ||
-                            planchoosed.duration == '6 Months' && sixmonth
+                            planchoosed.duration == '3 Month' && threemonth ||
+                            planchoosed.duration == '6 Month' && sixmonth
                         } alt="" />
                     </div>
                     <div className="right">

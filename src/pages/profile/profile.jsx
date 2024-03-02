@@ -34,11 +34,13 @@ const Profile = () => {
     }
     const [inp, setinp] = useState(init);
     const [membership, setmembership] = useState({
-        plan:'N/A',
-        planprice:'N/A',
-        buydate:'N/A',
-        expirydate:'N/A',
-        status:'N/A'
+        plan: 'N/A',
+        planprice: 'N/A',
+        buydate: 'N/A',
+        expirydate: 'N/A',
+        expire_in:'N/A',
+        status: 'N/A',
+        tournament: 'N/A'
     })
     useEffect(() => {
         fetche();
@@ -83,11 +85,13 @@ const Profile = () => {
                     profile: data.imgsrc
                 })
                 setmembership({
-                    plan:membere.plan_name,
-                    planprice:membere.price,
-                    buydate:membere.buy_date,
-                    expirydate:membere.expire_date,
-                    status:'active'
+                    plan: membere.plan_name,
+                    planprice: membere.price,
+                    tournament: membere.tournament_no > 500 ? 'Unlimited':membere.tournament_no,
+                    buydate: membere.buy_date,
+                    expirydate: membere.expire_date,
+                    expire_in:getTimeDifference(membere.expire_date) ,
+                    status: 'active'
                 })
             }
         } catch (error) {
@@ -184,6 +188,21 @@ const Profile = () => {
             }
         }
     }
+    const formatDate = (dateString) => {
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-GB', options);
+    };
+    function getTimeDifference(dateString) {
+        const givenDate = new Date(dateString);
+        const currentDate = new Date();
+      
+        const differenceInMilliseconds = Math.abs(currentDate - givenDate);
+        const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      
+        return days;
+      }
 
     return (
         <div className="profile">
@@ -255,12 +274,13 @@ const Profile = () => {
                 <div className="membership glass">
                     <h2>Membership</h2>
                     <div>
-                        <p><span>Plan</span> <span>:</span> <span>{membership.plan} Plan</span> </p>
+                        <p><span> Plan</span> <span>:</span> <span>{membership.plan} Plan</span> </p>
                         <p><span> Plan price</span> <span>:</span> <span>₹ {membership.planprice}.00</span> </p>
-                        <p><span> Buy Date</span> <span>:</span> <span>{membership.buydate}</span> </p>
-                        <p><span> Expiry Date</span> <span>:</span> <span>{membership.expirydate} </span> </p>
+                        <p><span> Tournament</span> <span>:</span> <span>{membership.tournament}</span> </p>
+                        <p><span> Buy Date</span> <span>:</span> <span>{formatDate(membership.buydate)}</span> </p>
+                        <p><span> Expiry Date</span> <span>:</span> <span>{formatDate(membership.expirydate)} </span> </p>
+                        <p><span> Expire In</span> <span>:</span> <span style={{color:membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
                         <p><span> Status</span> <span>:</span> <span className='active'>{membership.status}</span> </p>
-
                         <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
                             Buy Membership
                         </Button></NavLink>

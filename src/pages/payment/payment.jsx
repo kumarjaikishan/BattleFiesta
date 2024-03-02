@@ -34,41 +34,62 @@ const Payment = () => {
   }
 
   useEffect(() => {
-
+    fetche();
   }, []);
+  const [plandetail, setplandetail] = useState([]);
+  // const plandetail = [
+  //   {
+  //     baseprice: 29,
+  //     price: 29,
+  //     into: 1,
+  //     duration: '1 Week',
+  //     notation: 'week'
+  //   },
+  //   {
+  //     baseprice: 29,
+  //     price: 70,
+  //     into: 4,
+  //     duration: '1 Month',
+  //     notation: 'Month'
+  //   },
+  //   {
+  //     baseprice: 29,
+  //     price: 170,
+  //     into: 12,
+  //     duration: '3 Months',
+  //     notation: 'Month'
+  //   },
+  //   {
+  //     baseprice: 29,
+  //     price: 300,
+  //     into: 24,
+  //     duration: '6 Months',
+  //     notation: 'Month'
+  //   }
+  // ]
+  const fetche = async () => {
+    try {
+      const responsee = await fetch(`${tournacenter.apiadress}/plan`, {
+        method: "GET"
+      });
+      const data = await responsee.json();
+      console.log("dataplan ", data);
+      if (responsee) {
+        setplandetail(data.plans)
+        setplanchoosed(data.plans[0])
+      }
+    } catch (error) {
 
-  const plandetail = [
-    {
-      baseprice: 29,
-      price: 29,
-      into: 1,
-      duration: '1 Week',
-      notation: 'week'
-    },
-    {
-      baseprice: 29,
-      price: 70,
-      into: 4,
-      duration: '1 Month',
-      notation: 'Month'
-    },
-    {
-      baseprice: 29,
-      price: 170,
-      into: 12,
-      duration: '3 Months',
-      notation: 'Month'
-    },
-    {
-      baseprice: 29,
-      price: 300,
-      into: 24,
-      duration: '6 Months',
-      notation: 'Month'
     }
-  ]
+  }
 
-  const [planchoosed, setplanchoosed] = useState(plandetail[0]);
+  const [planchoosed, setplanchoosed] = useState({
+        baseprice: 0,
+        price: 0,
+        into: 0,
+        duration: 'N/A',
+        notation: 'N/A'
+      });
 
   const baseprice = 29;
 
@@ -84,9 +105,9 @@ const Payment = () => {
       targetDate.setDate(currentDate.getDate() + 7);
     } else if (offset === '1 Month') {
       targetDate.setMonth(currentDate.getMonth() + 1);
-    } else if (offset === '3 Months') {
+    } else if (offset === '3 Month') {
       targetDate.setMonth(currentDate.getMonth() + 3);
-    } else if (offset === '6 Months') {
+    } else if (offset === '6 Month') {
       targetDate.setMonth(currentDate.getMonth() + 6);
     }
 
@@ -177,7 +198,7 @@ const Payment = () => {
           <h1>» Choose a Period</h1>
           <div className="cards">
             {
-              plandetail.map((val, ind) => {
+              plandetail && plandetail.map((val, ind) => {
 
                 return (
                   <div key={ind} className={ind == 0 ? 'card active' : 'card'} onClick={() => changeactive(ind)}>
@@ -212,7 +233,7 @@ const Payment = () => {
             <div className="paymentdetail">
               <form onSubmit={sub}>
                 <div className='initial'>
-                  <b><p>BattleFiesta - {planchoosed.duration} Plan</p></b>
+                  <b><p>BattleFiesta - {planchoosed.plan_name} Plan</p></b>
                   <span> <b>₹{planchoosed.price}.00</b></span>
                 </div>
                 <Divider variant="middle" />
@@ -257,8 +278,8 @@ const Payment = () => {
                         readOnly: (inp.coupon > 0 && true || couponerror && true), style: { textTransform: 'lowercase' }
                       }}
                       onChange={handleinput} size='small' id="outlined-basic" label="Enter a coupon code" value={inp.couponname} name='couponname' variant="outlined" />
-                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true|| couponerror && true} className='btn' sx={{ ml: 4 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
-                   {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2 }} variant="outlined">Reset</Button>} 
+                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true || couponerror && true} className='btn' sx={{ ml: 4 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
+                    {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2 }} variant="outlined">Reset</Button>}
                   </div>
                   {inp.coupon > 0 && <p className='cousuc'>Coupon code <b>{inp.couponname}</b> applied successfully, <b>{inp.coupon}% </b> off applied </p>}
                   {couponerror && <p style={{ color: 'red', fontSize: '14px', fontWeight: 500 }}>Coupon Code <b>{inp.couponname}</b> {couponerror}</p>}
@@ -272,7 +293,7 @@ const Payment = () => {
                   <Button className='btn' type='submit' sx={{ mt: 1 }} variant="contained">Proceed to Payment</Button>
                 </div>
               </form>
-              <Paymentmodal reset={reset} handleinput={handleinput} inp={inp} planchoosed={planchoosed} paymodalopen={paymodalopen} setpaymodalopen={setpaymodalopen} />
+              <Paymentmodal setinp={setinp} reset={reset} handleinput={handleinput} inp={inp} planchoosed={planchoosed} paymodalopen={paymodalopen} setpaymodalopen={setpaymodalopen} />
             </div>
 
           </div>

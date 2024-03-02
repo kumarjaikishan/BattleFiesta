@@ -154,7 +154,7 @@
         }
 
         .social {
-            height: min-content;
+            min-height: 340px;
             grid-column: span 5;
 
             .link {
@@ -200,15 +200,15 @@
 
         .membership {
             height: 340px;
-            grid-column: span 5;
+            grid-column: span 4;
 
             h2 {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
 
             p {
                 margin: 5px 0px;
-                line-height: 30px;
+                line-height: 26px;
 
                 & span:nth-child(1) {
                     display: inline-block;
@@ -231,17 +231,17 @@
 
                 .active {
                     color: rgb(1, 59, 1);
+                    background-color: rgba(52, 233, 52, 0.712);
                     text-transform: capitalize;
                     padding: 0px 25px;
                     border-radius: 50px;
-                    background-color: rgba(52, 233, 52, 0.712);
                 }
             }
         }
 
         .passchange {
             height: 340px;
-            grid-column: span 3;
+            grid-column: span 4;
 
             h2 {
                 margin-bottom: 20px;
