@@ -85,8 +85,8 @@ const Profile = () => {
                     profile: data.imgsrc
                 })
                 setmembership({
-                    plan: membere.plan_name,
-                    planprice: membere.price,
+                    plan: membere.planid.plan_name,
+                    planprice: membere.planid.price,
                     tournament: membere.tournament_no > 500 ? 'Unlimited':membere.tournament_no,
                     buydate: membere.buy_date,
                     expirydate: membere.expire_date,
