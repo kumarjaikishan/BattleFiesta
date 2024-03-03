@@ -125,6 +125,7 @@
 
         & span:nth-child(1) {
             width: 50px;
+            border: 1px solid red;
         }
 
         & span:nth-child(2) {

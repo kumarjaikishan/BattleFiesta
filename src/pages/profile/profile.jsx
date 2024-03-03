@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { motion } from 'framer-motion';
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
@@ -38,7 +39,7 @@ const Profile = () => {
         planprice: 'N/A',
         buydate: 'N/A',
         expirydate: 'N/A',
-        expire_in:'N/A',
+        expire_in: 'N/A',
         status: 'N/A',
         tournament: 'N/A'
     })
@@ -87,10 +88,10 @@ const Profile = () => {
                 setmembership({
                     plan: membere.planid.plan_name,
                     planprice: membere.planid.price,
-                    tournament: membere.tournament_no > 500 ? 'Unlimited':membere.tournament_no,
+                    tournament: membere.planid.create_limit > 500 ? 'Unlimited' : membere.planid.create_limit,
                     buydate: membere.buy_date,
                     expirydate: membere.expire_date,
-                    expire_in:getTimeDifference(membere.expire_date) ,
+                    expire_in: getTimeDifference(membere.expire_date),
                     status: 'active'
                 })
             }
@@ -196,13 +197,13 @@ const Profile = () => {
     function getTimeDifference(dateString) {
         const givenDate = new Date(dateString);
         const currentDate = new Date();
-      
+
         const differenceInMilliseconds = Math.abs(currentDate - givenDate);
         const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
         const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      
+
         return days;
-      }
+    }
 
     return (
         <div className="profile">
@@ -279,7 +280,7 @@ const Profile = () => {
                         <p><span> Tournament</span> <span>:</span> <span>{membership.tournament}</span> </p>
                         <p><span> Buy Date</span> <span>:</span> <span>{formatDate(membership.buydate)}</span> </p>
                         <p><span> Expiry Date</span> <span>:</span> <span>{formatDate(membership.expirydate)} </span> </p>
-                        <p><span> Expire In</span> <span>:</span> <span style={{color:membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
+                        <p><span> Expire In</span> <span>:</span> <span style={{ color: membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
                         <p><span> Status</span> <span>:</span> <span className='active'>{membership.status}</span> </p>
                         <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
                             Buy Membership
@@ -293,7 +294,7 @@ const Profile = () => {
                             className="half" id="outlined-basic" label="Email Address" variant="outlined" />
                         <p>A verification email will be sent to</p>
                         <p><b>kumar.jaikishan0@gmail.com</b></p>
-                        <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
+                        <Button disabled title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
                             Send Password Reset Link
                         </Button>
                     </div>

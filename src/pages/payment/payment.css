@@ -6,6 +6,8 @@
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    position: relative;
+
 
     .btn {
         background: var(--secondarycolor);
@@ -210,7 +212,8 @@
                         font-size: 1.1em;
                     }
                 }
-                .cousuc{
+
+                .cousuc {
                     color: green;
                     font-size: 12px;
                     font-weight: 500;
