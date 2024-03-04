@@ -84,12 +84,12 @@ const Payment = () => {
   }
 
   const [planchoosed, setplanchoosed] = useState({
-        baseprice: 0,
-        price: 0,
-        into: 0,
-        duration: 'N/A',
-        notation: 'N/A'
-      });
+    baseprice: 0,
+    price: 0,
+    into: 0,
+    duration: 'N/A',
+    notation: 'N/A'
+  });
 
   const baseprice = 29;
 
@@ -194,6 +194,7 @@ const Payment = () => {
   return (
     <>
       <div className="payment">
+        <svg className='svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,288L1440,128L1440,0L0,0Z"></path></svg>
         <div className="mater">
           <h1>» Choose a Period</h1>
           <div className="cards">
@@ -207,7 +208,7 @@ const Payment = () => {
                     <div className='not'> ₹{ind == 0 ? '.' : val.baseprice * val.into} </div>
                     <div className='price'>₹{val.price}.00</div>
                     <div className='des'>INR/{val.duration}</div>
-                    <div className="renew">Plan renews at ₹{val.price}.00/{val.duration} on {calculateDate(val.duration)}</div>
+                    <div className="renew">Plan renews at ₹{val.price}.00/{val.plan_name} on {calculateDate(val.duration)}</div>
                   </div>
                 )
               })

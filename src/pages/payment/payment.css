@@ -5,9 +5,14 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     position: relative;
 
+    .svg {
+        position: absolute;
+        z-index: 1;
+        fill: var(--secondarycolor);
+    }
 
     .btn {
         background: var(--secondarycolor);
@@ -18,13 +23,20 @@
     }
 
     .mater {
+        z-index: 2;
 
         h1 {
             color: var(--secondarycolor);
+            color: white;
             margin-top: 10px;
             font-weight: 700;
             letter-spacing: 1px;
+
+            &:nth-child(3) {
+                color: var(--secondarycolor);
+            }
         }
+
 
         .cards {
             width: 1000px;
@@ -43,9 +55,9 @@
                 border: 2px solid rgba(0, 0, 0, 0.1);
                 width: 230px;
                 padding: 20px 2px;
-                border-radius: 5px;
+                border-radius: 7px;
                 background: white;
-                box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+                box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.3);
 
 
                 .period {
@@ -85,8 +97,10 @@
                 span {
                     position: absolute;
                     transition: 0.3s;
+                    border: 1px solid white;
                     display: inline-block;
                     background: rgb(232, 228, 228);
+                    box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.3);
                     color: #212529;
                     font-size: 12px;
                     font-weight: 500;
@@ -105,7 +119,7 @@
 
             .card:hover {
                 transform: scale(1.05);
-                border: 2px solid green;
+                border: 2px solid var(--secondarycolor);
             }
 
             .card.active {
