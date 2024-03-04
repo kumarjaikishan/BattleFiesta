@@ -104,22 +104,34 @@ const Dashboard = () => {
     e.preventDefault();
     setload(true);
     const { name, organiser, slots, type } = inp;
+    const token = localStorage.getItem("token");
 
-    const url = `${tournacenter.apiadress}/addtournament`;
-    const method = 'POST';
-    const body = { name, type, slots, organiser };
-
-    const successAction = (data) => {
-      toast.success(data.msg, { autoClose: 1300 });
+    try {
+      const responsee = await fetch(`${tournacenter.apiadress}/addtournament`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(inp)
+      });
+      const res = await responsee.json();
+      // console.log(res);
+      if (!responsee || responsee.status == 429 || responsee.status == 400) {
+        setload(false);
+        // console.log("error wala");
+        return toast.warn(res.msg, { autoClose: 1700 })
+      }
+      toast.success(res.msg, { autoClose: 1300 })
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
       setload(false);
-    };
-
-    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-    await apiWrapper(url, method, body, successAction);
+    } catch (error) {
+      console.log(error);
+      toast.warn(res.msg, { autoClose: 1700 })
+      setload(false);
+    }
   }
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -140,6 +152,12 @@ const Dashboard = () => {
 
   const [howmany, sethowmany] = useState(10);
 
+  const [tournastatus, settournastatus] = useState('all');
+
+  const handleChangee = (event) => {
+    tournastatus(event.target.value);
+  };
+
   return (
     <>
       <motion.div
@@ -155,6 +173,21 @@ const Dashboard = () => {
           </div>
         </div>}
         <div className="controles">
+          <FormControl size="small" sx={{width:"120px", mr:2}}>
+            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={tournastatus}
+              label="Status"
+              onChange={handleChangee}
+            >
+              <MenuItem value={'all'}>All</MenuItem>
+              <MenuItem value={'upcoming'}>Upcoming</MenuItem>
+              <MenuItem value={'ongoing'}>Ongoing</MenuItem>
+              <MenuItem value={'completed'}>Completed</MenuItem>
+            </Select>
+          </FormControl>
           <LoadingButton
             loading={tournacenter.loading}
             onClick={() => dispatch(alltourna())}
@@ -162,6 +195,7 @@ const Dashboard = () => {
             endIcon={<RefreshIcon />}
             variant="contained"
             type="submit"
+            // size="small"
           >
             REFRESH
           </LoadingButton>
@@ -225,8 +259,8 @@ const Dashboard = () => {
           onClose={() => dispatch(setcreatenewmodal(false))}
         >
           <motion.div
-            initial={{  scale: 0.1 }}
-            animate={{  scale: 1 }}
+            initial={{ scale: 0.1 }}
+            animate={{ scale: 1 }}
             transition={{ duration: .5, delay: .2 }}
             className="dashboardbox">
             <header>Create Tournament</header>
@@ -262,7 +296,7 @@ const Dashboard = () => {
                   </Select>
                 </FormControl>
               </section>
-              <Stack spacing={2} direction="row" sx={{ mr: 2, mt:2 }}>
+              <Stack spacing={2} direction="row" sx={{ mr: 2, mt: 2 }}>
                 <LoadingButton
                   loading={load}
                   loadingPosition="start"

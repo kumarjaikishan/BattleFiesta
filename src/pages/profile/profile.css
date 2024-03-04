@@ -208,7 +208,7 @@
 
             p {
                 margin: 5px 0px;
-                line-height: 26px;
+                line-height: 25px;
 
                 & span:nth-child(1) {
                     display: inline-block;
@@ -228,13 +228,18 @@
                     font-weight: 600;
                     letter-spacing: 0.2px;
                 }
-
-                .active {
-                    color: rgb(1, 59, 1);
-                    background-color: rgba(52, 233, 52, 0.712);
+                .status{
                     text-transform: capitalize;
                     padding: 0px 25px;
                     border-radius: 50px;
+                }
+                .status.active {
+                    color: rgb(1, 59, 1);
+                    background-color: rgba(52, 233, 52, 0.712);   
+                }
+                .status.expire {
+                    color: rgb(182, 3, 3);
+                    background-color: rgba(182, 94, 67, 0.521);   
                 }
             }
         }
@@ -416,14 +421,6 @@
                         font-size: 16px;
                         font-weight: 600;
                         letter-spacing: 0.2px;
-                    }
-    
-                    .active {
-                        color: rgb(1, 59, 1);
-                        background-color: rgba(52, 233, 52, 0.712);
-                        text-transform: capitalize;
-                        padding: 0px 25px;
-                        border-radius: 50px;
                     }
                 }
             }

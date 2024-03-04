@@ -297,7 +297,7 @@
 @media only screen and (max-width: 600px) {
     .payment {
         min-height: calc(100vh - var(--navheightmobile));
-        padding: 10px 4px;
+        padding:0px 4px 10px 4px ;
 
         .btn {
             background: var(--secondarycolor);

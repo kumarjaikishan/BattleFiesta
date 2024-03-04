@@ -247,12 +247,13 @@ const Profile = () => {
                     <div> <h2>{inp.name}</h2></div>
                     <Button
                         component="label"
+                        sx={{mt:2}}
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
                         startIcon={<CloudUploadIcon />}
                     >
-                        Upload file
+                       Change Profile
                         <VisuallyHiddenInput onChange={handlefilechange} type="file" />
                     </Button>
                 </div>
@@ -281,7 +282,7 @@ const Profile = () => {
                         <p><span> Buy Date</span> <span>:</span> <span>{formatDate(membership.buydate)}</span> </p>
                         <p><span> Expiry Date</span> <span>:</span> <span>{formatDate(membership.expirydate)} </span> </p>
                         <p><span> Expire In</span> <span>:</span> <span style={{ color: membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
-                        <p><span> Status</span> <span>:</span> <span className='active'>{membership.status}</span> </p>
+                        <p><span> Status</span> <span>:</span> <span className={`status ${membership.status}`}>{membership.status}</span> </p>
                         <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
                             Buy Membership
                         </Button></NavLink>
