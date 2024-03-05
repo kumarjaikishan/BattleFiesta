@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import './membershiprequest.css'
 import { toast } from 'react-toastify';
 import Membermodal from "./membermodal";
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
+import swal from 'sweetalert';
 
 const Membershiprequest = () => {
    const tournacenter = useSelector((state) => state.tournacenter);
@@ -38,26 +39,40 @@ const Membershiprequest = () => {
       setinp(pre)
    }
    const Deletee = async (ide) => {
-      try {
-         const token = localStorage.getItem("token");
-         const responsee = await fetch(`${tournacenter.apiadress}/delmemberentry`, {
-            method: "POST",
-            headers: {
-               "Authorization": `Bearer ${token}`,
-               "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ ide })
-         });
-         const data = await responsee.json();
-         if (responsee.ok) {
-            feteche();
-            toast.success(data.msg, { autoClose: 1300 });
-            console.log(data);
-            setmemshiprequest(data.data)
+
+      swal({
+         title: 'Are you sure?',
+         text: 'Once deleted, you will not be able to recover this Tournament!',
+         icon: 'warning',
+         buttons: true,
+         dangerMode: true,
+      }).then(async (willDelete) => {
+         if (willDelete) {
+            try {
+               const token = localStorage.getItem("token");
+               const responsee = await fetch(`${tournacenter.apiadress}/delmemberentry`, {
+                  method: "POST",
+                  headers: {
+                     "Authorization": `Bearer ${token}`,
+                     "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ ide })
+               });
+               const data = await responsee.json();
+               if (responsee.ok) {
+                  feteche();
+                  toast.success(data.msg, { autoClose: 1300 });
+                  console.log(data);
+                  setmemshiprequest(data.data)
+               }
+            } catch (error) {
+               console.log(error);
+            }
+         } else {
+
          }
-      } catch (error) {
-         console.log(error);
-      }
+      });
+      
    }
    const container = {
       hidden: { opacity: 1, scale: 0 },

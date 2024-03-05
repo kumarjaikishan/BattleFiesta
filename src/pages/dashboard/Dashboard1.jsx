@@ -4,8 +4,7 @@ import "./dashboard1.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
-import apiWrapper from "../../store/apiWrapper";
-import tournlogo from '../../assets/pubg.webp'
+import tournlogo from '../../assets/logopng250.webp'
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'

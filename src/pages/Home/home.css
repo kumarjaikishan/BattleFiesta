@@ -79,10 +79,11 @@
             width: calc(100% - 620px);
             height: 100%;
             position: relative;
+            filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 1));
             /* border: 3px solid blue; */
 
             & img {
-                transform: translateY(10px);
+                transform: translateY(15px);
                 width: 100%;
             }
         }

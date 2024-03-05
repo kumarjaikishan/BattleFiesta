@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import './navbar.css';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import logo from '../../assets/home/logo.webp'
+// import logo from '../../assets/home/logo.webp'
+import logo from '../../assets/logopng250.webp'
 import { setcreatenewmodal } from '../../store/api';
 import Button from '@mui/material/Button';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';

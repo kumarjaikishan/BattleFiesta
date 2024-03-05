@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
 import './contactform.css'
 import Button from '@mui/material/Button';
 import Dialogbox from "../../utils/dialogbox";
 import { toast } from 'react-toastify';
+import { contactusform } from "../../../store/admin";
+import { motion } from 'framer-motion';
+import swal from 'sweetalert';
 
 const Contactform = () => {
+    const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const admin = useSelector((state) => state.admin);
     const [contactus, setcontactus] = useState(admin.contactusform);
@@ -32,7 +36,7 @@ const Contactform = () => {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({email,reply})
+                body: JSON.stringify({ email, reply })
             });
             const data = await responsee.json();
             console.log(data);
@@ -46,7 +50,44 @@ const Contactform = () => {
             console.log(error);
         }
     }
-    
+    const deletee = async (id) => {
+
+        swal({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this Tournament!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then(async (willDelete) => {
+            if (willDelete) {
+                try {
+                    const token = localStorage.getItem("token");
+                    const responsee = await fetch(`${tournacenter.apiadress}/contactusdelete`, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ id })
+                    });
+                    const data = await responsee.json();
+                    // console.log(data);
+                    if (responsee.ok) {
+                        dispatch(contactusform());
+                        toast.success(data.msg, { autoClose: 1300 });
+                    } else {
+                        toast.warn(data.msg, { autoClose: 1500 });
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+
+            }
+        });
+        
+    }
+
     return <>
         <div className="contactform">
             <div className="all">
@@ -57,18 +98,18 @@ const Contactform = () => {
                     <span>Message</span>
                     <span>Actions</span>
                 </div>
-                <div className="body">
-                    {contactus && contactus.map((val, ind) => {
-                        return <div key={ind}>
+                <motion.div layout className="body">
+                    {admin.contactusform && admin.contactusform.map((val, ind) => {
+                        return <motion.div layout key={ind}>
                             <span>{ind + 1}</span>
                             <span>{val.name}</span>
                             <span>{val.email}</span>
                             <span>{val.message}</span>
                             <span><i className="fa fa-pencil" onClick={() => openmodale(val.email)} aria-hidden="true"></i>
-                                <i className="fa fa-trash" aria-hidden="true"></i></span>
-                        </div>
+                                <i className="fa fa-trash" onClick={() => deletee(val._id)} aria-hidden="true"></i></span>
+                        </motion.div>
                     })}
-                </div>
+                </motion.div>
                 <Dialogbox
                     className="modale"
                     open={openmodal}

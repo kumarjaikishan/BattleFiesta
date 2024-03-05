@@ -12,7 +12,7 @@ export const memshipentry = createAsyncThunk("memshipentry", async () => {
             },
         });
         const data = await responsee.json();
-        console.log('api membership entry', data);
+        // console.log('api membership entry', data);
         return data;
     } catch (error) {
         console.log(error);

@@ -1,6 +1,6 @@
 import React from 'react';
 import './footbar.css';
-import logo from '../../assets/home/logo.webp'
+import logo from '../../assets/logopng250.webp'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { NavLink } from 'react-router-dom';
