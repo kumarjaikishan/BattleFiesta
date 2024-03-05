@@ -9,7 +9,7 @@ import Select from '@mui/material/Select';
 import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 
-const Membermodal = ({feteche, setinp, inp, membermodal, setmembermodal }) => {
+const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
     const [other, setother] = useState({
         remarks: "",
         buydate: new Date(),
@@ -24,13 +24,14 @@ const Membermodal = ({feteche, setinp, inp, membermodal, setmembermodal }) => {
         setinp({ ...inp, [naam]: e.target.value })
     };
     const tournacenter = useSelector((state) => state.tournacenter);
-    const handlee = async (e,id) => {
+
+    const handlee = async (e, id) => {
         e.preventDefault();
         let remarks = other.remarks;
-        let flag =other.status;
+        let flag = other.status;
 
-        // console.log(id);
-        
+        console.log(id);
+
         try {
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${tournacenter.apiadress}/createmembership`, {
@@ -39,7 +40,7 @@ const Membermodal = ({feteche, setinp, inp, membermodal, setmembermodal }) => {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({remarks,id,flag})
+                body: JSON.stringify({ remarks, id, flag })
             });
             const data = await responsee.json();
             console.log(data);
@@ -62,9 +63,9 @@ const Membermodal = ({feteche, setinp, inp, membermodal, setmembermodal }) => {
                 onClose={() => setmembermodal(false)}
             >
                 <div className="membermodal">
-                    <form onSubmit={(e)=>handlee(e,inp._id)}>
+                    <form onSubmit={(e) => handlee(e, inp._id)}>
                         <h2>Create Membership</h2>
-                        
+
                         <div>
                             <FormControl sx={{ width: '48%' }} size="small">
                                 <InputLabel id="demo-simple-select-label">Status</InputLabel>
