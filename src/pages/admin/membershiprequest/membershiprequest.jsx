@@ -6,11 +6,13 @@ import Membermodal from "./membermodal";
 import { motion, useInView, useAnimation } from 'framer-motion';
 
 const Membershiprequest = () => {
-   useEffect(() => {
-      feteche();
-   }, [])
    const tournacenter = useSelector((state) => state.tournacenter);
-   const [memshiprequest, setmemshiprequest] = useState([]);
+   const admin = useSelector((state) => state.admin);
+   const [memshiprequest, setmemshiprequest] = useState(admin.membershipentry);
+   useEffect(() => {
+      console.log(admin);
+      // feteche();
+   }, [])
    const feteche = async () => {
       try {
          const token = localStorage.getItem("token");
@@ -111,7 +113,7 @@ const Membershiprequest = () => {
                })}
             </tbody>
          </table> */}
-         <div><h2 style={{textAlign:'center'}}>Membership Appliciations</h2></div>
+         <div><h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2></div>
          <div className="header">
             <span>S.NO</span>
             <span>Name</span>
@@ -140,8 +142,8 @@ const Membershiprequest = () => {
                   <span>{val.coupon ? val.coupon : "-"}</span>
                   <span>{val.finalpricepaid}</span>
                   <span>{formattedDate}</span>
-                  <span title={val.status == 'success' ? val.membershipId:""}>{val.txn_no}</span>
-                  <span className={`status ${val.status}`} title={val.status == 'rejected' ? val.remarks:''}>{val.status}</span>
+                  <span title={val.status == 'success' ? val.membershipId : ""}>{val.txn_no}</span>
+                  <span className={`status ${val.status}`} title={val.status == 'rejected' ? val.remarks : ''}>{val.status}</span>
                   <span><i className="fa fa-pencil" onClick={() => actione(val)} aria-hidden="true"></i>
                      <i className="fa fa-trash" onClick={() => Deletee(val._id)} aria-hidden="true"></i></span>
                </motion.div>

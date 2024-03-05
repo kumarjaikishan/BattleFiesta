@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { motion } from 'framer-motion';
+import { profilefetch } from '../../store/profile'
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
@@ -21,12 +22,16 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const Profile = () => {
     const tournacenter = useSelector((state) => state.tournacenter);
+    const userprofile = useSelector((state) => state.userprofile);
+    const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
     const init = {
         name: '',
         username: '',
         email: '',
         phone: '',
+        city: '',
+        state: '',
         bio: '',
         publicemail: '',
         publicphone: '',
@@ -44,7 +49,7 @@ const Profile = () => {
         tournament: 'N/A'
     })
     useEffect(() => {
-        fetche();
+        userprofile.userprofile && fetche();
     }, [])
 
     const VisuallyHiddenInput = styled('input')({
@@ -60,44 +65,31 @@ const Profile = () => {
     });
 
     const fetche = async () => {
-        const token = localStorage.getItem("token");
-        try {
-            const res = await fetch(`${tournacenter.apiadress}/profile`, {
-                method: "GET",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                }
-            })
-            let alldata = await res.json();
-            let data = alldata.data;
-            let membere = alldata.member
-            if (res.ok) {
-                console.log(alldata);
-                setinp({
-                    ...inp,
-                    name: data.name,
-                    username: data.username,
-                    email: data.email,
-                    phone: data.phone,
-                    bio: data.bio,
-                    publicemail: data.publicemail,
-                    publicphone: data.publicphone,
-                    sociallinks: data.sociallinks,
-                    profile: data.imgsrc
-                })
-                setmembership({
-                    plan: membere.planid.plan_name,
-                    planprice: membere.planid.price,
-                    tournament: membere.planid.create_limit > 500 ? 'Unlimited' : membere.planid.create_limit,
-                    buydate: membere.buy_date,
-                    expirydate: membere.expire_date,
-                    expire_in: getTimeDifference(membere.expire_date),
-                    status: 'active'
-                })
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        let data = userprofile.userprofile;
+        let membere = userprofile.membership
+        setinp({
+            ...inp,
+            name: data.name,
+            username: data.username,
+            email: data.email,
+            phone: data.phone,
+            city: data.city,
+            state: data.state,
+            bio: data.bio,
+            publicemail: data.publicemail,
+            publicphone: data.publicphone,
+            sociallinks: data.sociallinks,
+            profile: data.imgsrc
+        })
+        setmembership({
+            plan: membere.planid.plan_name,
+            planprice: membere.planid.price,
+            tournament: membere.planid.create_limit > 500 ? 'Unlimited' : membere.planid.create_limit,
+            buydate: membere.buy_date,
+            expirydate: membere.expire_date,
+            expire_in: getTimeDifference(membere.expire_date),
+            status: 'active'
+        })
     }
     const newlink = () => {
         let newe = {
@@ -134,8 +126,10 @@ const Profile = () => {
         const value = e.target.value;
         setinp({ ...inp, [naam]: value });
     }
+    const [isloadinge, setisloadinge] = useState(false);
     const submit = async (e) => {
         e.preventDefault();
+        setisloadinge(true)
         // console.log(inp);
         const id = toast.loading("Please wait...")
         try {
@@ -150,12 +144,16 @@ const Profile = () => {
             })
             const data = await res.json();
             if (res.ok) {
+
+                dispatch(profilefetch());
                 toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
                 // console.log(data);
             }
+            setisloadinge(false)
         } catch (error) {
             toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
             console.log(error);
+            setisloadinge(false)
         }
     }
     const handlefilechange = async (event) => {
@@ -223,7 +221,7 @@ const Profile = () => {
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
                 className="circle circle2"></motion.div>
-            <div className="menu">
+            {/* <div className="menu">
                 <div>
                     <i className="fa fa-user-o" aria-hidden="true"></i>
                     <span>Profile</span>
@@ -232,11 +230,7 @@ const Profile = () => {
                     <i className="fa fa-credit-card" aria-hidden="true"></i>
                     <span>Membership</span>
                 </div>
-                <div>
-                    <i className="fa fa-superpowers" aria-hidden="true"></i>
-                    <span>Profile</span>
-                </div>
-            </div>
+            </div> */}
             <div className="materials">
                 <div className="profilepic glass">
                     <h2>Profile Picture</h2>
@@ -247,13 +241,14 @@ const Profile = () => {
                     <div> <h2>{inp.name}</h2></div>
                     <Button
                         component="label"
-                        sx={{mt:2}}
+                        sx={{ mt: 2 }}
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
                         startIcon={<CloudUploadIcon />}
+                        className='splbtn'
                     >
-                       Change Profile
+                        Change Profile
                         <VisuallyHiddenInput onChange={handlefilechange} type="file" />
                     </Button>
                 </div>
@@ -261,16 +256,18 @@ const Profile = () => {
                     <h2>Profile</h2>
                     <form onSubmit={submit}>
                         <div className="input">
-                            <TextField onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
-                            <TextField onChange={handlechangee} name='username' value={inp.username} className="half" id="outlined-basic" label="UserName" variant="outlined" />
-                            <TextField contentEditable={false} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
-                            <TextField onChange={handlechangee} name='phone'
+                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half" id="outlined-basic" label="UserName" variant="outlined" />
+                            <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='phone'
                                 value={inp.phone} type='tel'
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                 className="half" id="outlined-basic" label="Phone" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half" id="outlined-basic" label="City" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half" id="outlined-basic" label="State" variant="outlined" />
                             <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" id="outlined-basic" label="Bio" variant="outlined" />
                         </div>
-                        <button type='submit'>Save</button>
+                        <button disabled={isloadinge} type='submit'>Save</button>
                     </form>
                 </div>
                 <div className="membership glass">
@@ -313,7 +310,7 @@ const Profile = () => {
                             helperText="This phone number will be visible on your profile page"
                             label="Public Phone" variant="outlined" />
                     </div>
-                    <button onClick={submit}>Save</button>
+                    <button disabled={isloadinge} onClick={submit}>Save</button>
                 </div>
                 <div className="social glass">
                     <h2>Social Links</h2>
@@ -356,7 +353,7 @@ const Profile = () => {
                                 Add
                             </Button>
                         </div>
-                        <button type='submit'>Save</button>
+                        <button disabled={isloadinge} type='submit'>Save</button>
                     </form>
                 </div>
             </div>

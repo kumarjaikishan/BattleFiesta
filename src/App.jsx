@@ -25,18 +25,23 @@ import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
-import Admindashboard from './pages/admin/admindashboard/admindashboard';
-import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
+import Adminnavbar from './pages/admin/adminnavbar';
+import { memshipentry,contactusform } from './store/admin';
+// import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
 
 function App() {
   const dispatch = useDispatch();
+  const log = useSelector((state) => state.login);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     // token && dispatch(userdata());
   }, [])
+  useEffect(() => {
+    log.isadmin && dispatch(memshipentry());
+    log.isadmin && dispatch(contactusform());
+  }, [log.isadmin])
 
-  const log = useSelector((state) => state.login);
 
   // autocolse sidebar when screensize below 600px
   const sidebarclose = () => {
@@ -51,19 +56,20 @@ function App() {
       <ToastContainer closeOnClick={true} pauseOnFocusLoss={true} />
       <div className="App" >
         <Navbar />
-        <div className={log.loader ? 'main loader': 'main'} onClick={sidebarclose}>
+        <div className={log.loader ? 'main loader' : 'main'} onClick={sidebarclose}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/setting" element={<Tournasetting />} />
-            <Route path="/tournaments" >
+            <Route path="/tournaments"  >
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
-            <Route path="/admin" >
+            <Route path="/admin" element={<Adminnavbar />} />
+            {/* <Route path="/admin" >
               <Route index element={<Admindashboard />} />
               <Route path="members" element={<Membershiprequest />} />
-            </Route>
+            </Route> */}
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/stat/:tid" element={<Stats />} />
             <Route path="/profile" element={<Profile />} />

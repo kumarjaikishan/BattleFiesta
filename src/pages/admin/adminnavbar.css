@@ -1,0 +1,40 @@
+.Adminnavbar {
+    width: 100%;
+    min-height: calc(100vh - var(--navheight));
+    background: white;
+
+    .navbar {
+        width: 900px;
+        width: 100%;
+        height: 50px;
+        /* border: 1px solid red; */
+        box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+
+        div {
+            margin: 0px 10px;
+            /* background: #0ba8c0; */
+            cursor: pointer;
+            padding: 5px 12px;
+            letter-spacing: 0.7px;
+            border-radius: 10px;
+
+            span {
+                margin-left: 7px;
+                font-weight: 500;
+            }
+
+            i {
+                font-weight: 700;
+            }
+        }
+
+        div.active {
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.3));
+            color: #0ba8c0;
+        }
+    }
+}

@@ -92,6 +92,7 @@
         text-transform: capitalize;
         letter-spacing: 0.5px;
         display: flex;
+        justify-content: space-around;
         font-weight: 700;
         border-radius: 10px;
         margin-bottom: 10px;
@@ -107,7 +108,9 @@
             border: 0.5px solid rgb(205, 202, 202);
             border: 0.5px solid rgb(4, 86, 145);
             margin: 10px 0px;
-            padding: 4px 0px;
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0px;
             background: #ecf0f3;
             box-shadow: 0 0 10px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
         }
@@ -120,12 +123,12 @@
         & span {
             display: inline-block;
             text-align: center;
-            padding: 5px 0px;
+            padding: 2px 0px;
         }
 
         & span:nth-child(1) {
             width: 50px;
-            border: 1px solid red;
+            /* border: 1px solid red; */
         }
 
         & span:nth-child(2) {
@@ -189,25 +192,25 @@
     }
 
     .status.pending {
-        background: rgba(199, 144, 41, 0.704);
+        background: rgba(240, 179, 65, 0.704);
         color: rgb(86, 56, 2);
     }
 
     .status.success {
         color: rgb(1, 59, 1);
-        background-color: rgba(59, 181, 59, 0.648);
+        background-color: rgba(94, 230, 94, 0.648);
     }
 
     .status.rejected {
         color: rgb(84, 5, 5);
-        background: rgba(195, 64, 64, 0.768);
+        background: rgba(239, 107, 107, 0.768);
     }
 
 }
 
 .membermodal {
     width: 600px;
-    height: 400px;
+    height: 200px;
     border-radius: 10px;
     background: white;
     padding: 10px;

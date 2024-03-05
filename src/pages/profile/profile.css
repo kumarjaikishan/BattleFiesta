@@ -108,12 +108,12 @@
             justify-content: space-between;
 
             .half {
-                margin-top: 20px;
+                margin-top: 15px;
                 width: 49%;
             }
 
             .full {
-                margin-top: 20px;
+                margin-top: 15px;
                 width: 100%;
             }
         }

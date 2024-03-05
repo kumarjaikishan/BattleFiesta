@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 const Payment = () => {
   const tournacenter = useSelector((state) => state.tournacenter);
+  const userprofile = useSelector((state) => state.userprofile);
   const top100Films = [
     { label: 'The Shawshank Redemption', year: 1994 },
     { label: 'The Godfather', year: 1972 },
@@ -36,37 +37,18 @@ const Payment = () => {
   useEffect(() => {
     fetche();
   }, []);
+  useEffect(() => {
+    setprofile();
+  }, []);
+  const setprofile= ()=>{
+    setinp({
+      ...inp,fullname:userprofile.userprofile.name ,
+      phone:userprofile.userprofile.phone , email:userprofile.userprofile.email,
+      city:userprofile.userprofile.city
+    })
+  }
   const [plandetail, setplandetail] = useState([]);
-  // const plandetail = [
-  //   {
-  //     baseprice: 29,
-  //     price: 29,
-  //     into: 1,
-  //     duration: '1 Week',
-  //     notation: 'week'
-  //   },
-  //   {
-  //     baseprice: 29,
-  //     price: 70,
-  //     into: 4,
-  //     duration: '1 Month',
-  //     notation: 'Month'
-  //   },
-  //   {
-  //     baseprice: 29,
-  //     price: 170,
-  //     into: 12,
-  //     duration: '3 Months',
-  //     notation: 'Month'
-  //   },
-  //   {
-  //     baseprice: 29,
-  //     price: 300,
-  //     into: 24,
-  //     duration: '6 Months',
-  //     notation: 'Month'
-  //   }
-  // ]
+
   const fetche = async () => {
     try {
       const responsee = await fetch(`${tournacenter.apiadress}/plan`, {
@@ -194,7 +176,7 @@ const Payment = () => {
   return (
     <>
       <div className="payment">
-        <svg className='svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,288L1440,128L1440,0L0,0Z"></path></svg>
+        <svg className='svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path  d="M0,288L1440,128L1440,0L0,0Z"></path></svg>
         {/* <svg className='svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,224L60,197.3C120,171,240,117,360,112C480,107,600,149,720,154.7C840,160,960,128,1080,101.3C1200,75,1320,53,1380,42.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg> */}
         <div className="mater">
           <h1>» Choose a Period</h1>

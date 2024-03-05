@@ -5,10 +5,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { setloader, setlogin,setuser } from '../../store/login';
+import { setloader, setlogin,setadmin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { alltourna } from '../../store/api'
+import { profilefetch } from '../../store/profile'
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 
@@ -57,13 +58,14 @@ const Signin = () => {
             const data = await res.json();
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
-                // console.log(data);
+                console.log(data);
                 toast.success(data.msg, { autoClose: 1300 });
                 setbtnclick(false);
                 dispatch(setloader(true));
-                dispatch(setuser(data.userdata));
+                dispatch(setadmin(data.isadmin));
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
+                dispatch(profilefetch());
                 return navigate('/dashboard');
             }
             else if (res.ok && res.status == 201) {

@@ -155,8 +155,22 @@ const Dashboard = () => {
   const [tournastatus, settournastatus] = useState('all');
 
   const handleChangee = (event) => {
-    tournastatus(event.target.value);
+    settournastatus(event.target.value);
   };
+  const [filtered, setfiltered] = useState(tournacenter.alltournaments);
+  const Funck = () => {
+    let fgg = tournacenter.alltournaments.filter((val, ind) => {
+      if (tournastatus != 'all') {
+        return val.status == tournastatus;
+      }
+      return val
+    })
+    // console.log(fgg);
+    setfiltered(fgg)
+  }
+  useEffect(() => {
+    Funck();
+  }, [tournastatus])
 
   return (
     <>
@@ -173,7 +187,7 @@ const Dashboard = () => {
           </div>
         </div>}
         <div className="controles">
-          <FormControl size="small" sx={{width:"120px", mr:2}}>
+          <FormControl size="small" sx={{ width: "120px", mr: 2 }}>
             <InputLabel id="demo-simple-select-label">Status</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -195,14 +209,14 @@ const Dashboard = () => {
             endIcon={<RefreshIcon />}
             variant="contained"
             type="submit"
-            // size="small"
+          // size="small"
           >
             REFRESH
           </LoadingButton>
         </div>
         <motion.div layout className="cards">
-          {tournacenter.alltournaments &&
-            tournacenter.alltournaments.slice(0, howmany).map((val) => {
+          {filtered &&
+            filtered.slice(0, howmany).map((val) => {
               // Format the date
               const formattedDate = new Date(val.createdAt).toLocaleDateString(
                 "en-US",
