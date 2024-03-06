@@ -1,0 +1,52 @@
+.voucherpage {
+    width: 100%;
+    padding: 10px 5px;
+
+    .conta {
+        width: 100%;
+        height: 45px;
+
+        i {
+            border-radius: 10px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.8em;
+            color: white;
+            background: rgb(4, 92, 126);
+            line-height: 40px;
+        }
+    }
+
+    .cards {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .card {
+            width: 220px;
+            padding: 5px 10px;
+            border-radius: 10px;
+            height: 130px;
+            border: 1px solid red;
+
+            div {
+
+                & span:nth-child(1) {
+                    width: 80px;
+                    display: inline-block;
+                    font-weight: 500;
+                }
+
+                i {
+                    margin-top: 10px;
+                    margin-left: 20px;
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+}

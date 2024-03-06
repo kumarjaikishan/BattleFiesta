@@ -66,18 +66,18 @@
                 }
 
                 .status.pending {
-                    background: rgba(199, 144, 41, 0.704);
+                    background: rgba(210, 164, 78, 0.704);
                     color: rgb(86, 56, 2);
                 }
 
                 .status.success {
                     color: rgb(1, 59, 1);
-                    background-color: rgba(59, 181, 59, 0.648);
+                    background-color: rgba(99, 218, 99, 0.586);
                 }
 
                 .status.rejected {
                     color: rgb(84, 5, 5);
-                    background: rgba(195, 64, 64, 0.768);
+                    background: rgba(220, 101, 101, 0.678);
                 }
             }
 

@@ -2,11 +2,7 @@ import React, { useEffect } from 'react'
 import './navbar.css';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import logo from '../../assets/home/logo.webp'
 import logo from '../../assets/logopng250.webp'
-import { setcreatenewmodal } from '../../store/api';
-import Button from '@mui/material/Button';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -31,9 +27,6 @@ const Navbar = () => {
               {log.islogin && log.isadmin && <NavLink className="navlink" to='/admin'><li>Admin</li></NavLink>}
               <NavLink className="navlink" to='/tournaments'><li>Find Tournament</li></NavLink>
               <NavLink className="navlink" to='/logout'><li>Logout</li></NavLink>
-              {log.islogin && log.head == "Dashboard" && <Button className='btna' onClick={() => dispatch(setcreatenewmodal(true))} title='Create New Tournament' variant="contained" endIcon={<SportsEsportsIcon />}>
-                New
-              </Button>}
             </ul>
           </nav>
         </header>

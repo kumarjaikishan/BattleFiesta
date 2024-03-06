@@ -237,7 +237,7 @@ const Home = () => {
                         animate={control1}
                         className="left">
                         <div className="img">
-                            <img src={createform} alt="" />
+                            <img loading='lazy' src={createform} alt="" />
                         </div>
                     </motion.div>
                     <motion.div
@@ -277,7 +277,7 @@ const Home = () => {
                         animate={control2}
                         className="left">
                         <div className="img">
-                            <img src={enterresult} alt="" />
+                            <img loading='lazy' src={enterresult} alt="" />
                         </div>
                     </motion.div>
                 </section>
@@ -290,7 +290,7 @@ const Home = () => {
                         animate={control3}
                         className="left">
                         <div className="img">
-                            <img src={registerform} alt="" />
+                            <img loading='lazy' src={registerform} alt="" />
                         </div>
                     </motion.div>
                     <motion.div
@@ -334,7 +334,7 @@ const Home = () => {
                         animate={control4}
                         className="left">
                         <div className="img">
-                            <img src={registerform} alt="" />
+                            <img loading='lazy' src={registerform} alt="" />
                         </div>
                     </motion.div>
                 </section>

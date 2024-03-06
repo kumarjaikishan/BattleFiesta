@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
 import './contactform.css'
@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
 import { motion } from 'framer-motion';
 import swal from 'sweetalert';
+import SaveIcon from '@mui/icons-material/Save';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const Contactform = () => {
     const dispatch = useDispatch();
@@ -17,18 +19,26 @@ const Contactform = () => {
     const [openmodal, setopenmodal] = useState(false);
     const [reply, setreply] = useState('');
     const [email, setemail] = useState('');
+    const [contactid, setcontactid] = useState('');
+
+    useEffect(()=>{
+    // console.log(admin.contactusform);
+    },[])
 
     const handleChange = (e) => {
         setreply(e.target.value);
     }
-    const openmodale = (email) => {
+    const openmodale = (email,id) => {
         setopenmodal(true);
         setemail(email)
+        setcontactid(id)
     }
+    const [isload, setisload] = useState(false);
     const handlee = async (e) => {
         e.preventDefault();
         // console.log(email,reply);
         try {
+            setisload(true);
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${tournacenter.apiadress}/emailreply`, {
                 method: "POST",
@@ -36,22 +46,24 @@ const Contactform = () => {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ email, reply })
+                body: JSON.stringify({ contactid,email, reply })
             });
             const data = await responsee.json();
             console.log(data);
             if (responsee.ok) {
                 toast.success(data.msg, { autoClose: 1300 });
                 setopenmodal(false);
+                dispatch(contactusform());
             } else {
                 toast.warn(data.msg, { autoClose: 1500 });
             }
+            setisload(false);
         } catch (error) {
+            setisload(false);
             console.log(error);
         }
     }
     const deletee = async (id) => {
-
         swal({
             title: 'Are you sure?',
             text: 'Once deleted, you will not be able to recover this Tournament!',
@@ -85,7 +97,7 @@ const Contactform = () => {
 
             }
         });
-        
+
     }
 
     return <>
@@ -96,6 +108,7 @@ const Contactform = () => {
                     <span>Name</span>
                     <span>Email</span>
                     <span>Message</span>
+                    <span>Resolve</span>
                     <span>Actions</span>
                 </div>
                 <motion.div layout className="body">
@@ -105,7 +118,8 @@ const Contactform = () => {
                             <span>{val.name}</span>
                             <span>{val.email}</span>
                             <span>{val.message}</span>
-                            <span><i className="fa fa-pencil" onClick={() => openmodale(val.email)} aria-hidden="true"></i>
+                            <span className={val.resolve ?  `status done`: 'status pending'} title={val.resolve ? val.resolvemsg:''}>{val.resolve ? "Resolved" : "Pending"}</span>
+                            <span><i className="fa fa-pencil" onClick={() => openmodale(val.email,val._id)} aria-hidden="true"></i>
                                 <i className="fa fa-trash" onClick={() => deletee(val._id)} aria-hidden="true"></i></span>
                         </motion.div>
                     })}
@@ -123,7 +137,15 @@ const Contactform = () => {
                             <TextField autoFocus multiline rows={4} onChange={handleChange} value={reply} sx={{ width: '98%' }} label="Reply" size="small" />
 
                             <div>
-                                <Button size="small" type="submit" variant="contained"> Submit</Button>
+                                <LoadingButton
+                                    loading={isload}
+                                    loadingPosition="start"
+                                    startIcon={<SaveIcon />}
+                                    variant="contained"
+                                    type="submit"
+                                >
+                                    Send Email
+                                </LoadingButton>
                                 <Button size="small" onClick={() => setopenmodal(false)} variant="outlined"> cancel</Button>
                             </div>
                         </form>

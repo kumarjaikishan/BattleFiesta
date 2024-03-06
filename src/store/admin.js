@@ -24,7 +24,7 @@ export const memshipentry = createAsyncThunk("memshipentry", async () => {
 export const contactusform = createAsyncThunk("contactusform", async () => {
     const token = localStorage.getItem("token");
     try {
-         // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
+        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
         const res = await fetch(`http://localhost:5000/contactformlist`, {
             method: "GET",
             headers: {
@@ -39,12 +39,33 @@ export const contactusform = createAsyncThunk("contactusform", async () => {
     }
 });
 
+// third API call
+export const voucher = createAsyncThunk("voucher", async () => {
+    const token = localStorage.getItem("token");
+    try {
+        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
+        const res = await fetch(`http://localhost:5000/getvoucher`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            }
+        })
+        const voucher = await res.json();
+        // console.log(voucher);
+        return voucher;
+    } catch (error) {
+        console.log(error);
+        throw Error("Failed to fetch membership data");
+    }
+});
+
 
 const admin = createSlice({
     name: "userprofile",
     initialState: {
         membershipentry: [],
         contactusform: [],
+        voucher: [],
         loading: false,
         error: null,
     },
@@ -76,6 +97,17 @@ const admin = createSlice({
             .addCase(contactusform.fulfilled, (state, action) => {
                 state.loading = false;
                 state.contactusform = action.payload.data;
+            })
+            .addCase(voucher.pending, (state,) => {
+                state.loading = true;
+            })
+            .addCase(voucher.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(voucher.fulfilled, (state, action) => {
+                state.loading = false;
+                state.voucher = action.payload.data;
             })
     }
 });

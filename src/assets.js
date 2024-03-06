@@ -1,0 +1,1 @@
+export const logo = 'https://your-cloudinary-url.com/image.jpg';
