@@ -1,7 +1,7 @@
 .payment {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
-    background: #fafbff;
+    background: #ececf0;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -57,7 +57,7 @@
                 padding: 20px 2px;
                 border-radius: 7px;
                 background: white;
-                box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.3);
+                box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
 
 
                 .period {
@@ -155,7 +155,7 @@
                     border-radius: 5px;
                     justify-content: space-between;
                     background: white;
-                    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.1);
 
                     & span:nth-child(1) {
                         font-weight: 700;
@@ -193,7 +193,7 @@
                 border-radius: 10px;
                 padding: 10px;
                 background: white;
-                box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+                box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
 
                 .half {
                     width: 100%;

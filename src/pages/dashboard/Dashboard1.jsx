@@ -208,7 +208,7 @@ const Dashboard = () => {
     const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
     return days;
-}
+  }
 
   return (
     <>
@@ -241,27 +241,27 @@ const Dashboard = () => {
           </div>
           <div className="card">
             <div>
-              <span>Plan</span> <span>:</span><span>{userprofile.membership.planid.plan_name}</span>
+              <span>Plan</span> <span>:</span><span>{userprofile.membership.planid.plan_name ? userprofile.membership.planid.plan_name:'N/A'}</span>
             </div>
             <div>
-              <span>Tournament Limit</span> <span>:</span><span>{userprofile.membership.planid.create_limit}</span>
+              <span>Tournament Limit</span> <span>:</span><span>{userprofile.membership.planid.create_limit ? userprofile.membership.planid.create_limit: 0}</span>
             </div>
             <div>
-              <span>Expire In</span> <span>:</span><span>{getTimeDifference(userprofile.membership.expire_date)} Days</span>
+              <span>Expire In</span> <span>:</span><span>{userprofile.membership.expire_date ? getTimeDifference(userprofile.membership.expire_date):'N/A'} Days</span>
             </div>
             <div>
               <span>Completed</span> <span>:</span><span>{count.completed}</span>
             </div>
           </div>
           <div className="operator">
-          <div style={{display:'flex', justifyContent:'space-between'}}>
-              <Button endIcon={<SportsEsportsIcon />} title="Create New Tournament" 
-              onClick={() => dispatch(setcreatenewmodal(true))} sx={{width:'48%'}} variant="contained">New</Button>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button endIcon={<SportsEsportsIcon />} title="Create New Tournament"
+                onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button>
               <LoadingButton
                 loading={tournacenter.loading}
                 onClick={() => dispatch(alltourna())}
                 loadingPosition="end"
-                sx={{width:'48%'}}
+                sx={{ width: '48%' }}
                 endIcon={<RefreshIcon />}
                 variant="outlined"
                 type="submit"
@@ -314,7 +314,7 @@ const Dashboard = () => {
                 <motion.div layout variants={item} className="card" key={val._id}>
                   <div className="img">
                     <img
-                    loading="lazy"
+                      loading="lazy"
                       src={val.tournment_logo ? val.tournment_logo : tournlogo}
                       alt="logo"
                     />

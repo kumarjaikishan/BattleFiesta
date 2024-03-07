@@ -50,7 +50,8 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
-    }, [])
+     }, [])
+
 
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
@@ -159,7 +160,7 @@ const Profile = () => {
     const handlefilechange = async (event) => {
         const imageFile = event.target.files[0];
 
-        let resizedfile = await handleImage(500, imageFile);
+        let resizedfile = await handleImage(200, imageFile);
         console.log(resizedfile);
 
         if (resizedfile) {
@@ -249,7 +250,7 @@ const Profile = () => {
                         className='splbtn'
                     >
                         Change Profile
-                        <VisuallyHiddenInput onChange={handlefilechange} type="file" />
+                        <VisuallyHiddenInput onChange={handlefilechange} type="file" accept="image/*" />
                     </Button>
                 </div>
                 <div className="profiledeatil glass">

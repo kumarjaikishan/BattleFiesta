@@ -26,7 +26,7 @@ import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
 import Adminnavbar from './pages/admin/adminnavbar';
-import { memshipentry,contactusform,voucher } from './store/admin';
+import { memshipentry,contactusform,voucher,membership } from './store/admin';
 // import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
     log.isadmin && dispatch(memshipentry());
     log.isadmin && dispatch(contactusform());
     log.isadmin && dispatch(voucher());
+    log.isadmin && dispatch(membership());
   }, [log.isadmin])
 
 

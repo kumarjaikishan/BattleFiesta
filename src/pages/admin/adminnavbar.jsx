@@ -7,6 +7,7 @@ import Membershiprequest from "./membershiprequest/membershiprequest";
 import Admindashboard from "./dashboard/dashboard";
 import Contactform from "./contactform/contactform";
 import Voucher from "./voucher/voucher";
+import Membership from "./membership/membership";
 
 const Adminnavbar = () => {
     useEffect(() => {
@@ -62,11 +63,16 @@ const Adminnavbar = () => {
                     <i className="fa fa-credit-card" aria-hidden="true"></i>
                     <span>Voucher</span>
                 </div>
+                <div onClick={() => handleactive(4)}>
+                    <i className="fa fa-credit-card" aria-hidden="true"></i>
+                    <span>Memberships</span>
+                </div>
             </div>
             {activepage == 0 && <Admindashboard />}
             {activepage == 1 && <Membershiprequest />}
             {activepage == 2 && <Contactform />}
             {activepage == 3 && <Voucher />}
+            {activepage == 4 && <Membership />}
         </div>
     </>
 }
