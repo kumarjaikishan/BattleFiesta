@@ -1,0 +1,11 @@
+.adminusers {
+    width: 100%;
+
+    .inner {
+        width: 100%;
+
+        table {
+            width: 100%;
+        }
+    }
+}

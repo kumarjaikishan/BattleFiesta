@@ -79,6 +79,26 @@ export const membership = createAsyncThunk("membership", async () => {
     }
 });
 
+// fourth API call
+export const Users = createAsyncThunk("Users", async () => {
+    const token = localStorage.getItem("token");
+    try {
+        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
+        const res = await fetch(`http://localhost:5000/getusers`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            }
+        })
+        const membership = await res.json();
+        // console.log(voucher);
+        return membership;
+    } catch (error) {
+        console.log(error);
+        throw Error("Failed to fetch membership data");
+    }
+});
+
 
 const admin = createSlice({
     name: "userprofile",
@@ -87,6 +107,7 @@ const admin = createSlice({
         contactusform: [],
         voucher: [],
         membership: [],
+        users: [],
         loading: false,
         error: null,
     },
@@ -140,6 +161,17 @@ const admin = createSlice({
             .addCase(membership.fulfilled, (state, action) => {
                 state.loading = false;
                 state.membership = action.payload.data;
+            })
+            .addCase(Users.pending, (state,) => {
+                state.loading = true;
+            })
+            .addCase(Users.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(Users.fulfilled, (state, action) => {
+                state.loading = false;
+                state.users = action.payload.data;
             })
     }
 });

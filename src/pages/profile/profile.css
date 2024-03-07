@@ -201,6 +201,7 @@
         .membership {
             height: 340px;
             grid-column: span 4;
+            border: 1px solid red;
 
             h2 {
                 margin-bottom: 15px;

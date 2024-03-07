@@ -1,4 +1,4 @@
-.membership{
+.adminmembership{
     width: 100%;
     height: 100%;
     padding: 10px;
@@ -67,7 +67,7 @@
 
             & span:nth-child(4) {
                 width: 50px;
-                border: 1px solid red;
+                /* border: 1px solid red; */
             }
             & span:nth-child(5) {
                 width: 50px;

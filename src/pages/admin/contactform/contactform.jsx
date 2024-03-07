@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
 import { motion } from 'framer-motion';
 import swal from 'sweetalert';
-import SaveIcon from '@mui/icons-material/Save';
 import LoadingButton from '@mui/lab/LoadingButton';
+import SendIcon from '@mui/icons-material/Send';
 
 const Contactform = () => {
     const dispatch = useDispatch();
@@ -139,8 +139,8 @@ const Contactform = () => {
                             <div>
                                 <LoadingButton
                                     loading={isload}
-                                    loadingPosition="start"
-                                    startIcon={<SaveIcon />}
+                                    loadingPosition="end"
+                                    endIcon={<SendIcon />}
                                     variant="contained"
                                     type="submit"
                                 >

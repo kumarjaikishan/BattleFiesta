@@ -123,7 +123,7 @@ const Dashboard = () => {
       if (!responsee || responsee.status == 429 || responsee.status == 400) {
         setload(false);
         // console.log("error wala");
-        return toast.warn(res.msg, { autoClose: 1700 })
+        return toast.warn(res.msg, { autoClose: 2300 })
       }
       toast.success(res.msg, { autoClose: 1300 })
       dispatch(alltourna());
@@ -132,7 +132,7 @@ const Dashboard = () => {
       setload(false);
     } catch (error) {
       console.log(error);
-      toast.warn(res.msg, { autoClose: 1700 })
+      toast.warn(res.msg, { autoClose: 2300 })
       setload(false);
     }
   }
@@ -226,6 +226,7 @@ const Dashboard = () => {
         </div>}
         <div className="controles">
           <div className="card">
+          <i className="fa fa-trophy" aria-hidden="true"></i>
             <div>
               <span>Total Tournament</span> <span>:</span><span>{count.total}</span>
             </div>
@@ -240,8 +241,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="card">
+          <i className="fa fa-credit-card" aria-hidden="true"></i>
             <div>
-              <span>Plan</span> <span>:</span><span>{userprofile.membership.planid.plan_name ? userprofile.membership.planid.plan_name:'N/A'}</span>
+              <span>Plan</span> <span>:</span><span>{userprofile.membership.planid ? userprofile.membership.planid.plan_name:'N/A'}</span>
             </div>
             <div>
               <span>Tournament Limit</span> <span>:</span><span>{userprofile.membership.planid.create_limit ? userprofile.membership.planid.create_limit: 0}</span>

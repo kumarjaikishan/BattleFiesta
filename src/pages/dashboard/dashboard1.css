@@ -15,7 +15,8 @@
         flex-wrap: wrap;
         width: 100%;
         padding: 5px 10px;
-        height: 140px;
+        position: relative;
+        min-height: 140px;
         /* border: 1px solid red; */
 
         .card {
@@ -25,6 +26,7 @@
             height: max-content;
             color: #212529;
             padding: 5px 10px;
+            position: relative;
 
             >div {
                 height: 25px;
@@ -41,6 +43,14 @@
                     margin-left: 10px;
                     width: 160px;
                 }
+            }
+            i{
+                font-size: 5em;
+                color: rgba(24, 23, 23, 0.308);
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%) rotate(20deg);
             }
         }
         .operator{
@@ -275,6 +285,35 @@
 @media only screen and (max-width:600px) {
     .Dashboard {
 
+        & .controles {
+            gap: 15px;
+    
+            .card {
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+                width: 75%;
+    
+                >div {
+                    height: 25px;
+    
+                    & span:nth-child(1) {
+                        display: inline-block;
+                        font-weight: 700;
+                        letter-spacing: 0.5px;
+                        width: 160px;
+                    }
+    
+                    & span:nth-child(3) {
+                        font-weight: 500;
+                        margin-left: 10px;
+                        width: 160px;
+                    }
+                }
+            }
+            .operator{
+                width: 75%;
+                gap: 15px;
+            }
+        }
         .cards {
             min-height: calc(100vh - var(--navheightmobile));
             grid-template-columns: repeat(1, 1fr);
