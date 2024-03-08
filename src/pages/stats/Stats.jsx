@@ -52,7 +52,7 @@ const Stats = () => {
         body: JSON.stringify({ tid: id })
       });
       const result = await rese.json();
-      console.log(result);
+      // console.log(result);
       if (rese.ok) {
         rules = result.rules
         setkuch(result.rules);
