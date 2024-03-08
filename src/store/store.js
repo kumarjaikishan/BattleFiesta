@@ -8,7 +8,7 @@ import { persistReducer } from 'redux-persist';
 import { combineReducers } from "@reduxjs/toolkit";
 
 const persistConfig = {
-    key: "tournamenten",
+    key: "tournamentene",
     version: 1,
     storage: storage
 }
