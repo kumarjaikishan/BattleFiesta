@@ -123,7 +123,7 @@ const Home = () => {
                         animate='visible'
                         transition={{ duration: 1, delay: .5 }}
                         className="left-content">
-                        <h2>Welcome to <span>BattleFiesta</span> </h2>
+                        <h2>Welcome to <span>BattleFiesta!</span> </h2>
                         <h3>Managing Esport Tournament is Super Easy Now.</h3>
                         <p>Your ultimate destination for hosting and competing in PUBG/BGMI tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
                         <p>Whether you're a seasoned competitor or just dipping your toes into the thrilling world of competitive

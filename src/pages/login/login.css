@@ -129,7 +129,7 @@
 }
 
 .login .both button:hover {
-    background: #0daef4;
+    background: var(--hovercolor);
 }
 
 .login .logine .filled {

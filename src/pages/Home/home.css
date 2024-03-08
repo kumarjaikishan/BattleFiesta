@@ -62,8 +62,8 @@
                     padding: 5px 10px;
                     cursor: pointer;
                     border-radius: 90px;
-                    font-weight: 500;
                     background: white;
+                    font-weight: 700;
                     color: var(--primarycolor);
                 }
 

@@ -3,7 +3,7 @@
 .nav {
     /* border: 1px solid red; */
     backdrop-filter: blur(10px);
-    background: rgba(0,0,0,0.5);
+    background: rgb(2, 54, 58);
     /* background: #058ce7ae; */
     transition: 0.2s;
     overflow: hidden;

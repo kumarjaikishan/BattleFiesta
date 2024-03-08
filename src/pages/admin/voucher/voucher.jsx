@@ -156,7 +156,9 @@ const Voucher = () => {
                 <form onSubmit={handlee}>
                     <h2>Create Voucher</h2>
                     <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Plan Name" size="small" />
-                    <TextField required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} sx={{ width: '98%' }} label="Percent" size="small" />
+                    <TextField type="tel" required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} sx={{ width: '98%' }} label="Percent"
+                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                     size="small" />
                     <FormControl fullWidth size="small">
                         <InputLabel id="demo-simple-select-label">Status</InputLabel>
                         <Select

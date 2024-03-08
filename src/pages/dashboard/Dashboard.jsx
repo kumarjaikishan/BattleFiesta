@@ -4,12 +4,12 @@ import "./dashboard.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
-import apiWrapper from "../../store/apiWrapper";
-import tournlogo from '../../assets/pubg.webp'
+import tournlogo from '../../assets/logopng250.webp'
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
 import DeleteIcon from "@mui/icons-material/Delete";
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import swal from 'sweetalert';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -21,6 +21,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import FormControl from '@mui/material/FormControl';
+import Dialogbox from "../utils/dialogbox";
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
 import Forward10Icon from '@mui/icons-material/Forward10';
@@ -34,11 +35,14 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [load, setload] = useState(false)
   const navigate = useNavigate();
+  const userprofile = useSelector((state) => state.userprofile);
   const tournacenter = useSelector((state) => state.tournacenter);
   useEffect(() => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
-  }, []);
+    calc();
+    // console.log(userprofile.membership);
+  }, [tournacenter.alltournaments]);
 
 
   const setdata = (data) => {
@@ -103,22 +107,34 @@ const Dashboard = () => {
     e.preventDefault();
     setload(true);
     const { name, organiser, slots, type } = inp;
+    const token = localStorage.getItem("token");
 
-    const url = `${tournacenter.apiadress}/addtournament`;
-    const method = 'POST';
-    const body = { name, type, slots, organiser };
-
-    const successAction = (data) => {
-      toast.success(data.msg, { autoClose: 1300 });
+    try {
+      const responsee = await fetch(`${tournacenter.apiadress}/addtournament`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(inp)
+      });
+      const res = await responsee.json();
+      // console.log(res);
+      if (!responsee || responsee.status == 429 || responsee.status == 400) {
+        setload(false);
+        // console.log("error wala");
+        return toast.warn(res.msg, { autoClose: 2300 })
+      }
+      toast.success(res.msg, { autoClose: 1300 })
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
       setload(false);
-    };
-
-    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-    await apiWrapper(url, method, body, successAction);
+    } catch (error) {
+      console.log(error);
+      toast.warn(res.msg, { autoClose: 2300 })
+      setload(false);
+    }
   }
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -136,8 +152,63 @@ const Dashboard = () => {
     hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
     visible: { y: 0, x: 0, scale: 1, opacity: 1 }
   };
+  const [count, setcount] = useState({
+    total: '',
+    upcoming: '',
+    ongoing: "",
+    completed: ''
+  })
+  const calc = () => {
+    let total = 0;
+    let upcoming = 0;
+    let ongoing = 0;
+    let completed = 0
+    tournacenter.alltournaments.map((val) => {
+      val.status === 'upcoming' && upcoming++;
+      val.status === 'ongoing' && ongoing++;
+      val.status === 'completed' && completed++;
+      total++;
+    })
+    setcount({
+      total: total,
+      upcoming: upcoming,
+      ongoing: ongoing,
+      completed: completed
+    })
+  }
 
   const [howmany, sethowmany] = useState(10);
+
+  const [tournastatus, settournastatus] = useState('all');
+
+  const handleChangee = (event) => {
+    settournastatus(event.target.value);
+  };
+  const [filtered, setfiltered] = useState(tournacenter.alltournaments);
+  const Funck = () => {
+    let fgg = tournacenter.alltournaments.filter((val, ind) => {
+      if (tournastatus != 'all') {
+        return val.status == tournastatus;
+      }
+      return val
+    })
+    // console.log(fgg);
+    setfiltered(fgg)
+  }
+  useEffect(() => {
+    Funck();
+  }, [tournastatus,tournacenter.alltournaments])
+
+  function getTimeDifference(dateString) {
+    const givenDate = new Date(dateString);
+    const currentDate = new Date();
+
+    const differenceInMilliseconds = Math.abs(currentDate - givenDate);
+    const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    return days;
+  }
 
   return (
     <>
@@ -154,20 +225,73 @@ const Dashboard = () => {
           </div>
         </div>}
         <div className="controles">
-          <LoadingButton
-            loading={tournacenter.loading}
-            onClick={() => dispatch(alltourna())}
-            loadingPosition="end"
-            endIcon={<RefreshIcon />}
-            variant="contained"
-            type="submit"
-          >
-            REFRESH
-          </LoadingButton>
+          <div className="card">
+          <i className="fa fa-trophy" aria-hidden="true"></i>
+            <div>
+              <span>Total Tournament</span> <span>:</span><span>{count.total}</span>
+            </div>
+            <div>
+              <span>Upcoming</span> <span>:</span><span>{count.upcoming}</span>
+            </div>
+            <div>
+              <span>Ongoing</span> <span>:</span><span>{count.ongoing}</span>
+            </div>
+            <div>
+              <span>Completed</span> <span>:</span><span>{count.completed}</span>
+            </div>
+          </div>
+          <div className="card">
+          <i className="fa fa-credit-card" aria-hidden="true"></i>
+            <div>
+              <span>Plan</span> <span>:</span><span>{userprofile.membership.planid ? userprofile.membership.planid.plan_name:'N/A'}</span>
+            </div>
+            <div>
+              <span>Tournament Limit</span> <span>:</span><span>{userprofile.membership.planid ? userprofile.membership.planid.create_limit: 0}</span>
+            </div>
+            <div>
+              <span>Expire In</span> <span>:</span><span>{userprofile.membership.expire_date ? getTimeDifference(userprofile.membership.expire_date):'N/A'} Days</span>
+            </div>
+            <div>
+              <span>Completed</span> <span>:</span><span>{count.completed}</span>
+            </div>
+          </div>
+          <div className="operator">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button endIcon={<SportsEsportsIcon />} title="Create New Tournament"
+                onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button>
+              <LoadingButton
+                loading={tournacenter.loading}
+                onClick={() => dispatch(alltourna())}
+                loadingPosition="end"
+                sx={{ width: '48%' }}
+                endIcon={<RefreshIcon />}
+                variant="outlined"
+                type="submit"
+              // size="small"
+              >
+                REFRESH
+              </LoadingButton>
+            </div>
+            <FormControl size="small" sx={{ width: "100%", mt: 1 }}>
+              <InputLabel id="demo-simple-select-label">Filter</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={tournastatus}
+                label="Filter"
+                onChange={handleChangee}
+              >
+                <MenuItem value={'all'}>All</MenuItem>
+                <MenuItem value={'upcoming'}>Upcoming</MenuItem>
+                <MenuItem value={'ongoing'}>Ongoing</MenuItem>
+                <MenuItem value={'completed'}>Completed</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
         </div>
         <motion.div layout className="cards">
-          {tournacenter.alltournaments &&
-            tournacenter.alltournaments.slice(0, howmany).map((val) => {
+          {filtered &&
+            filtered.slice(0, howmany).map((val) => {
               // Format the date
               const formattedDate = new Date(val.createdAt).toLocaleDateString(
                 "en-US",
@@ -189,34 +313,25 @@ const Dashboard = () => {
                 }
               );
               return (
-                <span className="cardhead" key={val._id}>
-                  <span className="cardheader">
-                    <motion.div layout variants={item} className="card" key={val._id}>
-                      <div className="img">
-                        <img
-                          src={val.tournment_logo ? val.tournment_logo : tournlogo}
-                          alt="logo"
-                        />
-                        <span>{val.title}</span>
-                      </div>
-                      <h3 className="organiser">by {val.organiser}</h3>
-                      <div className="time">
-                        {formattedDate}, {formattedTime}
-                      </div>
-                      <div className="controller">
-                        <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
-                          <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                          <p className="status">{val.status}</p>
-                          <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
-                        </Stack>
-                      </div>
-                    </motion.div>
-                    <div className="back">
-                     <div>Teams - 0</div>
-                     <div>Matches - 0</div>
-                    </div>
-                  </span>
-                </span>
+                <motion.div layout variants={item} className="card" key={val._id}>
+                  <div className="img">
+                    <img
+                      loading="lazy"
+                      src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                      alt="logo"
+                    />
+                    <span>{val.title}</span>
+                  </div>
+                  <span className={`status ${val.status}`}>{val.status}</span>
+                  <h3 className="organiser">by {val.organiser}</h3>
+                  <div className="time">
+                    {formattedDate}, {formattedTime}
+                  </div>
+                  <div className="controller">
+                    <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                    <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                  </div>
+                </motion.div>
               )
             })
           }
@@ -225,28 +340,33 @@ const Dashboard = () => {
         {tournacenter.alltournaments.length > howmany &&
           <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
-        {tournacenter.createnewmodal && <div className="modal">
+
+        <Dialogbox
+          className="modale"
+          open={tournacenter.createnewmodal}
+          onClose={() => dispatch(setcreatenewmodal(false))}
+        >
           <motion.div
-            initial={{ x: 700, y: -300, scale: 0.1 }}
-            animate={{ x: 0, y: 0, scale: 1 }}
-            transition={{ duration: .5, delay: .2, type: 'spring', bounce: .5 }}
-            className="box">
+            initial={{ scale: 0.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: .5, delay: .2 }}
+            className="dashboardbox">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
               <section>
-                <TextField required sx={{ minWidth: "90%" }} id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
+                <TextField required sx={{ minWidth: "100%" }} id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
               </section>
               <section>
-                <TextField required sx={{ minWidth: "90%" }} id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
+                <TextField required sx={{ minWidth: "100%" }} id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
               </section>
               <section>
-                <TextField required sx={{ minWidth: "90%" }} type="tel"
+                <TextField required sx={{ minWidth: "100%" }} type="tel"
                   onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                   id="outlined-basic" onChange={handleChange} name="slots" value={inp.slots} label="Slots" variant="outlined"
                 />
               </section>
               <section>
-                <FormControl sx={{ minWidth: "90%" }}>
+                <FormControl sx={{ minWidth: "100%" }}>
                   <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
@@ -264,7 +384,7 @@ const Dashboard = () => {
                   </Select>
                 </FormControl>
               </section>
-              <Stack spacing={2} direction="row" sx={{ m: 2 }}>
+              <Stack spacing={2} direction="row" sx={{ mr: 2, mt: 2 }}>
                 <LoadingButton
                   loading={load}
                   loadingPosition="start"
@@ -278,7 +398,7 @@ const Dashboard = () => {
               </Stack>
             </form>
           </motion.div>
-        </div>}
+        </Dialogbox>
       </motion.div>
     </>
   );

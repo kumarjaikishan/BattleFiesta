@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const alltourna = createAsyncThunk("alltourna", async () => {
     const token = localStorage.getItem("token");
+    // console.log("called all tournment");
     // console.time("time taken by userdata");
     try {
-        // const res = await fetch(`https://esport-backend.vercel.app/gettournament`, {
-        const res = await fetch(`http://localhost:5000/gettournament`, {
+        const res = await fetch(`https://esport-backend.vercel.app/gettournament`, {
+        // const res = await fetch(`http://localhost:5000/gettournament`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -13,7 +14,7 @@ export const alltourna = createAsyncThunk("alltourna", async () => {
         })
         const data = await res.json();
         //  console.timeEnd("time taken by userdata");
-        // console.log("from redux api", data);
+        console.log("from redux api", data);
         return data;
     } catch (error) {
         console.log(error);
@@ -33,8 +34,8 @@ const tournacenter = createSlice({
         profilepic: "",
         createnewmodal: false,
         linkaddress:'https://battlefiesta.vercel.app',
-        // apiadress: "https://esport-backend.vercel.app",
-        apiadress: "http://localhost:5000",
+        apiadress: "https://esport-backend.vercel.app",
+        // apiadress: "http://localhost:5000",
     },
     reducers: {
         userlogout(state, action) {

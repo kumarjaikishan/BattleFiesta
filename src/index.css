@@ -10,9 +10,11 @@ input{
   color: rgb(40, 37, 37);
 }
 :root {
-  --navheight: 70px;
+  --navheight: 60px;
   --navheightmobile:50px;
-  --primarycolor: #2980b9;
+  /* --primarycolor: #2980b9; */
+  --primarycolor: rgb(2, 54, 58);
+  --hovercolor: rgb(13, 88, 94);
   --secondarycolor: #2f1c6a;
   --thirdcolor: #150645;
 }
@@ -25,7 +27,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background: radial-gradient( #f9d349 20% , #d57e12); */
-  background: radial-gradient( #1abc9c 20% , #2980b9);
+  background: radial-gradient( #1abc9c 20% , var(--primarycolor));
   position: relative;
   width: 100%;
   min-height: 100vh;

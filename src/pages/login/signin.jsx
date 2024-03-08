@@ -12,6 +12,7 @@ import { alltourna } from '../../store/api'
 import { profilefetch } from '../../store/profile'
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { memshipentry,contactusform,voucher,membership,Users } from '../../store/admin';
 
 const Signin = () => {
     let navigate = useNavigate();
@@ -25,7 +26,6 @@ const Signin = () => {
         dispatch(setloader(false));
         // console.log(tournacenter);
     }, [])
-
 
     const [signinp, setsigninp] = useState(init);
     const [loginpass, setloginpass] = useState(true);
@@ -66,6 +66,13 @@ const Signin = () => {
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
                 dispatch(profilefetch());
+                if(data.isadmin){
+                    dispatch(memshipentry());
+                    dispatch(contactusform());
+                    dispatch(voucher());
+                    dispatch(membership());
+                    dispatch(Users());
+                }
                 return navigate('/dashboard');
             }
             else if (res.ok && res.status == 201) {

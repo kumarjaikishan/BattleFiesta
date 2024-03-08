@@ -4,8 +4,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const memshipentry = createAsyncThunk("memshipentry", async () => {
     const token = localStorage.getItem("token");
     try {
-        // const responsee = await fetch(`https://esport-backend.vercel.app/memshipentry`, {
-        const responsee = await fetch(`http://localhost:5000/memshipentry`, {
+        const responsee = await fetch(`https://esport-backend.vercel.app/memshipentry`, {
+        // const responsee = await fetch(`http://localhost:5000/memshipentry`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -24,8 +24,8 @@ export const memshipentry = createAsyncThunk("memshipentry", async () => {
 export const contactusform = createAsyncThunk("contactusform", async () => {
     const token = localStorage.getItem("token");
     try {
-        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
-        const res = await fetch(`http://localhost:5000/contactformlist`, {
+        const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
+        // const res = await fetch(`http://localhost:5000/contactformlist`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -43,8 +43,8 @@ export const contactusform = createAsyncThunk("contactusform", async () => {
 export const voucher = createAsyncThunk("voucher", async () => {
     const token = localStorage.getItem("token");
     try {
-        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
-        const res = await fetch(`http://localhost:5000/getvoucher`, {
+        const responsee = await fetch(`https://esport-backend.vercel.app/getvoucher`, {
+        // const res = await fetch(`http://localhost:5000/getvoucher`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -63,8 +63,8 @@ export const voucher = createAsyncThunk("voucher", async () => {
 export const membership = createAsyncThunk("membership", async () => {
     const token = localStorage.getItem("token");
     try {
-        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
-        const res = await fetch(`http://localhost:5000/getmembership`, {
+        const responsee = await fetch(`https://esport-backend.vercel.app/getmembership`, {
+        // const res = await fetch(`http://localhost:5000/getmembership`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -83,8 +83,8 @@ export const membership = createAsyncThunk("membership", async () => {
 export const Users = createAsyncThunk("Users", async () => {
     const token = localStorage.getItem("token");
     try {
-        // const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
-        const res = await fetch(`http://localhost:5000/getusers`, {
+        const responsee = await fetch(`https://esport-backend.vercel.app/getusers`, {
+        // const res = await fetch(`http://localhost:5000/getusers`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,

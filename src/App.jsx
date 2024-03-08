@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
-import Dashboard from './pages/dashboard/Dashboard1';
+import Dashboard from './pages/dashboard/Dashboard';
 import Footbar from './components/footer/footbar';
 import Profile from './pages/profile/profile';
 import Home from './pages/Home/home';
@@ -38,11 +38,11 @@ function App() {
     // token && dispatch(userdata());
   }, [])
   useEffect(() => {
-    log.isadmin && dispatch(memshipentry());
-    log.isadmin && dispatch(contactusform());
-    log.isadmin && dispatch(voucher());
-    log.isadmin && dispatch(membership());
-    log.isadmin && dispatch(Users());
+    // log.isadmin && dispatch(memshipentry());
+    // log.isadmin && dispatch(contactusform());
+    // log.isadmin && dispatch(voucher());
+    // log.isadmin && dispatch(membership());
+    // log.isadmin && dispatch(Users());
   }, [log.isadmin])
 
 
