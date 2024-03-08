@@ -53,7 +53,7 @@ const Pointsystem = ({ setting }) => {
     errorcheck();
     // console.log(obj);
     if (iserror) {
-      return console.log("not submitted");
+      // return console.log("not submitted");
     } else {
       // console.log(formData);
       const id = toast.loading("Please wait...")
@@ -74,14 +74,14 @@ const Pointsystem = ({ setting }) => {
         })
 
         const result = await rese.json();
-        console.log(result);
+        // console.log(result);
         if (rese.ok) {
           dispatch(alltourna());
           toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });
         }
         setisloading(false)
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         setisloading(false)
         toast.update(id, { render: "Failed", type: "warn", isLoading: false, autoClose: 1600 });
       }

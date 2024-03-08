@@ -86,7 +86,7 @@ const Tournasetting = () => {
     const successAction = (data) => {
       toast.success(data.msg, { autoClose: 1300 });
       setLoading(false);
-      console.log(data.data);
+      // console.log(data.data);
     };
 
     // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
@@ -129,7 +129,7 @@ const Tournasetting = () => {
         body: data
       })
       const resuke = await rese.json();
-      console.log(resuke);
+      // console.log(resuke);
       if (rese.ok) {
         konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
         toast.update(id, { render: "Uploaded Successfully", type: "success", isLoading: false, autoClose: 1600 });

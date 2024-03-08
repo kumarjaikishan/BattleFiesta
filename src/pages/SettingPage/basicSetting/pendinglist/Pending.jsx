@@ -5,7 +5,7 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 
 const PendingPage = ({decline, pendingplayer, statuschange, showss }) => {
   useEffect(() => {
-    console.log(pendingplayer);
+    // console.log(pendingplayer);
   }, [])
 
   return (

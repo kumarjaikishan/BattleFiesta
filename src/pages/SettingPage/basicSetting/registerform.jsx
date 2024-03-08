@@ -150,7 +150,7 @@ const Registerform = ({ setting, showss }) => {
         // e.preventDefault();
         const reasone = reason || "";
         const token = localStorage.getItem("token");
-        console.log(teamid, value, reasone);
+        // console.log(teamid, value, reasone);
 
         const id = toast.loading("Please wait...")
         try {

@@ -54,7 +54,7 @@ const Contactinfo = ({ all }) => {
         }])
     }
     const removesection = (index) => {
-        console.log(index);
+        // console.log(index);
         let ghh = links.filter((val, ind) => {
             return index != ind
         })

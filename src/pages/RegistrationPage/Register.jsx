@@ -138,7 +138,7 @@ const Register = () => {
                 body: JSON.stringify({ tid: id })
             })
             const resuke = await rese.json();
-            console.log(resuke);
+            // console.log(resuke);
             if (rese.ok) {
                 // toast.success(resuke.msg, { autoClose: 1300 });
                 setdisable(false);
@@ -258,7 +258,7 @@ const Register = () => {
 
             const responseData = await response.json();
             const teamId = responseData.teamid;
-            console.log(responseData);
+            // console.log(responseData);
             if (response.ok) {
                 inp.players.forEach(async (player, index) => {
                     let uniqueId = generateRandomString();

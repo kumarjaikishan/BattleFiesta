@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
 import Stack from '@mui/material/Stack';
+import tournlogo from '../../assets/logopng250.webp'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
@@ -37,8 +38,6 @@ const Findtournament = () => {
         index == 2 && setshowinglist(completedlist);
     }
 
-    let defaultlogo = "https://res.cloudinary.com/dusxlxlvm/image/upload/v1699090690/just_yoljye.png";
-
     const fetche = async () => {
         try {
             const responsee = await fetch(`${tournacenter.apiadress}/getalltournament`, {
@@ -46,7 +45,7 @@ const Findtournament = () => {
             });
 
             const data = await responsee.json();
-            console.log(data);
+            // console.log(data);
             if (responsee.ok) {
                 setalltournas(data.data)
                 let one = [];
@@ -140,7 +139,7 @@ const Findtournament = () => {
                          className="card" key={val._id}>
                             <div className="img">
                                 <img
-                                    src={val.tournment_logo ? val.tournment_logo : defaultlogo}
+                                    src={val.tournment_logo ? val.tournment_logo : tournlogo}
                                     alt="logo"
                                 />
                                 <span>{val.title}</span>

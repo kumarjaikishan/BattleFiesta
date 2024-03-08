@@ -64,7 +64,7 @@ const Home = () => {
         }
     }, [isInview3])
     useEffect(() => {
-        console.log(isInview4);
+        // console.log(isInview4);
         if (isInview4) {
             control4.start('visible');
         }

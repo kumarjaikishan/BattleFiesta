@@ -44,7 +44,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
     const [disable, setdisable] = useState(false);
     useEffect(() => {
         // fetche(registerId);
-        console.log(teamdetail);
+        // console.log(teamdetail);
         setinp({
             userid: teamdetail.userid,
             tournament_id: teamdetail.tournament_id,
@@ -134,7 +134,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
             });
 
             const responseData = await response.json();
-            console.log(responseData);
+            // console.log(responseData);
             if (response.ok) {
                 // toast.success(responseData.msg, { autoClose: 3300 });
                 inp.players.forEach(async (player, index) => {

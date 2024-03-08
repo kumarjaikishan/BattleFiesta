@@ -58,7 +58,7 @@ const Signin = () => {
             const data = await res.json();
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
-                console.log(data);
+                // console.log(data);
                 toast.success(data.msg, { autoClose: 1300 });
                 setbtnclick(false);
                 dispatch(setloader(true));
@@ -81,7 +81,7 @@ const Signin = () => {
                 toast.warn("Kindly Verify Email First", { autoClose: 3300 });
             }
             else {
-                console.log(data);
+                // console.log(data);
                 toast.warn(data.msg ? data.msg : "Error Occured", { autoClose: 1500 });
                 setbtnclick(false);
                 dispatch(setloader(false));

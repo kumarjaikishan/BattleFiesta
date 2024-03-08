@@ -31,7 +31,7 @@ const EnterResult = ({ setting }) => {
   }
 
   useEffect(() => {
-    console.log(setting);
+    // console.log(setting);
     // console.log(pointssystem.placepoints[5]);
     fetche();
   }, [])
@@ -102,7 +102,7 @@ const EnterResult = ({ setting }) => {
 
 
   const addToTable = async () => {
-    console.log(selectedTeam);
+    // console.log(selectedTeam);
     if (!selectedTeam) {
       toast.error("Please select a team");
       return;

@@ -38,7 +38,7 @@ const PointSystem = ({ setting }) => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      // console.log(responseData);
       if (response.ok) {
         setmatches(responseData.matches)
         setrules(responseData.rules)
@@ -82,7 +82,7 @@ const PointSystem = ({ setting }) => {
       let sorted = temparray.sort(comparePlayers);
       temparray = sorted;
     })
-    console.log("temparray", temparray);
+    // console.log("temparray", temparray);
     return temparray;
   }
   const deletee = async (matchid) => {
@@ -97,7 +97,7 @@ const PointSystem = ({ setting }) => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      // console.log(responseData);
       if (response.ok) {
         toast.success(responseData.msg, { autoClose: 1500 });
         feteche();

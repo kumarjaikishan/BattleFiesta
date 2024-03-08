@@ -86,7 +86,6 @@ const Dashboard = () => {
       }
     });
   }
-  let defaultlogo = "https://res.cloudinary.com/dusxlxlvm/image/upload/v1699090690/just_yoljye.png";
 
   const init = {
     name: "",

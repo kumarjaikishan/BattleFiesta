@@ -19,7 +19,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalop
         if (inp.coupon == 0) {
             inpreplace.couponname = ""
         }
-        console.log(planchoosed);
+        // console.log(planchoosed);
         const id = toast.loading("Please wait...")
         try {
             setisloading(true);
@@ -33,7 +33,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalop
                 body: JSON.stringify({ plan_id: planchoosed._id, coupon: inpreplace.couponname, txn_id: inpreplace.txn_no })
             });
             const data = await responsee.json();
-            console.log(data);
+            // console.log(data);
             if (responsee.ok) {
                 toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
                 setpaymodalopen(false);

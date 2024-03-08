@@ -161,7 +161,7 @@ const Profile = () => {
         const imageFile = event.target.files[0];
 
         let resizedfile = await handleImage(200, imageFile);
-        console.log(resizedfile);
+        // console.log(resizedfile);
 
         if (resizedfile) {
             const id = toast.loading("Uploading Please wait...")
@@ -179,7 +179,7 @@ const Profile = () => {
                 const data = await res.json();
                 if (res.ok) {
                     toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
-                    console.log(data);
+                    // console.log(data);
                     setinp({ ...inp, profile: data.url });
                 }
             } catch (error) {

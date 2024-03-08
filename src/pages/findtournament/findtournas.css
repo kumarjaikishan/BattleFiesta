@@ -54,21 +54,21 @@
             height: max-content;
             overflow: hidden;
             background: white;
-            /* border: 1px solid grey; */
             padding-bottom: 10px;
             border-radius: 8px;
             box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
             position: relative;
 
+
             & .img {
                 display: flex;
                 width: 240px;
                 height: 240px;
-                /* border: 2px solid blue; */
+                background: radial-gradient(transparent, grey);
                 justify-content: center;
                 position: relative;
 
-
+              
                 & img {
                     width: 100%;
                     height: 100%;
@@ -78,16 +78,16 @@
                 >span {
                     position: absolute;
                     display: inline-block;
-                    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 100%);
                     width: 100%;
-                    height: 50px;
+                    height: 70px;
                     bottom: 0px;
                     left: 0px;
                     font-size: 1.3rem;
                     text-transform: uppercase;
                     letter-spacing: 2px;
                     font-weight: 700;
-                    line-height: 70px;
+                    line-height: 110px;
                     padding-left: 10px;
                     color: white;
                 }

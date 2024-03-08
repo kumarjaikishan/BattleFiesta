@@ -55,7 +55,7 @@ const Payment = () => {
         method: "GET"
       });
       const data = await responsee.json();
-      console.log("dataplan ", data);
+      // console.log("dataplan ", data);
       if (responsee) {
         setplandetail(data.plans)
         setplanchoosed(data.plans[0])
@@ -133,7 +133,7 @@ const Payment = () => {
 
   const checkcoupon = async () => {
     let coupon = inp.couponname.trim().toLowerCase();
-    console.log(coupon);
+    // console.log(coupon);
     try {
       const responsee = await fetch(`${tournacenter.apiadress}/checkcoupon`, {
         method: "POST",
@@ -143,7 +143,7 @@ const Payment = () => {
         body: JSON.stringify({ coupon })
       });
       const data = await responsee.json();
-      console.log(data);
+      // console.log(data);
       if (!responsee.ok) {
         toast.warn(`Coupon ${data.msg}`, { autoClose: 1700 });
         setcouponerror(data.msg)
