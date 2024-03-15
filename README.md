@@ -1,6 +1,6 @@
 
 
-### Battle Fiesta- Esport Tournament Manager Platform
+## Battle Fiesta- Esport Tournament Manager Platform
 
 BattleFiesta is an online platform designed to bring gamers together to compete in exciting tournaments and events across various popular games. Whether you're a casual player or a seasoned pro, BattleFiesta offers a range of tournaments to suit every skill level and interest.
 
