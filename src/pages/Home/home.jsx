@@ -17,6 +17,7 @@ import tick from '../../assets/home/tick.webp'
 import tick2 from '../../assets/home/tick2.webp'
 import registerform from '../../assets/home/registrationform.webp'
 import enterresult from '../../assets/home/enterresult.webp'
+import stats from '../../assets/home/stats.webp'
 import createform from '../../assets/home/createform.webp'
 import { motion, useInView, useAnimation } from 'framer-motion';
 
@@ -290,7 +291,7 @@ const Home = () => {
                         animate={control3}
                         className="left">
                         <div className="img">
-                            <img loading='lazy' src={registerform} alt="" />
+                            <img loading='lazy' src={stats} alt="" />
                         </div>
                     </motion.div>
                     <motion.div
