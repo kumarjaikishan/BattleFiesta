@@ -59,7 +59,7 @@ const Signin = () => {
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
                 // console.log(data);
-                toast.success(data.msg, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1300 });
                 setbtnclick(false);
                 dispatch(setloader(true));
                 dispatch(setadmin(data.isadmin));
@@ -82,14 +82,14 @@ const Signin = () => {
             }
             else {
                 // console.log(data);
-                toast.warn(data.msg ? data.msg : "Error Occured", { autoClose: 1500 });
+                toast.warn(data.message ? data.message : "Error Occured", { autoClose: 1500 });
                 setbtnclick(false);
                 dispatch(setloader(false));
             }
 
         } catch (error) {
             console.log(error);
-            toast.warn(error.msg, { autoClose: 1500 });
+            toast.warn(error.message, { autoClose: 1500 });
             setbtnclick(false);
             dispatch(setloader(false));
         }

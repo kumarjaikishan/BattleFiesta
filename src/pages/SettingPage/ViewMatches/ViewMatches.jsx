@@ -99,7 +99,7 @@ const PointSystem = ({ setting }) => {
       const responseData = await response.json();
       // console.log(responseData);
       if (response.ok) {
-        toast.success(responseData.msg, { autoClose: 1500 });
+        toast.success(responseData.message, { autoClose: 1500 });
         feteche();
       }
       setisloading(false)

@@ -136,7 +136,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
             const responseData = await response.json();
             // console.log(responseData);
             if (response.ok) {
-                // toast.success(responseData.msg, { autoClose: 3300 });
+                // toast.success(responseData.message, { autoClose: 3300 });
                 inp.players.forEach(async (player, index) => {
                     const formData = new FormData();
                     formData.append("id", teamdetail._id);
@@ -152,7 +152,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                         });
                         const vfdvdf = await responsee.json();
                         if (responsee.ok) {
-                            // toast.success(vfdvdf.msg, { autoClose: 3300 });
+                            // toast.success(vfdvdf.message, { autoClose: 3300 });
                         }
                     } catch (error) {
                         toast.error(responseData.error, { autoClose: 1300 });

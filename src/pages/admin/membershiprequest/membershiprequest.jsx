@@ -61,7 +61,7 @@ const Membershiprequest = () => {
                const data = await responsee.json();
                if (responsee.ok) {
                   feteche();
-                  toast.success(data.msg, { autoClose: 1300 });
+                  toast.success(data.message, { autoClose: 1300 });
                   console.log(data);
                   setmemshiprequest(data.data)
                }

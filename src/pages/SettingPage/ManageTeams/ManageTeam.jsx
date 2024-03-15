@@ -51,7 +51,7 @@ const ManageTeam = ({ setting, showss }) => {
           // console.log(data);
           dispatch(alltourna());
           fetche();
-          toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+          toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
         };
 
         // const loaderAction = (isLoading) => dispatch(setloader(isLoading));

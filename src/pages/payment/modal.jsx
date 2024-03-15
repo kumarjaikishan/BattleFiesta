@@ -35,15 +35,15 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalop
             const data = await responsee.json();
             // console.log(data);
             if (responsee.ok) {
-                toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 setpaymodalopen(false);
                 reset();
             } else {
-                toast.update(id, { render: data.msg, type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             }
             setisloading(false);
         } catch (error) {
-            toast.update(id, { render: data.msg, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             setisloading(false);
             console.log(error);
         }

@@ -84,7 +84,7 @@ const Contactinfo = ({ all }) => {
             const data = await rese.json();
             if (rese.ok) {
                 setisloading(false)
-                toast.success(data.msg, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1300 });
             }
         } catch (error) {
             console.log(error);

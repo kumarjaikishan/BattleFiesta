@@ -140,7 +140,7 @@ const Register = () => {
             const resuke = await rese.json();
             // console.log(resuke);
             if (rese.ok) {
-                // toast.success(resuke.msg, { autoClose: 1300 });
+                // toast.success(resuke.message, { autoClose: 1300 });
                 setdisable(false);
                 const actualdata = resuke.data;
                 const actualdata2 = resuke.data2;
@@ -276,7 +276,7 @@ const Register = () => {
                         });
                         const vfdvdf = await responsee.json();
                         if (responsee.ok) {
-                            // toast.success(vfdvdf.msg, { autoClose: 3300 });
+                            // toast.success(vfdvdf.message, { autoClose: 3300 });
                         }
                     } catch (error) {
                         toast.error(responseData.error, { autoClose: 1300 });

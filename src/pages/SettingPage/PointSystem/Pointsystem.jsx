@@ -77,7 +77,7 @@ const Pointsystem = ({ setting }) => {
         // console.log(result);
         if (rese.ok) {
           dispatch(alltourna());
-          toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });
+          toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
         }
         setisloading(false)
       } catch (error) {

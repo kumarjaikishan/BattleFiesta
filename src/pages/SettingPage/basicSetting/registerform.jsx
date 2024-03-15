@@ -65,7 +65,7 @@ const Registerform = ({ setting, showss }) => {
         const body = { tid };
 
         const successAction = (data) => {
-            // toast.success(data.msg, { autoClose: 1300 });
+            // toast.success(data.message, { autoClose: 1300 });
             const actualdata = data.data;
             // console.log(data);
             setPlayerlist(data.entry)
@@ -128,8 +128,8 @@ const Registerform = ({ setting, showss }) => {
         const body = all;
 
         const successAction = (data) => {
-            // toast.success(data.msg, { autoClose: 1300 });
-            toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+            // toast.success(data.message, { autoClose: 1300 });
+            toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
             setisloading(false)
         };
 
@@ -166,7 +166,7 @@ const Registerform = ({ setting, showss }) => {
             // console.log(rese);
             if (rese.ok) {
                 fetche();
-                toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
             }
 
         } catch (error) {

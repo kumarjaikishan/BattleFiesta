@@ -46,10 +46,10 @@ const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
             console.log(data);
             if (responsee.ok) {
                 feteche();
-                toast.success(data.msg, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1300 });
                 setmembermodal(false);
             } else {
-                toast.warn(data.msg, { autoClose: 1500 });
+                toast.warn(data.message, { autoClose: 1500 });
             }
         } catch (error) {
             console.log(error);

@@ -28,7 +28,7 @@ const Adminnavbar = () => {
             const data = await responsee.json();
             // console.log(data);
             if (responsee.status == 403) {
-                toast.warn(data.msg, { autoClose: 1700 })
+                toast.warn(data.message, { autoClose: 1700 })
             }
         } catch (error) {
             console.log(error);

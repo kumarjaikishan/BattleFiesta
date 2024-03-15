@@ -84,7 +84,7 @@ const Tournasetting = () => {
     const body = inp;
 
     const successAction = (data) => {
-      toast.success(data.msg, { autoClose: 1300 });
+      toast.success(data.message, { autoClose: 1300 });
       setLoading(false);
       // console.log(data.data);
     };

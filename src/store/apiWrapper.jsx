@@ -18,7 +18,7 @@ const apiWrapper = async (url, method = 'GET', body = null, successAction) => {
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.msg || 'Something went wrong');
+            throw new Error(responseData.message || 'Something went wrong');
         }
 
         successAction(responseData);

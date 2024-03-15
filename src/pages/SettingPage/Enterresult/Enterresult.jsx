@@ -61,7 +61,7 @@ const EnterResult = ({ setting }) => {
         return val.status == "approved";
       })
       setplayer(filterapproved);
-      // toast.success(data.msg, { autoClose: 1300 });
+      // toast.success(data.message, { autoClose: 1300 });
       // const actualdata = data.data;
     };
 
@@ -234,7 +234,7 @@ const EnterResult = ({ setting }) => {
       const result = await rese.json();
       console.log(result);
       if (rese.ok) {
-        toast.update(id, { render: result.msg, type: "success", isLoading: false, autoClose: 1600 });
+        toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
       }
       setisloading(false)
     } catch (error) {

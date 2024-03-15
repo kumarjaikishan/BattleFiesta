@@ -37,9 +37,9 @@ const Voucher = () => {
             if (responsee.status == 200) {
                 dispatch(voucher());
                 setmodal(false);
-                toast.success(data.msg, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1300 });
             } else {
-                toast.warn(data.msg, { autoClose: 1500 });
+                toast.warn(data.message, { autoClose: 1500 });
             }
         } catch (error) {
             console.log(error);
@@ -68,9 +68,9 @@ const Voucher = () => {
                     // console.log(data);
                     if (responsee.ok) {
                         dispatch(voucher());
-                        toast.success(data.msg, { autoClose: 1300 });
+                        toast.success(data.message, { autoClose: 1300 });
                     } else {
-                        toast.warn(data.msg, { autoClose: 1500 });
+                        toast.warn(data.message, { autoClose: 1500 });
                     }
                 } catch (error) {
                     console.log(error);
@@ -98,9 +98,9 @@ const Voucher = () => {
                 setmodal(false);
                 setinp(init);
                 dispatch(voucher());
-                toast.success(data.msg, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1300 });
             } else {
-                toast.warn(data.msg, { autoClose: 1500 });
+                toast.warn(data.message, { autoClose: 1500 });
             }
         } catch (error) {
             console.log(error);

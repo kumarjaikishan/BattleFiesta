@@ -145,8 +145,8 @@ const Payment = () => {
       const data = await responsee.json();
       // console.log(data);
       if (!responsee.ok) {
-        toast.warn(`Coupon ${data.msg}`, { autoClose: 1700 });
-        setcouponerror(data.msg)
+        toast.warn(`Coupon ${data.message}`, { autoClose: 1700 });
+        setcouponerror(data.message)
         setinp((prev) => ({
           ...prev,
           coupon: 0,

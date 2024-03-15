@@ -147,7 +147,7 @@ const Profile = () => {
             if (res.ok) {
 
                 dispatch(profilefetch());
-                toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 // console.log(data);
             }
             setisloadinge(false)
@@ -178,7 +178,7 @@ const Profile = () => {
                 })
                 const data = await res.json();
                 if (res.ok) {
-                    toast.update(id, { render: data.msg, type: "success", isLoading: false, autoClose: 1600 });
+                    toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                     // console.log(data);
                     setinp({ ...inp, profile: data.url });
                 }

@@ -38,7 +38,7 @@ const Contact = () => {
             if (responsee) {
                 setisloading(false)
                 setinp(init);
-                toast.success(data.msg, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1300 });
             }
         } catch (error) {
             setisloading(false)
