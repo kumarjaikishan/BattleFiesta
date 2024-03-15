@@ -34,9 +34,8 @@ We're constantly working to improve the BattleFiesta experience. If you have any
 
 ## Contributors
 
-- John Doe (@johndoe)
-- Jane Smith (@janesmith)
+- Jai Kishan (@kumarjaikishan)
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+...
