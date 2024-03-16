@@ -1,8 +1,4 @@
 import Dialogbox from "../utils/dialogbox";
-import weekly from '../../assets/payment/weekly.webp'
-import monthly from '../../assets/payment/monthly.webp'
-import threemonth from '../../assets/payment/3month.webp'
-import sixmonth from '../../assets/payment/6month.webp'
 import logo from '../../assets/logopng250.webp'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -60,12 +56,6 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymod
             >
                 <div className="paymodal">
                     <div className="left">
-                        {/* <img src={
-                            planchoosed.duration == '1 Week' && weekly ||
-                            planchoosed.duration == '1 Month' && monthly ||
-                            planchoosed.duration == '3 Month' && threemonth ||
-                            planchoosed.duration == '6 Month' && sixmonth
-                        } alt="" /> */}
                          <QRCode
                                 size={256}
                                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
