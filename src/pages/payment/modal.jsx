@@ -3,14 +3,15 @@ import weekly from '../../assets/payment/weekly.webp'
 import monthly from '../../assets/payment/monthly.webp'
 import threemonth from '../../assets/payment/3month.webp'
 import sixmonth from '../../assets/payment/6month.webp'
-import logo from '../../assets/home/logo.webp'
+import logo from '../../assets/logopng250.webp'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
+import QRCode from "react-qr-code";
 
-const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalopen, setpaymodalopen }) => {
+const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymodalopen, setpaymodalopen }) => {
 
     const tournacenter = useSelector((state) => state.tournacenter);
     const handlee = async (e) => {
@@ -48,7 +49,8 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalop
             console.log(error);
         }
     }
-    const [isloading,setisloading]=useState(false);
+    const qrcodeamount = planchoosed.price + tax(planchoosed.price) - Math.floor((planchoosed.price * inp.coupon) / 100);
+    const [isloading, setisloading] = useState(false);
     return (
         <>
             <Dialogbox
@@ -58,23 +60,30 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalop
             >
                 <div className="paymodal">
                     <div className="left">
-                        <img src={
+                        {/* <img src={
                             planchoosed.duration == '1 Week' && weekly ||
                             planchoosed.duration == '1 Month' && monthly ||
                             planchoosed.duration == '3 Month' && threemonth ||
                             planchoosed.duration == '6 Month' && sixmonth
-                        } alt="" />
+                        } alt="" /> */}
+                         <QRCode
+                                size={256}
+                                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                value={`upi://pay?pa=battlefiesta0@ybl&pn=BATTLE FIESTA&am=${qrcodeamount}&tn=BattleFiesta-1 Week plan&cu=INR&mc=Thanks BattleFiesta`}
+                                viewBox={`0 0 256 256`}
+                            />
                     </div>
                     <div className="right">
                         <form onSubmit={handlee}>
                             <img src={logo} alt="" />
-                            <h3>{planchoosed.duration} plan - ₹{planchoosed.price}.00</h3>
-                            <TextField onChange={handleinput} required id="outlined-basic" name="txn_no" size="small" label="Enter UTR/UPI REF no. here" variant="outlined" />
+                            <h3>{planchoosed.duration} plan - ₹{qrcodeamount}.00</h3>
+                            <TextField onChange={handleinput} required id="outlined-basic" type='tel'
+                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} name="txn_no" size="small" label="Enter UTR/UPI REF No." variant="outlined" />
                             <div className="just">
                                 <Button type="submit" disabled={isloading} variant="contained">Submit</Button>
                                 <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>
                             </div>
-                            <p>Note- Do payment and Enter your transaction no. above and have  some patients</p>
+                            <p>Please make your payment and enter the transaction number above. Thank you for your patience.</p>
                         </form>
                     </div>
                 </div>

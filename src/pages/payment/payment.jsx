@@ -277,7 +277,7 @@ const Payment = () => {
                   <Button className='btn' type='submit' sx={{ mt: 1 }} variant="contained">Proceed to Payment</Button>
                 </div>
               </form>
-              <Paymentmodal setinp={setinp} reset={reset} handleinput={handleinput} inp={inp} planchoosed={planchoosed} paymodalopen={paymodalopen} setpaymodalopen={setpaymodalopen} />
+              <Paymentmodal tax={tax} setinp={setinp} reset={reset} handleinput={handleinput} inp={inp} planchoosed={planchoosed} paymodalopen={paymodalopen} setpaymodalopen={setpaymodalopen} />
             </div>
 
           </div>

@@ -249,6 +249,9 @@
 
     .left {
         width: 310px;
+        /* border: 1px solid red; */
+        display: grid;
+        place-items: center;
 
         img {
             width: 100%;
