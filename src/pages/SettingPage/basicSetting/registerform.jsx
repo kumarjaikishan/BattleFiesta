@@ -154,7 +154,7 @@ const Registerform = ({ setting, showss }) => {
 
         const id = toast.loading("Please wait...")
         try {
-            const rese = await fetch(`${tournacenter.apiadress}/updateteamstatus`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateteamstatus`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

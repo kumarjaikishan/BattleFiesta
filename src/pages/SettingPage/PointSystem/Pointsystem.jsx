@@ -59,7 +59,7 @@ const Pointsystem = ({ setting }) => {
       const id = toast.loading("Please wait...")
       try {
         const token = localStorage.getItem("token");
-        const rese = await fetch(`${tournacenter.apiadress}/pointsystem`, {
+        const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}pointsystem`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

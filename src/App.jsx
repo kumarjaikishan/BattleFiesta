@@ -34,15 +34,10 @@ function App() {
   const log = useSelector((state) => state.login);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    // token && dispatch(userdata());
+    // console.log(import.meta.env.VITE_API_ADDRESS);
   }, [])
   useEffect(() => {
-    // log.isadmin && dispatch(memshipentry());
-    // log.isadmin && dispatch(contactusform());
-    // log.isadmin && dispatch(voucher());
-    // log.isadmin && dispatch(membership());
-    // log.isadmin && dispatch(Users());
+    
   }, [log.isadmin])
 
 

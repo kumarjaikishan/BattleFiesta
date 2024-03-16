@@ -4,8 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const memshipentry = createAsyncThunk("memshipentry", async () => {
     const token = localStorage.getItem("token");
     try {
-        const responsee = await fetch(`https://esport-backend.vercel.app/memshipentry`, {
-        // const responsee = await fetch(`http://localhost:5000/memshipentry`, {
+        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}memshipentry`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -24,14 +23,13 @@ export const memshipentry = createAsyncThunk("memshipentry", async () => {
 export const contactusform = createAsyncThunk("contactusform", async () => {
     const token = localStorage.getItem("token");
     try {
-        const responsee = await fetch(`https://esport-backend.vercel.app/contactformlist`, {
-        // const res = await fetch(`http://localhost:5000/contactformlist`, {
+        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}contactformlist`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        const contactusform = await res.json();
+        const contactusform = await responsee.json();
         return contactusform;
     } catch (error) {
         console.log(error);
@@ -43,14 +41,13 @@ export const contactusform = createAsyncThunk("contactusform", async () => {
 export const voucher = createAsyncThunk("voucher", async () => {
     const token = localStorage.getItem("token");
     try {
-        const responsee = await fetch(`https://esport-backend.vercel.app/getvoucher`, {
-        // const res = await fetch(`http://localhost:5000/getvoucher`, {
+        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getvoucher`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        const voucher = await res.json();
+        const voucher = await responsee.json();
         // console.log(voucher);
         return voucher;
     } catch (error) {
@@ -63,14 +60,13 @@ export const voucher = createAsyncThunk("voucher", async () => {
 export const membership = createAsyncThunk("membership", async () => {
     const token = localStorage.getItem("token");
     try {
-        const responsee = await fetch(`https://esport-backend.vercel.app/getmembership`, {
-        // const res = await fetch(`http://localhost:5000/getmembership`, {
+        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getmembership`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        const membership = await res.json();
+        const membership = await responsee.json();
         // console.log(voucher);
         return membership;
     } catch (error) {
@@ -83,14 +79,13 @@ export const membership = createAsyncThunk("membership", async () => {
 export const Users = createAsyncThunk("Users", async () => {
     const token = localStorage.getItem("token");
     try {
-        const responsee = await fetch(`https://esport-backend.vercel.app/getusers`, {
-        // const res = await fetch(`http://localhost:5000/getusers`, {
+        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getusers`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        const membership = await res.json();
+        const membership = await responsee.json();
         // console.log(voucher);
         return membership;
     } catch (error) {

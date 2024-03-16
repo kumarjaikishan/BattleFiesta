@@ -28,7 +28,7 @@ const Tournamentstatpage = () => {
 
   const fetche = async () => {
     try {
-      const responsee = await fetch(`${tournacenter.apiadress}/getonetournament`, {
+      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getonetournament`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -26,7 +26,7 @@ const Contact = () => {
         e.preventDefault();
         try {
             setisloading(true)
-            const responsee = await fetch(`${tournacenter.apiadress}/contact`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}contact`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

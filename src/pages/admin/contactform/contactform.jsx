@@ -40,7 +40,7 @@ const Contactform = () => {
         try {
             setisload(true);
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${tournacenter.apiadress}/emailreply`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}emailreply`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -74,7 +74,7 @@ const Contactform = () => {
             if (willDelete) {
                 try {
                     const token = localStorage.getItem("token");
-                    const responsee = await fetch(`${tournacenter.apiadress}/contactusdelete`, {
+                    const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}contactusdelete`, {
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${token}`,

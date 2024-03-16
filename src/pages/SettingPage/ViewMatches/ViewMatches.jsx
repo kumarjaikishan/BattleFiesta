@@ -29,7 +29,7 @@ const PointSystem = ({ setting }) => {
 
     try {
       dispatch(setloader(true));
-      const response = await fetch(`${tournacenter.apiadress}/getmatches`, {
+      const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}getmatches`, {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'
@@ -88,7 +88,7 @@ const PointSystem = ({ setting }) => {
   const deletee = async (matchid) => {
     try {
       setisloading(true)
-      const response = await fetch(`${tournacenter.apiadress}/deletematch`, {
+      const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}deletematch`, {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'

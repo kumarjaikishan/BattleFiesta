@@ -44,7 +44,7 @@ const Stats = () => {
   let temptemlogo = {};
   const fetche = async (id) => {
     try {
-      const rese = await fetch(`${tournacenter.apiadress}/getmatches`, {
+      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}getmatches`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -254,7 +254,7 @@ const Stats = () => {
       </div>
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
-          <img src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo}  onerror="this.src=`${defaultlogo}` " alt="" />
+          <img src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo}  alt="" />
         </div>
         <h3>{kuch.title}</h3>
         <h2>{kuch.organiser}</h2>

@@ -24,7 +24,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, planchoosed, paymodalop
         try {
             setisloading(true);
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${tournacenter.apiadress}/manualcheck`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}manualcheck`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

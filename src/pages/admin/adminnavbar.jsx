@@ -18,7 +18,7 @@ const Adminnavbar = () => {
     const fetche = async () => {
         try {
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${tournacenter.apiadress}/isadmin`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}isadmin`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,

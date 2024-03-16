@@ -107,7 +107,7 @@ const Register = () => {
     }
     const getenteries = async () => {
         try {
-            const rese = await fetch(`${tournacenter.apiadress}/getenteries`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}getenteries`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -130,7 +130,7 @@ const Register = () => {
     const fetche = async (id) => {
         setdisable(true);
         try {
-            const rese = await fetch(`${tournacenter.apiadress}/gettournamentform`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}gettournamentform`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -251,7 +251,7 @@ const Register = () => {
             setisloading(true);
             const id = toast.loading("Please wait...")
             setdisable(true);
-            const response = await fetch(`${tournacenter.apiadress}/Teamregister`, {
+            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}Teamregister`, {
                 method: "POST",
                 body: formData
             });
@@ -270,7 +270,7 @@ const Register = () => {
                     formData.append(`playerId`, uniqueId);
 
                     try {
-                        const responsee = await fetch(`${tournacenter.apiadress}/playerregister`, {
+                        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}playerregister`, {
                             method: "POST",
                             body: formData
                         });

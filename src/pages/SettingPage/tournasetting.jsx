@@ -121,7 +121,7 @@ const Tournasetting = () => {
     const token = localStorage.getItem("token");
     try {
       const id = toast.loading("Please wait while Uploading...")
-      const rese = await fetch(`${tournacenter.apiadress}/settournamentlogos`, {
+      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournamentlogos`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,

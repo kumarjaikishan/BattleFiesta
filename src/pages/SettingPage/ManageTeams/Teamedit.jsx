@@ -128,7 +128,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         try {
             const id = toast.loading("Please wait...")
             setdisable(true);
-            const response = await fetch(`${tournacenter.apiadress}/Teamupdate`, {
+            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}Teamupdate`, {
                 method: "POST",
                 body: formData
             });
@@ -146,7 +146,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                     formData.append(`playerLogo`, player.playerLogo);
 
                     try {
-                        const responsee = await fetch(`${tournacenter.apiadress}/playerupdate`, {
+                        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}playerupdate`, {
                             method: "POST",
                             body: formData
                         });

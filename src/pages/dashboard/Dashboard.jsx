@@ -62,7 +62,7 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
         const id = toast.loading("Please wait...")
         try {
-          const responsee = await fetch(`${tournacenter.apiadress}/torunadelete`, {
+          const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}torunadelete`, {
             method: "POST",
             headers: {
               "Authorization": `Bearer ${token}`,
@@ -74,7 +74,7 @@ const Dashboard = () => {
           // console.log(vfdvdf);
           if (responsee.ok) {
             dispatch(alltourna());
-            toast.update(id, { render: vfdvdf.msg, type: "success", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: vfdvdf.message, type: "success", isLoading: false, autoClose: 1600 });
           }
         } catch (error) {
           console.log(error);
@@ -109,7 +109,7 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const responsee = await fetch(`${tournacenter.apiadress}/addtournament`, {
+      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}addtournament`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -122,16 +122,16 @@ const Dashboard = () => {
       if (!responsee || responsee.status == 429 || responsee.status == 400) {
         setload(false);
         // console.log("error wala");
-        return toast.warn(res.msg, { autoClose: 2300 })
+        return toast.warn(res.message, { autoClose: 2300 })
       }
-      toast.success(res.msg, { autoClose: 1300 })
+      toast.success(res.message, { autoClose: 1300 })
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
       setload(false);
     } catch (error) {
       console.log(error);
-      toast.warn(res.msg, { autoClose: 2300 })
+      toast.warn(res.message, { autoClose: 2300 })
       setload(false);
     }
   }

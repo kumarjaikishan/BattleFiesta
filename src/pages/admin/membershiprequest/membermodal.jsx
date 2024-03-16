@@ -34,7 +34,7 @@ const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
 
         try {
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${tournacenter.apiadress}/createmembership`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}createmembership`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

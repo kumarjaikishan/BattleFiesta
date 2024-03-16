@@ -24,7 +24,7 @@ const Voucher = () => {
 
         try {
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${tournacenter.apiadress}/createvoucher`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}createvoucher`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -56,7 +56,7 @@ const Voucher = () => {
             if (willDelete) {
                 try {
                     const token = localStorage.getItem("token");
-                    const responsee = await fetch(`${tournacenter.apiadress}/deletevoucher`, {
+                    const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}deletevoucher`, {
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${token}`,
@@ -84,7 +84,7 @@ const Voucher = () => {
         // console.log(inp);
         try {
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${tournacenter.apiadress}/editvoucher`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}editvoucher`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

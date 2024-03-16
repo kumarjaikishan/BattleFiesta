@@ -17,7 +17,7 @@ const Membershiprequest = () => {
    const feteche = async () => {
       try {
          const token = localStorage.getItem("token");
-         const responsee = await fetch(`${tournacenter.apiadress}/memshipentry`, {
+         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}memshipentry`, {
             method: "GET",
             headers: {
                "Authorization": `Bearer ${token}`
@@ -50,7 +50,7 @@ const Membershiprequest = () => {
          if (willDelete) {
             try {
                const token = localStorage.getItem("token");
-               const responsee = await fetch(`${tournacenter.apiadress}/delmemberentry`, {
+               const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}delmemberentry`, {
                   method: "POST",
                   headers: {
                      "Authorization": `Bearer ${token}`,

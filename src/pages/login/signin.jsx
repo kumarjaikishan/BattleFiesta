@@ -45,7 +45,7 @@ const Signin = () => {
         const { email, password } = signinp;
         
         try {
-            const res = await fetch(`${tournacenter.apiadress}/login`, {
+            const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

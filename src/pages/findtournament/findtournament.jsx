@@ -40,7 +40,7 @@ const Findtournament = () => {
 
     const fetche = async () => {
         try {
-            const responsee = await fetch(`${tournacenter.apiadress}/getalltournament`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournament`, {
                 method: "GET"
             });
 

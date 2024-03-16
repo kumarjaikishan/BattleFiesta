@@ -135,7 +135,7 @@ const Profile = () => {
         const id = toast.loading("Please wait...")
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`${tournacenter.apiadress}/updateprofile`, {
+            const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateprofile`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -169,7 +169,7 @@ const Profile = () => {
                 const token = localStorage.getItem("token");
                 const formData = new FormData();
                 formData.append(`profilepic`, resizedfile);
-                const res = await fetch(`${tournacenter.apiadress}/updateprofilepic`, {
+                const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateprofilepic`, {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`,

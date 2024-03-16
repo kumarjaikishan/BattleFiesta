@@ -73,7 +73,7 @@ const Contactinfo = ({ all }) => {
         setisloading(true);
         const token = localStorage.getItem("token");
         try {
-            const rese = await fetch(`${tournacenter.apiadress}/updatetournamentformcontacts`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updatetournamentformcontacts`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -220,7 +220,7 @@ const EnterResult = ({ setting }) => {
       setisloading(true)
       const id = toast.loading("Please wait...")
       const token = localStorage.getItem("token");
-      const rese = await fetch(`${tournacenter.apiadress}/addmatches`, {
+      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}addmatches`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

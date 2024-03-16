@@ -51,7 +51,7 @@ const Payment = () => {
 
   const fetche = async () => {
     try {
-      const responsee = await fetch(`${tournacenter.apiadress}/plan`, {
+      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}plan`, {
         method: "GET"
       });
       const data = await responsee.json();
@@ -135,7 +135,7 @@ const Payment = () => {
     let coupon = inp.couponname.trim().toLowerCase();
     // console.log(coupon);
     try {
-      const responsee = await fetch(`${tournacenter.apiadress}/checkcoupon`, {
+      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}checkcoupon`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
