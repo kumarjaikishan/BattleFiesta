@@ -69,7 +69,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymod
                          <QRCode
                                 size={256}
                                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                                value={`upi://pay?pa=battlefiesta0@ybl&pn=BATTLE FIESTA&am=${qrcodeamount}&tn=BattleFiesta-1 Week plan&cu=INR&mc=Thanks BattleFiesta`}
+                                value={`upi://pay?pa=battlefiesta0@ybl&pn=BATTLE_FIESTA&am=${qrcodeamount}&tn=BattleFiesta-1 Week plan&cu=INR&mc=Thanks BattleFiesta`}
                                 viewBox={`0 0 256 256`}
                             />
                     </div>

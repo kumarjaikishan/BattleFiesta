@@ -51,7 +51,7 @@
 
             .card {
                 cursor: pointer;
-                transition: 0.3s;
+                transition: 0.3s ease-in-out;
                 position: relative;
                 text-align: center;
                 border: 2px solid rgba(0, 0, 0, 0.1);
