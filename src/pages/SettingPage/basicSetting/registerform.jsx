@@ -60,7 +60,7 @@ const Registerform = ({ setting, showss }) => {
 
     const fetche = async () => {
         dispatch(setloader(true));
-        const url = `${tournacenter.apiadress}/tournamentform`;
+        const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
         const method = 'POST';
         const body = { tid };
 
@@ -123,7 +123,7 @@ const Registerform = ({ setting, showss }) => {
         setisloading(true)
         const id = toast.loading("Please wait...")
         // console.log(all);
-        const url = `${tournacenter.apiadress}/updatetournamentform`;
+        const url = `${import.meta.env.VITE_API_ADDRESS}updatetournamentform`;
         const method = 'POST';
         const body = all;
 

@@ -51,7 +51,7 @@ const EnterResult = ({ setting }) => {
   ];
 
   const fetche = async () => {
-    const url = `${tournacenter.apiadress}/tournamentform`;
+    const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
     const method = 'POST';
     const body = { tid };
 

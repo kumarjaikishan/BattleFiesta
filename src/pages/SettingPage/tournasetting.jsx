@@ -22,7 +22,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
-import { setloader,header } from '../../store/login';
+import { setloader, header } from '../../store/login';
 import useImageUpload from "../utils/imageresizer";
 
 const Tournasetting = () => {
@@ -76,22 +76,49 @@ const Tournasetting = () => {
       ...inp, [naam]: value
     })
   }
+  // const submit = async () => {
+  //   setLoading(true);
+  //   const url = `${import.meta.env.VITE_API_ADDRESS}settournament`;
+  //   const method = "POST";
+  //   // const body = { tid, title, organiser, slots, type, status, visibility, label };
+  //   const body = inp;
+
+  //   const successAction = (data) => {
+  //     toast.success(data.message, { autoClose: 1300 });
+  //     setLoading(false);
+  //     // console.log(data.data);
+  //   };
+
+  //   // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
+
+  //   await apiWrapper(url, method, body, successAction);
+  // }
+
   const submit = async () => {
     setLoading(true);
-    const url = `${tournacenter.apiadress}/settournament`;
-    const method = "POST";
-    // const body = { tid, title, organiser, slots, type, status, visibility, label };
-    const body = inp;
-
-    const successAction = (data) => {
-      toast.success(data.message, { autoClose: 1300 });
+    try {
+      const token = localStorage.getItem("token");
+      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournament`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ contactid, email, reply })
+      });
+      const data = await responsee.json();
+      console.log(data);
+      if (responsee.ok) {
+        toast.success(data.message, { autoClose: 1300 });
+        setLoading(false);
+      } else {
+        toast.warn(data.message, { autoClose: 1500 });
+      }
       setLoading(false);
-      // console.log(data.data);
-    };
-
-    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-    await apiWrapper(url, method, body, successAction);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   }
 
   const upload = async (id) => {
@@ -101,8 +128,8 @@ const Tournasetting = () => {
     id == "tournbanner" ? konsa = 1 : konsa = 2;
     let newimage = document.querySelector(`#${id}`).files[0];
 
-    if (konsa == 2){
-       newimage = await handleImage(250, newimage);
+    if (konsa == 2) {
+      newimage = await handleImage(250, newimage);
     }
 
     if (konsa == 1) {
@@ -215,7 +242,7 @@ const Tournasetting = () => {
           {active == 0 && <Registerform showss={showss} setting={setting} />}
           {active == 1 && <Detail submit={submit} upload={upload} handleChange={handleChange} loading={loading} inp={inp} setinp={setinp} />}
           {active == 2 && <EnterResult setting={setting} />}
-          {active == 3 && <ManageTeam setting={setting}  showss={showss}/>}
+          {active == 3 && <ManageTeam setting={setting} showss={showss} />}
           {active == 4 && <Pointsystem setting={setting} />}
           {active == 5 && <ViewMatches setting={setting} />}
           {showmodal && <Imagemodal setshowmodal={setshowmodal} paymentss={paymentss} />}
@@ -226,30 +253,30 @@ const Tournasetting = () => {
             <header>Stats Page Link</header>
             <p>Check out the link for the latest: Points, Top Fraggers, Team Stats, and Match Performances. Share it with the participants!</p>
             <Stack spacing={2} direction="row">
-              <TextField aria-readonly sx={{width:"250px"}}  inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
+              <TextField aria-readonly sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small'  variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
             <header>Registration Page Link</header>
             <p>Teams can register for this tournament using the following link.</p>
             <Stack spacing={2} direction="row">
-              <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={ tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
+              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
             </Stack>
-            <a href={`${localhos}/register/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/register/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
             <header>Public Post Link</header>
             <p>Find the tournament's public page here. Ensure the tournament visibility is set to 'PUBLISHED' and remember to add content to the public post.</p>
             <Stack spacing={2} direction="row">
-              <TextField sx={{width:"250px"}} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
+              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>
-            <a href={`${localhos}/tournaments/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{pb:0}} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/tournaments/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
         </div>
 

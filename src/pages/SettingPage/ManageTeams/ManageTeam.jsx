@@ -18,7 +18,7 @@ const ManageTeam = ({ setting, showss }) => {
   }, [])
 
   const fetche = async () => {
-    const url = `${tournacenter.apiadress}/tournamentform`;
+    const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
     const method = 'POST';
     const body = { tid };
 
@@ -43,7 +43,7 @@ const ManageTeam = ({ setting, showss }) => {
       if (willDelete) {
         const id = toast.loading("Please wait...")
 
-        const url = `${tournacenter.apiadress}/teamdelete`;
+        const url = `${import.meta.env.VITE_API_ADDRESS}teamdelete`;
         const method = 'POST';
         const body = { teamid };
 
