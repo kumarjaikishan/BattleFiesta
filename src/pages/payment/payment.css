@@ -305,7 +305,7 @@
         padding:0px 4px 10px 4px ;
 
         .svg {
-            /* height: 300px; */
+            height: 250px;
         }
 
         .btn {
@@ -328,7 +328,7 @@
 
                 .card {
                     width: 180px;
-                    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 
                     .period {
                         font-size: 18px;
@@ -339,7 +339,7 @@
                         font-size: 30px;
                     }
                     span{
-                        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+                        box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
                     }
                 }
             }
