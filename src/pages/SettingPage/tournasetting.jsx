@@ -104,7 +104,7 @@ const Tournasetting = () => {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ contactid, email, reply })
+        body: JSON.stringify(inp)
       });
       const data = await responsee.json();
       console.log(data);
