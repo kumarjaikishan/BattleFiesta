@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { motion } from 'framer-motion';
+import { setloader } from '../../store/login';
 import { profilefetch } from '../../store/profile'
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
@@ -21,7 +22,6 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const Profile = () => {
-    const tournacenter = useSelector((state) => state.tournacenter);
     const userprofile = useSelector((state) => state.userprofile);
     const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
@@ -50,7 +50,7 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
-     }, [])
+     }, [userprofile])
 
 
     const VisuallyHiddenInput = styled('input')({

@@ -7,12 +7,14 @@ import razorpay from '../../assets/payment/razorpay-icon.webp'
 import paytm from '../../assets/payment/paytm-icon.webp'
 import Button from '@mui/material/Button';
 import Paymentmodal from './modal';
+import { setloader } from '../../store/login';
 import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 const Payment = () => {
   const tournacenter = useSelector((state) => state.tournacenter);
   const userprofile = useSelector((state) => state.userprofile);
+  const dispatch = useDispatch();
   const top100Films = [
     { label: 'The Shawshank Redemption', year: 1994 },
     { label: 'The Godfather', year: 1972 },
@@ -50,18 +52,21 @@ const Payment = () => {
   const [plandetail, setplandetail] = useState([]);
 
   const fetche = async () => {
+    dispatch(setloader(true));
     try {
       const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}plan`, {
         method: "GET"
       });
       const data = await responsee.json();
       // console.log("dataplan ", data);
+      dispatch(setloader(false));
       if (responsee) {
         setplandetail(data.plans)
         setplanchoosed(data.plans[0])
       }
     } catch (error) {
-
+      console.log(error);
+      dispatch(setloader(false));
     }
   }
 
