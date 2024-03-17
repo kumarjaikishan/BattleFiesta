@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import './membershiprequest.css'
 import { toast } from 'react-toastify';
 import Membermodal from "./membermodal";
+import LoadingButton from '@mui/lab/LoadingButton';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import { motion } from 'framer-motion';
+import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
 
 const Membershiprequest = () => {
    const tournacenter = useSelector((state) => state.tournacenter);
+   const userprofile = useSelector((state) => state.admin);
    const admin = useSelector((state) => state.admin);
    const [memshiprequest, setmemshiprequest] = useState(admin.membershipentry);
    useEffect(() => {
-      console.log(admin);
-      // feteche();
-   }, [])
+      // console.log(userprofile);
+   },[])
+   const dispatch = useDispatch();
    const feteche = async () => {
       try {
          const token = localStorage.getItem("token");
@@ -72,7 +76,7 @@ const Membershiprequest = () => {
 
          }
       });
-      
+
    }
    const container = {
       hidden: { opacity: 1, scale: 0 },
@@ -128,7 +132,21 @@ const Membershiprequest = () => {
                })}
             </tbody>
          </table> */}
-         <div><h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2></div>
+         <div className="controler">
+            <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
+            <LoadingButton
+               loading={userprofile.loading}
+               onClick={() =>  dispatch(memshipentry())}
+               loadingPosition="end"
+               endIcon={<RefreshIcon />}
+               variant="outlined"
+               type="submit"
+               size="small"
+               className="refreshe"
+            >
+               REFRESH
+            </LoadingButton>
+         </div>
          <div className="header">
             <span>S.NO</span>
             <span>Name</span>

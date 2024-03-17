@@ -57,7 +57,7 @@ const tournacenter = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(alltourna.pending, (state,) => {
+        builder.addCase(alltourna.pending, (state,action) => {
             state.loading = true;
         })
         builder.addCase(alltourna.rejected, (state, action) => {

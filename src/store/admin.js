@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // First API call
 export const memshipentry = createAsyncThunk("memshipentry", async () => {
     const token = localStorage.getItem("token");
+    // console.log("ha");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}memshipentry`, {
             method: "GET",
@@ -96,7 +97,7 @@ export const Users = createAsyncThunk("Users", async () => {
 
 
 const admin = createSlice({
-    name: "userprofile",
+    name: "admin",
     initialState: {
         membershipentry: [],
         contactusform: [],
@@ -112,62 +113,61 @@ const admin = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder
-            .addCase(memshipentry.pending, (state,) => {
-                state.loading = true;
-            })
-            .addCase(memshipentry.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
-            .addCase(memshipentry.fulfilled, (state, action) => {
-                state.loading = false;
-                state.membershipentry = action.payload.data;
-            })
-            .addCase(contactusform.pending, (state,) => {
-                state.loading = true;
-            })
-            .addCase(contactusform.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
-            .addCase(contactusform.fulfilled, (state, action) => {
-                state.loading = false;
-                state.contactusform = action.payload.data;
-            })
-            .addCase(voucher.pending, (state,) => {
-                state.loading = true;
-            })
-            .addCase(voucher.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
-            .addCase(voucher.fulfilled, (state, action) => {
-                state.loading = false;
-                state.voucher = action.payload.data;
-            })
-            .addCase(membership.pending, (state,) => {
-                state.loading = true;
-            })
-            .addCase(membership.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
-            .addCase(membership.fulfilled, (state, action) => {
-                state.loading = false;
-                state.membership = action.payload.data;
-            })
-            .addCase(Users.pending, (state,) => {
-                state.loading = true;
-            })
-            .addCase(Users.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
-            .addCase(Users.fulfilled, (state, action) => {
-                state.loading = false;
-                state.users = action.payload.data;
-            })
+        builder.addCase(memshipentry.pending, (state,action) => {
+            state.loading = true;
+        })
+        builder.addCase(memshipentry.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        builder.addCase(memshipentry.fulfilled, (state, action) => {
+            state.loading = false;
+            state.membershipentry = action.payload.data;
+        })
+        builder.addCase(contactusform.pending, (state,action) => {
+            state.loading = true;
+        })
+        builder.addCase(contactusform.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        builder.addCase(contactusform.fulfilled, (state, action) => {
+            state.loading = false;
+            state.contactusform = action.payload.data;
+        })
+        builder.addCase(voucher.pending, (state,action) => {
+            state.loading = true;
+        })
+        builder.addCase(voucher.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        builder.addCase(voucher.fulfilled, (state, action) => {
+            state.loading = false;
+            state.voucher = action.payload.data;
+        })
+        builder.addCase(membership.pending, (state,action) => {
+            state.loading = true;
+        })
+        builder.addCase(membership.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        builder.addCase(membership.fulfilled, (state, action) => {
+            state.loading = false;
+            state.membership = action.payload.data;
+        })
+        builder.addCase(Users.pending, (state,action) => {
+            state.loading = true;
+        })
+        builder.addCase(Users.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        builder.addCase(Users.fulfilled, (state, action) => {
+            state.loading = false;
+            state.users = action.payload.data;
+        })
     }
 });
 
