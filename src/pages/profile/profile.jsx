@@ -237,7 +237,7 @@ const Profile = () => {
                     <h2>Profile Picture</h2>
                     <div className="img">
                         <img src={inp.profile ? inp.profile : photo}
-                            alt="" />
+                         loading="lazy"   alt="" />
                     </div>
                     <div> <h2>{inp.name}</h2></div>
                     <Button

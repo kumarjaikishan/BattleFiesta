@@ -77,7 +77,7 @@ const Tournamentstatpage = () => {
       </div>}
       {!iserror && <>
       {tournament.tournment_banner != "" && <div className="img">
-        <img src={tournament.tournment_banner} alt="" />
+        <img src={tournament.tournment_banner} loading="lazy" alt="Tournament Banner" />
       </div>}
       <div className="info">
         <div className="upper">

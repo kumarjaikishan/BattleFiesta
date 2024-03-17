@@ -71,19 +71,19 @@ const Findtournament = () => {
     const container = {
         hidden: { opacity: 1, scale: 0 },
         visible: {
-          opacity: 1,
-          scale: 1,
-          transition: {
-            delayChildren: 0.4,
-            staggerChildren: 0.3
-          }
+            opacity: 1,
+            scale: 1,
+            transition: {
+                delayChildren: 0.4,
+                staggerChildren: 0.3
+            }
         }
-      };
-    
-      const item = {
+    };
+
+    const item = {
         hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
         visible: { y: 0, x: 0, scale: 1, opacity: 1 }
-      };
+    };
     return (
         <>
             <div className="findtournas">
@@ -135,10 +135,11 @@ const Findtournament = () => {
                         );
 
                         return <motion.div
-                        variants={item}
-                         className="card" key={val._id}>
+                            variants={item}
+                            className="card" key={val._id}>
                             <div className="img">
                                 <img
+                                    loading="lazy"
                                     src={val.tournment_logo ? val.tournment_logo : tournlogo}
                                     alt="logo"
                                 />

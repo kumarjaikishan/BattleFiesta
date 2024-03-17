@@ -254,7 +254,7 @@ const Stats = () => {
       </div>
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
-          <img src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo}  alt="" />
+          <img loading="lazy" src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo}  alt="" />
         </div>
         <h3>{kuch.title}</h3>
         <h2>{kuch.organiser}</h2>
@@ -275,7 +275,7 @@ const Stats = () => {
             {tablerow.map((row, ind) => {
               return <tr key={ind}>
                 <td>{ind + 1}</td>
-                <td style={{ textAlign: "left" }}><span><img src={teamlogo[row.teamid] ? teamlogo[row.teamid] : group}
+                <td style={{ textAlign: "left" }}><span><img loading="lazy" src={teamlogo[row.teamid] ? teamlogo[row.teamid] : group}
                   alt="" /></span> <span>{row.teamname}</span> </td>
                 <td>{row.matchplayed}</td>
                 <td>{row.matchwon}</td>
