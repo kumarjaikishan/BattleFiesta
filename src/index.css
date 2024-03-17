@@ -51,7 +51,6 @@ code {
 .main {
   position: relative;
   min-height: calc(100vh - var(--navheight));
-  /* border: 3px solid red; */
   width: 100%;
 }
 .main.loader{

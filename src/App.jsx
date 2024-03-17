@@ -10,7 +10,6 @@ import Login from './pages/login/login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { setnarrow } from '../src/store/login';
 import { Errorpage } from './pages/Error/Errorpage';
 import Logout from './pages/login/logout'
 import Tournasetting from './pages/SettingPage/tournasetting';
@@ -27,7 +26,6 @@ import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
 import Adminnavbar from './pages/admin/adminnavbar';
 import { memshipentry,contactusform,voucher,membership,Users } from './store/admin';
-// import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,20 +39,12 @@ function App() {
   }, [log.isadmin])
 
 
-  // autocolse sidebar when screensize below 600px
-  const sidebarclose = () => {
-    const width = window.innerWidth;
-    // console.log(width)
-    width < 600 ? dispatch(setnarrow(true)) : null;
-  }
-
-
   return (
     <>
       <ToastContainer closeOnClick={true} pauseOnFocusLoss={true} />
       <div className="App" >
         <Navbar />
-        <div className={log.loader ? 'main loader' : 'main'} onClick={sidebarclose}>
+        <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />

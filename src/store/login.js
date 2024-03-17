@@ -5,7 +5,6 @@ const islogin = createSlice({
     initialState:{
         islogin:false,
         head:"LogIn",
-        narrow:true,
         loader:false,
         isadmin:false,
     },
@@ -16,9 +15,6 @@ const islogin = createSlice({
         header(state, action){
            state.head = action.payload;
         },
-        setnarrow(state, action){
-           state.narrow = action.payload;
-        },
         setloader(state, action){
            state.loader = action.payload;
         },
@@ -28,5 +24,5 @@ const islogin = createSlice({
     }
 
 })
-export const {setadmin,setlogin,header,setnarrow,setloader}= islogin.actions;
+export const {setadmin,setlogin,header,setloader}= islogin.actions;
 export default islogin.reducer;
