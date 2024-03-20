@@ -25,7 +25,12 @@ import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
 import Adminnavbar from './pages/admin/adminnavbar';
-import { memshipentry,contactusform,voucher,membership,Users } from './store/admin';
+import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
+import Admindashboard from './pages/admin/dashboard/dashboard';
+import Contactform from './pages/admin/contactform/contactform';
+import Voucher from './pages/admin/voucher/voucher';
+import Membership from './pages/admin/membership/membership';
+import User from './pages/admin/user/user';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +40,7 @@ function App() {
     // console.log(import.meta.env.VITE_API_ADDRESS);
   }, [])
   useEffect(() => {
-    
+
   }, [log.isadmin])
 
 
@@ -53,11 +58,14 @@ function App() {
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
-            <Route path="/admin" element={<Adminnavbar />} />
-            {/* <Route path="/admin" >
+            <Route path='/admin' element={<Adminnavbar />}>
               <Route index element={<Admindashboard />} />
-              <Route path="members" element={<Membershiprequest />} />
-            </Route> */}
+              <Route path='membershiprequest' element={<Membershiprequest />} />
+              <Route path='contact' element={<Contactform />} />
+              <Route path='voucher' element={<Voucher />} />
+              <Route path='membership' element={<Membership />} />
+              <Route path='users' element={<User />} />
+            </Route>
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/stat/:tid" element={<Stats />} />
             <Route path="/profile" element={<Profile />} />
@@ -75,7 +83,7 @@ function App() {
           {log.loader && <Preloader />}
         </div>
         <Footbar />
-      </div>
+      </div >
     </>
   );
 }
