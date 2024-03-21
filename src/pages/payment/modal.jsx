@@ -45,7 +45,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymod
             console.log(error);
         }
     }
-    const qrcodeamount = planchoosed.price + tax(planchoosed.price) - Math.floor((planchoosed.price * inp.coupon) / 100);
+    const qrcodeamount = planchoosed?.price + tax(planchoosed?.price) - Math.floor((planchoosed?.price * inp.coupon) / 100);
     const [isloading, setisloading] = useState(false);
     return (
         <>
@@ -66,7 +66,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymod
                     <div className="right">
                         <form onSubmit={handlee}>
                             <img src={logo} alt="" />
-                            <h3>{planchoosed.duration} plan - ₹{qrcodeamount}.00</h3>
+                            <h3>{planchoosed?.duration} plan - ₹{qrcodeamount}.00</h3>
                             <TextField onChange={handleinput} required id="outlined-basic" type='tel'
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} name="txn_no" size="small" label="Enter UTR/UPI REF No." variant="outlined" />
                             <div className="just">

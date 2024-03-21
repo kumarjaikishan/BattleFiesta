@@ -58,7 +58,7 @@ const Payment = () => {
         method: "GET"
       });
       const data = await responsee.json();
-      // console.log("dataplan ", data);
+      console.log("dataplan ", data);
       dispatch(setloader(false));
       if (responsee) {
         setplandetail(data.plans)
@@ -222,8 +222,8 @@ const Payment = () => {
             <div className="paymentdetail">
               <form onSubmit={sub}>
                 <div className='initial'>
-                  <b><p>BattleFiesta - {planchoosed.plan_name} Plan</p></b>
-                  <span> <b>₹{planchoosed.price}.00</b></span>
+                  <b><p>BattleFiesta - {planchoosed?.plan_name} Plan</p></b>
+                  <span> <b>₹{planchoosed?.price}.00</b></span>
                 </div>
                 <Divider variant="middle" />
                 <div className='half'>
@@ -241,11 +241,11 @@ const Payment = () => {
                 <div className='full'>
                   <div className="under">
                     <span>Plan</span>
-                    <span>₹{planchoosed.price}.00</span>
+                    <span>₹{planchoosed?.price}.00</span>
                   </div>
                   <div className="under">
                     <span>Tax (0% Round off)</span>
-                    <span>₹{tax(planchoosed.price)}.00</span>
+                    <span>₹{tax(planchoosed?.price)}.00</span>
                   </div>
                   <div className="under">
                     <span>Coupon {inp.coupon > 0 && `(${inp.coupon}% OFF)`}</span>
@@ -255,7 +255,7 @@ const Payment = () => {
                 <div className='full'>
                   <div className="under">
                     <b><span>Final Price</span></b>
-                    <span> <b>₹{planchoosed.price + tax(planchoosed.price) - Math.floor((planchoosed.price * inp.coupon) / 100)}.00</b></span>
+                    <span> {planchoosed && <b>₹{planchoosed.price + tax(planchoosed.price) - Math.floor((planchoosed.price * inp.coupon) / 100)}.00</b> }</span>
                   </div>
                 </div>
                 <Divider variant="middle" />

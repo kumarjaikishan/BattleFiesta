@@ -188,6 +188,31 @@ const Profile = () => {
             }
         }
     }
+    const resetpassword=async()=>{
+        try {
+            setisloadinge(true)
+            const id = toast.loading("Please wait...")
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}passreset`, {
+                method: "Get",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            })
+            const data = await res.json();
+            // console.log(data);
+            setisloadinge(false)
+            
+            if (!res.ok) {
+               return toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
+            }
+            toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
+        } catch (error) {
+            toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2200 });
+            setisloadinge(false)
+            console.log(error);
+        }
+    }
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
         const date = new Date(dateString);
@@ -255,6 +280,7 @@ const Profile = () => {
                 </div>
                 <div className="profiledeatil glass">
                     <h2>Profile</h2>
+                    <a href="">Click here to Reset Password</a>
                     <form onSubmit={submit}>
                         <div className="input">
                             <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
@@ -293,7 +319,7 @@ const Profile = () => {
                             className="half" id="outlined-basic" label="Email Address" variant="outlined" />
                         <p>A verification email will be sent to</p>
                         <p><b>kumar.jaikishan0@gmail.com</b></p>
-                        <Button disabled title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
+                        <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
                             Send Password Reset Link
                         </Button>
                     </div>

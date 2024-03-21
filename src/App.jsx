@@ -37,7 +37,7 @@ function App() {
   const log = useSelector((state) => state.login);
 
   useEffect(() => {
-    // console.log(import.meta.env.VITE_API_ADDRESS);
+    console.log(import.meta.env.VITE_API_ADDRESS);
   }, [])
   useEffect(() => {
 
