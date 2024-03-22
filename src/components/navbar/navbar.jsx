@@ -22,11 +22,15 @@ const Navbar = () => {
           </div>
           <nav>
             <ul>
+            {log.islogin && <>
               <NavLink className="navlink" to='/dashboard'><li>Dashboard</li></NavLink>
               <NavLink className="navlink" to='/profile'><li>Profile</li></NavLink>
+            </>}
+              
               {log.islogin && log.isadmin && <NavLink className="navlink" to='/admin'><li>Admin</li></NavLink>}
               <NavLink className="navlink" to='/tournaments'><li>Find Tournament</li></NavLink>
-              <NavLink className="navlink" to='/logout'><li>Logout</li></NavLink>
+             {!log.islogin && <NavLink className="navlink" to='/login'><li>Login</li></NavLink>} 
+             {log.islogin && <NavLink className="navlink" to='/logout'><li>Logout</li></NavLink>} 
             </ul>
           </nav>
         </header>

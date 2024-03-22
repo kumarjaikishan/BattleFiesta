@@ -31,13 +31,14 @@ import Contactform from './pages/admin/contactform/contactform';
 import Voucher from './pages/admin/voucher/voucher';
 import Membership from './pages/admin/membership/membership';
 import User from './pages/admin/user/user';
+import PasswordReset from './pages/password/password';
 
 function App() {
   const dispatch = useDispatch();
   const log = useSelector((state) => state.login);
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_API_ADDRESS);
+    // console.log(import.meta.env.VITE_API_ADDRESS);
   }, [])
   useEffect(() => {
 
@@ -72,6 +73,7 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/resetpassword/:token" element={<PasswordReset />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/plan" element={<Payment />} />
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />

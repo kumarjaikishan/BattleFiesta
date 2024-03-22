@@ -280,7 +280,6 @@ const Profile = () => {
                 </div>
                 <div className="profiledeatil glass">
                     <h2>Profile</h2>
-                    <a href="">Click here to Reset Password</a>
                     <form onSubmit={submit}>
                         <div className="input">
                             <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
