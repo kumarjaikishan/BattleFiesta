@@ -5,14 +5,14 @@ import InputAdornment from '@mui/material/InputAdornment';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { setloader, setlogin,setadmin } from '../../store/login';
+import { setloader, setlogin, setadmin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { alltourna } from '../../store/api'
 import { profilefetch } from '../../store/profile'
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { memshipentry,contactusform,voucher,membership,Users } from '../../store/admin';
+import { memshipentry, contactusform, voucher, membership, Users } from '../../store/admin';
 
 const Signin = () => {
     let navigate = useNavigate();
@@ -43,7 +43,7 @@ const Signin = () => {
         e.preventDefault();
         setbtnclick(true);
         const { email, password } = signinp;
-        
+
         try {
             const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}login`, {
                 method: "POST",
@@ -66,7 +66,7 @@ const Signin = () => {
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
                 dispatch(profilefetch());
-                if(data.isadmin){
+                if (data.isadmin) {
                     dispatch(memshipentry());
                     dispatch(contactusform());
                     dispatch(voucher());
@@ -94,7 +94,36 @@ const Signin = () => {
             dispatch(setloader(false));
         }
     }
+    const [forget, setforget] = useState(false);
+    const emailset = async () => {
+        const email = signinp.email;
+        if (email == "") {
+            return toast.warn("Email can't be empty", { autoClose: 2100 })
+        }
+        try {
+            setbtnclick(true)
+            const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}checkmail`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            })
+            const data = await res.json();
+            // console.log(data);
+            setbtnclick(false)
 
+            if (!res.ok) {
+                return toast.warn(data.message, { autoClose: 2100 });
+            }
+            setforget(false);
+            toast.success(data.message, { autoClose: 2100 })
+        } catch (error) {
+            toast.warn(error.message, { autoClose: 2100 });
+            setbtnclick(false)
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -116,7 +145,7 @@ const Signin = () => {
 
                         }}
                     />
-                    <TextField
+                    {!forget && <TextField
                         label="Password"
                         className='filled'
                         size="small"
@@ -134,8 +163,16 @@ const Signin = () => {
                             </InputAdornment>
                         }}
 
-                    />
-                    <LoadingButton
+                    />}
+                    {!forget && <div className='forget'>
+                        <span onClick={() => setforget(true)}>Forget Password?</span>
+                    </div>}
+
+                    {forget && <div className='forget'>
+                        <span onClick={() => setforget(false)}>SignIn?</span>
+                    </div>}
+
+                    {!forget && <LoadingButton
                         loading={btnclick}
                         type='submit'
                         startIcon={<VpnKeyIcon />}
@@ -143,7 +180,16 @@ const Signin = () => {
                         variant="contained"
                     >
                         Login
-                    </LoadingButton>
+                    </LoadingButton>}
+                    {forget && <LoadingButton
+                        loading={btnclick}
+                        onClick={emailset}
+                        startIcon={<VpnKeyIcon />}
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Email sent
+                    </LoadingButton>}
                 </form>
             </div>
         </>

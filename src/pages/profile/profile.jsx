@@ -206,7 +206,7 @@ const Profile = () => {
             if (!res.ok) {
                return toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
             }
-            toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
         } catch (error) {
             toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2200 });
             setisloadinge(false)
