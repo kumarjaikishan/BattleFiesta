@@ -230,6 +230,7 @@ const Home = () => {
                     </motion.div>
                 </section>
                 <section className='section3'>
+                
                     <motion.div
                         ref={section3}
                         variants={leftsection}

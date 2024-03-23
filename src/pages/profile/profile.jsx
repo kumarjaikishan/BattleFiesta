@@ -39,6 +39,7 @@ const Profile = () => {
         sociallinks: ''
     }
     const [inp, setinp] = useState(init);
+    const [messagesent,setmessagesent]= useState('')
     const [membership, setmembership] = useState({
         plan: 'N/A',
         planprice: 'N/A',
@@ -206,6 +207,7 @@ const Profile = () => {
             if (!res.ok) {
                return toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
             }
+            setmessagesent(data.extramessage)
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
         } catch (error) {
             toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2200 });
@@ -314,10 +316,10 @@ const Profile = () => {
                 <div className="passchange glass">
                     <h2>Change Password</h2>
                     <div>
-                        <TextField required name='link' fullWidth size='small'
+                        <TextField required name='link' disabled fullWidth size='small' value={inp.email}
                             className="half" id="outlined-basic" label="Email Address" variant="outlined" />
-                        <p>A verification email will be sent to</p>
-                        <p><b>kumar.jaikishan0@gmail.com</b></p>
+                       {messagesent && <p style={{color:'green', fontSize:'14px'}}>{messagesent}</p>} 
+                       {!messagesent.length && <p style={{ fontSize:'14px'}}>A verification email will be sent to <b>{inp.email}</b>.</p>}
                         <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
                             Send Password Reset Link
                         </Button>
