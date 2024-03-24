@@ -71,7 +71,7 @@ const Signup = ({ setlog }) => {
             // console.log(datae);
             if (res.ok) {
                 // setsigninp(init);
-                toast.success("Signup Successful,verify your Email", { autoClose: 2800 })
+                toast.success(datae.message, { autoClose: 2800 })
                 setbtnclick(false);
                 setlog(true)
                 dispatch(setloader(false));
