@@ -242,13 +242,13 @@ const Dashboard = () => {
           <div className="card">
           <i className="fa fa-credit-card" aria-hidden="true"></i>
             <div>
-              <span>Plan</span> <span>:</span><span>{userprofile.membership.planid ? userprofile.membership.planid.plan_name:'N/A'}</span>
+              <span>Plan</span> <span>:</span><span>{ userprofile?.membership?.planid?.plan_name}</span>
             </div>
             <div>
-              <span>Tournament Limit</span> <span>:</span><span>{userprofile.membership.planid ? userprofile.membership.planid.create_limit: 0}</span>
+              <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit}</span>
             </div>
             <div>
-              <span>Expire In</span> <span>:</span><span>{userprofile.membership.expire_date ? getTimeDifference(userprofile.membership.expire_date):'N/A'} Days</span>
+              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date ? getTimeDifference(userprofile.membership.expire_date):'N/A'} Days</span>
             </div>
             <div>
               <span>Completed</span> <span>:</span><span>{count.completed}</span>

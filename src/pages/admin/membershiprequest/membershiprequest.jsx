@@ -43,7 +43,6 @@ const Membershiprequest = () => {
       setinp(pre)
    }
    const Deletee = async (ide) => {
-
       swal({
          title: 'Are you sure?',
          text: 'Once deleted, you will not be able to recover this Tournament!',
@@ -53,6 +52,7 @@ const Membershiprequest = () => {
       }).then(async (willDelete) => {
          if (willDelete) {
             try {
+               const id = toast.loading('please wait...')
                const token = localStorage.getItem("token");
                const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}delmemberentry`, {
                   method: "POST",
@@ -65,8 +65,8 @@ const Membershiprequest = () => {
                const data = await responsee.json();
                if (responsee.ok) {
                   feteche();
-                  toast.success(data.message, { autoClose: 1300 });
-                  console.log(data);
+                  toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
+                 console.log(data);
                   setmemshiprequest(data.data)
                }
             } catch (error) {
@@ -136,7 +136,7 @@ const Membershiprequest = () => {
             <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
             <LoadingButton
                loading={userprofile.loading}
-               onClick={() =>  dispatch(memshipentry())}
+               onClick={() =>  feteche()}
                loadingPosition="end"
                endIcon={<RefreshIcon />}
                variant="outlined"
