@@ -10,32 +10,12 @@ import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
 
 const Membershiprequest = () => {
-   const tournacenter = useSelector((state) => state.tournacenter);
    const userprofile = useSelector((state) => state.admin);
    const admin = useSelector((state) => state.admin);
-   const [memshiprequest, setmemshiprequest] = useState(admin.membershipentry);
    useEffect(() => {
-      // console.log(userprofile);
+      console.log(admin.membershipentry);
    },[])
    const dispatch = useDispatch();
-   const feteche = async () => {
-      try {
-         const token = localStorage.getItem("token");
-         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}memshipentry`, {
-            method: "GET",
-            headers: {
-               "Authorization": `Bearer ${token}`
-            },
-         });
-         const data = await responsee.json();
-         if (responsee.ok) {
-            console.log(data);
-            setmemshiprequest(data.data)
-         }
-      } catch (error) {
-         console.log(error);
-      }
-   }
    const [inp, setinp] = useState(null);
    const [membermodal, setmembermodal] = useState(false);
    const actione = (pre) => {
@@ -64,10 +44,9 @@ const Membershiprequest = () => {
                });
                const data = await responsee.json();
                if (responsee.ok) {
-                  feteche();
+                  dispatch(memshipentry())
                   toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                  console.log(data);
-                  setmemshiprequest(data.data)
                }
             } catch (error) {
                console.log(error);
@@ -136,7 +115,7 @@ const Membershiprequest = () => {
             <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
             <LoadingButton
                loading={userprofile.loading}
-               onClick={() =>  feteche()}
+               onClick={() =>  dispatch(memshipentry())}
                loadingPosition="end"
                endIcon={<RefreshIcon />}
                variant="outlined"
@@ -164,7 +143,7 @@ const Membershiprequest = () => {
             animate="visible"
             layout
             className="body">
-            {memshiprequest && memshiprequest.map((val, ind) => {
+            {admin?.membershipentry?.map((val, ind) => {
                const options = { day: '2-digit', month: 'short', year: 'numeric' };
                const date = new Date(val.createdAt);
                const formattedDate = date.toLocaleDateString('en-GB', options);

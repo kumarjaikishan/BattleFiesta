@@ -6,7 +6,7 @@ const Membership = () => {
   const admin = useSelector((state) => state.admin);
 
   useEffect(() => {
-    // console.log(admin);
+    console.log(admin.membership);
   }, [])
 
   return <>
@@ -21,12 +21,12 @@ const Membership = () => {
           <span>Status</span>
         </div>
         <div className="body">
-        {admin.membership && admin.membership.map((val,ind)=>{
+        {admin?.membership?.map((val,ind)=>{
           return <div key={ind}>
-            <span>{ind+1}</span>
-            <span>{val.userid.name}</span>
-            <span>{val.planid.plan_name}</span>
-            <span>{val.planid.price}</span>
+          <span>{ind+1}</span>
+          <span>{val.userid?.name}</span>
+          <span>{val.planid.plan_name}</span>
+          <span>{val.planid.price}</span>
             <span>{val.finalpricepaid}</span>
             <span className='status active'>Active</span>
           </div>

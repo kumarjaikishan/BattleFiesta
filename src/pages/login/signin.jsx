@@ -54,8 +54,8 @@ const Signin = () => {
                     email, password
                 })
             })
-            // console.log(res);
             const data = await res.json();
+            // console.log(data);
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
                 // console.log("login data",data);

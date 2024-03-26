@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // First API call
 export const memshipentry = createAsyncThunk("memshipentry", async () => {
     const token = localStorage.getItem("token");
-    // console.log("ha");
+    // console.log("membership entry");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}memshipentry`, {
             method: "GET",
@@ -23,6 +23,7 @@ export const memshipentry = createAsyncThunk("memshipentry", async () => {
 // Second API call
 export const contactusform = createAsyncThunk("contactusform", async () => {
     const token = localStorage.getItem("token");
+    // console.log("contact form");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}contactformlist`, {
             method: "GET",
@@ -41,6 +42,7 @@ export const contactusform = createAsyncThunk("contactusform", async () => {
 // third API call
 export const voucher = createAsyncThunk("voucher", async () => {
     const token = localStorage.getItem("token");
+    // console.log("vouvhers");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getvoucher`, {
             method: "GET",
@@ -60,6 +62,7 @@ export const voucher = createAsyncThunk("voucher", async () => {
 // fourth API call
 export const membership = createAsyncThunk("membership", async () => {
     const token = localStorage.getItem("token");
+    // console.log("membership entry");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getmembership`, {
             method: "GET",
@@ -79,6 +82,7 @@ export const membership = createAsyncThunk("membership", async () => {
 // Fifth API call
 export const Users = createAsyncThunk("Users", async () => {
     const token = localStorage.getItem("token");
+    // console.log("all users entry");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getusers`, {
             method: "GET",

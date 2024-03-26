@@ -7,14 +7,17 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { memshipentry } from "../../../store/admin";
 
-const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
+const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
     const [other, setother] = useState({
         remarks: "",
         buydate: new Date(),
         expiredate: new Date()
     });
+    
+   const dispatch = useDispatch();
 
     useEffect(() => {
         // console.log(inp);
@@ -23,7 +26,6 @@ const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
         setother({ ...other, [naam]: e.target.value })
         setinp({ ...inp, [naam]: e.target.value })
     };
-    const tournacenter = useSelector((state) => state.tournacenter);
 
     const handlee = async (e, id) => {
         e.preventDefault();
@@ -45,7 +47,7 @@ const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
             const data = await responsee.json();
             console.log(data);
             if (responsee.ok) {
-                feteche();
+                dispatch(memshipentry())
                 toast.success(data.message, { autoClose: 1300 });
                 setmembermodal(false);
             } else {
@@ -66,24 +68,22 @@ const Membermodal = ({ feteche, setinp, inp, membermodal, setmembermodal }) => {
                     <form onSubmit={(e) => handlee(e, inp._id)}>
                         <h2>Create Membership</h2>
 
-                        <div>
-                            <FormControl sx={{ width: '48%' }} size="small">
-                                <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={inp.status}
-                                    label="Status"
-                                    onChange={(e) => handleChange(e, 'status')}
-                                >
-                                    <MenuItem value='pending'>Pending</MenuItem>
-                                    <MenuItem value='success'>Success</MenuItem>
-                                    <MenuItem value='rejected'>Rejected</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <TextField required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '48%' }} label="Remarks" size="small" />
-                        </div>
-                        <div>
+                        <FormControl sx={{ width: '95%' }} size="small">
+                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={inp.status}
+                                label="Status"
+                                onChange={(e) => handleChange(e, 'status')}
+                            >
+                                <MenuItem value='pending'>Pending</MenuItem>
+                                <MenuItem value='success'>Success</MenuItem>
+                                <MenuItem value='rejected'>Rejected</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <TextField multiline rows={3} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '95%' }} label="Remarks" size="small" />
+                        <div className="btn">
                             <Button size="small" type="submit" variant="contained"> Submit</Button>
                             <Button size="small" onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
                         </div>
