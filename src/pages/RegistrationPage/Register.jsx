@@ -10,6 +10,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import AddIcon from '@mui/icons-material/Add';
 import PhotoIcon from '@mui/icons-material/Photo';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Divider from '@mui/material/Divider';
 import PanToolIcon from '@mui/icons-material/PanTool';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -23,6 +24,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import Badge from '@mui/material/Badge';
+import QRCode from "react-qr-code";
 import useImageUpload from "../utils/imageresizer";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
@@ -85,6 +87,9 @@ const Register = () => {
         ask_team_logo: "",
         ask_player_logo: "",
         ask_payment_ss: "",
+        show_payment: "",
+        amount: "",
+        upi_id: "",
         slots: '',
         min_player: 2,
         max_player: 5,
@@ -138,7 +143,7 @@ const Register = () => {
                 body: JSON.stringify({ tid: id })
             })
             const resuke = await rese.json();
-            // console.log(resuke);
+            console.log(resuke);
             if (rese.ok) {
                 // toast.success(resuke.message, { autoClose: 1300 });
                 setdisable(false);
@@ -165,6 +170,9 @@ const Register = () => {
                     ask_team_logo: actualdata.ask_teamlogo,
                     ask_player_logo: actualdata.ask_playerlogo,
                     ask_payment_ss: actualdata.ask_payment_ss,
+                    show_payment: actualdata.show_payment,
+                    amount: actualdata.amount,
+                    upi_id: actualdata.upi_id,
                     min_player: actualdata.minimum_players,
                     max_player: actualdata.maximum_players,
                     title: actualdata2.title,
@@ -435,6 +443,7 @@ const Register = () => {
                                     size="small" id="outlined-basic" name="teammobile"
                                     value={inp.teammobile}
                                     type='tel'
+                                    inputProps={{ minLength: 12, maxLength: 12 }}
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                     color={inp.teammobile.length == 10 ? "primary" : "warning"}
@@ -464,7 +473,7 @@ const Register = () => {
                                 all.ask_payment_ss && <>
                                     <h4>Set Payment Screenshot*</h4>
                                     <div id="paymentss"></div>
-                                    <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
+                                    <Button sx={{ mb: 2,mt:0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
                                         Upload S.S
                                         <VisuallyHiddenInput
                                             type="file"
@@ -546,7 +555,29 @@ const Register = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-
+                        {all.show_payment && <div className="showpayment">
+                            <div className="img">
+                                <QRCode
+                                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                    value={`upi://pay?pa=${all.upi_id}&am=${all.amount}&tn=battleFiesta&cu=INR`}
+                                    viewBox={`0 0 256 256`}
+                                />
+                            </div>
+                            <div>
+                                {all.upi_id}
+                            </div>
+                            <Button
+                                sx={{ mt: 1 }}
+                                title="PAY NOW"
+                                onClick={() => { window.location.href = `upi://pay?pa=${all.upi_id}&am=${all.amount}&tn=battleFiesta&cu=INR`; }}
+                                startIcon={<CurrencyRupeeIcon />}
+                                variant="outlined"
+                                color="primary"
+                            >
+                                Pay Now
+                            </Button>
+                        </div>}
+                        
                         <div className="contacts">
                             <h2>Contact Details</h2>
                             {all.links.length > 0 ? <>

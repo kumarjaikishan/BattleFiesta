@@ -43,7 +43,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             <div className="icon">
                                 <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
                                 <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>
-                                <a href={`https://wa.me/${player.mobile}`} target="_blank" ><WhatsAppIcon titleAccess='Whatsapp' /></a>
+                                <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><WhatsAppIcon titleAccess='Whatsapp' /></a>
                                 {player.screenss && <PhotoIcon color='primary' titleAccess='Show ScreenShot' onClick={() => showss(player.screenss)} />}
                             </div>
                         </div>

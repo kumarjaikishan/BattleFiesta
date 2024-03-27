@@ -1,10 +1,10 @@
-import {FormLabel,RadioGroup,Radio,Box,TextField,FormControlLabel} from '@mui/material';
+import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel } from '@mui/material';
 import './TournaFormSetting.css'
 import { useEffect } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 
-const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
+const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
 
     return (
         <>
@@ -38,7 +38,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         name="description"
                         className='taxi'
                         rows={4}
-                        inputProps={{ style: { fontSize: "11px" , lineHeight:"12px" } }}
+                        inputProps={{ style: { fontSize: "11px", lineHeight: "12px" } }}
                         onChange={handleChange}
                         value={all.description}
                         helperText="Add description or message to show on registration page."
@@ -55,7 +55,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         onChange={handleChange}
                         placeholder="Add description or message to show after Successful Registration"
                     />
-                    
+
                     <h3>Options:</h3>
                     <FormLabel id="demo-row-radio-buttons-group-label">Ask for Email</FormLabel>
                     <RadioGroup
@@ -141,6 +141,51 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
+                    <FormLabel id="demo-row-radio-buttons-group-label">Show Payment Option</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="show_payment"
+                        defaultValue={false}
+                        value={all.show_payment}
+                        sx={{ mb: 1 }}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
+                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+
+                    </RadioGroup>
+                    {all.show_payment && <>
+                        <TextField
+                            id="outlined-number"
+                            label="Upi Id"
+                            className='taxi'
+                            value={all.upi_id}
+                            name="upi_id"
+                            size='small'
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={handleChange}
+                            helperText="Enter upi to receive Payment"
+                        />
+                        <TextField
+                            id="outlined-number"
+                            label="Amount"
+                            type="tel"
+                            className='taxi'
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                            value={all.amount}
+                            name="amount"
+                            size='small'
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={handleChange}
+                            helperText="Enter Amount to be received"
+                        />
+                    </>}
+
                     <TextField
                         id="outlined-number"
                         label="Minimum Players"
@@ -149,6 +194,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         value={all.min_player}
                         name="min_player"
+                        size='small'
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -160,6 +206,7 @@ const TournaFormSetting = ({all, handleChange, submit, isloading}) => {
                         label="Maximum Players"
                         className='taxi'
                         type="tel"
+                        size='small'
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         name="max_player"
                         value={all.max_player}

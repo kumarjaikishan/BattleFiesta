@@ -3,7 +3,7 @@ import "./registerform.css";
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import {setloader } from "../../../store/login";
+import { setloader } from "../../../store/login";
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import GroupIcon from '@mui/icons-material/Group';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
@@ -39,13 +39,16 @@ const Registerform = ({ setting, showss }) => {
         ask_team_logo: "",
         ask_player_logo: "",
         ask_payment_ss: "",
+        show_payment: "",
+        amount: "",
+        upi_id: "",
         min_player: "",
         max_player: "",
-        links:'',
-        publicpost:''
+        links: '',
+        publicpost: ''
     }
     const [all, setall] = useState(init);
-    const [isloading,setisloading]= useState(false)
+    const [isloading, setisloading] = useState(false)
 
     useEffect(() => {
         dispatch(setloader(true));
@@ -67,7 +70,7 @@ const Registerform = ({ setting, showss }) => {
         const successAction = (data) => {
             // toast.success(data.message, { autoClose: 1300 });
             const actualdata = data.data;
-            // console.log(data);
+            // console.log("settingpage",data);
             setPlayerlist(data.entry)
             sortplayerdata(data.entry)
             setall({
@@ -84,8 +87,11 @@ const Registerform = ({ setting, showss }) => {
                 ask_payment_ss: actualdata.ask_payment_ss,
                 min_player: actualdata.minimum_players,
                 max_player: actualdata.maximum_players,
-                links:actualdata.links,
-                publicpost:actualdata.publicpost
+                show_payment:actualdata.show_payment,
+                amount: actualdata.amount,
+                upi_id: actualdata.upi_id,
+                links: actualdata.links,
+                publicpost: actualdata.publicpost
             })
             dispatch(setloader(false));
         };

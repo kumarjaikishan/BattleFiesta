@@ -376,9 +376,8 @@ const Dashboard = () => {
                     onChange={handleChange}
                   >
                     <MenuItem value="" disabled>Select Type</MenuItem>
-                    <MenuItem value={1}>SOLO</MenuItem>
-                    <MenuItem value={2}>DUO</MenuItem>
-                    <MenuItem value={4}>SQUAD</MenuItem>
+                    <MenuItem value='classic'>Classic</MenuItem>
+                    <MenuItem value='tdm'>TDM</MenuItem>
                   </Select>
                 </FormControl>
               </section>

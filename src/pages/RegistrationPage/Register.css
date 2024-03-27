@@ -105,6 +105,18 @@
                 font-size: 3em;
             }
         }
+        .showpayment {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid grey;
+            /* display: flex; */
+            .img{
+                width: 120px;
+            }
+            a{
+                text-decoration: none;
+            }
+        }
 
         .contacts {
             margin-top: 20px;
