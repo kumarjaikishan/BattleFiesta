@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
+import dayjs from 'dayjs';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { motion } from 'framer-motion';
 import { setloader } from '../../store/login';
@@ -223,11 +224,13 @@ const Profile = () => {
     function getTimeDifference(dateString) {
         const givenDate = new Date(dateString);
         const currentDate = new Date();
+        // const currentDate = new Date('2024-03-27');
+        console.log(currentDate);
     
         const differenceInMilliseconds = givenDate - currentDate;
         const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
     
-        return days;
+        return days+1;
     }
 
     return (

@@ -8,6 +8,11 @@ const User = ()=>{
     useEffect(() => {
       console.log(admin);
     }, [])
+    const formatDate = (dateString) => {
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-GB', options);
+    };
     
  return <>
     <div className="adminusers">
@@ -30,7 +35,7 @@ const User = ()=>{
                         <td>{val.name}</td>
                         <td>{val.phone}</td>
                         <td>{val.email}</td>
-                        <td>{val.createdAt}</td>
+                        <td>{formatDate(val.createdAt)}</td>
                         {/* <td>{val.tourn_created}</td> */}
                         <td><i className="fa fa-pencil"  aria-hidden="true"></i>
                                 <i className="fa fa-trash"  aria-hidden="true"></i></td>

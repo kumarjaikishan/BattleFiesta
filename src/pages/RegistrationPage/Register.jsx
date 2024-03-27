@@ -473,7 +473,7 @@ const Register = () => {
                                 all.ask_payment_ss && <>
                                     <h4>Set Payment Screenshot*</h4>
                                     <div id="paymentss"></div>
-                                    <Button sx={{ mb: 2,mt:0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
+                                    <Button size="small" sx={{ mb: 0.5,mt:0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
                                         Upload S.S
                                         <VisuallyHiddenInput
                                             type="file"
@@ -481,6 +481,7 @@ const Register = () => {
                                             onChange={(event) => common(event, "paymentss")}
                                         />
                                     </Button>
+                                    <p style={{color:'green',fontSize:'12px'}}>*Note- UTR/Txn No. must be visible in Screenshot</p>
                                     <br />
                                 </>
                             }

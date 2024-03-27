@@ -28,16 +28,17 @@
             align-items: center;
             color: white;
 
-            & img {
-                width: 60px;
-            }
-
             .navlink {
                 display: flex;
                 /* border: 1px solid red; */
                 align-items: end;
-                /* width: 200px; */
                 text-decoration: none;
+                display: flex;
+                align-items: center;
+
+                & img {
+                    width: 60px;
+                }
             }
         }
 
