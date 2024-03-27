@@ -90,7 +90,7 @@ const Profile = () => {
             buydate: membere.buy_date,
             expirydate: membere.expire_date,
             expire_in: getTimeDifference(membere.expire_date),
-            status: 'active'
+            status: getTimeDifference(membere.expire_date) < 0 ? 'expired':'active'
         })
     }
     const newlink = () => {
@@ -223,11 +223,10 @@ const Profile = () => {
     function getTimeDifference(dateString) {
         const givenDate = new Date(dateString);
         const currentDate = new Date();
-
-        const differenceInMilliseconds = Math.abs(currentDate - givenDate);
+    
+        const differenceInMilliseconds = givenDate - currentDate;
         const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
+    
         return days;
     }
 

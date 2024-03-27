@@ -75,42 +75,7 @@ const Membershiprequest = () => {
    };
    return <>
       <motion.div
-
          className="membershiprequest">
-         {/* <table>
-            <thead>
-               <tr>
-                  <th>S.NO</th>
-                  <th>Name</th>
-                  <th>Plan</th>
-                  <th>coupon</th>
-                  <th>Finalprice</th>
-                  <th>Date</th>
-                  <th>Txn. NO</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-               </tr>
-            </thead>
-            <tbody>
-               {memshiprequest && memshiprequest.map((val, ind) => {
-                  const options = { day: '2-digit', month: 'short', year: 'numeric' };
-                  const date = new Date(val.createdAt);
-                  const formattedDate = date.toLocaleDateString('en-GB', options);
-                  return <tr key={ind}>
-                     <td>{ind + 1}</td>
-                     <td>{val.user.name}</td>
-                     <td>{val.plan_name}</td>
-                     <td>{val.coupon}</td>
-                     <td>{val.finalpricepaid}</td>
-                     <td>{formattedDate}</td>
-                     <td title={val.status == 'success' && val.membershipId}>{val.txn_no}</td>
-                     <td className={`status ${val.status}`} title={val.status == 'rejected' && val.remarks}>{val.status}</td>
-                     <td><i className="fa fa-pencil" onClick={() => actione(val)} aria-hidden="true"></i>
-                        <i className="fa fa-trash" onClick={() => Deletee(val._id)} aria-hidden="true"></i></td>
-                  </tr>
-               })}
-            </tbody>
-         </table> */}
          <div className="controler">
             <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
             <LoadingButton
@@ -161,7 +126,7 @@ const Membershiprequest = () => {
                </motion.div>
             })}
          </motion.div>
-         {inp && <Membermodal feteche={feteche} setinp={setinp} inp={inp} membermodal={membermodal} setmembermodal={setmembermodal} />}
+         {inp && <Membermodal setinp={setinp} inp={inp} membermodal={membermodal} setmembermodal={setmembermodal} />}
       </motion.div>
    </>
 }

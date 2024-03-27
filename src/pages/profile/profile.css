@@ -231,16 +231,16 @@
                 }
                 .status{
                     text-transform: capitalize;
-                    padding: 0px 25px;
+                    padding: 2px 25px;
                     border-radius: 50px;
                 }
                 .status.active {
                     color: rgb(1, 59, 1);
                     background-color: rgba(52, 233, 52, 0.712);   
                 }
-                .status.expire {
-                    color: rgb(182, 3, 3);
-                    background-color: rgba(182, 94, 67, 0.521);   
+                .status.expired {
+                    color: rgb(158, 4, 4);
+                    background-color: rgba(184, 111, 89, 0.411);   
                 }
             }
         }

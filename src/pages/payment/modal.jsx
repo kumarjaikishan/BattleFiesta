@@ -7,8 +7,10 @@ import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 import QRCode from "react-qr-code";
 
-const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymodalopen, setpaymodalopen }) => {
-
+const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymodalopen, setpaymodalopen }) => {
+useEffect(()=>{
+    console.log(planchoosed);
+})
     const tournacenter = useSelector((state) => state.tournacenter);
     const handlee = async (e) => {
         e.preventDefault();
@@ -19,7 +21,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymod
         // console.log(planchoosed);
         const id = toast.loading("Please wait...")
         try {
-            setisloading(true);
+            // setisloading(true);
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}manualcheck`, {
                 method: "POST",
@@ -56,19 +58,27 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp,tax, planchoosed, paymod
             >
                 <div className="paymodal">
                     <div className="left">
-                         <QRCode
-                                size={256}
-                                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                                value={`upi://pay?pa=battlefiesta0@ybl&pn=BATTLE_FIESTA&am=${qrcodeamount}&tn=BattleFiesta-1 Week plan&cu=INR&mc=Thanks BattleFiesta`}
-                                viewBox={`0 0 256 256`}
-                            />
+                        <QRCode
+                            size={256}
+                            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                            value={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}
+                            viewBox={`0 0 256 256`}
+                        />
+                        <a href={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}>Pay Now</a>
                     </div>
                     <div className="right">
                         <form onSubmit={handlee}>
                             <img src={logo} alt="" />
                             <h3>{planchoosed?.duration} plan - ₹{qrcodeamount}.00</h3>
-                            <TextField onChange={handleinput} required id="outlined-basic" type='tel'
-                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} name="txn_no" size="small" label="Enter UTR/UPI REF No." variant="outlined" />
+                            <TextField onChange={handleinput}
+                                required id="outlined-basic"
+                                type='tel'
+                                onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                name="txn_no"
+                                size="small" label="Enter UTR/UPI REF No."
+                                variant="outlined"
+                                inputProps={{ minLength: 12, maxLength: 12 }}
+                                 />
                             <div className="just">
                                 <Button type="submit" disabled={isloading} variant="contained">Submit</Button>
                                 <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>

@@ -32,7 +32,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
         let remarks = other.remarks;
         let flag = other.status;
 
-        console.log(id);
+        // console.log(id);
 
         try {
             const token = localStorage.getItem("token");

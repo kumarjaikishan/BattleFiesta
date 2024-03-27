@@ -202,9 +202,8 @@ const Dashboard = () => {
     const givenDate = new Date(dateString);
     const currentDate = new Date();
 
-    const differenceInMilliseconds = Math.abs(currentDate - givenDate);
+    const differenceInMilliseconds = givenDate - currentDate ;
     const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
     return days;
   }

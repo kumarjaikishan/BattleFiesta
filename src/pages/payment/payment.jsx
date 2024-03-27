@@ -249,13 +249,13 @@ const Payment = () => {
                   </div>
                   <div className="under">
                     <span>Coupon {inp.coupon > 0 && `(${inp.coupon}% OFF)`}</span>
-                    <span style={{ color: 'green' }}>- ₹{inp.coupon ? Math.floor((planchoosed.price * inp.coupon) / 100) : 0}.00</span>
+                    <span style={{ color: 'green' }}>- ₹{inp.coupon ? Math.ceil((planchoosed.price * inp.coupon) / 100) : 0}.00</span>
                   </div>
                 </div>
                 <div className='full'>
                   <div className="under">
                     <b><span>Final Price</span></b>
-                    <span> {planchoosed && <b>₹{planchoosed.price + tax(planchoosed.price) - Math.floor((planchoosed.price * inp.coupon) / 100)}.00</b> }</span>
+                    <span> {planchoosed && <b>₹{planchoosed.price + tax(planchoosed.price) - Math.ceil((planchoosed.price * inp.coupon) / 100)}.00</b> }</span>
                   </div>
                 </div>
                 <Divider variant="middle" />
