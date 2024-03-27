@@ -2,12 +2,23 @@ import Dialogbox from "../utils/dialogbox";
 import logo from '../../assets/logopng250.webp'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 import QRCode from "react-qr-code";
 
 const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymodalopen, setpaymodalopen }) => {
+    const { txnNo } = useParams(); // Get the transaction number from URL params
+
+    useEffect(() => {
+        if (txnNo) {
+            // If transaction number exists, set it in the input field or store it in state
+            handleinput({ target: { name: 'txn_no', value: txnNo } });
+            // You can also show a success toast or perform other actions
+            toast.success('Payment successful!');
+        }
+    }, [txnNo]);
 useEffect(()=>{
     console.log(planchoosed);
 })
@@ -47,7 +58,7 @@ useEffect(()=>{
             console.log(error);
         }
     }
-    const qrcodeamount = planchoosed?.price + tax(planchoosed?.price) - Math.floor((planchoosed?.price * inp.coupon) / 100);
+    const qrcodeamount = planchoosed?.price + tax(planchoosed?.price) - Math.ceil((planchoosed?.price * inp.coupon) / 100);
     const [isloading, setisloading] = useState(false);
     return (
         <>
