@@ -266,9 +266,10 @@ const Payment = () => {
                       InputProps={{
                         readOnly: (inp.coupon > 0 && true || couponerror && true), style: { textTransform: 'lowercase' }
                       }}
+                      sx={{mt:1}}
                       onChange={handleinput} size='small' id="outlined-basic" label="Enter a coupon code" value={inp.couponname} name='couponname' variant="outlined" />
-                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true || couponerror && true} className='btn' sx={{ ml: 4 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
-                    {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2 }} variant="outlined">Reset</Button>}
+                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true || couponerror && true} className='btn' sx={{ ml: 4,mt:1 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
+                    {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2,mt:1  }} variant="outlined">Reset</Button>}
                   </div>
                   {inp.coupon > 0 && <p className='cousuc'>Coupon code <b>{inp.couponname}</b> applied successfully, <b>{inp.coupon}% </b> off applied </p>}
                   {couponerror && <p style={{ color: 'red', fontSize: '14px', fontWeight: 500 }}>Coupon Code <b>{inp.couponname}</b> {couponerror}</p>}
