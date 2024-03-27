@@ -64,7 +64,7 @@ useEffect(()=>{
                             value={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}
                             viewBox={`0 0 256 256`}
                         />
-                        <a href={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}>Pay Now</a>
+                        <a href={`upi://pay?pa=battlefiesta01@ybl&pn=${planchoosed.duration}&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}>Pay Now</a>
                     </div>
                     <div className="right">
                         <form onSubmit={handlee}>
