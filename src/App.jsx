@@ -32,6 +32,8 @@ import Voucher from './pages/admin/voucher/voucher';
 import Membership from './pages/admin/membership/membership';
 import User from './pages/admin/user/user';
 import PasswordReset from './pages/password/password';
+import Tdmsetting from './pages/tdm/main';
+import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +57,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/setting" element={<Tournasetting />} />
+            <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
             <Route path="/tournaments"  >
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
@@ -68,6 +71,7 @@ function App() {
               <Route path='users' element={<User />} />
             </Route>
             <Route path="/register/:registerId" element={<Register />} />
+            <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
             <Route path="/stat/:tid" element={<Stats />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<AboutUs />} />

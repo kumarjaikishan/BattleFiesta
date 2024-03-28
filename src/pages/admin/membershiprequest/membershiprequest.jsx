@@ -74,8 +74,7 @@ const Membershiprequest = () => {
       visible: { y: 0, x: 0, scale: 1, opacity: 1 }
    };
    return <>
-      <motion.div
-         className="membershiprequest">
+      <motion.div  className="membershiprequest">
          <div className="controler">
             <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
             <LoadingButton

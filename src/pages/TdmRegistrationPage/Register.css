@@ -1,0 +1,379 @@
+.registartionform {
+    width: 100%;
+    display: flex;
+    min-height: calc(100vh - var(--navheight) );
+    position: relative;
+    flex-direction: column;
+    background: white;
+    /* border: 3px solid red; */
+    align-items: center;
+    padding: 20px 0px;
+    color: rgb(43, 41, 41);
+
+    & .controler {
+        width: 550px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .form {
+        width: 550px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: 1px solid grey;
+        border-radius: 10px 10px 20px 20px;
+        position: relative;
+        background: white;
+
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            height: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            background-color: var(--primarycolor);
+        }
+
+        .desc {
+            padding: 10px 10px;
+            font-size: 0.8em;
+        }
+
+        .slots {
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 1px;
+            font-weight: 600;
+
+            & span:nth-child(1) {
+                color: rgb(7, 121, 170);
+            }
+
+            & span:nth-child(2) {
+                color: rgb(203, 134, 8);
+            }
+
+            & span:nth-child(3) {
+                color: green;
+            }
+        }
+
+        .player {
+            border: 1px solid grey;
+            margin: 5px 0px;
+            border-radius: 10px;
+            padding: 10px;
+
+            &>h4 {
+                /* color: red; */
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                & .DeleteIcon {
+                    cursor: pointer;
+                    border-radius: 50%;
+                    padding: 4px;
+                    font-size: 2em;
+
+                    &:hover {
+                        background: rgb(186, 184, 184);
+                    }
+                }
+            }
+        }
+
+        .closed {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px 0px;
+            color: rgb(43, 41, 41);
+
+            & .stop {
+                font-size: 3em;
+            }
+        }
+        .showpayment {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid grey;
+            /* display: flex; */
+            .img{
+                width: 120px;
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+
+        .contacts {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid grey;
+            text-align: center;
+
+            & .links {
+                width: 100%;
+                height: max-content;
+                display: flex;
+                padding-bottom: 5px;
+                flex-wrap: wrap;
+                justify-content: space-around;
+    
+                & a {
+                    /* background: red; */
+                    display: flex;
+                    padding: 3px 8px;
+                    letter-spacing: 1px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: rgb(14, 144, 196);
+                    font-weight: 600;
+                    cursor: pointer;
+                    margin-top: 10px;
+    
+                    &:hover {
+                        background-color: rgb(4, 60, 82);
+                        color: white;
+                    }
+    
+                    span {
+                        margin: 0 3px;
+                    }
+                }
+            }
+        }
+    }
+
+    img {
+        width: 150px !important;
+        height: 150px !important;
+        border: 1px solid grey;
+        object-fit: cover;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .teamse {
+        width: 600px;
+        border: 1px solid grey;
+        border-radius: 15px;
+        /* height: 200px; */
+        padding: 10px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & .headere {
+            /* background-color: red; */
+            height: 80px;
+
+            & img {
+                width: 70px !important;
+                height: 70px !important;
+                border-radius: 50%;
+
+            }
+
+            span {
+                font-size: 1.3em;
+                font-weight: 600;
+                letter-spacing: 1px;
+                line-height: 60px;
+                margin-left: 10px;
+            }
+
+            span:nth-child(3) {
+                font-size: 12px;
+                font-weight: 700;
+                padding: 2px 8px;
+                height: 24px;
+                line-height: 20px;
+                text-transform: uppercase;
+                border-radius: 10px;
+            }
+
+            span.rejected {
+                /* background: rgb(182, 131, 131); */
+                color: rgb(150, 7, 7);
+            }
+
+            span.approved {
+                /* background: rgba(80, 158, 80, 0.644); */
+                color: rgb(3, 73, 3);
+            }
+
+            span.pending {
+                /* background:rgba(172, 141, 84, 0.705); */
+                color: rgb(187, 125, 9);
+            }
+        }
+
+        .headere.approved {
+            border-right: 10px solid green;
+        }
+
+        .headere.pending {
+            border-right: 10px solid orange;
+        }
+
+        .headere.rejected {
+            border-right: 10px solid rgb(150, 7, 7);
+        }
+
+        .detailse {
+
+            & .playerdata {
+                border: 1px solid grey;
+                border-radius: 10px;
+                padding: 5px;
+
+                & h2 {
+                    font-size: 1.1em;
+                    margin: 10px 0px;
+                }
+
+                div {
+                    border-top: 1px solid grey;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 5px 10px;
+
+                    & img {
+                        width: 50px !important;
+                        height: 50px !important;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        border: 1px solid grey;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .registartionform {
+        padding: 10px 0px;
+        min-height: calc(100vh - var(--navheightmobile) );
+
+        & .controler {
+            width: 99%;
+            margin-bottom: 10px;
+        }
+
+        .form {
+            width: 98%;
+            padding:10px 5px;
+
+            .slots {
+                height: 30px;
+                letter-spacing: .5px;
+            }
+
+            .closed {
+                padding: 20px 5px;
+
+                & .stop {
+                    font-size: 2.4em;
+                }
+            }
+
+            .contacts {
+                margin-top: 10px;
+                padding-top: 5px;
+
+                & .links {
+                   
+                    & a {
+                        padding: 2px 6px;
+                        font-weight: 500;
+                        margin-top: 5px;
+    
+                        & span:nth-child(2) {
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+    
+                        .ico {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        img {
+            width: 150px !important;
+            height: 150px !important;
+            border: 1px solid grey;
+            object-fit: cover;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .teamse {
+            width: 98%;
+            border-radius: 10px;
+            padding: 5px 0px;
+
+            & .headere {
+                height: 60px;
+
+                & img {
+                    width: 60px !important;
+                    height: 60px !important;
+                    border-radius: 50%;
+
+                }
+
+                span {
+                    font-size: 1.1em;
+                    letter-spacing: 0.5px;
+                }
+
+                span:nth-child(3) {
+                    font-size: 10px;
+                    font-weight: 700;
+                }
+            }
+
+            .detailse {
+
+                & .playerdata {
+                    border: 1px solid grey;
+                    border-radius: 10px;
+                    padding: 5px;
+
+                    & h2 {
+                        font-size: 1.1em;
+                        margin: 10px 0px;
+                    }
+
+                    div {
+                        padding: 5px;
+                    }
+                }
+            }
+
+        }
+
+    }
+}

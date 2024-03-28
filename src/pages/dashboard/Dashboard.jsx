@@ -46,8 +46,13 @@ const Dashboard = () => {
 
 
   const setdata = (data) => {
-    dispatch(settournaid(data));
-    navigate('/setting')
+    // console.log(data);
+    if(data.type=='tdm'){
+      navigate(`/tdmsetting/${data._id}`)
+    }else{
+      dispatch(settournaid(data));
+      navigate('/setting')
+    }
   };
 
   const deletee = (tournaid) => {
@@ -122,16 +127,16 @@ const Dashboard = () => {
       if (!responsee || responsee.status == 429 || responsee.status == 400) {
         setload(false);
         // console.log("error wala");
-        return toast.warn(res.message, { autoClose: 2300 })
+        return toast.warn(res.message, { autoClose: 23300 })
       }
-      toast.success(res.message, { autoClose: 1300 })
+      toast.success(res.message, { autoClose: 23300 })
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
       setload(false);
     } catch (error) {
       console.log(error);
-      toast.warn(res.message, { autoClose: 2300 })
+      toast.warn(res.message, { autoClose: 23300 })
       setload(false);
     }
   }

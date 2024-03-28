@@ -1,88 +1,9 @@
-.membershiprequest {
+.membershiprequest, .adminusers {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
     background: white;
     padding: 10px 20px;
 
-    table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0px 15px;
-
-        thead {
-
-            tr {
-
-                th {
-                    padding: 5px 0px;
-                    background: rgb(2, 54, 58);
-                    color: white;
-                    text-transform: capitalize;
-                    letter-spacing: 0.5px;
-                }
-            }
-
-        }
-
-        tbody {
-
-            tr {
-                border-radius: 10px;
-                background: #ecf0f3;
-                box-shadow: 0 0 10px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
-                /* display: inline-block; */
-
-                & td {
-                    text-align: center;
-                    padding: 4px 2px;
-                }
-
-                & td:last-child {
-
-                    i {
-                        width: 25px;
-                        height: 25px;
-                        line-height: 25px;
-                        margin-left: 5px;
-                        cursor: pointer;
-                        border-radius: 50%;
-                        color: rgb(6, 93, 112);
-
-                        &:last-child {
-                            color: red;
-                        }
-
-                        &:hover {
-                            background: rgba(133, 196, 192, 0.4);
-                        }
-                    }
-                }
-
-                .status {
-                    font-weight: 700;
-                    border-radius: 25px;
-                    letter-spacing: 0.5px;
-                    text-transform: capitalize;
-                }
-
-                .status.pending {
-                    background: rgba(210, 164, 78, 0.704);
-                    color: rgb(86, 56, 2);
-                }
-
-                .status.success {
-                    color: rgb(1, 59, 1);
-                    background-color: rgba(99, 218, 99, 0.586);
-                }
-
-                .status.rejected {
-                    color: rgb(84, 5, 5);
-                    background: rgba(220, 101, 101, 0.678);
-                }
-            }
-
-        }
-    }
     .controler{
         position: relative;
         padding: 5px 0px;
@@ -170,7 +91,7 @@
             width: 100px;
         }
 
-        & span:nth-child(9) {
+        & span:last-child {
             width: 60px;
             /* border: 1px solid red; */
             padding-left: 5px;

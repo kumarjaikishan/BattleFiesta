@@ -1,0 +1,102 @@
+.form_setting {
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid grey;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    & .control {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+
+
+        & div {
+            display: flex;
+            width: 22%;
+            align-items: center;
+            justify-content: center;
+            color: grey;
+            cursor: pointer;
+            border-radius: 10px;
+
+            &:hover {
+                color: rgb(6, 132, 182);
+            }
+
+            h3 {
+                margin-left: 20px;
+            }
+        }
+
+        .active {
+            color: rgb(6, 115, 146);
+        }
+    }
+    .header.pending{
+        border-right: 8px solid orange;
+    }
+    .header.approved{
+        border-right: 8px solid green;
+    }
+    .header.rejected{
+        border-right: 8px solid red;
+    }
+}
+.manageteams{
+    & .box{
+        position: relative;
+        min-height: 200px;
+    } 
+     .header.pending{
+        border-right: 8px solid orange;
+    }
+    .header.approved{
+        border-right: 8px solid green;
+    }
+    .header.rejected{
+        border-right: 8px solid red;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .form_setting {
+    
+        & .control {
+            height: fit-content;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: start;
+            border-bottom: 1px solid #212529;
+    
+            & div {
+                display: flex;
+                width: 30%;
+                align-items: center;
+                /* justify-content: center; */
+                border: 1px solid transparent;
+                color: grey;
+                cursor: pointer;
+                border-radius: 10px;
+    
+                &:hover {
+                    border-bottom: 2px solid transparent;
+                    color: rgb(6, 132, 182);
+                }
+    
+                h3 {
+                    margin-left: 5px;
+                    font-size: 12px;
+                }
+            }
+    
+            .active {
+                color: rgb(6, 115, 146);
+            }
+        }
+    }
+}
