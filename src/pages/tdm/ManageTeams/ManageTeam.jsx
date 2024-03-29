@@ -4,34 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
 import { useEffect, useState } from 'react';
-import { alltourna } from '../../../store/api'
+import { tdmfetch } from '../../../store/tdm';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import { useParams } from 'react-router-dom';
 
 const ManageTeam = ({ setting, showss }) => {
   const dispatch = useDispatch();
-  const tournacenter = useSelector((state) => state.tournacenter);
-  const [playerlist, setPlayerlist] = useState([]);
-  const tid = setting._id;
-
+  const { tid } = useParams();
+  const tdmrtk = useSelector((state) => state.tdm);
   useEffect(() => {
-    fetche();
+    // console.log(playerlist);
   }, [])
 
-  const fetche = async () => {
-    const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
-    const method = 'POST';
-    const body = { tid };
 
-    const successAction = (data) => {
-      setPlayerlist(data.entry)
-    };
-
-    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-    await apiWrapper(url, method, body, successAction);
-  }
-
-  const deletee = async (teamid) => {
+  const deletee = async (playerid) => {
     // console.log(teamid);
     swal({
       title: 'Are you sure?',
@@ -43,14 +29,13 @@ const ManageTeam = ({ setting, showss }) => {
       if (willDelete) {
         const id = toast.loading("Please wait...")
 
-        const url = `${import.meta.env.VITE_API_ADDRESS}teamdelete`;
+        const url = `${import.meta.env.VITE_API_ADDRESS}playerdelete`;
         const method = 'POST';
-        const body = { teamid };
+        const body = { playerid };
 
         const successAction = (data) => {
           // console.log(data);
-          dispatch(alltourna());
-          fetche();
+          dispatch(tdmfetch(tid))
           toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
         };
 
@@ -78,10 +63,10 @@ const ManageTeam = ({ setting, showss }) => {
         className="manageteams">
         <div className="box">
           <h2>All Team List:</h2>
-          {!calledit && playerlist && <Teamlists teamarray={playerlist} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
+          {!calledit && tdmrtk.tdmplayers && <Teamlists teamarray={tdmrtk.tdmplayers} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
 
-          {playerlist.length < 1 && <div className="middle">
+          {tdmrtk.tdmplayers.length < 1 && <div className="middle">
             <div> <SentimentSatisfiedIcon className='emoji' /> </div>
             <h2>Nothing To Show</h2>
             <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>

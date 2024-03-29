@@ -21,10 +21,12 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { tdmfetch } from "../../../store/tdm";
+import { useParams } from "react-router-dom";
 
 const Registerform = ({ setting, showss }) => {
     const dispatch = useDispatch();
+    const { tid } = useParams();
     const tdmrtk = useSelector((state) => state.tdm);
     
     const [all, setall] = useState(tdmrtk.tdmsetting);
@@ -32,17 +34,23 @@ const Registerform = ({ setting, showss }) => {
 
     useEffect(() => {
         dispatch(setloader(false));
-        console.log(tdmrtk.tdmsetting);
+        // console.log(tdmrtk);
     }, [])
+    useEffect(() => {
+        sortplayerdata(tdmrtk.tdmplayers)
+    }, [tdmrtk.tdmplayers])
 
     const [active, setactive] = useState(0);
-    const [playerList, setPlayerlist] = useState([]);
     const [pendingplayer, setpendingplayer] = useState([]);
     const [approvedPlayer, setapprovedPlayer] = useState([]);
     const [rejectedplayer, setrejectedplayer] = useState([]);
 
    
     const sortplayerdata = (data) => {
+        // console.log(data);
+        if(data ==''){
+            return;
+        }
         const pend = data.filter((val, ind) => {
             return val.status == "pending"
         })
@@ -108,7 +116,7 @@ const Registerform = ({ setting, showss }) => {
 
         const id = toast.loading("Please wait...")
         try {
-            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateteamstatus`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateplayerstatus`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -119,7 +127,7 @@ const Registerform = ({ setting, showss }) => {
             const result = await rese.json();
             // console.log(rese);
             if (rese.ok) {
-                fetche();
+                dispatch(tdmfetch(tid))
                 toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
             }
 

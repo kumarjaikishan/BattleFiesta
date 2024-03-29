@@ -11,13 +11,16 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useParams } from "react-router-dom";
 import SaveIcon from '@mui/icons-material/Save';
+import { useSelector, useDispatch } from "react-redux";
+import { tdmfetch } from '../../../../store/tdm';
 
 const Contactinfo = ({ all }) => {
-    const tournacenter = useSelector((state) => state.tournacenter);
+    const dispatch = useDispatch();
+    const { tid } = useParams();
     const init = {
         link: Array(1).fill({
             linkName: "",
@@ -71,22 +74,25 @@ const Contactinfo = ({ all }) => {
     const submite = async (e) => {
         e.preventDefault();
         setisloading(true);
+        // console.log(all.tournament_id);
         const token = localStorage.getItem("token");
         try {
-            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updatetournamentformcontacts`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updatetdmtournamentformcontacts`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify({ tid: all.tid, links, publicpost })
+                body: JSON.stringify({ tournament_id: all.tournament_id, links, publicpost })
             })
             const data = await rese.json();
             if (rese.ok) {
+                dispatch(tdmfetch(tid))
                 setisloading(false)
                 toast.success(data.message, { autoClose: 1300 });
             }
         } catch (error) {
+            toast.warn(error.message, {autoClose:2200})
             console.log(error);
         }
     }

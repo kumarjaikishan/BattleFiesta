@@ -22,8 +22,7 @@ import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
-import useImageUpload from "../utils/imageresizer";
-import { settdmall } from '../../store/tdm';
+import {tdmfetch } from '../../store/tdm';
 
 const Tdmsetting = () => {
   const log = useSelector((state) => state.login);
@@ -33,138 +32,24 @@ const Tdmsetting = () => {
   }
   const { tid } = useParams();
   const dispatch = useDispatch();
-  const { handleImage } = useImageUpload();
   const tournacenter = useSelector((state) => state.tournacenter);
   const tdmrtk = useSelector((state) => state.tdm);
   const [setting, setsetting] = useState(tournacenter.current_tourna_details);
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
 
-  const init = {
-    tid: "",
-    title: "",
-    organiser: "",
-    slots: "",
-    type: "",
-    banner: "",
-    logo: "",
-    status: "",
-    visibility: "",
-    label: ""
-  }
-  const [inp, setinp] = useState(init);
-  const [loading, setLoading] = useState(false);
+ 
   const [active, setactive] = useState(0);
   useEffect(() => {
-    feteche();
+    dispatch(tdmfetch(tid));
     dispatch(header('Setting'))
     dispatch(setloader(false))
   }, [])
   useEffect(() => {
   //  console.log(tdmrtk);
   }, [tdmrtk])
-  const handleChange = (e) => {
-    let naam = e.target.name;
-    let value = e.target.value;
-    setinp({
-      ...inp, [naam]: value
-    })
-  }
-  const feteche = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}gettdm`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ tid })
-      });
-      const data = await responsee.json();
-      // console.log(data);
-      setLoading(false);
-      if (responsee.ok) {
-         dispatch(settdmall(data))
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
-  const submit = async () => {
-    setLoading(true);
-    try {
-      const token = localStorage.getItem("token");
-      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournament`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(inp)
-      });
-      const data = await responsee.json();
-      console.log(data);
-      if (responsee.ok) {
-        toast.success(data.message, { autoClose: 1300 });
-        setLoading(false);
-      } else {
-        toast.warn(data.message, { autoClose: 1500 });
-      }
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
 
-  const upload = async (id) => {
-    setLoading(true);
-    let konsa = 0;
-    let oldimage = "";
-    id == "tournbanner" ? konsa = 1 : konsa = 2;
-    let newimage = document.querySelector(`#${id}`).files[0];
-
-    if (konsa == 2) {
-      newimage = await handleImage(250, newimage);
-    }
-
-    if (konsa == 1) {
-      oldimage = inp.banner;
-    } else {
-      oldimage = inp.logo
-    }
-    let data = new FormData();
-
-    data.append('tid', setting._id)
-    data.append('filed', id)
-    data.append('image', newimage)
-    data.append('oldimage', oldimage)
-    // console.log("sseing",data.tid);
-
-    const token = localStorage.getItem("token");
-    try {
-      const id = toast.loading("Please wait while Uploading...")
-      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournamentlogos`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-        body: data
-      })
-      const resuke = await rese.json();
-      // console.log(resuke);
-      if (rese.ok) {
-        konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
-        toast.update(id, { render: "Uploaded Successfully", type: "success", isLoading: false, autoClose: 1600 });
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
-    }
-  }
+  
   const handleactive = (index) => {
     let all = document.querySelectorAll('.controller .cont');
 
@@ -209,7 +94,7 @@ const Tdmsetting = () => {
 
   return (
     <>
-      <div className="tournasetting">
+      <div className="tdmtournasetting">
         <div className="controller">
           <div className="cont active" onClick={() => handleactive(0)}>
             <SettingsSuggestIcon className='icon' />
@@ -220,29 +105,17 @@ const Tdmsetting = () => {
             <h3>Manage Forms</h3>
           </div>
           <div className="cont" onClick={() => handleactive(2)}>
-            <LeaderboardIcon className='icon' />
-            <h3>Enter Results</h3>
-          </div>
-          <div className="cont" onClick={() => handleactive(3)}>
             <GroupIcon className='icon' />
-            <h3>Manage Teams</h3>
-          </div>
-          <div className="cont" onClick={() => handleactive(4)}>
-            <PostAddIcon className='icon' />
-            <h3>Points System</h3>
-          </div>
-          <div className="cont" onClick={() => handleactive(5)}>
-            <PieChartOutlineIcon className='icon' />
-            <h3>View Matches</h3>
+            <h3>Manage Players</h3>
           </div>
         </div>
         <div className="material">
           {active == 0 && <Registerform showss={showss} setting={setting} />}
-          {active == 1 && <Detail submit={submit} upload={upload} handleChange={handleChange} loading={loading} inp={inp} setinp={setinp} />}
-          {active == 2 && <EnterResult setting={setting} />}
-          {active == 3 && <ManageTeam setting={setting} showss={showss} />}
-          {active == 4 && <Pointsystem setting={setting} />}
-          {active == 5 && <ViewMatches setting={setting} />}
+          {active == 1 && <Detail />}
+          {/* {active == 2 && <EnterResult setting={setting} />} */}
+          {active == 2 && <ManageTeam setting={setting} showss={showss} />}
+          {/* {active == 4 && <Pointsystem setting={setting} />} */}
+          {/* {active == 5 && <ViewMatches setting={setting} />} */}
           {showmodal && <Imagemodal setshowmodal={setshowmodal} paymentss={paymentss} />}
         </div>
 

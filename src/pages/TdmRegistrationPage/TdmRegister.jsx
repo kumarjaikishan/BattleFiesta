@@ -119,8 +119,8 @@ const TdmRegister = () => {
                 setfilteredentry(filtenteries);
                 setentry(enteries);
                 setinp({
-                    ...inp,  userid:resuke.data.userid ,
-                    tournament_id:resuke.data.tournament_id,
+                    ...inp, userid: resuke.data.userid,
+                    tournament_id: resuke.data.tournament_id,
                 })
                 setsetting(resuke.data)
                 setabout(resuke.data2)
@@ -248,7 +248,7 @@ const TdmRegister = () => {
                             <p className="desc">{setting.description}</p>
                             <Divider variant="middle" />
                         </>}
-                       {!newfresh && <form onSubmit={handleRegister}>
+                        {!newfresh && <form onSubmit={handleRegister}>
                             <Box
                                 sx={{
                                     '& > :not(style)': { m: 1, width: '25ch' },
@@ -257,7 +257,10 @@ const TdmRegister = () => {
                                 autoComplete="off"
                             >
                                 <TextField size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
-                                <TextField required value={inp.InGameId} size="small" id="outlined-basic" name="InGameId" label="In Game ID" onChange={realhandlechange} variant="outlined" />
+                                <TextField required value={inp.InGameId}
+                                    type='tel'
+                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                    size="small" id="outlined-basic" name="InGameId" label="In Game ID" onChange={realhandlechange} variant="outlined" />
                             </Box>
                             <Box
                                 sx={{
@@ -305,7 +308,11 @@ const TdmRegister = () => {
                                     '& > :not(style)': { m: 1, width: '25ch', mb: 2 },
                                 }}
                             >
-                                {setting.ask_fps && <TextField required size="small" id="outlined-basic" name="fps" value={inp.fps} onChange={realhandlechange} label="FPS" variant="outlined" />}
+                                {setting.ask_fps && <TextField required
+                                    type='tel'
+                                    inputProps={{ minLength: 2, maxLength: 3 }}
+                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                    size="small" id="outlined-basic" name="fps" value={inp.fps} onChange={realhandlechange} label="FPS" variant="outlined" />}
                                 {setting.ask_devicename && <TextField required size="small" id="outlined-basic" name="device" value={inp.device} onChange={realhandlechange} label="Device Name" variant="outlined" />}
 
                             </Box>

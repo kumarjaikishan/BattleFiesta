@@ -17,7 +17,7 @@ const PendingPage = ({decline, pendingplayer, statuschange, showss }) => {
         </div> : <div className="middle">
           <div> <SentimentSatisfiedIcon className='emoji' /> </div>
           <h2>Nothing To Show</h2>
-          <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>
+          <p>The List is Empty. Form Resposes will start to appear once Players starts Registering</p>
         </div>}
       
       </div>

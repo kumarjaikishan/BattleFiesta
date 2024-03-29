@@ -21,6 +21,9 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
     const hgfh = (ide) => {
         decline(ide)
     }
+    useEffect(()=>{
+        // console.log(teamarray);
+    })
     return (<>
         {teamarray.length > 0 && teamarray.map((player, ind) => {
             return (<Accordion key={ind}
@@ -33,36 +36,34 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                     className={`header ${player.status}`}
                 // style={{ borderRight: "8px solid orange" }}
                 >
-                     <img src={player.teamLogo ?player.teamLogo :group} alt="" /> 
-                    <span>{player.teamName} </span>
+                     <img src={player.logo ?player.logo :group} alt="" /> 
+                    <span>{player.name} </span>
+                    <span style={{fontSize:'14px', fontWeight:'400', textTransform:'capitalize'}}>-{player.os || 'N/A'}</span>
                 </AccordionSummary>
                 <AccordionDetails className='details'>
                     <div className="teamdata">
                         <div className='imageside'>
-                        <img src={player.teamLogo ?player.teamLogo :group1} alt="" /> 
+                        <img src={player.logo ?player.logo :group1} alt="" /> 
                             <div className="icon">
                                 <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
                                 <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>
                                 <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><WhatsAppIcon titleAccess='Whatsapp' /></a>
-                                {player.screenss && <PhotoIcon color='primary' titleAccess='Show ScreenShot' onClick={() => showss(player.screenss)} />}
+                                {player.paymentss && <PhotoIcon color='primary' titleAccess='Show ScreenShot' onClick={() => showss(player.paymentss)} />}
                             </div>
                         </div>
                         <div className='teamside'>
-                            <span> <span>Team Name</span> : <span>{player.teamName}</span></span>
-                            <span> <span>Email</span> : <span>{player.email}</span></span>
-                            <span> <span>Phone</span> : <span>{player.mobile}</span></span>
-                            <span> <span>Discord</span> : <span>{player.discordID}</span></span>
+                            <span> <span>Name</span> : <span>{player.name || 'N/A'}</span></span>
+                           {player.email && <span> <span>Email</span> : <span>{player.email}</span></span>} 
+                            <span> <span>Phone</span> : <span>{player.mobile || 'N/A'}</span></span>
+                           {player.discord && <span> <span>Discord</span> : <span>{player.discord}</span></span>} 
+                            <span> <span>O.S</span> : <span>{player.os || 'N/A'}</span></span>
+                            <span> <span>Device</span> : <span>{player.device || 'N/A'}</span></span>
+                            <span> <span>FPS</span> : <span>{player.fps || 'N/A'}</span></span>
+                            <span> <span>UTR No.</span> : <span>{player.utrno || 'N/A'}</span></span>
                         </div>
+                        
                     </div>
                     <div className="playerdata">
-                        <h2>Player List : </h2>
-                        {player.player.map((each, ind) => {
-                            return <div key={ind}>
-                                <span>{ <img src={each.playerLogo ? each.playerLogo : user} alt="" />}</span>
-                                <span>{each.inGameName}</span>
-                                <span>{each.inGameID}</span>
-                            </div>
-                        })}
                         <div>
                             {callfrom == "pending" && <>
                                 <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
@@ -99,6 +100,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
 
                         </div>
                     </div>
+                    
                 </AccordionDetails>
                 {player.status == "rejected" && <TextField
                     id="outlined-multiline-flexible"

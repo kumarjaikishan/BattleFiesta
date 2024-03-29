@@ -41,7 +41,7 @@ const Dashboard = () => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
     calc();
-    // console.log(userprofile.membership);
+    // console.log(tournacenter);
   }, [tournacenter.alltournaments]);
 
 

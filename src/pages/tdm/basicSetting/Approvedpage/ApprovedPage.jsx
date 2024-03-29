@@ -13,7 +13,7 @@ const ApprovedPage = ({ approvedPlayer, statuschange, showss, decline }) => {
           <div className="middle">
             <div> <SentimentSatisfiedIcon className='emoji' /> </div>
             <h2>Nothing To Show</h2>
-            <p>The List is Empty. List will start to appear once You Approve Teams</p>
+            <p>The List is Empty. List will start to appear once You Approve Player</p>
           </div>}
       </div>
     </>
