@@ -13,13 +13,13 @@ const Teams = ({ entry }) => {
     return (
         <>
             <div className="teamse">
-                <h2>Team List</h2>
+                <h2>Player List</h2>
                 {
                     entry.length < 1 && <div className="notfound">
                         <div>
                             <SentimentVeryDissatisfiedIcon className="sad" />
                             <h1>Ops! This List is Empty</h1>
-                            <p>No Team Registered Yet</p>
+                            <p>No Player Registered Yet</p>
                         </div>
                     </div>
                 }
@@ -33,20 +33,13 @@ const Teams = ({ entry }) => {
                             id="panel1-header"
                             className={`headere ${player.status}`}
                         >
-                            <img src={player.teamLogo ? player.teamLogo : group} alt="" /> <span>{player.teamName} </span> <span className={player.status}> {player.status}</span>
+                            <img src={player.logo ? player.logo : group} alt="" /> 
+                            <span>{player.name} </span> 
+                            <span className={player.status}> {player.status}</span>
+                            <span style={{fontSize:'13px'}}>-{player.os} </span> 
+                            <span style={{fontSize:'12px'}}>-{player.InGameId} </span> 
                         </AccordionSummary>
-                        <AccordionDetails className='detailse'>
-                            <div className="playerdata">
-                                <h2>Player List : </h2>
-                                {player.player.map((each, ind) => {
-                                    return <div key={ind}>
-                                        <span><img src={each.playerLogo ? each.playerLogo : user} alt="" /></span>
-                                        <span title='InGameName'>{each.inGameName}</span>
-                                        <span title='InGameID'>{each.inGameID ? each.inGameID : 'GameID : N/A'}</span>
-                                    </div>
-                                })}
-                            </div>
-                        </AccordionDetails>
+                        
                         {player.status == "rejected" && <TextField
                             id="outlined-multiline-flexible"
                             label="Reason of Rejection  .."
@@ -57,7 +50,7 @@ const Teams = ({ entry }) => {
                             InputLabelProps={{ style: { fontSize: 18 } }}
                             value={player.reason || "your Fault"}
                             maxRows={6}
-                            sx={{ minWidth: "96%", mb: 1, ml: 1 }}
+                            sx={{ minWidth: "96%", mb: 1, ml: 1 ,mt:2}}
                         />}
                     </Accordion>)
                 })}

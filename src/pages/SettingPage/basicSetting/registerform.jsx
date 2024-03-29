@@ -120,6 +120,12 @@ const Registerform = ({ setting, showss }) => {
     const handleChange = (e) => {
         let naam = e.target.name;
         let value = e.target.value;
+        if(e.target.value == "true"){
+            value = true;
+        }
+        if(e.target.value == "false"){
+            value = false;
+        }
         setall({
             ...all, [naam]: value
         })

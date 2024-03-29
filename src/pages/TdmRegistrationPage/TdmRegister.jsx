@@ -77,7 +77,7 @@ const TdmRegister = () => {
 
     const getenteries = async () => {
         try {
-            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}getenteries`, {
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}getplayerenteries`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,14 +85,15 @@ const TdmRegister = () => {
                 body: JSON.stringify({ tid: registerId })
             })
             const resuke = await rese.json();
-            if (rese.ok) {
-                let enteries = resuke.enteries;
-                let filtenteries = enteries.filter((val) => {
-                    return val.status != "rejected"
-                })
-                setfilteredentry(filtenteries);
-                setentry(enteries);
-            }
+            console.log(resuke);
+            // if (rese.ok) {
+            //     let enteries = resuke.enteries;
+            //     let filtenteries = enteries.filter((val) => {
+            //         return val.status != "rejected"
+            //     })
+            //     setfilteredentry(filtenteries);
+            //     setentry(enteries);
+            // }
         } catch (error) {
             console.log(error);
         }
@@ -249,26 +250,14 @@ const TdmRegister = () => {
                             <Divider variant="middle" />
                         </>}
                         {!newfresh && <form onSubmit={handleRegister}>
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { m: 1, width: '25ch' },
-                                }}
-
-                                autoComplete="off"
-                            >
-                                <TextField size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
-                                <TextField required value={inp.InGameId}
+                            <div className="compart">
+                                <TextField className="cominp" size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
+                                <TextField className="cominp" required value={inp.InGameId}
                                     type='tel'
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     size="small" id="outlined-basic" name="InGameId" label="In Game ID" onChange={realhandlechange} variant="outlined" />
-                            </Box>
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { m: 1, width: '25ch', mb: 2 },
-                                }}
-                                autoComplete="off"
-                            >
-                                {setting.ask_phone && <TextField required={setting.ask_phone}
+
+                                {setting.ask_phone && <TextField className="cominp" required={setting.ask_phone}
                                     size="small" id="outlined-basic" name="mobile"
                                     value={inp.mobile}
                                     type='tel'
@@ -277,15 +266,10 @@ const TdmRegister = () => {
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                 // color={inp.teammobile.length == 10 ? "primary" : "warning"}
                                 />}
-                                {setting.ask_email && <TextField size="small" id="outlined-basic" value={inp.email} name="email" type="email" onChange={realhandlechange} label="Email ID" variant="outlined" />}
+                                {setting.ask_email && <TextField className="cominp" size="small" id="outlined-basic" value={inp.email} name="email" type="email" onChange={realhandlechange} label="Email ID" variant="outlined" />}
 
-                            </Box>
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { m: 1, width: '25ch', mb: 2 },
-                                }}
-                            >
-                                {setting.ask_os && <FormControl fullWidth size="small">
+
+                                {setting.ask_os && <FormControl className="cominp" size="small">
                                     <InputLabel id="demo-simple-select-label">Choose OS</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -300,28 +284,23 @@ const TdmRegister = () => {
                                         <MenuItem value={'ios'}>Ios</MenuItem>
                                     </Select>
                                 </FormControl>}
-                                {setting.ask_discord && <TextField required size="small" id="outlined-basic" value={inp.discord} name="discord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
+                                {setting.ask_discord && <TextField className="cominp" required size="small" id="outlined-basic" value={inp.discord} name="discord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
 
-                            </Box>
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { m: 1, width: '25ch', mb: 2 },
-                                }}
-                            >
-                                {setting.ask_fps && <TextField required
+
+                                {setting.ask_fps && <TextField className="cominp" required
                                     type='tel'
                                     inputProps={{ minLength: 2, maxLength: 3 }}
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     size="small" id="outlined-basic" name="fps" value={inp.fps} onChange={realhandlechange} label="FPS" variant="outlined" />}
-                                {setting.ask_devicename && <TextField required size="small" id="outlined-basic" name="device" value={inp.device} onChange={realhandlechange} label="Device Name" variant="outlined" />}
+                                {setting.ask_devicename && <TextField className="cominp" required size="small" id="outlined-basic" name="device" value={inp.device} onChange={realhandlechange} label="Device Name" variant="outlined" />}
 
-                            </Box>
+                            </div>
                             <Divider variant="middle" />
                             {
                                 setting.ask_playerlogo && <>
                                     <h4>Set a PlayerLogo*</h4>
                                     <div id="logo"></div>
-                                    <Button size="small" sx={{ mb: 3 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                    <Button size="small" sx={{ mb: 3,mt:0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
                                             type="file"
@@ -362,6 +341,7 @@ const TdmRegister = () => {
                                 startIcon={<CloudUploadIcon />}
                                 variant="contained"
                                 type="submit"
+                                sx={{mt:1}}
                             >
                                 Register
                             </LoadingButton>
@@ -386,7 +366,7 @@ const TdmRegister = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on PlayerList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {!newfresh && <div className="showpayment">
+                        {!newfresh && setting.show_payment && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

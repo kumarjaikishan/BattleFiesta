@@ -67,7 +67,7 @@ const Tdmsetting = () => {
     var inputElement = document.createElement("input");
 
     // Set the value of the input to the URL you want to copy
-    var urlToCopy = `${localhos}/${page}/${tournacenter.links}`;
+    var urlToCopy = `${localhos}/${page}/${tid}`;
     inputElement.value = urlToCopy;
 
     // Append the input to the document
@@ -134,10 +134,10 @@ const Tdmsetting = () => {
             <header>Registration Page Link</header>
             <p>Teams can register for this tournament using the following link.</p>
             <Stack spacing={2} direction="row">
-              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tdmregister/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
-              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
+              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tdmregister/${tid}`} label="Registration Form Link" variant="outlined" />
+              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tdmregister")} />
             </Stack>
-            <a href={`${localhos}/tdmregister/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/tdmregister/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -147,7 +147,7 @@ const Tdmsetting = () => {
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>
-            <a href={`${localhos}/tdmregister/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/publicpost/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
         </div>
 

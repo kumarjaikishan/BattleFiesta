@@ -183,7 +183,7 @@ const Detail = () => {
                             <MenuItem value='classic'>Classic</MenuItem>
                             <MenuItem value='tdm'>TDM</MenuItem>
                         </Select>
-                        <FormHelperText>The type: SOLO,DUO, SQUAD etc</FormHelperText>
+                        <FormHelperText>The type: Classic or TDM</FormHelperText>
                     </FormControl>
                     <FormControl sx={{ m: 1, mb: 3, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Status*</InputLabel>

@@ -422,40 +422,27 @@ const Register = () => {
                             <Divider variant="middle" />
                         </>}
                         {!newfresh && all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { m: 1, width: '25ch' },
-                                }}
+                            <div className="compart">
+                                <TextField className="cominp" size="small" required id="outlined-basic" label="Team Name" value={inp.teamname} name="teamname" onChange={realhandlechange} variant="outlined" />
+                                {all.ask_email && <TextField className="cominp" type="email" required={all.ask_email} value={inp.teamemail} size="small" id="outlined-basic" name="teamemail" label="Email ID" onChange={realhandlechange} variant="outlined" />}
 
-                                autoComplete="off"
-                            >
-                                <TextField size="small" required id="outlined-basic" label="Team Name" value={inp.teamname} name="teamname" onChange={realhandlechange} variant="outlined" />
-                                {all.ask_email && <TextField type="email" required={all.ask_email} value={inp.teamemail} size="small" id="outlined-basic" name="teamemail" label="Email ID" onChange={realhandlechange} variant="outlined" />}
-                            </Box>
-                            <Box
-                                sx={{
-                                    '& > :not(style)': { m: 1, width: '25ch', mb: 2 },
-                                }}
-
-                                autoComplete="off"
-                            >
-                                {all.ask_phone && <TextField required={all.ask_phone}
+                                {all.ask_phone && <TextField className="cominp" required={all.ask_phone}
                                     size="small" id="outlined-basic" name="teammobile"
                                     value={inp.teammobile}
                                     type='tel'
-                                    inputProps={{ minLength: 12, maxLength: 12 }}
+                                    inputProps={{ minLength: 10, maxLength: 10 }}
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                     color={inp.teammobile.length == 10 ? "primary" : "warning"}
                                 />}
-                                {all.ask_discord && <TextField required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
-                            </Box>
+                                {all.ask_discord && <TextField className="cominp" required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
+                            </div>
                             <Divider variant="middle" />
                             {
                                 all.ask_team_logo && <>
                                     <h4>Set a logo for the Team*</h4>
                                     <div id="teamlogo"></div>
-                                    <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                    <Button sx={{ mb: 3, mt:0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
                                             type="file"
@@ -473,7 +460,7 @@ const Register = () => {
                                 all.ask_payment_ss && <>
                                     <h4>Set Payment Screenshot*</h4>
                                     <div id="paymentss"></div>
-                                    <Button size="small" sx={{ mb: 0.5,mt:0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
+                                    <Button size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
                                         Upload S.S
                                         <VisuallyHiddenInput
                                             type="file"
@@ -481,7 +468,7 @@ const Register = () => {
                                             onChange={(event) => common(event, "paymentss")}
                                         />
                                     </Button>
-                                    <p style={{color:'green',fontSize:'12px'}}>*Note- UTR/Txn No. must be visible in Screenshot</p>
+                                    <p style={{ color: 'green', fontSize: '12px' }}>*Note- UTR/Txn No. must be visible in Screenshot</p>
                                     <br />
                                 </>
                             }
@@ -578,7 +565,7 @@ const Register = () => {
                                 Pay Now
                             </Button>
                         </div>}
-                        
+
                         <div className="contacts">
                             <h2>Contact Details</h2>
                             {all.links.length > 0 ? <>

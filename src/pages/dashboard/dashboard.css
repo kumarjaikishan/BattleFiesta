@@ -117,6 +117,21 @@
                     color: white;
                 }
             }
+            h3{
+
+                span{
+                    font-size: 13px;
+                    color: white;
+                    display: inline-block;
+                    height: 22px;
+                    line-height: 22px;
+                    padding: 0px 8px;
+                    font-weight: 500;
+                    border-radius: 50px;
+                    letter-spacing: 1px;
+                    background: var(--primarycolor);
+                }
+            }
 
             .status {
                 position: absolute;

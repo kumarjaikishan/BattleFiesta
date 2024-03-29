@@ -41,15 +41,15 @@ const Dashboard = () => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
     calc();
-    // console.log(tournacenter);
+    // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
 
   const setdata = (data) => {
     // console.log(data);
-    if(data.type=='tdm'){
+    if (data.type == 'tdm') {
       navigate(`/tdmsetting/${data._id}`)
-    }else{
+    } else {
       dispatch(settournaid(data));
       navigate('/setting')
     }
@@ -201,16 +201,16 @@ const Dashboard = () => {
   }
   useEffect(() => {
     Funck();
-  }, [tournastatus,tournacenter.alltournaments])
+  }, [tournastatus, tournacenter.alltournaments])
 
   function getTimeDifference(dateString) {
     const givenDate = new Date(dateString);
     const currentDate = new Date();
 
-    const differenceInMilliseconds = givenDate - currentDate ;
+    const differenceInMilliseconds = givenDate - currentDate;
     const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
 
-    return days+1;
+    return days + 1;
   }
 
   return (
@@ -229,7 +229,7 @@ const Dashboard = () => {
         </div>}
         <div className="controles">
           <div className="card">
-          <i className="fa fa-trophy" aria-hidden="true"></i>
+            <i className="fa fa-trophy" aria-hidden="true"></i>
             <div>
               <span>Total Tournament</span> <span>:</span><span>{count.total}</span>
             </div>
@@ -244,15 +244,15 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="card">
-          <i className="fa fa-credit-card" aria-hidden="true"></i>
+            <i className="fa fa-credit-card" aria-hidden="true"></i>
             <div>
-              <span>Plan</span> <span>:</span><span>{ userprofile?.membership?.planid?.plan_name}</span>
+              <span>Plan</span> <span>:</span><span>{userprofile?.membership?.planid?.plan_name}</span>
             </div>
             <div>
               <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit}</span>
             </div>
             <div>
-              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date ? getTimeDifference(userprofile.membership.expire_date):'N/A'} Days</span>
+              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date ? getTimeDifference(userprofile.membership.expire_date) : 'N/A'} Days</span>
             </div>
             <div>
               <span>Completed</span> <span>:</span><span>{count.completed}</span>
@@ -326,9 +326,9 @@ const Dashboard = () => {
                     <span>{val.title}</span>
                   </div>
                   <span className={`status ${val.status}`}>{val.status}</span>
-                  <h3 className="organiser">by {val.organiser}</h3>
+                  <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>
                   <div className="time">
-                    {formattedDate}, {formattedTime}
+                    {formattedDate} {formattedTime}
                   </div>
                   <div className="controller">
                     <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>

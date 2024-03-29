@@ -7,6 +7,7 @@
 
     & .tournainfo{
         overflow-y: auto;
+        overflow-x: hidden;
         width: 360px;
         height: 100%;
         display: flex;
