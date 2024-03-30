@@ -323,7 +323,8 @@
             form{
     
                 .compart{
-    
+                    justify-content: center;
+                    
                     .cominp{
                         width: 95%;
                         margin: 5px 0px;
