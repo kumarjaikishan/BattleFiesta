@@ -34,13 +34,22 @@ import User from './pages/admin/user/user';
 import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
+import { messaging } from './firebase';
+import {getToken } from 'firebase/messaging'
 
 function App() {
-  const dispatch = useDispatch();
   const log = useSelector((state) => state.login);
-
+  async function requestPermission() {
+    const permission = await Notification.requestPermission();
+    if(permission=='granted'){
+     const token = await getToken(messaging,{vapidKey:'BBUxuDLlWdfTvuiQ3UFyT6BdxGpM95ua-Y9MKaeTo8guV81sXFVhhrS1CeGFkdIVtt8JCGpUZVKElwdmGSvJAkA'});
+     console.log(token);
+    }else if(permission =='denied'){
+      alert('you denied')
+    }
+  }
   useEffect(() => {
-    // console.log(import.meta.env.VITE_API_ADDRESS);
+    requestPermission()
   }, [])
   useEffect(() => {
 

@@ -76,23 +76,7 @@ const Tournasetting = () => {
       ...inp, [naam]: value
     })
   }
-  // const submit = async () => {
-  //   setLoading(true);
-  //   const url = `${import.meta.env.VITE_API_ADDRESS}settournament`;
-  //   const method = "POST";
-  //   // const body = { tid, title, organiser, slots, type, status, visibility, label };
-  //   const body = inp;
 
-  //   const successAction = (data) => {
-  //     toast.success(data.message, { autoClose: 1300 });
-  //     setLoading(false);
-  //     // console.log(data.data);
-  //   };
-
-  //   // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-  //   await apiWrapper(url, method, body, successAction);
-  // }
 
   const submit = async () => {
     setLoading(true);

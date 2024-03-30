@@ -72,7 +72,7 @@
                         }
                     }
                     .teamside{
-                        width: 320px;
+                        width: 360px;
                         height: 100%;
                         border-left: 1px solid grey;
                         /* margin: auto 0px; */
@@ -87,7 +87,7 @@
     
                             & span:nth-child(1){
                                 font-weight: 600;
-                                width: 100px;
+                                width: 60px;
                                 /* border: 1px solid red; */
                             }
                             & span:nth-child(2){
@@ -195,7 +195,7 @@
         
                                 & span:nth-child(1){
                                     font-weight: 600;
-                                    width: 60px;
+                                    width: 55px;
                                     /* border: 1px solid red; */
                                 }
                                 & span:nth-child(2){
