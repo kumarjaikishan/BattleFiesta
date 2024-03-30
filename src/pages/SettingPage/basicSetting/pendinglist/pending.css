@@ -166,6 +166,81 @@
                         letter-spacing: .5px;
                     }
                 }
+                .details{
+                    padding: 2px;
+        
+                    & .teamdata{
+        
+                        & .imageside{
+                            width: 180px;
+                
+        
+                            & img{ 
+                                width: 120px;
+                                height: 120px;
+                            }
+                            .icon{
+                                padding: 5px 2px;
+                                margin-top: 10px;
+                            }
+                        }
+                        .teamside{
+                            width: 320px;
+                            height: 100%;
+                            padding-left: 5px;
+        
+                            & span{
+                                display: flex;
+                                align-items: center;
+        
+                                & span:nth-child(1){
+                                    font-weight: 600;
+                                    width: 60px;
+                                    /* border: 1px solid red; */
+                                }
+                                & span:nth-child(2){
+                                    font-size: 12px;
+                                   margin-left: 5px;
+                                }
+                            }
+                        }
+                        a{
+                            color: green;
+                        }
+                    }
+                    .playerdata{
+                        border: 1px solid grey;
+                        border-radius: 10px;
+                        padding: 5px;
+        
+                        & h2{
+                            font-size: 1.1em;
+                            margin: 10px 0px;
+                        } 
+                        div{
+                            border-top: 1px solid grey;
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+                            padding: 5px 0px;
+        
+                            & img{
+                                width: 50px;
+                                height: 50px;
+                                object-fit: cover;
+                                border-radius: 50%;
+                                border: 1px solid grey;
+                            }
+                        }
+                       
+                        BUTTON{
+                            margin: 10px 0px;
+                            font-weight: 800;
+                            letter-spacing: 1px;
+                        }
+                    }
+                }
                 
             }
             .middle{

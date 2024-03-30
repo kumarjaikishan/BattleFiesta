@@ -48,10 +48,10 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             </div>
                         </div>
                         <div className='teamside'>
-                            <span> <span>Team Name</span> : <span>{player.teamName}</span></span>
-                            <span> <span>Email</span> : <span>{player.email}</span></span>
-                            <span> <span>Phone</span> : <span>{player.mobile}</span></span>
-                            <span> <span>Discord</span> : <span>{player.discordID}</span></span>
+                            <span> <span>Team</span> <span>: {player.teamName}</span></span>
+                            <span> <span>Email</span> <span>: {player.email}</span></span>
+                            <span> <span>Phone</span> <span>: {player.mobile}</span></span>
+                            <span> <span>Discord</span> <span>: {player.discordID}</span></span>
                         </div>
                     </div>
                     <div className="playerdata">
