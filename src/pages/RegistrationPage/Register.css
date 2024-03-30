@@ -39,6 +39,20 @@
             width: 100%;
             background-color: var(--primarycolor);
         }
+          
+        .compart{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 10px 0px;
+            /* border: 1px solid red; */
+
+            .cominp{
+                width: 48%;
+                margin: 10px 0px;
+            }
+        }
 
         .desc {
             padding: 10px 10px;
@@ -283,7 +297,14 @@
             width: 98%;
             padding:10px 5px;
             
-
+            .compart{
+                justify-content: center;
+                
+                .cominp{
+                    width: 95%;
+                    margin: 5px 0px;
+                }
+            }
             .slots {
                 height: 30px;
                 letter-spacing: .5px;
