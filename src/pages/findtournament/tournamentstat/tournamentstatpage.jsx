@@ -89,12 +89,13 @@ const Tournamentstatpage = () => {
           {publicpost}
         </div>
         <div className="btn">
-          {data2.isopen && <a href={`${localhos}/register/${tid}`} target="_blank" title='Register for this Tournament'>
+          {data2.isopen && <a href={`${localhos}/${tournament.type=='tdm'? 'tdmregister':'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
             <Button variant="contained" startIcon={<FeedIcon />}> REGISTER </Button>
           </a>}
-          <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
+          {tournament.type=='classic' &&   <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
             <Button variant="outlined" startIcon={<LeaderboardIcon />}> LEADERBOARD </Button>
-          </a>
+          </a>}
+         
         </div>
         <div className="contacts">
           <div>Contacts Details</div>
