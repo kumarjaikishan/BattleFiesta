@@ -1,4 +1,4 @@
-.registartionform {
+.tdmregistartionform {
     width: 100%;
     display: flex;
     min-height: calc(100vh - var(--navheight) );
@@ -307,7 +307,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .registartionform {
+    .tdmregistartionform {
         padding: 10px 0px;
         min-height: calc(100vh - var(--navheightmobile) );
 
@@ -380,6 +380,7 @@
         .teamse {
             width: 98%;
             border-radius: 10px;
+            border: 1px solid transparent;
             padding: 5px 0px;
 
             & .headere {

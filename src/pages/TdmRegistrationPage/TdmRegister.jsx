@@ -220,7 +220,7 @@ const TdmRegister = () => {
     const [teamlist, setteamlist] = useState(false);
     return (
         <>
-            <div className="registartionform">
+            <div className="tdmregistartionform">
                 {errore && <div className="notfound">
                     <div>
                         <SentimentVeryDissatisfiedIcon className="sad" />
