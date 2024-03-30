@@ -377,6 +377,9 @@ const TdmRegister = () => {
                             <div>
                                 {setting.upi_id}
                             </div>
+                            <div>
+                            <b>Entry Fee:</b> ₹{setting.amount}
+                            </div>
                             <Button
                                 sx={{ mt: 1 }}
                                 title="PAY NOW"
