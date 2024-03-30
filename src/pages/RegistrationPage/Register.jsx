@@ -442,7 +442,7 @@ const Register = () => {
                                 all.ask_team_logo && <>
                                     <h4>Set a logo for the Team*</h4>
                                     <div id="teamlogo"></div>
-                                    <Button sx={{ mb: 3, mt:0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                    <Button sx={{ mb: 3, mt: 0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
                                             type="file"
@@ -551,19 +551,24 @@ const Register = () => {
                                     viewBox={`0 0 256 256`}
                                 />
                             </div>
-                            <div>
-                                {all.upi_id}
+                            <div className="remain">
+                                <div>
+                                    {all.upi_id}
+                                </div>
+                                <div>
+                                    <b>Entry Fee:</b> ₹{all.amount}
+                                </div>
+                                <Button
+                                    sx={{ mt: 1 }}
+                                    title="PAY NOW"
+                                    onClick={() => { window.location.href = `upi://pay?pa=${all.upi_id}&am=${all.amount}&tn=battleFiesta&cu=INR`; }}
+                                    startIcon={<CurrencyRupeeIcon />}
+                                    variant="outlined"
+                                    color="primary"
+                                >
+                                    Pay Now
+                                </Button>
                             </div>
-                            <Button
-                                sx={{ mt: 1 }}
-                                title="PAY NOW"
-                                onClick={() => { window.location.href = `upi://pay?pa=${all.upi_id}&am=${all.amount}&tn=battleFiesta&cu=INR`; }}
-                                startIcon={<CurrencyRupeeIcon />}
-                                variant="outlined"
-                                color="primary"
-                            >
-                                Pay Now
-                            </Button>
                         </div>}
 
                         <div className="contacts">

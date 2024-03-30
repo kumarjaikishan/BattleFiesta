@@ -124,11 +124,22 @@
         }
         .showpayment {
             margin-top: 20px;
-            padding-top: 10px;
+            padding: 10px 0px;
             border-top: 1px solid grey;
-            /* display: flex; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             .img{
                 width: 120px;
+            }
+            .remain{
+                margin-left: 20px;
+                height: 120px;
+                /* border: 1px solid red; */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
             a{
                 text-decoration: none;
@@ -136,7 +147,6 @@
         }
 
         .contacts {
-            margin-top: 20px;
             padding-top: 10px;
             border-top: 1px solid grey;
             text-align: center;

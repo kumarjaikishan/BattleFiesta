@@ -300,7 +300,7 @@ const TdmRegister = () => {
                                 setting.ask_playerlogo && <>
                                     <h4>Set a PlayerLogo*</h4>
                                     <div id="logo"></div>
-                                    <Button size="small" sx={{ mb: 3,mt:0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                    <Button size="small" sx={{ mb: 3, mt: 0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
                                             type="file"
@@ -341,7 +341,7 @@ const TdmRegister = () => {
                                 startIcon={<CloudUploadIcon />}
                                 variant="contained"
                                 type="submit"
-                                sx={{mt:1}}
+                                sx={{ mt: 1 }}
                             >
                                 Register
                             </LoadingButton>
@@ -374,22 +374,24 @@ const TdmRegister = () => {
                                     viewBox={`0 0 256 256`}
                                 />
                             </div>
-                            <div>
-                                {setting.upi_id}
+                            <div className="remain">
+                                <div>
+                                    {setting.upi_id}
+                                </div>
+                                <div>
+                                    <b>Entry Fee:</b> ₹{setting.amount}
+                                </div>
+                                <Button
+                                    sx={{ mt: 1 }}
+                                    title="PAY NOW"
+                                    onClick={() => { window.location.href = `upi://pay?pa=${setting.upi_id}&am=${setting.amount}&tn=battleFiesta&cu=INR`; }}
+                                    startIcon={<CurrencyRupeeIcon />}
+                                    variant="outlined"
+                                    color="primary"
+                                >
+                                    Pay Now
+                                </Button>
                             </div>
-                            <div>
-                            <b>Entry Fee:</b> ₹{setting.amount}
-                            </div>
-                            <Button
-                                sx={{ mt: 1 }}
-                                title="PAY NOW"
-                                onClick={() => { window.location.href = `upi://pay?pa=${setting.upi_id}&am=${setting.amount}&tn=battleFiesta&cu=INR`; }}
-                                startIcon={<CurrencyRupeeIcon />}
-                                variant="outlined"
-                                color="primary"
-                            >
-                                Pay Now
-                            </Button>
                         </div>}
 
                         <div className="contacts">
