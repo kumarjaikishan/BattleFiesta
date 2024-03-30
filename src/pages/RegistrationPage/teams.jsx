@@ -49,12 +49,11 @@ const Teams = ({ entry }) => {
                         </AccordionDetails>
                         {player.status == "rejected" && <TextField
                             id="outlined-multiline-flexible"
-                            label="Reason of Rejection  .."
+                            label="Reason of Rejection"
                             multiline
                             color="error"
                             focused
                             inputProps={{ style: { fontSize: 14 } }}
-                            InputLabelProps={{ style: { fontSize: 18 } }}
                             value={player.reason || "your Fault"}
                             maxRows={6}
                             sx={{ minWidth: "96%", mb: 1, ml: 1 }}
