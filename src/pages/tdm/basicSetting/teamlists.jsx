@@ -52,14 +52,14 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             </div>
                         </div>
                         <div className='teamside'>
-                            <span> <span>Name</span> : <span>{player.name || 'N/A'}</span></span>
-                           {player.email && <span> <span>Email</span> : <span>{player.email}</span></span>} 
-                            <span> <span>Phone</span> : <span>{player.mobile || 'N/A'}</span></span>
-                           {player.discord && <span> <span>Discord</span> : <span>{player.discord}</span></span>} 
-                            <span> <span>O.S</span> : <span>{player.os || 'N/A'}</span></span>
-                            <span> <span>Device</span> : <span>{player.device || 'N/A'}</span></span>
-                            <span> <span>FPS</span> : <span>{player.fps || 'N/A'}</span></span>
-                            <span> <span>UTR No.</span> : <span>{player.utrno || 'N/A'}</span></span>
+                            <span> <span>Name</span><span>: {player.name || 'N/A'}</span></span>
+                           {player.email && <span> <span>Email</span><span>: {player.email}</span></span>} 
+                            <span> <span>Phone</span><span>: {player.mobile || 'N/A'}</span></span>
+                           {player.discord && <span> <span>Discord</span><span>: {player.discord}</span></span>} 
+                            <span> <span>O.S</span><span>: {player.os || 'N/A'}</span></span>
+                            <span> <span>Device</span><span>: {player.device || 'N/A'}</span></span>
+                            <span> <span>FPS</span><span>: {player.fps || 'N/A'}</span></span>
+                            <span> <span>UTR No.</span><span>: {player.utrno || 'N/A'}</span></span>
                         </div>
                         
                     </div>

@@ -75,29 +75,6 @@ const TdmRegister = () => {
     const [filteredentry, setfilteredentry] = useState([]);
     const [errore, seterrore] = useState(false);
 
-    const getenteries = async () => {
-        try {
-            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}getplayerenteries`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ tid: registerId })
-            })
-            const resuke = await rese.json();
-            console.log(resuke);
-            // if (rese.ok) {
-            //     let enteries = resuke.enteries;
-            //     let filtenteries = enteries.filter((val) => {
-            //         return val.status != "rejected"
-            //     })
-            //     setfilteredentry(filtenteries);
-            //     setentry(enteries);
-            // }
-        } catch (error) {
-            console.log(error);
-        }
-    }
     const fetche = async (id) => {
         setdisable(true);
         try {
@@ -109,7 +86,7 @@ const TdmRegister = () => {
                 body: JSON.stringify({ tid: id })
             })
             const resuke = await rese.json();
-            console.log(resuke);
+            // console.log(resuke);
             if (rese.ok) {
                 // toast.success(resuke.message, { autoClose: 1300 });
                 setdisable(false);
@@ -138,7 +115,7 @@ const TdmRegister = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        console.log(inp);
+        // console.log(inp);
 
         if (setting.ask_playerlogo && !inp.logo) {
             return toast.warn("Select Team Logo", { autoClose: 2300 });
@@ -245,7 +222,7 @@ const TdmRegister = () => {
                         </div>
                         <Divider variant="middle" />
 
-                        {!newfresh && setting.description != "" && <>
+                        { setting.description != "" && <>
                             <p className="desc">{setting.description}</p>
                             <Divider variant="middle" />
                         </>}
@@ -279,7 +256,6 @@ const TdmRegister = () => {
                                         label="Choose OS"
                                         onChange={realhandlechange}
                                     >
-                                        <MenuItem value={""} disabled>Select</MenuItem>
                                         <MenuItem value={'android'}>Android</MenuItem>
                                         <MenuItem value={'ios'}>Ios</MenuItem>
                                     </Select>
@@ -330,7 +306,7 @@ const TdmRegister = () => {
                                     type='tel'
                                     inputProps={{ minLength: 12, maxLength: 12 }}
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                    size="small" required id="outlined-basic" label="UTR NO." value={inp.utrno} name="utrno" onChange={realhandlechange} variant="outlined" />
+                                    size="small" required id="outlined-basic" label="UTR/TXN NO." value={inp.utrno} name="utrno" onChange={realhandlechange} variant="outlined" />
                                 <br />
                             </>}
 

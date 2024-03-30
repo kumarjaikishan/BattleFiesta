@@ -167,13 +167,13 @@
                     border-radius: 5px;
                     text-decoration: none;
                     text-transform: uppercase;
-                    color: rgb(14, 144, 196);
+                    color: #212529;
                     font-weight: 600;
                     cursor: pointer;
                     margin-top: 10px;
     
                     &:hover {
-                        background-color: rgb(4, 60, 82);
+                        background-color: #212529;
                         color: white;
                     }
     
