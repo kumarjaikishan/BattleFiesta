@@ -20,8 +20,8 @@ const Footbar = () => {
                     <p>Tournament management services for esport</p>
                     <section>
                         <h3>Follow Us</h3>
-                        <span><InstagramIcon /></span>
-                        <span><YouTubeIcon /></span>
+                        <a target="_blank" href="https://www.instagram.com/battlefiesta"><InstagramIcon /></a>
+                        <a target="_blank" href="https://www.youtube.com/@Battle_Fiesta"><YouTubeIcon /></a>
                     </section>
                 </section>
                 <section className="section2">
