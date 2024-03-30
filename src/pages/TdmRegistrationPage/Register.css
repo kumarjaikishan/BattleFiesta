@@ -397,13 +397,10 @@
                     letter-spacing: 0.5px;
                 }
                 span:nth-child(2) {
-                    width: 140px;
-                    font-size: 0.9em;
-                    font-weight: 600;
-                    letter-spacing: 1px;
-                    line-height: 60px;
-                    margin-left: 10px;
-                    text-transform: capitalize;
+                    width: 110px;
+                    font-size: 0.8em;
+                    letter-spacing: 0.5px;
+                    margin-left: 5px;
                 }
 
                 span:nth-child(3) {
