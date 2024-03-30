@@ -150,7 +150,7 @@ const TdmRegister = () => {
         const formData = new FormData();
         formData.append("tid", inp.tournament_id);
         formData.append("userid", inp.userid);
-        formData.append("name", inp.name);
+        formData.append("name", inp.name.trim());
         formData.append("InGameId", inp.InGameId);
         formData.append("mobile", inp.mobile);
         formData.append("email", inp.email);
@@ -177,7 +177,7 @@ const TdmRegister = () => {
                 toast.update(id, { render: setting.success_msg ? setting.success_msg : "Registered Successful", type: "success", isLoading: false, autoClose: 1600 });
                 setdisable(false);
                 setinp(inpinit)
-                // fetche(registerId);
+                fetche(registerId);
                 setnewfresh(true);
                 // getenteries();
             } else {

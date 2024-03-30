@@ -33,7 +33,7 @@ const Teams = ({ entry }) => {
                             id="panel1-header"
                             className={`headere ${player.status}`}
                         >
-                            <img src={player.logo ? player.logo : group} alt="" /> 
+                            <img src={player.logo ? player.logo : user} alt="" /> 
                             <span>{player.name} </span> 
                             <span className={player.status}> {player.status}</span>
                             <span style={{fontSize:'13px'}}>-{player.os} </span> 

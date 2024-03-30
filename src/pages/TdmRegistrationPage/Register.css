@@ -185,10 +185,9 @@
     }
 
     .teamse {
-        width: 600px;
+        width: 700px;
         border: 1px solid grey;
         border-radius: 15px;
-        /* height: 200px; */
         padding: 10px 0px;
         display: flex;
         flex-direction: column;
@@ -210,15 +209,15 @@
                 font-weight: 600;
                 letter-spacing: 1px;
                 line-height: 60px;
-                margin-left: 10px;
             }
             span:nth-child(2) {
-                width: 220px;
-                font-size: 1.3em;
+                width: 320px;
+                /* background: red; */
+                font-size: 1.2em;
                 font-weight: 600;
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
                 line-height: 60px;
-                margin-left: 10px;
+                margin-left: 8px;
                 text-transform: capitalize;
             }
 
@@ -324,7 +323,7 @@
     
                 .compart{
                     justify-content: center;
-                    
+
                     .cominp{
                         width: 95%;
                         margin: 5px 0px;
@@ -399,10 +398,15 @@
                     letter-spacing: 0.5px;
                 }
                 span:nth-child(2) {
-                    width: 110px;
+                    width: 120px;
                     font-size: 0.8em;
+                    max-height: 65px;
+                    /* background: red; */
+                    overflow: hidden;
+                    white-space: nowrap;
                     letter-spacing: 0.5px;
                     margin-left: 5px;
+                    text-overflow: ellipsis;
                 }
 
                 span:nth-child(3) {
