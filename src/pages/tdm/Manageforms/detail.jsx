@@ -43,7 +43,7 @@ const Detail = () => {
     useEffect(() => {
         // console.log(inp);
         // console.log(tdmrtk);
-        console.log(tdmrtk.tdmdetail.visibility);
+        // console.log(tdmrtk.tdmdetail.visibility);
     })
     const upload = async (id) => {
         setLoading(true);
@@ -137,12 +137,12 @@ const Detail = () => {
             <div className="tournawrapper">
                 <div className="tournainfo">
                     <h2>Tournament Info</h2>
-                    <FormControl sx={{ m: 1, width: "96%" }}>
                         <TextField
                             helperText="Name of your tournament"
                             id="demo-helper-text-misaligned"
                             label="Tournament Name*"
-                            sx={{ mb: 3 }}
+                            sx={{ m: 1,mt:2 }}
+                            size='small'
                             value={inp.title}
                             name='title'
                             onChange={handleChange}
@@ -151,7 +151,8 @@ const Detail = () => {
                             helperText="Organiser Name of your tournament"
                             id="demo-helper-text-misaligned"
                             label="Organiser*"
-                            sx={{ mb: 3 }}
+                            sx={{ m: 1 }}
+                            size='small'
                             name='organiser'
                             value={inp.organiser}
                             onChange={handleChange}
@@ -160,7 +161,8 @@ const Detail = () => {
                             helperText="Max. Slots for your tournament"
                             id="demo-helper-text-misaligned"
                             label="Slots*"
-                            sx={{ mb: 3 }}
+                            sx={{ m: 1 }}
+                            size='small'
                             type='tel'
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                             name='slots'
@@ -168,8 +170,7 @@ const Detail = () => {
                             onChange={handleChange}
                         />
 
-                    </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, Width: "98%" }}>
+                    <FormControl  size='small' sx={{ m: 1, Width: "98%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -185,7 +186,7 @@ const Detail = () => {
                         </Select>
                         <FormHelperText>The type: Classic or TDM</FormHelperText>
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, Width: "96%" }}>
+                    <FormControl size='small' sx={{ m: 1, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Status*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -201,7 +202,7 @@ const Detail = () => {
                         </Select>
                         <FormHelperText>Status of your tournament</FormHelperText>
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, Width: "96%" }}>
+                    <FormControl size='small' sx={{ m: 1, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Visibility*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -215,16 +216,17 @@ const Detail = () => {
                             <MenuItem value={false}>HIDDEN</MenuItem>
                         </Select>
                         <FormHelperText>Should your tournament be visible in website'stournament list?</FormHelperText>
+                        </FormControl>
                         <TextField
                             helperText="Add labels to your tournament, keep it short"
                             id="demo-helper-text-misaligned"
                             label="Label"
-                            sx={{ mt: 3 }}
+                            sx={{ m: 1 ,width:'96%'}}
+                            size='small'
                             name='label'
                             value={inp.label}
                             onChange={handleChange}
                         />
-                    </FormControl>
                     <LoadingButton
                         loading={loading}
                         loadingPosition="start"
