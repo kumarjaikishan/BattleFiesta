@@ -37,7 +37,6 @@ const Teams = ({ entry }) => {
                             <span>{player.name} </span> 
                             <span className={player.status}> {player.status}</span>
                             <span style={{fontSize:'13px'}}>-{player.os} </span> 
-                            <span style={{fontSize:'12px'}}>-{player.InGameId} </span> 
                         </AccordionSummary>
                         
                         {player.status == "rejected" && <TextField

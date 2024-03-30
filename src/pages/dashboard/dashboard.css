@@ -125,6 +125,7 @@
                     display: inline-block;
                     height: 22px;
                     line-height: 22px;
+                    text-transform: uppercase;
                     padding: 0px 8px;
                     font-weight: 500;
                     border-radius: 50px;

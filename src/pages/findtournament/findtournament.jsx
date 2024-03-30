@@ -145,7 +145,7 @@ const Findtournament = () => {
                                 />
                                 <span>{val.title}</span>
                             </div>
-                            <h3 className="organiser">by {val.organiser}</h3>
+                            <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>
                             <div className="time">
                                 {formattedDate}, {formattedTime}
                             </div>

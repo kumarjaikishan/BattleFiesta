@@ -134,7 +134,7 @@ const Tdmsetting = () => {
             <header>Registration Page Link</header>
             <p>Teams can register for this tournament using the following link.</p>
             <Stack spacing={2} direction="row">
-              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tdmregister/${tid}`} label="Registration Form Link" variant="outlined" />
+              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={`${localhos}/tdmregister/${tid}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tdmregister")} />
             </Stack>
             <a href={`${localhos}/tdmregister/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
@@ -144,7 +144,7 @@ const Tdmsetting = () => {
             <header>Public Post Link</header>
             <p>Find the tournament's public page here. Ensure the tournament visibility is set to 'PUBLISHED' and remember to add content to the public post.</p>
             <Stack spacing={2} direction="row">
-              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
+              <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={`${localhos}/tournaments/${tid}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>
             <a href={`${localhos}/publicpost/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>

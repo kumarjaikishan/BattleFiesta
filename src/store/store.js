@@ -9,7 +9,7 @@ import { persistReducer } from 'redux-persist';
 import { combineReducers } from "@reduxjs/toolkit";
 
 const persistConfig = {
-    key: "BattleFiesta",
+    key: "BattleFiestaen",
     version: 1,
     storage: storage
 }
