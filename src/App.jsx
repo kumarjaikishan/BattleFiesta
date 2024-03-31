@@ -35,25 +35,44 @@ import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import { messaging } from './firebase';
-import {getToken } from 'firebase/messaging'
+import { toast } from 'react-toastify';
+import { getToken, onMessage } from 'firebase/messaging'
 
 function App() {
   const log = useSelector((state) => state.login);
   async function requestPermission() {
     const permission = await Notification.requestPermission();
-    if(permission=='granted'){
-     const token = await getToken(messaging,{vapidKey:'BBUxuDLlWdfTvuiQ3UFyT6BdxGpM95ua-Y9MKaeTo8guV81sXFVhhrS1CeGFkdIVtt8JCGpUZVKElwdmGSvJAkA'});
-     console.log(token);
-    }else if(permission =='denied'){
-      alert('you denied')
+    if (permission == 'granted') {
+      const notificationtoken = await getToken(messaging, { vapidKey: 'BBUxuDLlWdfTvuiQ3UFyT6BdxGpM95ua-Y9MKaeTo8guV81sXFVhhrS1CeGFkdIVtt8JCGpUZVKElwdmGSvJAkA' });
+      console.log(notificationtoken);
+      try {
+        const token = localStorage.getItem("token");
+        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}notificationToken`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ notificationtoken })
+        });
+        const data = await responsee.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (permission == 'denied') {
+      toast.warn('Allow Notification to get Updates')
     }
   }
   useEffect(() => {
-    requestPermission()
+    onMessage(messaging, (payload) => {
+      // toast.success(payload.notification.title, { autoClose: 2100 })
+      toast.success(payload.notification.body, { autoClose: false })
+    })
   }, [])
   useEffect(() => {
-
-  }, [log.isadmin])
+    log.islogin && requestPermission();
+  }, [log.islogin])
 
 
   return (

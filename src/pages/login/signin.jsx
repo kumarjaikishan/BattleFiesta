@@ -38,6 +38,7 @@ const Signin = () => {
             ...signinp, [name]: value
         })
     }
+    
 
     const submite = async (e) => {
         e.preventDefault();
@@ -66,6 +67,7 @@ const Signin = () => {
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
                 dispatch(profilefetch());
+                
                 if (data.isadmin) {
                     dispatch(memshipentry());
                     dispatch(contactusform());
@@ -78,7 +80,7 @@ const Signin = () => {
             else if (res.ok && res.status == 201) {
                 dispatch(setloader(false));
                 setbtnclick(false);
-                toast.warn("Kindly Verify Email First", { autoClose: 3300 });
+                toast.warn("Verify Email", { autoClose: 3300 });
             }
             else {
                 // console.log(data);

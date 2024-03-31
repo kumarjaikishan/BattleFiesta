@@ -115,7 +115,7 @@ const TdmRegister = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        // console.log(inp);
+        // console.log("yehi call hua");
 
         if (setting.ask_playerlogo && !inp.logo) {
             return toast.warn("Select Team Logo", { autoClose: 2300 });
