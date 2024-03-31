@@ -225,7 +225,7 @@ const Profile = () => {
         const givenDate = new Date(dateString);
         const currentDate = new Date();
         // const currentDate = new Date('2024-03-27');
-        console.log(currentDate);
+        // console.log(currentDate);
     
         const differenceInMilliseconds = givenDate - currentDate;
         const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
@@ -291,6 +291,7 @@ const Profile = () => {
                             <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='phone'
                                 value={inp.phone} type='tel'
+                                inputProps={{ minLength: 10, maxLength: 10 }}
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                 className="half" id="outlined-basic" label="Phone" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half" id="outlined-basic" label="City" variant="outlined" />
@@ -335,6 +336,7 @@ const Profile = () => {
                             helperText="This emaill will be visible on your profile page"
                             label="Public Email" variant="outlined" />
                         <TextField onChange={handlechangee} type='tel'
+                        inputProps={{ minLength: 10, maxLength: 10 }}
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                             name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
                             helperText="This phone number will be visible on your profile page"

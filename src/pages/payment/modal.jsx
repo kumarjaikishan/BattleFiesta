@@ -20,7 +20,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
         }
     }, [txnNo]);
 useEffect(()=>{
-    console.log(planchoosed);
+    // console.log(planchoosed);
 })
     const tournacenter = useSelector((state) => state.tournacenter);
     const handlee = async (e) => {
