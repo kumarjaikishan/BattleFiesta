@@ -293,7 +293,7 @@
     
             .card {
                 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-                width: 75%;
+                width: 95%;
     
                 >div {
                     height: 25px;
@@ -313,7 +313,7 @@
                 }
             }
             .operator{
-                width: 75%;
+                width: 95%;
                 gap: 15px;
             }
         }
