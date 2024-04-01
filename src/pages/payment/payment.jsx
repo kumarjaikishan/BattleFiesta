@@ -58,7 +58,7 @@ const Payment = () => {
         method: "GET"
       });
       const data = await responsee.json();
-      console.log("dataplan ", data);
+      // console.log("dataplan ", data);
       dispatch(setloader(false));
       if (responsee) {
         setplandetail(data.plans)
