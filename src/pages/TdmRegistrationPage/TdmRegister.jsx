@@ -53,6 +53,9 @@ const TdmRegister = () => {
         dispatch(setloader(true));
         fetche(registerId);
     }, [])
+    useEffect(()=>{
+        console.log(about);
+    })
     const inpinit = {
         userid: "",
         tournament_id: "",
@@ -226,7 +229,7 @@ const TdmRegister = () => {
                             <p className="desc">{setting.description}</p>
                             <Divider variant="middle" />
                         </>}
-                        {!newfresh && <form onSubmit={handleRegister}>
+                        {!newfresh && about.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <div className="compart">
                                 <TextField className="cominp" size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
                                 <TextField className="cominp" required value={inp.InGameId}
@@ -329,7 +332,7 @@ const TdmRegister = () => {
                             <h1>REGISTRATION CLOSED</h1>
                             <p>The Registration for this tournament has been closed by the Admin</p>
                         </div>}
-                        {setting.slots <= filteredentry.length && <div className="closed">
+                        {about.slots <= filteredentry.length && <div className="closed">
                             <div> <SentimentVeryDissatisfiedIcon className="stop" /></div>
                             <h1>Oops! Slot is Full</h1>
                             <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>

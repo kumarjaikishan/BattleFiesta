@@ -159,6 +159,10 @@
                 & a {
                     /* background: red; */
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 30px;
+                    line-height: 10px;
                     padding: 3px 8px;
                     letter-spacing: 1px;
                     border-radius: 5px;
@@ -174,7 +178,7 @@
                         color: white;
                     }
     
-                    span {
+                    >span {
                         margin: 0 3px;
                     }
                 }
