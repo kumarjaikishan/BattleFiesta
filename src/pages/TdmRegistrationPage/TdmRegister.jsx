@@ -232,12 +232,12 @@ const TdmRegister = () => {
                         {!newfresh && about.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <div className="compart">
                                 <TextField className="cominp" size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
-                                <TextField className="cominp" required value={inp.InGameId}
+                                <TextField className="cominp"  value={inp.InGameId}
                                     type='tel'
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     size="small" id="outlined-basic" name="InGameId" label="In Game ID" onChange={realhandlechange} variant="outlined" />
 
-                                {setting.ask_phone && <TextField className="cominp" required={setting.ask_phone}
+                                {setting.ask_phone && <TextField className="cominp" required
                                     size="small" id="outlined-basic" name="mobile"
                                     value={inp.mobile}
                                     type='tel'
@@ -255,6 +255,7 @@ const TdmRegister = () => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         value={inp.os}
+                                        required
                                         name="os"
                                         label="Choose OS"
                                         onChange={realhandlechange}
@@ -284,7 +285,7 @@ const TdmRegister = () => {
                                         <VisuallyHiddenInput
                                             type="file"
                                             accept="image/*"
-
+                                            required
                                             // onChange={handleTeamLogoChange}
                                             onChange={(event) => common(event, "logo")}
                                         />
