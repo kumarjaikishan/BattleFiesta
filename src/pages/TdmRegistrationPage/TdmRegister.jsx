@@ -285,7 +285,6 @@ const TdmRegister = () => {
                                         <VisuallyHiddenInput
                                             type="file"
                                             accept="image/*"
-                                            required
                                             // onChange={handleTeamLogoChange}
                                             onChange={(event) => common(event, "logo")}
                                         />
