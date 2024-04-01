@@ -53,9 +53,7 @@ const TdmRegister = () => {
         dispatch(setloader(true));
         fetche(registerId);
     }, [])
-    useEffect(()=>{
-        console.log(about);
-    })
+ 
     const inpinit = {
         userid: "",
         tournament_id: "",
