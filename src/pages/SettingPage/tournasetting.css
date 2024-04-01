@@ -116,7 +116,7 @@
             align-items: center;
             justify-content: space-between;
             color: rgb(69, 66, 66);
-            padding: 2px 0px;
+            padding: 4px 5px;
 
             & header {
                 font-weight: 600;
