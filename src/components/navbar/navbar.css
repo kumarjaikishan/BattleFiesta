@@ -119,12 +119,17 @@
 
             & .logo {
 
-                & img {
-                    width: 40px;
+                .navlink{
+
+                    img {
+                        width: 50px;
+                    }
+                    h2{
+                        display: none;
+                        font-size: 14px;
+                    }
                 }
-                h2{
-                    font-size: 14px;
-                }
+ 
             }
 
             nav ul {
