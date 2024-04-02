@@ -223,6 +223,7 @@ const Profile = () => {
     };
     function getTimeDifference(dateString) {
         const givenDate = new Date(dateString);
+        const currentDate = new Date();
         // const currentDate = new Date('2024-04-04');
         // console.log(currentDate);
     

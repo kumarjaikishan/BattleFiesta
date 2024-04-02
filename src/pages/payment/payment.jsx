@@ -279,7 +279,7 @@ const Payment = () => {
                 <div style={{ padding: '10px 0px' }}>
                   <input required type="checkbox" name="" id="termsCheckbox" />
                   <label style={{ marginLeft: 8, cursor: 'pointer' }} htmlFor="termsCheckbox">
-                    I Agree to the <NavLink to='/terms'>
+                    I Agree to the <NavLink to='/terms' style={{textDecoration:"none"}}>
                       Terms and Conditions
                     </NavLink>
                   </label>

@@ -206,8 +206,8 @@ const Dashboard = () => {
 
   function getTimeDifference(dateString) {
     const givenDate = new Date(dateString);
-    // const currentDate = new Date();
-    const currentDate = new Date("2024-04-04");
+    const currentDate = new Date();
+    // const currentDate = new Date("2024-04-04");
 
     const differenceInMilliseconds = givenDate - currentDate;
     const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
