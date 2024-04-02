@@ -53,7 +53,7 @@ const TdmRegister = () => {
         dispatch(setloader(true));
         fetche(registerId);
     }, [])
- 
+
     const inpinit = {
         userid: "",
         tournament_id: "",
@@ -223,14 +223,16 @@ const TdmRegister = () => {
                         </div>
                         <Divider variant="middle" />
 
-                        { setting.description != "" && <>
+                        {setting.description != "" && <>
                             <p className="desc">{setting.description}</p>
                             <Divider variant="middle" />
                         </>}
                         {!newfresh && about.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <div className="compart">
                                 <TextField className="cominp" size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
-                                <TextField className="cominp"  value={inp.InGameId}
+                                <TextField className="cominp"
+                                    inputProps={{ minLength: 5, maxLength: 15 }}
+                                    value={inp.InGameId}
                                     type='tel'
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                     size="small" id="outlined-basic" name="InGameId" label="In Game ID" onChange={realhandlechange} variant="outlined" />
@@ -262,7 +264,9 @@ const TdmRegister = () => {
                                         <MenuItem value={'ios'}>Ios</MenuItem>
                                     </Select>
                                 </FormControl>}
-                                {setting.ask_discord && <TextField className="cominp" required size="small" id="outlined-basic" value={inp.discord} name="discord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
+                                {setting.ask_discord && <TextField
+                                    inputProps={{ maxLength: 22 }}
+                                    className="cominp" required size="small" id="outlined-basic" value={inp.discord} name="discord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
 
 
                                 {setting.ask_fps && <TextField className="cominp" required

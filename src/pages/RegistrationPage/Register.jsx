@@ -435,7 +435,9 @@ const Register = () => {
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                     color={inp.teammobile.length == 10 ? "primary" : "warning"}
                                 />}
-                                {all.ask_discord && <TextField className="cominp" required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
+                                {all.ask_discord && <TextField 
+                                 inputProps={{ minLength: 5, maxLength: 22 }}
+                                 className="cominp" required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
                             </div>
                             <Divider variant="middle" />
                             {
@@ -487,6 +489,7 @@ const Register = () => {
                                         <TextField size="small" id={`in-game-name-${index}`} value={inp.players[index].inGameName} onChange={(e) => realplayerchange(e, index, 'inGameName')} label="In Game Name*" variant="outlined" />
                                         <TextField size="small" id={`in-game-id-${index}`}
                                             value={inp.players[index].inGameID}
+                                            inputProps={{ minLength: 5, maxLength: 15 }}
                                             type='tel'
                                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                             onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined"

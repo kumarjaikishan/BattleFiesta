@@ -7,9 +7,10 @@ import razorpay from '../../assets/payment/razorpay-icon.webp'
 import paytm from '../../assets/payment/paytm-icon.webp'
 import Button from '@mui/material/Button';
 import Paymentmodal from './modal';
+import { NavLink } from 'react-router-dom';
 import { setloader } from '../../store/login';
 import { toast } from 'react-toastify';
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Payment = () => {
   const tournacenter = useSelector((state) => state.tournacenter);
@@ -42,11 +43,11 @@ const Payment = () => {
   useEffect(() => {
     setprofile();
   }, []);
-  const setprofile= ()=>{
+  const setprofile = () => {
     setinp({
-      ...inp,fullname:userprofile.userprofile.name ,
-      phone:userprofile.userprofile.phone , email:userprofile.userprofile.email,
-      city:userprofile.userprofile.city
+      ...inp, fullname: userprofile.userprofile.name,
+      phone: userprofile.userprofile.phone, email: userprofile.userprofile.email,
+      city: userprofile.userprofile.city
     })
   }
   const [plandetail, setplandetail] = useState([]);
@@ -181,7 +182,7 @@ const Payment = () => {
   return (
     <>
       <div className="payment">
-        <svg className='svg' xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320"><path  d="M0,288L1440,128L1440,0L0,0Z"></path></svg>
+        <svg className='svg' xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320"><path d="M0,288L1440,128L1440,0L0,0Z"></path></svg>
         {/* <svg className='svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,224L60,197.3C120,171,240,117,360,112C480,107,600,149,720,154.7C840,160,960,128,1080,101.3C1200,75,1320,53,1380,42.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg> */}
         <div className="mater">
           <h1>» Choose a Period</h1>
@@ -255,7 +256,7 @@ const Payment = () => {
                 <div className='full'>
                   <div className="under">
                     <b><span>Final Price</span></b>
-                    <span> {planchoosed && <b>₹{planchoosed.price + tax(planchoosed.price) - Math.ceil((planchoosed.price * inp.coupon) / 100)}.00</b> }</span>
+                    <span> {planchoosed && <b>₹{planchoosed.price + tax(planchoosed.price) - Math.ceil((planchoosed.price * inp.coupon) / 100)}.00</b>}</span>
                   </div>
                 </div>
                 <Divider variant="middle" />
@@ -266,10 +267,10 @@ const Payment = () => {
                       InputProps={{
                         readOnly: (inp.coupon > 0 && true || couponerror && true), style: { textTransform: 'lowercase' }
                       }}
-                      sx={{mt:1}}
+                      sx={{ mt: 1 }}
                       onChange={handleinput} size='small' id="outlined-basic" label="Enter a coupon code" value={inp.couponname} name='couponname' variant="outlined" />
-                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true || couponerror && true} className='btn' sx={{ ml: 4,mt:1 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
-                    {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2,mt:1  }} variant="outlined">Reset</Button>}
+                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true || couponerror && true} className='btn' sx={{ ml: 4, mt: 1 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
+                    {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2, mt: 1 }} variant="outlined">Reset</Button>}
                   </div>
                   {inp.coupon > 0 && <p className='cousuc'>Coupon code <b>{inp.couponname}</b> applied successfully, <b>{inp.coupon}% </b> off applied </p>}
                   {couponerror && <p style={{ color: 'red', fontSize: '14px', fontWeight: 500 }}>Coupon Code <b>{inp.couponname}</b> {couponerror}</p>}
@@ -277,7 +278,11 @@ const Payment = () => {
                 <Divider variant="middle" />
                 <div style={{ padding: '10px 0px' }}>
                   <input required type="checkbox" name="" id="termsCheckbox" />
-                  <label style={{ marginLeft: 8, cursor: 'pointer' }} htmlFor="termsCheckbox">I Agree to the Terms and Conditions</label>
+                  <label style={{ marginLeft: 8, cursor: 'pointer' }} htmlFor="termsCheckbox">
+                    I Agree to the <NavLink to='/terms' style={{textDecoration:"none"}}>
+                      Terms and Conditions
+                    </NavLink>
+                  </label>
                 </div>
                 <div style={{ textAlign: 'center' }}>
                   <Button className='btn' type='submit' sx={{ mt: 1 }} variant="contained">Proceed to Payment</Button>
