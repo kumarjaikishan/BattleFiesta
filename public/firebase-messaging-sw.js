@@ -22,7 +22,16 @@ messaging.onBackgroundMessage((payload) => {
   const notificationOptions = {
     body: payload.notification.body,
     icon: payload.notification.image,
+    data:{
+      url:payload.notification.url,
+    }
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close(); // Close the notification when clicked
+  const urlToOpen = event.notification.data.url || 'https://battlefiesta.vercel.app'; // Default URL
+  event.waitUntil(clients.openWindow(urlToOpen)); // Open the URL in a new window/tab
 });
