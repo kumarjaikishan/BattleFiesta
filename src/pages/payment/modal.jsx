@@ -47,7 +47,6 @@ useEffect(()=>{
             if (responsee.ok) {
                 toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 setpaymodalopen(false);
-                reset();
             } else {
                 toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             }
@@ -86,7 +85,7 @@ useEffect(()=>{
                                 type='tel'
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                 name="txn_no"
-                                size="small" label="Enter UTR/UPI REF No."
+                                size="small" label="UTR/ REF/ TXN No."
                                 variant="outlined"
                                 inputProps={{ minLength: 12, maxLength: 12 }}
                                  />
@@ -94,7 +93,7 @@ useEffect(()=>{
                                 <Button type="submit" disabled={isloading} variant="contained">Submit</Button>
                                 <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>
                             </div>
-                            <p>Please make your payment and enter the transaction number above. Thank you for your patience.</p>
+                            <p>*Membership will be processed within 24 Hours. Thanks for your patience.</p>
                         </form>
                     </div>
                 </div>

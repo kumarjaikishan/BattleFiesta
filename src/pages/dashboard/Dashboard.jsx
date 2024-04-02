@@ -16,6 +16,7 @@ import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import SaveIcon from '@mui/icons-material/Save';
+import { NavLink } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
@@ -24,6 +25,7 @@ import FormControl from '@mui/material/FormControl';
 import Dialogbox from "../utils/dialogbox";
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
@@ -124,19 +126,18 @@ const Dashboard = () => {
       });
       const res = await responsee.json();
       // console.log(res);
+      setload(false);
       if (!responsee || responsee.status == 429 || responsee.status == 400) {
-        setload(false);
         // console.log("error wala");
-        return toast.warn(res.message, { autoClose: 23300 })
+        return toast.warn(res.message, { autoClose: 2100 })
       }
-      toast.success(res.message, { autoClose: 23300 })
+      toast.success(res.message, { autoClose: 1700 })
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
-      setload(false);
     } catch (error) {
       console.log(error);
-      toast.warn(res.message, { autoClose: 23300 })
+      toast.warn(res.message, { autoClose: 2100 })
       setload(false);
     }
   }
@@ -205,7 +206,8 @@ const Dashboard = () => {
 
   function getTimeDifference(dateString) {
     const givenDate = new Date(dateString);
-    const currentDate = new Date();
+    // const currentDate = new Date();
+    const currentDate = new Date("2024-04-04");
 
     const differenceInMilliseconds = givenDate - currentDate;
     const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
@@ -252,11 +254,12 @@ const Dashboard = () => {
               <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit}</span>
             </div>
             <div>
-              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date ? getTimeDifference(userprofile.membership.expire_date) : 'N/A'} Days</span>
+              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
             </div>
-            <div>
-              <span>Completed</span> <span>:</span><span>{count.completed}</span>
-            </div>
+            {getTimeDifference(userprofile.membership.expire_date) < 0 && <NavLink className='buy' to='/plan'>
+              Buy Membership
+            </NavLink>}
+
           </div>
           <div className="operator">
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -380,8 +383,7 @@ const Dashboard = () => {
                     label="type"
                     onChange={handleChange}
                   >
-                    <MenuItem value="" disabled>Select Type</MenuItem>
-                    <MenuItem value='classic'>Classic</MenuItem>
+                   <MenuItem value='classic'>Classic</MenuItem>
                     <MenuItem value='tdm'>TDM</MenuItem>
                   </Select>
                 </FormControl>
