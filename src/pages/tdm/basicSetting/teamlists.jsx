@@ -38,7 +38,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                 >
                      <img src={player.logo ?player.logo :group} alt="" /> 
                     <span>{player.name} </span>
-                    <span style={{fontSize:'14px', fontWeight:'400', textTransform:'capitalize'}}>-{player.os || 'N/A'}</span>
+                  {player.os && <span style={{fontSize:'14px', fontWeight:'400', textTransform:'capitalize'}}>-{player.os}</span>}  
                 </AccordionSummary>
                 <AccordionDetails className='details'>
                     <div className="teamdata">
