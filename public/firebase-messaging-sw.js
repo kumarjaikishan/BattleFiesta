@@ -23,7 +23,7 @@ messaging.onBackgroundMessage((payload) => {
     body: payload.notification.body,
     icon: payload.notification.image,
     data:{
-      url:payload.notification.url,
+      url:payload.data.url,
     }
   };
 
