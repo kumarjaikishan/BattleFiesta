@@ -43,11 +43,11 @@ const Tdmsetting = () => {
   useEffect(() => {
     dispatch(tdmfetch(tid));
     dispatch(header('Setting'))
-    dispatch(setloader(false))
+    dispatch(setloader(true))
   }, [])
   useEffect(() => {
-  //  console.log(tdmrtk);
-  }, [tdmrtk])
+    dispatch(setloader(tdmrtk.loading))
+  }, [tdmrtk.loading])
 
   
   const handleactive = (index) => {
