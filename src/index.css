@@ -12,11 +12,10 @@ input{
 :root {
   --navheight: 60px;
   --navheightmobile:50px;
-  /* --primarycolor: #2980b9; */
   --primarycolor: #02363a;
-  --hovercolor: rgb(13, 88, 94);
-  --secondarycolor: #2f1c6a;
-  --thirdcolor: #150645;
+  --hovercolor: #0d585e;
+  --secondarycolor: #02363a;
+  --thirdcolor: #0d585e;
 }
 
 body {
