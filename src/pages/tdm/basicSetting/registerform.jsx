@@ -39,6 +39,9 @@ const Registerform = ({ setting, showss }) => {
     useEffect(() => {
         sortplayerdata(tdmrtk.tdmplayers)
     }, [tdmrtk.tdmplayers])
+    useEffect(() => {
+        setall(tdmrtk.tdmsetting)
+    }, [tdmrtk.tdmsetting])
 
     const [active, setactive] = useState(0);
     const [pendingplayer, setpendingplayer] = useState([]);
@@ -91,6 +94,7 @@ const Registerform = ({ setting, showss }) => {
 
         const successAction = (data) => {
             // toast.success(data.message, { autoClose: 1300 });
+            // dispatch(tdmfetch(tid))
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
             setisloading(false)
         };

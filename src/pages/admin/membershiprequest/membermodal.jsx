@@ -16,8 +16,8 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
         buydate: new Date(),
         expiredate: new Date()
     });
-    
-   const dispatch = useDispatch();
+const [isloading,setisloading]=useState(false)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         // console.log(inp);
@@ -31,10 +31,10 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
         e.preventDefault();
         let remarks = other.remarks;
         let flag = other.status;
-
         // console.log(id);
-
         try {
+            setisloading(true)
+            const toaste = toast.loading("Please wait...")
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}createmembership`, {
                 method: "POST",
@@ -45,15 +45,18 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                 body: JSON.stringify({ remarks, id, flag })
             });
             const data = await responsee.json();
-            console.log(data);
+            // console.log(data);
+            setisloading(false)
             if (responsee.ok) {
                 dispatch(memshipentry())
-                toast.success(data.message, { autoClose: 1300 });
+                toast.update(toaste, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
                 setmembermodal(false);
             } else {
-                toast.warn(data.message, { autoClose: 1500 });
+                return toast.update(toaste, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
             }
         } catch (error) {
+            setisloading(false)
+            toast.update(toaste, { render: data.message, type: "warn", isLoading: false, autoClose: 5200 });
             console.log(error);
         }
     }
@@ -84,7 +87,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                         </FormControl>
                         <TextField multiline rows={3} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '95%' }} label="Remarks" size="small" />
                         <div className="btn">
-                            <Button size="small" type="submit" variant="contained"> Submit</Button>
+                            <Button disabled={isloading} size="small" type="submit" variant="contained"> Submit</Button>
                             <Button size="small" onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
                         </div>
                     </form>

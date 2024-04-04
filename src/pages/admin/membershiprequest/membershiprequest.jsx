@@ -13,7 +13,7 @@ const Membershiprequest = () => {
    const userprofile = useSelector((state) => state.admin);
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
-      console.log(admin.membershipentry);
+      // console.log(admin.membershipentry);
    },[])
    const dispatch = useDispatch();
    const [inp, setinp] = useState(null);
