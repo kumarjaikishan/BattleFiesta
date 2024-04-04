@@ -1,4 +1,3 @@
-import './enterresult.css'
 import {
   Paper, TableRow, TableHead, TableContainer, TableCell, tableCellClasses, TableBody,
   Table, Autocomplete, TextField, Button, styled, Divider, Box,

@@ -138,7 +138,7 @@ const Detail = ({ submit, upload, handleChange, loading, inp }) => {
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
                             </Button>
-                            <p>A cover image for the tournament. Tip: you could include sponsership in the cover image</p>
+                            <p>A cover image for the tournament.</p>
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
                             {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}

@@ -4,7 +4,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import FormHelperText from '@mui/material/FormHelperText';
-import './pointsystem.css'
 import FormControl from '@mui/material/FormControl';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from "react-toastify";

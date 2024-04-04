@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { setloader } from "../../../store/login";
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import './viewmatches.css'
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
