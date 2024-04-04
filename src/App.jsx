@@ -27,7 +27,7 @@ import Payment from './pages/payment/payment';
 import Adminnavbar from './pages/admin/adminnavbar';
 import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
 import Admindashboard from './pages/admin/dashboard/dashboard';
-import Contactform from './pages/admin/contactform/contactform';
+import Query from './pages/admin/query/query';
 import Voucher from './pages/admin/voucher/voucher';
 import Membership from './pages/admin/membership/membership';
 import User from './pages/admin/user/user';
@@ -90,10 +90,10 @@ function App() {
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
-            <Route path='/admin' element={<Adminnavbar />}>
+            <Route exact path='/admin' element={<Adminnavbar />}>
               <Route index element={<Admindashboard />} />
               <Route path='membershiprequest' element={<Membershiprequest />} />
-              <Route path='contact' element={<Contactform />} />
+              <Route path='query' element={<Query />} />
               <Route path='voucher' element={<Voucher />} />
               <Route path='membership' element={<Membership />} />
               <Route path='users' element={<User />} />

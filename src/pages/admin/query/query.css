@@ -1,4 +1,4 @@
-.contactform {
+.query {
     width: 100%;
     padding: 10px 5px;
     display: flex;
@@ -7,8 +7,20 @@
 
     .all {
         width: 95%;
+
         /* border: 1px solid red; */
-        
+        .controler {
+            position: relative;
+            padding: 5px 0px;
+
+            .refreshe {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+            }
+        }
+
         .header {
             width: 100%;
             padding: 5px;
@@ -30,7 +42,6 @@
 
             div {
                 border-radius: 10px;
-                border: 0.5px solid rgb(205, 202, 202);
                 border: 0.5px solid rgb(4, 86, 145);
                 margin: 10px 0px;
                 display: flex;
@@ -69,6 +80,7 @@
                 width: 320px;
                 /* border: 1px solid red; */
             }
+
             & span:nth-child(5) {
                 width: 80px;
                 /* border: 1px solid red; */
@@ -98,10 +110,12 @@
                     }
                 }
             }
-            .status{
+
+            .status {
                 border-radius: 20px;
                 font-weight: 500;
             }
+
             .status.pending {
                 background: rgba(221, 179, 100, 0.704);
                 color: rgb(86, 56, 2);
@@ -116,7 +130,7 @@
     }
 }
 
-    .membermodal{
-        width: 400px;
-        height: fit-content;
-    }
+.membermodal {
+    width: 400px;
+    height: fit-content;
+}

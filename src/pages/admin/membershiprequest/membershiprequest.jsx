@@ -10,7 +10,6 @@ import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
 
 const Membershiprequest = () => {
-   const userprofile = useSelector((state) => state.admin);
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
       console.log(admin.membershipentry);
@@ -78,7 +77,7 @@ const Membershiprequest = () => {
          <div className="controler">
             <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
             <LoadingButton
-               loading={userprofile.loading}
+               loading={admin.loading}
                onClick={() =>  dispatch(memshipentry())}
                loadingPosition="end"
                endIcon={<RefreshIcon />}

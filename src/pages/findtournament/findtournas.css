@@ -14,10 +14,12 @@
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 
         & div {
-            /* background-color: grey; */
             border-radius: 15px;
             cursor: pointer;
             width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 50px;
             line-height: 50px;
             text-align: center;
@@ -28,19 +30,22 @@
 
             & span:nth-child(2) {
                 margin-left: 10px;
+            }
 
+            i {
+                font-size: 2.0em;
             }
         }
 
         div.active {
-            color: rgb(6, 115, 146);
-            border-bottom: 2px solid rgb(6, 115, 146);
+            color: white;
+            background: var(--primarycolor);
         }
     }
 
     .cards {
         width: 100%;
-        min-height: calc(100vh - (var(--navheight) + 55px ));
+        min-height: calc(100vh - (var(--navheight) + 55px));
         /* border: 2px solid yellow; */
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -68,7 +73,7 @@
                 justify-content: center;
                 position: relative;
 
-              
+
                 & img {
                     width: 100%;
                     height: 100%;
@@ -90,11 +95,15 @@
                     line-height: 110px;
                     padding-left: 10px;
                     color: white;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
             }
-            h3{
 
-                span{
+            h3 {
+
+                span {
                     font-size: 13px;
                     color: white;
                     display: inline-block;
@@ -306,6 +315,10 @@
 
                 & span:nth-child(2) {
                     margin-left: 6px;
+                }
+    
+                i {
+                    font-size: 1.4em;
                 }
             }
         }

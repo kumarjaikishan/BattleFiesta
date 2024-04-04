@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
-import './contactform.css'
+import './query.css'
 import Button from '@mui/material/Button';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import Dialogbox from "../../utils/dialogbox";
 import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
@@ -11,7 +12,7 @@ import swal from 'sweetalert';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 
-const Contactform = () => {
+const Query = () => {
     const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const admin = useSelector((state) => state.admin);
@@ -21,14 +22,14 @@ const Contactform = () => {
     const [email, setemail] = useState('');
     const [contactid, setcontactid] = useState('');
 
-    useEffect(()=>{
-    // console.log(admin.contactusform);
-    },[])
+    useEffect(() => {
+        // console.log(admin.contactusform);
+    }, [])
 
     const handleChange = (e) => {
         setreply(e.target.value);
     }
-    const openmodale = (email,id) => {
+    const openmodale = (email, id) => {
         setopenmodal(true);
         setemail(email)
         setcontactid(id)
@@ -46,11 +47,13 @@ const Contactform = () => {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ contactid,email, reply })
+                body: JSON.stringify({ contactid, email, reply })
             });
             const data = await responsee.json();
             console.log(data);
             if (responsee.ok) {
+                setemail('');
+                setemail("");
                 toast.success(data.message, { autoClose: 1300 });
                 setopenmodal(false);
                 dispatch(contactusform());
@@ -101,8 +104,23 @@ const Contactform = () => {
     }
 
     return <>
-        <div className="contactform">
+        <div className="query">
             <div className="all">
+                <div className="controler">
+                    <h2 style={{ textAlign: 'center' }}>Query List</h2>
+                    <LoadingButton
+                        loading={admin.loading}
+                        onClick={() => dispatch(contactusform())}
+                        loadingPosition="end"
+                        endIcon={<RefreshIcon />}
+                        variant="outlined"
+                        type="submit"
+                        size="small"
+                        className="refreshe"
+                    >
+                        REFRESH
+                    </LoadingButton>
+                </div>
                 <div className="header">
                     <span>S.no</span>
                     <span>Name</span>
@@ -118,8 +136,8 @@ const Contactform = () => {
                             <span>{val.name}</span>
                             <span>{val.email}</span>
                             <span>{val.message}</span>
-                            <span className={val.resolve ?  `status done`: 'status pending'} title={val.resolve ? val.resolvemsg:''}>{val.resolve ? "Resolved" : "Pending"}</span>
-                            <span><i className="fa fa-pencil" onClick={() => openmodale(val.email,val._id)} aria-hidden="true"></i>
+                            <span className={val.resolve ? `status done` : 'status pending'} title={val.resolve ? val.resolvemsg : ''}>{val.resolve ? "Resolved" : "Pending"}</span>
+                            <span><i className="fa fa-pencil" onClick={() => openmodale(val.email, val._id)} aria-hidden="true"></i>
                                 <i className="fa fa-trash" onClick={() => deletee(val._id)} aria-hidden="true"></i></span>
                         </motion.div>
                     })}
@@ -138,6 +156,7 @@ const Contactform = () => {
 
                             <div>
                                 <LoadingButton
+                                sx={{mr:2}}
                                     loading={isload}
                                     loadingPosition="end"
                                     endIcon={<SendIcon />}
@@ -155,4 +174,4 @@ const Contactform = () => {
         </div>
     </>
 }
-export default Contactform;
+export default Query;

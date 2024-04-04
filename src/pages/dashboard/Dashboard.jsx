@@ -329,9 +329,9 @@ const Dashboard = () => {
                     <span>{val.title}</span>
                   </div>
                   <span className={`status ${val.status}`}>{val.status}</span>
-                  <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>
+                  <h3 className="organiser">by {val.organiser} </h3>
                   <div className="time">
-                    {formattedDate} {formattedTime}
+                    {formattedDate} {formattedTime} <span >{val.type}</span>
                   </div>
                   <div className="controller">
                     <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>

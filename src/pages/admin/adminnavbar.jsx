@@ -8,44 +8,18 @@ import './adminnavbar.css'
 
 const Adminnavbar = () => {
     const user = useSelector((state) => state.login);
-    if(!user.isadmin){
+    if (!user.isadmin) {
         toast.warn('Admin Authorization is Required', { autoClose: 1700 })
         return <Navigate to="/" />
     }
-  
-    useEffect(() => {
-        // fetche();
-        // if(!user.isadmin){
-        //     <Navigate to="/" replace={true} />
-        //     toast.warn('Admin Authorization is Required', { autoClose: 1700 })
-        //     // return navigate('/')
-        // }
-    }, [])
-    // const fetche = async () => {
-    //     try {
-    //         const token = localStorage.getItem("token");
-    //         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}isadmin`, {
-    //             method: "GET",
-    //             headers: {
-    //                 "Authorization": `Bearer ${token}`,
-    //                 "Content-Type": "application/json"
-    //             }
-    //         });
-    //         const data = await responsee.json();
-    //         console.log(data);
-    //         if (responsee.status == 403) {
-    //             toast.warn(data.message, { autoClose: 1700 })
-    //             return navigate('/')
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
     return <>
         <div className="Adminnavbar">
             <div className="adminnav">
-                <NavLink className="navlink" to='/admin' >
+                <NavLink className="navlink" to='/admin'
+                    isActive={(match, location) => {
+                        return location.pathname === '/admin';
+                    }} >
                     <div >
                         <i className="fa fa-tachometer" aria-hidden="true"></i>
                         <span>Dashboard</span>
@@ -57,10 +31,10 @@ const Adminnavbar = () => {
                         <span>Membership apply</span>
                     </div>
                 </NavLink>
-                <NavLink className="navlink" to='/admin/contact' >
+                <NavLink className="navlink" to='/admin/query' >
                     <div >
                         <i className="fa fa-address-book-o" aria-hidden="true"></i>
-                        <span>Contact Form</span>
+                        <span>Queries</span>
                     </div>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/voucher' >
@@ -82,7 +56,7 @@ const Adminnavbar = () => {
                     </div>
                 </NavLink>
             </div>
-            <Outlet/>
+            <Outlet />
         </div>
     </>
 }

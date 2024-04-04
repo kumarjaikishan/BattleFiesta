@@ -89,15 +89,15 @@ const Findtournament = () => {
             <div className="findtournas">
                 <div className="conta">
                     <div onClick={() => handleactive(0)} className="active">
-                        <span><i className="fa fa-gamepad" aria-hidden="true"></i></span>
+                        <i className="fa fa-gamepad" aria-hidden="true"></i>
                         <span>UPCOMING</span>
                     </div>
                     <div onClick={() => handleactive(1)} >
-                        <span><i className="fa fa-play" aria-hidden="true"></i></span>
+                        <i className="fa fa-play" aria-hidden="true"></i>
                         <span>ONGOING</span>
                     </div>
                     <div onClick={() => handleactive(2)}>
-                        <span><i className="fa fa-undo" aria-hidden="true"></i></span>
+                        <i className="fa fa-undo" aria-hidden="true"></i>
                         <span>COMPLETED</span>
                     </div>
                 </div>

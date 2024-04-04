@@ -9,6 +9,18 @@
     .inner{
         width: 100%;
 
+        .controler{
+            position: relative;
+            padding: 5px 0px;
+    
+            .refreshe{
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+            }
+        }
+
         .header {
             width: 100%;
             padding: 5px;
