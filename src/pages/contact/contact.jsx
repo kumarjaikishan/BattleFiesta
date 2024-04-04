@@ -56,6 +56,7 @@ const Contact = () => {
                         fullWidth id="outlined-basic"
                         label="Name"
                         name='name'
+                        className='inp'
                         onChange={handlechange}
                         value={inp.name}
                         variant="outlined"
@@ -65,6 +66,7 @@ const Contact = () => {
                         label="Email"
                         type='email'
                         name='email'
+                        className='inp'
                         onChange={handlechange}
                         value={inp.email}
                         variant="outlined"
@@ -74,6 +76,7 @@ const Contact = () => {
                         label="Your Query"
                         multiline
                         name='message'
+                        className='inp'
                         onChange={handlechange}
                         value={inp.message}
                         variant="outlined"
@@ -81,6 +84,7 @@ const Contact = () => {
                     />
                     <LoadingButton
                         type='submit'
+                        className='inp'
                         loading={isloading}
                         loadingPosition="start"
                         startIcon={<SaveIcon />}

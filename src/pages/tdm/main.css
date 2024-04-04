@@ -122,13 +122,17 @@
                 font-weight: 600;
                 font-size: 1.1em;
                 text-align: center;
-                /* border: 1px solid red; */
+                border: 1px solid red;
             }
 
             p {
                 font-size: 0.8em;
                 text-align: center;
                 margin: 10px 0px;
+            }
+            .inpline{
+                display: flex;
+                align-items: center;
             }
 
             .copy {

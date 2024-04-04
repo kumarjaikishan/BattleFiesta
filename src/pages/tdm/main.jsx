@@ -22,7 +22,7 @@ import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
-import {tdmfetch } from '../../store/tdm';
+import { tdmfetch } from '../../store/tdm';
 
 const Tdmsetting = () => {
   const log = useSelector((state) => state.login);
@@ -38,7 +38,7 @@ const Tdmsetting = () => {
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
 
- 
+
   const [active, setactive] = useState(0);
   useEffect(() => {
     dispatch(tdmfetch(tid));
@@ -49,7 +49,7 @@ const Tdmsetting = () => {
     dispatch(setloader(tdmrtk.loading))
   }, [tdmrtk.loading])
 
-  
+
   const handleactive = (index) => {
     let all = document.querySelectorAll('.controller .cont');
 
@@ -133,7 +133,7 @@ const Tdmsetting = () => {
           <div className="box">
             <header>Registration Page Link</header>
             <p>Teams can register for this tournament using the following link.</p>
-            <Stack spacing={2} direction="row">
+            <Stack spacing={2} direction="row" className='inpline'>
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={`${localhos}/tdmregister/${tid}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tdmregister")} />
             </Stack>
@@ -143,7 +143,7 @@ const Tdmsetting = () => {
           <div className="box">
             <header>Public Post Link</header>
             <p>Find the tournament's public page here. Ensure the tournament visibility is set to 'PUBLISHED' and remember to add content to the public post.</p>
-            <Stack spacing={2} direction="row">
+            <Stack spacing={2} direction="row" className='inpline'>
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={`${localhos}/tournaments/${tid}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>

@@ -23,8 +23,8 @@
             border-radius: 10px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
             width: 300px;
-            /* min-height: 110px; */
-            height: max-content;
+            min-height: 110px;
+            /* height: max-content; */
             color: #212529;
             padding: 5px 10px;
             position: relative;
@@ -47,7 +47,7 @@
             }
             i{
                 font-size: 5em;
-                color: rgba(24, 23, 23, 0.308);
+                color: rgba(87, 87, 87, 0.308);
                 position: absolute;
                 top: 50%;
                 right: 10px;
@@ -136,7 +136,20 @@
             }
             h3{
 
-               
+                span{
+                    margin-right: 3px;
+                    font-size: 12px;
+                    color: white;
+                    display: inline-block;
+                    height: 22px;
+                    line-height: 22px;
+                    text-transform: uppercase;
+                    padding: 0px 8px;
+                    font-weight: 500;
+                    border-radius: 50px;
+                    letter-spacing: 0.2px;
+                    background: var(--primarycolor);
+                }
             }
 
             .status {
@@ -169,27 +182,14 @@
                 margin: 7px 0px;
                 padding-left: 10px;
                 color: rgb(58, 56, 56);
-            } */
+            } 
 
             .time {
                 font-size: 14px;
                 display: flex;
                 justify-content: space-between;
 
-                span{
-                    margin-right: 3px;
-                    font-size: 12px;
-                    color: white;
-                    display: inline-block;
-                    height: 22px;
-                    line-height: 22px;
-                    text-transform: uppercase;
-                    padding: 0px 5px;
-                    font-weight: 500;
-                    border-radius: 50px;
-                    letter-spacing: 0.2px;
-                    background: var(--primarycolor);
-                }
+                
             }
 
             .controller {
