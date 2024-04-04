@@ -13,7 +13,7 @@ const Membershiprequest = () => {
    const userprofile = useSelector((state) => state.admin);
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
-      // console.log(admin.membershipentry);
+      console.log(admin.membershipentry);
    },[])
    const dispatch = useDispatch();
    const [inp, setinp] = useState(null);
@@ -113,7 +113,7 @@ const Membershiprequest = () => {
                const formattedDate = date.toLocaleDateString('en-GB', options);
                return <motion.div variants={item} layout key={ind}>
                   <span>{ind + 1}</span>
-                  <span>{val.user.name}</span>
+                  <span>{val.user?.name}</span>
                   <span>{val.plan_id.plan_name}</span>
                   <span>{val.coupon ? val.coupon : "-"}</span>
                   <span>{val.finalpricepaid}</span>

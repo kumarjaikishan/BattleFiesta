@@ -124,7 +124,7 @@
     }
 
     .status.pending {
-        background: rgba(240, 179, 65, 0.704);
+        background: rgba(239, 185, 86, 0.704);
         color: rgb(86, 56, 2);
     }
 
@@ -135,7 +135,7 @@
 
     .status.rejected {
         color: rgb(84, 5, 5);
-        background: rgba(239, 107, 107, 0.768);
+        background: rgba(221, 139, 139, 0.768);
     }
 
 }
