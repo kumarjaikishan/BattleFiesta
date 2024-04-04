@@ -110,7 +110,7 @@ const Findtournament = () => {
                         <div>
                             <SentimentDissatisfiedIcon className="sad" />
                             <h2>No Tournament Found</h2>
-                            <p>Please Add Tournament.</p>
+                            <p>This section will be auto updated once any Tournament comes under this section</p>
                         </div>
                     </div>}
                     {showinglist.map((val, ind) => {
