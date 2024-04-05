@@ -24,7 +24,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import { tdmfetch } from "../../../store/tdm";
 import { useParams } from "react-router-dom";
 
-const Registerform = ({ setting, showss }) => {
+const Registerform = ({ showss }) => {
     const dispatch = useDispatch();
     const { tid } = useParams();
     const tdmrtk = useSelector((state) => state.tdm);

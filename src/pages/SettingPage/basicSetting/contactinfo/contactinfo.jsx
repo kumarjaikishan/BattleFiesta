@@ -109,11 +109,11 @@ const Contactinfo = ({ all }) => {
         setlinks(updatedLinks);
     }
     let helpere = {
-        whatsapp: "Enter Whatsapp No.",
-        instagram: "Enter Instagram userId",
-        phone: "Enter phone no.",
-        email: "Enter Email",
-        link: "Enter Website Link"
+        whatsapp: "Provide Whatsapp No.",
+        instagram: "Provide Instagram userId",
+        phone: "Provide phone no.",
+        email: "Provide Email",
+        link: "Provide Website Link"
     }
 
     return (
@@ -162,7 +162,6 @@ const Contactinfo = ({ all }) => {
                                         size='small'
                                         color={links[ind].linkType == 'phone' && links[ind].link.length != 10 ? "error" : 'primary'}
                                         variant="outlined"
-                                        FormHelperTextProps={{ sx: { color: 'primary.main' } }}
                                     />
                                 </Stack>
                                 <Stack direction="row" sx={{ mt: 1 }} spacing={2}>

@@ -34,7 +34,6 @@ const Tdmsetting = () => {
   const dispatch = useDispatch();
   const tournacenter = useSelector((state) => state.tournacenter);
   const tdmrtk = useSelector((state) => state.tdm);
-  const [setting, setsetting] = useState(tournacenter.current_tourna_details);
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
 
@@ -113,10 +112,10 @@ const Tdmsetting = () => {
           </div>
         </div>
         <div className="material">
-          {active == 0 && <Registerform showss={showss} setting={setting} />}
+          {active == 0 && <Registerform showss={showss}/>}
           {active == 1 && <Detail />}
           {/* {active == 2 && <EnterResult setting={setting} />} */}
-          {active == 2 && <ManageTeam setting={setting} showss={showss} />}
+          {active == 2 && <ManageTeam showss={showss} />}
           {/* {active == 4 && <Pointsystem setting={setting} />} */}
           {/* {active == 5 && <ViewMatches setting={setting} />} */}
           {showmodal && <Imagemodal setshowmodal={setshowmodal} paymentss={paymentss} />}

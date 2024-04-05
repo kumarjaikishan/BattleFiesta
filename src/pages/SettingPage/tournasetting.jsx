@@ -56,6 +56,7 @@ const Tournasetting = () => {
       dispatch(classicfetch(tid));
     }
   }, [])
+  
   useEffect(() => {
     dispatch(setloader(classic.loading))
   }, [classic.loading])

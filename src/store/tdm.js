@@ -12,7 +12,7 @@ export const tdmfetch = createAsyncThunk("tdmfetch", async (tid) => {
             body: JSON.stringify({ tid })
           });
         const data = await responsee.json();
-        console.log('tdm fetch', data);
+        // console.log('tdm fetch', data);
         return data;
     } catch (error) {
         console.log(error);

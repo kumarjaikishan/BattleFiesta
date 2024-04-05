@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import { useParams } from 'react-router-dom';
 
-const ManageTeam = ({ setting, showss }) => {
+const ManageTeam = ({ showss }) => {
   const dispatch = useDispatch();
   const { tid } = useParams();
   const tdmrtk = useSelector((state) => state.tdm);

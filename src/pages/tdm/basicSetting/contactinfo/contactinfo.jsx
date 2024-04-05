@@ -92,7 +92,7 @@ const Contactinfo = ({ all }) => {
                 toast.success(data.message, { autoClose: 1300 });
             }
         } catch (error) {
-            toast.warn(error.message, {autoClose:2200})
+            toast.warn(error.message, { autoClose: 2200 })
             console.log(error);
         }
     }
@@ -111,7 +111,7 @@ const Contactinfo = ({ all }) => {
         setlinks(updatedLinks);
     }
     let helpere = {
-        whatsapp: "Please Provide Whatsapp No.",
+        whatsapp: "Provide Whatsapp No.",
         instagram: "Provide Instagram userId",
         phone: "Provide phone no.",
         email: "Provide Email",
@@ -127,17 +127,16 @@ const Contactinfo = ({ all }) => {
                             id="outlined-multiline-static"
                             label="Public Post"
                             multiline
-                            inputProps={{ style: { fontSize: 11, lineHeight:"12px" } }}
+                            inputProps={{ style: { fontSize: 11, lineHeight: "12px" } }}
                             value={publicpost}
                             onChange={(e) => setpublicpost(e.target.value)}
-                            sx={{ width: "98%", mt: 1, mb:1 }}
+                            sx={{ width: "98%", mt: 1, mb: 1 }}
                             rows={10}
                         />
                         <h2>Contact Links</h2>
                         {links.map((val, ind) => {
                             return <section key={ind}>
                                 <Stack direction="row" spacing={2}>
-                                    <TextField  size='small' required value={val.linkName} onChange={(e) => handlee(e, ind, "linkName")} sx={{ width: "50%" }} id="outlined-basic" label="Link Name" variant="outlined" />
                                     <FormControl sx={{ width: "50%" }} size='small' >
                                         <InputLabel id="demo-simple-select-label">Link Type</InputLabel>
                                         <Select
@@ -155,19 +154,17 @@ const Contactinfo = ({ all }) => {
                                             <MenuItem value="email">Email</MenuItem>
                                         </Select>
                                     </FormControl>
+                                    <TextField size='small' required value={val.linkName} onChange={(e) => handlee(e, ind, "linkName")} sx={{ width: "50%" }} id="outlined-basic" label="Link Name" variant="outlined" />
+
                                 </Stack>
                                 <Stack direction="row" sx={{ mt: 2 }} spacing={2}>
                                     <TextField required value={val.link}
                                         onChange={(e) => handlee(e, ind, "link")}
                                         fullWidth id="outlined-basic"
-                                        label="Link"
+                                        label={helpere[links[ind].linkType]}
                                         size='small'
-                                        color={links[ind].linkType =='phone' && links[ind].link.length != 10 ? "error":'primary'}
+                                        color={links[ind].linkType == 'phone' && links[ind].link.length != 10 ? "error" : 'primary'}
                                         variant="outlined"
-                                        FormHelperTextProps={{ sx: { color: 'primary.main' } }}
-                                        helperText={
-                                            ` Tips:- ${helpere[links[ind].linkType]}`
-                                        }
                                     />
                                 </Stack>
                                 <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
@@ -186,7 +183,7 @@ const Contactinfo = ({ all }) => {
                         </Stack>
                         <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
                             <LoadingButton
-                               type='submit'
+                                type='submit'
                                 loading={isloading}
                                 loadingPosition="start"
                                 startIcon={<DescriptionIcon />}
