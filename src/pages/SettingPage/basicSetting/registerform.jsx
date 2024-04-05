@@ -80,6 +80,7 @@ const Registerform = ({  showss }) => {
     const submit = async (e) => {
         e.preventDefault();
         // console.log(all);
+        // return;
         setisloading(true)
         const id = toast.loading("Please wait...")
         const url = `${import.meta.env.VITE_API_ADDRESS}updatetournamentform`;
