@@ -40,8 +40,7 @@ const Tournasetting = () => {
 
   const [active, setactive] = useState(0);
   useEffect(() => {
-    // console.log(classic);
-    if (!classic.classicdetail._id) {
+    if (!classic?.classicdetail?._id) {
       dispatch(classicfetch(tid));
     }
     classic.classicdetail._id != tid && dispatch(classicfetch(tid));
@@ -51,6 +50,10 @@ const Tournasetting = () => {
   useEffect(() => {
     dispatch(setloader(classic.loading))
   }, [classic.loading])
+
+  if (!classic.classicsetting) {
+    return <h3>Loading...</h3>
+  }
 
   const handleactive = (index) => {
     let all = document.querySelectorAll('.controller .cont');
@@ -93,9 +96,7 @@ const Tournasetting = () => {
     setshowmodal(true);
     setpaymentss(inp)
   }
-  if(!classic.classicsetting){
-    return <h3>Loading...</h3>
-  }
+
 
   return (
     <>
