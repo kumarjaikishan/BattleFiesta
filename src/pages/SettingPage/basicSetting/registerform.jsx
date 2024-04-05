@@ -25,11 +25,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { classicfetch } from "../../../store/classic";
 import { useParams } from "react-router-dom";
 
-const Registerform = ({  showss }) => {
+const Registerform = ({ showss }) => {
     const dispatch = useDispatch();
     const { tid } = useParams();
     const classic = useSelector((state) => state.classic);
-    
+
     const [all, setall] = useState(classic.classicsetting);
     const [isloading, setisloading] = useState(false)
 
@@ -67,10 +67,10 @@ const Registerform = ({  showss }) => {
     const handleChange = (e) => {
         let naam = e.target.name;
         let value = e.target.value;
-        if(e.target.value == "true"){
+        if (e.target.value == "true") {
             value = true;
         }
-        if(e.target.value == "false"){
+        if (e.target.value == "false") {
             value = false;
         }
         setall({

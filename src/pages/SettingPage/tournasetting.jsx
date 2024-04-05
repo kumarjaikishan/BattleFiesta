@@ -39,9 +39,22 @@ const Tournasetting = () => {
   const [active, setactive] = useState(0);
 
   useEffect(() => {
-    dispatch(classicfetch(tid));
+    // dispatch(classicfetch(tid));
     dispatch(header('Setting'))
     dispatch(setloader(true))
+  }, [])
+  useEffect(() => {
+    if (classic.classicdetail) {
+      if (classic.classicdetail._id == tid) {
+
+      } else {
+        console.log("first wala");
+        dispatch(classicfetch(tid));
+      }
+    } else {
+      console.log("last wala");
+      dispatch(classicfetch(tid));
+    }
   }, [])
   useEffect(() => {
     dispatch(setloader(classic.loading))
