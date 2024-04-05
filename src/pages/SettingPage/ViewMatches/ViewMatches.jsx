@@ -14,9 +14,9 @@ import CreateIcon from '@mui/icons-material/Create';
 import Stack from '@mui/material/Stack';
 import { toast } from 'react-toastify';
 
-const PointSystem = ({ setting }) => {
-  const tournacenter = useSelector((state) => state.tournacenter);
+const PointSystem = () => {
   const dispatch = useDispatch();
+  const classic = useSelector((state) => state.classic);
   const [isloading, setisloading] = useState(false)
   const [matches, setmatches] = useState([]);
   const [rules, setrules] = useState([])
@@ -24,8 +24,7 @@ const PointSystem = ({ setting }) => {
     feteche();
   }, []);
   const feteche = async () => {
-    // console.log(setting);
-    const tid = setting._id;
+    const tid = classic.classicdetail._id;
 
     try {
       dispatch(setloader(true));
@@ -110,7 +109,7 @@ const PointSystem = ({ setting }) => {
   }
 
   return (
-    <div  className='viewmatches'>
+    <div className='viewmatches'>
       <h2>Matches List</h2>
       {matches.length < 1 && <div className="notfound">
         <div>

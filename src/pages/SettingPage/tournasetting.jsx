@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import "./tournasetting.css";
-import { Navigate, useNavigate,useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Detail from './Manageforms/detail';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
@@ -26,13 +26,13 @@ import { classicfetch } from '../../store/classic';
 
 const Tournasetting = () => {
   const log = useSelector((state) => state.login);
+  const classic = useSelector((state) => state.classic);
+  const tournacenter = useSelector((state) => state.tournacenter);
   if (!log.islogin) {
     toast.warn("You are not Logged In", { autoClose: 1300 })
     return <Navigate to='/login' />
   }
   const dispatch = useDispatch();
-  const tournacenter = useSelector((state) => state.tournacenter);
-  const [setting, setsetting] = useState(tournacenter.current_tourna_details);
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
 
@@ -40,10 +40,17 @@ const Tournasetting = () => {
 
   const [active, setactive] = useState(0);
   useEffect(() => {
-    // console.log("prev setting",setting );
+    // console.log(classic);
+    if (!classic.classicdetail._id) {
+      dispatch(classicfetch(tid));
+    }
+    classic.classicdetail._id != tid && dispatch(classicfetch(tid));
     dispatch(header('Setting'))
-    dispatch(classicfetch(tid));
+    dispatch(setloader(true))
   }, [])
+  useEffect(() => {
+    dispatch(setloader(classic.loading))
+  }, [classic.loading])
 
   const handleactive = (index) => {
     let all = document.querySelectorAll('.controller .cont');
@@ -117,12 +124,12 @@ const Tournasetting = () => {
           </div>
         </div>
         <div className="material">
-          {active == 0 && <Registerform showss={showss} setting={setting} />}
+          {active == 0 && <Registerform showss={showss} />}
           {active == 1 && <Detail />}
-          {active == 2 && <EnterResult setting={setting} />}
-          {active == 3 && <ManageTeam setting={setting} showss={showss} />}
-          {active == 4 && <Pointsystem setting={setting} />}
-          {active == 5 && <ViewMatches setting={setting} />}
+          {active == 2 && <EnterResult />}
+          {active == 3 && <ManageTeam showss={showss} />}
+          {active == 4 && <Pointsystem />}
+          {active == 5 && <ViewMatches />}
           {showmodal && <Imagemodal setshowmodal={setshowmodal} paymentss={paymentss} />}
         </div>
 

@@ -18,20 +18,6 @@ const ManageTeam = ({ setting, showss }) => {
   //  console.log(classic.classicplayers);
   }, [])
 
-  // const fetche = async () => {
-  //   const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
-  //   const method = 'POST';
-  //   const body = { tid };
-    
-  //   const successAction = (data) => {
-  //     console.log(data);
-  //     setPlayerlist(data.entry)
-  //   };
-
-  //   // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-  //   await apiWrapper(url, method, body, successAction);
-  // }
 
   const deletee = async (teamid) => {
     // console.log(teamid);

@@ -107,9 +107,8 @@ const Detail = () => {
                 body: JSON.stringify(inp)
             });
             const data = await responsee.json();
-            console.log(data);  
-           
-               
+            // console.log(data);  
+             
             if (responsee.ok) {
                 toast.update(ide, { render:data.message, type: "success", isLoading: false, autoClose: 1600 });
                 setLoading(false);

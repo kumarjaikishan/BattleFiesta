@@ -45,7 +45,6 @@ const Tdmsetting = () => {
       dispatch(tdmfetch(tid));
     }
     tdmrtk.tdmdetail._id != tid && dispatch(tdmfetch(tid));
-
     dispatch(header('Setting'))
     dispatch(setloader(true))
   }, [])
