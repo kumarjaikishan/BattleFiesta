@@ -109,7 +109,7 @@
     max-width: 1200px;
     margin-top: 10px;
     background: url('../../assets/grey.webp');
-    background-size: contain;
+    background-size: cover;
     border-radius: 20px;
     padding: 20px;
 
