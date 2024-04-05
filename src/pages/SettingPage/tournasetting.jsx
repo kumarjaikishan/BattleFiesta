@@ -44,13 +44,8 @@ const Tournasetting = () => {
     dispatch(setloader(true))
   }, [])
   useEffect(() => {
-    if (classic.classicdetail) {
-      if (classic.classicdetail._id == tid) {
-
-      } else {
-        // console.log("first wala");
-        dispatch(classicfetch(tid));
-      }
+    if (classic.classicdetail && classic.classicdetail._id == tid) {
+   
     } else {
       // console.log("last wala");
       dispatch(classicfetch(tid));

@@ -41,6 +41,9 @@ const Registerform = ({ showss }) => {
     useEffect(() => {
         sortplayerdata(classic.classicplayers)
     }, [classic.classicplayers])
+    useEffect(() => {
+        setall(classic.classicsetting)
+    }, [classic.classicsetting])
 
     const [active, setactive] = useState(0);
     const [pendingplayer, setpendingplayer] = useState([]);
