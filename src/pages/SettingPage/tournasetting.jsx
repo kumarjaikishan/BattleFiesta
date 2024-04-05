@@ -48,11 +48,11 @@ const Tournasetting = () => {
       if (classic.classicdetail._id == tid) {
 
       } else {
-        console.log("first wala");
+        // console.log("first wala");
         dispatch(classicfetch(tid));
       }
     } else {
-      console.log("last wala");
+      // console.log("last wala");
       dispatch(classicfetch(tid));
     }
   }, [])
