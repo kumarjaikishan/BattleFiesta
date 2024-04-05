@@ -72,6 +72,11 @@ function App() {
   }, [])
   useEffect(() => {
     log.islogin && requestPermission();
+
+    const date = new Date();
+    const milliseconds = date.getTime();
+
+    // console.log(milliseconds);
   }, [log.islogin])
 
 
