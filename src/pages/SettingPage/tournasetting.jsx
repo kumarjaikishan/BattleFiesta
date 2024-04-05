@@ -36,14 +36,10 @@ const Tournasetting = () => {
   const dispatch = useDispatch();
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
-
-
   const [active, setactive] = useState(0);
+
   useEffect(() => {
-    if (!classic?.classicdetail?._id) {
-      dispatch(classicfetch(tid));
-    }
-    classic.classicdetail._id != tid && dispatch(classicfetch(tid));
+    dispatch(classicfetch(tid));
     dispatch(header('Setting'))
     dispatch(setloader(true))
   }, [])
