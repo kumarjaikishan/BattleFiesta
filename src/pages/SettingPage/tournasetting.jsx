@@ -32,11 +32,11 @@ const Tournasetting = () => {
     toast.warn("You are not Logged In", { autoClose: 1300 })
     return <Navigate to='/login' />
   }
+  const { tid } = useParams();
   const dispatch = useDispatch();
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
 
-  const { tid } = useParams();
 
   const [active, setactive] = useState(0);
   useEffect(() => {
@@ -92,6 +92,9 @@ const Tournasetting = () => {
   const showss = (inp) => {
     setshowmodal(true);
     setpaymentss(inp)
+  }
+  if(!classic.classicsetting){
+    return <h3>Loading...</h3>
   }
 
   return (
