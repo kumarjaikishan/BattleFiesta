@@ -5,7 +5,9 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
-
+useEffect(()=>{
+// console.log("form setting", all);
+},[])
     return (
         <>
             <div className="maine">
@@ -48,10 +50,10 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         label="Successful  Message"
                         multiline
                         className='taxi'
-                        value={all.success_msg}
+                        value={all.success_message}
                         inputProps={{ style: { fontSize: 11 } }}
                         rows={1}
-                        name="success_msg"
+                        name="success_message"
                         onChange={handleChange}
                         placeholder="Add description or message to show after Successful Registration"
                     />
@@ -103,9 +105,9 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_team_logo"
+                        name="ask_teamlogo"
                         defaultValue={false}
-                        value={all.ask_team_logo}
+                        value={all.ask_teamlogo}
                         sx={{ mb: 1 }}
                         onChange={handleChange}
                     >
@@ -117,9 +119,9 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_player_logo"
+                        name="ask_playerlogo"
                         defaultValue={false}
-                        value={all.ask_player_logo}
+                        value={all.ask_playerlogo}
                         sx={{ mb: 1 }}
                         onChange={handleChange}
                     >
@@ -192,8 +194,8 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         type="tel"
                         className='taxi'
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                        value={all.min_player}
-                        name="min_player"
+                        value={all.minimum_players}
+                        name="minimum_players"
                         size='small'
                         InputLabelProps={{
                             shrink: true,
@@ -208,8 +210,8 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         type="tel"
                         size='small'
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                        name="max_player"
-                        value={all.max_player}
+                        name="maximum_players"
+                        value={all.maximum_players}
                         onChange={handleChange}
                         InputLabelProps={{
                             shrink: true,

@@ -13,9 +13,10 @@ import { toast } from "react-toastify";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useSelector } from 'react-redux';
 
-const EnterResult = ({ setting }) => {
+const EnterResult = () => {
+  const classic = useSelector((state) => state.classic);
+  const [setting,setseting]= useState(classic.classicdetail)
   const [player, setplayer] = useState([]);
-  const tournacenter = useSelector((state) => state.tournacenter);
   const tid = setting._id;
   const [map, setmap] = useState('');
   const [teamlist, setteamlist] = useState([]);
@@ -31,10 +32,8 @@ const EnterResult = ({ setting }) => {
   }
 
   useEffect(() => {
-    // console.log(setting);
-    // console.log(pointssystem.placepoints[5]);
-    fetche();
-  }, [])
+    sortplayerdata(classic.classicplayers)
+  }, [classic.classicplayers])
 
   useEffect(() => {
     fetderfreche();
@@ -50,25 +49,12 @@ const EnterResult = ({ setting }) => {
     { label: 'The Godfather', year: 1972 },
   ];
 
-  const fetche = async () => {
-    const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
-    const method = 'POST';
-    const body = { tid };
-
-    const successAction = (data) => {
-      // console.log(data.entry);
-      let filterapproved = data.entry.filter((val) => {
-        return val.status == "approved";
-      })
-      setplayer(filterapproved);
-      // toast.success(data.message, { autoClose: 1300 });
-      // const actualdata = data.data;
-    };
-
-    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-    await apiWrapper(url, method, body, successAction);
-  }
+  const sortplayerdata = (data) => {
+    let appro = data.filter((val, ind) => {
+        return val.status == "approved"
+    })
+    setplayer(appro);
+}
 
   const fetderfreche = () => {
     if (player.length > 0) {

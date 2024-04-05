@@ -22,84 +22,31 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { classicfetch } from "../../../store/classic";
+import { useParams } from "react-router-dom";
 
-const Registerform = ({ setting, showss }) => {
-    const tid = setting._id;
+const Registerform = ({  showss }) => {
     const dispatch = useDispatch();
-    const tournacenter = useSelector((state) => state.tournacenter);
-    const init = {
-        tid: "",
-        id: "",
-        isopen: "",
-        description: "",
-        success_msg: "",
-        ask_email: "",
-        ask_phone: "",
-        ask_discord: "",
-        ask_team_logo: "",
-        ask_player_logo: "",
-        ask_payment_ss: "",
-        show_payment: "",
-        amount: "",
-        upi_id: "",
-        min_player: "",
-        max_player: "",
-        links: '',
-        publicpost: ''
-    }
-    const [all, setall] = useState(init);
+    const { tid } = useParams();
+    const classic = useSelector((state) => state.classic);
+    
+    const [all, setall] = useState(classic.classicsetting);
     const [isloading, setisloading] = useState(false)
 
     useEffect(() => {
-        dispatch(setloader(true));
-        tid && fetche();
+        // console.log(classic.classicdetail);
+        // console.log("from setting",classic.classicsetting);
+        // dispatch(setloader(true));
     }, [])
+    useEffect(() => {
+        sortplayerdata(classic.classicplayers)
+    }, [classic.classicplayers])
 
     const [active, setactive] = useState(0);
-    const [playerList, setPlayerlist] = useState([]);
     const [pendingplayer, setpendingplayer] = useState([]);
     const [approvedPlayer, setapprovedPlayer] = useState([]);
     const [rejectedplayer, setrejectedplayer] = useState([]);
 
-    const fetche = async () => {
-        dispatch(setloader(true));
-        const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
-        const method = 'POST';
-        const body = { tid };
-
-        const successAction = (data) => {
-            // toast.success(data.message, { autoClose: 1300 });
-            const actualdata = data.data;
-            // console.log("settingpage",data);
-            setPlayerlist(data.entry)
-            sortplayerdata(data.entry)
-            setall({
-                tid: actualdata.tournament_id,
-                id: actualdata._id,
-                isopen: actualdata.isopen,
-                description: actualdata.description,
-                success_msg: actualdata.success_message,
-                ask_email: actualdata.ask_email,
-                ask_phone: actualdata.ask_phone,
-                ask_discord: actualdata.ask_discord,
-                ask_team_logo: actualdata.ask_teamlogo,
-                ask_player_logo: actualdata.ask_playerlogo,
-                ask_payment_ss: actualdata.ask_payment_ss,
-                min_player: actualdata.minimum_players,
-                max_player: actualdata.maximum_players,
-                show_payment:actualdata.show_payment,
-                amount: actualdata.amount,
-                upi_id: actualdata.upi_id,
-                links: actualdata.links,
-                publicpost: actualdata.publicpost
-            })
-            dispatch(setloader(false));
-        };
-
-        // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-        await apiWrapper(url, method, body, successAction);
-    }
     const sortplayerdata = (data) => {
         const pend = data.filter((val, ind) => {
             return val.status == "pending"
@@ -132,9 +79,10 @@ const Registerform = ({ setting, showss }) => {
     }
     const submit = async (e) => {
         e.preventDefault();
+        console.log(all);
+        return;
         setisloading(true)
         const id = toast.loading("Please wait...")
-        // console.log(all);
         const url = `${import.meta.env.VITE_API_ADDRESS}updatetournamentform`;
         const method = 'POST';
         const body = all;
@@ -163,7 +111,6 @@ const Registerform = ({ setting, showss }) => {
         const reasone = reason || "";
         const token = localStorage.getItem("token");
         // console.log(teamid, value, reasone);
-
         const id = toast.loading("Please wait...")
         try {
             const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateteamstatus`, {
@@ -177,7 +124,8 @@ const Registerform = ({ setting, showss }) => {
             const result = await rese.json();
             // console.log(rese);
             if (rese.ok) {
-                fetche();
+                // console.log(classic.classicsetting.tournament_id);
+                dispatch(classicfetch(tid))
                 toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
             }
 

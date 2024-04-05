@@ -89,7 +89,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/setting" element={<Tournasetting />} />
+            <Route path="/setting/:tid" element={<Tournasetting />} />
             <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
             <Route path="/tournaments"  >
               <Route index element={<Findtournament />} />

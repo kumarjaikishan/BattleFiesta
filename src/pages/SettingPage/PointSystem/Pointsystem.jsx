@@ -14,8 +14,10 @@ import Select from '@mui/material/Select';
 import { alltourna } from '../../../store/api';
 import SaveIcon from '@mui/icons-material/Save';
 
-const Pointsystem = ({ setting }) => {
+const Pointsystem = () => {
   const tournacenter = useSelector((state) => state.tournacenter);
+  const classic = useSelector((state) => state.classic);
+  const [setting,setseting]= useState(classic.classicdetail)
   const dispatch = useDispatch();
   let obj = {};
   const [points, setpoints] = useState('');

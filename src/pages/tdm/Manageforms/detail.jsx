@@ -42,7 +42,6 @@ const Detail = () => {
     useEffect(() => {
         // console.log(inp);
         // console.log(tdmrtk);
-        // console.log(tdmrtk.tdmdetail.visibility);
     })
     const upload = async (id) => {
         setLoading(true);
@@ -70,7 +69,7 @@ const Detail = () => {
 
         const token = localStorage.getItem("token");
         try {
-            const id = toast.loading("Please wait while Uploading...")
+            const ide = toast.loading("Please wait while Uploading...")
             const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournamentlogos`, {
                 method: "POST",
                 headers: {
@@ -83,18 +82,20 @@ const Detail = () => {
             if (rese.ok) {
                 dispatch(tdmfetch(inp.tid));
                 konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
-                toast.update(id, { render: "Uploaded Successfully", type: "success", isLoading: false, autoClose: 1600 });
+                const resuke = await rese.json();
+                toast.update(ide, { render: resuke.message, type: "success", isLoading: false, autoClose: 1600 });
                 setLoading(false);
             }
         } catch (error) {
             console.log(error);
-            toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 });
         }
     }
 
     const submit = async () => {
         setLoading(true);
         try {
+            const ide = toast.loading("Please wait...")
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournament`, {
                 method: "POST",
@@ -108,14 +109,15 @@ const Detail = () => {
             //   console.log(data);
             setLoading(false);
             if (responsee.ok) {
+                toast.update(ide, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 dispatch(tdmfetch(inp.tid));
-                toast.success(data.message, { autoClose: 1300 });
             } else {
-                toast.warn(data.message, { autoClose: 1500 });
+                toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             }
 
         } catch (error) {
             setLoading(false);
+            toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             console.log(error);
         }
     }
@@ -136,40 +138,40 @@ const Detail = () => {
             <div className="tournawrapper">
                 <div className="tournainfo">
                     <h2>Tournament Info</h2>
-                        <TextField
-                            helperText="Name of your tournament"
-                            id="demo-helper-text-misaligned"
-                            label="Tournament Name*"
-                            sx={{ m: 1,mt:2 }}
-                            size='small'
-                            value={inp.title}
-                            name='title'
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            helperText="Organiser Name of your tournament"
-                            id="demo-helper-text-misaligned"
-                            label="Organiser*"
-                            sx={{ m: 1 }}
-                            size='small'
-                            name='organiser'
-                            value={inp.organiser}
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            helperText="Max. Slots for your tournament"
-                            id="demo-helper-text-misaligned"
-                            label="Slots*"
-                            sx={{ m: 1 }}
-                            size='small'
-                            type='tel'
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            name='slots'
-                            value={inp.slots}
-                            onChange={handleChange}
-                        />
+                    <TextField
+                        helperText="Name of your tournament"
+                        id="demo-helper-text-misaligned"
+                        label="Tournament Name*"
+                        sx={{ m: 1, mt: 2 }}
+                        size='small'
+                        value={inp.title}
+                        name='title'
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        helperText="Organiser Name of your tournament"
+                        id="demo-helper-text-misaligned"
+                        label="Organiser*"
+                        sx={{ m: 1 }}
+                        size='small'
+                        name='organiser'
+                        value={inp.organiser}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        helperText="Max. Slots for your tournament"
+                        id="demo-helper-text-misaligned"
+                        label="Slots*"
+                        sx={{ m: 1 }}
+                        size='small'
+                        type='tel'
+                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                        name='slots'
+                        value={inp.slots}
+                        onChange={handleChange}
+                    />
 
-                    <FormControl  size='small' sx={{ m: 1, Width: "98%" }}>
+                    <FormControl size='small' sx={{ m: 1, Width: "98%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -215,17 +217,17 @@ const Detail = () => {
                             <MenuItem value={false}>HIDDEN</MenuItem>
                         </Select>
                         <FormHelperText>Should your tournament be visible in website'stournament list?</FormHelperText>
-                        </FormControl>
-                        <TextField
-                            helperText="Add labels to your tournament, keep it short"
-                            id="demo-helper-text-misaligned"
-                            label="Label"
-                            sx={{ m: 1 ,width:'96%'}}
-                            size='small'
-                            name='label'
-                            value={inp.label}
-                            onChange={handleChange}
-                        />
+                    </FormControl>
+                    <TextField
+                        helperText="Add labels to your tournament, keep it short"
+                        id="demo-helper-text-misaligned"
+                        label="Label"
+                        sx={{ m: 1, width: '96%' }}
+                        size='small'
+                        name='label'
+                        value={inp.label}
+                        onChange={handleChange}
+                    />
                     <LoadingButton
                         loading={loading}
                         loadingPosition="start"

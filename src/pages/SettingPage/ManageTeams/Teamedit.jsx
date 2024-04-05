@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -9,9 +9,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useImageUpload from "../../utils/imageresizer";
+import { classicfetch } from "../../../store/classic";
 
 const Teamedit = ({ teamdetail, setcalledit }) => {
     
+  const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
@@ -39,8 +41,6 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
             playerLogo: "",
         }),
     })
-    const { registerId } = useParams();
-    const tournacenter = useSelector((state) => state.tournacenter);
     const [disable, setdisable] = useState(false);
     useEffect(() => {
         // fetche(registerId);
@@ -84,6 +84,8 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
 
     const editTeam = async (e) => {
         e.preventDefault();
+        let tid = inp.tournament_id;
+    //    return  console.log(tid);
         if (!inp.teamname) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
@@ -158,6 +160,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                         toast.error(responseData.error, { autoClose: 1300 });
                     }
                 });
+                dispatch(classicfetch(tid));
                 toast.update(id, { render: "Updated Successfully", type: "success", isLoading: false, autoClose: 1600 });
                 setdisable(false);
             } else {

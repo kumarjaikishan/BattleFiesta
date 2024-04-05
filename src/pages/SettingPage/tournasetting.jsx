@@ -2,9 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import "./tournasetting.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate,useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import apiWrapper from '../../store/apiWrapper';
 import Detail from './Manageforms/detail';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -23,7 +22,7 @@ import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
-import useImageUpload from "../utils/imageresizer";
+import { classicfetch } from '../../store/classic';
 
 const Tournasetting = () => {
   const log = useSelector((state) => state.login);
@@ -32,125 +31,20 @@ const Tournasetting = () => {
     return <Navigate to='/login' />
   }
   const dispatch = useDispatch();
-  const { handleImage } = useImageUpload();
   const tournacenter = useSelector((state) => state.tournacenter);
   const [setting, setsetting] = useState(tournacenter.current_tourna_details);
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
 
-  const init = {
-    tid: "",
-    title: "",
-    organiser: "",
-    slots: "",
-    type: "",
-    banner: "",
-    logo: "",
-    status: "",
-    visibility: "",
-    label: ""
-  }
-  const [inp, setinp] = useState(init);
-  const [loading, setLoading] = useState(false);
+  const { tid } = useParams();
+
   const [active, setactive] = useState(0);
   useEffect(() => {
+    // console.log("prev setting",setting );
     dispatch(header('Setting'))
-    // console.log("SETTING",tournacenter.current_tourna_details);
-    setinp({
-      tid: setting._id,
-      title: setting.title,
-      organiser: setting.organiser,
-      slots: setting.slots,
-      type: setting.type,
-      banner: setting.tournment_banner,
-      logo: setting.tournment_logo,
-      status: setting.status,
-      visibility: setting.visibility,
-      label: setting.label
-    })
+    dispatch(classicfetch(tid));
   }, [])
-  const handleChange = (e) => {
-    let naam = e.target.name;
-    let value = e.target.value;
-    setinp({
-      ...inp, [naam]: value
-    })
-  }
 
-
-  const submit = async () => {
-    setLoading(true);
-    try {
-      const token = localStorage.getItem("token");
-      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournament`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(inp)
-      });
-      const data = await responsee.json();
-      console.log(data);
-      if (responsee.ok) {
-        toast.success(data.message, { autoClose: 1300 });
-        setLoading(false);
-      } else {
-        toast.warn(data.message, { autoClose: 1500 });
-      }
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
-
-  const upload = async (id) => {
-    setLoading(true);
-    let konsa = 0;
-    let oldimage = "";
-    id == "tournbanner" ? konsa = 1 : konsa = 2;
-    let newimage = document.querySelector(`#${id}`).files[0];
-
-    if (konsa == 2) {
-      newimage = await handleImage(250, newimage);
-    }
-
-    if (konsa == 1) {
-      oldimage = inp.banner;
-    } else {
-      oldimage = inp.logo
-    }
-    let data = new FormData();
-
-    data.append('tid', setting._id)
-    data.append('filed', id)
-    data.append('image', newimage)
-    data.append('oldimage', oldimage)
-    // console.log("sseing",data.tid);
-
-    const token = localStorage.getItem("token");
-    try {
-      const id = toast.loading("Please wait while Uploading...")
-      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournamentlogos`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-        body: data
-      })
-      const resuke = await rese.json();
-      // console.log(resuke);
-      if (rese.ok) {
-        konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
-        toast.update(id, { render: "Uploaded Successfully", type: "success", isLoading: false, autoClose: 1600 });
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
-    }
-  }
   const handleactive = (index) => {
     let all = document.querySelectorAll('.controller .cont');
 
@@ -168,7 +62,7 @@ const Tournasetting = () => {
     var inputElement = document.createElement("input");
 
     // Set the value of the input to the URL you want to copy
-    var urlToCopy = `${localhos}/${page}/${tournacenter.links}`;
+    var urlToCopy = `${localhos}/${page}/${tid}`;
     inputElement.value = urlToCopy;
 
     // Append the input to the document
@@ -224,7 +118,7 @@ const Tournasetting = () => {
         </div>
         <div className="material">
           {active == 0 && <Registerform showss={showss} setting={setting} />}
-          {active == 1 && <Detail submit={submit} upload={upload} handleChange={handleChange} loading={loading} inp={inp} setinp={setinp} />}
+          {active == 1 && <Detail />}
           {active == 2 && <EnterResult setting={setting} />}
           {active == 3 && <ManageTeam setting={setting} showss={showss} />}
           {active == 4 && <Pointsystem setting={setting} />}
@@ -240,7 +134,7 @@ const Tournasetting = () => {
               <TextField aria-readonly sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -250,7 +144,7 @@ const Tournasetting = () => {
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
             </Stack>
-            <a href={`${localhos}/register/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/register/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -260,7 +154,7 @@ const Tournasetting = () => {
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
             </Stack>
-            <a href={`${localhos}/tournaments/${tournacenter.links}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/tournaments/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
         </div>
 

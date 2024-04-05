@@ -5,31 +5,33 @@ import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
 import { useEffect, useState } from 'react';
 import { alltourna } from '../../../store/api'
+import { useParams } from "react-router-dom";
+import { classicfetch } from '../../../store/classic';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 
 const ManageTeam = ({ setting, showss }) => {
   const dispatch = useDispatch();
-  const tournacenter = useSelector((state) => state.tournacenter);
-  const [playerlist, setPlayerlist] = useState([]);
-  const tid = setting._id;
+  const classic = useSelector((state) => state.classic);
+  const { tid } = useParams();
 
   useEffect(() => {
-    fetche();
+  //  console.log(classic.classicplayers);
   }, [])
 
-  const fetche = async () => {
-    const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
-    const method = 'POST';
-    const body = { tid };
+  // const fetche = async () => {
+  //   const url = `${import.meta.env.VITE_API_ADDRESS}tournamentform`;
+  //   const method = 'POST';
+  //   const body = { tid };
+    
+  //   const successAction = (data) => {
+  //     console.log(data);
+  //     setPlayerlist(data.entry)
+  //   };
 
-    const successAction = (data) => {
-      setPlayerlist(data.entry)
-    };
+  //   // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
 
-    // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
-
-    await apiWrapper(url, method, body, successAction);
-  }
+  //   await apiWrapper(url, method, body, successAction);
+  // }
 
   const deletee = async (teamid) => {
     // console.log(teamid);
@@ -50,7 +52,7 @@ const ManageTeam = ({ setting, showss }) => {
         const successAction = (data) => {
           // console.log(data);
           dispatch(alltourna());
-          fetche();
+          dispatch(classicfetch(tid));
           toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
         };
 
@@ -78,10 +80,10 @@ const ManageTeam = ({ setting, showss }) => {
         className="manageteams">
         <div className="box">
           <h2>All Team List:</h2>
-          {!calledit && playerlist && <Teamlists teamarray={playerlist} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
+          {!calledit && classic.classicplayers && <Teamlists teamarray={classic.classicplayers} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
 
-          {playerlist.length < 1 && <div className="middle">
+          {classic.classicplayers.length < 1 && <div className="middle">
             <div> <SentimentSatisfiedIcon className='emoji' /> </div>
             <h2>Nothing To Show</h2>
             <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>

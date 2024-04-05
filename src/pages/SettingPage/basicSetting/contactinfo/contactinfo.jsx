@@ -11,20 +11,23 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
+import { useParams } from "react-router-dom";
+import { classicfetch } from '../../../../store/classic';
 
 const Contactinfo = ({ all }) => {
-    const tournacenter = useSelector((state) => state.tournacenter);
-    const init = {
+    const dispatch = useDispatch();
+   const init = {
         link: Array(1).fill({
             linkName: "",
             linkType: "",
             link: ""
         }),
     }
+    const { tid } = useParams();
     const [isloading, setisloading] = useState(false)
     const [links, setlinks] = useState(init.link)
     const [publicpost, setpublicpost] = useState(all.publicpost);
@@ -79,10 +82,11 @@ const Contactinfo = ({ all }) => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify({ tid: all.tid, links, publicpost })
+                body: JSON.stringify({ tid: all.tournament_id, links, publicpost })
             })
             const data = await rese.json();
             if (rese.ok) {
+                dispatch(classicfetch(tid))
                 setisloading(false)
                 toast.success(data.message, { autoClose: 1300 });
             }

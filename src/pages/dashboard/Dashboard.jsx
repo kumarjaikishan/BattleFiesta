@@ -53,7 +53,7 @@ const Dashboard = () => {
       navigate(`/tdmsetting/${data._id}`)
     } else {
       dispatch(settournaid(data));
-      navigate('/setting')
+      navigate(`/setting/${data._id}`)
     }
   };
 
