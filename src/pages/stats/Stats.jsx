@@ -270,9 +270,10 @@ const Stats = () => {
               <th>Kill Pts</th>
               <th>Total</th>
             </tr>
+           
           </thead>
           <tbody>
-            {tablerow.map((row, ind) => {
+            {tablerow.length > 0 ? tablerow.map((row, ind) => {
               return <tr key={ind}>
                 <td>{ind + 1}</td>
                 <td style={{ textAlign: "left" }}><span><img loading="lazy" src={teamlogo[row.teamid] ? teamlogo[row.teamid] : group}
@@ -283,7 +284,9 @@ const Stats = () => {
                 <td>{row.killpoints}</td>
                 <td>{row.total}</td>
               </tr>
-            })}
+            }) :  <tr>
+              <td colSpan={7}>No Match Found</td>
+            </tr>}
           </tbody>
         </table>
       </Container>

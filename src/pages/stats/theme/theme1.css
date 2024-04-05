@@ -5,6 +5,7 @@
   h1,
   h2,h3 {
     color: whitesmoke;
+    text-transform: capitalize;
     text-align: center;
     font-size: 4em;
     letter-spacing: 2px;
