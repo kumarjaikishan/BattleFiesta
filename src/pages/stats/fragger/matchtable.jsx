@@ -51,9 +51,10 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
     }
 
     return (
-        <>
+        <> 
             <div className="matchtable">
                 <h1>Match Stats</h1>
+              {matches.length > 0 ? <>
                 <div>
                     <FormControl >
                         <h3> Select Match :</h3>
@@ -100,6 +101,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
                         </tbody>
                     </table>
                 </div>
+              </>: <div><h3>No Match Found</h3></div> }  
             </div>
         </>
     )

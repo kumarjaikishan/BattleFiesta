@@ -21,6 +21,7 @@ const Stats = () => {
   const dispatch = useDispatch();
   const { tid } = useParams();
   const [matches, setmatches] = useState([]);
+  const log = useSelector((state) => state.login);
   useEffect(() => {
     dispatch(header("Stats"));
     dispatch(setloader(true));
@@ -38,7 +39,6 @@ const Stats = () => {
 
   let rules = {};
   const [kuch, setkuch] = useState({});
-  const tournacenter = useSelector((state) => state.tournacenter);
   const [teamlogo, setteamlogo] = useState({});
   const [teamdeatil, setteamdeatil] = useState([]);
   let temptemlogo = {};
@@ -201,7 +201,7 @@ const Stats = () => {
     const timenow = new Date();
     const rand = timenow.getMinutes()
     // console.log(quality);
-    let quality= 3;
+    let quality = 3;
     const boxElement = document.querySelector('#wrapper');
     html2canvas(boxElement, { scale: quality, useCORS: true, })
       .then((canvas) => {
@@ -220,41 +220,40 @@ const Stats = () => {
 
   return (
     <div className='stats'>
-      <div className='controls'>
-          <div className='conti'>
-            <h3>Select Theme</h3>
-            <FormControl sx={{ mt: 1, width: "100%" }} size='small' >
-              <InputLabel id="demo-simple-select-label">Theme</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={theme}
-                label="Theme"
-                onChange={handleChange}
-              >
-                <MenuItem value={"theme1"}>Red Carpet</MenuItem>
-                <MenuItem value={"theme4"}>Royal Grey</MenuItem>
-                <MenuItem value={"theme3"}>Droplets</MenuItem>
-                <MenuItem value={"theme2"}>Red & White</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className='conti' >
-            <h3>Set Background</h3>
-            <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-              Upload
-              <VisuallyHiddenInput type="file" />
-            </Button>
-          </div>
-          <div className='conti'>
-            <h3>Set Title</h3>
-            <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
-          </div>
-    
-      </div>
+      {log.islogin && <div className='controls'>
+        <div className='conti'>
+          <h3>Select Theme</h3>
+          <FormControl sx={{ mt: 1, width: "100%" }} size='small' >
+            <InputLabel id="demo-simple-select-label">Theme</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={theme}
+              label="Theme"
+              onChange={handleChange}
+            >
+              <MenuItem value={"theme1"}>Red Carpet</MenuItem>
+              <MenuItem value={"theme4"}>Royal Grey</MenuItem>
+              <MenuItem value={"theme3"}>Droplets</MenuItem>
+              <MenuItem value={"theme2"}>Red & White</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div className='conti' >
+          <h3>Set Background</h3>
+          <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+            Upload
+            <VisuallyHiddenInput type="file" />
+          </Button>
+        </div>
+        <div className='conti'>
+          <h3>Set Title</h3>
+          <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
+        </div>
+      </div>}
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
-          <img loading="lazy" src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo}  alt="" />
+          <img loading="lazy" src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo} alt="" />
         </div>
         <h3>{kuch.title}</h3>
         <h2>{kuch.organiser}</h2>
@@ -270,9 +269,10 @@ const Stats = () => {
               <th>Kill Pts</th>
               <th>Total</th>
             </tr>
+
           </thead>
           <tbody>
-            {tablerow.map((row, ind) => {
+            {tablerow.length > 0 ? tablerow.map((row, ind) => {
               return <tr key={ind}>
                 <td>{ind + 1}</td>
                 <td style={{ textAlign: "left" }}><span><img loading="lazy" src={teamlogo[row.teamid] ? teamlogo[row.teamid] : group}
@@ -283,13 +283,16 @@ const Stats = () => {
                 <td>{row.killpoints}</td>
                 <td>{row.total}</td>
               </tr>
-            })}
+            }) : <tr>
+              <td colSpan={7}>No Match Found</td>
+            </tr>}
           </tbody>
         </table>
       </Container>
+      {log.islogin && 
       <Button onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
         Download
-      </Button>
+      </Button>}
       <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />
       <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
     </div>

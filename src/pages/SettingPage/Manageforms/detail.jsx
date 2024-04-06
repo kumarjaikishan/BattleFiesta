@@ -21,7 +21,7 @@ const Detail = () => {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         // console.log(classic.classicdetail);
-    },[])
+    }, [])
     const init = {
         tid: classic.classicdetail._id,
         title: classic.classicdetail.title,
@@ -85,8 +85,8 @@ const Detail = () => {
                 toast.update(ide, { render: "Uploaded Successfully", type: "success", isLoading: false, autoClose: 1600 });
                 setLoading(false);
                 dispatch(classicfetch(classic.classicdetail._id));
-            }else{
-                toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 }); 
+            } else {
+                toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 });
             }
         } catch (error) {
             console.log(error);
@@ -108,17 +108,17 @@ const Detail = () => {
             });
             const data = await responsee.json();
             // console.log(data);  
-             
+
             if (responsee.ok) {
-                toast.update(ide, { render:data.message, type: "success", isLoading: false, autoClose: 1600 });
+                toast.update(ide, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 setLoading(false);
                 dispatch(classicfetch(classic.classicdetail._id));
             } else {
-                toast.update(ide, { render:data.message, type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             }
             setLoading(false);
         } catch (error) {
-            toast.update(ide, { render:data.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
             setLoading(false);
             console.log(error);
         }
@@ -139,39 +139,42 @@ const Detail = () => {
             <div className="tournawrapper">
                 <div className="tournainfo">
                     <h2>Tournament Info</h2>
-                    <FormControl sx={{ m: 1, width: "96%" }}>
-                        <TextField
-                            helperText="Name of your tournament"
-                            id="demo-helper-text-misaligned"
-                            label="Tournament Name*"
-                            sx={{ mb: 3 }}
-                            value={inp.title}
-                            name='title'
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            helperText="Organiser Name of your tournament"
-                            id="demo-helper-text-misaligned"
-                            label="Organiser*"
-                            sx={{ mb: 3 }}
-                            name='organiser'
-                            value={inp.organiser}
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            helperText="Max. Slots for your tournament"
-                            id="demo-helper-text-misaligned"
-                            label="Slots*"
-                            sx={{ mb: 3 }}
-                            type='tel'
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            name='slots'
-                            value={inp.slots}
-                            onChange={handleChange}
-                        />
 
-                    </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, Width: "98%" }}>
+                    <TextField
+                        helperText="Name of your tournament"
+                        id="demo-helper-text-misaligned"
+                        label="Tournament Name*"
+                        sx={{ m: 1, mt: 2 }}
+                        size='small'
+                        value={inp.title}
+                        name='title'
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        helperText="Organiser Name of your tournament"
+                        id="demo-helper-text-misaligned"
+                        label="Organiser*"
+                        sx={{ m: 1 }}
+                        size='small'
+                        name='organiser'
+                        value={inp.organiser}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        helperText="Max. Slots for your tournament"
+                        id="demo-helper-text-misaligned"
+                        label="Slots*"
+                        sx={{ m: 1 }}
+                        size='small'
+                        type='tel'
+                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                        name='slots'
+                        value={inp.slots}
+                        onChange={handleChange}
+                    />
+
+
+                    <FormControl size='small' sx={{ m: 1, mb: 1.5, Width: "98%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -186,7 +189,7 @@ const Detail = () => {
                         </Select>
                         <FormHelperText>The type: Classic or TDM</FormHelperText>
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, Width: "96%" }}>
+                    <FormControl size='small' sx={{ m: 1,mb:1.5, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Status*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -202,7 +205,7 @@ const Detail = () => {
                         </Select>
                         <FormHelperText>Status of your tournament</FormHelperText>
                     </FormControl>
-                    <FormControl sx={{ m: 1, mb: 3, Width: "96%" }}>
+                    <FormControl size='small' sx={{ m: 1, mb:1.5, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Visibility*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -215,17 +218,19 @@ const Detail = () => {
                             <MenuItem value={true}>PUBLISHED</MenuItem>
                             <MenuItem value={false}>HIDDEN</MenuItem>
                         </Select>
-                        <FormHelperText>Should your tournament be visible in website'stournament list?</FormHelperText>
-                        <TextField
-                            helperText="Add labels to your tournament, keep it short"
-                            id="demo-helper-text-misaligned"
-                            label="Label"
-                            sx={{ mt: 3 }}
-                            name='label'
-                            value={inp.label}
-                            onChange={handleChange}
-                        />
+                        <FormHelperText>Tournament visible to Public in 'Find Tournament' Section?</FormHelperText>
                     </FormControl>
+                    <TextField
+                        helperText="Add labels to your tournament, keep it short"
+                        id="demo-helper-text-misaligned"
+                        label="Label"
+                        sx={{ m: 1 }}
+                        size='small'
+                        name='label'
+                        value={inp.label}
+                        onChange={handleChange}
+                    />
+
                     <LoadingButton
                         loading={loading}
                         loadingPosition="start"

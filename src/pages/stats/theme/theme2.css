@@ -6,6 +6,7 @@
     h2 ,h3{
         color: transparent;
         text-align: center;
+        text-transform: capitalize;
         font-size: 4em;
         letter-spacing: 2px;
         -webkit-text-stroke: 2px #890103;
@@ -18,7 +19,7 @@
         -webkit-text-stroke: 0px black;
     }
     h3{
-        font-size: 1.3em;
+        font-size: 2.1em;
       }
 
     table {

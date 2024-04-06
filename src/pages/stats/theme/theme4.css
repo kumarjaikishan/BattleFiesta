@@ -6,6 +6,7 @@
     h2,h3 {
         color: whitesmoke;
         text-align: center;
+        text-transform: capitalize;
         font-size: 4em;
         letter-spacing: 2px;
     }
@@ -17,7 +18,8 @@
         -webkit-text-stroke: 0.6px white;
     } 
     h3{
-        font-size: 1.3em;
+        font-size: 2.01em;
+        
       }
 
     table {

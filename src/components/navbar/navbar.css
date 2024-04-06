@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    user-select: none;
 
     /* font-family:Arial */
     header {
