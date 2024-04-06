@@ -8,6 +8,19 @@
     padding: 15px 0px;
     position: relative;
 
+    
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: grey;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primarycolor);
+    }
+
     & .box{
         width: 600px;
         height: max-content;

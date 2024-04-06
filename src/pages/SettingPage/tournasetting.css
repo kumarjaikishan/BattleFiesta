@@ -48,7 +48,8 @@
         position: relative;
         overflow: auto;
 
-        & .ssimage{
+       
+        & .ssimage {
             z-index: 5;
             width: 98%;
             height: 98%;
@@ -56,38 +57,39 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
             align-items: center;
-    
-            & .inner{
+
+            & .inner {
                 position: relative;
                 width: 100%;
                 height: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-               
-    
-                & span{
+
+
+                & span {
                     position: absolute;
                     top: 10px;
                     right: 20px;
                     cursor: pointer;
-                   
-    
-                    & .cancel{
+
+
+                    & .cancel {
                         font-size: 3em;
                     }
                 }
-                img{
+
+                img {
                     max-width: 98%;
                     max-height: 98%;
                     object-fit: contain;
-                }  
+                }
             }
         }
     }
@@ -130,15 +132,17 @@
                 text-align: center;
                 margin: 10px 0px;
             }
-            .inpline{
+
+            .inpline {
                 display: flex;
                 align-items: center;
             }
-            .copy{
+
+            .copy {
                 cursor: pointer;
-                
-                &:hover{
-                     color :rgb(6, 99, 118);
+
+                &:hover {
+                    color: rgb(6, 99, 118);
                 }
             }
         }
@@ -148,24 +152,26 @@
         color: rgb(6, 132, 182);
     }
 }
-@media only screen and (max-width: 800px) { 
+
+@media only screen and (max-width: 800px) {
     .tournasetting {
         height: max-content;
 
         & .material {
             width: 100%;
-        } 
+        }
+
         .links {
             position: relative;
             top: 0;
-            height:100%;
+            height: 100%;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 5px;
-    
+
             & .box {
                 width: 98%;
                 padding: 0 5px;
@@ -180,6 +186,7 @@
     }
 
 }
+
 @media only screen and (max-width: 600px) {
     .tournasetting {
         min-height: calc(100vh - var(--navheight));
@@ -190,78 +197,79 @@
             padding: 5px;
             display: grid;
             gap: 10px;
-            grid-template-columns: repeat(3,1fr);
-    
+            grid-template-columns: repeat(3, 1fr);
+
             & .cont {
                 padding: 0px 5px;
 
                 &:hover {
                     border: 2px solid transparent;
                 }
+
                 .icon {
                     font-size: 1.9em;
                 }
-    
+
                 h3 {
                     font-size: 0.6em;
                     letter-spacing: 0.5px;
                 }
             }
         }
-    
+
         .material {
             width: 100%;
             position: relative;
             /* overflow: auto; */
-    
-            & .ssimage{
+
+            & .ssimage {
                 width: 500px;
                 height: 600px;
                 border-radius: 10px;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%,-50%);
+                transform: translate(-50%, -50%);
                 background-color: rgba(0, 0, 0, 0.5);
                 backdrop-filter: blur(5px);
                 display: flex;
                 justify-content: center;
                 align-items: center;
-        
-                &
-                .inner{
+
+                & .inner {
                     position: relative;
                     width: 100%;
                     height: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                   
-        
-                    & span{
+
+
+                    & span {
                         position: absolute;
                         top: 10px;
                         right: 20px;
                         cursor: pointer;
-                       
-        
-                        & .cancel{
+
+
+                        & .cancel {
                             font-size: 3em;
                         }
                     }
-                    img{
+
+                    img {
                         max-width: 98%;
                         max-height: 98%;
                         object-fit: contain;
-                    }  
+                    }
                 }
             }
         }
-    
+
         .links {
             position: relative;
             top: 0;
-            height:max-content;
+            height: max-content;
             /* border: 4px solid blue; */
             width: 100%;
             display: flex;
@@ -269,7 +277,7 @@
             justify-content: center;
             align-items: center;
             padding: 5px;
-    
+
             & .box {
                 width: 98%;
                 padding: 4px 5px;

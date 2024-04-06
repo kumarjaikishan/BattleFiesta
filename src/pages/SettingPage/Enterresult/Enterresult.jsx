@@ -218,15 +218,16 @@ const EnterResult = () => {
       })
 
       const result = await rese.json();
-      console.log(result);
+      // console.log(result);
       if (rese.ok) {
+        setRows([]);
         toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
       }
       setisloading(false)
     } catch (error) {
       console.log(error);
       setisloading(false)
-      toast.update(id, { render: "Failed", type: "warn", isLoading: false, autoClose: 1600 });
+      toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
     }
   }
 
