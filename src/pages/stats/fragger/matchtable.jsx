@@ -91,7 +91,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
                         <tbody>
                             {row.map((team, ind) => {
                                 return <tr key={ind}>
-                                    <td style={{ textAlign: "left" }}> <span>{ind + 1}</span><span> <img src={team.logo ? team.logo : group} alt="" /> </span><span> {team.team}</span></td>
+                                    <td style={{ textAlign: "left" }}> <span>#{ind + 1}</span><span> <img src={team.logo ? team.logo : group} alt="" /> </span><span> {team.team}</span></td>
                                     <td>{team.placepts}</td>
                                     <td>{team.killpts}</td>
                                     <td>{team.total}</td>

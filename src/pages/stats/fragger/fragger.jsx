@@ -73,7 +73,7 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
                             <div className="below">
                                 {player.kills} kills
                             </div>
-                            <div className="below">Team - {player.team}</div>
+                            <div className="below">Team- {player.team}</div>
                         </div>
                     })}
                 </div>

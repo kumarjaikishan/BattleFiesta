@@ -13,7 +13,7 @@ const Membershiprequest = () => {
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
       console.log(admin.membershipentry);
-   },[])
+   }, [])
    const dispatch = useDispatch();
    const [inp, setinp] = useState(null);
    const [membermodal, setmembermodal] = useState(false);
@@ -45,7 +45,7 @@ const Membershiprequest = () => {
                if (responsee.ok) {
                   dispatch(memshipentry())
                   toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
-                 console.log(data);
+                  console.log(data);
                }
             } catch (error) {
                console.log(error);
@@ -73,12 +73,12 @@ const Membershiprequest = () => {
       visible: { y: 0, x: 0, scale: 1, opacity: 1 }
    };
    return <>
-      <motion.div  className="membershiprequest">
+      <motion.div className="membershiprequest">
          <div className="controler">
             <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
             <LoadingButton
                loading={admin.loading}
-               onClick={() =>  dispatch(memshipentry())}
+               onClick={() => dispatch(memshipentry())}
                loadingPosition="end"
                endIcon={<RefreshIcon />}
                variant="outlined"
@@ -100,6 +100,10 @@ const Membershiprequest = () => {
             <span>Status</span>
             <span>Actions</span>
          </div>
+         {admin?.membershipentry.length < 1 &&
+            <div className="body">
+               No Membership Request Found
+            </div>}
          <motion.div
             variants={container}
             initial="hidden"

@@ -129,6 +129,10 @@ const Query = () => {
                     <span>Resolve</span>
                     <span>Actions</span>
                 </div>
+                {admin?.contactusform.length < 1 &&
+            <div className="body">
+               No Query Found
+            </div>}
                 <motion.div layout className="body">
                     {admin.contactusform && admin.contactusform.map((val, ind) => {
                         return <motion.div layout key={ind}>

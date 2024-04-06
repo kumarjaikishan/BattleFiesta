@@ -167,6 +167,14 @@
           text-transform: uppercase;
           background: -webkit-linear-gradient(45deg, rgb(255, 221, 0), rgb(251, 175, 52));
         }
+
+        .below:nth-child(3) {
+          font-size: 0.9em;
+          width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
 
@@ -339,7 +347,7 @@
       border-radius: 10px;
 
       &>div {
-        width:80px;
+        width: 80px;
         height: 80px;
       }
     }
