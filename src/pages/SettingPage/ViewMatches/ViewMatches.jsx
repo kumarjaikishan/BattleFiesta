@@ -114,8 +114,8 @@ const PointSystem = () => {
       {matches.length < 1 && <div className="notfound">
         <div>
           <SentimentDissatisfiedIcon className="sad" />
-          <h2>No Matches Found for this Tournament</h2>
-          <p>Please Add Matches First.</p>
+          <h2>No Match Found for this Tournament</h2>
+          <p>Please Add Matches First in 'Enter Results' Section.</p>
         </div>
       </div>}
       {matches.map((match, ind) => {
