@@ -22,7 +22,6 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
 useEffect(()=>{
     // console.log(planchoosed);
 })
-    const tournacenter = useSelector((state) => state.tournacenter);
     const handlee = async (e) => {
         e.preventDefault();
         let inpreplace = { ...inp };
@@ -43,7 +42,7 @@ useEffect(()=>{
                 body: JSON.stringify({ plan_id: planchoosed._id, coupon: inpreplace.couponname, txn_id: inpreplace.txn_no })
             });
             const data = await responsee.json();
-            // console.log(data);
+            console.log(data);
             if (responsee.ok) {
                 toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 setpaymodalopen(false);
