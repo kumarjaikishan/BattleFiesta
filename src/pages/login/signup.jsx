@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 
-const Signup = ({ setlog }) => {
+const Signup = ({ setlog ,setshowmsg}) => {
     const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
@@ -35,6 +35,7 @@ const Signup = ({ setlog }) => {
         })
     }
 
+    
     const submite = async (e) => {
         e.preventDefault();
         setbtnclick(true);
@@ -57,6 +58,7 @@ const Signup = ({ setlog }) => {
         }
 
         try {
+            setshowmsg(false)
             dispatch(setloader(true));
             const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}signup`, {
                 method: "POST",
@@ -70,12 +72,14 @@ const Signup = ({ setlog }) => {
             const datae = await res.json();
             // console.log(datae);
             if (res.ok) {
+                setshowmsg(true)
                 // setsigninp(init);
                 toast.success(datae.message, { autoClose: 2800 })
                 setbtnclick(false);
                 setlog(true)
                 dispatch(setloader(false));
             } else {
+                setshowmsg(false)
                 dispatch(setloader(false));
                 setbtnclick(false);
                 toast.warn(datae.message, { autoClose: 3600 })
@@ -83,6 +87,7 @@ const Signup = ({ setlog }) => {
 
             // console.log(datae);
         } catch (error) {
+            setshowmsg(false)
             dispatch(setloader(false));
             setbtnclick(false);
             toast.warn(error.message, { autoClose: 3600 })
@@ -183,7 +188,7 @@ const Signup = ({ setlog }) => {
                     >
                         Signup
                     </LoadingButton>
-                </form>
+                  </form>
             </div>
         </>
     )

@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { memshipentry, contactusform, voucher, membership, Users } from '../../store/admin';
 
-const Signin = () => {
+const Signin = ({showmsg,setshowmsg}) => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
@@ -38,7 +38,6 @@ const Signin = () => {
             ...signinp, [name]: value
         })
     }
-    
 
     const submite = async (e) => {
         e.preventDefault();
@@ -46,6 +45,7 @@ const Signin = () => {
         const { email, password } = signinp;
 
         try {
+            setshowmsg(false)
             const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}login`, {
                 method: "POST",
                 headers: {
@@ -67,7 +67,7 @@ const Signin = () => {
                 localStorage.setItem("token", data.token);
                 dispatch(alltourna());
                 dispatch(profilefetch());
-                
+
                 if (data.isadmin) {
                     dispatch(memshipentry());
                     dispatch(contactusform());
@@ -80,9 +80,11 @@ const Signin = () => {
             else if (res.ok && res.status == 201) {
                 dispatch(setloader(false));
                 setbtnclick(false);
+                setshowmsg(true)
                 toast.warn("Verify Email", { autoClose: 3300 });
             }
             else {
+                setshowmsg(false)
                 // console.log(data);
                 toast.warn(data.message ? data.message : "Error Occured", { autoClose: 1500 });
                 setbtnclick(false);
@@ -90,6 +92,7 @@ const Signin = () => {
             }
 
         } catch (error) {
+            setshowmsg(false)
             console.log(error);
             toast.warn(error.message, { autoClose: 1500 });
             setbtnclick(false);
@@ -192,6 +195,7 @@ const Signin = () => {
                     >
                         Email sent
                     </LoadingButton>}
+                  {showmsg && <p>*Note-Email sent successfully, If you can't find the email in your inbox, please check the spam or junk mail section. </p>}  
                 </form>
             </div>
         </>

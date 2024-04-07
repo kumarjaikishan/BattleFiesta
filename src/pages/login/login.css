@@ -51,6 +51,11 @@
             position: relative;
             display: flex;
 
+            p{
+                color :green;
+                text-align: center;
+            }
+
             .singup {
                 height: 100%;
                 width: 100%;
