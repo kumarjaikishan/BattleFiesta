@@ -40,10 +40,11 @@ const Tdmsetting = () => {
 
   const [active, setactive] = useState(0);
   useEffect(() => {
-    if (!tdmrtk.tdmdetail._id) {
-      dispatch(tdmfetch(tid));
-    }
-    tdmrtk.tdmdetail._id != tid && dispatch(tdmfetch(tid));
+    dispatch(tdmfetch(tid));
+    // if (!tdmrtk.tdmdetail._id) {
+    //   dispatch(tdmfetch(tid));
+    // }
+    // tdmrtk.tdmdetail._id != tid && dispatch(tdmfetch(tid));
     dispatch(header('Setting'))
     dispatch(setloader(true))
   }, [])
@@ -112,7 +113,7 @@ const Tdmsetting = () => {
           </div>
         </div>
         <div className="material">
-          {active == 0 && <Registerform showss={showss}/>}
+          {active == 0 && <Registerform showss={showss} />}
           {active == 1 && <Detail />}
           {/* {active == 2 && <EnterResult setting={setting} />} */}
           {active == 2 && <ManageTeam showss={showss} />}
