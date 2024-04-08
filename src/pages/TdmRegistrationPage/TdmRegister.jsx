@@ -75,6 +75,8 @@ const TdmRegister = () => {
     const [entry, setentry] = useState([]);
     const [filteredentry, setfilteredentry] = useState([]);
     const [errore, seterrore] = useState(false);
+    const [android,setandroid]= useState([])
+    const [ios,setios]= useState([])
 
     const fetche = async (id) => {
         setdisable(true);
@@ -95,7 +97,17 @@ const TdmRegister = () => {
                 let filtenteries = enteries.filter((val) => {
                     return val.status != "rejected"
                 })
+                let andriodplayers = enteries.filter((val) => {
+                    // console.log(val);
+                    return val.os == 'android'
+                })
+                let iosplayers = enteries.filter((val) => {
+                    // console.log(val);
+                    return val.os == 'ios'
+                })
                 setfilteredentry(filtenteries);
+                setandroid(andriodplayers);
+                setios(iosplayers);
                 setentry(enteries);
                 setinp({
                     ...inp, userid: resuke.data.userid,
@@ -405,7 +417,7 @@ const TdmRegister = () => {
 
                         </div>
                     </div>}
-                    {teamlist && <Teams entry={entry} />} </>}
+                    {teamlist && <Teams android={android} ios={ios} entry={entry} />} </>}
             </div>
         </>
     );
