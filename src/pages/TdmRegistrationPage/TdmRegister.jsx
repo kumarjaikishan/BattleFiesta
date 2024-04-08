@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -236,7 +236,14 @@ const TdmRegister = () => {
                         <Divider variant="middle" />
 
                         {setting.description != "" && <>
-                            <p className="desc">{setting.description}</p>
+                            <p className="desc">
+                                {setting.description.split('\n').map((line, index) => (
+                                    <React.Fragment key={index}>
+                                        {line}
+                                        <br />
+                                    </React.Fragment>
+                                ))}
+                            </p>
                             <Divider variant="middle" />
                         </>}
                         {!newfresh && about.slots > filteredentry.length && <form onSubmit={handleRegister}>

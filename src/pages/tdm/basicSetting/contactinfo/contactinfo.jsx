@@ -132,7 +132,6 @@ const Contactinfo = ({ all }) => {
                             id="outlined-multiline-static"
                             label="Public Post"
                             multiline
-                            onKeyDown={handleEnterPress}
                             inputProps={{ style: { fontSize: 11, lineHeight: "12px" } }}
                             value={publicpost}
                             onChange={(e) => setpublicpost(e.target.value)}

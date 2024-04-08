@@ -76,55 +76,58 @@ const Tournamentstatpage = () => {
         </div>
       </div>}
       {!iserror && <>
-      {tournament.tournment_banner != "" && <div className="img">
-        <img src={tournament.tournment_banner} loading="lazy" alt="Tournament Banner" />
-      </div>}
-      <div className="info">
-        <div className="upper">
-          <div>{tournament.title} <span>{tournament.status}</span></div>
-          <div>Organised by: {tournament.organiser} </div>
-          <div>Created At: {changeformat(tournament.createdAt)} </div>
-        </div>
-        <div className="publicpost">
-          {publicpost}
-        </div>
-        <div className="btn">
-          {data2.isopen && <a href={`${localhos}/${tournament.type=='tdm'? 'tdmregister':'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
-            <Button variant="contained" startIcon={<FeedIcon />}> REGISTER </Button>
-          </a>}
-          {tournament.type=='classic' &&   <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
-            <Button variant="outlined" startIcon={<LeaderboardIcon />}> LEADERBOARD </Button>
-          </a>}
-         
-        </div>
-        <div className="contacts">
-          <div>Contacts Details</div>
-          {links.length > 0 && <>
-            <div>Links</div>
-            <div className="links">
-              {links.map((val, ind) => {
-                if (val.linkType == "whatsapp") {
-                  return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
-                }
-                if (val.linkType == "instagram") {
-                  return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
-                }
-                if (val.linkType == "phone") {
-                  return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
-                }
-                if (val.linkType == "email") {
-                  return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
-                }
-                if (val.linkType == "link") {
-                  return <a key={ind} href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
-                }
-              })}
-            </div>
-          </>}
-          {links.length < 1 && <p>The organiser has not provided any contact details for the tournament.
-            If you are the organiser, check "Contact Info" section in the Basic Setting.</p>}
-        </div>
-      </div> </>}
+        {tournament.tournment_banner != "" && <div className="img">
+          <img src={tournament.tournment_banner} loading="lazy" alt="Tournament Banner" />
+        </div>}
+        <div className="info">
+          <div className="upper">
+            <div>{tournament.title} <span>{tournament.status}</span></div>
+            <div>Organised by: {tournament.organiser} </div>
+            <div>Created At: {changeformat(tournament.createdAt)} </div>
+          </div>
+          {publicpost.split('\n').map((line, index) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+          <div className="btn">
+            {data2.isopen && <a href={`${localhos}/${tournament.type == 'tdm' ? 'tdmregister' : 'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
+              <Button variant="contained" startIcon={<FeedIcon />}> REGISTER </Button>
+            </a>}
+            {tournament.type == 'classic' && <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
+              <Button variant="outlined" startIcon={<LeaderboardIcon />}> LEADERBOARD </Button>
+            </a>}
+
+          </div>
+          <div className="contacts">
+            <div>Contacts Details</div>
+            {links.length > 0 && <>
+              <div>Links</div>
+              <div className="links">
+                {links.map((val, ind) => {
+                  if (val.linkType == "whatsapp") {
+                    return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                  }
+                  if (val.linkType == "instagram") {
+                    return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                  }
+                  if (val.linkType == "phone") {
+                    return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
+                  }
+                  if (val.linkType == "email") {
+                    return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
+                  }
+                  if (val.linkType == "link") {
+                    return <a key={ind} href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                  }
+                })}
+              </div>
+            </>}
+            {links.length < 1 && <p>The organiser has not provided any contact details for the tournament.
+              If you are the organiser, check "Contact Info" section in the Basic Setting.</p>}
+          </div>
+        </div> </>}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -390,6 +390,7 @@ const Register = () => {
         }));
     }
     const [teamlist, setteamlist] = useState(false);
+    
     return (
         <>
             <div className="registartionform">
@@ -418,7 +419,14 @@ const Register = () => {
                         <Divider variant="middle" />
 
                         {!newfresh && all.description != "" && <>
-                            <p className="desc">{all.description}</p>
+                            <p className="desc">
+                                {all.description.split('\n').map((line, index) => (
+                                    <React.Fragment key={index}>
+                                        {line}
+                                        <br />
+                                    </React.Fragment>
+                                ))}
+                            </p>
                             <Divider variant="middle" />
                         </>}
                         {!newfresh && all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
@@ -435,9 +443,9 @@ const Register = () => {
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                     color={inp.teammobile.length == 10 ? "primary" : "warning"}
                                 />}
-                                {all.ask_discord && <TextField 
-                                 inputProps={{ minLength: 5, maxLength: 22 }}
-                                 className="cominp" required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
+                                {all.ask_discord && <TextField
+                                    inputProps={{ minLength: 5, maxLength: 22 }}
+                                    className="cominp" required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
                             </div>
                             <Divider variant="middle" />
                             {
