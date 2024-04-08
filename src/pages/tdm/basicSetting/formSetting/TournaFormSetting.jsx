@@ -95,7 +95,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
-                    
+
                     <FormLabel id="demo-row-radio-buttons-group-label">Ask for Player Logo</FormLabel>
                     <RadioGroup
                         row
@@ -110,6 +110,19 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
 
                     </RadioGroup>
                     <FormLabel id="demo-row-radio-buttons-group-label">Ask for Payment Screenshort</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="ask_payment_ss"
+                        value={all.ask_payment_ss}
+                        sx={{ mb: 1 }}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
+                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+
+                    </RadioGroup>
+                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Combine</FormLabel>
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -204,7 +217,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
-                    
+
 
                     <LoadingButton
                         onClick={submit}

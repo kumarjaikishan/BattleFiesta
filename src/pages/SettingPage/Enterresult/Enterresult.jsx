@@ -253,16 +253,24 @@ const EnterResult = () => {
               required
               onChange={handleChange}
             >
-              <MenuItem value="">
-                <em>None</em>
+              <MenuItem disabled value="">
+                <em>PUBG/BGMI Maps</em>
               </MenuItem>
-              <MenuItem value={"erangle"}>Erangle</MenuItem>
-              <MenuItem value={"livik"}>Livik</MenuItem>
-              <MenuItem value={"miramar"}>Miramar</MenuItem>
+              <MenuItem value={"Erangle"}>Erangle</MenuItem>
+              <MenuItem value={"Livik"}>Livik</MenuItem>
+              <MenuItem value={"Miramar"}>Miramar</MenuItem>
               <MenuItem value={"Vikendi"}>Vikendi</MenuItem>
-              <MenuItem value={"sanhok"}>Sanhok</MenuItem>
+              <MenuItem value={"Sanhok"}>Sanhok</MenuItem>
               <MenuItem value={"Karakin"}>Karakin</MenuItem>
               <MenuItem value={"Nusa"}>Nusa</MenuItem>
+              <MenuItem disabled value="">
+                <em>FreeFire Maps</em>
+              </MenuItem>
+              <MenuItem value={"Bermuda"}>Bermuda</MenuItem>
+              <MenuItem value={"Purgatory"}>Purgatory</MenuItem>
+              <MenuItem value={"Kalahari"}>Kalahari</MenuItem>
+              <MenuItem value={"Alpine"}>Alpine</MenuItem>
+              <MenuItem value={"Nexterra"}>Nexterra</MenuItem>
             </Select>
             <Divider variant="middle" />
             <TableContainer component={Paper} sx={{ mt: 2, mb: 2 }}>
