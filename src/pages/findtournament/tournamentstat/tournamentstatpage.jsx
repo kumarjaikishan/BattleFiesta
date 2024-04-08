@@ -104,7 +104,7 @@ const Tournamentstatpage = () => {
             <div className="links">
               {links.map((val, ind) => {
                 if (val.linkType == "whatsapp") {
-                  return <a key={ind} href={`https://wa.me/${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                  return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
                 }
                 if (val.linkType == "instagram") {
                   return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>

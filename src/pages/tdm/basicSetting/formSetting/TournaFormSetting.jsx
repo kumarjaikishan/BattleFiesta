@@ -122,7 +122,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Combine</FormLabel>
+                    {/* <FormLabel id="demo-row-radio-buttons-group-label">Ask for Combine</FormLabel>
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -134,7 +134,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         <FormControlLabel value={true} control={<Radio />} label="Enable" />
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
-                    </RadioGroup>
+                    </RadioGroup> */}
                     <FormLabel id="demo-row-radio-buttons-group-label">Show Payment Option</FormLabel>
                     <RadioGroup
                         row
