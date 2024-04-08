@@ -17,10 +17,10 @@ const Teams = ({ entry, android, ios }) => {
             <div className="teamse">
                 <h2>Player List</h2>
                 <div>
-                    <Badge sx={{mr:2,mt:2}} min={1} badgeContent={android.length} color="success">
+                    <Badge sx={{m:2}} min={1} badgeContent={android.length} color="success">
                         <Button  variant="outlined" color="secondary">Android</Button>
                     </Badge>
-                    <Badge sx={{ml:2,mt:2}} min={1} badgeContent={ios.length} color="success">
+                    <Badge sx={{m:2}} min={1} badgeContent={ios.length} color="success">
                         <Button  variant="outlined" color="secondary">Ios</Button>
                     </Badge>
                 </div>
