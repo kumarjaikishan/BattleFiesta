@@ -323,7 +323,7 @@ const TdmRegister = () => {
                                     type='tel'
                                     inputProps={{ minLength: 12, maxLength: 12 }}
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                    size="small" required id="outlined-basic" label="UTR/TXN NO." value={inp.utrno} name="utrno" onChange={realhandlechange} variant="outlined" />
+                                    size="small"  id="outlined-basic" label="UTR/TXN NO." value={inp.utrno} name="utrno" onChange={realhandlechange} variant="outlined" />
                                 <br />
                             </>}
 

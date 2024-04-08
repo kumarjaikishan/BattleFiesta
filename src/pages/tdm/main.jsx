@@ -148,7 +148,7 @@ const Tdmsetting = () => {
             <p>Find the tournament's public page here. Ensure the tournament visibility is set to 'PUBLISHED' and remember to add content to the public post.</p>
             <Stack spacing={2} direction="row" className='inpline'>
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={`${localhos}/tournaments/${tid}`} label="Public Post Link" variant="outlined" />
-              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("publicpost")} />
+              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tournaments")} />
             </Stack>
             <a href={`${localhos}/tournaments/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
           </div>
