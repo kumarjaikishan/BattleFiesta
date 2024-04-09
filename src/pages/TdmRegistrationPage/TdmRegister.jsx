@@ -235,15 +235,14 @@ const TdmRegister = () => {
                         </div>
                         <Divider variant="middle" />
 
-                        {setting.description != "" && <>
+                        {setting.description  && <>
                             <p className="desc">
-                            {setting.description}
-                                {/* {setting.description.split('\n').map((line, index) => (
+                            {setting.description.split('\n').map((line, index) => (
                                     <React.Fragment key={index}>
                                         {line}
                                         <br />
                                     </React.Fragment>
-                                ))} */}
+                                ))}
                             </p>
                             <Divider variant="middle" />
                         </>}

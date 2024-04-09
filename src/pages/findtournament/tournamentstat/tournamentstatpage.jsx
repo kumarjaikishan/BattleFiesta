@@ -85,12 +85,15 @@ const Tournamentstatpage = () => {
             <div>Organised by: {tournament.organiser} </div>
             <div>Created At: {changeformat(tournament.createdAt)} </div>
           </div>
-          {publicpost.split('\n').map((line, index) => (
+          {publicpost &&  <div style={{margin:"10px 0px"}}>
+          { publicpost.split('\n').map((line, index) => (
             <React.Fragment key={index}>
               {line}
               <br />
             </React.Fragment>
           ))}
+          </div>}
+         
           <div className="btn">
             {data2.isopen && <a href={`${localhos}/${tournament.type == 'tdm' ? 'tdmregister' : 'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
               <Button variant="contained" startIcon={<FeedIcon />}> REGISTER </Button>
