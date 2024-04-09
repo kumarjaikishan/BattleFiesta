@@ -237,12 +237,13 @@ const TdmRegister = () => {
 
                         {setting.description != "" && <>
                             <p className="desc">
-                                {setting.description.split('\n').map((line, index) => (
+                            {setting.description}
+                                {/* {setting.description.split('\n').map((line, index) => (
                                     <React.Fragment key={index}>
                                         {line}
                                         <br />
                                     </React.Fragment>
-                                ))}
+                                ))} */}
                             </p>
                             <Divider variant="middle" />
                         </>}
