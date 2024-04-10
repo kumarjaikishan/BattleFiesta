@@ -42,10 +42,6 @@ const Register = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
-    var isAndroid = /(android)/i.test(navigator.userAgent);
-    var isIOS = /(iphone|ipad)/i.test(navigator.userAgent);
-    var isDesktop = !isAndroid && !isIOS;
-
     const [newfresh, setnewfresh] = useState(false);
     const [isloading, setisloading] = useState(false)
     const { registerId } = useParams();
@@ -55,7 +51,6 @@ const Register = () => {
         dispatch(header("Registration"));
         dispatch(setloader(true));
         fetche(registerId);
-        // console.log("kya desktop hai",isDesktop);
     }, [])
     const inpinit = {
         userid: "",
@@ -395,7 +390,7 @@ const Register = () => {
         }));
     }
     const [teamlist, setteamlist] = useState(false);
-
+    
     return (
         <>
             <div className="registartionform">
@@ -595,10 +590,7 @@ const Register = () => {
                                         if (val.linkType == "whatsapp") {
                                             return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
                                         }
-                                        if (val.linkType == "instagram" && isDesktop) {
-                                            return <a key={ind} href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
-                                        }
-                                        if (val.linkType == "instagram" && !isDesktop) {
+                                        if (val.linkType == "instagram") {
                                             return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
                                         }
                                         if (val.linkType == "phone") {
