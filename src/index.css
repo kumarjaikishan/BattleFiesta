@@ -17,7 +17,7 @@ input {
   --navheight: 60px;
   --navheightmobile: 50px;
   --primarycolor: #02363a;
-  --hovercolor: #0d585e;
+  --hovercolor: #1f8b93;
   --secondarycolor: #02363a;
   --thirdcolor: #0d585e;
 }
@@ -31,7 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background: radial-gradient( #f9d349 20% , #d57e12); */
   background: radial-gradient(#1abc9c 20%, var(--primarycolor));
-  background: linear-gradient(to bottom ,var(--primarycolor), #1abc9c);
+  background: linear-gradient(to bottom ,var(--primarycolor), var(--hovercolor));
   position: relative;
   width: 100%;
   min-height: 100vh;
