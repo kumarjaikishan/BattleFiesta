@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 
 const EnterResult = () => {
   const classic = useSelector((state) => state.classic);
-  const [setting,setseting]= useState(classic.classicdetail)
+  const [setting, setseting] = useState(classic.classicdetail)
   const [player, setplayer] = useState([]);
   const tid = setting._id;
   const [map, setmap] = useState('');
@@ -51,10 +51,10 @@ const EnterResult = () => {
 
   const sortplayerdata = (data) => {
     let appro = data.filter((val, ind) => {
-        return val.status == "approved"
+      return val.status == "approved"
     })
     setplayer(appro);
-}
+  }
 
   const fetderfreche = () => {
     if (player.length > 0) {
@@ -219,15 +219,17 @@ const EnterResult = () => {
 
       const result = await rese.json();
       // console.log(result);
-      if (rese.ok) {
-        setRows([]);
-        toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
-      }
       setisloading(false)
+      if (!rese.ok) {
+        return toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
+      }
+
+      setRows([]);
+      toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
     } catch (error) {
       console.log(error);
       setisloading(false)
-      toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
+      toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
     }
   }
 
@@ -242,7 +244,7 @@ const EnterResult = () => {
       <div className="enterresult">
         <div className="box">
           <h2>Match Info</h2>
-          <FormControl sx={{ m: 1 , minWidth: '98%' }} size="small">
+          <FormControl sx={{ m: 1, minWidth: '98%' }} size="small">
             <InputLabel id="demo-select-small-label">Map</InputLabel>
             <Select
               labelId="demo-select-small-label"

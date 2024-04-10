@@ -40,7 +40,7 @@ const Profile = () => {
         sociallinks: ''
     }
     const [inp, setinp] = useState(init);
-    const [messagesent,setmessagesent]= useState('')
+    const [messagesent, setmessagesent] = useState('')
     const [membership, setmembership] = useState({
         plan: 'N/A',
         planprice: 'N/A',
@@ -52,7 +52,7 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
-     }, [userprofile])
+    }, [userprofile])
 
 
     const VisuallyHiddenInput = styled('input')({
@@ -91,7 +91,7 @@ const Profile = () => {
             buydate: membere.buy_date,
             expirydate: membere.expire_date,
             expire_in: getTimeDifference(membere.expire_date),
-            status: getTimeDifference(membere.expire_date) < 0 ? 'expired':'active'
+            status: getTimeDifference(membere.expire_date) < 0 ? 'expired' : 'active'
         })
     }
     const newlink = () => {
@@ -146,13 +146,13 @@ const Profile = () => {
                 body: JSON.stringify(inp)
             })
             const data = await res.json();
-            if (res.ok) {
-
-                dispatch(profilefetch());
-                toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
-                // console.log(data);
-            }
             setisloadinge(false)
+            if (!res.ok) {
+                return toast.update(id, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
+            }
+            dispatch(profilefetch());
+            toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
+            // console.log(data);
         } catch (error) {
             toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
             console.log(error);
@@ -190,7 +190,7 @@ const Profile = () => {
             }
         }
     }
-    const resetpassword=async()=>{
+    const resetpassword = async () => {
         try {
             setisloadinge(true)
             const id = toast.loading("Please wait...")
@@ -204,9 +204,9 @@ const Profile = () => {
             const data = await res.json();
             // console.log(data);
             setisloadinge(false)
-            
+
             if (!res.ok) {
-               return toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
+                return toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
             }
             setmessagesent(data.extramessage)
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
@@ -226,11 +226,11 @@ const Profile = () => {
         const currentDate = new Date();
         // const currentDate = new Date('2024-04-04');
         // console.log(currentDate);
-    
+
         const differenceInMilliseconds = givenDate - currentDate;
         const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-    
-        return days+1;
+
+        return days + 1;
     }
 
     return (
@@ -266,7 +266,7 @@ const Profile = () => {
                     <h2>Profile Picture</h2>
                     <div className="img">
                         <img src={inp.profile ? inp.profile : photo}
-                         loading="lazy"   alt="" />
+                            loading="lazy" alt="" />
                     </div>
                     <div> <h2>{inp.name}</h2></div>
                     <Button
@@ -321,8 +321,8 @@ const Profile = () => {
                     <div>
                         <TextField required name='link' disabled fullWidth size='small' value={inp.email}
                             className="half" id="outlined-basic" label="Email Address" variant="outlined" />
-                       {messagesent && <p style={{color:'green', fontSize:'14px'}}>{messagesent}</p>} 
-                       {!messagesent.length && <p style={{ fontSize:'14px'}}>A verification email will be sent to <b>{inp.email}</b>.</p>}
+                        {messagesent && <p style={{ color: 'green', fontSize: '14px' }}>{messagesent}</p>}
+                        {!messagesent.length && <p style={{ fontSize: '14px' }}>A verification email will be sent to <b>{inp.email}</b>.</p>}
                         <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
                             Send Password Reset Link
                         </Button>
@@ -336,7 +336,7 @@ const Profile = () => {
                             helperText="This emaill will be visible on your profile page"
                             label="Public Email" variant="outlined" />
                         <TextField onChange={handlechangee} type='tel'
-                        inputProps={{ minLength: 10, maxLength: 10 }}
+                            inputProps={{ minLength: 10, maxLength: 10 }}
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                             name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
                             helperText="This phone number will be visible on your profile page"

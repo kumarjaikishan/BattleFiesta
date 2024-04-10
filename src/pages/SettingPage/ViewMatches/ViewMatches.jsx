@@ -38,11 +38,12 @@ const PointSystem = () => {
 
       const responseData = await response.json();
       // console.log(responseData);
-      if (response.ok) {
-        setmatches(responseData.matches)
-        setrules(responseData.rules)
-        dispatch(setloader(false));
+      dispatch(setloader(false));
+      if (!response.ok) {
+        return toast.warn(responseData.message, { autoClose: 1700 })
       }
+      setmatches(responseData.matches)
+      setrules(responseData.rules)
     } catch (error) {
       console.error(error);
       dispatch(setloader(false));

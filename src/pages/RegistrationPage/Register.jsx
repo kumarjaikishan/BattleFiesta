@@ -120,14 +120,17 @@ const Register = () => {
                 body: JSON.stringify({ tid: registerId })
             })
             const resuke = await rese.json();
-            if (rese.ok) {
-                let enteries = resuke.enteries;
-                let filtenteries = enteries.filter((val) => {
-                    return val.status != "rejected"
-                })
-                setfilteredentry(filtenteries);
-                setentry(enteries);
+            if (!rese.ok) {
+                return toast.warn(resuke.message, { autoClose: 2100 })
             }
+
+            let enteries = resuke.enteries;
+            let filtenteries = enteries.filter((val) => {
+                return val.status != "rejected"
+            })
+            setfilteredentry(filtenteries);
+            setentry(enteries);
+
         } catch (error) {
             console.log(error);
         }

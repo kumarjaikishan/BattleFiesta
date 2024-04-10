@@ -79,13 +79,16 @@ const Dashboard = () => {
           });
           const vfdvdf = await responsee.json();
           // console.log(vfdvdf);
-          if (responsee.ok) {
-            dispatch(alltourna());
-            toast.update(id, { render: vfdvdf.message, type: "success", isLoading: false, autoClose: 1600 });
+          if (!responsee.ok) {
+            return toast.update(id, { render: vfdvdf.message, type: "warning", isLoading: false, autoClose: 1600 });
           }
+
+          dispatch(alltourna());
+          toast.update(id, { render: vfdvdf.message, type: "success", isLoading: false, autoClose: 1600 });
+
         } catch (error) {
           console.log(error);
-          toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
+          toast.update(id, { render: error, type: "warning", isLoading: false, autoClose: 1600 });
         }
 
       } else {
@@ -331,7 +334,7 @@ const Dashboard = () => {
                   <span className={`status ${val.status}`}>{val.status}</span>
                   <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>
                   <div className="time">
-                    {formattedDate} {formattedTime} 
+                    {formattedDate} {formattedTime}
                   </div>
                   <div className="controller">
                     <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
@@ -383,7 +386,7 @@ const Dashboard = () => {
                     label="type"
                     onChange={handleChange}
                   >
-                   <MenuItem value='classic'>Classic</MenuItem>
+                    <MenuItem value='classic'>Classic</MenuItem>
                     <MenuItem value='tdm'>TDM</MenuItem>
                   </Select>
                 </FormControl>

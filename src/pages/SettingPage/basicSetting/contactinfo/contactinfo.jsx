@@ -20,7 +20,7 @@ import { classicfetch } from '../../../../store/classic';
 
 const Contactinfo = ({ all }) => {
     const dispatch = useDispatch();
-   const init = {
+    const init = {
         link: Array(1).fill({
             linkName: "",
             linkType: "",
@@ -85,12 +85,17 @@ const Contactinfo = ({ all }) => {
                 body: JSON.stringify({ tid: all.tournament_id, links, publicpost })
             })
             const data = await rese.json();
-            if (rese.ok) {
-                dispatch(classicfetch(tid))
+            if (!rese.ok) {
+                toast.warn(data.message, { autoClose: 1300 });
                 setisloading(false)
-                toast.success(data.message, { autoClose: 1300 });
+                return;
             }
+            dispatch(classicfetch(tid))
+            setisloading(false)
+            toast.success(data.message, { autoClose: 1300 });
+
         } catch (error) {
+            toast.warn(error.message, { autoClose: 1300 });
             console.log(error);
         }
     }

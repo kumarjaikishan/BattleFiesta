@@ -86,11 +86,11 @@ const Detail = () => {
                 setLoading(false);
                 dispatch(classicfetch(classic.classicdetail._id));
             } else {
-                toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(ide, { render: resuke.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
         } catch (error) {
             console.log(error);
-            toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: resuke.message, type: "warning", isLoading: false, autoClose: 1600 });
         }
     }
     const submit = async () => {
@@ -114,11 +114,11 @@ const Detail = () => {
                 setLoading(false);
                 dispatch(classicfetch(classic.classicdetail._id));
             } else {
-                toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(ide, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
             setLoading(false);
         } catch (error) {
-            toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
             setLoading(false);
             console.log(error);
         }

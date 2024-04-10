@@ -52,17 +52,18 @@ const Stats = () => {
         body: JSON.stringify({ tid: id })
       });
       const result = await rese.json();
-      console.log(result);
-      if (rese.ok) {
-        rules = result.rules
-        setkuch(result.rules);
-        funck(result.matches);
-        setmatches(result.matches);
-        findtopplayer(result.matches, result.teamdeatil)
-        vdcf(result.teamdeatil);
-        setteamdeatil(result.teamdeatil);
-        dispatch(setloader(false));
+      // console.log(result);
+      dispatch(setloader(false));
+      if (!rese.ok) {
+        return toast.warn("someting went wrong", { autoclose: 1900 });
       }
+      rules = result.rules
+      setkuch(result.rules);
+      funck(result.matches);
+      setmatches(result.matches);
+      findtopplayer(result.matches, result.teamdeatil)
+      vdcf(result.teamdeatil);
+      setteamdeatil(result.teamdeatil);
       // setrule(result.rules)
     } catch (error) {
       console.error('Error:', error);
@@ -289,10 +290,10 @@ const Stats = () => {
           </tbody>
         </table>
       </Container>
-      {log.islogin && 
-      <Button onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
-        Download
-      </Button>}
+      {log.islogin &&
+        <Button onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+          Download
+        </Button>}
       <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />
       <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
     </div>

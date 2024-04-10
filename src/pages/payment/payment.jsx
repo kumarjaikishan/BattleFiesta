@@ -61,10 +61,13 @@ const Payment = () => {
       const data = await responsee.json();
       // console.log("dataplan ", data);
       dispatch(setloader(false));
-      if (responsee) {
-        setplandetail(data.plans)
-        setplanchoosed(data.plans[0])
+      if (!responsee.ok) {
+        return toast.warn("someting went wrong", { autoclose: 1700 })
       }
+
+      setplandetail(data.plans)
+      setplanchoosed(data.plans[0])
+
     } catch (error) {
       console.log(error);
       dispatch(setloader(false));
@@ -158,14 +161,14 @@ const Payment = () => {
           coupon: 0,
         }));
       }
-      if (responsee.ok) {
-        toast.success('Coupon Applied Successfully', { autoClose: 1700 });
-        setinp((prev) => ({
-          ...prev,
-          coupon: data.data.percent
-        }));
-        setcouponerror(null);
-      }
+
+      toast.success('Coupon Applied Successfully', { autoClose: 1700 });
+      setinp((prev) => ({
+        ...prev,
+        coupon: data.data.percent
+      }));
+      setcouponerror(null);
+
     } catch (error) {
       console.log(error);
     }
@@ -279,7 +282,7 @@ const Payment = () => {
                 <div style={{ padding: '10px 0px' }}>
                   <input required type="checkbox" name="" id="termsCheckbox" />
                   <label style={{ marginLeft: 8, cursor: 'pointer' }} htmlFor="termsCheckbox">
-                    I Agree to the <NavLink to='/terms' style={{textDecoration:"none"}}>
+                    I Agree to the <NavLink to='/terms' style={{ textDecoration: "none" }}>
                       Terms and Conditions
                     </NavLink>
                   </label>

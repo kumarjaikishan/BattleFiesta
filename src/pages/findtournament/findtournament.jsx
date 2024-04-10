@@ -5,6 +5,7 @@ import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
+import { toast } from "react-toastify";
 import Stack from '@mui/material/Stack';
 import tournlogo from '../../assets/logopng250.webp'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -46,20 +47,21 @@ const Findtournament = () => {
 
             const data = await responsee.json();
             // console.log(data);
-            if (responsee.ok) {
-                setalltournas(data.data)
-                let one = [];
-                let two = [];
-                let three = [];
-                data.data.map((val) => {
-                    val.status == 'ongoing' && one.push(val);
-                    val.status == 'upcoming' && two.push(val);
-                    val.status == 'completed' && three.push(val);
-                })
-                setongoinglist(one); setupcominglist(two); setcompletedlist(three);
-                setshowinglist(two)
-                dispatch(setloader(false));
+            dispatch(setloader(false));
+            if (!responsee.ok) {
+                return toast.warn(data.message, { autoclose: 2100 })
             }
+            setalltournas(data.data)
+            let one = [];
+            let two = [];
+            let three = [];
+            data.data.map((val) => {
+                val.status == 'ongoing' && one.push(val);
+                val.status == 'upcoming' && two.push(val);
+                val.status == 'completed' && three.push(val);
+            })
+            setongoinglist(one); setupcominglist(two); setcompletedlist(three);
+            setshowinglist(two)
         } catch (error) {
             console.log(error);
             dispatch(setloader(false));

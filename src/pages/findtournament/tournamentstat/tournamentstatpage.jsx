@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setloader } from '../../../store/login';
 import Button from '@mui/material/Button';
+import { toast } from "react-toastify";
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import FeedIcon from '@mui/icons-material/Feed';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
@@ -46,6 +47,7 @@ const Tournamentstatpage = () => {
       }
       else {
         setiserror(true)
+        return toast.warn(data.message, { autoclose: 2100 })
       }
       dispatch(setloader(false));
     } catch (error) {
