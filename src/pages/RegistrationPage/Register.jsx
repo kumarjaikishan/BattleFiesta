@@ -616,7 +616,7 @@ const Register = () => {
                                             return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
                                         }
                                         if (val.linkType == "youtube") {
-                                            return <a key={ind} href={`youtube://www.youtube.com/@${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                                            return <a key={ind} href={`youtube://youtube.com/@${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
                                         }
                                         if (val.linkType == "instagram") {
                                             return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
