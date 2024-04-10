@@ -320,6 +320,7 @@
 @media only screen and (max-width: 600px) {
   .stats {
     padding: 7px;
+    min-height: calc(100vh - var(--navheightmobile));
 
     & .controls {
       max-width: 100%;
