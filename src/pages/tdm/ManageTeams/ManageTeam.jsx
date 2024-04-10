@@ -3,6 +3,7 @@ import Teamedit from './Teamedit';
 import { useSelector, useDispatch } from 'react-redux';
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
+import Badge from '@mui/material/Badge';
 import { useEffect, useState } from 'react';
 import { tdmfetch } from '../../../store/tdm';
 import Button from '@mui/material/Button';
@@ -15,6 +16,7 @@ const ManageTeam = ({ showss }) => {
   const tdmrtk = useSelector((state) => state.tdm);
   const [android, setandroid] = useState([]);
   const [ios, setios] = useState([]);
+
   useEffect(() => {
     let and = [];
     let io = [];
@@ -28,6 +30,7 @@ const ManageTeam = ({ showss }) => {
     })
     setandroid(and);
     setios(io)
+    filter(0);
   }, [tdmrtk.tdmplayers])
 
 
@@ -72,18 +75,17 @@ const ManageTeam = ({ showss }) => {
   const [allplayers, setallplayers] = useState(tdmrtk.tdmplayers)
   const [active, setactive] = useState(0)
 
-  const filter = (type, ind) => {
+  const filter = (ind) => {
     setactive(ind)
-    if (type == 'all') {
+    if (ind == 0) {
       setallplayers(tdmrtk.tdmplayers)
-    } 
-    if (type == 'android') {
+    }
+    if (ind == 1) {
       setallplayers(android)
-    } 
-    if (type == 'ios') {
+    }
+    if (ind == 2) {
       setallplayers(ios)
-    } 
-
+    }
   }
 
   return (
@@ -92,9 +94,15 @@ const ManageTeam = ({ showss }) => {
         className="manageteams">
         <div className="box">
           <div>
-            <Button sx={{ m: 1 }} variant={active == 0 ? "contained" : "outlined"} onClick={() => filter('all', 0)}>All</Button>
-            <Button sx={{ m: 1 }} variant={active == 1 ? "contained" : "outlined"} onClick={() => filter('android', 1)}>Android</Button>
-            <Button sx={{ m: 1 }} variant={active == 2 ? "contained" : "outlined"} onClick={() => filter('ios', 2)}>Ios</Button>
+            <Badge sx={{ m: 2 }} min={1} badgeContent={tdmrtk.tdmplayers.length} color="success">
+              <Button onClick={() => filter(0)} variant={active == 0 ? "contained" : 'outlined'} color="primary">All</Button>
+            </Badge>
+            <Badge sx={{ m: 2 }} min={1} badgeContent={android.length} color="success">
+              <Button onClick={() => filter(1)} variant={active == 1 ? "contained" : 'outlined'} color="primary">Android</Button>
+            </Badge>
+            <Badge sx={{ m: 2 }} min={1} badgeContent={ios.length} color="success">
+              <Button onClick={() => filter(2)} variant={active == 2 ? "contained" : 'outlined'} color="primary">Ios</Button>
+            </Badge>
           </div>
           <h2>Player List:</h2>
           {!calledit && tdmrtk.tdmplayers && <Teamlists teamarray={allplayers} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}
