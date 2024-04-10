@@ -31,6 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background: radial-gradient( #f9d349 20% , #d57e12); */
   background: radial-gradient(#1abc9c 20%, var(--primarycolor));
+  background: linear-gradient(to bottom ,var(--primarycolor), #1abc9c);
   position: relative;
   width: 100%;
   min-height: 100vh;
