@@ -251,7 +251,7 @@
                 /* background: rgba(0, 0, 0, .3); */
 
                 & h2 {
-                    font-size: 1.5em;
+                    font-size: 1.4em;
                     margin-bottom: 10px;
 
                     & span {
@@ -260,6 +260,7 @@
                 }
 
                 h3 {
+                    font-size: 1em;
                     margin-bottom: 10px;
                 }
                 p{
