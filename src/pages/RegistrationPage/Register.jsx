@@ -591,34 +591,14 @@ const Register = () => {
                             <h2>Contact Details</h2>
                             {all.links.length > 0 ? <>
                                 <div className="links">
-                                    {isDesktop && all.links.map((val, ind) => {
+                                    {all.links.map((val, ind) => {
                                         if (val.linkType == "whatsapp") {
                                             return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
                                         }
-                                        if (val.linkType == "youtube") {
-                                            return <a key={ind} href={val.link} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
-                                        }
-                                        if (val.linkType == "instagram") {
+                                        if (val.linkType == "instagram" && isDesktop) {
                                             return <a key={ind} href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
                                         }
-                                        if (val.linkType == "phone") {
-                                            return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
-                                        }
-                                        if (val.linkType == "email") {
-                                            return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
-                                        }
-                                        if (val.linkType == "link") {
-                                            return <a key={ind} href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
-                                        }
-                                    })}
-                                    {!isDesktop && all.links.map((val, ind) => {
-                                        if (val.linkType == "whatsapp") {
-                                            return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
-                                        }
-                                        if (val.linkType == "youtube") {
-                                            return <a key={ind} href={`youtube://youtube.com/@${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
-                                        }
-                                        if (val.linkType == "instagram") {
+                                        if (val.linkType == "instagram" && !isDesktop) {
                                             return <a key={ind} href={`instagram://user?username={${val.link}}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
                                         }
                                         if (val.linkType == "phone") {

@@ -111,7 +111,6 @@ const Contactinfo = ({ all }) => {
     let helpere = {
         whatsapp: "Provide Whatsapp No.",
         instagram: "Provide Instagram userId",
-        youtube: "Provide Channel Url",
         phone: "Provide phone no.",
         link: "Provide Website Link",
         email: "Provide Email"
@@ -148,7 +147,6 @@ const Contactinfo = ({ all }) => {
                                         >
                                             <MenuItem value="whatsapp"> Whatsapp No.</MenuItem>
                                             <MenuItem value="instagram">Instagram</MenuItem>
-                                            <MenuItem value="youtube">Youtube</MenuItem>
                                             <MenuItem value="phone">Phone</MenuItem>
                                             <MenuItem value="link"> Link</MenuItem>
                                             <MenuItem value="email">Email</MenuItem>
