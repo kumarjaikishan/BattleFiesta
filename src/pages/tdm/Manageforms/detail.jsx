@@ -79,13 +79,14 @@ const Detail = () => {
             })
             const resuke = await rese.json();
             // console.log(resuke);
-            if (rese.ok) {
-                dispatch(tdmfetch(inp.tid));
-                konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
-                const resuke = await rese.json();
-                toast.update(ide, { render: resuke.message, type: "success", isLoading: false, autoClose: 1600 });
-                setLoading(false);
+            setLoading(false);
+            if (!rese.ok) {
+                return toast.update(ide, { render: resuke.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
+
+            dispatch(tdmfetch(inp.tid));
+            konsa == 1 ? setinp({ ...inp, banner: resuke.url }) : setinp({ ...inp, logo: resuke.url });
+            toast.update(ide, { render: resuke.message, type: "success", isLoading: false, autoClose: 1600 });
         } catch (error) {
             console.log(error);
             toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 });

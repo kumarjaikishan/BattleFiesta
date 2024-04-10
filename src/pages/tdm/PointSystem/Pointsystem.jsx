@@ -74,15 +74,18 @@ const Pointsystem = ({ setting }) => {
 
         const result = await rese.json();
         // console.log(result);
-        if (rese.ok) {
-          dispatch(alltourna());
-          toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
-        }
         setisloading(false)
+        if (!rese.ok) {
+          return toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
+        }
+
+        dispatch(alltourna());
+        toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
+
       } catch (error) {
         // console.log(error);
         setisloading(false)
-        toast.update(id, { render: "Failed", type: "warn", isLoading: false, autoClose: 1600 });
+        toast.update(id, { render: "Failed", type: "warning", isLoading: false, autoClose: 1600 });
       }
     }
   };

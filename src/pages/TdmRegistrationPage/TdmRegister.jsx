@@ -89,6 +89,7 @@ const TdmRegister = () => {
                 body: JSON.stringify({ tid: id })
             })
             const resuke = await rese.json();
+            dispatch(setloader(false));
             // console.log(resuke);
             if (rese.ok) {
                 // toast.success(resuke.message, { autoClose: 1300 });
@@ -115,10 +116,11 @@ const TdmRegister = () => {
                 })
                 setsetting(resuke.data)
                 setabout(resuke.data2)
-                dispatch(setloader(false));
+              
             } else {
+                toast.warn("someting went wrong", { autoClose: 2300 });
                 seterrore(true);
-                dispatch(setloader(false));
+               
             }
         } catch (error) {
             toast.warn("Tournament Id not Valid", { autoClose: 2300 });

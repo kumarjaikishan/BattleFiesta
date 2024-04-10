@@ -86,11 +86,12 @@ const Contactinfo = ({ all }) => {
                 body: JSON.stringify({ tournament_id: all.tournament_id, links, publicpost })
             })
             const data = await rese.json();
-            if (rese.ok) {
-                dispatch(tdmfetch(tid))
-                setisloading(false)
-                toast.success(data.message, { autoClose: 1300 });
+            setisloading(false)
+            if (!rese.ok) {
+                return toast.warn(data.message, { autoClose: 2300 });
             }
+            dispatch(tdmfetch(tid))
+            toast.success(data.message, { autoClose: 1300 });
         } catch (error) {
             toast.warn(error.message, { autoClose: 2200 })
             console.log(error);
@@ -117,11 +118,7 @@ const Contactinfo = ({ all }) => {
         email: "Provide Email",
         link: "Provide Website Link"
     }
-    const handleEnterPress = (event) => {
-        if (event.key === 'Enter') {
-          setInputValue(inputValue + '\n');
-        }
-      };
+
 
     return (
         <>

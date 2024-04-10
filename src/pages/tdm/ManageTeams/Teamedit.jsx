@@ -7,13 +7,11 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CloseIcon from '@mui/icons-material/Close';
 import PhotoIcon from '@mui/icons-material/Photo';
-import AddIcon from '@mui/icons-material/Add';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
-import DeleteIcon from '@mui/icons-material/Delete';
 import useImageUpload from "../../utils/imageresizer";
 
 const Teamedit = ({ teamdetail, setcalledit }) => {
@@ -56,7 +54,6 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         // console.log(tdmrtk.tdmsetting);
     }, [])
 
-    const [all, setall] = useState(tdmrtk.tdmsetting);
 
 
     const editTeam = async (e) => {
@@ -91,11 +88,11 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                 toast.update(id, { render: "Updated Successfully", type: "success", isLoading: false, autoClose: 1600 });
                 setdisable(false);
             } else {
-                toast.error(responseData.error, { autoClose: 1300 });
+                toast.update(id, { render: responseData.message, type: "warning", isLoading: false, autoClose: 2200 });
             }
         } catch (error) {
             console.error(error);
-            toast.error("Registration failed. Please try again.", { autoClose: 1300 });
+            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 2200 });
         }
     };
 

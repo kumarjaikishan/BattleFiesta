@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -12,8 +12,8 @@ import useImageUpload from "../../utils/imageresizer";
 import { classicfetch } from "../../../store/classic";
 
 const Teamedit = ({ teamdetail, setcalledit }) => {
-    
-  const dispatch = useDispatch();
+
+    const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
@@ -85,7 +85,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
     const editTeam = async (e) => {
         e.preventDefault();
         let tid = inp.tournament_id;
-    //    return  console.log(tid);
+        //    return  console.log(tid);
         if (!inp.teamname) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
@@ -137,6 +137,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
 
             const responseData = await response.json();
             // console.log(responseData);
+            setdisable(false);
             if (response.ok) {
                 // toast.success(responseData.message, { autoClose: 3300 });
                 inp.players.forEach(async (player, index) => {
@@ -162,19 +163,18 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                 });
                 dispatch(classicfetch(tid));
                 toast.update(id, { render: "Updated Successfully", type: "success", isLoading: false, autoClose: 1600 });
-                setdisable(false);
             } else {
-                toast.error(responseData.error, { autoClose: 1300 });
+                toast.update(id, { render: responseData.message, type: "warning", isLoading: false, autoClose: 2300 });
             }
         } catch (error) {
             console.error(error);
-            toast.error("Registration failed. Please try again.", { autoClose: 1300 });
+            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 2300 });
         }
     };
 
-    const common =async (event, id) => {
+    const common = async (event, id) => {
         let WIDTH = 180;
-        
+
         let image_file = event.target.files[0];
 
         let resizedfile = await handleImage(WIDTH, image_file);
@@ -186,7 +186,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         document.querySelector(`#${id}`).appendChild(new_image);
         setinp({ ...inp, selectedTeamLogo: resizedfile });
     }
-    const common2 =async (event, id, index) => {
+    const common2 = async (event, id, index) => {
         let image_file = event.target.files[0];
 
         let resizedfile = await handleImage(200, image_file);
