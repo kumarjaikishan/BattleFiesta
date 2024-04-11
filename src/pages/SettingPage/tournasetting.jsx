@@ -26,6 +26,7 @@ import { classicfetch } from '../../store/classic';
 
 const Tournasetting = () => {
   const log = useSelector((state) => state.login);
+  const navigate = useNavigate();
   const classic = useSelector((state) => state.classic);
   const tournacenter = useSelector((state) => state.tournacenter);
   if (!log.islogin) {
@@ -55,6 +56,14 @@ const Tournasetting = () => {
   useEffect(() => {
     dispatch(setloader(classic.loading))
   }, [classic.loading])
+  useEffect(() => {
+    console.log("message", classic.message);
+    if (classic.message !="" && classic.loading==false) {
+      alert(classic.message);
+      navigate('/dashboard')
+    }
+  }, [classic.loading])
+
 
   if (!classic.classicsetting) {
     return <h3>Loading...</h3>

@@ -12,7 +12,7 @@ export const classicfetch = createAsyncThunk("classicfetch", async (tid) => {
             body: JSON.stringify({ tid })
           });
         const data = await responsee.json();
-        // console.log('classic fetch', data);
+        console.log('classic fetch', data);
         return data;
     } catch (error) {
         console.log(error);
@@ -28,6 +28,7 @@ const classic = createSlice({
         classicplayers: '',
         loading: false,
         error: null,
+        message:''
     },
     reducers: {
         settdmall(state, action) {
@@ -49,6 +50,7 @@ const classic = createSlice({
             state.classicdetail = action.payload.tournament;
             state.classicsetting = action.payload.settings;
             state.classicplayers = action.payload.players;
+            state.message = action.payload.message;
         })
     }
 })
