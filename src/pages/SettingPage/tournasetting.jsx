@@ -22,7 +22,7 @@ import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
-import { classicfetch } from '../../store/classic';
+import { classicfetch, setowner } from '../../store/classic';
 
 const Tournasetting = () => {
   const log = useSelector((state) => state.login);
@@ -56,10 +56,11 @@ const Tournasetting = () => {
   useEffect(() => {
     dispatch(setloader(classic.loading))
   }, [classic.loading])
+
   useEffect(() => {
-    console.log("message", classic.message);
-    if (classic.message !="" && classic.loading==false) {
-      alert(classic.message);
+    if (!classic.isowner && !classic.loading) {
+      alert("This Tournament does not belongs to you");
+      dispatch(setowner(true));
       navigate('/dashboard')
     }
   }, [classic.loading])

@@ -27,14 +27,17 @@ const tdm = createSlice({
         tdmsetting: '',
         tdmplayers: '',
         loading: false,
+        isowner:true,
         error: null,
-        message:''
     },
     reducers: {
         settdmall(state, action) {
             state.tdmdetail = action.payload.tournament;
             state.tdmsetting = action.payload.settings;
             state.tdmplayers = action.payload.players;
+        },
+        setowner(state, action) {
+            state.isowner = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -50,9 +53,9 @@ const tdm = createSlice({
             state.tdmdetail = action.payload.tournament;
             state.tdmsetting = action.payload.settings;
             state.tdmplayers = action.payload.players;
-            state.message = action.payload.message;
+            state.isowner = action.payload.isowner;
         })
     }
 })
-export const { settdmall } = tdm.actions;
+export const { settdmall,setowner } = tdm.actions;
 export default tdm.reducer;

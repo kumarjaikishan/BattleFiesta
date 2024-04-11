@@ -28,13 +28,16 @@ const classic = createSlice({
         classicplayers: '',
         loading: false,
         error: null,
-        message:''
+        isowner:true
     },
     reducers: {
         settdmall(state, action) {
             state.classicsetting = action.payload.tournament;
             state.tdmsetting = action.payload.settings;
             state.classicplayers = action.payload.players;
+        },
+        setowner(state, action) {
+            state.isowner = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -50,9 +53,9 @@ const classic = createSlice({
             state.classicdetail = action.payload.tournament;
             state.classicsetting = action.payload.settings;
             state.classicplayers = action.payload.players;
-            state.message = action.payload.message;
+            state.isowner = action.payload.isowner;
         })
     }
 })
-export const { settdmall } = classic.actions;
+export const { settdmall,setowner } = classic.actions;
 export default classic.reducer;

@@ -22,7 +22,7 @@ import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
-import { tdmfetch } from '../../store/tdm';
+import { tdmfetch,setowner } from '../../store/tdm';
 
 const Tdmsetting = () => {
   const log = useSelector((state) => state.login);
@@ -54,12 +54,14 @@ const Tdmsetting = () => {
   }, [tdmrtk.loading])
 
   useEffect(() => {
-    console.log("message", tdmrtk.message);
-    if (tdmrtk.message !="" && tdmrtk.loading==false) {
-      alert(tdmrtk.message);
-      navigate('/dashboard')
+    if (!tdmrtk.isowner && !tdmrtk.loading) {
+      alert("This Tournament does not belongs to you");
+      dispatch(setowner(true));
+      navigate('/dashboard');
     }
   }, [tdmrtk.loading])
+
+ 
 
   if (!tdmrtk.tdmsetting) {
     return <h3>Loading...</h3>
