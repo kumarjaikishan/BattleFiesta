@@ -5,21 +5,23 @@ import "./tournasetting.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Detail from './Manageforms/detail';
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import DescriptionIcon from '@mui/icons-material/Description';
-import PostAddIcon from '@mui/icons-material/PostAdd';
-import GroupIcon from '@mui/icons-material/Group';
 import Registerform from './basicSetting/registerform';
 import EnterResult from './Enterresult/Enterresult';
 import ManageTeam from './ManageTeams/ManageTeam';
 import Pointsystem from './PointSystem/Pointsystem';
 import ViewMatches from './ViewMatches/ViewMatches';
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
-import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import Stack from '@mui/material/Stack';
+import {
+  SettingsSuggestIcon,
+  DescriptionIcon,
+  PostAddIcon,
+  GroupIcon,
+  LeaderboardIcon,
+  PieChartOutlineIcon,
+  ContentCopyIcon,
+} from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
 import { classicfetch, setowner } from '../../store/classic';
