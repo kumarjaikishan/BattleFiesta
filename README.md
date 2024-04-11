@@ -11,7 +11,7 @@ BattleFiesta is an online platform designed to bring gamers together to compete 
 
 # Live
 
-Running At- https://frontend-exp-man.vercel.app
+Running At- https://battlefiesta.vercel.app
 
 ## Features
 
