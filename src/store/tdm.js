@@ -12,7 +12,7 @@ export const tdmfetch = createAsyncThunk("tdmfetch", async (tid) => {
             body: JSON.stringify({ tid })
           });
         const data = await responsee.json();
-        // console.log('tdm fetch', data);
+        console.log('tdm fetch', data);
         return data;
     } catch (error) {
         console.log(error);
@@ -28,6 +28,7 @@ const tdm = createSlice({
         tdmplayers: '',
         loading: false,
         error: null,
+        message:''
     },
     reducers: {
         settdmall(state, action) {
@@ -49,6 +50,7 @@ const tdm = createSlice({
             state.tdmdetail = action.payload.tournament;
             state.tdmsetting = action.payload.settings;
             state.tdmplayers = action.payload.players;
+            state.message = action.payload.message;
         })
     }
 })

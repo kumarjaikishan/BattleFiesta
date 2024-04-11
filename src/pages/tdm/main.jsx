@@ -26,6 +26,7 @@ import { tdmfetch } from '../../store/tdm';
 
 const Tdmsetting = () => {
   const log = useSelector((state) => state.login);
+  const navigate= useNavigate();
   if (!log.islogin) {
     toast.warn("You are not Logged In", { autoClose: 1300 })
     return <Navigate to='/login' />
@@ -52,7 +53,17 @@ const Tdmsetting = () => {
     dispatch(setloader(tdmrtk.loading))
   }, [tdmrtk.loading])
 
+  useEffect(() => {
+    console.log("message", tdmrtk.message);
+    if (tdmrtk.message !="" && tdmrtk.loading==false) {
+      alert(tdmrtk.message);
+      navigate('/dashboard')
+    }
+  }, [tdmrtk.loading])
 
+  if (!tdmrtk.tdmsetting) {
+    return <h3>Loading...</h3>
+  }
   const handleactive = (index) => {
     let all = document.querySelectorAll('.controller .cont');
 
