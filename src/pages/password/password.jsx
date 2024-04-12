@@ -1,5 +1,6 @@
 import './password.css'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
@@ -8,6 +9,7 @@ import { toast } from "react-toastify";
 
 const PasswordReset = () => {
     const { token } = useParams();
+    const navigate = useNavigate();
     const [inp, setinp] = useState({
         pass: '',
         cpass: ''
@@ -39,6 +41,7 @@ const PasswordReset = () => {
                 return toast.warn(resuke.message, { autoClose: 2100 })
             }
             toast.success(resuke.message, { autoClose: 1600 })
+            navigate('/login')     
         } catch (error) {
             toast.warn(error.message, { autoClose: 2100 })
             console.log(error);
