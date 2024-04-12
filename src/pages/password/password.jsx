@@ -40,7 +40,7 @@ const PasswordReset = () => {
             }
             toast.success(resuke.message, { autoClose: 1600 })
         } catch (error) {
-            toast.warn(resuke.message, { autoClose: 2100 })
+            toast.warn(error.message, { autoClose: 2100 })
             console.log(error);
             setloading(false)
         }
