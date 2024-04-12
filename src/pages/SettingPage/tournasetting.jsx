@@ -11,15 +11,13 @@ import ManageTeam from './ManageTeams/ManageTeam';
 import Pointsystem from './PointSystem/Pointsystem';
 import ViewMatches from './ViewMatches/ViewMatches';
 import Stack from '@mui/material/Stack';
-import {
-  SettingsSuggestIcon,
-  DescriptionIcon,
-  PostAddIcon,
-  GroupIcon,
-  LeaderboardIcon,
-  PieChartOutlineIcon,
-  ContentCopyIcon,
-} from '@mui/icons-material';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import GroupIcon from '@mui/icons-material/Group';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Imagemodal from './basicSetting/imagemodal';

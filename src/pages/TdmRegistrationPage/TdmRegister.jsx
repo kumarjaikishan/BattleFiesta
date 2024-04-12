@@ -248,7 +248,7 @@ const TdmRegister = () => {
                             </p>
                             <Divider variant="middle" />
                         </>}
-                        {!newfresh && about.slots > filteredentry.length && <form onSubmit={handleRegister}>
+                        {!newfresh && setting.isopen && about.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <div className="compart">
                                 <TextField className="cominp" size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
                                 <TextField className="cominp"
@@ -368,7 +368,7 @@ const TdmRegister = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on PlayerList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {!newfresh && setting.show_payment && <div className="showpayment">
+                        {!newfresh && setting.show_payment && setting.isopen && about.slots > filteredentry.length && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

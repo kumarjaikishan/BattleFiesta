@@ -544,7 +544,7 @@ const Register = () => {
                             <h1>REGISTRATION CLOSED</h1>
                             <p>The Registration for this tournament has been closed by the Admin</p>
                         </div>}
-                        {all.slots <= filteredentry.length && <div className="closed">
+                        {all.slots <= filteredentry.length && all.isopen && <div className="closed">
                             <div> <SentimentVeryDissatisfiedIcon className="stop" /></div>
                             <h1>Oops! Slot is Full</h1>
                             <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>
@@ -557,7 +557,7 @@ const Register = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {all.show_payment && <div className="showpayment">
+                        {all.isopen && all.show_payment &&  all.slots > filteredentry.length && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}
