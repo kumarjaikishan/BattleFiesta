@@ -80,7 +80,7 @@ const Tournasetting = () => {
     setactive(index);
     all[index].classList.add("active");
   }
-  let localhos = tournacenter.linkaddress;
+  let localhos = window.location.origin;
 
   function copyUrlToClipboard(page) {
     // Create a temporary input element

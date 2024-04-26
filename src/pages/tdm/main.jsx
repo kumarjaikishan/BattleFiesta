@@ -47,6 +47,7 @@ const Tdmsetting = () => {
     // }
     // tdmrtk.tdmdetail._id != tid && dispatch(tdmfetch(tid));
     dispatch(header('Setting'))
+    // console.log("url", window.location.origin);
     dispatch(setloader(true))
   }, [])
   useEffect(() => {
@@ -76,7 +77,7 @@ const Tdmsetting = () => {
     setactive(index);
     all[index].classList.add("active");
   }
-  let localhos = tournacenter.linkaddress;
+  let localhos = window.location.origin;
 
   function copyUrlToClipboard(page) {
     // Create a temporary input element
