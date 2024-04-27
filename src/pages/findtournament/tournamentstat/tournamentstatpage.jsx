@@ -66,7 +66,7 @@ const Tournamentstatpage = () => {
     });
     return formattedDate;
   }
-  let localhos = tournacenter.linkaddress;
+  let localhos = window.location.origin;
 
   return (
     <div className="tournastat">
