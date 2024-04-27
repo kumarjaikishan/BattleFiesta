@@ -3,8 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const profilefetch = createAsyncThunk("profilefetch", async () => {
     const token = localStorage.getItem("token");
     try {
-        const res = await fetch(`https://esport-backend.vercel.app/profile`, {
-        // const res = await fetch(`http://localhost:5000/profile`, {
+        const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}profile`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
