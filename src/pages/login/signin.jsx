@@ -24,7 +24,7 @@ const Signin = ({showmsg,setshowmsg}) => {
     }
     useEffect(() => {
         dispatch(setloader(false));
-        // console.log(tournacenter);
+        // console.log(import.meta.env.VITE_API_ADDRESS);
     }, [])
 
     const [signinp, setsigninp] = useState(init);
