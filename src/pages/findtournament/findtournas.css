@@ -426,7 +426,7 @@
     .findtournas {
         .cards {
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: 1rem;
+            grid-gap: 0.6rem;
             padding: 0.6em 1em;
         }
     }
@@ -436,7 +436,7 @@
     .findtournas {
         .cards {
             grid-template-columns: repeat(1, 1fr);
-            grid-gap: 1rem;
+            grid-gap: 0.5rem;
             padding: 0.6em 1em;
         }
     }
