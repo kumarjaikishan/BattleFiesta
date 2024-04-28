@@ -83,7 +83,7 @@ function App() {
   return (
     <>
       <ToastContainer closeOnClick={true} pauseOnFocusLoss={true} />
-      <div className="App" >
+      <div className="App" > 
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>

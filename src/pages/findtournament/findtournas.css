@@ -330,7 +330,7 @@
             min-height: calc(100vh - (var(--navheightmobile)) + 50px);
 
             & .card {
-                transform: scale(.95);
+                transform: scale(.95); 
 
                 .controller {
 
@@ -338,9 +338,8 @@
                         letter-spacing: .5px;
                         font-size: 0.8em;
                     }
-
                     .status {
-                        border-radius: 50px;
+                        border-radius: 5px;
                         padding: 0px 3px;
                     }
                 }
