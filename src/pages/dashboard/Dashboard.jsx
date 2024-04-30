@@ -329,7 +329,7 @@ const Dashboard = () => {
                       src={val.tournment_logo ? val.tournment_logo : tournlogo}
                       alt="logo"
                     />
-                    <span>{val.title}</span>
+                    <span title={val.title}>{val.title}</span>
                   </div>
                   <span className={`status ${val.status}`}>{val.status}</span>
                   <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>

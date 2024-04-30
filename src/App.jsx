@@ -73,17 +73,13 @@ function App() {
   useEffect(() => {
     log.islogin && requestPermission();
 
-    const date = new Date();
-    const milliseconds = date.getTime();
-
-    // console.log(milliseconds);
   }, [log.islogin])
 
 
   return (
     <>
       <ToastContainer closeOnClick={true} pauseOnFocusLoss={true} />
-      <div className="App" > 
+      <div className="App" >
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>
