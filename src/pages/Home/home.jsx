@@ -1,4 +1,4 @@
-import './home1.css'
+import './home.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { setloader, header } from '../../store/login';
 import { useEffect, useRef, useref } from 'react';
