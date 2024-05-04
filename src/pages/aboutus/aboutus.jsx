@@ -16,6 +16,9 @@ const AboutUs = () => {
         <h3>⦿ Tournament Management</h3>
         <p>Your all-in-one eSports tournament platform. Customize your points system, manage registrations, teams, and matches from one easy dashboard. Battle Royale or Team Deathmatch, we've got you covered. Join us and level up your eSports tournaments today!</p>
 
+        <h3>⦿ Get Notification</h3>
+        <p> Just allow notification and you are good to go, Get Notification whenever any contestant join your Tournament</p>
+       
         <h3>⦿ Detailed Stats</h3>
         <p> Elevate your tournaments with our dedicated stats pages! Showcase top fraggers, team performance, and stunning graphs—all publicly accessible. Share your stats page link with your audience and let the excitement unfold!</p>
        
