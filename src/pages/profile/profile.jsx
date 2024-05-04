@@ -68,6 +68,9 @@ const Profile = () => {
     });
 
     const fetche = async () => {
+        if(!userprofile.membership){
+            return;
+        }
         let data = userprofile.userprofile;
         let membere = userprofile.membership
         setinp({
