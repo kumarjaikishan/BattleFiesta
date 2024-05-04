@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const profilefetch = createAsyncThunk("profilefetch", async () => {
     const token = localStorage.getItem("token");
+    console.log("profile api called");
     try {
         const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}profile`, {
             method: "GET",
@@ -10,7 +11,7 @@ export const profilefetch = createAsyncThunk("profilefetch", async () => {
             }
         })
         let alldata = await res.json();
-        // console.log("profileapi", alldata);
+        console.log("profileapi", alldata);
         return alldata;
     } catch (error) {
         console.log(error);

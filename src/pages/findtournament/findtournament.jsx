@@ -40,13 +40,14 @@ const Findtournament = () => {
     }
 
     const fetche = async () => {
+        console.log("call from findtournamnet page");
         try {
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournament`, {
                 method: "GET"
             });
 
             const data = await responsee.json();
-            // console.log(data);
+            console.log("findtournament page",data);
             dispatch(setloader(false));
             if (!responsee.ok) {
                 return toast.warn(data.message, { autoclose: 2100 })

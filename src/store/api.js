@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const alltourna = createAsyncThunk("alltourna", async () => {
     const token = localStorage.getItem("token");
-    // console.log("called all tournment");
+    console.log("called all tournment");
     // console.time("time taken by userdata");
     try {
         const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}gettournament`, {
@@ -13,7 +13,7 @@ export const alltourna = createAsyncThunk("alltourna", async () => {
         })
         const data = await res.json();
         //  console.timeEnd("time taken by userdata");
-        // console.log("from redux api", data);
+        console.log("from api page redux api", data);
         return data;
     } catch (error) {
         console.log(error);

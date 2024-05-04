@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // First API call
 export const memshipentry = createAsyncThunk("memshipentry", async () => {
     const token = localStorage.getItem("token");
-    // console.log("membership entry");
+    console.log("membership entry called from admin");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}memshipentry`, {
             method: "GET",

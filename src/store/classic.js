@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const classicfetch = createAsyncThunk("classicfetch", async (tid) => {
     const token = localStorage.getItem("token");
+    console.log("classic store called");
     try {
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getclassic`, {
             method: "POST",
@@ -12,7 +13,7 @@ export const classicfetch = createAsyncThunk("classicfetch", async (tid) => {
             body: JSON.stringify({ tid })
           });
         const data = await responsee.json();
-        // console.log('classic fetch', data);
+        console.log('classic fetch', data);
         return data;
     } catch (error) {
         console.log(error);
