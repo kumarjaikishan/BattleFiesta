@@ -6,7 +6,6 @@
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     &::before {
         position: absolute;
@@ -21,12 +20,13 @@
    
 
     .box {
+        margin-top: 20px;
         border-radius: 20px;
         position: relative;
         width: 420px;
         background: rgba(255, 255, 255, .4);
         background: white;
-        height: 500px;
+        height: 520px;
         /* height: max-content; */
         backdrop-filter: blur(8px);
         overflow: hidden;
@@ -169,7 +169,7 @@
         .box {
             margin-top: 20px;
             width: 80vw;
-            height: 60vh;
+            height: 70vh;
         }
     }
 }
