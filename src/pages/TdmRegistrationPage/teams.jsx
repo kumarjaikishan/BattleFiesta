@@ -31,7 +31,7 @@ const Teams = ({ about, categoryenteries, entry }) => {
         <>
             <div className="teamse">
                 <h2>Player List</h2>
-                <div>
+                <div style={{ margin:'5px 0px'}}>
                     <FormControl className="cominp" size="small" sx={{ mt: 1.6, width: '200px' }}>
                         <InputLabel id="demo-simple-select-label">Choose Category</InputLabel>
                         <Select

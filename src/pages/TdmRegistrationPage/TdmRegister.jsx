@@ -77,14 +77,14 @@ const TdmRegister = () => {
     const [entry, setentry] = useState([]);
     const [errore, seterrore] = useState(false);
     const [category, setcategory] = useState(0);
-    const [categoryenteries,setcategoryenteries]= useState();
+    const [categoryenteries, setcategoryenteries] = useState();
 
-    const handlecategory=(e)=>{
+    const handlecategory = (e) => {
         setcategory(e.target.value);
     }
     useEffect(() => {
         // console.log(categoryenteries && categoryenteries.hasOwnProperty(category) && categoryenteries[category].length ) ;
-            }, [categoryenteries,category])
+    }, [categoryenteries, category])
 
     const fetche = async (id) => {
         setdisable(true);
@@ -103,18 +103,18 @@ const TdmRegister = () => {
                 // toast.success(resuke.message, { autoClose: 1300 });
                 setdisable(false);
                 let enteries = resuke.enteries;
-                
-                
-                let categorizedData ={};
+
+
+                let categorizedData = {};
                 enteries.map((obj) => {
                     const category = obj.category;
                     if (!categorizedData[category]) {
-                      categorizedData[category] = [];
+                        categorizedData[category] = [];
                     }
                     categorizedData[category].push(obj);
                 })
                 setcategoryenteries(categorizedData)
-             
+
 
                 setentry(enteries);
                 setinp({
@@ -238,24 +238,26 @@ const TdmRegister = () => {
                     {!teamlist && <div className="form">
                         <h2>Registration : {about.title}</h2>
                         <h4>Organised by : {about.organiser}</h4>
-                        <FormControl className="cominp" size="small" sx={{mt:1.6, width: '200px' }}>
-                            <InputLabel id="demo-simple-select-label">Choose Category</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={about?.slotCategory ? category : ""}
-                                required
-                                name="os"
-                                label="Choose Category"
-                                onChange={handlecategory}
-                            >
-                                {
-                                    about?.slotCategory?.map((val, ind) => {
-                                        return <MenuItem sx={{ textTransform: "capitalize" }}   key={ind} value={ind}>{val.category}</MenuItem>
-                                    })
-                                }
-                            </Select>
-                        </FormControl>
+                        <div style={{textAlign:"center", margin:'5px 0px'}}>
+                            <FormControl className="cominp" size="small" sx={{ mt: 1.6, width: '200px' }}>
+                                <InputLabel id="demo-simple-select-label">Choose Category</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={about?.slotCategory ? category : ""}
+                                    required
+                                    name="os"
+                                    label="Choose Category"
+                                    onChange={handlecategory}
+                                >
+                                    {
+                                        about?.slotCategory?.map((val, ind) => {
+                                            return <MenuItem sx={{ textTransform: "capitalize" }} key={ind} value={ind}>{val.category}</MenuItem>
+                                        })
+                                    }
+                                </Select>
+                            </FormControl>
+                        </div>
 
                         <div className="slots">
                             <span>Total Slots : {about.slotCategory?.[category]?.slots}</span>
@@ -383,10 +385,10 @@ const TdmRegister = () => {
                             <h1>REGISTRATION CLOSED</h1>
                             <p>The Registration for this tournament has been closed by the Admin</p>
                         </div>}
-                        { (about.slotCategory?.[category]?.slots) <= (categoryenteries?.[category]?.length ?? 0) && <div className="closed">
+                        {(about.slotCategory?.[category]?.slots) <= (categoryenteries?.[category]?.length ?? 0) && <div className="closed">
                             <div> <SentimentVeryDissatisfiedIcon className="stop" /></div>
                             <h1>Oops! Slot is Full</h1>
-                            <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>
+                            <p>The Registration for this Category has been Full. It Excludes Teams Rejected</p>
                         </div>}
 
                         {/* after registration completed show registered team */}
