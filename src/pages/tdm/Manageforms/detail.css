@@ -1,0 +1,21 @@
+.tournawrapper{
+
+    .tournainfo{
+
+        .category{
+            border: 1px solid #999;
+            padding: 5px 0px;
+            width: 95%;
+            margin: 5px auto;
+            border-radius: 5px;
+            text-align: center;
+
+            .child{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin: 8px 0px;
+            }
+        }
+    }
+}

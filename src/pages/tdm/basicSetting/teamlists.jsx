@@ -13,8 +13,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
 import EditIcon from '@mui/icons-material/Edit';
 import PhotoIcon from '@mui/icons-material/Photo';
-import group from '../../../assets/group.webp'
-import group1 from '../../../assets/group1.webp'
 import user from '../../../assets/user.webp'
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
@@ -36,14 +34,14 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                     className={`header ${player.status}`}
                 // style={{ borderRight: "8px solid orange" }}
                 >
-                     <img src={player.logo ?player.logo :group} alt="" /> 
+                     <img src={player.logo ?player.logo :user} alt="" /> 
                     <span>{player.name} </span>
                   {player.os && <span style={{fontSize:'14px', fontWeight:'400', textTransform:'capitalize'}}>-{player.os}</span>}  
                 </AccordionSummary>
                 <AccordionDetails className='details'>
                     <div className="teamdata">
                         <div className='imageside'>
-                        <img src={player.logo ?player.logo :group1} alt="" /> 
+                        <img src={player.logo ?player.logo :user} alt="" /> 
                             <div className="icon">
                                 <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
                                 <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>

@@ -13,6 +13,9 @@ import Divider from '@mui/material/Divider';
 import PanToolIcon from '@mui/icons-material/PanTool';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Teams from "./teams";
+import Select from '@mui/material/Select';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import GroupIcon from '@mui/icons-material/Group';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -24,8 +27,6 @@ import TagFacesIcon from '@mui/icons-material/TagFaces';
 import Badge from '@mui/material/Badge';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import QRCode from "react-qr-code";
 import useImageUpload from "../utils/imageresizer";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
@@ -54,6 +55,7 @@ const TdmRegister = () => {
         fetche(registerId);
     }, [])
 
+
     const inpinit = {
         userid: "",
         tournament_id: "",
@@ -73,10 +75,16 @@ const TdmRegister = () => {
     const [setting, setsetting] = useState({});
     const [about, setabout] = useState({});
     const [entry, setentry] = useState([]);
-    const [filteredentry, setfilteredentry] = useState([]);
     const [errore, seterrore] = useState(false);
-    const [android,setandroid]= useState([])
-    const [ios,setios]= useState([])
+    const [category, setcategory] = useState(0);
+    const [categoryenteries,setcategoryenteries]= useState();
+
+    const handlecategory=(e)=>{
+        setcategory(e.target.value);
+    }
+    useEffect(() => {
+        // console.log(categoryenteries && categoryenteries.hasOwnProperty(category) && categoryenteries[category].length ) ;
+            }, [categoryenteries,category])
 
     const fetche = async (id) => {
         setdisable(true);
@@ -90,25 +98,24 @@ const TdmRegister = () => {
             })
             const resuke = await rese.json();
             dispatch(setloader(false));
-            // console.log(resuke);
+            console.log(resuke);
             if (rese.ok) {
                 // toast.success(resuke.message, { autoClose: 1300 });
                 setdisable(false);
                 let enteries = resuke.enteries;
-                let filtenteries = enteries.filter((val) => {
-                    return val.status != "rejected"
+                
+                
+                let categorizedData ={};
+                enteries.map((obj) => {
+                    const category = obj.category;
+                    if (!categorizedData[category]) {
+                      categorizedData[category] = [];
+                    }
+                    categorizedData[category].push(obj);
                 })
-                let andriodplayers = enteries.filter((val) => {
-                    // console.log(val);
-                    return val.os == 'android'
-                })
-                let iosplayers = enteries.filter((val) => {
-                    // console.log(val);
-                    return val.os == 'ios'
-                })
-                setfilteredentry(filtenteries);
-                setandroid(andriodplayers);
-                setios(iosplayers);
+                setcategoryenteries(categorizedData)
+             
+
                 setentry(enteries);
                 setinp({
                     ...inp, userid: resuke.data.userid,
@@ -116,11 +123,11 @@ const TdmRegister = () => {
                 })
                 setsetting(resuke.data)
                 setabout(resuke.data2)
-              
+
             } else {
                 toast.warn("someting went wrong", { autoClose: 2300 });
                 seterrore(true);
-               
+
             }
         } catch (error) {
             toast.warn("Tournament Id not Valid", { autoClose: 2300 });
@@ -148,6 +155,7 @@ const TdmRegister = () => {
         formData.append("email", inp.email);
         formData.append("os", inp.os);
         formData.append("discord", inp.discord);
+        formData.append("category", category);
         formData.append("utrno", inp.utrno);
         formData.append("fps", inp.fps);
         formData.append("device", inp.device);
@@ -230,16 +238,36 @@ const TdmRegister = () => {
                     {!teamlist && <div className="form">
                         <h2>Registration : {about.title}</h2>
                         <h4>Organised by : {about.organiser}</h4>
+                        <FormControl className="cominp" size="small" sx={{mt:1.6, width: '200px' }}>
+                            <InputLabel id="demo-simple-select-label">Choose Category</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={about?.slotCategory ? category : ""}
+                                required
+                                name="os"
+                                label="Choose Category"
+                                onChange={handlecategory}
+                            >
+                                {
+                                    about?.slotCategory?.map((val, ind) => {
+                                        return <MenuItem sx={{ textTransform: "capitalize" }}   key={ind} value={ind}>{val.category}</MenuItem>
+                                    })
+                                }
+                            </Select>
+                        </FormControl>
+
                         <div className="slots">
-                            <span>Total Slots : {about.slots}</span>
-                            <span>Registered : {filteredentry.length}</span>
-                            <span>Available : {about.slots - filteredentry.length}</span>
+                            <span>Total Slots : {about.slotCategory?.[category]?.slots}</span>
+                            <span>Registered : {categoryenteries?.[category]?.length ?? 0}</span>
+                            <span>Available : {(about.slotCategory?.[category]?.slots) - (categoryenteries?.[category]?.length ?? 0)}</span>
                         </div>
+
                         <Divider variant="middle" />
 
-                        {setting.description  && <>
+                        {setting.description && <>
                             <p className="desc">
-                            {setting.description.split('\n').map((line, index) => (
+                                {setting.description.split('\n').map((line, index) => (
                                     <React.Fragment key={index}>
                                         {line}
                                         <br />
@@ -248,7 +276,7 @@ const TdmRegister = () => {
                             </p>
                             <Divider variant="middle" />
                         </>}
-                        {!newfresh && setting.isopen && about.slots > filteredentry.length && <form onSubmit={handleRegister}>
+                        {!newfresh && setting.isopen && (about.slotCategory?.[category]?.slots) > (categoryenteries?.[category]?.length ?? 0) && <form onSubmit={handleRegister}>
                             <div className="compart">
                                 <TextField className="cominp" size="small" required id="outlined-basic" label="In Game Name" value={inp.name} name="name" onChange={realhandlechange} variant="outlined" />
                                 <TextField className="cominp"
@@ -332,7 +360,7 @@ const TdmRegister = () => {
                                     type='tel'
                                     inputProps={{ minLength: 12, maxLength: 12 }}
                                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                    size="small"  id="outlined-basic" label="UTR/TXN NO." value={inp.utrno} name="utrno" onChange={realhandlechange} variant="outlined" />
+                                    size="small" id="outlined-basic" label="UTR/TXN NO." value={inp.utrno} name="utrno" onChange={realhandlechange} variant="outlined" />
                                 <br />
                             </>}
 
@@ -355,7 +383,7 @@ const TdmRegister = () => {
                             <h1>REGISTRATION CLOSED</h1>
                             <p>The Registration for this tournament has been closed by the Admin</p>
                         </div>}
-                        {about.slots <= filteredentry.length && <div className="closed">
+                        { (about.slotCategory?.[category]?.slots) <= (categoryenteries?.[category]?.length ?? 0) && <div className="closed">
                             <div> <SentimentVeryDissatisfiedIcon className="stop" /></div>
                             <h1>Oops! Slot is Full</h1>
                             <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>
@@ -368,7 +396,7 @@ const TdmRegister = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on PlayerList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {!newfresh && setting.show_payment && setting.isopen && about.slots > filteredentry.length && <div className="showpayment">
+                        {!newfresh && setting.show_payment && setting.isopen && (about.slotCategory?.[category]?.slots) > (categoryenteries?.[category]?.length ?? 0) && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}
@@ -426,7 +454,7 @@ const TdmRegister = () => {
 
                         </div>
                     </div>}
-                    {teamlist && <Teams android={android} ios={ios} entry={entry} />} </>}
+                    {teamlist && <Teams about={about} categoryenteries={categoryenteries} entry={entry} />} </>}
             </div>
         </>
     );

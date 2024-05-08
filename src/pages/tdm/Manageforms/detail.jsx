@@ -1,4 +1,5 @@
 import TextField from '@mui/material/TextField';
+import "./detail.css";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -13,6 +14,8 @@ import { toast } from "react-toastify";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { tdmfetch } from '../../../store/tdm';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Detail = () => {
     const { handleImage } = useImageUpload();
@@ -29,7 +32,11 @@ const Detail = () => {
         logo: tdmrtk.tdmdetail.tournment_logo || "",
         status: tdmrtk.tdmdetail.status || "",
         visibility: tdmrtk.tdmdetail.visibility || false,
-        label: tdmrtk.tdmdetail.label || ""
+        label: tdmrtk.tdmdetail.label || "",
+        slotCategory: tdmrtk.tdmdetail.slotCategory || [{
+            category: "All",
+            slots: tdmrtk.tdmdetail.slots
+        }]
     }
     const [inp, setinp] = useState(init);
     const handleChange = (e) => {
@@ -94,6 +101,14 @@ const Detail = () => {
     }
 
     const submit = async () => {
+        let slotTaken = 0;
+        inp.slotCategory.map((val) => {
+            // console.log(val.slots);
+            slotTaken += val.slots
+        })
+        if(slotTaken > inp.slots){
+          return  toast.warn("Catergory slots can't be more than Total slots",{autoClose:2200})
+        }
         setLoading(true);
         try {
             const ide = toast.loading("Please wait...")
@@ -134,6 +149,52 @@ const Detail = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
+
+
+    const addnewcategory = () => {
+        // console.log(inp.players.length, ":", all.max_player);
+        // let playerlen = inp.players.length;
+        let slotTaken = 0;
+        inp.slotCategory.map((val) => {
+            // console.log(val.slots);
+            slotTaken += val.slots
+        })
+        let availableSlots = inp.slots;
+        if (1 == 1) {
+            const newcategory = {
+                category: "",
+                slots: parseInt(availableSlots - slotTaken)
+            };
+
+            setinp(prevState => ({
+                ...prevState,
+                slotCategory: [...prevState.slotCategory, newcategory],
+            }));
+        } else {
+            toast.warn(`Max of ${all.max_player} Palyers are Allowed`, { autoClose: 2100 })
+        }
+    }
+    const handleCaterogyChange = (event, index, field) => {
+        let { value } = event.target;
+        if(field =="slots" && value != ""){
+            value = parseInt(value)
+        }
+        // console.log(value);
+        const updatedInp = [...inp.slotCategory];
+        updatedInp[index] = {
+            ...updatedInp[index],
+            [field]: value
+        };
+        setinp({
+            ...inp, slotCategory: updatedInp
+        });
+    };
+    const deletecategory=(index)=>{
+         let vdf = inp.slotCategory.filter((val,ind)=>{
+            return ind !=index;
+         })
+         setinp({...inp, slotCategory:vdf})
+    }
     return (
         <>
             <div className="tournawrapper">
@@ -171,6 +232,32 @@ const Detail = () => {
                         value={inp.slots}
                         onChange={handleChange}
                     />
+
+
+                    <div className="category">
+                        <h4>Choose Category</h4>
+                        {
+                            inp.slotCategory.map((val, index) => {
+                                return <div className="child" key={index}>
+                                    <TextField size="small" sx={{ width: "115px" }} value={val.category} onChange={(e) => handleCaterogyChange(e, index, 'category')} label="Category" variant="outlined" />
+                                    <TextField size="small"
+                                        value={val.slots}
+                                        inputProps={{ minLength: 5, maxLength: 15 }}
+                                        type='tel'
+                                        sx={{ width: "85px" }}
+                                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                        onChange={(e) => handleCaterogyChange(e, index, 'slots')} label="Max. slots" variant="outlined"
+                                    />
+                                    <DeleteIcon sx={{ width: "25px" }} className="DeleteIcon" onClick={() => deletecategory(index)} />
+                                </div>
+                            })
+                        }
+                        <Button title="Add New Category" size='small' onClick={addnewcategory} startIcon={<AddIcon />} variant="outlined" color="primary">
+                            Add
+                        </Button>
+                    </div>
+
+
 
                     <FormControl size='small' sx={{ m: 1, Width: "98%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>

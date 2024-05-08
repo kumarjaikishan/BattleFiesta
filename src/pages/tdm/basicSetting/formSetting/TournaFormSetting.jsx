@@ -1,10 +1,12 @@
 import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel } from '@mui/material';
 import './TournaFormSetting.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
+
+   
 
     return (
         <>
@@ -122,7 +124,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
-                  
+
                     <FormLabel id="demo-row-radio-buttons-group-label">Show Payment Option</FormLabel>
                     <RadioGroup
                         row
@@ -205,8 +207,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
-
-
+                  
                     <LoadingButton
                         onClick={submit}
                         loading={isloading}

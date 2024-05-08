@@ -87,6 +87,9 @@ const Profile = () => {
             sociallinks: data.sociallinks,
             profile: data.imgsrc
         })
+        if(!userprofile.membership.planid.plan_name){
+            return;
+        }
         setmembership({
             plan: membere.planid.plan_name,
             planprice: membere.planid.price,
