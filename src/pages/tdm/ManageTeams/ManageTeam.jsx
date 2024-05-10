@@ -4,6 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
 import Badge from '@mui/material/Badge';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { useEffect, useState } from 'react';
 import { tdmfetch } from '../../../store/tdm';
 import Button from '@mui/material/Button';
@@ -14,23 +18,21 @@ const ManageTeam = ({ showss }) => {
   const dispatch = useDispatch();
   const { tid } = useParams();
   const tdmrtk = useSelector((state) => state.tdm);
-  const [android, setandroid] = useState([]);
-  const [ios, setios] = useState([]);
+  const [category, setcategory] = useState('all');
+  const [categoryenteries, setcategoryenteries] = useState();
+
+  
 
   useEffect(() => {
-    let and = [];
-    let io = [];
-    tdmrtk?.tdmplayers?.map((val) => {
-      if (val.os == "android") {
-        and.push(val);
-      }
-      if (val.os == "ios") {
-        io.push(val);
-      }
+    let categorizedData = {};
+    tdmrtk?.tdmplayers?.map((obj) => {
+        const category = obj.category;
+        if (!categorizedData[category]) {
+            categorizedData[category] = [];
+        }
+        categorizedData[category].push(obj);
     })
-    setandroid(and);
-    setios(io)
-    filter(0);
+    setcategoryenteries(categorizedData)
   }, [tdmrtk.tdmplayers])
 
 
@@ -73,18 +75,13 @@ const ManageTeam = ({ showss }) => {
     // console.log(teamdata);
   }
   const [allplayers, setallplayers] = useState(tdmrtk.tdmplayers)
-  const [active, setactive] = useState(0)
-
-  const filter = (ind) => {
-    setactive(ind)
-    if (ind == 0) {
+  
+  const handlecategory = (e) => {
+    setcategory(e.target.value);
+    if (e.target.value == "all") {
       setallplayers(tdmrtk.tdmplayers)
-    }
-    if (ind == 1) {
-      setallplayers(android)
-    }
-    if (ind == 2) {
-      setallplayers(ios)
+    } else {
+      categoryenteries.hasOwnProperty(e.target.value) ? setallplayers(categoryenteries[e.target.value]) : setallplayers([]);
     }
   }
 
@@ -93,16 +90,26 @@ const ManageTeam = ({ showss }) => {
       <div
         className="manageteams">
         <div className="box">
-          <div>
-            <Badge sx={{ m: 2 }} min={1} badgeContent={tdmrtk.tdmplayers.length} color="success">
-              <Button onClick={() => filter(0)} variant={active == 0 ? "contained" : 'outlined'} color="primary">All</Button>
-            </Badge>
-            <Badge sx={{ m: 2 }} min={1} badgeContent={android.length} color="success">
-              <Button onClick={() => filter(1)} variant={active == 1 ? "contained" : 'outlined'} color="primary">Android</Button>
-            </Badge>
-            <Badge sx={{ m: 2 }} min={1} badgeContent={ios.length} color="success">
-              <Button onClick={() => filter(2)} variant={active == 2 ? "contained" : 'outlined'} color="primary">Ios</Button>
-            </Badge>
+          <div style={{ margin: '5px 0px', textAlign:'center' }}>
+            <FormControl className="cominp" size="small" sx={{ mt: 1.6, width: '200px' }}>
+              <InputLabel id="demo-simple-select-label">Choose Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={tdmrtk?.tdmdetail?.slotCategory ? category : ""}
+                required
+                name="os"
+                label="Choose Category"
+                onChange={handlecategory}
+              >
+                <MenuItem value={'all'}>All</MenuItem>
+                {
+                  tdmrtk?.tdmdetail?.slotCategory?.map((val, ind) => {
+                    return <MenuItem sx={{ textTransform: "capitalize" }} key={ind} value={ind}>{val.category}</MenuItem>
+                  })
+                }
+              </Select>
+            </FormControl>
           </div>
           <h2>Player List:</h2>
           {!calledit && tdmrtk.tdmplayers && <Teamlists teamarray={allplayers} deletee={deletee} callfrom={"manageteam"} edetee={edetee} showss={showss} />}

@@ -36,35 +36,71 @@
             color: rgb(6, 115, 146);
         }
     }
-    .header.pending{
+
+    .header.pending {
         border-right: 8px solid orange;
     }
-    .header.approved{
+
+    .header.approved {
         border-right: 8px solid green;
     }
-    .header.rejected{
+
+    .header.rejected {
         border-right: 8px solid red;
     }
 }
-.manageteams{
-    & .box{
+
+.tdmtournasetting {
+
+    .header {
+        & .name {
+            width: 420px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .category {
+            position: absolute;
+            right: 40px;
+            width: 120px;
+            text-align: end;
+        }
+    }
+}
+
+.manageteams {
+    & .box {
         position: relative;
         min-height: 200px;
-    } 
-     .header.pending{
+    }
+
+    .header.pending {
         border-right: 8px solid orange;
     }
-    .header.approved{
+
+    .header.approved {
         border-right: 8px solid green;
     }
-    .header.rejected{
+
+    .header.rejected {
         border-right: 8px solid red;
     }
 }
 
 @media only screen and (max-width: 600px) {
+    .tdmtournasetting {
+
+        .header {
+            & .name {
+                width: 180px;
+            }
+
+        }
+    }
+
     .form_setting {
-    
+
         & .control {
             height: fit-content;
             display: flex;
@@ -72,7 +108,7 @@
             gap: 5px;
             justify-content: start;
             border-bottom: 1px solid #212529;
-    
+
             & div {
                 display: flex;
                 width: 30%;
@@ -82,18 +118,18 @@
                 color: grey;
                 cursor: pointer;
                 border-radius: 10px;
-    
+
                 &:hover {
                     border-bottom: 2px solid transparent;
                     color: rgb(6, 132, 182);
                 }
-    
+
                 h3 {
                     margin-left: 5px;
                     font-size: 12px;
                 }
             }
-    
+
             .active {
                 color: rgb(6, 115, 146);
             }

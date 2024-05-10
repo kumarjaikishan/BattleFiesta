@@ -8,6 +8,7 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import Button from '@mui/material/Button';
+import { useSelector, useDispatch } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
@@ -19,8 +20,11 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
     const hgfh = (ide) => {
         decline(ide)
     }
-    useEffect(()=>{
-        // console.log(teamarray);
+
+    const tdmrtk = useSelector((state) => state.tdm);
+    useEffect(() => {
+        console.log(teamarray);
+        console.log(tdmrtk.tdmdetail.slotCategory);
     })
     return (<>
         {teamarray.length > 0 && teamarray.map((player, ind) => {
@@ -34,14 +38,14 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                     className={`header ${player.status}`}
                 // style={{ borderRight: "8px solid orange" }}
                 >
-                     <img src={player.logo ?player.logo :user} alt="" /> 
-                    <span>{player.name} </span>
-                  {player.os && <span style={{fontSize:'14px', fontWeight:'400', textTransform:'capitalize'}}>-{player.os}</span>}  
+                    <img src={player.logo ? player.logo : user} alt="" />
+                    <span className='name'>{player.name} </span>
+                    {<span className='category' style={{ fontSize: '14px', fontWeight: '400', textTransform: 'capitalize' }}>-{tdmrtk?.tdmdetail?.slotCategory?.[player.category].category}</span>}
                 </AccordionSummary>
                 <AccordionDetails className='details'>
                     <div className="teamdata">
                         <div className='imageside'>
-                        <img src={player.logo ?player.logo :user} alt="" /> 
+                            <img src={player.logo ? player.logo : user} alt="" />
                             <div className="icon">
                                 <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
                                 <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>
@@ -51,15 +55,16 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         </div>
                         <div className='teamside'>
                             <span> <span>Name</span><span>: {player.name || 'N/A'}</span></span>
-                           {player.email && <span> <span>Email</span><span>: {player.email}</span></span>} 
+                            <span> <span>Category</span><span>: {tdmrtk?.tdmdetail?.slotCategory?.[player.category].category || 'N/A'}</span></span>
+                            {player.email && <span> <span>Email</span><span>: {player.email}</span></span>}
                             <span> <span>Phone</span><span>: {player.mobile || 'N/A'}</span></span>
-                           {player.discord && <span> <span>Discord</span><span>: {player.discord}</span></span>} 
+                            {player.discord && <span> <span>Discord</span><span>: {player.discord}</span></span>}
                             <span> <span>O.S</span><span>: {player.os || 'N/A'}</span></span>
                             <span> <span>Device</span><span>: {player.device || 'N/A'}</span></span>
                             <span> <span>FPS</span><span>: {player.fps || 'N/A'}</span></span>
                             <span> <span>UTR No.</span><span>: {player.utrno || 'N/A'}</span></span>
                         </div>
-                        
+
                     </div>
                     <div className="playerdata">
                         <div>
@@ -98,7 +103,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
 
                         </div>
                     </div>
-                    
+
                 </AccordionDetails>
                 {player.status == "rejected" && <TextField
                     id="outlined-multiline-flexible"

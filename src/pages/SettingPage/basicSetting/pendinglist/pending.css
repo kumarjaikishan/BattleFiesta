@@ -172,10 +172,9 @@
         
                 .header{
         
-                    & 
-                    span{
-                        font-size: 1.2em;
-                        letter-spacing: .5px;
+                    &   span{
+                        font-size: 1.1em;
+                        letter-spacing: .2px;
                     }
                 }
                 .details{
