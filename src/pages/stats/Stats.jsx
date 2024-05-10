@@ -191,7 +191,6 @@ const Stats = () => {
         complete.push(dfvf);
       })
     })
-
     complete.sort((a, b) => {
       return b.kills - a.kills
     })

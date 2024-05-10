@@ -6,8 +6,8 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
     const [top, settop] = useState([])
     const [topteam, settopteam] = useState([]);
     useEffect(() => {
-        console.log("teamdetail -", teamdeatil);
-        console.log("topplayers :", topplayer);
+        // console.log("teamdetail -", teamdeatil);
+        // console.log("topplayers :", topplayer);
         settop(topplayer.filter((val, ind) => {
             return ind < 5;
         }))
@@ -53,6 +53,9 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
                 }
             })
         })
+        dfvefr.sort((a, b) => {
+            return b.kills - a.kills
+          })
 
         // console.log(dfvefr);
         settopteam(dfvefr)
