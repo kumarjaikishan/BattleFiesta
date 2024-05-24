@@ -1,11 +1,10 @@
-// ProtectedRoutes.js
 import React, { useEffect } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Adminnavbar from '../pages/admin/adminnavbar';
 
-const ProtectedRoutes = () => {
+const AdminRoutes = () => {
   const log = useSelector((state) => state.login);
   const admin = log.islogin && log.isadmin;
 
@@ -16,13 +15,13 @@ const ProtectedRoutes = () => {
   }, [admin]);
 
   return admin ? (
-    <div>
+    <>
       <Adminnavbar />
       <Outlet />
-    </div>
+    </>
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/logout" />
   );
 };
 
-export default ProtectedRoutes;
+export default AdminRoutes;

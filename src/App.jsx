@@ -36,7 +36,8 @@ import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import { messaging } from './firebase';
 import { toast } from 'react-toastify';
 import { getToken, onMessage } from 'firebase/messaging'
-import ProtectedRoutes from './utils/ProtectedToutes';
+import AdminRoutes from './utils/AdminRoutes';
+import UserRoute from './utils/UserRoute';
 
 function App() {
   const log = useSelector((state) => state.login);
@@ -83,15 +84,15 @@ function App() {
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/setting/:tid" element={<Tournasetting />} />
-            <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
-            <Route path="/tournaments"  >
-              <Route index element={<Findtournament />} />
-              <Route path=":tid" element={<Tournamentstatpage />} />
+
+            <Route element={<UserRoute />} >
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/setting/:tid" element={<Tournasetting />} />
+              <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
             </Route>
-            <Route element={<ProtectedRoutes />} >
+
+            <Route element={<AdminRoutes />} >
               <Route path='/admin' >
                 <Route index element={<Admindashboard />} />
                 <Route path='membershiprequest' element={<Membershiprequest />} />
@@ -102,10 +103,14 @@ function App() {
               </Route>
             </Route>
 
+            <Route path="/" element={<Home />} />
+            <Route path="/tournaments"  >
+              <Route index element={<Findtournament />} />
+              <Route path=":tid" element={<Tournamentstatpage />} />
+            </Route>
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
             <Route path="/stat/:tid" element={<Stats />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
