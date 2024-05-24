@@ -91,14 +91,15 @@ function App() {
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
-
-            <Route exact path='/admin' element={<ProtectedRoutes />}>
-              <Route index element={<Admindashboard />} exact />
-              <Route path='membershiprequest' element={<Membershiprequest />} />
-              <Route path='query' element={<Query />} />
-              <Route path='voucher' element={<Voucher />} />
-              <Route path='membership' element={<Membership />} />
-              <Route path='users' element={<User />} />
+            <Route element={<ProtectedRoutes />} >
+              <Route path='/admin' >
+                <Route index element={<Admindashboard />} />
+                <Route path='membershiprequest' element={<Membershiprequest />} />
+                <Route path='query' element={<Query />} />
+                <Route path='voucher' element={<Voucher />} />
+                <Route path='membership' element={<Membership />} />
+                <Route path='users' element={<User />} />
+              </Route>
             </Route>
 
             <Route path="/register/:registerId" element={<Register />} />
