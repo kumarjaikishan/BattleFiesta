@@ -25,14 +25,9 @@ import { setloader, header } from '../../store/login';
 import { classicfetch, setowner } from '../../store/classic';
 
 const Tournasetting = () => {
-  const log = useSelector((state) => state.login);
   const navigate = useNavigate();
   const classic = useSelector((state) => state.classic);
   const tournacenter = useSelector((state) => state.tournacenter);
-  if (!log.islogin) {
-    toast.warn("You are not Logged In", { autoClose: 1300 })
-    return <Navigate to='/login' />
-  }
   const { tid } = useParams();
   const dispatch = useDispatch();
   const [showmodal, setshowmodal] = useState(false);
@@ -44,14 +39,7 @@ const Tournasetting = () => {
     dispatch(header('Setting'))
     dispatch(setloader(true))
   }, [])
-  useEffect(() => {
-    // if (classic.classicdetail && classic.classicdetail._id == tid) {
 
-    // } else {
-    //   // console.log("last wala");
-    //   dispatch(classicfetch(tid));
-    // }
-  }, [])
 
   useEffect(() => {
     dispatch(setloader(classic.loading))

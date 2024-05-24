@@ -10,12 +10,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 // import PostAddIcon from '@mui/icons-material/PostAdd';
 import GroupIcon from '@mui/icons-material/Group';
 import Registerform from './basicSetting/registerform';
-// import EnterResult from './Enterresult/Enterresult';
 import ManageTeam from './ManageTeams/ManageTeam';
-// import Pointsystem from './PointSystem/Pointsystem';
-// import ViewMatches from './ViewMatches/ViewMatches';
-// import LeaderboardIcon from '@mui/icons-material/Leaderboard';
-// import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -25,15 +20,9 @@ import { setloader, header } from '../../store/login';
 import { tdmfetch,setowner } from '../../store/tdm';
 
 const Tdmsetting = () => {
-  const log = useSelector((state) => state.login);
   const navigate= useNavigate();
-  if (!log.islogin) {
-    toast.warn("You are not Logged In", { autoClose: 1300 })
-    return <Navigate to='/login' />
-  }
   const { tid } = useParams();
   const dispatch = useDispatch();
-  const tournacenter = useSelector((state) => state.tournacenter);
   const tdmrtk = useSelector((state) => state.tdm);
   const [showmodal, setshowmodal] = useState(false);
   const [paymentss, setpaymentss] = useState('');
@@ -42,12 +31,7 @@ const Tdmsetting = () => {
   const [active, setactive] = useState(0);
   useEffect(() => {
     dispatch(tdmfetch(tid));
-    // if (!tdmrtk.tdmdetail._id) {
-    //   dispatch(tdmfetch(tid));
-    // }
-    // tdmrtk.tdmdetail._id != tid && dispatch(tdmfetch(tid));
     dispatch(header('Setting'))
-    // console.log("url", window.location.origin);
     dispatch(setloader(true))
   }, [])
   useEffect(() => {

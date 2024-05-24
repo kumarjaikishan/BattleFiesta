@@ -30,10 +30,6 @@ import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Dashboard = () => {
-  const log = useSelector((state) => state.login);
-  if (!log.islogin) {
-    return <Navigate to='/login' />
-  }
   const dispatch = useDispatch();
   const [load, setload] = useState(false)
   const navigate = useNavigate();
