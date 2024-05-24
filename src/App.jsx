@@ -24,7 +24,6 @@ import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
-import Adminnavbar from './pages/admin/adminnavbar';
 import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
 import Admindashboard from './pages/admin/dashboard/dashboard';
 import Query from './pages/admin/query/query';
@@ -37,6 +36,7 @@ import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import { messaging } from './firebase';
 import { toast } from 'react-toastify';
 import { getToken, onMessage } from 'firebase/messaging'
+import ProtectedRoutes from './utils/ProtectedToutes';
 
 function App() {
   const log = useSelector((state) => state.login);
@@ -91,14 +91,16 @@ function App() {
               <Route index element={<Findtournament />} />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
-            <Route exact path='/admin' element={<Adminnavbar />}>
-              <Route index element={<Admindashboard />} />
+
+            <Route exact path='/admin' element={<ProtectedRoutes />}>
+              <Route index element={<Admindashboard />} exact />
               <Route path='membershiprequest' element={<Membershiprequest />} />
               <Route path='query' element={<Query />} />
               <Route path='voucher' element={<Voucher />} />
               <Route path='membership' element={<Membership />} />
               <Route path='users' element={<User />} />
             </Route>
+
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
             <Route path="/stat/:tid" element={<Stats />} />

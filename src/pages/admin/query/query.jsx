@@ -50,7 +50,7 @@ const Query = () => {
                 body: JSON.stringify({ contactid, email, reply })
             });
             const data = await responsee.json();
-            console.log(data);
+            // console.log(data);
             if (responsee.ok) {
                 setemail('');
                 setemail("");

@@ -12,7 +12,7 @@ import swal from 'sweetalert';
 const Membershiprequest = () => {
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
-      console.log(admin.membershipentry);
+      // console.log(admin.membershipentry);
    }, [])
    const dispatch = useDispatch();
    const [inp, setinp] = useState(null);
@@ -45,7 +45,7 @@ const Membershiprequest = () => {
                if (responsee.ok) {
                   dispatch(memshipentry())
                   toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
-                  console.log(data);
+                  // console.log(data);
                }
             } catch (error) {
                console.log(error);

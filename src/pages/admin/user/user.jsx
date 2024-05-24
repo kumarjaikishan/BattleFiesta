@@ -13,7 +13,7 @@ const User = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(admin);
+        // console.log(admin);
     }, [])
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };

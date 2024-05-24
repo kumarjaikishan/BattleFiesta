@@ -45,7 +45,7 @@ const [isloading,setisloading]=useState(false)
                 body: JSON.stringify({ remarks, id, flag })
             });
             const data = await responsee.json();
-            console.log(data);
+            // console.log(data);
             setisloading(false)
             if (responsee.ok) {
                 dispatch(memshipentry())

@@ -16,11 +16,11 @@ const Voucher = () => {
     const admin = useSelector((state) => state.admin);
     const tournacenter = useSelector((state) => state.tournacenter);
     useEffect(() => {
-        console.log(admin);
+        // console.log(admin);
     }, [])
     const handlee = async (e) => {
         e.preventDefault();
-        console.log(inp);
+        // console.log(inp);
 
         try {
             const token = localStorage.getItem("token");
