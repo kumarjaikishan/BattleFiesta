@@ -41,7 +41,7 @@ const PasswordReset = () => {
                 return toast.warn(resuke.message, { autoClose: 2100 })
             }
             toast.success(resuke.message, { autoClose: 1600 })
-            navigate('/login')     
+            navigate('/logout')     
         } catch (error) {
             toast.warn(error.message, { autoClose: 2100 })
             console.log(error);
