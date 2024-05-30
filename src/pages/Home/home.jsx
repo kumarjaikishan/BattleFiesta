@@ -20,6 +20,7 @@ import enterresult from '../../assets/home/enterresult.webp'
 import stats from '../../assets/home/stats.webp'
 import createform from '../../assets/home/createform.webp'
 import { motion, useInView, useAnimation } from 'framer-motion';
+import { ReactTyped } from "react-typed";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -43,6 +44,9 @@ const Home = () => {
     const control2 = useAnimation();
     const control3 = useAnimation();
     const control4 = useAnimation();
+
+
+
     useEffect(() => {
         // console.log(isInview);
         if (isInview) {
@@ -125,12 +129,26 @@ const Home = () => {
                         transition={{ duration: 1, delay: .5 }}
                         className="left-content">
                         <h2>Welcome to <span>BattleFiesta!</span> </h2>
-                        <h3>Managing Esport Tournament is Super Easy Now.</h3>
-                        <p>Your ultimate destination for hosting and competing in PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
-                        <p>Whether you're a seasoned competitor or just dipping your toes into the thrilling world of competitive
-                            gaming, This Platform offers a seamless experience for both hosting and joining tournaments across various esports communities.we provide a comprehensive platform where players can easily organize, participate, and engage in electrifying esports competitions. Join us and
-                            immerse yourself in the excitement of competitive gaming!"</p>
-                        <div className="links">
+                        <div>
+                            <h1>
+                            All-In-One platform for &nbsp;
+                            <span style={{color:'Yellow', fontSize:'1.5em'}}>
+                                <ReactTyped
+                                    strings={["Create", "Host", "Manage"]}
+                                    typeSpeed={120}
+                                    delay={5000}
+                                    loop
+                                    backSpeed={50}
+                                    cursorChar="!"
+                                    showCursor={true}
+                                
+                                />
+                                </span>
+                            </h1>
+                        </div>
+
+                        <p>Your ultimate destination for hosting and competing in ESport games like PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
+                       <div className="links">
                             <NavLink className="navlink" to='/dashboard'>Dashboard </NavLink>
                             <NavLink className="navlink" to='/tournaments'>Find Tournament </NavLink>
                         </div>

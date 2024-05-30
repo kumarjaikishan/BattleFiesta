@@ -30,8 +30,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background: radial-gradient( #f9d349 20% , #d57e12); */
-  background: radial-gradient(#1abc9c 20%, var(--primarycolor));
-  background: linear-gradient(to bottom ,var(--primarycolor), var(--hovercolor));
+  /* background: linear-gradient(to bottom ,var(--primarycolor), var(--hovercolor)); */
+  background: var(--primarycolor);
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -68,6 +68,7 @@ code {
   position: relative;
   min-height: calc(100vh - var(--navheight));
   width: 100%;
+  /* border: 2px solid red; */
 }
 
 .main.loader {
@@ -90,19 +91,6 @@ code {
   align-items: center;
   z-index: 50;
 }
-
-/* .preloader{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background:#f0f0f0;
-  backdrop-filter: blur(10px); z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 button,
 .splbtn {
