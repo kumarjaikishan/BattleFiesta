@@ -82,7 +82,7 @@
             filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 1));
             position: fixed;
             right: 0;
-            bottom: 0;
+            bottom: 0px;
             /* border: 3px solid blue; */
 
             & img {
@@ -314,7 +314,7 @@
 
                 & img {
                     width: 100%;
-                    transform: translateY(15px);
+                    transform: translateY(25px);
                 }
             }
         }
