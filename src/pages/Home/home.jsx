@@ -135,19 +135,20 @@ const Home = () => {
                             <span style={{color:'Yellow', fontSize:'1.5em'}}>
                                 <ReactTyped
                                     strings={["Create", "Host", "Manage"]}
-                                    typeSpeed={120}
+                                    typeSpeed={140}
                                     delay={5000}
                                     loop
                                     backSpeed={50}
-                                    cursorChar="!"
+                                    cursorChar="|"
                                     showCursor={true}
                                 
                                 />
-                                </span>
+                                </span> <br />
+                              <span className='yellow'>E</span>sport <span className='yellow'>T</span>ournaments
                             </h1>
                         </div>
 
-                        <p>Your ultimate destination for hosting and competing in ESport games like PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
+                        <p>Your ultimate destination for creating,hosting and managing in ESport games like PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
                        <div className="links">
                             <NavLink className="navlink" to='/dashboard'>Dashboard </NavLink>
                             <NavLink className="navlink" to='/tournaments'>Find Tournament </NavLink>
