@@ -1,24 +1,11 @@
 import './home.css'
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { setloader, header } from '../../store/login';
 import { useEffect, useRef, useref } from 'react';
 import Button from '@mui/material/Button';
-import char from '../../assets/anime.webp'
 import { NavLink } from 'react-router-dom';
-import smile from '../../assets/home/smile.webp'
-import forme from '../../assets/home/form.webp'
-import joy from '../../assets/home/joy.webp'
-import trophy from '../../assets/home/trophy.webp'
-import cal from '../../assets/home/cal.webp'
-import gal from '../../assets/home/gal.webp'
-import graph from '../../assets/home/graph.webp'
-import pie from '../../assets/home/pie.webp'
 import tick from '../../assets/home/tick.webp'
 import tick2 from '../../assets/home/tick2.webp'
-import registerform from '../../assets/home/registrationform.webp'
-import enterresult from '../../assets/home/enterresult.webp'
-import stats from '../../assets/home/stats.webp'
-import createform from '../../assets/home/createform.webp'
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { ReactTyped } from "react-typed";
 
@@ -163,7 +150,7 @@ const Home = () => {
                         animate='visible'
                         transition={{ duration: 1, delay: 1.2 }}
                         className="image">
-                        <img src={char} alt="PUBG Character" />
+                        <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660664/battlefiesta/assets/icon/anime_d1c7if.webp'} alt="PUBG Character" />
                     </motion.div>
                 </section>
                 <section className='section2'>
@@ -175,7 +162,7 @@ const Home = () => {
                         animate={control}
                         className='cards'>
                         <div className="card">
-                            <img src={smile} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/smile_zlwkc6.webp'} alt="" />
                             <p className="title">
                                 Easy Tournament Management
                             </p>
@@ -184,7 +171,7 @@ const Home = () => {
                             </p>
                         </div>
                         <motion.div variants={item} className="card">
-                            <img src={pie} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659947/battlefiesta/assets/icon/pie_rqnlut.webp'} alt="" />
                             <p className="title">
                                 Beautiful Points Table
                             </p>
@@ -193,7 +180,7 @@ const Home = () => {
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
-                            <img src={graph} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/graph_bs27xu.webp'} alt="" />
                             <p className="title">
                                 Detailed Stats
                             </p>
@@ -202,7 +189,7 @@ const Home = () => {
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
-                            <img src={trophy} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/trophy_l6yfkd.webp'} alt="" />
                             <p className="title">
                                 Top Fraggers
                             </p>
@@ -211,7 +198,7 @@ const Home = () => {
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
-                            <img src={gal} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/gal_zfhodc.webp'} alt="" />
                             <p className="title">
                                 Support Logos
                             </p>
@@ -220,7 +207,7 @@ const Home = () => {
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
-                            <img src={forme} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/form_ogkmwe.webp'} alt="" />
                             <p className="title">
                                 Registration Form
                             </p>
@@ -229,7 +216,7 @@ const Home = () => {
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
-                            <img src={cal} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/cal_ralxad.webp'} alt="" />
                             <p className="title">
                                 Custom Points System
                             </p>
@@ -238,7 +225,7 @@ const Home = () => {
                             </p>
                         </motion.div>
                         <motion.div variants={item} className="card">
-                            <img src={joy} alt="" />
+                            <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717659946/battlefiesta/assets/icon/joy_acqkzw.webp'} alt="" />
                             <p className="title">
                                 All Royal Battle Games
                             </p>
@@ -257,7 +244,7 @@ const Home = () => {
                         animate={control1}
                         className="left">
                         <div className="img">
-                            <img loading='lazy' src={createform} alt="" />
+                            <img loading='lazy' src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660387/battlefiesta/assets/icon/createform_txo62o.webp'} alt="" />
                         </div>
                     </motion.div>
                     <motion.div
@@ -297,7 +284,7 @@ const Home = () => {
                         animate={control2}
                         className="left">
                         <div className="img">
-                            <img loading='lazy' src={enterresult} alt="" />
+                            <img loading='lazy' src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660387/battlefiesta/assets/icon/enterresult_hxnpjl.webp'} alt="" />
                         </div>
                     </motion.div>
                 </section>
@@ -310,7 +297,7 @@ const Home = () => {
                         animate={control3}
                         className="left">
                         <div className="img">
-                            <img loading='lazy' src={stats} alt="" />
+                            <img loading='lazy' src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660499/battlefiesta/assets/icon/stats_cie5xv.webp'} alt="" />
                         </div>
                     </motion.div>
                     <motion.div
@@ -359,7 +346,7 @@ const Home = () => {
                         animate={control4}
                         className="left">
                         <div className="img">
-                            <img loading='lazy' src={registerform} alt="" />
+                            <img loading='lazy' src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660387/battlefiesta/assets/icon/registrationform_byfrbe.webp'} alt="" />
                         </div>
                     </motion.div>
                 </section>
