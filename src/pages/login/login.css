@@ -2,7 +2,7 @@
     width: 100%;
     min-height: calc(100vh - var(--navheight));
     /* border: 3px solid red; */
-    background: url('../../assets/loginback.webp');
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717761054/battlefiesta/assets/loginback_cbrq3w.webp');
     background-size: cover;
     display: flex;
     justify-content: center;

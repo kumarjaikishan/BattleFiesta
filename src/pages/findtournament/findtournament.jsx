@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
 import { toast } from "react-toastify";
 import Stack from '@mui/material/Stack';
-import tournlogo from '../../assets/logopng250.webp'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
@@ -16,6 +15,7 @@ const Findtournament = () => {
     const tournacenter = useSelector((state) => state.tournacenter);
     const [alltournas, setalltournas] = useState([]);
     const navigate = useNavigate();
+    const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717761405/battlefiesta/assets/pubg_ysbjoh.webp'
     useEffect(() => {
         dispatch(header("Tournaments"));
         dispatch(setloader(true));

@@ -4,7 +4,6 @@ import "./dashboard.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { header, setloader } from "../../store/login";
-import tournlogo from '../../assets/logopng250.webp'
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
@@ -42,7 +41,7 @@ const Dashboard = () => {
     // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
-
+const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717761405/battlefiesta/assets/pubg_ysbjoh.webp'
   const setdata = (data) => {
     // console.log(data);
     if (data.type == 'tdm') {
