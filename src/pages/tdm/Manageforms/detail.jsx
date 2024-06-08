@@ -60,7 +60,7 @@ const Detail = () => {
         if (konsa == 2) {
             newimage = await handleImage(200, newimage);
         }else{
-            newimage = await handleImage(700, newimage);
+            newimage = await handleImage(900, newimage);
         }
 
         if (konsa == 1) {
