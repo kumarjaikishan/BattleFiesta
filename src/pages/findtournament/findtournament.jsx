@@ -12,10 +12,8 @@ import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied
 
 const Findtournament = () => {
     const dispatch = useDispatch();
-    const tournacenter = useSelector((state) => state.tournacenter);
-    const [alltournas, setalltournas] = useState([]);
     const navigate = useNavigate();
-    const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717761405/battlefiesta/assets/pubg_ysbjoh.webp'
+    const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
     useEffect(() => {
         dispatch(header("Tournaments"));
         dispatch(setloader(true));
@@ -52,7 +50,6 @@ const Findtournament = () => {
             if (!responsee.ok) {
                 return toast.warn(data.message, { autoclose: 2100 })
             }
-            setalltournas(data.data)
             let one = [];
             let two = [];
             let three = [];

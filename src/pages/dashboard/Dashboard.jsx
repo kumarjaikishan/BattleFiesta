@@ -41,7 +41,7 @@ const Dashboard = () => {
     // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
-const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717761405/battlefiesta/assets/pubg_ysbjoh.webp'
+const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
   const setdata = (data) => {
     // console.log(data);
     if (data.type == 'tdm') {
