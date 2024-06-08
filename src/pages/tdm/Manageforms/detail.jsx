@@ -58,7 +58,9 @@ const Detail = () => {
         let newimage = document.querySelector(`#${id}`).files[0];
 
         if (konsa == 2) {
-            newimage = await handleImage(250, newimage);
+            newimage = await handleImage(200, newimage);
+        }else{
+            newimage = await handleImage(700, newimage);
         }
 
         if (konsa == 1) {
