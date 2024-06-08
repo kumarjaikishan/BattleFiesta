@@ -96,7 +96,7 @@ const Detail = () => {
             toast.update(ide, { render: resuke.message, type: "success", isLoading: false, autoClose: 1600 });
         } catch (error) {
             console.log(error);
-            toast.update(ide, { render: resuke.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
         }
     }
 

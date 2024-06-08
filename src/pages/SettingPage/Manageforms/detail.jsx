@@ -90,7 +90,7 @@ const Detail = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.update(ide, { render: resuke.message, type: "warning", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
         }
     }
     const submit = async () => {
