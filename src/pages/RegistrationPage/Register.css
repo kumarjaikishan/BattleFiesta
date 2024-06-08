@@ -213,7 +213,7 @@
                 width: 70px !important;
                 height: 70px !important;
                 border-radius: 50%;
-
+                border: none;
             }
 
             span {
@@ -265,7 +265,7 @@
         .detailse {
 
             & .playerdata {
-                border: 1px solid grey;
+                border: 1px dashed grey;
                 border-radius: 10px;
                 padding: 5px;
 
@@ -275,7 +275,7 @@
                 }
 
                 div {
-                    border-top: 1px solid grey;
+                    border-top: 1px dashed grey;
                     width: 100%;
                     display: flex;
                     justify-content: space-between;
@@ -287,7 +287,7 @@
                         height: 50px !important;
                         object-fit: cover;
                         border-radius: 50%;
-                        border: 1px solid grey;
+                        border: none;
                     }
                 }
             }
@@ -377,7 +377,6 @@
                     width: 60px !important;
                     height: 60px !important;
                     border-radius: 50%;
-
                 }
 
                 span {
