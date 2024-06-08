@@ -69,8 +69,8 @@ const Detail = () => {
         // console.log("sseing",data.tid);
 
         const token = localStorage.getItem("token");
+        const ide = toast.loading("Please wait while Uploading...")
         try {
-            const ide = toast.loading("Please wait while Uploading...")
             const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}settournamentlogos`, {
                 method: "POST",
                 headers: {
