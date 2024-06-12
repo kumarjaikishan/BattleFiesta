@@ -108,8 +108,8 @@
     width: 100%;
     max-width: 1200px;
     margin-top: 10px;
-    background: url('../../assets/grey.webp');
-    background-size: cover;
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
+   background-size: cover;
     border-radius: 20px;
     padding: 20px;
 
@@ -239,7 +239,7 @@
     margin-top: 10px;
     border-radius: 20px;
     padding: 10px;
-    background: url('../../assets/grey.webp');
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
     background-size: cover;
 
     & h1,
@@ -356,7 +356,7 @@
     .fragger {
       width: 100%;
       margin-top: 10px;
-      background: url('../../assets/grey.webp');
+      background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
       background-size: cover;
       border-radius: 10px;
       padding: 5px;

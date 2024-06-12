@@ -84,7 +84,6 @@ function App() {
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>
-
             <Route element={<UserRoute />} >
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<Profile />} />
