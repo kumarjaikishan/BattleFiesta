@@ -217,7 +217,7 @@ const Profile = () => {
             setmessagesent(data.extramessage)
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
         } catch (error) {
-            toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2200 });
+            toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 2200 });
             setisloadinge(false)
             console.log(error);
         }
