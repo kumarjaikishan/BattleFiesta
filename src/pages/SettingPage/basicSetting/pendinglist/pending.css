@@ -1,6 +1,9 @@
-.tournasetting{
+.tournasetting {
 
-    .pendingList , .approvedList, .manageteams,.rejectedlist{
+    .pendingList,
+    .approvedList,
+    .manageteams,
+    .rejectedlist {
         /* border: 1px solid red; */
         width: 100%;
         height: 100%;
@@ -20,45 +23,48 @@
         &::-webkit-scrollbar-thumb {
             background-color: var(--primarycolor);
         }
-    
-        & .box{
+
+        & .box {
             padding: 20px;
             width: 700px;
             height: max-content;
             border: 1px solid grey;
             border-radius: 10px;
-    
-            & h2{
+
+            & h2 {
                 margin-bottom: 5px;
                 color: rgb(64, 62, 62);
-            } 
-            .header{
-    
-                & img{
+            }
+
+            .header {
+
+                & img {
                     width: 40px;
                     height: 40px;
                     border-radius: 50px;
                     margin-right: 20px;
                     border: .8px dotted grey;
                 }
-                span{
+
+                span {
                     font-size: 1.3em;
                     line-height: 40px;
                     font-weight: 600;
                     letter-spacing: 1px;
                 }
             }
-            .details{
+
+            .details {
                 width: 100%;
-    
-                & .teamdata{
+
+                & .teamdata {
                     width: 100%;
                     height: 200px;
                     /* border: 1px solid red; */
                     display: flex;
                     justify-content: space-between;
-    
-                    & .imageside{
+
+                    & .imageside {
                         width: 200px;
                         height: 100%;
                         /* border: 1px solid blue; */
@@ -66,14 +72,16 @@
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
-    
-                        & img{ width: 140px;
+
+                        & img {
+                            width: 140px;
                             height: 140px;
                             object-fit: cover;
                             border-radius: 20px;
                             border: 1px solid grey;
                         }
-                        .icon{
+
+                        .icon {
                             width: 100%;
                             display: flex;
                             justify-content: space-around;
@@ -83,7 +91,8 @@
                             margin-top: 10px;
                         }
                     }
-                    .teamside{
+
+                    .teamside {
                         width: 360px;
                         height: 100%;
                         border-left: 1px solid grey;
@@ -92,64 +101,77 @@
                         flex-direction: column;
                         justify-content: space-around;
                         padding-left: 15px;
-    
-                        & span{
+
+                        & span {
                             display: flex;
                             /* justify-content: space-be/tween; */
-    
-                            & span:nth-child(1){
+
+                            & span:nth-child(1) {
                                 font-weight: 600;
                                 width: 60px;
                                 /* border: 1px solid red; */
                             }
-                            & span:nth-child(2){
-                               margin-left: 5px;
+
+                            & span:nth-child(2) {
+                                margin-left: 5px;
                             }
                         }
                     }
-                    a{
+
+                    a {
                         color: green;
                     }
                 }
-                .playerdata{
+
+                .playerdata {
                     border: 1px solid grey;
                     border-radius: 10px;
                     padding: 5px;
-    
-                    & h2{
+
+                    & h2 {
                         font-size: 1.1em;
                         margin: 10px 0px;
-                    } 
-                    div{
+                    }
+
+                    div {
                         border-top: 1px dotted grey;
                         width: 100%;
                         display: flex;
-                        /* justify-content: space-between; */
+                        justify-content: space-around;
                         align-items: center;
                         padding: 5px 8px;
-    
-                        & img{
+
+                        & img {
                             width: 50px;
                             height: 50px;
                             object-fit: cover;
                             border-radius: 50%;
                         }
-                        span{
-                            border: 1px solid red;
+
+                        span {
+                            /* border: 1px solid red; */
                             display: inline-block;
                         }
-                        span:nth-child(2){
-                            
-                            width: 360px;
+
+                        span:nth-child(2) {
+                            margin-left: 10px;
+                            width: 380px;
                             float: left;
+                            line-height: 30px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
                         }
-                        span:nth-child(3){
-                            width: 360px;
+
+                        span:nth-child(3) {
+                            line-height: 30px;
+                            width: 170px;
                             float: right;
+                            text-align: end;
                         }
                     }
-                   
-                    BUTTON{
+
+                    BUTTON {
                         margin: 10px 0px;
                         font-weight: 800;
                         letter-spacing: 1px;
@@ -157,14 +179,15 @@
                 }
             }
         }
-        .middle{
+
+        .middle {
             text-align: center;
             color: rgb(56, 54, 54);
-    
-            & div{
+
+            & div {
                 font-size: 2em;
-    
-                & .emoji{
+
+                & .emoji {
                     font-size: 3em;
                 }
             }
@@ -173,112 +196,134 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .tournasetting{
-        .pendingList , .approvedList, .manageteams,.rejectedlist{
-      
+    .tournasetting {
+
+        .pendingList,
+        .approvedList,
+        .manageteams,
+        .rejectedlist {
+
             padding-top: 10px;
-        
-            & .box{
+
+            & .box {
                 padding: 5px;
                 width: 98%;
-        
-                .header{
-        
-                    &   span{
+
+                .header {
+
+                    & span {
                         font-size: 1.1em;
                         letter-spacing: .2px;
                     }
                 }
-                .details{
+
+                .details {
                     padding: 2px;
-        
-                    & .teamdata{
-        
-                        & .imageside{
+
+                    & .teamdata {
+
+                        & .imageside {
                             width: 180px;
-                
-        
-                            & img{ 
+
+
+                            & img {
                                 width: 120px;
                                 height: 120px;
                             }
-                            .icon{
+
+                            .icon {
                                 padding: 5px 2px;
                                 margin-top: 10px;
                             }
                         }
-                        .teamside{
+
+                        .teamside {
                             width: 320px;
                             height: 100%;
                             padding-left: 5px;
-        
-                            & span{
+
+                            & span {
                                 display: flex;
                                 align-items: center;
-        
-                                & span:nth-child(1){
+
+                                & span:nth-child(1) {
                                     font-weight: 600;
                                     width: 55px;
                                     /* border: 1px solid red; */
                                 }
-                                & span:nth-child(2){
+
+                                & span:nth-child(2) {
                                     font-size: 12px;
-                                   margin-left: 5px;
+                                    margin-left: 5px;
                                 }
                             }
                         }
-                        a{
+
+                        a {
                             color: green;
                         }
                     }
-                    .playerdata{
+
+                    .playerdata {
                         border: 1px solid grey;
                         border-radius: 10px;
                         padding: 5px;
-        
-                        & h2{
+
+                        & h2 {
                             font-size: 1.1em;
                             margin: 10px 0px;
-                        } 
-                        div{
+                        }
+
+                        div {
                             border-top: 1px solid grey;
                             width: 100%;
                             display: flex;
                             justify-content: space-around;
                             align-items: center;
                             padding: 5px 0px;
-        
-                            & img{
+
+                            & img {
                                 width: 50px;
                                 height: 50px;
                                 object-fit: cover;
                                 border-radius: 50%;
                                 border: 1px solid grey;
                             }
+                          
+                            span:nth-child(2) {
+                                margin-left: 5px;
+                                width: 380px;
+                            }
+    
+                            span:nth-child(3) {
+                                width: 150px;
+                                font-size: 13px;
+                            }
                         }
-                       
-                        BUTTON{
+
+                        BUTTON {
                             margin: 10px 0px;
                             font-weight: 800;
                             letter-spacing: 1px;
                         }
                     }
                 }
-                
+
             }
-            .middle{
+
+            .middle {
                 text-align: center;
                 color: rgb(56, 54, 54);
-        
-                & div{
+
+                & div {
                     font-size: 2em;
-        
-                    & .emoji{
+
+                    & .emoji {
                         font-size: 3em;
                     }
                 }
             }
         }
     }
-    
+
 }

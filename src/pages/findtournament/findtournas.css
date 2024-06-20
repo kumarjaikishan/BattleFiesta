@@ -102,20 +102,11 @@
             }
 
             h3 {
-
-                span {
-                    font-size: 13px;
-                    color: white;
-                    display: inline-block;
-                    text-transform: uppercase;
-                    height: 22px;
-                    line-height: 22px;
-                    padding: 0px 8px;
-                    font-weight: 500;
-                    border-radius: 50px;
-                    letter-spacing: 1px;
-                    background: var(--primarycolor);
-                }
+                /* border: 1px solid red; */
+                font-size: 15px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
 
             .organiser,
@@ -123,10 +114,24 @@
                 margin: 7px 0px;
                 padding-left: 10px;
                 color: rgb(58, 56, 56);
+
+                span {
+                    font-size: 12px;
+                    color: white;
+                    display: inline-block;
+                    text-transform: uppercase;
+                    line-height: 22px;
+                    padding: 0px 5px;
+                    border-radius: 5px;
+                    /* letter-spacing: 1px; */
+                    background: var(--primarycolor);
+                    float: right;
+                    margin-right: 7px;
+                }
             }
 
             .time {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .controller {
@@ -318,7 +323,7 @@
                 & span:nth-child(2) {
                     margin-left: 6px;
                 }
-    
+
                 i {
                     font-size: 1.2em;
                 }
@@ -330,7 +335,7 @@
             min-height: calc(100vh - (var(--navheightmobile)) + 50px);
 
             & .card {
-                transform: scale(.95); 
+                transform: scale(.95);
 
                 .controller {
 
@@ -338,6 +343,7 @@
                         letter-spacing: .5px;
                         font-size: 0.8em;
                     }
+
                     .status {
                         border-radius: 5px;
                         padding: 0px 3px;

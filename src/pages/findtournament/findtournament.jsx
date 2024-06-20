@@ -38,7 +38,7 @@ const Findtournament = () => {
     }
 
     const fetche = async () => {
-        console.log("call from findtournamnet page");
+        // console.log("call from findtournamnet page");
         try {
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournament`, {
                 method: "GET"
@@ -145,9 +145,9 @@ const Findtournament = () => {
                                 />
                                 <span title={val.title}>{val.title}</span>
                             </div>
-                            <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>
+                            <h3 className="organiser">- {val.organiser} </h3>
                             <div className="time">
-                                {formattedDate}, {formattedTime}
+                                {formattedDate}, {formattedTime} <span >{val.type}</span>
                             </div>
                             <div className="controller">
                                 <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
