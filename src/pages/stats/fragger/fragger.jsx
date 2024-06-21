@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import user from '../../../assets/user.webp'
-import group from '../../../assets/group.webp'
 
 const Fragger = ({ topplayer, matches, teamdeatil }) => {
     const [top, settop] = useState([])
     const [topteam, settopteam] = useState([]);
+    const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
     useEffect(() => {
         // console.log("teamdetail -", teamdeatil);
         // console.log("topplayers :", topplayer);
@@ -55,7 +55,7 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
         })
         dfvefr.sort((a, b) => {
             return b.kills - a.kills
-          })
+        })
 
         // console.log(dfvefr);
         settopteam(dfvefr)

@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import group from '../../../assets/group.webp'
 
 const MatchTable = ({ rules, matches, teamdeatil }) => {
     const [row, setrow] = useState([]);
+    const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
+   
     useEffect(() => {
         // console.log("matches -", matches);
        matches.length > 0 && handlee(matches[0])

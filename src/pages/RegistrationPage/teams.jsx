@@ -4,11 +4,12 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
-import user from '../../assets/user.webp'
-import group from '../../assets/group2.webp'
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const Teams = ({ entry }) => {
+    const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950086/battlefiesta/assets/icon/group2_gqiyup.webp'
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
+   
 
     return (
         <>
@@ -42,7 +43,7 @@ const Teams = ({ entry }) => {
                                     return <div key={ind}>
                                         <span><img src={each.playerLogo ? each.playerLogo : user} alt="" /></span>
                                         <span title='InGameName'>{each.inGameName}</span>
-                                        <span title='InGameID'>{each.inGameID ? each.inGameID : 'GameID : N/A'}</span>
+                                        <span title='InGameID'>{each?.inGameID || 'N/A'}</span>
                                     </div>
                                 })}
                             </div>

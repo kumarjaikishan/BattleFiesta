@@ -13,14 +13,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
 import EditIcon from '@mui/icons-material/Edit';
 import PhotoIcon from '@mui/icons-material/Photo';
-import group from '../../../assets/group.webp'
-import group1 from '../../../assets/group1.webp'
-import user from '../../../assets/user.webp'
+// import group from '../../../assets/group.webp'
+// import group1 from '../../../assets/group1.webp'
+// import user from '../../../assets/user.webp'
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
     const hgfh = (ide) => {
         decline(ide)
     }
+    const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
+    const group1 = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group1_oxfqan.webp'
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
     return (<>
         {teamarray.length > 0 && teamarray.map((player, ind) => {
             return (<Accordion key={ind}
@@ -48,10 +51,10 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             </div>
                         </div>
                         <div className='teamside'>
-                            <span> <span>Team</span> <span>: {player.teamName}</span></span>
-                            <span> <span>Email</span> <span>: {player.email}</span></span>
-                            <span> <span>Phone</span> <span>: {player.mobile}</span></span>
-                            <span> <span>Discord</span> <span>: {player.discordID}</span></span>
+                            <span> <span>Team</span> <span>: {player?.teamName}</span></span>
+                            <span> <span>Email</span> <span>: {player?.email || 'N/A'}</span></span>
+                            <span> <span>Phone</span> <span>: {player?.mobile || 'N/A'}</span></span>
+                            <span> <span>Discord</span> <span>: {player?.discordID || 'N/A'}</span></span>
                         </div>
                     </div>
                     <div className="playerdata">
@@ -59,8 +62,8 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         {player.player.map((each, ind) => {
                             return <div key={ind}>
                                 <span>{ <img src={each.playerLogo ? each.playerLogo : user} alt="" />}</span>
-                                <span>{each.inGameName}</span>
-                                <span>{each.inGameID}</span>
+                                <span>{each?.inGameName || 'N/A'}</span>
+                                <span>{each?.inGameID || 'N/A'}</span>
                             </div>
                         })}
                         <div>

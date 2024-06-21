@@ -1,6 +1,5 @@
 import './profile.css'
 import TextField from '@mui/material/TextField';
-import photo from '../../assets/user.webp'
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
@@ -26,6 +25,8 @@ const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
     const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
+    const photo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
+   
     const init = {
         name: '',
         username: '',

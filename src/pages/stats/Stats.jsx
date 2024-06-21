@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import group from '../../assets/group.webp'
 import './stats.css'
 import './theme/theme1.css'
 import './theme/theme2.css'
@@ -22,6 +21,8 @@ const Stats = () => {
   const { tid } = useParams();
   const [matches, setmatches] = useState([]);
   const log = useSelector((state) => state.login);
+  const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
+ 
   useEffect(() => {
     dispatch(header("Stats"));
     dispatch(setloader(true));

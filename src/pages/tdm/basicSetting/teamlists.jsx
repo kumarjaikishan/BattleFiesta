@@ -14,12 +14,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UndoIcon from '@mui/icons-material/Undo';
 import EditIcon from '@mui/icons-material/Edit';
 import PhotoIcon from '@mui/icons-material/Photo';
-import user from '../../../assets/user.webp'
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
     const hgfh = (ide) => {
         decline(ide)
     }
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
 
     const tdmrtk = useSelector((state) => state.tdm);
     useEffect(() => {

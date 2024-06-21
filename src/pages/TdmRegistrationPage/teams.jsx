@@ -3,13 +3,11 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
-import user from '../../assets/user.webp'
 import Badge from '@mui/material/Badge';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import group from '../../assets/group2.webp'
 import MenuItem from '@mui/material/MenuItem';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import { useEffect, useState } from 'react';
@@ -17,6 +15,9 @@ import { useEffect, useState } from 'react';
 const Teams = ({ about, categoryenteries, entry }) => {
     const [player, setplayer] = useState(entry);
     const [category, setcategory] = useState('all');
+    const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
+   
    
     const handlecategory = (e) => {
         setcategory(e.target.value);
