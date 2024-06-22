@@ -24,7 +24,7 @@
         text-transform: capitalize;
         letter-spacing: 0.5px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         font-weight: 700;
         border-radius: 10px;
         margin-bottom: 10px;
@@ -41,8 +41,8 @@
             border: 0.5px solid rgb(4, 86, 145);
             margin: 10px 0px;
             display: flex;
-            justify-content: space-around;
-            padding: 6px 0px;
+            justify-content: space-between;
+            padding: 5px 4px;
             background: #ecf0f3;
             box-shadow: 0 0 10px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
         }
@@ -59,27 +59,28 @@
         }
 
         & span:nth-child(1) {
-            width: 50px;
-            /* border: 1px solid red; */
+            width: 40px;
         }
-
+        
         & span:nth-child(2) {
-            width: 190px;
+            width: 380px;
+            text-align: start;
         }
-
+        
         & span:nth-child(3) {
             width: 110px;
         }
-
+        
         & span:nth-child(4) {
-            width: 120px;
+            width: 280px;
         }
-
+        
         & span:nth-child(5) {
-            width: 90px;
+            width:110px;
         }
-
+        
         & span:nth-child(6) {
+            /* border: 1px solid red; */
             width: 120px;
         }
 

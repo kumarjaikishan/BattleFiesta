@@ -1,3 +1,68 @@
 .adminusers {
     width: 100%; 
+
+    & span {
+        display: inline-block;
+        text-align: center;
+        padding: 2px 0px;
+    }
+
+    & span:nth-child(1) {
+        width: 40px;
+    }
+    
+    & span:nth-child(2) {
+        width: 380px;
+        text-align: start;
+    }
+    
+    & span:nth-child(3) {
+        width: 110px;
+    }
+    
+    & span:nth-child(4) {
+        width: 280px;
+    }
+    
+    & span:nth-child(5) {
+        width:110px;
+    }
+    
+    & span:nth-child(6) {
+        border: 1px solid red;
+        width: 120px;
+    }
+
+    & span:nth-child(7) {
+        width: 180px;
+    }
+
+    & span:nth-child(8) {
+        width: 100px;
+    }
+
+    & span:last-child {
+        width: 60px;
+        /* border: 1px solid red; */
+        padding-left: 5px;
+        display: inline-flex;
+        justify-content: space-around;
+
+        i {
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            color: rgb(6, 93, 112);
+
+            &:last-child {
+                color: red;
+            }
+
+            &:hover {
+                background: rgba(133, 196, 192, 0.4);
+            }
+        }
+    }
 }

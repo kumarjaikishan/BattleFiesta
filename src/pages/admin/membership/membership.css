@@ -27,25 +27,23 @@
             text-transform: capitalize;
             letter-spacing: 0.5px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             font-weight: 700;
             border-radius: 10px;
             margin-bottom: 10px;
-            text-align: center;
         }
 
         .body {
             width: 100%;
-            text-align: center;
+            text-align: start;
 
             div {
                 border-radius: 10px;
-                border: 0.5px solid rgb(205, 202, 202);
                 border: 0.5px solid rgb(4, 86, 145);
                 margin: 10px 0px;
                 display: flex;
-                justify-content: space-around;
-                padding: 6px 0px;
+                justify-content: space-between;
+                padding: 5px 3px;
                 background: #ecf0f3;
                 box-shadow: 0 0 10px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
             }
@@ -54,10 +52,9 @@
         .header,
         .body {
 
-
             & span {
                 display: inline-block;
-                text-align: center;
+                text-align: start;
                 padding: 2px 0px;
                 /* border: 1px solid red; */
             }
@@ -68,7 +65,9 @@
             }
 
             & span:nth-child(2) {
-                width: 140px;
+                width: 320px;
+                text-align: start;
+                /* border: 1px solid red; */
             }
 
             & span:nth-child(3) {
@@ -88,7 +87,6 @@
             & span:nth-child(6) {
                 width: 80px;
                 /* border: 1px solid red; */
-                padding-left: 5px;
                 display: inline-flex;
                 justify-content: space-around;
 
@@ -111,7 +109,7 @@
             }
 
             .status {
-                border-radius: 20px;
+                border-radius: 10px;
                 font-weight: 500;
             }
 
@@ -141,7 +139,7 @@
                 letter-spacing: 0.1px;
                 font-weight: 700;
                 border-radius: 5px;
-                margin-bottom: 5px;
+                margin-bottom: 8px;
                 font-size: 12px;
             }
 
