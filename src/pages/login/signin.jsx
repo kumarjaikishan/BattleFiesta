@@ -59,7 +59,7 @@ const Signin = ({showmsg,setshowmsg}) => {
             // console.log(data);
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
-                console.log("login data",data);
+                // console.log("login data",data);
                 toast.success(data.message, { autoClose: 1300 });
                 setbtnclick(false);
                 dispatch(setloader(true));

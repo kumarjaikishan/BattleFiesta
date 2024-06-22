@@ -11,7 +11,7 @@ export const profilefetch = createAsyncThunk("profilefetch", async () => {
             }
         })
         let alldata = await res.json();
-        console.log("profileapi", alldata);
+        // console.log("profileapi", alldata);
         return alldata;
     } catch (error) {
         console.log(error);

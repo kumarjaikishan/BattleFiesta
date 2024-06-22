@@ -1,19 +1,17 @@
-.adminmembership{
+.adminmembership {
     width: 100%;
-    height: 100%;
-    padding: 10px;
+    padding: 0 10px;
     display: flex;
     justify-content: center;
-    /* border: 1px solid red; */
 
-    .inner{
+    .inner {
         width: 100%;
 
-        .controler{
+        .controler {
             position: relative;
             padding: 5px 0px;
-    
-            .refreshe{
+
+            .refreshe {
                 position: absolute;
                 top: 50%;
                 right: 10px;
@@ -81,6 +79,7 @@
                 width: 50px;
                 /* border: 1px solid red; */
             }
+
             & span:nth-child(5) {
                 width: 50px;
                 /* border: 1px solid red; */
@@ -110,10 +109,12 @@
                     }
                 }
             }
-            .status{
+
+            .status {
                 border-radius: 20px;
                 font-weight: 500;
             }
+
             .status.pending {
                 background: rgba(221, 179, 100, 0.704);
                 color: rgb(86, 56, 2);
@@ -122,6 +123,66 @@
             .status.active {
                 color: rgb(1, 59, 1);
                 background-color: rgba(103, 222, 103, 0.648);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .adminmembership {
+        padding: 0 5px;
+
+        .inner {
+            font-size: 14px;
+
+
+            .header {
+                padding: 2px;
+                letter-spacing: 0.1px;
+                font-weight: 700;
+                border-radius: 5px;
+                margin-bottom: 5px;
+                font-size: 12px;
+            }
+
+            .body {
+               font-size: 11px;
+
+                div {
+                    margin: 5px 0px;
+                    padding: 3px 0px;
+                }
+            }
+
+            .header,
+            .body {
+
+
+                & span:nth-child(1) {
+                    width: 30px;
+                }
+
+                & span:nth-child(2) {
+                    width: 140px;
+                }
+
+                & span:nth-child(3) {
+                    width: 80px;
+                }
+
+                & span:nth-child(4) {
+                    width: 40px;
+                    /* border: 1px solid red; */
+                }
+
+                & span:nth-child(5) {
+                    width: 40px;
+                    /* border: 1px solid red; */
+                }
+
+                & span:nth-child(6) {
+                    width: 50px;
+                }
             }
         }
     }

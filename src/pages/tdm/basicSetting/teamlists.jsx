@@ -38,14 +38,14 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                     className={`header ${player.status}`}
                 // style={{ borderRight: "8px solid orange" }}
                 >
-                    <img src={player.logo ? player.logo : user} alt="" />
+                    <img src={player?.logo || user} alt="PlayerLogo" />
                     <span className='name'>{player.name} </span>
                     {<span className='category' style={{ fontSize: '14px', fontWeight: '400', textTransform: 'capitalize' }}>-{tdmrtk?.tdmdetail?.slotCategory?.[player.category].category}</span>}
                 </AccordionSummary>
                 <AccordionDetails className='details'>
                     <div className="teamdata">
                         <div className='imageside'>
-                            <img src={player.logo ? player.logo : user} alt="" />
+                        <img src={player?.logo || user} alt="PlayerLogo" />
                             <div className="icon">
                                 <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
                                 <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>

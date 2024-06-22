@@ -1,5 +1,5 @@
 
-import { Outlet, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import './adminnavbar.css'
 
 const Adminnavbar = () => {
@@ -43,7 +43,6 @@ const Adminnavbar = () => {
                     </div>
                 </NavLink>
             </div>
-            <Outlet />
         </div>
     </>
 }

@@ -22,6 +22,8 @@ input {
   --thirdcolor: #0d585e;
 }
 
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,8 +31,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: radial-gradient( #f9d349 20% , #d57e12); */
-  /* background: linear-gradient(to bottom ,var(--primarycolor), var(--hovercolor)); */
   background: var(--primarycolor);
   position: relative;
   width: 100%;

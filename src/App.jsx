@@ -91,15 +91,14 @@ function App() {
               <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
             </Route>
 
-            <Route element={<AdminRoutes />} >
-              <Route path='/admin' >
-                <Route index element={<Admindashboard />} />
-                <Route path='membershiprequest' element={<Membershiprequest />} />
-                <Route path='query' element={<Query />} />
-                <Route path='voucher' element={<Voucher />} />
-                <Route path='membership' element={<Membership />} />
-                <Route path='users' element={<User />} />
-              </Route>
+            <Route path='/admin' element={<AdminRoutes />}>
+              {/* <Route index element={<Admindashboard />} /> */}
+              <Route path='' element={<Admindashboard />} />
+              <Route path='membershiprequest' element={<Membershiprequest />} />
+              <Route path='query' element={<Query />} />
+              <Route path='voucher' element={<Voucher />} />
+              <Route path='membership' element={<Membership />} />
+              <Route path='users' element={<User />} />
             </Route>
 
             <Route path="/" element={<Home />} />

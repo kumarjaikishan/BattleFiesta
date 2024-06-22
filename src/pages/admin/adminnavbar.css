@@ -1,23 +1,25 @@
 .Adminnavbar {
     width: 100%;
-    min-height: calc(100vh - var(--navheight));
     background: white;
+    height: 40px;
+    border-bottom: 1px dotted grey;
 
     .adminnav {
         width: 900px;
         width: 100%;
+        height: 100%;
         box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
         display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
         align-items: center;
-        padding: 5px 0px;
 
         .navlink {
+            /* border: 1px solid red; */
             color: #212529;
             text-decoration: none;
 
             div {
-                margin: 0px 10px;
-                /* background: #0ba8c0; */
                 cursor: pointer;
                 padding: 5px 12px;
                 letter-spacing: 0.7px;
@@ -43,7 +45,36 @@
                 color: #0ba8c0;
             }
         }
+    }
+}
+.admindashboard, .adminmembership, .membershiprequest,
+ .query, .adminusers, .voucherpage{
+    min-height: calc(100vh - ( var(--navheight) + 40px));
+    background: white;
+}
 
-
+@media only screen and (max-width: 500px) {
+    .Adminnavbar {
+        width: 100%;
+        background: white;
+        height: 80px;
+        border-bottom: 1px dotted grey;
+    
+        .adminnav {
+           
+            .navlink {
+    
+                div {
+                    padding: 5px;
+                    letter-spacing: 0.5px;
+                    border-radius: 10px;
+    
+                    span {
+                        font-size: 12px;
+                    }
+    
+                }
+            }
+        }
     }
 }
