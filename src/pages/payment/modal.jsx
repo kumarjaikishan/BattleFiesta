@@ -19,9 +19,9 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
             toast.success('Payment successful!');
         }
     }, [txnNo]);
-useEffect(()=>{
-    // console.log(planchoosed);
-})
+    useEffect(() => {
+        // console.log(planchoosed);
+    })
     const handlee = async (e) => {
         e.preventDefault();
         let inpreplace = { ...inp };
@@ -66,34 +66,42 @@ useEffect(()=>{
                 onClose={() => setpaymodalopen(false)}
             >
                 <div className="paymodal">
-                    <div className="left">
-                        <QRCode
-                            size={256}
-                            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                            value={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}
-                            viewBox={`0 0 256 256`}
-                        />
-                        <a href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}>Pay Now</a>
+                    <div className="head">Scan this QR Code</div>
+                    <div className="both">
+                        <div className="left">
+                            <QRCode
+                              className="qr"
+                                size={256}
+                                value={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}
+                                viewBox={`0 0 256 256`}
+                            />
+                            <div>OR</div>
+                            <a href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}>Pay Now</a>
+                        </div>
+                        <div className="right">
+                            <form onSubmit={handlee}>
+                                <img src={logo} alt="" />
+                                <h3>{planchoosed?.duration} plan - ₹{qrcodeamount}.00</h3>
+                                <TextField onChange={handleinput}
+                                    required id="outlined-basic"
+                                    type='tel'
+                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                    name="txn_no"
+                                    size="small" label="UTR/ REF/ TXN No."
+                                    variant="outlined"
+                                    inputProps={{ minLength: 12, maxLength: 12 }}
+                                />
+                                <div className="just">
+                                    <Button type="submit" disabled={isloading} variant="contained">Submit</Button>
+                                    <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="right">
-                        <form onSubmit={handlee}>
-                            <img src={logo} alt="" />
-                            <h3>{planchoosed?.duration} plan - ₹{qrcodeamount}.00</h3>
-                            <TextField onChange={handleinput}
-                                required id="outlined-basic"
-                                type='tel'
-                                onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                name="txn_no"
-                                size="small" label="UTR/ REF/ TXN No."
-                                variant="outlined"
-                                inputProps={{ minLength: 12, maxLength: 12 }}
-                                 />
-                            <div className="just">
-                                <Button type="submit" disabled={isloading} variant="contained">Submit</Button>
-                                <Button onClick={() => setpaymodalopen(false)} variant="outlined">Cancel</Button>
-                            </div>
-                            <p>*Membership will be processed within 24 Hours. Thanks for your patience.</p>
-                        </form>
+                    <div className="bottom">
+                        Scan the QR Code with any UPI App to make payment for this order. After successful payment,
+                        enter the UPI Reference ID or Transaction No. above and submit the form. We will manually
+                        verify this payment width in 24 hours.Thanks for your patience.
                     </div>
                 </div>
 
