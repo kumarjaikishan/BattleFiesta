@@ -76,7 +76,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
                                 viewBox={`0 0 256 256`}
                             />
                             <div>OR</div>
-                            <a href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}>Pay Now</a>
+                            <a title="Mobile UPI App" href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}>Pay Now</a>
                         </div>
                         <div className="right">
                             <form onSubmit={handlee}>

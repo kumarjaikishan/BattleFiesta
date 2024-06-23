@@ -270,7 +270,8 @@
             place-items: center;
 
             .qr {
-                width: 80%;
+                width: 200px;
+                height: 200px;
             }
 
             a {
@@ -281,7 +282,6 @@
                 color: white;
                 padding: 8px 20px;
                 border-radius: 5px;
-                margin-top: 5px;
             }
         }
 
@@ -412,56 +412,6 @@
         }
     }
 
-    /* .paymodal {
-        width: 80vw;
-        height: 75vh;
-        overflow: auto;
-        flex-direction: column;
-        justify-content: space-around;
-        padding: 5px;
-        align-items: center;
-        border: 1px solid red;
-
-        .left {
-            width: 95%;
-
-            a {
-                margin-top: 15px;
-            }
-        }
-
-        .right {
-            border: 1px solid red;
-            width: 97%;
-            height: min-content;
-
-            form {
-                align-items: center;
-                justify-content: space-around;
-                flex-direction: column;
-
-                img {
-                    width: 50px;
-                    margin-bottom: 10px;
-                }
-
-
-                h3 {
-                    font-size: 18px;
-                    margin-bottom: 10px;
-                }
-
-                .just {
-                    margin: 15px 0px;
-                }
-
-                p {
-                    margin-top: 0;
-                    font-size: 11px;
-                }
-            }
-        }
-    } */
 
     .paymodal {
         width: 80vw;
@@ -488,14 +438,15 @@
 
                 .qr {
                     /* border: 1px solid red; */
-                    height: 120px;
-                    width: 120px;
+                    height: 140px;
+                    width: 140px;
+                    margin-bottom: 5px;
                 }
 
                 a {
                     font-weight: 500;
                     padding: 6px 14px;
-                    margin-top: 5px;
+                    margin-top: 4px;
                 }
             }
 
@@ -526,6 +477,8 @@
 
         .bottom {
             /* border: 1px solid red; */
+            line-height: 18px;
+            padding: 8px;
             padding-bottom: 10px;
             font-size: 12px;
         }
