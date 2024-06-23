@@ -414,7 +414,7 @@
 
 
     .paymodal {
-        width: 80vw;
+        width: 90vw;
         height: min-content;
         overflow: auto;
 
@@ -469,7 +469,7 @@
                     }
 
                     .just {
-                       margin-top: 10px;
+                       margin-top: 20px;
                     }
                 }
             }
