@@ -49,6 +49,9 @@ const Contact = () => {
 
     return (
         <div className='contact'>
+            <div className="img">
+                <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1720771216/battlefiesta/assets/contact_nbvdng.svg" alt="" />
+            </div>
             <div className="box">
                 <form onSubmit={register}>
                     <h2>Contact Us</h2>

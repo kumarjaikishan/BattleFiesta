@@ -5,6 +5,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+
+    .img{
+        margin-right: 30px;
+        width: 500px;
+    }
 
     .box{
         border-radius: 10px;
@@ -26,6 +32,14 @@
     .contact{
         width: 100%;
         min-height: calc(100vh - var(--navheightmobile));
+       padding-bottom: 10px;
+
+        .img{
+            margin-right: 0px;
+            width: 270px;
+            height: 270px;
+            margin-bottom: 15px;
+        }
     
         .box{
             padding: 8px 5px;
