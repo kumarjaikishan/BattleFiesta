@@ -1,88 +1,65 @@
 .errore {
     width: 100%;
     height: calc(100vh - var(--navheight));
+    background: white;
     overflow: auto;
     position: relative;
-    padding: 0 2rem;
-    background: white;
+    padding: 0 1rem;
+
+    .container {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        img {
+            width: 500px;
+        }
+
+        p {
+            font-size: 1.02rem;
+            color: #555;
+        }
+
+        .btns {
+            width: 400px;
+            height: 60px;
+            /* background: yellow; */
+            margin: 5px auto;
+            margin-top: 3rem;
+
+            .btn {
+                padding: 6px 10px;
+                border-radius: 15px;
+                /* background: rgb(0, 255, 132); */
+                margin: 4px 25px;
+                color: rgb(21, 0, 255);
+                border: 1px solid rgb(21, 0, 255);
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+    }
 }
 
-.errore .container {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    &
-     h1 {
-        font-size: 12rem;
-        color: #333;
-        font-weight: 800;
-        background: linear-gradient(to right , orange, skyblue, pink);
-        background-size: 150%;
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        animation: ani 5s linear infinite alternate;
-    }
-
-}
-@keyframes ani {
-   0%, 100%{
-        background-position: 0 0;
-    }
-    50%{
-        background-position: 100% 0;
-    }
-}
-.container h2{
-    font-size: 4rem;
-    color: #333;
-}
-.container   p {
-    font-size: 1.2rem;
-    color: #555;
-}
-.container .btns{
-    width: 400px;
-    height: 60px;
-    /* background: yellow; */
-    margin: 5px auto;
-    margin-top: 3rem;
-}
-.container .btns .btn{
-    padding: 6px 10px;
-    border-radius: 15px;
-    /* background: rgb(0, 255, 132); */
-    margin: 4px 25px;
-    color: rgb(21, 0, 255);
-    border: 1px solid  rgb(21, 0, 255);
-    cursor: pointer;
-    text-decoration: none;
-}
 @media only screen and (max-width: 500px) {
+
     .errore {
         height: calc(100vh - var(--navheightmobile));
-    }
-   .errore .container h1 {
-        font-size: 10rem;
-        color: #333;
-        font-weight: 800;
-        background: linear-gradient(to right , orange, skyblue, pink);
-        background-size: 150%;
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        animation: ani 5s linear infinite alternate;
-    }
-  .errore  .container h2{
-        font-size: 3.2rem;
-        color: #333;
-    }
-  .errore  .container   p {
-        font-size: 1.1rem;
-        color: #555;
+      /* border: 1px solid red; */
+
+        .container {
+
+            img {
+                width: 100%;
+            }
+
+            p {
+                font-size: 0.9rem;
+                color: #555;
+            }
+        }
     }
 }
