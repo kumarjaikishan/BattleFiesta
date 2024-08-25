@@ -1,3 +1,19 @@
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate {
+    0% {
+        --angle: 0deg;
+    }
+
+    100% {
+        --angle: 360deg;
+    }
+}
+
 .profile {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
@@ -128,21 +144,26 @@
 
             .img {
                 margin: 20px 0px;
+                position: relative;
                 width: 170px;
                 height: 170px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: linear-gradient(to bottom right, rgb(231, 0, 231), rgb(255, 155, 0));
-                border-radius: 50%;
+                background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent);
+                animation: rotate 5s linear infinite;
+                border-radius: 25px;
+                /* border-radius: 50%; */
+                padding: 3px;
 
                 img {
                     background: linear-gradient(to right bottom,
                             rgba(255, 255, 255, 0.7),
                             rgba(255, 255, 255, 0.3));
-                    width: 97%;
-                    height: 97%;
-                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 20px;
+                    /* border-radius: 50%; */
                 }
             }
         }
@@ -229,18 +250,21 @@
                     font-weight: 600;
                     letter-spacing: 0.2px;
                 }
-                .status{
+
+                .status {
                     text-transform: capitalize;
                     padding: 2px 25px;
                     border-radius: 50px;
                 }
+
                 .status.active {
                     color: rgb(1, 59, 1);
-                    background-color: rgba(52, 233, 52, 0.712);   
+                    background-color: rgba(52, 233, 52, 0.712);
                 }
+
                 .status.expired {
                     color: rgb(158, 4, 4);
-                    background-color: rgba(184, 111, 89, 0.411);   
+                    background-color: rgba(184, 111, 89, 0.411);
                 }
             }
         }
@@ -393,18 +417,19 @@
                     }
                 }
             }
+
             .membership {
                 height: max-content;
                 grid-column: span 8;
-    
+
                 h2 {
                     margin-bottom: 15px;
                 }
-    
+
                 p {
                     margin: 5px 0px;
                     line-height: 26px;
-    
+
                     & span:nth-child(1) {
                         display: inline-block;
                         font-weight: 700;
@@ -412,11 +437,11 @@
                         width: 130px;
                         letter-spacing: 0.4px;
                     }
-    
+
                     & span:nth-child(2) {
                         font-weight: 700;
                     }
-    
+
                     & span:nth-child(3) {
                         margin-left: 10px;
                         font-size: 16px;
@@ -425,15 +450,15 @@
                     }
                 }
             }
-    
+
             .passchange {
                 height: max-content;
                 grid-column: span 8;
-    
+
                 h2 {
                     margin-bottom: 20px;
                 }
-    
+
                 .half {
                     margin-bottom: 20px;
                 }
