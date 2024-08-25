@@ -152,7 +152,7 @@
                 align-items: center;
                 background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent);
                 animation: rotate 5s linear infinite;
-                border-radius: 25px;
+                border-radius: 23px;
                 /* border-radius: 50%; */
                 padding: 3px;
 
