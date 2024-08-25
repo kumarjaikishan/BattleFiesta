@@ -21,8 +21,7 @@
         overflow: hidden;
         text-align: center;
 
-        &::before,
-        &:after {
+        &::before{
             content: '';
             position: absolute;
             top: 0;

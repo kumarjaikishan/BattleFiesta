@@ -102,9 +102,9 @@ const Tournamentstatpage = () => {
             </a>}
             {tournament.type == 'classic' && <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
               <Button variant="outlined" startIcon={<LeaderboardIcon />}> LEADERBOARD </Button>
-            </a>}
-
+            </a>} <br />
           </div>
+            {!data2.isopen && <div style={{color:'red', textAlign:'center'}}>**Registration is Closed for this Tournament**</div> }
           <div className="contacts">
             <div>Contacts Details</div>
             {links.length > 0 && <>

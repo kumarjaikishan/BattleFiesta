@@ -190,16 +190,17 @@
         border-radius: 2px;
         position: relative;
         z-index: 2;
+        border-radius: 10px;
+        overflow: hidden;
 
         &::before {
             content: '';
             position: absolute;
-            top: -6px;
+            top: 0px;
             left: 0;
             height: 7px;
             width: 100%;
             background-color: var(--primarycolor);
-            border-radius: 10px 10px 0 0;
             z-index: 0;
         }
 
@@ -236,12 +237,17 @@
         }
 
         .btn {
+            margin-top: 5px;
             border: 1px solid rgb(196, 193, 193);
             border-radius: 10px;
-            padding: 20px 0px;
+            padding: 15px 0px;
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+
+            button{
+                margin: 0 8px;
+            }
         }
     }
 
