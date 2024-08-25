@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -73,7 +73,6 @@ function App() {
   }, [])
   useEffect(() => {
     log.islogin && requestPermission();
-
   }, [log.islogin])
 
 
@@ -117,9 +116,12 @@ function App() {
             <Route path="/plan" element={<Payment />} />
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/login" element={<Login />} />
+            
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<Errorpage />} />
+
+            {log.islogin ? <Route path="/login" element={<Navigate to="/dashboard"/>} />
+            :<Route path="/login" element={<Login />} />}
           </Routes>
           {log.loader && <Preloader />}
         </div>

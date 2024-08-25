@@ -19,9 +19,7 @@ const AdminRoutes = () => {
       <Adminnavbar />
       <Outlet />
     </>
-  ) : (
-    <Navigate to="/logout" />
-  );
+  ) : <Navigate to="/logout" />;
 };
 
 export default AdminRoutes;

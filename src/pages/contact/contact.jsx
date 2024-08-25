@@ -5,6 +5,9 @@ import { useState } from 'react';
 import SaveIcon from '@mui/icons-material/Save';
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import InputAdornment from '@mui/material/InputAdornment';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import Person4Icon from '@mui/icons-material/Person4';
 
 
 const Contact = () => {
@@ -63,6 +66,11 @@ const Contact = () => {
                         onChange={handlechange}
                         value={inp.name}
                         variant="outlined"
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <Person4Icon />
+                            </InputAdornment>,
+                        }}
                     />
                     <TextField required
                         fullWidth id="outlined-basic"
@@ -73,6 +81,11 @@ const Contact = () => {
                         onChange={handlechange}
                         value={inp.email}
                         variant="outlined"
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <MailOutlineIcon />
+                            </InputAdornment>,
+                        }}
                     />
                     <TextField required
                         fullWidth id="outlined-basic"
@@ -91,7 +104,8 @@ const Contact = () => {
                         loading={isloading}
                         loadingPosition="start"
                         startIcon={<SaveIcon />}
-                        variant="outlined"
+                        variant="contained"
+                        sx={{width:"100%"}}
                     >
                         SUBMIT
                     </LoadingButton>
