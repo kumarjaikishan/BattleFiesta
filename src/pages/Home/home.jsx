@@ -313,7 +313,7 @@ const Home = () => {
                         <p> <span><img src={tick2} alt="" /></span> <span>Points table is updated automatically each time you enter results of a new match.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Option to export the points table to an image file.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Detailed analytics.</span></p>
-                        <a href="https://battlefiesta.vercel.app/tournaments/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
+                        <a href="https://battlefiesta.in/tournaments/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
                             <Button variant="contained" size='small'>See Demo</Button>
                         </a>
                     </motion.div>
@@ -334,7 +334,7 @@ const Home = () => {
                         <p> <span><img src={tick} alt="" /></span> <span>Set maximum and minimum player required for registration.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Approve registration or decline. Its up to you.</span></p>
                         <p> <span><img src={tick} alt="" /></span> <span>Teamlist section for participant, to see their Registration Status- Approved, Pending or Rejected</span></p>
-                        <a href="https://battlefiesta.vercel.app/register/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
+                        <a href="https://battlefiesta.in/register/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
                             <Button variant="contained" size='small'>See Demo</Button>
                         </a>
                     </motion.div>
