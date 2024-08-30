@@ -26,7 +26,7 @@
             color: grey;
 
             &:hover {
-                color: rgb(6, 132, 182);
+                color: var(--primarycolor);
             }
 
 
@@ -111,7 +111,7 @@
         & .box {
             min-width: 300px;
             height: 200px;
-            border: 1px solid grey;
+            border: 1px dotted grey;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -142,14 +142,14 @@
                 cursor: pointer;
 
                 &:hover {
-                    color: rgb(6, 99, 118);
+                    color:var(--primarycolor);
                 }
             }
         }
     }
 
     .cont.active {
-        color: rgb(6, 132, 182);
+        color: var(--primarycolor);
     }
 }
 
@@ -200,6 +200,7 @@
             grid-template-columns: repeat(3, 1fr);
 
             & .cont {
+                
                 padding: 0px 5px;
 
                 &:hover {

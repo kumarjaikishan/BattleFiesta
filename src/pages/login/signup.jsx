@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 
-const Signup = ({ setlog ,setshowmsg}) => {
+const Signup = ({ setlog, setshowmsg }) => {
     const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
@@ -35,7 +35,7 @@ const Signup = ({ setlog ,setshowmsg}) => {
         })
     }
 
-    
+
     const submite = async (e) => {
         e.preventDefault();
         setbtnclick(true);
@@ -179,16 +179,17 @@ const Signup = ({ setlog ,setshowmsg}) => {
                             </InputAdornment>,
                         }}
                     />
-                    <LoadingButton
-                        loading={btnclick}
-                        type='submit'
-                        loadingPosition="start"
-                        variant="contained"
-                        startIcon={<BeachAccessIcon />}
-                    >
-                        Signup
-                    </LoadingButton>
-                  </form>
+                        <LoadingButton
+                        fullWidth
+                            loading={btnclick}
+                            type='submit'
+                            loadingPosition="start"
+                            variant="contained"
+                            startIcon={<BeachAccessIcon />}
+                        >
+                            Signup
+                        </LoadingButton>
+                </form>
             </div>
         </>
     )

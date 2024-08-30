@@ -24,7 +24,7 @@
             border-radius: 10px;
 
             &:hover {
-                color: rgb(6, 132, 182);
+                color: var(--primarycolor);
             }
 
             h3 {
@@ -33,7 +33,7 @@
         }
 
         .active {
-            color: rgb(6, 115, 146);
+            color: var(--primarycolor);
         }
     }
     .header.pending{
@@ -85,7 +85,7 @@
     
                 &:hover {
                     border-bottom: 2px solid transparent;
-                    color: rgb(6, 132, 182);
+                    color: var(--primarycolor);
                 }
     
                 h3 {
@@ -95,7 +95,7 @@
             }
     
             .active {
-                color: rgb(6, 115, 146);
+                color: var(--primarycolor);
             }
         }
     }

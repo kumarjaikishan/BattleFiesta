@@ -17,11 +17,10 @@ input {
   --navheight: 60px;
   --navheightmobile: 50px;
   --primarycolor: #02363a;
-  --hovercolor: #1f8b93;
+  --hovercolor: #011f22;
   --secondarycolor: #02363a;
   --thirdcolor: #0d585e;
 }
-
 
 
 body {
@@ -99,8 +98,7 @@ button,
   outline: none;
   padding: 10px 18px;
   color: white;
-  font-size: 1.2em;
-  font-weight: 600;
+  font-size: 1.1em;
   letter-spacing: 2px;
   border-radius: 5px;
   background: rgb(40, 37, 37);

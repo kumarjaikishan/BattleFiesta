@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { memshipentry, contactusform, voucher, membership, Users } from '../../store/admin';
 
-const Signin = ({showmsg,setshowmsg}) => {
+const Signin = ({ showmsg, setshowmsg }) => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const tournacenter = useSelector((state) => state.tournacenter);
@@ -60,7 +60,7 @@ const Signin = ({showmsg,setshowmsg}) => {
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
                 // console.log("login data",data);
-                toast.success(data.message, { autoClose: 1300 });
+                toast.success(data.message, { autoClose: 1700 });
                 setbtnclick(false);
                 dispatch(setloader(true));
                 dispatch(setadmin(data.isadmin));
@@ -81,7 +81,7 @@ const Signin = ({showmsg,setshowmsg}) => {
                 dispatch(setloader(false));
                 setbtnclick(false);
                 setshowmsg(true)
-                toast.warn("Verify Email", { autoClose: 3300 });
+                toast.warn("Verify Email", { autoClose: 3700 });
             }
             else {
                 setshowmsg(false)
@@ -94,7 +94,7 @@ const Signin = ({showmsg,setshowmsg}) => {
         } catch (error) {
             setshowmsg(false)
             console.log(error);
-            toast.warn(error.message, { autoClose: 1500 });
+            toast.warn(error.message, { autoClose: 2500 });
             setbtnclick(false);
             dispatch(setloader(false));
         }
@@ -136,6 +136,7 @@ const Signin = ({showmsg,setshowmsg}) => {
                 <form onSubmit={submite}>
                     <TextField
                         label="Email"
+                        fullWidth
                         size="small"
                         className='filled'
                         onChange={signhandle}
@@ -176,26 +177,27 @@ const Signin = ({showmsg,setshowmsg}) => {
                     {forget && <div className='forget'>
                         <span onClick={() => setforget(false)}>SignIn?</span>
                     </div>}
-
-                    {!forget && <LoadingButton
-                        loading={btnclick}
-                        type='submit'
-                        startIcon={<VpnKeyIcon />}
-                        loadingPosition="start"
-                        variant="contained"
-                    >
-                        Login
-                    </LoadingButton>}
-                    {forget && <LoadingButton
-                        loading={btnclick}
-                        onClick={emailset}
-                        startIcon={<VpnKeyIcon />}
-                        loadingPosition="start"
-                        variant="contained"
-                    >
-                        Email sent
-                    </LoadingButton>}
-                  {showmsg && <p>*Note-Email sent successfully, If you can't find the email in your inbox, please check the spam or junk mail section. </p>}  
+                        {!forget && <LoadingButton
+                            loading={btnclick}
+                            fullWidth
+                            type='submit'
+                            startIcon={<VpnKeyIcon />}
+                            loadingPosition="start"
+                            variant="contained"
+                        >
+                            Login
+                        </LoadingButton>}
+                        {forget && <LoadingButton
+                            fullWidth
+                            loading={btnclick}
+                            onClick={emailset}
+                            startIcon={<VpnKeyIcon />}
+                            loadingPosition="start"
+                            variant="contained"
+                        >
+                            Email sent
+                        </LoadingButton>}
+                    {showmsg && <p>*Note-Email sent successfully, If you can't find the email in your inbox, please check the spam or junk mail section. </p>}
                 </form>
             </div>
         </>

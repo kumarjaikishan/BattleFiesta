@@ -21,6 +21,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import SettingsIcon from '@mui/icons-material/Settings';
 import Dialogbox from "../utils/dialogbox";
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
@@ -41,7 +42,7 @@ const Dashboard = () => {
     // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
-const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
+  const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
   const setdata = (data) => {
     // console.log(data);
     if (data.type == 'tdm') {
@@ -332,7 +333,7 @@ const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642
                     {formattedDate} {formattedTime}
                   </div>
                   <div className="controller">
-                    <Button size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                    <Button startIcon={<SettingsIcon/>} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
                     <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
                   </div>
                 </motion.div>

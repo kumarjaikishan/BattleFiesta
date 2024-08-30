@@ -33,7 +33,7 @@
         }
 
         .active {
-            color: rgb(6, 115, 146);
+            color: var(--primarycolor);
         }
     }
 
@@ -121,17 +121,13 @@
 
                 &:hover {
                     border-bottom: 2px solid transparent;
-                    color: rgb(6, 132, 182);
+                    color: var(--primarycolor);
                 }
 
                 h3 {
                     margin-left: 5px;
                     font-size: 12px;
                 }
-            }
-
-            .active {
-                color: rgb(6, 115, 146);
             }
         }
     }

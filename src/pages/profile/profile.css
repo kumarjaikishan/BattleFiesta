@@ -150,7 +150,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent);
+                background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent,#ff2770);
                 animation: rotate 5s linear infinite;
                 border-radius: 23px;
                 /* border-radius: 50%; */

@@ -150,10 +150,10 @@ const Findtournament = () => {
                                 {formattedDate}, {formattedTime} <span >{val.type}</span>
                             </div>
                             <div className="controller">
-                                <Stack spacing={2} direction="row" sx={{ ml: 2 }}>
+                                {/* <Stack spacing={2} direction="row" sx={{ ml: 2 }}> */}
                                     <Button size="small" onClick={() => findtournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>READ MORE</Button>
-                                    <p className="status">{val.status}</p>
-                                </Stack>
+                                    <p className="status" title="Status">{val.status}</p>
+                                {/* </Stack> */}
                             </div>
                         </motion.div>
                     })}

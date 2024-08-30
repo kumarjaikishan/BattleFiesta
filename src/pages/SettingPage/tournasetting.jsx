@@ -19,6 +19,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Button from '@mui/material/Button';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import TextField from '@mui/material/TextField';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
@@ -92,7 +93,7 @@ const Tournasetting = () => {
 
     // Alert or notify the user
     // alert("URL copied to clipboard: " + urlToCopy);
-    toast.success("Copied Successfully", { autoClose: 900 })
+    toast.success("Link Copied", { autoClose: 900 })
   }
 
   const showss = (inp) => {
@@ -148,7 +149,8 @@ const Tournasetting = () => {
               <TextField aria-readonly sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tid}`} target="_blank" title='Visit Page'> 
+            <Button sx={{ pb: 0.2 , pt:0.3}} startIcon={<OpenInNewIcon/>} size='small'  variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -158,7 +160,8 @@ const Tournasetting = () => {
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
             </Stack>
-            <a href={`${localhos}/register/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/register/${tid}`} target="_blank" title='Visit Page'>
+             <Button sx={{ pb: 0.2 , pt:0.3}}  startIcon={<OpenInNewIcon/>} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -168,7 +171,8 @@ const Tournasetting = () => {
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
               <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tournaments")} />
             </Stack>
-            <a href={`${localhos}/tournaments/${tid}`} target="_blank" title='Visit Page'> <Button sx={{ pb: 0 }} size='small' variant="contained">Visit</Button></a>
+            <a href={`${localhos}/tournaments/${tid}`} target="_blank" title='Visit Page'>
+             <Button sx={{ pb: 0.2 , pt:0.3}} startIcon={<OpenInNewIcon/>} size='small' variant="contained">Visit</Button></a>
           </div>
         </div>
 

@@ -118,6 +118,7 @@
             & .card {
                 width: 270px;
                 height: 230px;
+                transition: 0.3s;
                 /* border: 1px solid red; */
                 padding-top: 10px;
 
@@ -137,7 +138,6 @@
                 }
             }
         }
-
     }
 
     .section3,

@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import SaveIcon from '@mui/icons-material/Save';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { NavLink } from 'react-router-dom';
@@ -305,7 +306,17 @@ const Profile = () => {
                             <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half" id="outlined-basic" label="State" variant="outlined" />
                             <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" id="outlined-basic" label="Bio" variant="outlined" />
                         </div>
-                        <button disabled={isloadinge} type='submit'>Save</button>
+                        {/* <button disabled={isloadinge} type='submit'>Save</button> */}
+                        <Button
+                            disabled={isloadinge}
+                            variant="contained"
+                            startIcon={<SaveIcon />}
+                            className='splbtn'
+                            type='submit'
+                            size='small'
+                        >
+                            Save
+                        </Button>
                     </form>
                 </div>
                 <div className="membership glass">
@@ -349,7 +360,17 @@ const Profile = () => {
                             helperText="This phone number will be visible on your profile page"
                             label="Public Phone" variant="outlined" />
                     </div>
-                    <button disabled={isloadinge} onClick={submit}>Save</button>
+                    {/* <button disabled={isloadinge} onClick={submit}>Save</button> */}
+                    <Button
+                            disabled={isloadinge}
+                            variant="contained"
+                            startIcon={<SaveIcon />}
+                            className='splbtn'
+                            onClick={submit}
+                            size='small'
+                        >
+                            Save
+                        </Button>
                 </div>
                 <div className="social glass">
                     <h2>Social Links</h2>
@@ -392,7 +413,17 @@ const Profile = () => {
                                 Add
                             </Button>
                         </div>
-                        <button disabled={isloadinge} type='submit'>Save</button>
+                        {/* <button disabled={isloadinge} type='submit'>Save</button> */}
+                        <Button
+                            disabled={isloadinge}
+                            variant="contained"
+                            startIcon={<SaveIcon />}
+                            className='splbtn'
+                            type='submit'
+                            size='small'
+                        >
+                            Save
+                        </Button>
                     </form>
                 </div>
             </div>
