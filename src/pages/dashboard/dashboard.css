@@ -45,7 +45,8 @@
                     width: 160px;
                 }
             }
-            i{
+
+            i {
                 font-size: 5em;
                 color: rgba(87, 87, 87, 0.308);
                 pointer-events: none;
@@ -54,7 +55,8 @@
                 right: 10px;
                 transform: translateY(-50%) rotate(20deg);
             }
-            .buy{
+
+            .buy {
                 color: white;
                 display: inline-block;
                 width: 100%;
@@ -67,7 +69,8 @@
                 background: var(--primarycolor);
             }
         }
-        .operator{
+
+        .operator {
             width: 300px;
             height: 100%;
             gap: 8px;
@@ -136,9 +139,10 @@
                     /* border: 1px solid red; */
                 }
             }
-            h3{
 
-                span{
+            h3 {
+
+                span {
                     margin-right: 3px;
                     font-size: 12px;
                     color: white;
@@ -184,14 +188,14 @@
                 margin: 7px 0px;
                 padding-left: 10px;
                 color: rgb(58, 56, 56);
-            } 
+            }
 
             .time {
                 font-size: 14px;
                 display: flex;
                 justify-content: space-between;
 
-                
+
             }
 
             .controller {
@@ -206,7 +210,8 @@
                     transition: 0.2s;
                     background: black;
                 }
-                button:hover{
+
+                button:hover {
                     background: rgb(34, 33, 33);
                 }
 
@@ -239,7 +244,8 @@
 
             }
         }
-        .card:hover img{
+
+        .card:hover img {
             transform: scale(1.03);
         }
     }
@@ -267,7 +273,7 @@
     & header {
         /* background: red; */
         background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg');
-        background-size: 110%;
+        background-size: 130%;
         height: 80px;
         font-size: 2.7em;
         color: #212529;
@@ -275,17 +281,7 @@
         letter-spacing: 1px;
         line-height: 80px;
         padding-left: 15px;
-        animation: ani 8s ease-in-out infinite;
-    }
-
-    @keyframes ani {
-        0% {
-            background-position: top left;
-        }
-
-        100% {
-            background-position: top right;
-        }
+        animation: ani 8s ease-in-out infinite alternate;
     }
 
     form {
@@ -294,6 +290,16 @@
         & section {
             margin-top: 20px;
         }
+    }
+}
+
+@keyframes ani {
+    0% {
+        background-position: top left;
+    }
+
+    100% {
+        background-position: top right;
     }
 }
 
@@ -321,34 +327,36 @@
 
         & .controles {
             gap: 15px;
-    
+
             .card {
                 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
                 width: 95%;
-    
+
                 >div {
                     height: 25px;
-    
+
                     & span:nth-child(1) {
                         display: inline-block;
                         font-weight: 700;
                         letter-spacing: 0.5px;
                         width: 160px;
                     }
-    
+
                     & span:nth-child(3) {
                         font-weight: 500;
                         margin-left: 10px;
                         width: 160px;
                     }
                 }
-               
+
             }
-            .operator{
+
+            .operator {
                 width: 95%;
                 gap: 15px;
             }
         }
+
         .cards {
             min-height: calc(100vh - var(--navheightmobile));
             grid-template-columns: repeat(1, 1fr);

@@ -140,10 +140,12 @@ const Payment = () => {
   const coupon = 0;
   const [paymodalopen, setpaymodalopen] = useState(false);
 
+  const [fetchCouponData, setfetchCouponData]= useState(false);
   const checkcoupon = async () => {
     let coupon = inp.couponname.trim().toLowerCase();
     // console.log(coupon);
     try {
+      setfetchCouponData(true);
       const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}checkcoupon`, {
         method: "POST",
         headers: {
@@ -152,7 +154,8 @@ const Payment = () => {
         body: JSON.stringify({ coupon })
       });
       const data = await responsee.json();
-      // console.log(data);
+      console.log("check coupon :", responsee);
+      console.log("check coupon :", data);
       if (!responsee.ok) {
         toast.warn(`Coupon ${data.message}`, { autoClose: 1700 });
         setcouponerror(data.message)
@@ -160,6 +163,8 @@ const Payment = () => {
           ...prev,
           coupon: 0,
         }));
+        setfetchCouponData(false);
+        return;
       }
 
       toast.success('Coupon Applied Successfully', { autoClose: 1700 });
@@ -170,6 +175,7 @@ const Payment = () => {
       setcouponerror(null);
 
     } catch (error) {
+      setfetchCouponData(false)
       console.log(error);
     }
   }
@@ -272,7 +278,7 @@ const Payment = () => {
                       }}
                       sx={{ mt: 1 }}
                       onChange={handleinput} size='small' id="outlined-basic" label="Enter a coupon code" value={inp.couponname} name='couponname' variant="outlined" />
-                    <Button onClick={checkcoupon} disabled={inp.couponname.length < 1 && true || couponerror && true} className='btn' sx={{ ml: 4, mt: 1 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
+                    <Button onClick={checkcoupon} disabled={(inp.couponname.length < 1 && true) || (couponerror && true) || fetchCouponData} className='btn' sx={{ ml: 4, mt: 1 }} variant="contained">{inp.coupon > 0 ? 'Applied' : 'Apply'}</Button>
                     {inp.couponname.length > 0 && <Button onClick={couponreset} sx={{ ml: 2, mt: 1 }} variant="outlined">Reset</Button>}
                   </div>
                   {inp.coupon > 0 && <p className='cousuc'>Coupon code <b>{inp.couponname}</b> applied successfully, <b>{inp.coupon}% </b> off applied </p>}

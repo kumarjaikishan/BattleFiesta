@@ -32,12 +32,12 @@ const theme = createTheme({
                 outlined: {
                     borderColor: primarycolor, // Default border color
                     color: primarycolor, // Default text color
-                   
+
                     '&:hover': {
                         borderColor: primarycolor,
                         backgroundColor: 'rgba(2, 54, 58, 0.02)', // Hover background color
                         boxShadow: `0 0 0 0.4px ${primarycolor}`, // Subtle shadow for hover effect
-                     },
+                    },
                 },
 
             },
@@ -48,7 +48,7 @@ const theme = createTheme({
                 root: {
                     // backgroundColor: '#f5f5f5', // Default background color for Select
                     // '& .MuiOutlinedInput-notchedOutline': {
-                    //   borderColor: 'red', // Default border color
+                    //       borderColor: 'red', // Default border color
                     // },
                     '&:hover .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#1b4d4f', // Hover border color
@@ -79,6 +79,20 @@ const theme = createTheme({
             },
         },
 
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: '#9e9e9e', // Default label color
+                    '&.Mui-focused': {
+                        color: primarycolor, // Label color when focused
+                    },
+                    '&.Mui-disabled': {
+                        color: '#bdbdbd', // Label color when disabled
+                    },
+                },
+            },
+        },
+
         MuiRadio: {
             styleOverrides: {
                 root: {
@@ -92,8 +106,6 @@ const theme = createTheme({
                 },
             },
         },
-
-
     },
 });
 

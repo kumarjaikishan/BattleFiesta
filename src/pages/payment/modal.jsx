@@ -70,13 +70,24 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
                     <div className="both">
                         <div className="left">
                             <QRCode
-                              className="qr"
+                                className="qr"
                                 size={256}
                                 value={`upi://pay?pa=battlefiesta01@ybl&pn=battlefiesta&am=${qrcodeamount}&tn=battleFiesta&cu=INR`}
                                 viewBox={`0 0 256 256`}
                             />
                             <div>OR</div>
-                            <a title="Mobile UPI App" href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}>Pay Now</a>
+                            {/* <a title="Mobile UPI App" href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}>Pay Now</a> */}
+                            <Button
+                                component="a"
+                                title="Mobile UPI App"
+                                href={`upi://pay?pa=battlefiesta01@ybl&pn=BattleFiesta&am=${qrcodeamount}&tn=${planchoosed?.duration}_Plan&cu=INR`}
+                                target="_blank" // Opens in a new tab if needed
+                                rel="noopener noreferrer" // Security best practice
+                                variant="contained" // Choose the variant: 'contained', 'outlined', etc.
+                                color="primary" // Choose the button color
+                            >
+                                Pay Now
+                            </Button>
                         </div>
                         <div className="right">
                             <form onSubmit={handlee}>
