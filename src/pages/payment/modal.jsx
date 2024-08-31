@@ -112,7 +112,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
                     <div className="bottom">
                         Scan the QR Code with any UPI App to make payment for this order. After successful payment,
                         enter the UPI Reference ID or Transaction No. above and submit the form. We will manually
-                        verify this payment width in 24 hours.Thanks for your patience.
+                        verify this payment with in 24 hours. Thanks for your patience ❤️‍🩹.
                     </div>
                 </div>
 
