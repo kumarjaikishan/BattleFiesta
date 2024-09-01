@@ -370,7 +370,7 @@
     }
 
     .dashboardbox {
-        width: 90vw;
+        width: 80vw;
 
         & header {
             height: 50px;
