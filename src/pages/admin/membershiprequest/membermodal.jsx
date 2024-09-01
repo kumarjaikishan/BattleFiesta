@@ -16,7 +16,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
         buydate: new Date(),
         expiredate: new Date()
     });
-const [isloading,setisloading]=useState(false)
+    const [isloading, setisloading] = useState(false)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -70,26 +70,28 @@ const [isloading,setisloading]=useState(false)
                 <div className="membermodal">
                     <form onSubmit={(e) => handlee(e, inp._id)}>
                         <h2>Create Membership</h2>
+                        <span className="modalcontent">
 
-                        <FormControl sx={{ width: '95%' }} size="small">
-                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={inp.status}
-                                label="Status"
-                                onChange={(e) => handleChange(e, 'status')}
-                            >
-                                <MenuItem value='pending'>Pending</MenuItem>
-                                <MenuItem value='success'>Success</MenuItem>
-                                <MenuItem value='rejected'>Rejected</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <TextField multiline rows={3} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '95%' }} label="Remarks" size="small" />
-                        <div className="btn">
-                            <Button disabled={isloading} size="small" type="submit" variant="contained"> Submit</Button>
-                            <Button size="small" onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
-                        </div>
+                            <FormControl sx={{ width: '95%' }} size="small">
+                                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={inp.status}
+                                    label="Status"
+                                    onChange={(e) => handleChange(e, 'status')}
+                                >
+                                    <MenuItem value='pending'>Pending</MenuItem>
+                                    <MenuItem value='success'>Success</MenuItem>
+                                    <MenuItem value='rejected'>Rejected</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <TextField multiline rows={3} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '95%' }} label="Remarks" size="small" />
+                            <div className="btn">
+                                <Button disabled={isloading} size="small" type="submit" variant="contained"> Submit</Button>
+                                <Button size="small" onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
+                            </div>
+                        </span>
                     </form>
                 </div>
             </Dialogbox>

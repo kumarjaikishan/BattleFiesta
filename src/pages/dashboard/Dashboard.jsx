@@ -333,7 +333,7 @@ const Dashboard = () => {
                     {formattedDate} {formattedTime}
                   </div>
                   <div className="controller">
-                    <Button startIcon={<SettingsIcon/>} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                    <Button startIcon={<SettingsIcon />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
                     <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
                   </div>
                 </motion.div>
@@ -349,8 +349,7 @@ const Dashboard = () => {
         <Dialogbox
           className="modale"
           open={tournacenter.createnewmodal}
-          onClose={() => dispatch(setcreatenewmodal(false))}
-        >
+          onClose={() => dispatch(setcreatenewmodal(false))} >
           <motion.div
             initial={{ scale: 0.1 }}
             animate={{ scale: 1 }}

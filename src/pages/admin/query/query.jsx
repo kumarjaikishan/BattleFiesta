@@ -130,9 +130,9 @@ const Query = () => {
                     <span>Actions</span>
                 </div>
                 {admin?.contactusform.length < 1 &&
-            <div className="body">
-               No Query Found
-            </div>}
+                    <div className="body">
+                        No Query Found
+                    </div>}
                 <motion.div layout className="body">
                     {admin.contactusform && admin.contactusform.map((val, ind) => {
                         return <motion.div layout key={ind}>
@@ -154,23 +154,23 @@ const Query = () => {
                     <div className="membermodal">
                         <form onSubmit={handlee}>
                             <h2>Reply</h2>
-
-                            <TextField sx={{ width: '98%' }} value={email} contentEditable={false} label="Email" size="small" />
-                            <TextField autoFocus multiline rows={4} onChange={handleChange} value={reply} sx={{ width: '98%' }} label="Reply" size="small" />
-
-                            <div>
-                                <LoadingButton
-                                sx={{mr:2}}
-                                    loading={isload}
-                                    loadingPosition="end"
-                                    endIcon={<SendIcon />}
-                                    variant="contained"
-                                    type="submit"
-                                >
-                                    Send Email
-                                </LoadingButton>
-                                <Button size="small" onClick={() => setopenmodal(false)} variant="outlined"> cancel</Button>
-                            </div>
+                            <span className="modalcontent">
+                                <TextField sx={{ width: '98%' }} value={email} contentEditable={false} label="Email" size="small" />
+                                <TextField autoFocus multiline rows={4} onChange={handleChange} value={reply} sx={{ width: '98%' }} label="Reply" size="small" />
+                                <div>
+                                    <LoadingButton
+                                        sx={{ mr: 2 }}
+                                        loading={isload}
+                                        loadingPosition="end"
+                                        endIcon={<SendIcon />}
+                                        variant="contained"
+                                        type="submit"
+                                    >
+                                        Send Email
+                                    </LoadingButton>
+                                    <Button size="small" onClick={() => setopenmodal(false)} variant="outlined"> cancel</Button>
+                                </div>
+                            </span>
                         </form>
                     </div>
                 </Dialogbox>

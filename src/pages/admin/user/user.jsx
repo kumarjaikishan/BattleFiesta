@@ -19,7 +19,7 @@ const User = () => {
     const userprofile = useSelector((state) => state.admin);
     const dispatch = useDispatch();
     const init = {
-        id:'',
+        id: '',
         name: '',
         phone: '',
         isverified: '',
@@ -110,7 +110,7 @@ const User = () => {
     const actione = (val) => {
         console.log(val);
         setinp({
-            id:val._id,
+            id: val._id,
             name: val.name,
             phone: val.phone,
             isverified: val.isverified,
@@ -171,40 +171,42 @@ const User = () => {
                 <div className="membermodal">
                     <form onSubmit={handlee}>
                         <h2>User Detail</h2>
-                        <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Name" size="small" />
-                        <TextField type="tel" required value={inp.phone} onChange={(e) => handleChange(e, 'phone')} sx={{ width: '98%' }} label="Mobile"
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            size="small" />
-                        <FormControl sx={{ width: '98%' }} size="small">
-                            <InputLabel id="demo-simple-select-label">Verify</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={inp.isverified}
-                                label="status"
-                                onChange={(e) => handleChange(e, 'isverified')}
-                            >
-                                <MenuItem value={true}>Yes</MenuItem>
-                                <MenuItem value={false}>No</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl sx={{ width: '98%' }} size="small">
-                            <InputLabel id="demo-simple-select-label">Admin</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={inp.isadmin}
-                                label="status"
-                                onChange={(e) => handleChange(e, 'isadmin')}
-                            >
-                                <MenuItem value={true}>Yes</MenuItem>
-                                <MenuItem value={false}>No</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <div style={{ width: '100%' }}>
-                            <Button size="small" type="submit" variant="contained"> Update</Button>
-                            <Button size="small" onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
-                        </div>
+                        <span className="modalcontent">
+                            <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Name" size="small" />
+                            <TextField type="tel" required value={inp.phone} onChange={(e) => handleChange(e, 'phone')} sx={{ width: '98%' }} label="Mobile"
+                                onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                size="small" />
+                            <FormControl sx={{ width: '98%' }} size="small">
+                                <InputLabel id="demo-simple-select-label">Verify</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={inp.isverified}
+                                    label="status"
+                                    onChange={(e) => handleChange(e, 'isverified')}
+                                >
+                                    <MenuItem value={true}>Yes</MenuItem>
+                                    <MenuItem value={false}>No</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ width: '98%' }} size="small">
+                                <InputLabel id="demo-simple-select-label">Admin</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={inp.isadmin}
+                                    label="status"
+                                    onChange={(e) => handleChange(e, 'isadmin')}
+                                >
+                                    <MenuItem value={true}>Yes</MenuItem>
+                                    <MenuItem value={false}>No</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <div style={{ width: '100%' }}>
+                                <Button size="small" type="submit" variant="contained"> Update</Button>
+                                <Button size="small" onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                            </div>
+                        </span>
                     </form>
                 </div>
             </Dialogbox>

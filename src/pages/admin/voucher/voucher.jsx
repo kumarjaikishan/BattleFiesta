@@ -155,28 +155,30 @@ const Voucher = () => {
             <div className="membermodal">
                 <form onSubmit={handlee}>
                     <h2>Create Voucher</h2>
-                    <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Plan Name" size="small" />
-                    <TextField type="tel" required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} sx={{ width: '98%' }} label="Percent"
-                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                     size="small" />
-                    <FormControl fullWidth size="small">
-                        <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={inp.isactive}
-                            label="status"
-                            onChange={(e) => handleChange(e, 'isactive')}
-                        >
-                            <MenuItem value={true}>Active</MenuItem>
-                            <MenuItem value={false}>Expired</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <div style={{ width:'100%'}}>
-                        {!isedit && <Button size="small" type="submit" variant="contained"> Submit</Button>}
-                        {isedit && <Button size="small" onClick={edit} variant="contained"> Update</Button>}
-                        <Button size="small" onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
-                    </div>
+                    <span className="modalcontent">
+                        <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Plan Name" size="small" />
+                        <TextField type="tel" required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} sx={{ width: '98%' }} label="Percent"
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                            size="small" />
+                        <FormControl fullWidth size="small">
+                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={inp.isactive}
+                                label="status"
+                                onChange={(e) => handleChange(e, 'isactive')}
+                            >
+                                <MenuItem value={true}>Active</MenuItem>
+                                <MenuItem value={false}>Expired</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <div style={{ width: '100%' }}>
+                            {!isedit && <Button size="small" type="submit" variant="contained"> Submit</Button>}
+                            {isedit && <Button size="small" onClick={edit} variant="contained"> Update</Button>}
+                            <Button size="small" onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                        </div>
+                    </span>
                 </form>
             </div>
         </Dialogbox>

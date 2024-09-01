@@ -265,27 +265,32 @@
 
 .dashboardbox {
     background: white;
-    width: 500px;
+    width: 600px;
     height: fit-content;
-    border-radius: 5px;
+    border-radius: 15px;
     overflow: hidden;
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg');
+    background-size: 120%;
+    animation: ani 6s ease-in-out infinite alternate;
 
     & header {
-        /* background: red; */
-        background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg');
-        background-size: 130%;
-        height: 80px;
+        height: 70px;
+        line-height: 70px;
         font-size: 2.7em;
         color: #212529;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: 1px;
-        line-height: 80px;
         padding-left: 15px;
-        animation: ani 8s ease-in-out infinite alternate;
+        text-align: center;
+        animation: ani 6s ease-in-out infinite alternate;
     }
 
     form {
+        width: 100%;
+        background: white;
         padding: 20px;
+        padding-top: 1px;
+        border-radius: 20px 20px 0 0;
 
         & section {
             margin-top: 20px;
@@ -365,17 +370,21 @@
     }
 
     .dashboardbox {
-        width: 85vw;
+        width: 82vw;
 
         & header {
-            height: 70px;
+            height: 50px;
+            line-height: 50px;
             font-size: 1.8em;
+            font-weight: 700;
         }
 
         form {
+            padding: 10px;
+            padding-bottom: 15px;
 
             & section {
-                margin-top: 25px;
+                margin-top: 20px;
             }
         }
     }
