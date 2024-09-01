@@ -3,7 +3,7 @@ import './modalbox.css'
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 
-const Modalbox = ({ onClose, children }) => {
+const Modalbox = ({ open, onClose, children }) => {
 
     useEffect(() => {
         const getScrollbarWidth = () => {
@@ -26,7 +26,7 @@ const Modalbox = ({ onClose, children }) => {
     }, [])
     return (
         <>
-            {createPortal(
+            {open && createPortal(
                 <div className='modalwrapper' onClick={onClose}>
                     <div className="modalbox"
                         onClick={(e) => {

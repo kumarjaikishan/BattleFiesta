@@ -147,7 +147,7 @@ const Voucher = () => {
                 })}
             </div>
         </div>
-        {modal && <Modalbox onClose={() => setmodal(false)}>
+        <Modalbox open={modal} onClose={() => setmodal(false)}>
             <div className="membermodal">
                 <form onSubmit={handlee}>
                     <h2>Create Voucher</h2>
@@ -177,7 +177,7 @@ const Voucher = () => {
                     </span>
                 </form>
             </div>
-        </Modalbox>}
+        </Modalbox>
     </>
 }
 export default Voucher;

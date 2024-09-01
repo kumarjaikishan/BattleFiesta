@@ -163,7 +163,7 @@ const User = () => {
                     </div>
                 })}
             </div>
-            {modal && <Modalbox onClose={() => setmodal(false)}>
+            <Modalbox open={modal} onClose={() => setmodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={handlee}>
                         <h2>User Detail</h2>
@@ -205,9 +205,7 @@ const User = () => {
                         </span>
                     </form>
                 </div>
-
-            </Modalbox>}
-           
+            </Modalbox>
         </div>
     </>
 }

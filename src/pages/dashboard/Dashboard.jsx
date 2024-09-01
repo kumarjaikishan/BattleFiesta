@@ -345,12 +345,14 @@ const Dashboard = () => {
         {tournacenter.alltournaments.length > howmany &&
           <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
-        {tournacenter.createnewmodal && <Modalbox onClose={() => dispatch(setcreatenewmodal(false))}>
 
+        <Modalbox
+          open={tournacenter.createnewmodal}
+          onClose={() => dispatch(setcreatenewmodal(false))}>
           <motion.div
             initial={{ scale: 0.1 }}
             animate={{ scale: 1 }}
-            transition={{ duration: .5, delay: .2 }}
+            transition={{ duration: .5 }}
             className="dashboardbox">
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
@@ -397,8 +399,7 @@ const Dashboard = () => {
               </Stack>
             </form>
           </motion.div>
-        </Modalbox>}
-
+        </Modalbox>
       </motion.div>
     </>
   );

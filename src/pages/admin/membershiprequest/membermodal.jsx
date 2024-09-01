@@ -62,7 +62,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
     }
     return (
         <>
-            {membermodal && <Modalbox onClose={() => setmembermodal(false)}>
+            <Modalbox open={membermodal} onClose={() => setmembermodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={(e) => handlee(e, inp._id)}>
                         <h2>Create Membership</h2>
@@ -90,8 +90,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                         </span>
                     </form>
                 </div>
-            </Modalbox>}
-           
+            </Modalbox>
         </>
     )
 }

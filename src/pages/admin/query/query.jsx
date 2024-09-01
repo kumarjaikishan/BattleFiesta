@@ -146,7 +146,7 @@ const Query = () => {
                         </motion.div>
                     })}
                 </motion.div>
-                {openmodal && <Modalbox onClose={() => setopenmodal(false)}>
+                <Modalbox open={openmodal} onClose={() => setopenmodal(false)}>
                     <div className="membermodal">
                         <form onSubmit={handlee}>
                             <h2>Reply</h2>
@@ -169,7 +169,7 @@ const Query = () => {
                             </span>
                         </form>
                     </div>
-                </Modalbox>}
+                </Modalbox>
             </div>
         </div>
     </>
