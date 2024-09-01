@@ -358,19 +358,19 @@ const Dashboard = () => {
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
               <section>
-                <TextField required sx={{ minWidth: "100%" }} id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
+                <TextField fullWidth required  id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
               </section>
               <section>
-                <TextField required sx={{ minWidth: "100%" }} id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
+                <TextField required fullWidth id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
               </section>
               <section>
-                <TextField required sx={{ minWidth: "100%" }} type="tel"
+                <TextField required fullWidth type="tel"
                   onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                   id="outlined-basic" onChange={handleChange} name="slots" value={inp.slots} label="Slots" variant="outlined"
                 />
               </section>
               <section>
-                <FormControl sx={{ minWidth: "100%" }}>
+                <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
