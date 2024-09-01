@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import './voucher.css'
 import { useSelector, useDispatch } from "react-redux";
 import { voucher } from "../../../store/admin";
-import Dialogbox from "../../utils/dialogbox";
 import TextField from '@mui/material/TextField';
 import { toast } from 'react-toastify';
 import Button from '@mui/material/Button';
@@ -10,6 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Modalbox from "../../../components/custommodal/Modalbox";
 
 const Voucher = () => {
     const dispatch = useDispatch();
@@ -147,11 +147,7 @@ const Voucher = () => {
                 })}
             </div>
         </div>
-        <Dialogbox
-            className="modale"
-            open={modal}
-            onClose={() => setmodal(false)}
-        >
+        {modal && <Modalbox onClose={() => setmodal(false)}>
             <div className="membermodal">
                 <form onSubmit={handlee}>
                     <h2>Create Voucher</h2>
@@ -181,7 +177,7 @@ const Voucher = () => {
                     </span>
                 </form>
             </div>
-        </Dialogbox>
+        </Modalbox>}
     </>
 }
 export default Voucher;

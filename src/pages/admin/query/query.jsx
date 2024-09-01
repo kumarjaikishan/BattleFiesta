@@ -4,13 +4,13 @@ import TextField from '@mui/material/TextField';
 import './query.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import Dialogbox from "../../utils/dialogbox";
 import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
 import { motion } from 'framer-motion';
 import swal from 'sweetalert';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
+import Modalbox from "../../../components/custommodal/Modalbox";
 
 const Query = () => {
     const dispatch = useDispatch();
@@ -146,11 +146,7 @@ const Query = () => {
                         </motion.div>
                     })}
                 </motion.div>
-                <Dialogbox
-                    className="modale"
-                    open={openmodal}
-                    onClose={() => setopenmodal(false)}
-                >
+                {openmodal && <Modalbox onClose={() => setopenmodal(false)}>
                     <div className="membermodal">
                         <form onSubmit={handlee}>
                             <h2>Reply</h2>
@@ -173,7 +169,7 @@ const Query = () => {
                             </span>
                         </form>
                     </div>
-                </Dialogbox>
+                </Modalbox>}
             </div>
         </div>
     </>

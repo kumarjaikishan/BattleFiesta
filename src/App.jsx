@@ -35,6 +35,7 @@ import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import { messaging } from './firebase';
 import { toast } from 'react-toastify';
+import Modalbox from './components/custommodal/Modalbox';
 import { getToken, onMessage } from 'firebase/messaging'
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
@@ -116,6 +117,7 @@ function App() {
             <Route path="/plan" element={<Payment />} />
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/modal" element={<Modalbox />} />
             
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<Errorpage />} />

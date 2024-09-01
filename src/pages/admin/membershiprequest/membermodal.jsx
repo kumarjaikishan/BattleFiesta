@@ -1,4 +1,4 @@
-import Dialogbox from "../../utils/dialogbox";
+import Modalbox from "../../../components/custommodal/Modalbox";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from "react";
@@ -62,11 +62,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
     }
     return (
         <>
-            <Dialogbox
-                className="modale"
-                open={membermodal}
-                onClose={() => setmembermodal(false)}
-            >
+            {membermodal && <Modalbox onClose={() => setmembermodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={(e) => handlee(e, inp._id)}>
                         <h2>Create Membership</h2>
@@ -94,7 +90,8 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                         </span>
                     </form>
                 </div>
-            </Dialogbox>
+            </Modalbox>}
+           
         </>
     )
 }

@@ -6,13 +6,13 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { Users } from "../../../store/admin";
 import { toast } from 'react-toastify';
-import Dialogbox from "../../utils/dialogbox";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Modalbox from "../../../components/custommodal/Modalbox";
 
 const User = () => {
     const admin = useSelector((state) => state.admin);
@@ -163,11 +163,7 @@ const User = () => {
                     </div>
                 })}
             </div>
-            <Dialogbox
-                className="modale"
-                open={modal}
-                onClose={() => setmodal(false)}
-            >
+            {modal && <Modalbox onClose={() => setmodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={handlee}>
                         <h2>User Detail</h2>
@@ -209,7 +205,9 @@ const User = () => {
                         </span>
                     </form>
                 </div>
-            </Dialogbox>
+
+            </Modalbox>}
+           
         </div>
     </>
 }
