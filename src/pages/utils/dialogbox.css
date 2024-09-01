@@ -3,10 +3,13 @@
     padding: 0;
 }
 
-.MuiDialog-paper{
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation24.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
     max-width: fit-content;
     max-height: fit-content;
     background: transparent;
     box-shadow: none;
+    margin: 0;
+    padding: 0;
 }
 
