@@ -9,6 +9,7 @@ const Dialogbox = ({ open, onClose,children }) => {
     return (
         <Dialog open={open} onClose={onClose} className='maindialog'>
             {/* <DialogTitle>hi</DialogTitle> */}
+            
             <DialogContent className='muidialogbox' sx={{padding:0}} >
                 {children}
             </DialogContent>
