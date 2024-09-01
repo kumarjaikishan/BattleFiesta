@@ -1,6 +1,7 @@
 .query {
     width: 100%;
     padding: 10px 5px;
+    height: 100%;
     display: flex;
     justify-content: center;
     /* border: 1px solid red; */

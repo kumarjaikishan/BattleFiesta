@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 const Modalbox = ({ open, onClose, children }) => {
 
     useEffect(() => {
+        if(open){
         const getScrollbarWidth = () => {
             return window.innerWidth - document.documentElement.clientWidth;
         };
@@ -19,11 +20,12 @@ const Modalbox = ({ open, onClose, children }) => {
 
         return () => {
             setTimeout(() => {
-                document.body.style.overflowY = '';
-                document.body.style.paddingRight = ''; // Reset padding
+                document.body.style.overflowY = 'scroll';
+                document.body.style.paddingRight = '0px'; // Reset padding
             }, 100); // Adjust delay to match your modal’s transition timing
         };
-    }, [])
+    }
+    }, [open])
     return (
         <>
             {open && createPortal(

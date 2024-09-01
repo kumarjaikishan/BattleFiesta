@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 const primarycolor = '#02363a';
+const inputlabelcolor = 'rgb(32, 32, 32)';
 
 const theme = createTheme({
     components: {
@@ -15,9 +16,15 @@ const theme = createTheme({
                             borderColor: primarycolor, // Custom focus border color
                         },
                     },
+                    '& .MuiInputLabel-root': {
+                        color: inputlabelcolor, // Default label color (optional)
+                      },
                     '& .MuiInputLabel-root.Mui-focused': {
                         color: primarycolor, // Custom label color when focused
                     },
+                    '& .MuiInputLabel-root.Mui-focused:not(.Mui-error)': {
+                        color: primarycolor, // Label color when focused and no error
+                      },
                 },
             },
         },
@@ -36,7 +43,7 @@ const theme = createTheme({
                     '&:hover': {
                         borderColor: primarycolor,
                         backgroundColor: 'rgba(2, 54, 58, 0.02)', // Hover background color
-                        boxShadow: `0 0 0 0.4px ${primarycolor}`, // Subtle shadow for hover effect
+                        boxShadow: `inset 0 0 0 0.4px ${primarycolor}`, // Subtle shadow for hover effect
                     },
                 },
 
