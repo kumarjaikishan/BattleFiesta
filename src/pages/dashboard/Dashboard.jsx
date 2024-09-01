@@ -345,61 +345,60 @@ const Dashboard = () => {
         {tournacenter.alltournaments.length > howmany &&
           <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
+        {tournacenter.createnewmodal && <Modalbox onClose={() => dispatch(setcreatenewmodal(false))}>
 
-        {tournacenter.createnewmodal &&
-          <Modalbox onClose={() => dispatch(setcreatenewmodal(false))}>
-            <motion.div
-              initial={{ scale: 0.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: .5 }}
-              className="dashboardbox">
-              <header>Create Tournament</header>
-              <form onSubmit={handleRegister}>
-                <section>
-                  <TextField fullWidth required id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
-                </section>
-                <section>
-                  <TextField required fullWidth id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
-                </section>
-                <section>
-                  <TextField required fullWidth type="tel"
-                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                    id="outlined-basic" onChange={handleChange} name="slots" value={inp.slots} label="Slots" variant="outlined"
-                  />
-                </section>
-                <section>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-helper-label"
-                      id="demo-simple-select-helper"
-                      value={inp.type}
-                      name="type"
-                      required
-                      label="type"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value='classic'>Classic</MenuItem>
-                      <MenuItem value='tdm'>TDM</MenuItem>
-                    </Select>
-                  </FormControl>
-                </section>
-                <Stack spacing={2} direction="row" sx={{ mr: 2, mt: 2 }}>
-                  <LoadingButton
-                    loading={load}
-                    loadingPosition="start"
-                    startIcon={<SaveIcon />}
-                    variant="contained"
-                    type="submit"
+          <motion.div
+            initial={{ scale: 0.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: .5, delay: .2 }}
+            className="dashboardbox">
+            <header>Create Tournament</header>
+            <form onSubmit={handleRegister}>
+              <section>
+                <TextField fullWidth required id="outlined-basic" onChange={handleChange} name="name" value={inp.name} label="Name" variant="outlined" />
+              </section>
+              <section>
+                <TextField required fullWidth id="outlined-basic" onChange={handleChange} name="organiser" value={inp.organiser} label="Organiser" variant="outlined" />
+              </section>
+              <section>
+                <TextField required fullWidth type="tel"
+                  onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                  id="outlined-basic" onChange={handleChange} name="slots" value={inp.slots} label="Slots" variant="outlined"
+                />
+              </section>
+              <section>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-helper-label">Type*</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={inp.type}
+                    name="type"
+                    required
+                    label="type"
+                    onChange={handleChange}
                   >
-                    CREATE
-                  </LoadingButton>
-                  <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
-                </Stack>
-              </form>
-            </motion.div>
+                    <MenuItem value='classic'>Classic</MenuItem>
+                    <MenuItem value='tdm'>TDM</MenuItem>
+                  </Select>
+                </FormControl>
+              </section>
+              <Stack spacing={2} direction="row" sx={{ mr: 2, mt: 2 }}>
+                <LoadingButton
+                  loading={load}
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  variant="contained"
+                  type="submit"
+                >
+                  CREATE
+                </LoadingButton>
+                <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
+              </Stack>
+            </form>
+          </motion.div>
+        </Modalbox>}
 
-          </Modalbox>}
       </motion.div>
     </>
   );

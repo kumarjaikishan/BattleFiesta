@@ -257,11 +257,6 @@
 
 }
 
-.Dashboard.modalopen {
-    width: 100%;
-    max-height: calc(100vh - var(--navheight));
-    overflow: hidden;
-}
 
 .dashboardbox {
     background: white;
