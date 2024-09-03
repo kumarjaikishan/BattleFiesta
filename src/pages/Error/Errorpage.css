@@ -15,7 +15,7 @@
         flex-direction: column;
 
         img {
-            width: 500px;
+            width: 30vw;
         }
 
         p {
@@ -24,22 +24,11 @@
         }
 
         .btns {
-            width: 400px;
-            height: 60px;
-            /* background: yellow; */
-            margin: 5px auto;
+            padding: 0 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-top: 3rem;
-
-            .btn {
-                padding: 6px 10px;
-                border-radius: 15px;
-                /* background: rgb(0, 255, 132); */
-                margin: 4px 25px;
-                color: rgb(21, 0, 255);
-                border: 1px solid rgb(21, 0, 255);
-                cursor: pointer;
-                text-decoration: none;
-            }
         }
     }
 }
@@ -48,12 +37,12 @@
 
     .errore {
         height: calc(100vh - var(--navheightmobile));
-      /* border: 1px solid red; */
+        /* border: 1px solid red; */
 
         .container {
 
             img {
-                width: 100%;
+                width: 70vw;
             }
 
             p {
