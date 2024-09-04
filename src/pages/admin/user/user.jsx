@@ -39,14 +39,13 @@ const User = () => {
         // console.log(userid);
         swal({
             title: 'Are you sure?',
-            text: 'Once deleted, you will not be able to recover this Tournament!',
             icon: 'warning',
             buttons: true,
             dangerMode: true,
         }).then(async (willDelete) => {
             if (willDelete) {
+                const toaste = toast.loading("Please wait...")
                 try {
-                    const toaste = toast.loading("Please wait...")
                     const token = localStorage.getItem("token");
                     const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}deleteuser`, {
                         method: "POST",

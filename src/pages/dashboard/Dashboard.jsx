@@ -38,7 +38,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
-    calc();
+    tournacenter?.alltournaments && calc();
     // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
@@ -200,7 +200,7 @@ const Dashboard = () => {
     setfiltered(fgg)
   }
   useEffect(() => {
-    Funck();
+    tournacenter.alltournaments && Funck();
   }, [tournastatus, tournacenter.alltournaments])
 
   function getTimeDifference(dateString) {
@@ -221,27 +221,20 @@ const Dashboard = () => {
         initial="hidden"
         animate="visible"
         className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}>
-        {tournacenter.alltournaments.length < 1 && <div className="notfound">
-          <div>
-            <SentimentDissatisfiedIcon className="sad" />
-            <h2>No Tournament Found</h2>
-            <p>Please Add Tournament.</p>
-          </div>
-        </div>}
         <div className="controles">
           <div className="card">
             <i className="fa fa-trophy" aria-hidden="true"></i>
             <div>
-              <span>Total Tournament</span> <span>:</span><span>{count.total}</span>
+              <span>Total Tournament</span> <span>:</span><span>{count.total || 'N/A'}</span>
             </div>
             <div>
-              <span>Upcoming</span> <span>:</span><span>{count.upcoming}</span>
+              <span>Upcoming</span> <span>:</span><span>{count.upcoming || 'N/A'}</span>
             </div>
             <div>
-              <span>Ongoing</span> <span>:</span><span>{count.ongoing}</span>
+              <span>Ongoing</span> <span>:</span><span>{count.ongoing || 'N/A'}</span>
             </div>
             <div>
-              <span>Completed</span> <span>:</span><span>{count.completed}</span>
+              <span>Completed</span> <span>:</span><span>{count.completed || 'N/A'}</span>
             </div>
           </div>
           <div className="card">
@@ -295,8 +288,8 @@ const Dashboard = () => {
           </div>
         </div>
         <motion.div layout className="cards">
-          {filtered &&
-            filtered.slice(0, howmany).map((val) => {
+          {filtered ?
+            filtered.slice(0, howmany)?.map((val) => {
               // Format the date
               const formattedDate = new Date(val.createdAt).toLocaleDateString(
                 "en-US",
@@ -338,11 +331,17 @@ const Dashboard = () => {
                   </div>
                 </motion.div>
               )
-            })
+            }) :  <div className="notfound">
+          <div>
+          <SentimentDissatisfiedIcon className="sad" />
+            <h2>No Tournament Found</h2>
+            <p>Please Add Tournament.</p>
+          </div>
+        </div>
           }
         </motion.div>
 
-        {tournacenter.alltournaments.length > howmany &&
+        {tournacenter?.alltournaments?.length > howmany &&
           <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
 
