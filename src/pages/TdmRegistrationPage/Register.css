@@ -213,19 +213,13 @@
         & .headere {
             /* background-color: red; */
             height: 80px;
+            position: relative;
 
             & img {
-                width: 70px !important;
-                height: 70px !important;
+                width: 60px !important;
+                height: 60px !important;
                 border-radius: 50%;
 
-            }
-
-            span {
-                font-size: 1.3em;
-                font-weight: 600;
-                letter-spacing: 1px;
-                line-height: 60px;
             }
 
             span:nth-child(2) {

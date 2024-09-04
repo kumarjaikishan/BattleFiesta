@@ -113,18 +113,21 @@
             }
 
             .status {
-                border-radius: 20px;
+                border-radius: 2px 0 0 2px;
                 font-weight: 500;
+                border-right: 4px solid transparent;
             }
 
             .status.pending {
-                background: rgba(221, 179, 100, 0.704);
+                background: rgba(221, 179, 100, 0.486);
                 color: rgb(86, 56, 2);
+                border-right: 4px solid rgb(86, 56, 2);
             }
 
             .status.done {
+                background-color: rgba(118, 234, 118, 0.504);
                 color: rgb(1, 59, 1);
-                background-color: rgba(103, 222, 103, 0.648);
+                border-right: 4px solid rgb(1, 59, 1);
             }
 
         }

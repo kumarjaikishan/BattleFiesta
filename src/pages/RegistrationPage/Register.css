@@ -199,24 +199,25 @@
         border: 1px solid grey;
         border-radius: 15px;
         /* height: 200px; */
-        padding: 10px 0px;
+        padding: 5px 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         & .headere {
             /* background-color: red; */
-            height: 80px;
+            position: relative;
+            height: 70px;
 
             & img {
-                width: 70px !important;
-                height: 70px !important;
+                width: 60px !important;
+                height: 60px !important;
                 border-radius: 50%;
                 border: none;
             }
 
             span {
-                font-size: 1.3em;
+                font-size: 1.1em;
                 font-weight: 600;
                 letter-spacing: 1px;
                 line-height: 60px;
@@ -224,7 +225,10 @@
             }
 
             span:nth-child(3) {
-                font-size: 12px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-size: 11px;
                 font-weight: 700;
                 padding: 2px 8px;
                 height: 24px;
@@ -266,7 +270,7 @@
             & .playerdata {
                 border: 1px dashed grey;
                 border-radius: 10px;
-                padding: 5px;
+                padding: 0 5px;
 
                 & h2 {
                     font-size: 1.1em;
@@ -275,11 +279,12 @@
 
                 div {
                     border-top: 1px dashed grey;
+                    /* background: red; */
                     width: 100%;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding: 5px 10px;
+                    padding: 3px 10px;
 
                     & img {
                         width: 50px !important;

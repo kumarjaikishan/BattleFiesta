@@ -126,7 +126,7 @@ const Query = () => {
                     <span>Name</span>
                     <span>Email</span>
                     <span>Message</span>
-                    <span>Resolve</span>
+                    <span>Status</span>
                     <span>Actions</span>
                 </div>
                 {admin?.contactusform.length < 1 &&

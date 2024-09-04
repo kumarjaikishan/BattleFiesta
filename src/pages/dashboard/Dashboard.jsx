@@ -225,16 +225,16 @@ const Dashboard = () => {
           <div className="card">
             <i className="fa fa-trophy" aria-hidden="true"></i>
             <div>
-              <span>Total Tournament</span> <span>:</span><span>{count.total || 'N/A'}</span>
+              <span>Total Tournament</span> <span>:</span><span>{count.total || "N/A"}</span>
             </div>
             <div>
-              <span>Upcoming</span> <span>:</span><span>{count.upcoming || 'N/A'}</span>
+              <span>Upcoming</span> <span>:</span><span>{count.upcoming || 0}</span>
             </div>
             <div>
-              <span>Ongoing</span> <span>:</span><span>{count.ongoing || 'N/A'}</span>
+              <span>Ongoing</span> <span>:</span><span>{count.ongoing || 0}</span>
             </div>
             <div>
-              <span>Completed</span> <span>:</span><span>{count.completed || 'N/A'}</span>
+              <span>Completed</span> <span>:</span><span>{count.completed || 0}</span>
             </div>
           </div>
           <div className="card">
