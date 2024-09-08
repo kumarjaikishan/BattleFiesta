@@ -27,7 +27,7 @@ const Profile = () => {
     const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
     const photo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
-   
+
     const init = {
         name: '',
         username: '',
@@ -70,7 +70,7 @@ const Profile = () => {
     });
 
     const fetche = async () => {
-        if(!userprofile.membership){
+        if (!userprofile.membership) {
             return;
         }
         let data = userprofile.userprofile;
@@ -89,7 +89,7 @@ const Profile = () => {
             sociallinks: data.sociallinks,
             profile: data.imgsrc
         })
-        if(!userprofile.membership.planid.plan_name){
+        if (!userprofile.membership.planid.plan_name) {
             return;
         }
         setmembership({
@@ -294,17 +294,17 @@ const Profile = () => {
                     <h2>Profile</h2>
                     <form onSubmit={submit}>
                         <div className="input">
-                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" id="outlined-basic" label="Display Name" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half" id="outlined-basic" label="UserName" variant="outlined" />
-                            <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half" id="outlined-basic" label="Email" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half"  label="Display Name" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half"  label="UserName" variant="outlined" />
+                            <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half"  label="Email" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='phone'
                                 value={inp.phone} type='tel'
                                 inputProps={{ minLength: 10, maxLength: 10 }}
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                className="half" id="outlined-basic" label="Phone" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half" id="outlined-basic" label="City" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half" id="outlined-basic" label="State" variant="outlined" />
-                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" id="outlined-basic" label="Bio" variant="outlined" />
+                                className="half" label="Phone" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half"  label="City" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half"  label="State" variant="outlined" />
+                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full"  label="Bio" variant="outlined" />
                         </div>
                         {/* <button disabled={isloadinge} type='submit'>Save</button> */}
                         <Button
@@ -337,8 +337,12 @@ const Profile = () => {
                 <div className="passchange glass">
                     <h2>Change Password</h2>
                     <div>
-                        <TextField required name='link' disabled fullWidth size='small' value={inp.email}
-                            className="half" id="outlined-basic" label="Email Address" variant="outlined" />
+                        <TextField required name='link'
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                            fullWidth size='small' value={inp.email}
+                            className="half" label="Email Address" variant="outlined" />
                         {messagesent && <p style={{ color: 'green', fontSize: '14px' }}>{messagesent}</p>}
                         {!messagesent.length && <p style={{ fontSize: '14px' }}>A verification email will be sent to <b>{inp.email}</b>.</p>}
                         <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
@@ -350,27 +354,27 @@ const Profile = () => {
                 <div className="privacy glass">
                     <h2>Privacy</h2>
                     <div className="input">
-                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full" id="outlined-basic"
+                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full" 
                             helperText="This emaill will be visible on your profile page"
                             label="Public Email" variant="outlined" />
                         <TextField onChange={handlechangee} type='tel'
                             inputProps={{ minLength: 10, maxLength: 10 }}
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            name='publicphone' value={inp.publicphone} className="full" id="outlined-basic"
+                            name='publicphone' value={inp.publicphone} className="full" 
                             helperText="This phone number will be visible on your profile page"
                             label="Public Phone" variant="outlined" />
                     </div>
                     {/* <button disabled={isloadinge} onClick={submit}>Save</button> */}
                     <Button
-                            disabled={isloadinge}
-                            variant="contained"
-                            startIcon={<SaveIcon />}
-                            className='splbtn'
-                            onClick={submit}
-                            size='small'
-                        >
-                            Save
-                        </Button>
+                        disabled={isloadinge}
+                        variant="contained"
+                        startIcon={<SaveIcon />}
+                        className='splbtn'
+                        onClick={submit}
+                        size='small'
+                    >
+                        Save
+                    </Button>
                 </div>
                 <div className="social glass">
                     <h2>Social Links</h2>
@@ -379,10 +383,10 @@ const Profile = () => {
                             return <div key={ind} className='link'>
                                 <span>
                                     <FormControl fullWidth size='small'>
-                                        <InputLabel id="demo-simple-select-label">Name*</InputLabel>
+                                        <InputLabel >Name*</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
+                                           
                                             value={val.name}
                                             required
                                             label="Name"
@@ -402,7 +406,7 @@ const Profile = () => {
                                 <span>
                                     <TextField required value={val.link} name='link' fullWidth size='small'
                                         onChange={(e) => handleChange(e, ind)}
-                                        className="half" id="outlined-basic" label=" Url*.. " variant="outlined" />
+                                        className="half"  label=" Url" variant="outlined" />
                                 </span>
                                 <span title='Remove This' onClick={() => deletelink(ind)}> <CloseIcon /> </span>
                             </div>

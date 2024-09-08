@@ -18,13 +18,13 @@ const theme = createTheme({
                     },
                     '& .MuiInputLabel-root': {
                         color: inputlabelcolor, // Default label color (optional)
-                      },
+                    },
                     '& .MuiInputLabel-root.Mui-focused': {
                         color: primarycolor, // Custom label color when focused
                     },
                     '& .MuiInputLabel-root.Mui-focused:not(.Mui-error)': {
                         color: primarycolor, // Label color when focused and no error
-                      },
+                    },
                 },
             },
         },
@@ -53,10 +53,7 @@ const theme = createTheme({
         MuiSelect: {
             styleOverrides: {
                 root: {
-                    // backgroundColor: '#f5f5f5', // Default background color for Select
-                    // '& .MuiOutlinedInput-notchedOutline': {
-                    //       borderColor: 'red', // Default border color
-                    // },
+
                     '&:hover .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#1b4d4f', // Hover border color
                     },
@@ -64,42 +61,24 @@ const theme = createTheme({
                         borderColor: primarycolor, // Focus border color
                     },
                 },
-                select: {
-                    '&:focus': {
-                        backgroundColor: '#f5f5f5', // Maintain background color when focused
-                    },
-                },
+
                 icon: {
                     color: primarycolor, // Dropdown arrow icon color
                 },
-                menu: {
-                    '& .MuiMenu-paper': {
-                        backgroundColor: '#ffffff', // Dropdown menu background color
-                        color: '#000000', // Dropdown text color
-                    },
-                    '& .MuiMenuItem-root': {
-                        '&:hover': {
-                            backgroundColor: '#f0f0f0', // Hover color for dropdown items
-                        },
-                    },
-                },
+
             },
         },
 
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: '#9e9e9e', // Default label color
+                    color: inputlabelcolor, // Default label color
                     '&.Mui-focused': {
-                        color: primarycolor, // Label color when focused
-                    },
-                    '&.Mui-disabled': {
-                        color: '#bdbdbd', // Label color when disabled
+                        color: primarycolor, // Focused label color
                     },
                 },
             },
         },
-
         MuiRadio: {
             styleOverrides: {
                 root: {

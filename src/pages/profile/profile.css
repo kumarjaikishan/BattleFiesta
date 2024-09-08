@@ -150,7 +150,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent,#ff2770);
+                background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent, #ff2770);
                 animation: rotate 5s linear infinite;
                 border-radius: 23px;
                 /* border-radius: 50%; */
@@ -179,10 +179,6 @@
             grid-column: span 5;
 
             .link {
-                background: rgba(0, 0, 0, .08);
-                background: linear-gradient(to right bottom,
-                        rgba(255, 255, 255, 0.5),
-                        rgba(255, 255, 255, 0.2));
                 padding: 0px 10px;
                 height: 55px;
                 margin: 8px 0px;
@@ -392,6 +388,10 @@
                 grid-column: span 8;
 
                 .link {
+                    background: rgba(0, 0, 0, .08);
+                    background: linear-gradient(to right bottom,
+                            rgba(255, 255, 255, 0.5),
+                            rgba(255, 255, 255, 0.2));
                     padding: 10px;
                     height: min-content;
                     margin: 8px 0px;

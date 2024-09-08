@@ -29,6 +29,20 @@
             padding: 5px 10px;
             position: relative;
 
+            &:nth-child(1) {
+                &::before {
+                    position: absolute;
+                    content: '';
+                    inset: 0;
+                    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp');
+                    background-size: 120px;
+                    background-repeat: no-repeat;
+                    background-position: -8px;
+                    opacity: 0.2;
+                    transform: scaleX(-1);
+                }
+            }
+
             >div {
                 height: 25px;
 
@@ -262,7 +276,7 @@
     background: white;
     width: 600px;
     height: fit-content;
-    border-radius:15px 15px 5px 5px;
+    border-radius: 15px 15px 5px 5px;
     overflow: hidden;
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg');
     background-size: 120%;
@@ -372,7 +386,7 @@
             line-height: 50px;
             font-size: 1.8em;
             font-weight: 700;
-            text-align:start ;
+            text-align: start;
         }
 
         form {

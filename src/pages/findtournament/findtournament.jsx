@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
 import { toast } from "react-toastify";
-import Stack from '@mui/material/Stack';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
@@ -45,7 +44,7 @@ const Findtournament = () => {
             });
 
             const data = await responsee.json();
-            console.log("findtournament page",data);
+            console.log("findtournament page", data);
             dispatch(setloader(false));
             if (!responsee.ok) {
                 return toast.warn(data.message, { autoclose: 2100 })
@@ -68,21 +67,44 @@ const Findtournament = () => {
     const findtournament = (tid) => {
         return navigate(`/tournaments/${tid}`)
     }
+    // const container = {
+    //     hidden: { opacity: 0, scale: 0 },
+    //     visible: {
+    //         opacity: 1,
+    //         scale: 1,
+    //         transition: {
+    //             delayChildren: 0.4,
+    //             // staggerChildren: 0.3
+    //         }
+    //     }
+    // };
     const container = {
-        hidden: { opacity: 1, scale: 0 },
+        hidden: { opacity: 0, scale: 0 },
         visible: {
             opacity: 1,
             scale: 1,
             transition: {
-                delayChildren: 0.4,
-                staggerChildren: 0.3
+                delayChildren: 0.2,  // Reduced delay for faster rendering of child elements
+                staggerChildren: 0.1,  // Reduced stagger to minimize pauses
             }
         }
     };
 
+   
     const item = {
-        hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
-        visible: { y: 0, x: 0, scale: 1, opacity: 1 }
+        hidden: { x: -50, y: 50, opacity: 0, scale: 0.9 },
+        visible: { 
+            x: 0, 
+            y: 0, 
+            opacity: 1, 
+            scale: 1,
+            transition: {
+                type: 'spring',  // Adding a spring effect for smoother and more natural animations
+                stiffness: 100,  // Adjust stiffness for a softer animation
+                damping: 15,     // Controls bounciness
+                duration: 0.1,   // Shorter duration for quicker animations
+            }
+        }
     };
     return (
         <>
@@ -136,6 +158,7 @@ const Findtournament = () => {
 
                         return <motion.div
                             variants={item}
+                            
                             className="card" key={val._id}>
                             <div className="img">
                                 <img
@@ -151,8 +174,8 @@ const Findtournament = () => {
                             </div>
                             <div className="controller">
                                 {/* <Stack spacing={2} direction="row" sx={{ ml: 2 }}> */}
-                                    <Button size="small" onClick={() => findtournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>READ MORE</Button>
-                                    <p className="status" title="Status">{val.status}</p>
+                                <Button size="small" onClick={() => findtournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>READ MORE</Button>
+                                <p className="status" title="Status">{val.status}</p>
                                 {/* </Stack> */}
                             </div>
                         </motion.div>

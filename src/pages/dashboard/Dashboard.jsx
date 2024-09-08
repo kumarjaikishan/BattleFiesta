@@ -223,7 +223,7 @@ const Dashboard = () => {
         className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}>
         <div className="controles">
           <div className="card">
-            <i className="fa fa-trophy" aria-hidden="true"></i>
+            {/* <i className="fa fa-trophy" aria-hidden="true"></i> */}
             <div>
               <span>Total Tournament</span> <span>:</span><span>{count.total || "N/A"}</span>
             </div>
@@ -238,7 +238,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="card">
-            <i className="fa fa-credit-card" aria-hidden="true"></i>
+            {/* <i className="fa fa-credit-card" aria-hidden="true"></i> */}
             <div>
               <span>Plan</span> <span>:</span><span>{userprofile?.membership?.planid?.plan_name}</span>
             </div>
