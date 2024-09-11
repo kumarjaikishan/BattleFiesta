@@ -293,14 +293,16 @@
             & a {
                 /* background: red; */
                 display: flex;
+                align-items: center;
                 padding: 3px 8px;
                 letter-spacing: 1px;
                 border-radius: 5px;
                 text-decoration: none;
                 text-transform: uppercase;
-                color: rgb(14, 144, 196);
+                color: var(--primarycolor);
                 font-weight: 600;
                 cursor: pointer;
+                transition: 0.2s;
                 margin-top: 10px;
 
                 &:hover {
@@ -310,6 +312,7 @@
 
                 span {
                     margin: 0 3px;
+                    display: flex;
                 }
             }
         }

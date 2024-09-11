@@ -176,7 +176,7 @@ const Pointsystem = () => {
   }
 
   return (
-    <Container className='pointsysytem' component="main" maxWidth="s" style={{ height: "100%" }}>
+    <Container className='pointsysytem' component="main"  >
       <div className='instruction'>
         <p>Format:</p>
         <p> Rank = Place Points </p>
@@ -189,7 +189,7 @@ const Pointsystem = () => {
         <p>Here from 6th, everyone will get 0</p>
       </div>
       <form onSubmit={handleSubmit} className='grid'>
-        <Grid item xs={12} sx={{ mb: 3 }}>
+       
           <TextField
             id="outlined-multiline-static"
             label="Place Points"
@@ -199,11 +199,12 @@ const Pointsystem = () => {
             name='points'
             onChange={handleRankInputChange}
             required
+            sx={{ mb: 3 }}
             helperText="We have added the most common point system. Fell free to modify as you please."
           />
-        </Grid>
-        <Grid item xs={12} sx={{ mb: 3 }}>
-          <FormControl xs={12}>
+       
+      
+          <FormControl sx={{ mb: 3 }} fullWidth>
             <InputLabel id="demo-simple-select-helper-label">Tie Preference</InputLabel>
             <Select
               labelId="demo-simple-select-helper-label"
@@ -212,6 +213,7 @@ const Pointsystem = () => {
               name='tiepreference'
               label="Tie Preference"
               required
+              size='small'
               onChange={handleChange}
             >
               <MenuItem value={true}>Kill points</MenuItem>
@@ -219,12 +221,13 @@ const Pointsystem = () => {
             </Select>
             <FormHelperText>Preference to be given in case of a Tie</FormHelperText>
           </FormControl>
-        </Grid>
-        <Grid item xs={12} sx={{ mb: 3 }}>
+       
           <TextField
             label="Points Per Kill"
             variant="outlined"
             type='tel'
+            fullWidth
+            size='small'
             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
             name="killpoints"
             required
@@ -232,10 +235,10 @@ const Pointsystem = () => {
             onChange={handleChange}
             helperText="Points to be awarded for each kill"
           />
-        </Grid>
-        <Grid item xs={12}>
+       
           <LoadingButton
-            sx={{ m: 1, minWidth: 110 }}
+            sx={{ mt: 3 }}
+            fullWidth
             type="submit"
             loading={isloading}
             startIcon={<SaveIcon />}
@@ -244,7 +247,7 @@ const Pointsystem = () => {
           >
             SUBMIT
           </LoadingButton>
-        </Grid>
+       
       </form>
     </Container>
   );

@@ -68,34 +68,34 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         })}
                         <div>
                             {callfrom == "pending" && <>
-                                <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} size='small'  onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon/>}>
                                     Approve
                                 </Button>
-                                <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
                                     Reject
                                 </Button>
                             </>}
                             {callfrom == "Approved" && <>
-                                <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
                                     Pending
                                 </Button>
-                                <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
                                     Reject
                                 </Button>
                             </>}
                             {callfrom == "Rejected" && <>
-                                <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
                                     Pending
                                 </Button>
-                                <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
                                     Approve
                                 </Button>
                             </>}
                             {callfrom == "manageteam" && <>
-                                <Button color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
                                     Delete
                                 </Button>
-                                <Button color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<EditIcon />}>
+                                <Button sx={{padding:1, margin:0, lineHeight:0}} color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<EditIcon />}>
                                     Edit
                                 </Button>
                             </>}

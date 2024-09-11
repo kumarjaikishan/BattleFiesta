@@ -112,19 +112,19 @@ const Tournamentstatpage = () => {
               <div className="links">
                 {links.map((val, ind) => {
                   if (val.linkType == "whatsapp") {
-                    return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                    return <a key={ind} title='whatsapp' href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
                   }
                   if (val.linkType == "instagram") {
-                    return <a key={ind} href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                    return <a key={ind} title='instagram' href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
                   }
                   if (val.linkType == "phone") {
-                    return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
+                    return <a key={ind} title='phone' href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
                   }
                   if (val.linkType == "email") {
-                    return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
+                    return <a key={ind} title='email' href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
                   }
                   if (val.linkType == "link") {
-                    return <a key={ind} href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                    return <a key={ind} title='link' href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
                   }
                 })}
               </div>

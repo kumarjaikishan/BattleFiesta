@@ -4,7 +4,7 @@
     overflow-x: hidden;
     border-right: 1px dotted grey;
 
-    
+
     &::-webkit-scrollbar {
         width: 8px;
     }
@@ -18,8 +18,11 @@
     }
 
     & .grid {
-        padding: 10px;
-        margin-top: 10px;
+        margin-top: 25px;
+    }
+
+    form {
+        width: 500px;
     }
 
     .instruction {
@@ -40,6 +43,9 @@
         border-bottom: 1px solid #87898a;
 
         .instruction {
+            width: 99%;
+        }
+        form {
             width: 99%;
         }
 

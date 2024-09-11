@@ -113,7 +113,7 @@
             }
 
             .status {
-                border-radius: 2px 0 0 2px;
+                border-radius: 2px 4px 4px 2px;
                 font-weight: 500;
                 border-right: 4px solid transparent;
             }

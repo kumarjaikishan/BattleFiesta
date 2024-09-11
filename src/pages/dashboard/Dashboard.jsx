@@ -240,10 +240,10 @@ const Dashboard = () => {
           <div className="card">
             {/* <i className="fa fa-credit-card" aria-hidden="true"></i> */}
             <div>
-              <span>Plan</span> <span>:</span><span>{userprofile?.membership?.planid?.plan_name}</span>
+              <span>Plan</span> <span>:</span><span>{userprofile?.membership?.planid?.plan_name || 'N/A'}</span>
             </div>
             <div>
-              <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit}</span>
+              <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit || 'N/A'}</span>
             </div>
             <div>
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
@@ -331,13 +331,13 @@ const Dashboard = () => {
                   </div>
                 </motion.div>
               )
-            }) :  <div className="notfound">
-          <div>
-          <SentimentDissatisfiedIcon className="sad" />
-            <h2>No Tournament Found</h2>
-            <p>Please Add Tournament.</p>
-          </div>
-        </div>
+            }) : <div className="notfound">
+              <div>
+                <SentimentDissatisfiedIcon className="sad" />
+                <h2>No Tournament Found</h2>
+                <p>Please Add Tournament.</p>
+              </div>
+            </div>
           }
         </motion.div>
 
@@ -346,6 +346,7 @@ const Dashboard = () => {
         }
 
         <Modalbox
+          shadow={false}
           open={tournacenter.createnewmodal}
           onClose={() => dispatch(setcreatenewmodal(false))}>
           <motion.div

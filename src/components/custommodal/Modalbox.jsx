@@ -3,7 +3,7 @@ import './modalbox.css'
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 
-const Modalbox = ({ open, onClose, children }) => {
+const Modalbox = ({ open, onClose, children, shadow=true }) => {
 
     useEffect(() => {
         if(open){
@@ -34,6 +34,7 @@ const Modalbox = ({ open, onClose, children }) => {
                         onClick={(e) => {
                             e.stopPropagation();
                         }}
+                        style={shadow ? { boxShadow: '0 10px 20px rgba(0,0,0,0.4)' } : undefined}
                     >
                         {children}
                     </div>
