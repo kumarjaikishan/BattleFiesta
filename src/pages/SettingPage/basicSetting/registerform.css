@@ -13,7 +13,6 @@
         display: flex;
         justify-content: space-between;
 
-
         & div {
             display: flex;
             width: 22%;
@@ -24,7 +23,7 @@
             border-radius: 10px;
 
             &:hover {
-                color: var(--primarycolor);
+                color: var(--primarycolor) !important;
             }
 
             h3 {

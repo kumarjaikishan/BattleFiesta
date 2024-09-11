@@ -1,23 +1,10 @@
-.pointsysytem {
+.pointsystem {
     overflow-y: auto;
-    padding: 10px 5px;
+    padding: 10px 10px;
     overflow-x: hidden;
     border-right: 1px dotted grey;
 
-
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: grey;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--primarycolor);
-    }
-
-    & .grid {
+    .grid {
         margin-top: 25px;
     }
 
@@ -34,20 +21,19 @@
         padding-left: 15px;
         margin-top: 5px;
     }
-
 }
 
 @media only screen and (max-width: 600px) {
-    .pointsysytem {
-        padding: 10px 0px;
+    .pointsystem {
+        padding: 10px 5px;
         border-bottom: 1px solid #87898a;
 
         .instruction {
             width: 99%;
         }
+
         form {
             width: 99%;
         }
-
     }
 }

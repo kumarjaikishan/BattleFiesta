@@ -48,7 +48,18 @@
         position: relative;
         overflow: auto;
 
-       
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--primarycolor);
+        }
+
         & .ssimage {
             z-index: 5;
             width: 98%;
@@ -142,7 +153,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    color:var(--primarycolor);
+                    color: var(--primarycolor);
                 }
             }
         }
@@ -200,7 +211,7 @@
             grid-template-columns: repeat(3, 1fr);
 
             & .cont {
-                
+
                 padding: 0px 5px;
 
                 &:hover {

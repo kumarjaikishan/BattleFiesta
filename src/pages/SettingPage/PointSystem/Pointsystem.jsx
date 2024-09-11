@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import FormHelperText from '@mui/material/FormHelperText';
 import './pointsystem.css'
@@ -176,7 +174,7 @@ const Pointsystem = () => {
   }
 
   return (
-    <Container className='pointsysytem' component="main"  >
+    <div className='pointsystem scroll' component="main"   >
       <div className='instruction'>
         <p>Format:</p>
         <p> Rank = Place Points </p>
@@ -189,67 +187,66 @@ const Pointsystem = () => {
         <p>Here from 6th, everyone will get 0</p>
       </div>
       <form onSubmit={handleSubmit} className='grid'>
-       
-          <TextField
-            id="outlined-multiline-static"
-            label="Place Points"
-            multiline
-            value={points}
-            rows={8}
-            name='points'
-            onChange={handleRankInputChange}
+        <TextField
+          id="outlined-multiline-static"
+          label="Place Points"
+          multiline
+          value={points}
+          rows={8}
+          name='points'
+          onChange={handleRankInputChange}
+          required
+          sx={{ mb: 3 }}
+          helperText="We have added the most common point system. Fell free to modify as you please."
+        />
+
+
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <InputLabel id="demo-simple-select-helper-label">Tie Preference</InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-label"
+            id="demo-simple-select-helper"
+            value={formData.tiepreference}
+            name='tiepreference'
+            label="Tie Preference"
             required
-            sx={{ mb: 3 }}
-            helperText="We have added the most common point system. Fell free to modify as you please."
-          />
-       
-      
-          <FormControl sx={{ mb: 3 }} fullWidth>
-            <InputLabel id="demo-simple-select-helper-label">Tie Preference</InputLabel>
-            <Select
-              labelId="demo-simple-select-helper-label"
-              id="demo-simple-select-helper"
-              value={formData.tiepreference}
-              name='tiepreference'
-              label="Tie Preference"
-              required
-              size='small'
-              onChange={handleChange}
-            >
-              <MenuItem value={true}>Kill points</MenuItem>
-              <MenuItem value={false}> Place Points</MenuItem>
-            </Select>
-            <FormHelperText>Preference to be given in case of a Tie</FormHelperText>
-          </FormControl>
-       
-          <TextField
-            label="Points Per Kill"
-            variant="outlined"
-            type='tel'
-            fullWidth
             size='small'
-            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-            name="killpoints"
-            required
-            value={formData.killpoints}
             onChange={handleChange}
-            helperText="Points to be awarded for each kill"
-          />
-       
-          <LoadingButton
-            sx={{ mt: 3 }}
-            fullWidth
-            type="submit"
-            loading={isloading}
-            startIcon={<SaveIcon />}
-            loadingPosition="start"
-            variant="contained"
           >
-            SUBMIT
-          </LoadingButton>
-       
+            <MenuItem value={true}>Kill points</MenuItem>
+            <MenuItem value={false}> Place Points</MenuItem>
+          </Select>
+          <FormHelperText>Preference to be given in case of a Tie</FormHelperText>
+        </FormControl>
+
+        <TextField
+          label="Points Per Kill"
+          variant="outlined"
+          type='tel'
+          fullWidth
+          size='small'
+          onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+          name="killpoints"
+          required
+          value={formData.killpoints}
+          onChange={handleChange}
+          helperText="Points to be awarded for each kill"
+        />
+
+        <LoadingButton
+          sx={{ mt: 3 }}
+          fullWidth
+          type="submit"
+          loading={isloading}
+          startIcon={<SaveIcon />}
+          loadingPosition="start"
+          variant="contained"
+        >
+          SUBMIT
+        </LoadingButton>
+
       </form>
-    </Container>
+    </div>
   );
 };
 
