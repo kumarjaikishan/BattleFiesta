@@ -102,6 +102,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                     <TextField
                         label="Name"
                         size="small"
+                        autoComplete='off'
                         className='filled'
                         onChange={signhandle}
                         name="name"
@@ -116,6 +117,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                     <TextField
                         label="Email"
                         size="small"
+                         autoComplete='off'
                         className='filled'
                         onChange={signhandle}
                         name="email"
@@ -131,6 +133,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                     <TextField
                         label="Phone"
                         size="small"
+                         autoComplete='off'
                         color={signinp.phone.length == 10 ? "primary" : "warning"}
                         className='filled'
                         onChange={signhandle}
@@ -150,6 +153,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                         label="Password"
                         className='filled'
                         size="small"
+                       autoComplete="off"
                         onChange={signhandle}
                         name="password"
                         required
@@ -167,6 +171,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                     <TextField
                         label="Confirm Password"
                         className='filled'
+                         autoComplete='off'
                         color={signinp.password == signinp.cpassword ? "primary" : "warning"}
                         size="small"
                         onChange={signhandle}

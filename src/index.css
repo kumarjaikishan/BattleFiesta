@@ -90,7 +90,6 @@ code {
   z-index: 50;
 }
 
-button,
 .splbtn {
   border: none;
   cursor: pointer;
@@ -108,10 +107,6 @@ button:disabled {
   background: grey !important;
 }
 
-button:active,
-button:hover {
-  background: rgb(61, 58, 58);
-}
 
 input {
   color: rgb(27, 25, 25) !important;

@@ -135,7 +135,7 @@ const Home = () => {
                             </h1>
                         </div>
 
-                        <p>Your ultimate destination for creating,hosting and managing in ESport games like PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
+                        <p>Your ultimate destination for creating, hosting and managing in ESport games like PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
                        <div className="links">
                             <NavLink className="navlink" to='/dashboard'>Dashboard </NavLink>
                             <NavLink className="navlink" to='/tournaments'>Find Tournament </NavLink>
@@ -314,7 +314,7 @@ const Home = () => {
                         <p> <span><img src={tick2} alt="" /></span> <span>Option to export the points table to an image file.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Detailed analytics.</span></p>
                         <a href="https://battlefiesta.in/tournaments/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
-                            <Button variant="contained" size='small'>See Demo</Button>
+                            <Button variant="contained" sx={{border:'1px solid white'}} size='small'>See Demo</Button>
                         </a>
                     </motion.div>
                 </section>

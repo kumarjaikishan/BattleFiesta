@@ -3,20 +3,18 @@ import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
 import Dashboard from './pages/dashboard/Dashboard';
 import Footbar from './components/footer/footbar';
-import Profile from './pages/profile/profile';
 import Home from './pages/Home/home';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Login from './pages/login/login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Errorpage } from './pages/Error/Errorpage';
-import Logout from './pages/login/logout'
+import Logout from './pages/login/logout';
 import Tournasetting from './pages/SettingPage/tournasetting';
 import Register from './pages/RegistrationPage/Register';
 import Stats from './pages/stats/Stats';
 import Tournamentstatpage from './pages/findtournament/tournamentstat/tournamentstatpage';
-import Findtournament from './pages/findtournament/findtournament';
 import Contact from './pages/contact/contact';
 import Faq from './pages/faq/faq';
 import AboutUs from './pages/aboutus/aboutus';
@@ -24,86 +22,112 @@ import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
 import Payment from './pages/payment/payment';
-import Membershiprequest from './pages/admin/membershiprequest/membershiprequest';
-import Admindashboard from './pages/admin/dashboard/dashboard';
-import Query from './pages/admin/query/query';
-import Voucher from './pages/admin/voucher/voucher';
-import Membership from './pages/admin/membership/membership';
-import User from './pages/admin/user/user';
 import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import { messaging } from './firebase';
 import { toast } from 'react-toastify';
 import Modalbox from './components/custommodal/Modalbox';
-import { getToken, onMessage } from 'firebase/messaging'
+import { getToken, onMessage } from 'firebase/messaging';
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
 
+// Lazy loaded components
+const Profile = lazy(() => import('./pages/profile/profile'));
+const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
+const Admindashboard = lazy(() => import('./pages/admin/dashboard/dashboard'));
+const Membershiprequest = lazy(() => import('./pages/admin/membershiprequest/membershiprequest'));
+const Query = lazy(() => import('./pages/admin/query/query'));
+const Voucher = lazy(() => import('./pages/admin/voucher/voucher'));
+const Membership = lazy(() => import('./pages/admin/membership/membership'));
+const User = lazy(() => import('./pages/admin/user/user'));
+
 function App() {
   const log = useSelector((state) => state.login);
+
   async function requestPermission() {
     const permission = await Notification.requestPermission();
-    if (permission == 'granted') {
-      const notificationtoken = await getToken(messaging, { vapidKey: 'BBUxuDLlWdfTvuiQ3UFyT6BdxGpM95ua-Y9MKaeTo8guV81sXFVhhrS1CeGFkdIVtt8JCGpUZVKElwdmGSvJAkA' });
+    if (permission === 'granted') {
+      const notificationtoken = await getToken(messaging, { vapidKey: 'YOUR_VAPID_KEY_HERE' });
       console.log(notificationtoken);
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem('token');
         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}notificationToken`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ notificationtoken })
+          body: JSON.stringify({ notificationtoken }),
         });
         const data = await responsee.json();
         console.log(data);
       } catch (error) {
         console.log(error);
       }
-    } else if (permission == 'denied') {
-      toast.warn('Allow Notification to get Updates')
+    } else if (permission === 'denied') {
+      toast.warn('Allow Notification to get Updates');
     }
   }
+
   useEffect(() => {
     onMessage(messaging, (payload) => {
-      // toast.success(payload.notification.title, { autoClose: 2100 })
-      toast.success(payload.notification.body, { autoClose: false })
-    })
-  }, [])
+      toast.success(payload.notification.body, { autoClose: false });
+    });
+  }, []);
+
   useEffect(() => {
     log.islogin && requestPermission();
-  }, [log.islogin])
-
+  }, [log.islogin]);
 
   return (
     <>
-      <ToastContainer closeOnClick={true} pauseOnFocusLoss={true} />
-      <div className="App" >
+      <ToastContainer closeOnClick pauseOnFocusLoss />
+      <div className="App">
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>
-            <Route element={<UserRoute />} >
+            <Route element={<UserRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/profile"
+                element={
+                  <Suspense fallback={<Preloader />}>
+                    <Profile />
+                  </Suspense>
+                }
+              />
               <Route path="/setting/:tid" element={<Tournasetting />} />
               <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
             </Route>
 
-            <Route path='/admin' element={<AdminRoutes />}>
-              {/* <Route index element={<Admindashboard />} /> */}
-              <Route path='' element={<Admindashboard />} />
-              <Route path='membershiprequest' element={<Membershiprequest />} />
-              <Route path='query' element={<Query />} />
-              <Route path='voucher' element={<Voucher />} />
-              <Route path='membership' element={<Membership />} />
-              <Route path='users' element={<User />} />
+            {/* Suspense Wrapper around Admin Routes */}
+            <Route
+              path="/admin"
+              element={
+                <Suspense fallback={<Preloader />}>
+                  <AdminRoutes />
+                </Suspense>
+              }
+            >
+              <Route path="" element={<Admindashboard />} />
+              <Route path="membershiprequest" element={<Membershiprequest />} />
+              <Route path="query" element={<Query />} />
+              <Route path="voucher" element={<Voucher />} />
+              <Route path="membership" element={<Membership />} />
+              <Route path="users" element={<User />} />
             </Route>
 
             <Route path="/" element={<Home />} />
-            <Route path="/tournaments"  >
-              <Route index element={<Findtournament />} />
+            <Route path="/tournaments">
+              <Route
+                index
+                element={
+                  <Suspense fallback={<Preloader />}>
+                    <Findtournament />
+                  </Suspense>
+                }
+              />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
             <Route path="/register/:registerId" element={<Register />} />
@@ -118,17 +142,20 @@ function App() {
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/modal" element={<Modalbox />} />
-            
+
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<Errorpage />} />
 
-            {log.islogin ? <Route path="/login" element={<Navigate to="/dashboard"/>} />
-            :<Route path="/login" element={<Login />} />}
+            {log.islogin ? (
+              <Route path="/login" element={<Navigate to="/dashboard" />} />
+            ) : (
+              <Route path="/login" element={<Login />} />
+            )}
           </Routes>
           {log.loader && <Preloader />}
         </div>
         <Footbar />
-      </div >
+      </div>
     </>
   );
 }

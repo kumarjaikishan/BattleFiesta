@@ -4,7 +4,6 @@ import { setloader, header } from '../../store/login';
 import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
-import { motion } from 'framer-motion';
 import { toast } from "react-toastify";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
@@ -67,45 +66,7 @@ const Findtournament = () => {
     const findtournament = (tid) => {
         return navigate(`/tournaments/${tid}`)
     }
-    // const container = {
-    //     hidden: { opacity: 0, scale: 0 },
-    //     visible: {
-    //         opacity: 1,
-    //         scale: 1,
-    //         transition: {
-    //             delayChildren: 0.4,
-    //             // staggerChildren: 0.3
-    //         }
-    //     }
-    // };
-    const container = {
-        hidden: { opacity: 0, scale: 0 },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                delayChildren: 0.2,  // Reduced delay for faster rendering of child elements
-                staggerChildren: 0.1,  // Reduced stagger to minimize pauses
-            }
-        }
-    };
-
-   
-    const item = {
-        hidden: { x: -50, y: 50, opacity: 0, scale: 0.9 },
-        visible: { 
-            x: 0, 
-            y: 0, 
-            opacity: 1, 
-            scale: 1,
-            transition: {
-                type: 'spring',  // Adding a spring effect for smoother and more natural animations
-                stiffness: 100,  // Adjust stiffness for a softer animation
-                damping: 15,     // Controls bounciness
-                duration: 0.1,   // Shorter duration for quicker animations
-            }
-        }
-    };
+  
     return (
         <>
             <div className="findtournas">
@@ -123,10 +84,7 @@ const Findtournament = () => {
                         <span>COMPLETED</span>
                     </div>
                 </div>
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    animate="visible"
+                <div
                     className="cards">
                     {showinglist.length < 1 && <div className="notfound">
                         <div>
@@ -156,10 +114,7 @@ const Findtournament = () => {
                             }
                         );
 
-                        return <motion.div
-                            variants={item}
-                            
-                            className="card" key={val._id}>
+                        return <div className="card" key={val._id}>
                             <div className="img">
                                 <img
                                     loading="lazy"
@@ -178,9 +133,9 @@ const Findtournament = () => {
                                 <p className="status" title="Status">{val.status}</p>
                                 {/* </Stack> */}
                             </div>
-                        </motion.div>
+                        </div>
                     })}
-                </motion.div>
+                </div>
             </div>
         </>
     )

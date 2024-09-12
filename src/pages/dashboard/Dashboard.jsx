@@ -28,6 +28,7 @@ import Modalbox from "../../components/custommodal/Modalbox";
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -249,7 +250,8 @@ const Dashboard = () => {
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
             </div>
             {getTimeDifference(userprofile.membership.expire_date) < 0 && <NavLink className='buy' to='/plan'>
-              Buy Membership
+             
+             <Button size="small" fullWidth variant="contained" startIcon={<AddShoppingCartIcon/>}> Buy Membership</Button>
             </NavLink>}
 
           </div>
