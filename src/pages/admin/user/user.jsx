@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { motion } from 'framer-motion';
 import Modalbox from "../../../components/custommodal/Modalbox";
 
 const User = () => {
@@ -122,9 +123,24 @@ const User = () => {
             ...inp, [field]: e.target.value
         })
     }
+    const container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                delayChildren: .2, //this is overall delay for whole children
+                staggerChildren: 0.15
+            }
+        }
+    };
 
+    const item = {
+        hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
+        visible: { y: 0, x: 0, scale: 1, opacity: 1 }
+    };
     return <>
-        <div className="adminusers">
+        <motion.div className="adminusers">
             <div className="controler">
                 <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
                 <LoadingButton
@@ -148,10 +164,14 @@ const User = () => {
                 <span>Date</span>
                 <span>Actions</span>
             </div>
-            <div className="body">
+            <motion.div
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                layout
+                className="body">
                 {admin?.users?.map((val, ind) => {
-
-                    return <div key={ind}>
+                    return <motion.div variants={item} layout key={ind}>
                         <span>{ind + 1}</span>
                         <span>{val.name}</span>
                         <span>{val.phone}</span>
@@ -159,9 +179,9 @@ const User = () => {
                         <span>{formatDate(val.createdAt)}</span>
                         <span><i className="fa fa-pencil" onClick={() => actione(val)} aria-hidden="true"></i>
                             <i className="fa fa-trash" onClick={() => Deletee(val._id)} aria-hidden="true"></i></span>
-                    </div>
+                    </motion.div>
                 })}
-            </div>
+            </motion.div>
             <Modalbox open={modal} onClose={() => setmodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={handlee}>
@@ -205,7 +225,7 @@ const User = () => {
                     </form>
                 </div>
             </Modalbox>
-        </div>
+        </motion.div>
     </>
 }
 export default User;

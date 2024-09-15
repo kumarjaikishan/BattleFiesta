@@ -3,6 +3,7 @@
     width: 100%;
     background: white;
     padding: 5px 20px;
+    overflow-x: hidden;
 
     .controler {
         position: relative;
@@ -185,8 +186,6 @@
                 justify-content: space-around;
             }
         }
-
-      
 
         .btn {
             width: 100%;
