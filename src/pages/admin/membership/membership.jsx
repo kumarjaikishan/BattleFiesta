@@ -17,7 +17,7 @@ const Membership = () => {
     <div className="adminmembership">
       <div className="inner">
         <div className="controler">
-          <h2 style={{ textAlign: 'center' }}>Active Membership</h2>
+          <h2 style={{ textAlign: 'center' }}>Active Memberships</h2>
           <LoadingButton
              loading={admin.loading}
             onClick={() => dispatch(membership())}

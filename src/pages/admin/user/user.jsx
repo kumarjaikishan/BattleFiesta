@@ -142,7 +142,7 @@ const User = () => {
     return <>
         <motion.div className="adminusers">
             <div className="controler">
-                <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
+                <h2 style={{ textAlign: 'center' }}>Users</h2>
                 <LoadingButton
                     loading={userprofile.loading}
                     onClick={() => dispatch(Users())}
