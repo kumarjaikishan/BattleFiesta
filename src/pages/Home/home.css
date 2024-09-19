@@ -289,6 +289,7 @@
                 padding: 10px 5px;
                 margin: 0;
                 width: 100%;
+                border: 2px solid skyblue;
                 /* background: rgba(0, 0, 0, .3); */
 
                 & h2 {
@@ -314,14 +315,14 @@
             .image {
                 width: 100%;
                 position: relative;
-                height: 60vw;
+                height: 65vw;
                 border: 1px solid red;
                 /* transform: translateY(-200px); */
 
                 & img {
                     border: 1px solid yellow;
                     width: 100vw;
-                    transform: translateY(50px) ;
+                    transform: translateY(60px) ;
                 }
             }
         }
