@@ -285,10 +285,16 @@
     .home {
 
         & .section1 {
+            height: fit-content;
+            border: 5px solid yellow;
+            display: flex;
+            justify-content: space-between;
+
             & .left-content {
                 padding: 10px 5px;
                 margin: 0;
                 width: 100%;
+                height: fit-content;
                 border: 2px solid skyblue;
                 /* background: rgba(0, 0, 0, .3); */
 
@@ -315,14 +321,14 @@
             .image {
                 width: 100%;
                 position: relative;
-                height: 50vw;
+                height: 200px;
                 border: 1px solid red;
                 /* transform: translateY(-200px); */
 
                 & img {
                     border: 1px solid yellow;
-                    width: 100vw;
-                    transform: translateY(60px) ;
+                    width: 100%;
+                    transform: translateY(60px);
                 }
             }
         }
