@@ -285,7 +285,7 @@
     .home {
 
         & .section1 {
-            height: fit-content;
+            height: 80vh;
             border: 5px solid yellow;
             display: flex;
             justify-content: space-between;
