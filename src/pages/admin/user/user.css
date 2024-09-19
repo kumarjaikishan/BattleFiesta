@@ -66,3 +66,40 @@
         }
     }
 }
+@media only screen and (max-width: 500px) {
+    .adminusers {
+        .body, .header{
+            & span:nth-child(1) {
+                min-width: 30px;
+               
+            }
+            
+            & span:nth-child(2) {
+                width: 380px;
+                /* border: 1px solid red; */
+                text-align: start;
+            }
+            
+            & span:nth-child(3) {
+                min-width: 55px;
+                /* border: 1px solid red; */
+            }
+            
+            & span:nth-child(4) {
+                min-width: 90px;
+                /* border: 1px solid red; */
+            }
+            
+            & span:nth-child(5) {
+                min-width:60px;
+               
+            }
+            
+            & span:nth-child(6) {
+                /* border: 1px solid red; */
+                min-width: 40px;
+            }
+        
+        }
+    }
+}

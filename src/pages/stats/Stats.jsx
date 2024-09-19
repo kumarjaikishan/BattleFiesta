@@ -198,26 +198,65 @@ const Stats = () => {
     settopplayer(complete)
     // console.log(complete);
   }
+  const [disable,setdisable]= useState(false);
+  
   const imagedownload = () => {
+    setdisable(true);
     const timenow = new Date();
-    const rand = timenow.getMinutes()
-    // console.log(quality);
-    let quality = 3;
+    const rand = timenow.getMinutes();
+  
+    // Select the element to capture
     const boxElement = document.querySelector('#wrapper');
-    html2canvas(boxElement, { scale: quality, useCORS: true, })
+  
+    // Save the current styles (width and height)
+    const originalWidth = boxElement.style.width;
+    const originalHeight = boxElement.style.height;
+    const originalMaxWidth = boxElement.style.maxWidth;
+    const originalMaxHeight = boxElement.style.maxHeight;
+  
+    // Force the element to have a wide width and dynamic height
+    boxElement.style.width = '1620px'; // Set desktop-like width
+    boxElement.style.height = 'auto'; // Allow dynamic height based on content
+    boxElement.style.maxWidth = '1620px'; 
+    boxElement.style.maxHeight = 'unset'; // Ensure height grows based on content
+  
+    // Capture the canvas at the desired width, keeping height dynamic
+    html2canvas(boxElement, {
+      scale: 3, // Higher scale for better quality
+      width: boxElement.offsetWidth,  // Set the canvas width to match the element width
+      height: boxElement.scrollHeight, // Use the full scrollable height to capture all content
+      useCORS: true // Enable CORS for external resources
+    })
       .then((canvas) => {
         const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
         const anchor = document.createElement('a');
         anchor.href = dataUrl;
-        anchor.download = `Stats @${rand}.png`; // Change the filename as needed
+        anchor.download = `Stats @${rand}.png`; // Filename for download
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
+        setdisable(false);
+  
+        // Restore original styles after capturing
+        boxElement.style.width = originalWidth || '';
+        boxElement.style.height = originalHeight || '';
+        boxElement.style.maxWidth = originalMaxWidth || '';
+        boxElement.style.maxHeight = originalMaxHeight || '';
       })
       .catch((error) => {
         console.error('Error generating image:', error);
+        setdisable(false);
+  
+        // Restore original styles in case of error
+        boxElement.style.width = originalWidth || '';
+        boxElement.style.height = originalHeight || '';
+        boxElement.style.maxWidth = originalMaxWidth || '';
+        boxElement.style.maxHeight = originalMaxHeight || '';
       });
-  }
+  };
+  
+  
+  
 
   return (
     <div className='stats'>
@@ -291,7 +330,7 @@ const Stats = () => {
         </table>
       </Container>
       {log.islogin &&
-        <Button onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+        <Button disabled={disable} onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
           Download
         </Button>}
       <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />

@@ -95,9 +95,7 @@
                 justify-content: space-around;
 
                 i {
-                    width: 25px;
-                    height: 25px;
-                    line-height: 25px;
+                   
                     cursor: pointer;
                     border-radius: 50%;
                     color: rgb(6, 93, 112);
@@ -115,6 +113,7 @@
             .status {
                 border-radius: 2px 4px 4px 2px;
                 font-weight: 500;
+                padding-left: 2px;
                 border-right: 4px solid transparent;
             }
 
@@ -137,4 +136,27 @@
 .membermodal {
     width: 400px;
     height: fit-content;
+}
+
+
+.query {
+    padding: 5px;
+
+    .controler {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        align-items: center;
+
+        & h2 {
+            font-size: 20px;
+        }
+
+        .refreshe {
+            position: relative;
+            top: 0;
+            right: 00px;
+            transform: translateY(0%);
+        }
+    }
 }

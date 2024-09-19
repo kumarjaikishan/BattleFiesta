@@ -52,6 +52,10 @@
     .header,
     .body {
 
+        div {
+            display: flex;
+            align-items: center;
+        }
 
         & span {
             display: inline-block;
@@ -96,17 +100,17 @@
         & span:last-child {
             width: 60px;
             /* border: 1px solid red; */
+            height: 100%;
             padding-left: 5px;
             display: inline-flex;
             justify-content: space-around;
 
             i {
-                width: 25px;
-                height: 25px;
-                line-height: 25px;
+
                 cursor: pointer;
                 border-radius: 50%;
                 color: rgb(6, 93, 112);
+                /* border: 1px solid red; */
 
                 &:last-child {
                     color: red;
@@ -196,23 +200,34 @@
 @media only screen and (max-width: 500px) {
 
     .membershiprequest,
-    .adminusers {
+    .adminusers,
+    .query {
         padding: 5px;
 
         .controler {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 5px;
+            align-items: center;
 
             & h2 {
                 font-size: 15px;
             }
 
+            .refreshe {
+                position: relative;
+                top: 0;
+                right: 00px;
+                transform: translateY(0%);
+            }
         }
 
         .header {
-            padding: 5px;
+            padding: 5px 0px;
             letter-spacing: 0.2px;
             font-weight: 500;
             font-size: 11px;
+            border-radius: 2px;
         }
 
         .body {
@@ -220,7 +235,7 @@
 
             div {
                 font-size: 10px;
-                border-radius: 5px;
+                border-radius: 2px;
                 margin: 5px 0px;
                 padding: 6px 0px;
                 box-shadow: 0 0 5px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
@@ -238,12 +253,13 @@
             }
 
             & span:nth-child(1) {
-                width: 50px;
+                min-width: 30px;
                 /* border: 1px solid red; */
             }
 
             & span:nth-child(2) {
                 width: 190px;
+                text-align: center;
             }
 
             & span:nth-child(3) {
@@ -271,17 +287,16 @@
             }
 
             & span:last-child {
-                width: 40px;
+                min-width: 35px;
                 /* border: 1px solid red; */
                 display: inline-flex;
                 justify-content: space-around;
+                padding: 0;
 
                 i {
-                    width: 25px;
-                    height: 25px;
-                    line-height: 25px;
+                    /* border: 1px solid red; */
                     cursor: pointer;
-                    border-radius: 50%;
+                    border-radius: 0%;
                     color: rgb(6, 93, 112);
 
                     &:last-child {
@@ -297,7 +312,7 @@
 
         .status {
             font-weight: 700;
-            border-radius: 25px;
+            border-radius: 2px;
             letter-spacing: 0.5px;
             text-transform: capitalize;
         }
@@ -317,6 +332,12 @@
             background: rgba(221, 139, 139, 0.768);
         }
 
+    }
+
+    .body {
+        span {
+            font-size: 9px;
+        }
     }
 
     .membermodal {

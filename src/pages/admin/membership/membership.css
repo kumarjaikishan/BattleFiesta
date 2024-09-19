@@ -136,6 +136,18 @@
         .inner {
             font-size: 14px;
 
+            .controler {
+               display: flex;
+               justify-content: space-between;
+    
+                .refreshe {
+                    position: relative;
+                    top: 0%;
+                    right: 0px;
+                    transform: translateY(0%);
+                }
+            }
+
 
             .header {
                 padding: 2px;
@@ -150,6 +162,7 @@
                font-size: 11px;
 
                 div {
+                    border-radius: 4px;
                     margin: 5px 0px;
                     padding: 3px 0px;
                 }
@@ -183,6 +196,11 @@
 
                 & span:nth-child(6) {
                     width: 50px;
+                }
+            }
+            .body{
+                span{
+                    text-align: center;
                 }
             }
         }
