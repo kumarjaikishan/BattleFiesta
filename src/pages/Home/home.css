@@ -314,14 +314,14 @@
             .image {
                 width: 100%;
                 position: relative;
-                height: 70vw;
+                height: 60vw;
                 border: 1px solid red;
                 /* transform: translateY(-200px); */
 
                 & img {
                     border: 1px solid yellow;
                     width: 100vw;
-                    transform: translateY(25px) ;
+                    transform: translateY(50px) ;
                 }
             }
         }
