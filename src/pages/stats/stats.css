@@ -129,14 +129,14 @@
       justify-content: space-around;
 
       & .box {
-        width: 160px;
+        width: 170px;
         border: 1px solid grey;
         border-radius: 10px;
         overflow: hidden;
 
         & .img {
-          width: 160px;
-          height: 160px;
+          width: 170px;
+          height: 170px;
           background: radial-gradient(#e7e9e8, #09eedb);
           position: relative;
 
@@ -162,23 +162,31 @@
         }
 
         .below {
-          /* border: 1px solid red; */
-          display: flex;
-          align-items: center;
-          justify-content: center;
           font-weight: 700;
-          padding: 5px;
+          padding: 4px 5px;
           font-size: 0.9em;
           text-transform: uppercase;
           background: -webkit-linear-gradient(45deg, rgb(255, 221, 0), rgb(251, 175, 52));
         }
 
+        .below:nth-child(2) {
+          text-align: center;
+        }
+
         .below:nth-child(3) {
           font-size: 0.9em;
-          width: 100%;
+          max-width: 100%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          -ms-text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+
+          svg,
+          span {
+            vertical-align: middle;
+            /* border: 1px solid red; */
+          }
         }
       }
     }
@@ -380,18 +388,22 @@
         justify-content: space-evenly;
 
         & .box {
-          width: 140px;
+          width: 150px;
           border-radius: 5px;
 
           & .img {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
           }
 
           .below {
             font-weight: 600;
             padding: 2px;
             font-size: 0.7em;
+          }
+
+          .below:nth-child(3) {
+            font-size: 0.8em;
           }
         }
       }

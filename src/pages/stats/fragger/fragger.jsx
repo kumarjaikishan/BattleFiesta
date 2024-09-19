@@ -85,7 +85,8 @@ useEffect(()=>{
                             <div className="below">
                                 {kills} kills
                             </div>
-                            <div className="below"><Diversity3Icon /> - {team}</div>
+                            <div className="below"><Diversity3Icon /> <span>-{team}</span></div>
+                            
                         </div>
                     })}
                 </div>

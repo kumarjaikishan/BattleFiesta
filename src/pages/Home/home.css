@@ -19,6 +19,7 @@
         align-items: center;
         min-height: calc(100vh - 70px);
         position: relative;
+        /* border: 2px solid yellow; */
 
         & .left-content {
             width: 600px;
@@ -89,8 +90,11 @@
             /* border: 3px solid blue; */
 
             & img {
-                transform: translateY(15px);
+                position: absolute;
+                bottom: 0;
+                right: 0;
                 width: 100%;
+                /* border: 2px solid yellow; */
             }
         }
     }
@@ -310,14 +314,14 @@
             .image {
                 width: 100%;
                 position: relative;
-                display: flex;
-                height: 100%;
-                justify-content: end;
+                height: 80vw;
+                border: 1px solid red;
                 /* transform: translateY(-200px); */
 
                 & img {
-                    width: 100%;
-                    transform: translateY(25px);
+                    border: 1px solid red;
+                    width: 95vw;
+                    /* transform: translateY(25px) ; */
                 }
             }
         }

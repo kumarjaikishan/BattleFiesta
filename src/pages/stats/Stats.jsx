@@ -65,7 +65,8 @@ const Stats = () => {
       funck(result.matches);
       setmatches(result.matches);
       Impfunction(result.teamdeatil, result.matches);
-      vdcf(result.teamdeatil);
+      Impfunction1(result.teamdeatil, result.matches);
+      createTeamLogoObj(result.teamdeatil);
       setteamdeatil(result.teamdeatil);
       // setrule(result.rules)
     } catch (error) {
@@ -76,7 +77,7 @@ const Stats = () => {
 
 
 
-  const Impfunction = async (teamdeatil,matches) => {
+  const Impfunction = (teamdeatil, matches) => {
     // console.time("GPTfunc");
     const teamLogoMap = new Map(teamdeatil.map(team => [
       team._id,
@@ -133,27 +134,58 @@ const Stats = () => {
   };
 
 
-  const vdcf = (arraye) => {
+  const Impfunction1 = (teamdeatil, matches) => {
+    const topTeamMap = new Map();
+    const topPlayerMap = new Map();
+
+    matches.forEach(match => {
+      match.points.forEach(point => {
+        const { teamid, team, kills, playerKills } = point;
+        if (topTeamMap.has(teamid)) {
+          topTeamMap.get(teamid).kills += kills
+        } else {
+          topTeamMap.set(teamid, {
+            teamid,
+            teamname: team,
+            kills
+          })
+        }
+        playerKills.forEach(playerKill => {
+          const { playerId, playerLogo, inGameName, kills } = playerKill;
+
+          if (topPlayerMap.has(playerId)) {
+            topPlayerMap.get(playerId).kills += kills
+          } else {
+            topPlayerMap.set(playerId, {
+              playerId, playerLogo, inGameName, kills
+            })
+          }
+        })
+      })
+    })
+    console.log(topPlayerMap)
+  }
+
+
+  const createTeamLogoObj = (arraye) => {
     arraye.map((val, ind) => {
       temptemlogo[val._id] = val.teamLogo;
     })
-    // console.log("teamlogo", temptemlogo);
     setteamlogo(temptemlogo);
   }
 
-  let tabledata = [];
   const [tablerow, settablerow] = useState([]);
 
   const funck = (allmatch) => {
     const tableMap = new Map();
-  
+
     allmatch.forEach((match) => {
       match.points.forEach((point) => {
         const placePoints = parseInt(rules.pointsystem[point.place] || 0);
         const killPoints = point.kills * rules.killpoints;
         const totalPoints = placePoints + killPoints;
         const won = point.place === 1 ? 1 : 0;
-  
+
         // Check if team already exists in the Map
         if (tableMap.has(point.teamid)) {
           const existingTeam = tableMap.get(point.teamid);
@@ -176,69 +208,15 @@ const Stats = () => {
         }
       });
     });
-  
+
     // Convert Map values to array and sort
     const sortedTableData = Array.from(tableMap.values()).sort(comparePlayers);
-  
+
     settablerow(sortedTableData);
   };
-  
 
-  // const funck = (allmatch) => {
-  //   tabledata = [];
-  //   // console.log(allmatch);
-  //   allmatch.map((val, ind) => {
-  //     val.points.map((value, indes) => {
 
-  //       if (tabledata.length == 0) {
-  //         let placepts = parseInt(rules.pointsystem[value.place] || 0);
-  //         let killpts = value.kills * rules.killpoints;
-  //         let total = placepts + killpts;
-  //         let won = 0;
-  //         if (value.place == 1) {
-  //           won = 1;
-  //         }
-  //         let objecting = {
-  //           teamname: value.team, placepoints: placepts, killpoints: killpts, teamid: value.teamid, matchplayed: 1, matchwon: won, total: total
-  //         }
-  //         tabledata.push(objecting);
-  //       } else {
-  //         let karnahai = true;
-  //         tabledata.map((cf, frf) => {
-  //           if (cf.teamid == value.teamid) {
-  //             karnahai = false;
-  //             cf.matchplayed = cf.matchplayed + 1;
-  //             cf.placepoints = cf.placepoints + (parseInt(rules.pointsystem[value.place]) || 0);
-  //             cf.killpoints = cf.killpoints + parseInt(value.kills * rules.killpoints);
-  //             cf.total = cf.placepoints + cf.killpoints
-  //             if (value.place == 1) {
-  //               cf.matchwon = cf.matchwon + 1;
-  //             }
-  //           }
-  //         })
 
-  //         let plcpts = parseInt(rules.pointsystem[value.place] || 0);
-  //         let kallpts = value.kills * rules.killpoints;
-  //         let wona = 0;
-  //         let totala = plcpts + kallpts;
-
-  //         if (value.place == 1) {
-  //           wona = 1;
-  //         }
-
-  //         karnahai && tabledata.push({
-  //           teamname: value.team, placepoints: plcpts, killpoints: kallpts, teamid: value.teamid, matchplayed: 1, matchwon: wona, total: totala
-  //         });
-  //       }
-  //     })
-  //     return val;
-  //   })
-  //   // console.log(tabledata);
-  //   // Sort the array using the custom comparator function
-  //   tabledata.sort(comparePlayers);
-
-  //   settablerow(tabledata);
-  // }
 
   function comparePlayers(playerA, playerB) {
     // Compare total points first
@@ -345,7 +323,7 @@ const Stats = () => {
       </div>}
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
-          <img loading="lazy" src={kuch.tournment_logo ? kuch.tournment_logo : defaultlogo} alt="" />
+          <img loading="lazy" src={kuch?.tournment_logo || defaultlogo} alt="Tournament Logo" />
         </div>
         <h3>{kuch.title}</h3>
         <h2>{kuch.organiser}</h2>
@@ -366,8 +344,8 @@ const Stats = () => {
             {tablerow.length > 0 ? tablerow.map((row, ind) => {
               return <tr key={ind}>
                 <td>{ind + 1}</td>
-                <td style={{ textAlign: "left" }}><span><img loading="lazy" src={teamlogo[row.teamid] ? teamlogo[row.teamid] : group}
-                  alt="" /></span> <span>{row.teamname}</span> </td>
+                <td style={{ textAlign: "left" }}><span><img loading="lazy" src={teamlogo[row.teamid] || group}
+                  alt="TeamLogo" /></span> <span>{row.teamname}</span> </td>
                 <td>{row.matchplayed}</td>
                 <td>{row.matchwon}</td>
                 <td>{row.placepoints}</td>
