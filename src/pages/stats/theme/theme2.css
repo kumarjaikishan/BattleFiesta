@@ -1,6 +1,7 @@
 .conta.theme2 {
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/white-nI_TFbIi_aevkq4.webp');
     background-size: cover;
+    
 
     h1,
     h2 ,h3{
@@ -41,6 +42,13 @@
                     font-weight: 800;
                     font-size: 1.2em;
                     letter-spacing: 2px;
+
+                    &:nth-child(1){
+                        width: 50px;
+                      }
+                      &:nth-child(3){
+                        width: 50px;
+                      }
                 }
             }
         }

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { Button } from '@mui/material';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import html2canvas from "html2canvas";
 
-const Fragger = ({ topplayer, matches, teamdeatil }) => {
+const Fragger = ({ topplayer, matches, teamdeatil, log }) => {
     const [top, settop] = useState([])
     const [topteam, settopteam] = useState([]);
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
@@ -60,10 +63,53 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
         // console.log(dfvefr);
         settopteam(dfvefr)
     }
+    const [disable, setdisable] = useState(false);
+
+    const imagedownload = () => {
+        setdisable(true);
+        const timenow = new Date();
+        const rand = timenow.getMinutes();
+
+        // Override mobile layout by temporarily simulating a large screen size
+        const boxElement = document.querySelector('#fragger');
+
+        // Save the current style
+        const originalWidth = boxElement.style.width;
+        const originalHeight = boxElement.style.height;
+
+        // Force the element to behave like a desktop size
+        boxElement.style.width = '1680px'; // Set desired desktop width
+        boxElement.style.minHeight = '945px'; // Set desired desktop height
+
+        let quality = 3; // Adjust this if needed
+        html2canvas(boxElement, { scale: quality, useCORS: true })
+            .then((canvas) => {
+                const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
+                const anchor = document.createElement('a');
+                anchor.href = dataUrl;
+                anchor.download = `Fraggers @${rand}.png`; // Change the filename as needed
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+                setdisable(false);
+
+                // Restore the original styles after capturing
+                boxElement.style.width = originalWidth;
+                boxElement.style.minHeight = originalHeight;
+            })
+            .catch((error) => {
+                console.error('Error generating image:', error);
+                setdisable(false);
+
+                //Restore the original styles if an error occurs
+                boxElement.style.width = originalWidth;
+                boxElement.style.minHeight = originalHeight;
+            });
+    };
 
     return (
         <>
-            <div className="fragger">
+            <div className="fragger" id="fragger">
                 <h2>Top Fraggers</h2>
                 {matches.length < 1 && <div><h3 style={{ color: 'white', textAlign: 'center' }}>No Match Found</h3></div>}
                 {matches.length && <><div className="boxes">
@@ -112,8 +158,16 @@ const Fragger = ({ topplayer, matches, teamdeatil }) => {
                             })}
                         </div>
                     </div>
+
                 </>}
             </div>
+            {log.islogin &&
+                <div style={{ textAlign: 'center' }}>
+                    <Button disabled={disable} onClick={imagedownload} title='Download Fraggers Stat' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+                        Download
+                    </Button>
+                </div>
+            }
         </>
     )
 }

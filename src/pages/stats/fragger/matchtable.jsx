@@ -20,7 +20,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
     };
     const handlee = (sdvdf) => {
         // console.log(sdvdf);
-        let vdvdvdvdfv = [];
+        let matchlist = [];
         if (!sdvdf) {
             return;
         }
@@ -34,12 +34,12 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
                 total: killpts + placepts,
                 teamid: vdfd.teamid
             }
-            vdvdvdvdfv.push(fvfvf);
+            matchlist.push(fvfvf);
         })
-        vdvdvdvdfv.sort((a, b) => {
+        matchlist.sort((a, b) => {
             b.total - a.total
         })
-        vdvdvdvdfv.map((ggh, yu) => {
+        matchlist.map((ggh, yu) => {
             teamdeatil.map((fdfggh, fggf) => {
                 if (ggh.teamid == fdfggh._id) {
                     ggh.logo = fdfggh.teamLogo
@@ -47,8 +47,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
             })
         })
         setcurrentmatch(0);
-        // console.log(vdvdvdvdfv);
-        setrow(vdvdvdvdfv)
+        setrow(matchlist)
     }
 
     return (
@@ -57,9 +56,9 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
                 <h1>Match Stats</h1>
               {matches.length > 0 ? <>
                 <div>
-                    <FormControl >
+                    <FormControl  sx={{width:'350px'}}>
                         <h3> Select Match :</h3>
-                        <Select
+                       <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={currentmatch}

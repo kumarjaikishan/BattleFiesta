@@ -204,60 +204,45 @@ const Stats = () => {
     setdisable(true);
     const timenow = new Date();
     const rand = timenow.getMinutes();
-  
-    // Select the element to capture
+    
+    // Override mobile layout by temporarily simulating a large screen size
     const boxElement = document.querySelector('#wrapper');
-  
-    // Save the current styles (width and height)
+    
+    // Save the current style
     const originalWidth = boxElement.style.width;
     const originalHeight = boxElement.style.height;
-    const originalMaxWidth = boxElement.style.maxWidth;
-    const originalMaxHeight = boxElement.style.maxHeight;
+    
+    // Force the element to behave like a desktop size
+    boxElement.style.width = '1680px'; // Set desired desktop width
+    boxElement.style.minHeight = '945px'; // Set desired desktop height
   
-    // Force the element to have a wide width and dynamic height
-    boxElement.style.width = '1620px'; // Set desktop-like width
-    boxElement.style.height = 'auto'; // Allow dynamic height based on content
-    boxElement.style.maxWidth = '1620px'; 
-    boxElement.style.maxHeight = 'unset'; // Ensure height grows based on content
-  
-    // Capture the canvas at the desired width, keeping height dynamic
-    html2canvas(boxElement, {
-      scale: 3, // Higher scale for better quality
-      width: boxElement.offsetWidth,  // Set the canvas width to match the element width
-      height: boxElement.scrollHeight, // Use the full scrollable height to capture all content
-      useCORS: true // Enable CORS for external resources
-    })
+    let quality = 3; // Adjust this if needed
+    html2canvas(boxElement, { scale: quality, useCORS: true })
       .then((canvas) => {
         const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
         const anchor = document.createElement('a');
         anchor.href = dataUrl;
-        anchor.download = `Stats @${rand}.png`; // Filename for download
+        anchor.download = `Stats @${rand}.png`; // Change the filename as needed
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
         setdisable(false);
   
-        // Restore original styles after capturing
-        boxElement.style.width = originalWidth || '';
-        boxElement.style.height = originalHeight || '';
-        boxElement.style.maxWidth = originalMaxWidth || '';
-        boxElement.style.maxHeight = originalMaxHeight || '';
+        // Restore the original styles after capturing
+        boxElement.style.width = originalWidth;
+        boxElement.style.minHeight = originalHeight;
       })
       .catch((error) => {
         console.error('Error generating image:', error);
         setdisable(false);
   
-        // Restore original styles in case of error
-        boxElement.style.width = originalWidth || '';
-        boxElement.style.height = originalHeight || '';
-        boxElement.style.maxWidth = originalMaxWidth || '';
-        boxElement.style.maxHeight = originalMaxHeight || '';
+        // Restore the original styles if an error occurs
+        boxElement.style.width = originalWidth;
+        boxElement.style.minHeight = originalHeight;
       });
   };
   
   
-  
-
   return (
     <div className='stats'>
       {log.islogin && <div className='controls'>
@@ -309,7 +294,6 @@ const Stats = () => {
               <th>Kill Pts</th>
               <th>Total</th>
             </tr>
-
           </thead>
           <tbody>
             {tablerow.length > 0 ? tablerow.map((row, ind) => {
@@ -330,10 +314,10 @@ const Stats = () => {
         </table>
       </Container>
       {log.islogin &&
-        <Button disabled={disable} onClick={imagedownload} title='Download ' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+        <Button disabled={disable} onClick={imagedownload} title='Download Points Table' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
           Download
         </Button>}
-      <Fragger topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />
+      <Fragger log={log} topplayer={topplayer} matches={matches} teamdeatil={teamdeatil} />
       <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
     </div>
   );

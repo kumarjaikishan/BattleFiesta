@@ -38,6 +38,13 @@
                     font-weight: 800;
                     font-size: 1.2em;
                     letter-spacing: 2px;
+
+                    &:nth-child(1){
+                        width: 50px;
+                      }
+                      &:nth-child(3){
+                        width: 50px;
+                      }
                 }
             }
         }
