@@ -1,128 +1,91 @@
 import { useEffect, useState } from "react";
 import { Button } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import html2canvas from "html2canvas";
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
-const Fragger = ({ topplayer, matches, teamdeatil, log }) => {
-    const [top, settop] = useState([])
-    const [topteam, settopteam] = useState([]);
+const Fragger = ({ topplayer,disable, topteam,imagedownload, log }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
     const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
-    useEffect(() => {
-        // console.log("teamdetail -", teamdeatil);
-        // console.log("topplayers :", topplayer);
-        settop(topplayer.filter((val, ind) => {
-            return ind < 5;
-        }))
-    }, [topplayer])
-    useEffect(() => {
-        functione();
-    }, [matches])
+    
+useEffect(()=>{
+//  console.log(topplayer)
+},[topplayer])
+    // const testing1 = () => {
+    //     console.time("minefunc")
+    //     let topteam = [];
+    //     let topplayers = [];
+    //     let logo = [];
 
-    const functione = () => {
-        let dfvefr = [];
-        matches.length > 0 && matches.map((match, ind) => {
-            match.points.map((val, ind) => {
+    //     teamdeatil.map((team) => {
+    //         let vare = {
+    //             teamid: team._id,
+    //             teamlogo: team.teamLogo,
+    //             player: team.player.map((player) => {
+    //                 return {
+    //                     playerid: player.playerId,
+    //                     playerlogo: player.playerLogo
+    //                 }
+    //             })
+    //         }
+    //         logo.push(vare);
+    //     })
 
-                if (dfvefr.length < 1) {
-                    let dv = {
-                        team: val.team,
-                        teamid: val.teamid,
-                        kills: val.kills
-                    }
-                    dfvefr.push(dv)
-                } else {
-                    let karnahai = true;
-                    dfvefr.map((dfd, ffg) => {
-                        if (dfd.teamid == val.teamid) {
-                            karnahai = false;
-                            dfd.kills += val.kills
-                        }
-                    })
-                    let dv = {
-                        team: val.team,
-                        teamid: val.teamid,
-                        kills: val.kills
-                    }
-                    karnahai && dfvefr.push(dv)
-                }
-            })
-        })
+    //     matches.map((val, ind) => {
+    //         val.points.map((hey, ind) => {
+    //             const existingTeam = topteam.find(item => item.teamid === hey.teamid);
+    //             const sablogo = logo.find(item=> item.teamid === hey.teamid);
+    //             if (existingTeam) {
+    //                 existingTeam.kills += hey.kills;
+    //             } else {
+    //                 let pre = {
+    //                     teamlogo : sablogo.teamlogo,
+    //                     teamid: hey.teamid,
+    //                     teamname: hey.team,
+    //                     kills: hey.kills
+    //                 }
+    //                 topteam.push(pre);
+    //             }
+    //             hey.playerKills.map((player, ind) => {
+    //                 const existingPlayer = topplayers.find(item => item.playerid === player.playerId);
+    //                 const playerlogoe = sablogo.player.find(item=> item.playerid === player.playerId);
+    //                 if (existingPlayer) {
+    //                     existingPlayer.kills += player.kills;
+    //                 } else {
+    //                     let pre = {
+    //                         team: hey.team,
+    //                         playerlogo: playerlogoe.playerlogo,
+    //                         playername: player.inGameName,
+    //                         playerid: player.playerId,
+    //                         kills: player.kills
+    //                     }
+    //                     topplayers.push(pre)
+    //                 }
+    //             })
 
-        dfvefr.map((ggh, yu) => {
-            teamdeatil.map((fdfggh, fggf) => {
-                if (ggh.teamid == fdfggh._id) {
-                    ggh.logo = fdfggh.teamLogo
-                }
-            })
-        })
-        dfvefr.sort((a, b) => {
-            return b.kills - a.kills
-        })
-
-        // console.log(dfvefr);
-        settopteam(dfvefr)
-    }
-    const [disable, setdisable] = useState(false);
-
-    const imagedownload = () => {
-        setdisable(true);
-        const timenow = new Date();
-        const rand = timenow.getMinutes();
-
-        // Override mobile layout by temporarily simulating a large screen size
-        const boxElement = document.querySelector('#fragger');
-
-        // Save the current style
-        const originalWidth = boxElement.style.width;
-        const originalHeight = boxElement.style.height;
-
-        // Force the element to behave like a desktop size
-        boxElement.style.width = '1680px'; // Set desired desktop width
-        boxElement.style.minHeight = '945px'; // Set desired desktop height
-
-        let quality = 3; // Adjust this if needed
-        html2canvas(boxElement, { scale: quality, useCORS: true })
-            .then((canvas) => {
-                const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
-                const anchor = document.createElement('a');
-                anchor.href = dataUrl;
-                anchor.download = `Fraggers @${rand}.png`; // Change the filename as needed
-                document.body.appendChild(anchor);
-                anchor.click();
-                document.body.removeChild(anchor);
-                setdisable(false);
-
-                // Restore the original styles after capturing
-                boxElement.style.width = originalWidth;
-                boxElement.style.minHeight = originalHeight;
-            })
-            .catch((error) => {
-                console.error('Error generating image:', error);
-                setdisable(false);
-
-                //Restore the original styles if an error occurs
-                boxElement.style.width = originalWidth;
-                boxElement.style.minHeight = originalHeight;
-            });
-    };
+    //         })
+    //     })
+    //     topteam.sort((a, b) => b.kills - a.kills);
+    //     topplayers.sort((a, b) => b.kills - a.kills);
+    //     console.timeEnd("minefunc")
+    // }
 
     return (
         <>
             <div className="fragger" id="fragger">
                 <h2>Top Fraggers</h2>
-                {matches.length < 1 && <div><h3 style={{ color: 'white', textAlign: 'center' }}>No Match Found</h3></div>}
-                {matches.length && <><div className="boxes">
-                    {top && top.map((player, ind) => {
+                {!topplayer.length && <div><h3 style={{ color: 'white', textAlign: 'center' }}>No Match Found</h3></div>}
+                {topplayer.length && <><div className="boxes">
+                    {topplayer && topplayer.slice(0,5).map((player, ind) => {
+                        let {team, playerName, playerLogo, kills} = player;
                         return <div className="box" key={ind}>
                             <div className="img">
-                                <img src={player.logo ? player.logo : user} alt="" />
-                                <span>{player.name}</span>
+                                <img src={playerLogo ? playerLogo : user} alt="" />
+                                <span>{playerName}</span>
                             </div>
                             <div className="below">
-                                {player.kills} kills
+                                {kills} kills
                             </div>
-                            <div className="below">Team- {player.team}</div>
+                            <div className="below"><Diversity3Icon /> - {team}</div>
                         </div>
                     })}
                 </div>
@@ -134,13 +97,14 @@ const Fragger = ({ topplayer, matches, teamdeatil, log }) => {
                                 <span>KILLS</span>
                             </div>
                             {topplayer.slice(0, 10).map((player, ind) => {
+                                let { playerName, playerLogo, kills}= player;
                                 return <div key={ind}>
                                     <span>
                                         <span>#{ind + 1}</span>
-                                        <span><img src={player.logo ? player.logo : user} alt="" /> </span>
-                                        <span>{player.name}</span>
+                                        <span><img src={playerLogo ? playerLogo : user} alt="" /> </span>
+                                        <span>{playerName}</span>
                                     </span>
-                                    <span>{player.kills}</span>
+                                    <span>{kills}</span>
                                 </div>
                             })}
                         </div>
@@ -151,9 +115,10 @@ const Fragger = ({ topplayer, matches, teamdeatil, log }) => {
                                 <span>KILLS</span>
                             </div>
                             {topteam.slice(0, 10).map((team, ind) => {
+                                let {teamname, teamLogo, kills}= team;
                                 return <div key={ind}>
-                                    <span> <span>#{ind + 1}</span> <span><img src={team.logo ? team.logo : group} alt="" /> </span><span>{team.team}</span></span>
-                                    <span>{team.kills}</span>
+                                    <span> <span>#{ind + 1}</span> <span><img src={teamLogo ? teamLogo : group} alt="" /> </span><span>{teamname}</span></span>
+                                    <span>{kills}</span>
                                 </div>
                             })}
                         </div>
@@ -163,8 +128,8 @@ const Fragger = ({ topplayer, matches, teamdeatil, log }) => {
             </div>
             {log.islogin &&
                 <div style={{ textAlign: 'center' }}>
-                    <Button disabled={disable} onClick={imagedownload} title='Download Fraggers Stat' sx={{ mt: 1, width: "150px" }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
-                        Download
+                    <Button disabled={disable} onClick={()=> imagedownload('#fragger',"Fraggers")} title='Download Fraggers Stat' sx={{ mt: 0.3}} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+                        Download Fraggers
                     </Button>
                 </div>
             }

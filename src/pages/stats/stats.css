@@ -109,9 +109,9 @@
   .fragger {
     width: 100%;
     max-width: 1200px;
-    margin-top: 10px;
+    margin-top: 20px;
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
-   background-size: cover;
+    background-size: cover;
     border-radius: 20px;
     padding: 20px;
 
@@ -130,7 +130,7 @@
 
       & .box {
         width: 160px;
-        border: 1px solid white;
+        border: 1px solid grey;
         border-radius: 10px;
         overflow: hidden;
 
@@ -157,12 +157,15 @@
             color: whitesmoke;
             font-size: 1.1em;
             font-weight: 600;
-            background: linear-gradient(to top, rgb(24, 24, 24), transparent);
+            background: linear-gradient(to top, rgb(24, 24, 24) 25%, transparent);
           }
         }
 
         .below {
           /* border: 1px solid red; */
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-weight: 700;
           padding: 5px;
           font-size: 0.9em;
@@ -189,7 +192,7 @@
       margin-top: 10px;
 
       & .tabledata {
-        width: 400px;
+        width: 430px;
         /* border: 1px solid yellow; */
 
         & div {
@@ -238,7 +241,7 @@
   .matchtable {
     width: 100%;
     max-width: 1200px;
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 20px;
     padding: 10px;
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
@@ -400,6 +403,7 @@
 
         & .tabledata {
           width: 100%;
+          max-width: 500px;
 
           .tablehead {
             font-size: 1.2em;
