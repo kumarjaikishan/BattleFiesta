@@ -170,9 +170,9 @@ const Voucher = () => {
                             </Select>
                         </FormControl>
                         <div style={{ width: '100%' }}>
-                            {!isedit && <Button size="small" type="submit" variant="contained"> Submit</Button>}
-                            {isedit && <Button size="small" onClick={edit} variant="contained"> Update</Button>}
-                            <Button size="small" onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                            {!isedit && <Button  type="submit" variant="contained"> Submit</Button>}
+                            {isedit && <Button  onClick={edit} variant="contained"> Update</Button>}
+                            <Button  onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                         </div>
                     </span>
                 </form>

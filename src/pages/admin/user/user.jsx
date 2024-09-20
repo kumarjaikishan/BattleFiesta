@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { motion } from 'framer-motion';
+import SaveIcon from '@mui/icons-material/Save';
 import Modalbox from "../../../components/custommodal/Modalbox";
 
 const User = () => {
@@ -218,8 +219,8 @@ const User = () => {
                                 </Select>
                             </FormControl>
                             <div style={{ width: '100%' }}>
-                                <Button size="small" type="submit" variant="contained"> Update</Button>
-                                <Button size="small" onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                                <Button  startIcon={<SaveIcon/>} type="submit" variant="contained"> Update</Button>
+                                <Button  onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                             </div>
                         </span>
                     </form>

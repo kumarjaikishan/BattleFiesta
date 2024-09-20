@@ -25,8 +25,8 @@ import Payment from './pages/payment/payment';
 import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
-// import { messaging } from './firebase';
-// import { getToken, onMessage } from 'firebase/messaging';
+import { messaging } from './firebase';
+import { getToken, onMessage } from 'firebase/messaging';
 import { toast } from 'react-toastify';
 import Modalbox from './components/custommodal/Modalbox';
 import AdminRoutes from './utils/AdminRoutes';
@@ -36,7 +36,7 @@ import UserRoute from './utils/UserRoute';
 const Profile = lazy(() => import('./pages/profile/profile'));
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
 const Admindashboard = lazy(() => import('./pages/admin/dashboard/dashboard'));
-const Membershiprequest = lazy(() => import('./pages/admin/membershiprequest/membershiprequest'));
+const Membershiprequest = lazy(() => import('./pages/admin/Request/Request'));
 const Query = lazy(() => import('./pages/admin/query/query'));
 const Voucher = lazy(() => import('./pages/admin/voucher/voucher'));
 const Membership = lazy(() => import('./pages/admin/membership/membership'));
@@ -71,13 +71,13 @@ function App() {
   }
 
   useEffect(() => {
-    // onMessage(messaging, (payload) => {
-    //   toast.success(payload.notification.body, { autoClose: false });
-    // });
+    onMessage(messaging, (payload) => {
+      toast.success(payload.notification.body, { autoClose: false });
+    });
   }, []);
 
   useEffect(() => {
-    // log.islogin && requestPermission();
+    log.islogin && requestPermission();
   }, [log.islogin]);
 
   return (
@@ -111,7 +111,7 @@ function App() {
               }
             >
               <Route path="" element={<Admindashboard />} />
-              <Route path="membershiprequest" element={<Membershiprequest />} />
+              <Route path="request" element={<Membershiprequest />} />
               <Route path="query" element={<Query />} />
               <Route path="voucher" element={<Voucher />} />
               <Route path="membership" element={<Membership />} />

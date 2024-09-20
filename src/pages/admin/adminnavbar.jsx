@@ -1,7 +1,7 @@
 
 import {  NavLink } from "react-router-dom";
 import './adminnavbar.css'
-import './membershiprequest/membershiprequest.css'
+import './Request/Request.css'
 
 const Adminnavbar = () => {
     return <>
@@ -13,7 +13,7 @@ const Adminnavbar = () => {
                         <span>Dashboard</span>
                     </div>
                 </NavLink>
-                <NavLink className="navlink" to='/admin/membershiprequest' >
+                <NavLink className="navlink" to='/admin/request' >
                     <div >
                         <i className="fa fa-credit-card" aria-hidden="true"></i>
                         <span>Requests</span>

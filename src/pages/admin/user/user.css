@@ -1,119 +1,126 @@
 .adminusers {
-    width: 100%; 
+    width: 100%;
 
-    .body{
+    .header {
+        border-left: 4px solid transparent;
+       padding-right: 10px;
+    }
 
-        .status{
+    .body {
+
+        .status {
             border-radius: 6px;
-            border-left: 5px solid transparent ;
+            border-left: 4px solid transparent;
         }
-        .status.active{
+
+        .status.active {
             border-left-color: green;
         }
-        .status.expired{
+
+        .status.expired {
             border-left-color: red;
         }
     }
 
-    & span {
-        display: inline-block;
-        text-align: center;
-        padding: 2px 0px;
-    }
+    .body,
+    .header {
 
-    & span:nth-child(1) {
-        width: 40px;
-    }
-    
-    & span:nth-child(2) {
-        width: 380px;
-        text-align: start;
-    }
-    
-    & span:nth-child(3) {
-        width: 110px;
-    }
-    
-    & span:nth-child(4) {
-        width: 280px;
-    }
-    
-    & span:nth-child(5) {
-        width:110px;
-    }
-    
-    & span:nth-child(6) {
-        /* border: 1px solid red; */
-        width: 120px;
-    }
+        & span {
+            /* display: inline-block; */
+            text-align: center;
+            padding: 2px 0px;
+        }
 
-    & span:nth-child(7) {
-        width: 180px;
-    }
+        & span:nth-child(1) {
+            width: 40px;
+        }
 
-    & span:nth-child(8) {
-        width: 100px;
-    }
+        & span:nth-child(2) {
+            width: 180px;
+            text-align: start;
+        }
 
-    & span:last-child {
-        width: 60px;
-        /* border: 1px solid red; */
-        padding-left: 5px;
-        display: inline-flex;
-        justify-content: space-around;
+        & span:nth-child(3) {
+            width: 110px;
+        }
 
-        i {
-            width: 25px;
-            height: 25px;
-            line-height: 25px;
-            cursor: pointer;
-            border-radius: 50%;
-            color: rgb(6, 93, 112);
+        & span:nth-child(4) {
+            width: 280px;
+            text-wrap: wrap;
+        }
 
-            &:last-child {
-                color: red;
-            }
+        & span:nth-child(5) {
+            width: 110px;
+        }
 
-            &:hover {
-                background: rgba(133, 196, 192, 0.4);
+        & span:last-child {
+            width: 60px;
+            /* border: 1px solid red; */
+            padding-left: 5px;
+            display: inline-flex;
+            justify-content: space-around;
+
+            i {
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                cursor: pointer;
+                border-radius: 50%;
+                color: rgb(6, 93, 112);
+
+                &:last-child {
+                    color: red;
+                }
+
+                &:hover {
+                    background: rgba(133, 196, 192, 0.4);
+                }
             }
         }
     }
 }
+
 @media only screen and (max-width: 500px) {
     .adminusers {
-        .body, .header{
+
+        .body,
+        .header {
             & span:nth-child(1) {
-                min-width: 30px;
-               
+                min-width: 20px;
+                /* border: 1px solid red; */
             }
-            
+
             & span:nth-child(2) {
-                width: 380px;
+                min-width: 50px;
                 /* border: 1px solid red; */
                 text-align: start;
             }
-            
+
             & span:nth-child(3) {
-                min-width: 55px;
+                min-width: 60px;
                 /* border: 1px solid red; */
             }
-            
+
             & span:nth-child(4) {
-                min-width: 90px;
+                min-width: 130px;
+                max-width: 130px;
+                /* text-align: start; */
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 /* border: 1px solid red; */
             }
-            
+
             & span:nth-child(5) {
-                min-width:60px;
-               
+                min-width: 60px;
+
             }
-            
-            & span:nth-child(6) {
+
+            & span:last-child {
                 /* border: 1px solid red; */
-                min-width: 40px;
+                min-width: 30px;
             }
-        
+
         }
     }
 }

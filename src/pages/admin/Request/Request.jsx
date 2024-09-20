@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
-import Membermodal from "./membermodal";
+import Membermodal from "./requestmodal";
 import LoadingButton from '@mui/lab/LoadingButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { motion } from 'framer-motion';
 import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
 
-const Membershiprequest = () => {
+const Request = () => {
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
-      // console.log(admin.membershipentry);
+      console.log(admin.membershipentry);
    }, [])
    const dispatch = useDispatch();
    const [inp, setinp] = useState(null);
@@ -74,7 +74,7 @@ const Membershiprequest = () => {
    return <>
       <motion.div className="membershiprequest">
          <div className="controler">
-            <h2 style={{ textAlign: 'center' }}>Membership Appliciations</h2>
+            <h2 style={{ textAlign: 'center' }}>Membership Requests</h2>
             <LoadingButton
                loading={admin.loading}
                onClick={() => dispatch(memshipentry())}
@@ -92,7 +92,6 @@ const Membershiprequest = () => {
             <span>#</span>
             <span>Name</span>
             <span>Plan</span>
-            <span>coupon</span>
             <span>Finalprice</span>
             <span>Date</span>
             <span>Txn. NO</span>
@@ -117,7 +116,6 @@ const Membershiprequest = () => {
                   <span>{ind + 1}</span>
                   <span>{val.user?.name}</span>
                   <span>{val.plan_id.plan_name}</span>
-                  <span>{val.coupon ? val.coupon : "-"}</span>
                   <span>{val.finalpricepaid}</span>
                   <span>{formattedDate}</span>
                   <span title={val.status == 'success' ? val.membershipId : ""}>{val.txn_no}</span>
@@ -131,4 +129,4 @@ const Membershiprequest = () => {
       </motion.div>
    </>
 }
-export default Membershiprequest;
+export default Request;
