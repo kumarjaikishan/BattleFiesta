@@ -165,7 +165,7 @@ const Registerform = ({ showss }) => {
     }
     return (
         <>
-            <div className="tdm_form_setting">
+            <div className="form_setting">
                 <div className="control">
                     <div className="active" onClick={() => handleactive(0)}>
                         <SettingsSuggestIcon />
