@@ -32,7 +32,7 @@ const Membership = () => {
           </LoadingButton>
         </div>
         <div className="header">
-          <span>S.no</span>
+          <span>#</span>
           <span>Name</span>
           <span>Plan</span>
           <span>price</span>

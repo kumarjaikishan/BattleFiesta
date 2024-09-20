@@ -122,7 +122,7 @@ const Query = () => {
                     </LoadingButton>
                 </div>
                 <div className="header">
-                    <span>S.no</span>
+                    <span>#</span>
                     <span>Name</span>
                     <span>Email</span>
                     <span>Message</span>

@@ -14,9 +14,12 @@
         flex-wrap: wrap;
         align-items: center;
 
+
         .navlink {
+            /* flex-basis: calc(33.333% - 2px); */
             /* border: 1px solid red; */
             color: #212529;
+            text-align: center;
             text-decoration: none;
 
             div {
@@ -47,9 +50,14 @@
         }
     }
 }
-.admindashboard, .adminmembership, .membershiprequest,
- .query, .adminusers, .voucherpage{
-    min-height: calc(100vh - ( var(--navheight) + 40px));
+
+.admindashboard,
+.adminmembership,
+.membershiprequest,
+.query,
+.adminusers,
+.voucherpage {
+    min-height: calc(100vh - (var(--navheight) + 40px));
     background: white;
 }
 
@@ -59,20 +67,23 @@
         background: white;
         height: 80px;
         border-bottom: 1px dotted grey;
-    
+
         .adminnav {
-           
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px 10px;
+
             .navlink {
-    
+
                 div {
                     padding: 5px;
                     letter-spacing: 0.5px;
                     border-radius: 10px;
-    
+
                     span {
                         font-size: 12px;
                     }
-    
+
                 }
             }
         }

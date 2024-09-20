@@ -16,7 +16,7 @@ const Adminnavbar = () => {
                 <NavLink className="navlink" to='/admin/membershiprequest' >
                     <div >
                         <i className="fa fa-credit-card" aria-hidden="true"></i>
-                        <span>Membership apply</span>
+                        <span>Requests</span>
                     </div>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/query' >

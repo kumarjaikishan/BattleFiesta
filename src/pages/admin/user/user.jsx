@@ -157,7 +157,7 @@ const User = () => {
                 </LoadingButton>
             </div>
             <div className="header">
-                <span>S.NO</span>
+                <span>#</span>
                 <span>Name</span>
                 <span>Mobile</span>
                 <span>Email</span>

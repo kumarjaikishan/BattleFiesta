@@ -89,7 +89,7 @@ const Membershiprequest = () => {
             </LoadingButton>
          </div>
          <div className="header">
-            <span>S.NO</span>
+            <span>#</span>
             <span>Name</span>
             <span>Plan</span>
             <span>coupon</span>
