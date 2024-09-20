@@ -1,6 +1,20 @@
 .adminusers {
     width: 100%; 
 
+    .body{
+
+        .status{
+            border-radius: 6px;
+            border-left: 5px solid transparent ;
+        }
+        .status.active{
+            border-left-color: green;
+        }
+        .status.expired{
+            border-left-color: red;
+        }
+    }
+
     & span {
         display: inline-block;
         text-align: center;

@@ -114,7 +114,7 @@
                 font-weight: 500;
             }
 
-            .status.pending {
+            .status.expired {
                 background: rgba(221, 179, 100, 0.486);
                 color: rgb(86, 56, 2);
                 border-left: 4px solid rgb(86, 56, 2);

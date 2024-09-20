@@ -75,6 +75,7 @@ const Profile = () => {
         }
         let data = userprofile.userprofile;
         let membere = userprofile.membership
+        // console.log(membere)
         setinp({
             ...inp,
             name: data.name,
@@ -99,7 +100,7 @@ const Profile = () => {
             buydate: membere.buy_date,
             expirydate: membere.expire_date,
             expire_in: getTimeDifference(membere.expire_date),
-            status: getTimeDifference(membere.expire_date) < 0 ? 'expired' : 'active'
+            status: membere.isActive ? 'active' : 'expired'
         })
     }
     const newlink = () => {

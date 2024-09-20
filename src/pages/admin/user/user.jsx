@@ -29,7 +29,7 @@ const User = () => {
     const [inp, setinp] = useState(init)
 
     useEffect(() => {
-        // console.log(admin);
+        // console.log(admin.users);
     }, [])
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
@@ -171,7 +171,7 @@ const User = () => {
                 layout
                 className="body">
                 {admin?.users?.map((val, ind) => {
-                    return <motion.div variants={item} layout key={ind}>
+                    return <motion.div variants={item} layout key={ind} className={`status ${val.membership.isActive ? 'active' : 'expired'}`}>
                         <span>{ind + 1}</span>
                         <span>{val.name}</span>
                         <span>{val.phone}</span>

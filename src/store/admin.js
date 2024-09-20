@@ -90,9 +90,9 @@ export const Users = createAsyncThunk("Users", async () => {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        const membership = await responsee.json();
-        // console.log(voucher);
-        return membership;
+        const user = await responsee.json();
+        // console.log(user);
+        return user;
     } catch (error) {
         console.log(error);
         throw Error("Failed to fetch membership data");

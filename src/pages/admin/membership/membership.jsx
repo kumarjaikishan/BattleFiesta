@@ -47,7 +47,7 @@ const Membership = () => {
               <span>{val.planid.plan_name}</span>
               <span>{val.planid.price}</span>
               <span>{val.finalpricepaid}</span>
-              <span className='status active'>Active</span>
+              <span className={val.isActive ? 'status active': 'status expired'}>{val.isActive ? "Active": "Expired"}</span>
             </div>
           })}
 
