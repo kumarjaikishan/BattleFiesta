@@ -68,17 +68,17 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                     <form onSubmit={(e) => handlee(e, inp._id)}>
                         <h2>Create Membership</h2>
                         <span className="modalcontent">
-                            <div style={{ width: '100%' }}>
-                                <TextField  value={inp.plan_id.plan_name || "None"} sx={{ width: '45%' }} label="Plan" size="small" />
-                                <TextField  value={inp.coupon || "None"} sx={{ width: '45%' }} label="Voucher" size="small" />
-                            </div>
-                            <div style={{ width: '100%' }}>
-                                <TextField  value={inp.discount || 0} sx={{ width: '45%' }} label="Discount" size="small" />
-                                <TextField  value={inp.finalpricepaid} sx={{ width: '45%' }} label="Final Price" size="small" />
-                            </div>
-                            <div style={{ width: '100%' }}>
-                                <TextField  value={inp.txn_no} sx={{ width: '45%' }} label="Transaction No." size="small" />
-                                <FormControl sx={{ width: '45%' }} size="small">
+                            <section>
+                                <TextField  value={inp.plan_id.plan_name || "None"} sx={{ width: '48%' }} label="Plan" size="small" />
+                                <TextField  value={inp.coupon || "None"} sx={{ width: '48%' }} label="Voucher" size="small" />
+                            </section>
+                            <section>
+                                <TextField  value={inp.discount || 0} sx={{ width: '48%' }} label="Discount" size="small" />
+                                <TextField  value={inp.finalpricepaid} sx={{ width: '48%' }} label="Final Price" size="small" />
+                            </section>
+                            <section>
+                                <TextField  value={inp.txn_no} sx={{ width: '48%' }} label="Transaction No." size="small" />
+                                <FormControl sx={{ width: '48%' }} size="small">
                                     <InputLabel id="demo-simple-select-label">Status</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -92,8 +92,8 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                                         <MenuItem value='rejected'>Rejected</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </div>
-                            <TextField multiline rows={2} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '95%' }} label="Remarks" size="small" />
+                            </section>
+                            <TextField multiline rows={2} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '100%' }} label="Remarks" size="small" />
                             <div className="btn">
                                 <Button startIcon={<SaveIcon/>} disabled={isloading}  type="submit" variant="contained"> Submit</Button>
                                 <Button  onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>

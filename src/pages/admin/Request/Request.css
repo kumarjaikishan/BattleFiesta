@@ -341,7 +341,7 @@
     }
 
     .membermodal {
-        width: 80vw !important;
+        width: 90vw !important;
         border-radius: 10px;
         background: white;
         padding-bottom: 10px;
@@ -363,11 +363,13 @@
                 background: var(--primarycolor);
             }
 
-            &>div {
-                display: flex;
-                /* width: 100%; */
-                margin: 10px 0px;
-                justify-content: space-around;
+            &>span {
+
+                &>section {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
             }
 
             .btn {
