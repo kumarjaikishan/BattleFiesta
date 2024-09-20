@@ -26,9 +26,9 @@ import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import { messaging } from './firebase';
+import { getToken, onMessage } from 'firebase/messaging';
 import { toast } from 'react-toastify';
 import Modalbox from './components/custommodal/Modalbox';
-import { getToken, onMessage } from 'firebase/messaging';
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
 

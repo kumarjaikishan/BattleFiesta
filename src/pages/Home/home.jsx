@@ -148,7 +148,7 @@ const Home = () => {
                         }}
                         initial='hidden'
                         animate='visible'
-                        transition={{ duration: 1, delay: 1.2 }}
+                        transition={{ duration: 1, delay: 0.8 }}
                         className="image">
                         <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660664/battlefiesta/assets/icon/anime_d1c7if.webp'} alt="PUBG Character" />
                     </motion.div>
