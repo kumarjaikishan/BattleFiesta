@@ -25,8 +25,8 @@ import Payment from './pages/payment/payment';
 import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
-import { messaging } from './firebase';
-import { getToken, onMessage } from 'firebase/messaging';
+// import { messaging } from './firebase';
+// import { getToken, onMessage } from 'firebase/messaging';
 import { toast } from 'react-toastify';
 import Modalbox from './components/custommodal/Modalbox';
 import AdminRoutes from './utils/AdminRoutes';
@@ -71,13 +71,13 @@ function App() {
   }
 
   useEffect(() => {
-    onMessage(messaging, (payload) => {
-      toast.success(payload.notification.body, { autoClose: false });
-    });
+    // onMessage(messaging, (payload) => {
+    //   toast.success(payload.notification.body, { autoClose: false });
+    // });
   }, []);
 
   useEffect(() => {
-    log.islogin && requestPermission();
+    // log.islogin && requestPermission();
   }, [log.islogin]);
 
   return (
