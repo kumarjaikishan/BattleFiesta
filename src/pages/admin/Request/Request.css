@@ -189,6 +189,12 @@
                 display: flex;
                 justify-content: space-around;
             }
+
+            &>section {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
         }
 
         .btn {
@@ -344,7 +350,6 @@
         width: 90vw !important;
         border-radius: 10px;
         background: white;
-        padding-bottom: 10px;
 
 
         form {
@@ -361,15 +366,6 @@
                 text-align: center;
                 color: white;
                 background: var(--primarycolor);
-            }
-
-            &>span {
-
-                &>section {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                }
             }
 
             .btn {
