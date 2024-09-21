@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 const Request = () => {
    const admin = useSelector((state) => state.admin);
    useEffect(() => {
-      console.log(admin.membershipentry);
+      // console.log(admin.membershipentry);
    }, [])
    const dispatch = useDispatch();
    const [inp, setinp] = useState(null);

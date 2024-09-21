@@ -185,6 +185,7 @@ const Payment = () => {
       coupon: 0,
       couponname: ''
     }));
+    setfetchCouponData(false)
     setcouponerror(null);
   }
 

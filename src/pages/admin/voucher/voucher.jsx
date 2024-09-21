@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Modalbox from "../../../components/custommodal/Modalbox";
+import SaveIcon from '@mui/icons-material/Save';
 
 const Voucher = () => {
     const dispatch = useDispatch();
@@ -152,8 +153,8 @@ const Voucher = () => {
                 <form onSubmit={handlee}>
                     <h2>Create Voucher</h2>
                     <span className="modalcontent">
-                        <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Plan Name" size="small" />
-                        <TextField type="tel" required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} sx={{ width: '98%' }} label="Percent"
+                        <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} fullWidth label="Plan Name" size="small" />
+                        <TextField type="tel" required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} fullWidth label="Percent"
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                             size="small" />
                         <FormControl fullWidth size="small">
@@ -170,8 +171,8 @@ const Voucher = () => {
                             </Select>
                         </FormControl>
                         <div style={{ width: '100%' }}>
-                            {!isedit && <Button  type="submit" variant="contained"> Submit</Button>}
-                            {isedit && <Button  onClick={edit} variant="contained"> Update</Button>}
+                            {!isedit && <Button startIcon={<SaveIcon/>}  type="submit" variant="contained"> Submit</Button>}
+                            {isedit && <Button startIcon={<SaveIcon/>} onClick={edit} variant="contained"> Update</Button>}
                             <Button  onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                         </div>
                     </span>

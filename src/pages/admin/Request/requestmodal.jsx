@@ -31,11 +31,11 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
     const handlee = async (e, id) => {
         e.preventDefault();
         let remarks = other.remarks;
-        let flag = other.status;
-        // console.log(id);
+        let flag = inp.status;
+        // console.log(inp);
+        const toaste = toast.loading("Please wait...")
         try {
             setisloading(true)
-            const toaste = toast.loading("Please wait...")
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}createmembership`, {
                 method: "POST",
@@ -49,15 +49,16 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
             // console.log(data);
             setisloading(false)
             if (responsee.ok) {
+                setinp(null);
                 dispatch(memshipentry())
-                toast.update(toaste, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
+                toast.update(toaste, { render: data.message, type: "success", isLoading: false, autoClose: 1700 });
                 setmembermodal(false);
             } else {
-                return toast.update(toaste, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
+                return toast.update(toaste, { render: data.message, type: "warning", isLoading: false, autoClose: 2100 });
             }
         } catch (error) {
             setisloading(false)
-            toast.update(toaste, { render: data.message, type: "warn", isLoading: false, autoClose: 5200 });
+            toast.update(toaste, { render: error.message, type: "warning", isLoading: false, autoClose: 2700 });
             console.log(error);
         }
     }
@@ -69,15 +70,15 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                         <h2>Create Membership</h2>
                         <span className="modalcontent">
                             <section>
-                                <TextField  value={inp.plan_id.plan_name || "None"} sx={{ width: '48%' }} label="Plan" size="small" />
-                                <TextField  value={inp.coupon || "None"} sx={{ width: '48%' }} label="Voucher" size="small" />
+                                <TextField value={inp.plan_id.plan_name || "None"} sx={{ width: '48%' }} label="Plan" size="small" />
+                                <TextField value={inp.coupon || "None"} sx={{ width: '48%' }} label="Voucher" size="small" />
                             </section>
                             <section>
-                                <TextField  value={inp.discount || 0} sx={{ width: '48%' }} label="Discount" size="small" />
-                                <TextField  value={inp.finalpricepaid} sx={{ width: '48%' }} label="Final Price" size="small" />
+                                <TextField value={inp.discount || 0} sx={{ width: '48%' }} label="Discount" size="small" />
+                                <TextField value={inp.finalpricepaid} sx={{ width: '48%' }} label="Final Price" size="small" />
                             </section>
                             <section>
-                                <TextField  value={inp.txn_no} sx={{ width: '48%' }} label="Transaction No." size="small" />
+                                <TextField value={inp.txn_no} sx={{ width: '48%' }} label="Transaction No." size="small" />
                                 <FormControl sx={{ width: '48%' }} size="small">
                                     <InputLabel id="demo-simple-select-label">Status</InputLabel>
                                     <Select
@@ -95,8 +96,8 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                             </section>
                             <TextField multiline rows={2} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '100%' }} label="Remarks" size="small" />
                             <div className="btn">
-                                <Button startIcon={<SaveIcon/>} disabled={isloading}  type="submit" variant="contained"> Submit</Button>
-                                <Button  onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
+                                <Button startIcon={<SaveIcon />} disabled={isloading} type="submit" variant="contained"> Submit</Button>
+                                <Button onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
                             </div>
                         </span>
                     </form>

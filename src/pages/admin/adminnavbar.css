@@ -13,11 +13,10 @@
         justify-content: space-around;
         flex-wrap: wrap;
         align-items: center;
+        /* border: 1px solid red; */
 
 
         .navlink {
-            /* flex-basis: calc(33.333% - 2px); */
-            /* border: 1px solid red; */
             color: #212529;
             text-align: center;
             text-decoration: none;
