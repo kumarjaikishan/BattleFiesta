@@ -117,6 +117,7 @@ const Dashboard = () => {
     setload(true);
     const { name, organiser, slots, type } = inp;
     const token = localStorage.getItem("token");
+    
 
     try {
       const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}addtournament`, {
