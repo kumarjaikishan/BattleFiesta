@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
+import './pages/findtournament/findtournas.css'
 import Dashboard from './pages/dashboard/Dashboard';
 import Footbar from './components/footer/footbar';
 import Home from './pages/Home/home';

@@ -5,116 +5,183 @@ import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
+import SearchIcon from '@mui/icons-material/Search';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Findtournament = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
+    const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp';
+    
     useEffect(() => {
         dispatch(header("Tournaments"));
         dispatch(setloader(true));
-        fetche();
-    }, [])
-    const [ongoinglist, setongoinglist] = useState([]);
-    const [upcominglist, setupcominglist] = useState([]);
-    const [completedlist, setcompletedlist] = useState([]);
-    const [showinglist, setshowinglist] = useState([]);
+        fetchTournaments();
+    }, []);
+    
+    const [ongoinglist, setOngoingList] = useState([]);
+    const [upcominglist, setUpcomingList] = useState([]);
+    const [completedlist, setCompletedList] = useState([]);
+    const [showinglist, setShowingList] = useState([]);
+    const [activeList, setActiveList] = useState([]); // Store the currently active list
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const handleactive = (index) => {
-        let alldiv = document.querySelectorAll(".conta div");
-        for (let i = 0; i < alldiv.length; i++) {
-            alldiv[i].classList.remove('active');
+    const handleActive = (index) => {
+        let alldiv = document.querySelectorAll(".conta .cate div");
+        alldiv.forEach(div => div.classList.remove('active'));
+        alldiv[index].classList.add("active");
+
+        if (index === 0) {
+            setShowingList(upcominglist);
+            setActiveList(upcominglist); // Update the active list
+        } else if (index === 1) {
+            setShowingList(ongoinglist);
+            setActiveList(ongoinglist); // Update the active list
+        } else {
+            setShowingList(completedlist);
+            setActiveList(completedlist); // Update the active list
         }
-        // setactive(index);
-        alldiv[index].classList.add("active")
+    };
 
-        index == 0 && setshowinglist(upcominglist);
-        index == 1 && setshowinglist(ongoinglist);
-        index == 2 && setshowinglist(completedlist);
-    }
-
-    const fetche = async () => {
-        // console.log("call from findtournamnet page");
+    const fetchTournaments = async () => {
         try {
-            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournament`, {
+            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournament`, {
                 method: "GET"
             });
 
-            const data = await responsee.json();
-            console.log("findtournament page", data);
+            const data = await response.json();
+            console.log(data)
             dispatch(setloader(false));
-            if (!responsee.ok) {
-                return toast.warn(data.message, { autoclose: 2100 })
+            if (!response.ok) {
+                return toast.warn(data.message, { autoclose: 2100 });
             }
-            let one = [];
-            let two = [];
-            let three = [];
-            data.data.map((val) => {
-                val.status == 'ongoing' && one.push(val);
-                val.status == 'upcoming' && two.push(val);
-                val.status == 'completed' && three.push(val);
-            })
-            setongoinglist(one); setupcominglist(two); setcompletedlist(three);
-            setshowinglist(two)
+
+            let ongoing = [];
+            let upcoming = [];
+            let completed = [];
+            data.data.forEach(val => {
+                if (val.status === 'ongoing') ongoing.push(val);
+                if (val.status === 'upcoming') upcoming.push(val);
+                if (val.status === 'completed') completed.push(val);
+            });
+
+            setOngoingList(ongoing);
+            setUpcomingList(upcoming);
+            setCompletedList(completed);
+            setShowingList(upcoming);
+            setActiveList(upcoming); // Set the default active list
         } catch (error) {
             console.log(error);
             dispatch(setloader(false));
         }
-    }
-    const findtournament = (tid) => {
-        return navigate(`/tournaments/${tid}`)
-    }
-  
+    };
+
+    const handleSearch = async () => {
+        if (searchQuery.trim() === "") {
+            // If searchQuery is empty, restore the active list
+            setShowingList(activeList);
+            return; // Exit the function early
+        }
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}tournamnetsearch`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ tournid: searchQuery })
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                return toast.warn(data.message, { autoclose: 1500 });
+            }
+
+            // Update showing list with the search result
+            setShowingList([data.query]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const findTournament = (tid) => {
+        navigate(`/tournaments/${tid}`);
+    };
+
     return (
-        <>
-            <div className="findtournas">
-                <div className="conta">
-                    <div onClick={() => handleactive(0)} className="active">
+        <div className="findtournas">
+            <div className="conta">
+                <div className="cate">
+                    <div onClick={() => handleActive(0)} className="active">
                         <i className="fa fa-gamepad" aria-hidden="true"></i>
                         <span>UPCOMING</span>
                     </div>
-                    <div onClick={() => handleactive(1)} >
+                    <div onClick={() => handleActive(1)}>
                         <i className="fa fa-play" aria-hidden="true"></i>
                         <span>ONGOING</span>
                     </div>
-                    <div onClick={() => handleactive(2)}>
+                    <div onClick={() => handleActive(2)}>
                         <i className="fa fa-undo" aria-hidden="true"></i>
                         <span>COMPLETED</span>
                     </div>
                 </div>
-                <div
-                    className="cards">
-                    {showinglist.length < 1 && <div className="notfound">
+                <div>
+                    <TextField
+                        label="Tournament Id..."
+                        fullWidth
+                        size="small"
+                        className="filled"
+                        value={searchQuery}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setSearchQuery(value);
+                            if (value === "") {
+                                setShowingList(activeList); // Restore active list on empty input
+                            }
+                        }}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={handleSearch}
+                                        className="search-icon-button"
+                                    >
+                                        <SearchIcon titleAccess="Search" />
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </div>
+            </div>
+            <div className="cards">
+                {showinglist.length < 1 && (
+                    <div className="notfound">
                         <div>
                             <SentimentDissatisfiedIcon className="sad" />
                             <h2>No Tournament Found</h2>
                             <p>This section will be auto updated once any Tournament comes under this section</p>
                         </div>
-                    </div>}
-                    {showinglist.map((val, ind) => {
-                        const formattedDate = new Date(val.createdAt).toLocaleDateString(
-                            "en-US",
-                            {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                            }
-                        );
+                    </div>
+                )}
+                {showinglist.map((val) => {
+                    const formattedDate = new Date(val.createdAt).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                    });
 
-                        // Format the time
-                        const formattedTime = new Date(val.createdAt).toLocaleTimeString(
-                            "en-US",
-                            {
-                                hour: "numeric",
-                                minute: "numeric",
-                                second: "numeric",
-                                hour12: true,
-                            }
-                        );
+                    const formattedTime = new Date(val.createdAt).toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        second: "numeric",
+                        hour12: true,
+                    });
 
-                        return <div className="card" key={val._id}>
+                    return (
+                        <div className="card" key={val._id}>
                             <div className="img">
                                 <img
                                     loading="lazy"
@@ -123,22 +190,22 @@ const Findtournament = () => {
                                 />
                                 <span title={val.title}>{val.title}</span>
                             </div>
-                            <h3 className="organiser">- {val.organiser} </h3>
+                            <h3 className="organiser">- {val.organiser}</h3>
                             <div className="time">
-                                {formattedDate}, {formattedTime} <span >{val.type}</span>
+                                {formattedDate}, {formattedTime} <span>{val.type}</span>
                             </div>
                             <div className="controller">
-                                {/* <Stack spacing={2} direction="row" sx={{ ml: 2 }}> */}
-                                <Button size="small" onClick={() => findtournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>READ MORE</Button>
+                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>
+                                    READ MORE
+                                </Button>
                                 <p className="status" title="Status">{val.status}</p>
-                                {/* </Stack> */}
                             </div>
                         </div>
-                    })}
-                </div>
+                    );
+                })}
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
 export default Findtournament;

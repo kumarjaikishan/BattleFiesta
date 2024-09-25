@@ -6,27 +6,31 @@
 
     & .conta {
         width: 100%;
-        height: 35px;
-        padding: 1px;
+        height: 55px;
+        padding: 1px 5px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
         /* border: 1px solid red; */
 
-        & div {
+        &>div:nth-child(1) {
             border-radius: 10px;
             cursor: pointer;
-            width: 32%;
+            width: 65%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 30px;
-            line-height: 30px;
+            height: 50px;
+            line-height: 50px;
             text-align: center;
             font-weight: 600;
             font-size: 0.9em;
             letter-spacing: 1px;
+
+            >div {
+                width: 33%;
+            }
 
             & span:nth-child(2) {
                 margin-left: 10px;
@@ -35,12 +39,44 @@
             i {
                 font-size: 1.4em;
             }
+
+            >div.active {
+                border-radius: 5px;
+                color: white;
+                background: var(--primarycolor);
+            }
         }
 
-        div.active {
-            color: white;
-            background: var(--primarycolor);
+        >div:nth-child(2) {
+
+            /* border: 1px solid red; */
+            .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+                padding-right: 0;
+            }
+
+            .search-bar-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .search-icon-button {
+                background-color: var(--primarycolor);
+                color: white;
+                /* Skyblue background for the search icon */
+                padding: 8px;
+                /* Padding to create the square shape */
+                border-radius: 4px;
+                /* Rounded corners for a slightly softer square */
+            }
+
+            .search-icon-button:hover {
+                background-color: var(--hovercolor);
+                /* Lighter skyblue for hover effect */
+            }
+
         }
+
+
     }
 
     .cards {
@@ -163,8 +199,9 @@
                 }
             }
         }
-        .card:hover img{
-                transform: scale(1.03);
+
+        .card:hover img {
+            transform: scale(1.03);
         }
     }
 }
@@ -255,7 +292,7 @@
             display: flex;
             justify-content: center;
 
-            button{
+            button {
                 margin: 0 8px;
             }
         }
@@ -330,14 +367,29 @@
         min-height: calc(100vh - var(--navheightmobile));
 
         & .conta {
+            height: fit-content;
+            gap: 5px 0;
+            flex-wrap: wrap;
 
-            & div {
-                width: 32%;
+            &>div {
+                /* border: 1px solid red; */
+                width: 100%;
+background: rgba(6, 146, 6, 0.218);
+            }
+
+            >div:nth-child(1) {
+                width: 100%;
+                height: 10px;
+                line-height: 10px;
                 height: 30px;
                 line-height: 30px;
                 font-weight: 500;
                 font-size: .7em;
                 letter-spacing: 0.5px;
+
+                div {
+                    width: 33%;
+                }
 
                 & span:nth-child(2) {
                     margin-left: 6px;

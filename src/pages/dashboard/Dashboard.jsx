@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import "./dashboard.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Badge from '@mui/material/Badge';
 import { header, setloader } from "../../store/login";
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
@@ -29,6 +30,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ const Dashboard = () => {
     tournacenter?.alltournaments && calc();
     // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
+
 
   const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
   const setdata = (data) => {
@@ -250,8 +253,8 @@ const Dashboard = () => {
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
             </div>
             {getTimeDifference(userprofile.membership.expire_date) < 0 && <NavLink className='buy' to='/plan'>
-             
-             <Button size="small" fullWidth variant="contained" startIcon={<AddShoppingCartIcon/>}> Buy Membership</Button>
+
+              <Button size="small" fullWidth variant="contained" startIcon={<AddShoppingCartIcon />}> Buy Membership</Button>
             </NavLink>}
 
           </div>
@@ -313,25 +316,31 @@ const Dashboard = () => {
                 }
               );
               return (
-                <motion.div layout variants={item} className="card" key={val._id}>
-                  <div className="img">
-                    <img
-                      loading="lazy"
-                      src={val.tournment_logo ? val.tournment_logo : tournlogo}
-                      alt="logo"
-                    />
-                    <span title={val.title}>{val.title}</span>
-                  </div>
-                  <span className={`status ${val.status}`}>{val.status}</span>
-                  <h3 className="organiser">by {val.organiser} <span >{val.type}</span></h3>
-                  <div className="time">
-                    {formattedDate} {formattedTime}
-                  </div>
-                  <div className="controller">
-                    <Button startIcon={<SettingsIcon />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                    <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
-                  </div>
-                </motion.div>
+                <Badge badgeContent={1} key={val._id} color="error" invisible={!val.newEntry}>
+                  <motion.div layout variants={item} className="card" key={val._id}>
+                    <div className="img">
+                      <img
+                        loading="lazy"
+                        src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                        alt="logo"
+                      />
+                      <span title={val.title}>{val.title}</span>
+                    </div>
+                    <span className={`status ${val.status}`}>{val.status}</span>
+                    <h3 className="organiser">by {val.organiser} </h3>
+                    <div className="time">
+                      {formattedDate} {formattedTime}
+                    </div>
+                    <div className="registered">
+                      <span >{val.type}</span>
+                      <span> <GroupsIcon /> . {val.totalTeamsRegistered}/{val.slots} </span>
+                    </div>
+                    <div className="controller">
+                      <Button startIcon={<SettingsIcon />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                      <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                    </div>
+                  </motion.div>
+                </Badge>
               )
             }) : <div className="notfound">
               <div>

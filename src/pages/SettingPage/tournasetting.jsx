@@ -39,6 +39,7 @@ const Tournasetting = () => {
     dispatch(classicfetch(tid));
     dispatch(header('Setting'))
     dispatch(setloader(true))
+    // console.log(tournacenter)
   }, [])
 
 

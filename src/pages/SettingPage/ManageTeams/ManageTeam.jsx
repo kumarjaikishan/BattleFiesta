@@ -15,7 +15,7 @@ const ManageTeam = ({ setting, showss }) => {
   const { tid } = useParams();
 
   useEffect(() => {
-  //  console.log(classic.classicplayers);
+  //  console.log("clasic teams:",classic.classicplayers);
   }, [])
 
 

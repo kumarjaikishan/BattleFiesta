@@ -20,7 +20,6 @@ export const classicfetch = createAsyncThunk("classicfetch", async (tid) => {
     }
 })
 
-
 const classic = createSlice({
     name: "classic",
     initialState: {

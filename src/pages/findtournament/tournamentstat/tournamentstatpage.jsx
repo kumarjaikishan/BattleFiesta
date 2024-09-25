@@ -38,7 +38,7 @@ const Tournamentstatpage = () => {
       });
 
       const data = await responsee.json();
-      // console.log(data);
+      console.log(data);
       if (responsee.ok) {
         setdata2(data.data2)
         settournament(data.data)

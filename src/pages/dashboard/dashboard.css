@@ -123,7 +123,7 @@
                 >span {
                     position: absolute;
                     display: inline-block;
-                    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 100%);
+                    background: linear-gradient(to top, rgba(0, 0, 0, 1) 5%, transparent 100%);
                     width: 100%;
                     height: 70px;
                     bottom: 0px;
@@ -139,24 +139,6 @@
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     /* border: 1px solid red; */
-                }
-            }
-
-            h3 {
-
-                span {
-                    margin-right: 3px;
-                    font-size: 12px;
-                    color: white;
-                    display: inline-block;
-                    height: 22px;
-                    line-height: 22px;
-                    text-transform: uppercase;
-                    padding: 0px 8px;
-                    font-weight: 500;
-                    border-radius: 50px;
-                    letter-spacing: 0.2px;
-                    background: var(--primarycolor);
                 }
             }
 
@@ -186,9 +168,9 @@
             }
 
             .organiser,
-            .time {
-                margin: 7px 0px;
-                padding-left: 10px;
+            .time ,.registered{
+                margin: 3px 0px;
+                padding:0 8px;
                 color: rgb(58, 56, 56);
             }
 
@@ -199,12 +181,38 @@
 
 
             }
+            .registered{
+                /* border: 1px solid red; */
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                >span:nth-child(2){
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                }
+                span:nth-child(1){
+                    margin-right: 3px;
+                    font-size: 12px;
+                    color: white;
+                    display: inline-block;
+                    height: 22px;
+                    line-height: 22px;
+                    text-transform: uppercase;
+                    padding: 0px 8px;
+                    font-weight: 500;
+                    border-radius: 4px;
+                    letter-spacing: 0.6px;
+                    background: var(--primarycolor);
+                }
+            }
 
             .controller {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
-                padding: 0px 10px;
+                padding: 0px 8px;
 
                 & button {
                     letter-spacing: 1px;
