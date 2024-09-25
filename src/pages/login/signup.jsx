@@ -73,7 +73,7 @@ const Signup = ({ setlog, setshowmsg }) => {
             // console.log(datae);
             if (res.ok) {
                 setshowmsg(true)
-                // setsigninp(init);
+                setsigninp(init);
                 toast.success(datae.message, { autoClose: 2800 })
                 setbtnclick(false);
                 setlog(true)
