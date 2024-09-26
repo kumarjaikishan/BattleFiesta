@@ -19,6 +19,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { NavLink } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -42,7 +43,7 @@ const Dashboard = () => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
     tournacenter?.alltournaments && calc();
-    // console.log(tournacenter.alltournaments);
+    console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
 
@@ -330,7 +331,12 @@ const Dashboard = () => {
                     <span className={`status ${val.status}`}>{val.status}</span>
                     <h3 className="organiser">by {val.organiser} </h3>
                     <div className="time">
-                      {formattedDate} {formattedTime}
+                     <span>ID:{val.tournid}
+                      <ContentCopyIcon  titleAccess="Copy Id" onClick={()=>{
+                         navigator.clipboard.writeText(val.tournid);
+                         toast.success('Copied', { autoClose: 1000 })
+                      }} /></span>
+                     <span> {formattedDate}</span>  
                     </div>
                     <div className="registered">
                       <span >{val.type}</span>

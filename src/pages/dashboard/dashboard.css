@@ -174,12 +174,25 @@
                 color: rgb(58, 56, 56);
             }
 
-            .time {
+            .time, .time span:nth-child(1) {
                 font-size: 14px;
                 display: flex;
+                align-items: center;
                 justify-content: space-between;
-
-
+                
+                svg{
+                    margin-left: 5px;
+                    padding:5px;
+                    transition: 0.2s;
+                    cursor: pointer;
+                    /* border-radius: 50%; */
+                    border-radius: 5px;
+                    height: 100%;
+                }
+                svg:hover{
+                     color: white;
+                    background-color: rgb(172, 171, 171);
+                }
             }
             .registered{
                 /* border: 1px solid red; */

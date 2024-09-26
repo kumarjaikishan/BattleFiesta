@@ -51,7 +51,7 @@
 
             /* border: 1px solid red; */
             .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
-                padding-right: 0;
+                padding-right: 0 !important;
             }
 
             .search-bar-container {
@@ -62,16 +62,12 @@
             .search-icon-button {
                 background-color: var(--primarycolor);
                 color: white;
-                /* Skyblue background for the search icon */
                 padding: 8px;
-                /* Padding to create the square shape */
                 border-radius: 4px;
-                /* Rounded corners for a slightly softer square */
             }
 
             .search-icon-button:hover {
                 background-color: var(--hovercolor);
-                /* Lighter skyblue for hover effect */
             }
 
         }
