@@ -374,7 +374,7 @@
             &>div {
                 /* border: 1px solid red; */
                 width: 100%;
-background: rgba(6, 146, 6, 0.218);
+                background: rgba(6, 146, 6, 0.218);
             }
 
             >div:nth-child(1) {
