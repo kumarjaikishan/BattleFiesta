@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { MdMenuOpen } from "react-icons/md";
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Findtournament = () => {
@@ -195,7 +195,7 @@ const Findtournament = () => {
                                 {formattedDate}, {formattedTime} <span>{val.type}</span>
                             </div>
                             <div className="controller">
-                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>
+                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE
                                 </Button>
                                 <p className="status" title="Status">{val.status}</p>

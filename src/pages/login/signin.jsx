@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { MdOutlineMail } from "react-icons/md";
+import { IoKeyOutline } from "react-icons/io5";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 import { setloader, setlogin, setadmin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { alltourna } from '../../store/api'
 import { profilefetch } from '../../store/profile'
 import { toast } from 'react-toastify';
@@ -146,7 +146,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         value={signinp.email}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <MailOutlineIcon />
+                                <MdOutlineMail />
                             </InputAdornment>,
 
                         }}
@@ -162,10 +162,10 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         value={signinp.password}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <VpnKeyIcon />
+                                <IoKeyOutline />
                             </InputAdornment>,
                             endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => loginpass ? setloginpass(false) : setloginpass(true)}>
-                                {loginpass ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                                {loginpass ? <IoEyeOutline /> : <FaRegEyeSlash />}
                             </InputAdornment>
                         }}
 
@@ -177,26 +177,26 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     {forget && <div className='forget'>
                         <span onClick={() => setforget(false)}>SignIn?</span>
                     </div>}
-                        {!forget && <LoadingButton
-                            loading={btnclick}
-                            fullWidth
-                            type='submit'
-                            startIcon={<VpnKeyIcon />}
-                            loadingPosition="start"
-                            variant="contained"
-                        >
-                            Login
-                        </LoadingButton>}
-                        {forget && <LoadingButton
-                            fullWidth
-                            loading={btnclick}
-                            onClick={emailset}
-                            startIcon={<VpnKeyIcon />}
-                            loadingPosition="start"
-                            variant="contained"
-                        >
-                            Email sent
-                        </LoadingButton>}
+                    {!forget && <LoadingButton
+                        loading={btnclick}
+                        fullWidth
+                        type='submit'
+                        startIcon={<IoKeyOutline />}
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Login
+                    </LoadingButton>}
+                    {forget && <LoadingButton
+                        fullWidth
+                        loading={btnclick}
+                        onClick={emailset}
+                        startIcon={<IoKeyOutline />}
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Email sent
+                    </LoadingButton>}
                     {showmsg && <p>*Note-Email sent successfully, If you can't find the email in your inbox, please check the spam or junk mail section. </p>}
                 </form>
             </div>

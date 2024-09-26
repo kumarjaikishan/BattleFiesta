@@ -3,24 +3,24 @@ import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
-import CloseIcon from '@mui/icons-material/Close';
+import { IoCloseSharp } from "react-icons/io5";
 import AddIcon from '@mui/icons-material/Add';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import SaveIcon from '@mui/icons-material/Save';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
 import dayjs from 'dayjs';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { motion } from 'framer-motion';
 import { setloader } from '../../store/login';
 import { profilefetch } from '../../store/profile'
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { IoMdSave } from "react-icons/io";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { FaRegFaceSmile } from "react-icons/fa6";
+import { IoMdCloudUpload } from "react-icons/io";
 
 const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
@@ -284,7 +284,7 @@ const Profile = () => {
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
-                        startIcon={<CloudUploadIcon />}
+                        startIcon={<IoMdCloudUpload />}
                         className='splbtn'
                     >
                         Change Profile
@@ -311,7 +311,7 @@ const Profile = () => {
                         <Button
                             disabled={isloadinge}
                             variant="contained"
-                            startIcon={<SaveIcon />}
+                            startIcon={<IoMdSave />}
                             className='splbtn'
                             type='submit'
                             size='small'
@@ -330,7 +330,7 @@ const Profile = () => {
                         <p><span> Expiry Date</span> <span>:</span> <span>{formatDate(membership.expirydate)} </span> </p>
                         <p><span> Expire In</span> <span>:</span> <span style={{ color: membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
                         <p><span> Status</span> <span>:</span> <span className={`status ${membership.status}`}>{membership.status}</span> </p>
-                        <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<ShoppingCartCheckoutIcon />}>
+                        <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<MdOutlineAddShoppingCart />}>
                             Buy Membership
                         </Button></NavLink>
                     </div>
@@ -346,7 +346,7 @@ const Profile = () => {
                             className="half" label="Email Address" variant="outlined" />
                         {messagesent && <p style={{ color: 'green', fontSize: '14px' }}>{messagesent}</p>}
                         {!messagesent.length && <p style={{ fontSize: '14px' }}>A verification email will be sent to <b>{inp.email}</b>.</p>}
-                        <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<SentimentDissatisfiedIcon />}>
+                        <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<FaRegFaceSmile />}>
                             Send Password Reset Link
                         </Button>
                     </div>
@@ -369,7 +369,7 @@ const Profile = () => {
                     <Button
                         disabled={isloadinge}
                         variant="contained"
-                        startIcon={<SaveIcon />}
+                        startIcon={<IoMdSave />}
                         className='splbtn'
                         onClick={submit}
                         size='small'
@@ -409,7 +409,7 @@ const Profile = () => {
                                         onChange={(e) => handleChange(e, ind)}
                                         className="half"  label=" Url" variant="outlined" />
                                 </span>
-                                <span title='Remove This' onClick={() => deletelink(ind)}> <CloseIcon /> </span>
+                                <span title='Remove This' onClick={() => deletelink(ind)}> <IoCloseSharp /> </span>
                             </div>
                         })}
 
@@ -422,7 +422,7 @@ const Profile = () => {
                         <Button
                             disabled={isloadinge}
                             variant="contained"
-                            startIcon={<SaveIcon />}
+                            startIcon={<IoMdSave />}
                             className='splbtn'
                             type='submit'
                             size='small'

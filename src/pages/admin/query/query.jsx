@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
 import './query.css'
 import Button from '@mui/material/Button';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { IoMdRefresh } from "react-icons/io";
+import { IoIosSend } from "react-icons/io";
 import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
 import { motion } from 'framer-motion';
 import swal from 'sweetalert';
 import LoadingButton from '@mui/lab/LoadingButton';
-import SendIcon from '@mui/icons-material/Send';
 import Modalbox from "../../../components/custommodal/Modalbox";
 
 const Query = () => {
@@ -112,7 +112,7 @@ const Query = () => {
                         loading={admin.loading}
                         onClick={() => dispatch(contactusform())}
                         loadingPosition="end"
-                        endIcon={<RefreshIcon />}
+                        endIcon={<IoMdRefresh />}
                         variant="outlined"
                         type="submit"
                         size="small"
@@ -158,7 +158,7 @@ const Query = () => {
                                         sx={{ mr: 2 }}
                                         loading={isload}
                                         loadingPosition="end"
-                                        endIcon={<SendIcon />}
+                                        endIcon={<IoIosSend />}
                                         variant="contained"
                                         type="submit"
                                     >

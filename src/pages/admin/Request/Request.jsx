@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import Membermodal from "./requestmodal";
 import LoadingButton from '@mui/lab/LoadingButton';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { IoMdRefresh } from "react-icons/io";
 import { motion } from 'framer-motion';
 import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
@@ -79,7 +79,7 @@ const Request = () => {
                loading={admin.loading}
                onClick={() => dispatch(memshipentry())}
                loadingPosition="end"
-               endIcon={<RefreshIcon />}
+               endIcon={<IoMdRefresh />}
                variant="outlined"
                type="submit"
                size="small"
