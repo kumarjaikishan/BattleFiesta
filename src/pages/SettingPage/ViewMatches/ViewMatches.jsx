@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from "react-redux";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { setloader } from "../../../store/login";
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import './viewmatches.css'
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CreateIcon from '@mui/icons-material/Create';
+import { TbMoodSad } from "react-icons/tb";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { IoMdCreate } from "react-icons/io";
 import Stack from '@mui/material/Stack';
 import { toast } from 'react-toastify';
 
@@ -115,7 +115,7 @@ const PointSystem = () => {
       {matches.length < 1 &&
         <div className="notfound">
           <div>
-            <SentimentDissatisfiedIcon className="sad" />
+            <TbMoodSad className="sad" />
             <h2>No Match Found for this Tournament</h2>
             <p>Please Add Matches First in 'Enter Results' Section.</p>
           </div>
@@ -127,7 +127,7 @@ const PointSystem = () => {
         const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(originalDate);
         return <Accordion key={ind} className=''>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<MdKeyboardArrowDown />}
             aria-controls="panel1-content"
             id="panel1-header"
             className='panelheader'
@@ -163,7 +163,7 @@ const PointSystem = () => {
               </tbody>
             </table>
             <Stack direction="row" spacing={2}>
-              <Button variant="outlined" startIcon={<CreateIcon />}>
+              <Button variant="outlined" startIcon={<IoMdCreate />}>
                 Edit
               </Button>
               <LoadingButton
@@ -171,7 +171,7 @@ const PointSystem = () => {
                 loading={isloading}
                 color='warning'
                 loadingPosition="start"
-                startIcon={<DeleteIcon />}
+                startIcon={<MdDelete />}
                 variant="outlined"
                 type="submit"
               >

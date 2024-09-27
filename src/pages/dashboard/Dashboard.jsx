@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./dashboard.css";
-<<<<<<< HEAD
 import {  useNavigate } from "react-router-dom";
-=======
-import { useNavigate } from "react-router-dom";
->>>>>>> 5b3e711d478619c13051b5bdb3bc347a536a1ebe
 import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
 import { header, setloader } from "../../store/login";
@@ -25,8 +21,6 @@ import FormControl from '@mui/material/FormControl';
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
 import Modalbox from "../../components/custommodal/Modalbox";
-import Forward10Icon from '@mui/icons-material/Forward10';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { BsGearFill } from "react-icons/bs";
 import { GiConsoleController } from "react-icons/gi";
 import { IoMdRefresh } from "react-icons/io";
@@ -35,6 +29,8 @@ import { MdDelete } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { MdReadMore } from "react-icons/md";
+import { TbMoodSad } from "react-icons/tb";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -334,8 +330,8 @@ const Dashboard = () => {
                     <span className={`status ${val.status}`}>{val.status}</span>
                     <h3 className="organiser">by {val.organiser} </h3>
                     <div className="time">
-                      <span>ID:{val.tournid}
-                        <MdOutlineContentCopy titleAccess="Copy Id" onClick={() => {
+                      <span>ID- {val.tournid}
+                        <MdOutlineContentCopy title="Copy Id" onClick={() => {
                           navigator.clipboard.writeText(val.tournid);
                           toast.success('Copied', { autoClose: 1000 })
                         }} /></span>
@@ -347,23 +343,24 @@ const Dashboard = () => {
                     </div>
                     <div className="controller">
                       <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                      <MdDelete titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                      <MdDelete title="delete tournament" className="delete" onClick={() => deletee(val._id)} />
                     </div>
                   </motion.div>
                 </Badge>
               )
             }) : <div className="notfound">
               <div>
-                <SentimentDissatisfiedIcon className="sad" />
+                <TbMoodSad className="sad" />
                 <h2>No Tournament Found</h2>
                 <p>Please Add Tournament.</p>
               </div>
             </div>
           }
+          
         </motion.div>
 
         {tournacenter?.alltournaments?.length > howmany &&
-          <Button endIcon={<Forward10Icon />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
+          <Button endIcon={<MdReadMore />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
         }
 
         <Modalbox

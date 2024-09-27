@@ -1,7 +1,7 @@
 import React from 'react'
 import './login.css';
 import { useState } from 'react';
-import GrassIcon from '@mui/icons-material/Grass';
+import { MdOutlineGrass } from "react-icons/md";
 import Signin from './signin';
 import Signup from './signup';
 
@@ -17,7 +17,7 @@ const Login = () => {
             <div className="login">
                 <div className="box">
                     <div className="logo">
-                        <GrassIcon className='company' />
+                        <MdOutlineGrass className='company' />
                     </div>
                     <div className="want">
                         <span className={log ? "active" : null} onClick={() => fun(true)}>Login</span>

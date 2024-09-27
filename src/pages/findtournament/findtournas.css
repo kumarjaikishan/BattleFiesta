@@ -174,21 +174,15 @@
                 margin-bottom: 5px;
                 margin-left: 10px;
 
-
                 svg {
-                    margin-left: 6px;
-                    padding: 4px;
+                    margin-left: 12px;
                     transition: 0.2s;
                     cursor: pointer;
-                    /* border-radius: 50%; */
-                    border-radius: 5px;
-                    height: 100%;
                 }
 
                 svg:hover {
-                    background-color: rgba(172, 171, 171, 0.422);
+                    color: rgb(3, 93, 93);
                 }
-
             }
 
             .controller {

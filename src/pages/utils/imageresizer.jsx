@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 const useImageUpload = () => {
     const handleImage = async (width, imageFile) => {
         try {

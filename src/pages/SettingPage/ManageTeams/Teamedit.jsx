@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import CloseIcon from '@mui/icons-material/Close';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { MdCloudUpload } from "react-icons/md";
+import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdAdd } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 import useImageUpload from "../../utils/imageresizer";
 import { classicfetch } from "../../../store/classic";
 
@@ -277,7 +277,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
 
                         <h4>Set a logo for the Team* </h4>
                         <div id="teamlogo"><img src={inp.selectedTeamLogo} alt="" /></div>
-                        <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                        <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<MdCloudUpload />}>
                             Upload Logo
                             <VisuallyHiddenInput
                                 type="file"
@@ -290,7 +290,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                         <h3>Player List</h3>
                         {inp.players.map((player, index) => (
                             <div className="player" key={index}>
-                                <h4>Player {index + 1} <DeleteIcon onClick={() => deleteplayer(index)} /> </h4>
+                                <h4>Player {index + 1} <MdDelete title={'Delete This'} onClick={() => deleteplayer(index)} /> </h4>
                                 <Box
                                     sx={{
                                         '& > :not(style)': { m: 1, mt: 2, width: '25ch' },
@@ -303,7 +303,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
 
                                     <h4>Set a logo for the player</h4>
                                     <div id={`playerLogo${index}`}> <img src={inp.players[index].playerLogo} alt="" /></div>
-                                    <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                    <Button component="label" variant="contained" startIcon={<MdCloudUpload />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
                                             type="file"
@@ -317,13 +317,13 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                             </div>
                         ))}
                         <div>
-                            <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<AddIcon />} disabled={disable} variant="outlined" color="primary">
+                            <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<IoMdAdd />} disabled={disable} variant="outlined" color="primary">
                                 Add player
                             </Button></div>
-                        <Button sx={{ mr: 2 }} type="submit" startIcon={<CloudUploadIcon />} disabled={disable} variant="contained" color="primary">
+                        <Button sx={{ mr: 2 }} type="submit" startIcon={<MdCloudUpload />} disabled={disable} variant="contained" color="primary">
                             Save Team
                         </Button>
-                        <Button onClick={() => setcalledit(false)} startIcon={<CloseIcon />} disabled={disable} variant="outlined" color="secondary">
+                        <Button onClick={() => setcalledit(false)} startIcon={<IoMdCloseCircle />} disabled={disable} variant="outlined" color="secondary">
                             close
                         </Button>
                     </form>

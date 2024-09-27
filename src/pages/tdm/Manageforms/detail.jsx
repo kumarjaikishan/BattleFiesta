@@ -11,11 +11,11 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import useImageUpload from '../../utils/imageresizer';
 import { toast } from "react-toastify";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { tdmfetch } from '../../../store/tdm';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { MdCloudUpload } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
 const Detail = () => {
     const { handleImage } = useImageUpload();
@@ -250,11 +250,11 @@ const Detail = () => {
                                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                         onChange={(e) => handleCaterogyChange(e, index, 'slots')} label="Max. slots" variant="outlined"
                                     />
-                                    <DeleteIcon sx={{ width: "25px" }} className="DeleteIcon" onClick={() => deletecategory(index)} />
+                                    <MdDelete sx={{ width: "25px" }} className="DeleteIcon" onClick={() => deletecategory(index)} />
                                 </div>
                             })
                         }
-                        <Button title="Add New Category" size='small' onClick={addnewcategory} startIcon={<AddIcon />} variant="outlined" color="primary">
+                        <Button title="Add New Category" size='small' onClick={addnewcategory} startIcon={<MdAdd />} variant="outlined" color="primary">
                             Add
                         </Button>
                     </div>
@@ -321,7 +321,7 @@ const Detail = () => {
                     <LoadingButton
                         loading={loading}
                         loadingPosition="start"
-                        startIcon={<CloudUploadIcon />}
+                        startIcon={<MdCloudUpload />}
                         variant="contained"
                         onClick={submit}
                     >
@@ -334,7 +334,7 @@ const Detail = () => {
                             <h2>Tournament Banner</h2>
                             {inp.banner ? <img src={inp.banner} alt="" /> : <h3>No Banner has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained"
-                                startIcon={<CloudUploadIcon />}>
+                                startIcon={<MdCloudUpload />}>
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
                             </Button>
@@ -342,7 +342,7 @@ const Detail = () => {
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
                             {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}
-                            <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<CloudUploadIcon />}>
+                            <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<MdCloudUpload />}>
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournlogo' onChange={() => upload("tournlogo")} />
                             </Button>
@@ -354,4 +354,4 @@ const Detail = () => {
         </>
     )
 }
-export default Detail
+export default Detail;

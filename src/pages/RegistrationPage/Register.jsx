@@ -6,27 +6,27 @@ import { setloader, header } from '../../store/login';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import AddIcon from '@mui/icons-material/Add';
-import PhotoIcon from '@mui/icons-material/Photo';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Divider from '@mui/material/Divider';
-import PanToolIcon from '@mui/icons-material/PanTool';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Teams from "./teams";
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import GroupIcon from '@mui/icons-material/Group';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import EmailIcon from '@mui/icons-material/Email';
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import TagFacesIcon from '@mui/icons-material/TagFaces';
+import { MdOutlineCurrencyRupee } from "react-icons/md";
+import { IoMdCloudUpload } from "react-icons/io";
+import { MdAdd } from "react-icons/md";
+import { MdInsertPhoto } from "react-icons/md";
+import { MdPanTool } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { MdFileCopy } from "react-icons/md";
+import { MdGroup } from "react-icons/md";
+import { FaInstagram } from "react-icons/fa";
+import { IoMailOutline } from "react-icons/io5";
+import { IoLinkSharp } from "react-icons/io5";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { TbMoodSad } from "react-icons/tb";
+import { FaRegSmileWink } from "react-icons/fa";
 import Badge from '@mui/material/Badge';
 import QRCode from "react-qr-code";
 import useImageUpload from "../utils/imageresizer";
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -399,16 +399,16 @@ const Register = () => {
             <div className="registartionform">
                 {errore && <div className="notfound">
                     <div>
-                        <SentimentVeryDissatisfiedIcon className="sad" />
+                        <TbMoodSad className="sad" />
                         <h1>Ops! Something is Wrong</h1>
                         <p>Registration form does not exits!</p>
                     </div>
                 </div>}
                 {!errore && <><div className="controler">
-                    <Button onClick={() => setteamlist(false)} startIcon={<FileCopyIcon />} variant="contained" color="primary">Registration Form</Button>
-                    {/* <Button onClick={() => setteamlist(true)} startIcon={<GroupIcon />} variant="outlined" color="secondary">Team List {entry.length}</Button> */}
+                    <Button onClick={() => setteamlist(false)} startIcon={<MdFileCopy />} variant="contained" color="primary">Registration Form</Button>
+                    {/* <Button onClick={() => setteamlist(true)} startIcon={<MdGroup />} variant="outlined" color="secondary">Team List {entry.length}</Button> */}
                     <Badge min={1} badgeContent={entry.length} color="success">
-                        <Button onClick={() => setteamlist(true)} startIcon={<GroupIcon />} variant="outlined" color="secondary">Team List</Button>
+                        <Button onClick={() => setteamlist(true)} startIcon={<MdGroup />} variant="outlined" color="secondary">Team List</Button>
                     </Badge>
                 </div>
                     {!teamlist && <div className="form">
@@ -455,7 +455,7 @@ const Register = () => {
                                 all.ask_team_logo && <>
                                     <h4>Set a logo for the Team*</h4>
                                     <div id="teamlogo"></div>
-                                    <Button sx={{ mb: 3, mt: 0.5 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                    <Button sx={{ mb: 3, mt: 0.5 }} component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
                                             type="file"
@@ -473,7 +473,7 @@ const Register = () => {
                                 all.ask_payment_ss && <>
                                     <h4>Set Payment Screenshot*</h4>
                                     <div id="paymentss"></div>
-                                    <Button size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
+                                    <Button size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<MdInsertPhoto />}>
                                         Upload S.S
                                         <VisuallyHiddenInput
                                             type="file"
@@ -489,7 +489,7 @@ const Register = () => {
                             <h3>Player List</h3>
                             {inp.players.map((player, index) => (
                                 <div className="player" key={index}>
-                                    <h4>Player {index + 1} <DeleteIcon className="DeleteIcon" onClick={() => deleteplayer(index)} /></h4>
+                                    <h4>Player {index + 1} <MdDelete className="DeleteIcon" onClick={() => deleteplayer(index)} /></h4>
                                     <Box
                                         sx={{
                                             '& > :not(style)': { m: 1, width: '25ch' },
@@ -508,7 +508,7 @@ const Register = () => {
                                         {all.ask_player_logo && <>
                                             <h4>Set a logo for the player</h4>
                                             <div id={`playerLogo${index}`}></div>
-                                            <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                            <Button component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
                                                 Upload Logo
                                                 <VisuallyHiddenInput
                                                     type="file"
@@ -523,14 +523,14 @@ const Register = () => {
                                 </div>
                             ))}
                             <div>
-                                <Button title="Add New Player" sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<AddIcon />} disabled={disable} variant="outlined" color="primary">
+                                <Button title="Add New Player" sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<MdAdd />} disabled={disable} variant="outlined" color="primary">
                                     Add player
                                 </Button></div>
 
                             <LoadingButton
                                 loading={isloading}
                                 loadingPosition="start"
-                                startIcon={<CloudUploadIcon />}
+                                startIcon={<IoMdCloudUpload />}
                                 variant="contained"
                                 type="submit"
                             >
@@ -540,12 +540,12 @@ const Register = () => {
                         </form>}
 
                         {!all.isopen && <div className="closed">
-                            <div> <PanToolIcon className="stop" /></div>
+                            <div> <MdPanTool className="stop" /></div>
                             <h1>REGISTRATION CLOSED</h1>
                             <p>The Registration for this tournament has been closed by the Admin</p>
                         </div>}
                         {all.slots <= filteredentry.length && all.isopen && <div className="closed">
-                            <div> <SentimentVeryDissatisfiedIcon className="stop" /></div>
+                            <div> <TbMoodSad className="stop" /></div>
                             <h1>Oops! Slot is Full</h1>
                             <p>The Registration for this tournament has been Full. It Excludes Teams Rejected</p>
                         </div>}
@@ -553,7 +553,7 @@ const Register = () => {
                         {/* after registration completed show registered team */}
 
                         {newfresh && <div className="closed">
-                            <div> <TagFacesIcon className="stop" /></div>
+                            <div> <FaRegSmileWink className="stop" /></div>
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
@@ -576,7 +576,7 @@ const Register = () => {
                                     sx={{ mt: 1 }}
                                     title="PAY NOW"
                                     onClick={() => { window.location.href = `upi://pay?pa=${all.upi_id}&am=${all.amount}&tn=battleFiesta&cu=INR`; }}
-                                    startIcon={<CurrencyRupeeIcon />}
+                                    startIcon={<MdOutlineCurrencyRupee />}
                                     variant="outlined"
                                     color="primary"
                                 >
@@ -591,19 +591,19 @@ const Register = () => {
                                 <div className="links">
                                     {all.links.map((val, ind) => {
                                         if (val.linkType == "whatsapp") {
-                                            return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                                            return <a key={ind} href={`https://wa.me/+91${val.link}`} target="_blank"><span><FaWhatsapp className='ico' /></span> <span>{val.linkName}</span> </a>
                                         }
                                         if (val.linkType == "instagram") {
-                                            return <a key={ind} href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                                            return <a key={ind} href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <FaInstagram className='ico' /></span><span>{val.linkName}</span> </a>
                                         }
                                         if (val.linkType == "phone") {
-                                            return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
+                                            return <a key={ind} href={`tel:${parseInt(val.link)}`} target="_blank"><span> <FaPhoneAlt className='ico' /></span><span> {val.linkName}</span></a>
                                         }
                                         if (val.linkType == "email") {
-                                            return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
+                                            return <a key={ind} href={`mailto:${val.link}`} target="_blank"><span><IoMailOutline className='ico' /></span><span> {val.linkName}</span></a>
                                         }
                                         if (val.linkType == "link") {
-                                            return <a key={ind} href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                                            return <a key={ind} href={val.link} target="_blank"><span><IoLinkSharp className='ico' /></span><span>{val.linkName}</span> </a>
                                         }
                                     })}
                                 </div>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './Errorpage.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,7 +20,7 @@ export const Errorpage = () => {
         <div className="errore">
             <div className="container">
                 <div className="img">
-                    <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1720767933/accusoft/assets/404_page_1_kjlifa.svg" alt="" />
+                    <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1720767933/accusoft/assets/404_page_1_kjlifa.svg" alt="404 image" />
                 </div>
                 <p>Sorry, the page you are looking for does not exist. If you believe there's an issue, feel free to report it, and we'll look into it</p>
                 <div className="btns">

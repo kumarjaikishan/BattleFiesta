@@ -134,6 +134,10 @@
         border-radius: 10px;
         overflow: hidden;
 
+        svg{
+          font-size: 20px;
+        }
+
         & .img {
           width: 170px;
           height: 170px;

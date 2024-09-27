@@ -2,7 +2,7 @@
 import Accordion from '@mui/material/Accordion';
 import './faq.css'
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { IoIosArrowDown } from "react-icons/io";
 import { useState } from 'react';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
@@ -21,7 +21,7 @@ const Faq = () => {
                 <h1>Frequently Asked Question</h1>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -39,7 +39,7 @@ const Faq = () => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
                     >
@@ -57,7 +57,7 @@ const Faq = () => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel3bh-content"
                         id="panel3bh-header"
                     >
@@ -81,7 +81,7 @@ const Faq = () => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
@@ -96,7 +96,7 @@ const Faq = () => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
@@ -116,7 +116,7 @@ const Faq = () => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >
@@ -133,7 +133,7 @@ const Faq = () => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<IoIosArrowDown />}
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >

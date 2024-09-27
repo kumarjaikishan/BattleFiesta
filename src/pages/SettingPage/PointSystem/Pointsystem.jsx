@@ -10,7 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { alltourna } from '../../../store/api';
-import SaveIcon from '@mui/icons-material/Save';
+import { FaSave } from "react-icons/fa";
 
 const Pointsystem = () => {
   const tournacenter = useSelector((state) => state.tournacenter);
@@ -238,7 +238,7 @@ const Pointsystem = () => {
           fullWidth
           type="submit"
           loading={isloading}
-          startIcon={<SaveIcon />}
+          startIcon={<FaSave />}
           loadingPosition="start"
           variant="contained"
         >

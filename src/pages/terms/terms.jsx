@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TermsAndConditions = () => {
   return (
     <div className="terms-and-conditions-container">

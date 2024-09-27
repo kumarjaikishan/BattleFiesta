@@ -1,5 +1,5 @@
 import Teamlists from '../teamlists';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import { TbMoodSad } from "react-icons/tb";
 
 const ApprovedPage = ({ approvedPlayer, statuschange, showss, decline }) => {
   return (
@@ -11,7 +11,7 @@ const ApprovedPage = ({ approvedPlayer, statuschange, showss, decline }) => {
             <Teamlists teamarray={approvedPlayer} decline={decline} statuschange={statuschange} callfrom={"Approved"} showss={showss} />
           </div> :
           <div className="middle">
-            <div> <SentimentSatisfiedIcon className='emoji' /> </div>
+            <div> <TbMoodSad className='emoji' /> </div>
             <h2>Nothing To Show</h2>
             <p>The List is Empty. List will start to appear once You Approve Player</p>
           </div>}

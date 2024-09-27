@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import './navbar.css';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import logo from '../../assets/logopng250.webp'
 
 const Navbar = () => {
-  const dispatch = useDispatch();
   const log = useSelector((state) => state.login);
   useEffect(() => {
     //  console.log(log);

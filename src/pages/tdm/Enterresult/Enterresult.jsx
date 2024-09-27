@@ -3,9 +3,9 @@ import {
   Table, Autocomplete, TextField, Button, styled, Divider, Box,
   Select, FormControl, MenuItem, InputLabel
 } from '@mui/material';
-import UndoIcon from '@mui/icons-material/Undo';
-import AddIcon from '@mui/icons-material/Add';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { FaUndoAlt } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import { MdCloudUpload } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
@@ -254,7 +254,7 @@ const EnterResult = ({ setting }) => {
       <div className="enterresult">
         <div className="box">
           <h2>Match Info</h2>
-          <FormControl sx={{ m: 1 , minWidth: '98%' }} size="small">
+          <FormControl sx={{ m: 1, minWidth: '98%' }} size="small">
             <InputLabel id="demo-select-small-label">Map</InputLabel>
             <Select
               labelId="demo-select-small-label"
@@ -309,7 +309,7 @@ const EnterResult = ({ setting }) => {
                   ))}
                 </TableBody>
               </Table>
-              {rows.length > 0 && <Button onClick={removefromTable} variant="contained" sx={{ m: 1, maxWidth: 110, background: "black" }} startIcon={<UndoIcon />}>UNDO</Button>}
+              {rows.length > 0 && <Button onClick={removefromTable} variant="contained" sx={{ m: 1, maxWidth: 110, background: "black" }} startIcon={<FaUndoAlt />}>UNDO</Button>}
             </TableContainer>
             <Divider variant="middle" />
             <h2>Enter Results</h2>
@@ -358,7 +358,7 @@ const EnterResult = ({ setting }) => {
                 ))
               }
             </Box>
-            {selectedTeam && <Button onClick={addToTable} variant="contained" sx={{ m: 1, maxWidth: 110 }} startIcon={<AddIcon />}>Add</Button>}
+            {selectedTeam && <Button onClick={addToTable} variant="contained" sx={{ m: 1, maxWidth: 110 }} startIcon={<IoMdAdd />}>Add</Button>}
             <Divider variant="middle" />
             <Box display="flex"
               justifyContent="center"
@@ -368,7 +368,7 @@ const EnterResult = ({ setting }) => {
                 onClick={savecloud}
                 loading={isloading}
                 loadingPosition="start"
-                startIcon={<CloudUploadIcon />}
+                startIcon={<MdCloudUpload />}
                 variant="contained"
                 size='small'
               >

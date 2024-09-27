@@ -2,7 +2,7 @@ import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel } from '
 import './TournaFormSetting.css'
 import { useEffect } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
-import SaveIcon from '@mui/icons-material/Save';
+import { FaSave } from "react-icons/fa";
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
 useEffect(()=>{
@@ -222,7 +222,7 @@ useEffect(()=>{
                         onClick={submit}
                         loading={isloading}
                         loadingPosition="start"
-                        startIcon={<SaveIcon />}
+                        startIcon={<FaSave />}
                         variant="contained"
                         type="submit"
                     >

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import { IoCloseSharp } from "react-icons/io5";
-import AddIcon from '@mui/icons-material/Add';
+import { MdAdd } from "react-icons/md";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -414,7 +414,7 @@ const Profile = () => {
                         })}
 
                         <div>
-                            <Button variant="outlined" onClick={newlink} startIcon={<AddIcon />}>
+                            <Button variant="outlined" onClick={newlink} startIcon={<MdAdd />}>
                                 Add
                             </Button>
                         </div>

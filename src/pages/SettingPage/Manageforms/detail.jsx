@@ -11,7 +11,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import "./detail.css";
 import useImageUpload from '../../utils/imageresizer';
 import { toast } from "react-toastify";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { MdCloudUpload } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { classicfetch } from '../../../store/classic';
 
@@ -236,7 +236,7 @@ const Detail = () => {
                     <LoadingButton
                         loading={loading}
                         loadingPosition="start"
-                        startIcon={<CloudUploadIcon />}
+                        startIcon={<MdCloudUpload />}
                         variant="contained"
                         onClick={submit}
                     >
@@ -249,7 +249,7 @@ const Detail = () => {
                             <h2>Tournament Banner</h2>
                             {inp.banner ? <img src={inp.banner} alt="" /> : <h3>No Banner has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained"
-                                startIcon={<CloudUploadIcon />}>
+                                startIcon={<MdCloudUpload />}>
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
                             </Button>
@@ -257,7 +257,7 @@ const Detail = () => {
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
                             {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}
-                            <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<CloudUploadIcon />}>
+                            <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<MdCloudUpload />}>
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournlogo' onChange={() => upload("tournlogo")} />
                             </Button>

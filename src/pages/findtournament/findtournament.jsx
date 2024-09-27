@@ -5,16 +5,11 @@ import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
-import SearchIcon from '@mui/icons-material/Search';
-<<<<<<< HEAD
+import { IoMdSearch } from "react-icons/io";
 import { TextField } from '@mui/material';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-=======
-import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { TbMoodSad } from "react-icons/tb";
+import { MdContentCopy } from "react-icons/md";
 import { MdMenuOpen } from "react-icons/md";
->>>>>>> 5b3e711d478619c13051b5bdb3bc347a536a1ebe
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const Findtournament = () => {
     const dispatch = useDispatch();
@@ -148,14 +143,14 @@ const Findtournament = () => {
                             }
                         }}
                     />
-                    <SearchIcon onClick={handleSearch} titleAccess="Search" className="searchIcon" />
+                    <IoMdSearch onClick={handleSearch} title="Search" className="searchIcon" />
                 </div>
             </div>
             <div className="cards">
                 {showinglist.length < 1 && (
                     <div className="notfound">
                         <div>
-                            <SentimentDissatisfiedIcon className="sad" />
+                            <TbMoodSad className="sad" />
                             <h2>No Tournament Found</h2>
                             <p>This section will be auto updated once any Tournament comes under this section</p>
                         </div>
@@ -191,7 +186,7 @@ const Findtournament = () => {
                             </div>
                             <div className="tournId">
                                 ID :- {val.tournid}
-                                <ContentCopyIcon titleAccess="Copy Id" onClick={() => {
+                                <MdContentCopy title="Copy Id" onClick={() => {
                                     navigator.clipboard.writeText(val.tournid);
                                     toast.success('Copied', { autoClose: 1000 })
                                 }} />

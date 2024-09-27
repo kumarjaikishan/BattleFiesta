@@ -1,8 +1,8 @@
 import React from 'react';
 import './footbar.css';
 import logo from '../../assets/logopng250.webp'
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import { FaInstagram } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
 const Footbar = () => {
@@ -20,8 +20,8 @@ const Footbar = () => {
                     <p>Tournament Management services for Esport.</p>
                     <section>
                         <h3>Follow Us</h3>
-                        <a target="_blank" href="https://www.instagram.com/battlefiesta"><InstagramIcon /></a>
-                        <a target="_blank" href="https://www.youtube.com/@Battle_Fiesta"><YouTubeIcon /></a>
+                        <a target="_blank" href="https://www.instagram.com/battlefiesta"><FaInstagram /></a>
+                        <a target="_blank" href="https://www.youtube.com/@Battle_Fiesta"><FaYoutube /></a>
                     </section>
                 </section>
                 <section className="section2">

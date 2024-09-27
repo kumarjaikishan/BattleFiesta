@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from '@mui/material';
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import Diversity3Icon from '@mui/icons-material/Diversity3';
+import { MdDiversity3 } from "react-icons/md";
+import { IoCloudDownloadSharp } from "react-icons/io5";
 
 const Fragger = ({ topplayer,disable, topteam,imagedownload, log }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
@@ -85,7 +85,7 @@ useEffect(()=>{
                             <div className="below">
                                 {kills} kills
                             </div>
-                            <div className="below"><Diversity3Icon /> <span>-{team}</span></div>
+                            <div className="below"><MdDiversity3 /> <span>-{team}</span></div>
                             
                         </div>
                     })}
@@ -129,7 +129,7 @@ useEffect(()=>{
             </div>
             {log.islogin &&
                 <div style={{ textAlign: 'center' }}>
-                    <Button disabled={disable} onClick={()=> imagedownload('#fragger',"Fraggers")} title='Download Fraggers Stat' sx={{ mt: 0.3}} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+                    <Button disabled={disable} onClick={()=> imagedownload('#fragger',"Fraggers")} title='Download Fraggers Stat' sx={{ mt: 0.3}} component="label" variant="contained" startIcon={<IoCloudDownloadSharp />}>
                         Download Fraggers
                     </Button>
                 </div>

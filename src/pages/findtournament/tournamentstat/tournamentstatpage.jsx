@@ -4,14 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { setloader } from '../../../store/login';
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
-import FeedIcon from '@mui/icons-material/Feed';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import EmailIcon from '@mui/icons-material/Email';
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import { MdLeaderboard } from "react-icons/md";
+import { MdFeed } from "react-icons/md";
+import { TbMoodSad } from "react-icons/tb";
+import { FaInstagram } from "react-icons/fa";
+import { IoMailOutline } from "react-icons/io5";
+import { MdInsertLink } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdLocalPhone } from "react-icons/md";
 
 const Tournamentstatpage = () => {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const Tournamentstatpage = () => {
     <div className="tournastat">
       {iserror && <div className="notfound">
         <div>
-          <SentimentDissatisfiedIcon className="sad" />
+          <TbMoodSad className="sad" />
           <h2>Oops! Tournament Not Found</h2>
           <p>Either Tournament is Removed by Owner or Tournament Id is Wrong</p>
         </div>
@@ -87,24 +87,24 @@ const Tournamentstatpage = () => {
             <div>Organised by: {tournament.organiser} </div>
             <div>Created At: {changeformat(tournament.createdAt)} </div>
           </div>
-          {publicpost &&  <div style={{margin:"10px 0px"}}>
-          { publicpost.split('\n').map((line, index) => (
-            <React.Fragment key={index}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))}
+          {publicpost && <div style={{ margin: "10px 0px" }}>
+            {publicpost.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </div>}
-         
+
           <div className="btn">
             {data2.isopen && <a href={`${localhos}/${tournament.type == 'tdm' ? 'tdmregister' : 'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
-              <Button variant="contained" startIcon={<FeedIcon />}> REGISTER </Button>
+              <Button variant="contained" startIcon={<MdFeed />}> REGISTER </Button>
             </a>}
             {tournament.type == 'classic' && <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
-              <Button variant="outlined" startIcon={<LeaderboardIcon />}> LEADERBOARD </Button>
+              <Button variant="outlined" startIcon={<MdLeaderboard />}> LEADERBOARD </Button>
             </a>} <br />
           </div>
-            {!data2.isopen && <div style={{color:'red', textAlign:'center'}}>**Registration is Closed for this Tournament**</div> }
+          {!data2.isopen && <div style={{ color: 'red', textAlign: 'center' }}>**Registration is Closed for this Tournament**</div>}
           <div className="contacts">
             <div>Contacts Details</div>
             {links.length > 0 && <>
@@ -112,19 +112,19 @@ const Tournamentstatpage = () => {
               <div className="links">
                 {links.map((val, ind) => {
                   if (val.linkType == "whatsapp") {
-                    return <a key={ind} title='whatsapp' href={`https://wa.me/+91${val.link}`} target="_blank"><span><WhatsAppIcon className='ico' /></span> <span>{val.linkName}</span> </a>
+                    return <a key={ind} title='whatsapp' href={`https://wa.me/+91${val.link}`} target="_blank"><span><FaWhatsapp className='ico' /></span> <span>{val.linkName}</span> </a>
                   }
                   if (val.linkType == "instagram") {
-                    return <a key={ind} title='instagram' href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <InstagramIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                    return <a key={ind} title='instagram' href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <FaInstagram className='ico' /></span><span>{val.linkName}</span> </a>
                   }
                   if (val.linkType == "phone") {
-                    return <a key={ind} title='phone' href={`tel:${parseInt(val.link)}`} target="_blank"><span> <LocalPhoneIcon className='ico' /></span><span> {val.linkName}</span></a>
+                    return <a key={ind} title='phone' href={`tel:${parseInt(val.link)}`} target="_blank"><span> <MdLocalPhone className='ico' /></span><span> {val.linkName}</span></a>
                   }
                   if (val.linkType == "email") {
-                    return <a key={ind} title='email' href={`mailto:${val.link}`} target="_blank"><span><EmailIcon className='ico' /></span><span> {val.linkName}</span></a>
+                    return <a key={ind} title='email' href={`mailto:${val.link}`} target="_blank"><span><IoMailOutline className='ico' /></span><span> {val.linkName}</span></a>
                   }
                   if (val.linkType == "link") {
-                    return <a key={ind} title='link' href={val.link} target="_blank"><span><InsertLinkIcon className='ico' /></span><span>{val.linkName}</span> </a>
+                    return <a key={ind} title='link' href={val.link} target="_blank"><span><MdInsertLink className='ico' /></span><span>{val.linkName}</span> </a>
                   }
                 })}
               </div>

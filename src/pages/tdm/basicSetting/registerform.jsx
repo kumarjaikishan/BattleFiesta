@@ -4,18 +4,19 @@ import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { setloader } from "../../../store/login";
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import GroupIcon from '@mui/icons-material/Group';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import TournaFormSetting from "./formSetting/TournaFormSetting";
 import PendingPage from "./pendinglist/Pending";
+import Modalbox from "../../../components/custommodal/Modalbox";
 import ApprovedPage from "./Approvedpage/ApprovedPage";
 import RejectedPage from "./rejectedpage/rejectedpage";
 import Contactinfo from "./contactinfo/contactinfo";
 import Badge from '@mui/material/Badge';
-import PersonOffIcon from '@mui/icons-material/PersonOff';
 import Button from '@mui/material/Button';
-import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
+import { MdSettingsSuggest } from "react-icons/md";
+import { MdGroup } from "react-icons/md";
+import { MdGroupAdd } from "react-icons/md";
+import { MdPersonOff } from "react-icons/md";
+import { FaPhoneAlt } from "react-icons/fa";
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -28,7 +29,7 @@ const Registerform = ({ showss }) => {
     const dispatch = useDispatch();
     const { tid } = useParams();
     const tdmrtk = useSelector((state) => state.tdm);
-    
+
     const [all, setall] = useState(tdmrtk.tdmsetting);
     const [isloading, setisloading] = useState(false)
 
@@ -48,10 +49,10 @@ const Registerform = ({ showss }) => {
     const [approvedPlayer, setapprovedPlayer] = useState([]);
     const [rejectedplayer, setrejectedplayer] = useState([]);
 
-   
+
     const sortplayerdata = (data) => {
         // console.log(data);
-        if(data ==''){
+        if (data == '') {
             return;
         }
         const pend = data.filter((val, ind) => {
@@ -73,10 +74,10 @@ const Registerform = ({ showss }) => {
     const handleChange = (e) => {
         let naam = e.target.name;
         let value = e.target.value;
-        if(e.target.value == "true"){
+        if (e.target.value == "true") {
             value = true;
         }
-        if(e.target.value == "false"){
+        if (e.target.value == "false") {
             value = false;
         }
         setall({
@@ -131,11 +132,11 @@ const Registerform = ({ showss }) => {
             const result = await rese.json();
             // console.log(rese);
             if (!rese.ok) {
-              return  toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
+                return toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
-           
-                dispatch(tdmfetch(tid))
-                toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
+
+            dispatch(tdmfetch(tid))
+            toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
 
         } catch (error) {
             console.log(error);
@@ -168,27 +169,27 @@ const Registerform = ({ showss }) => {
             <div className="form_setting">
                 <div className="control">
                     <div className="active" onClick={() => handleactive(0)}>
-                        <SettingsSuggestIcon />
+                        <MdSettingsSuggest />
                         <h3>Setting</h3>
                     </div>
                     <div onClick={() => handleactive(1)}>
-                        <PhoneEnabledIcon />
+                        <FaPhoneAlt />
                         <h3>Contact Info</h3>
                     </div>
                     <div onClick={() => handleactive(2)}>
-                        <GroupIcon />
+                        <MdGroup />
                         <Badge min={1} badgeContent={pendingplayer.length} color="warning">
                             <h3>Pending &nbsp;</h3>
                         </Badge>
                     </div>
                     <div onClick={() => handleactive(3)}>
-                        <GroupAddIcon />
+                        <MdGroupAdd />
                         <Badge badgeContent={approvedPlayer.length} color="success">
                             <h3>Approved &nbsp;</h3>
                         </Badge>
                     </div>
                     <div onClick={() => handleactive(4)}>
-                        <PersonOffIcon />
+                        <MdPersonOff />
                         <Badge badgeContent={rejectedplayer.length} color="error">
                             <h3>Rejected &nbsp;</h3>
                         </Badge>
@@ -200,41 +201,35 @@ const Registerform = ({ showss }) => {
                 {active == 3 && <ApprovedPage decline={decline} showss={showss} statuschange={statuschange} approvedPlayer={approvedPlayer} />}
                 {active == 4 && <RejectedPage decline={decline} showss={showss} statuschange={statuschange} rejectedplayer={rejectedplayer} />}
 
-                <Dialog
+                <Modalbox
+                    shadow={false}
                     open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                        component: 'form',
-                        onSubmit: (event) => {
-                            event.preventDefault();
-                            forward();
-                        },
-                    }}
-                >
-                    {/* <DialogTitle>Reason</DialogTitle> */}
-                    <DialogContent>
-                        <DialogContentText>
-                            Kindly Submit reason , why you are decining or Rejecting the Team
-                        </DialogContentText>
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="name"
-                            name="reason"
-                            label="Reason"
-                            type="text"
-                            fullWidth
-                            value={reason}
-                            variant="standard"
-                            onChange={handlechange}
-                        />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button type="submit">Submit</Button>
-                    </DialogActions>
-                </Dialog>
+                    onClose={handleClose}>
+                    <div className="dashboardbox" style={{ background: 'white' }}>
+                        <DialogContent>
+                            <DialogContentText>
+                                Kindly Submit reason , why you are decining or Rejecting the Team
+                            </DialogContentText>
+                            <TextField
+                                autoFocus
+                                required
+                                margin="dense"
+                                id="name"
+                                name="reason"
+                                label="Reason"
+                                type="text"
+                                fullWidth
+                                value={reason}
+                                variant="standard"
+                                onChange={handlechange}
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose}>Cancel</Button>
+                            <Button onClick={forward}>Submit</Button>
+                        </DialogActions>
+                    </div>
+                </Modalbox>
             </div>
         </>
     )

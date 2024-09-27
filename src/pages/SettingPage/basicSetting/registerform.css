@@ -22,6 +22,10 @@
             cursor: pointer;
             border-radius: 10px;
 
+            svg{
+                font-size: 22px;
+            }
+
             &:hover {
                 color: var(--primarycolor) !important;
             }

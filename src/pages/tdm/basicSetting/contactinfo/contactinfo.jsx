@@ -7,15 +7,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
-import DescriptionIcon from '@mui/icons-material/Description';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { MdDescription } from "react-icons/md";
+import { IoArrowDownOutline } from "react-icons/io5";
+import { IoArrowUpOutline } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useParams } from "react-router-dom";
-import SaveIcon from '@mui/icons-material/Save';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { tdmfetch } from '../../../../store/tdm';
 
 const Contactinfo = ({ all }) => {
@@ -170,9 +169,9 @@ const Contactinfo = ({ all }) => {
                                     />
                                 </Stack>
                                 <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
-                                    <DeleteIcon titleAccess='Delete Field' className='options' onClick={() => removesection(ind)} />
-                                    <ArrowDownwardIcon titleAccess='Move Down' className='options' onClick={() => positiondown(ind, "dec")} />
-                                    <ArrowUpwardIcon titleAccess='Move Up' className='options' onClick={() => positiondown(ind, "inc")} />
+                                    <MdDelete title='Delete Field' className='options' onClick={() => removesection(ind)} />
+                                    <IoArrowDownOutline title='Move Down' className='options' onClick={() => positiondown(ind, "dec")} />
+                                    <IoArrowUpOutline title='Move Up' className='options' onClick={() => positiondown(ind, "inc")} />
                                 </Stack>
                             </section>
                         })}
@@ -188,7 +187,7 @@ const Contactinfo = ({ all }) => {
                                 type='submit'
                                 loading={isloading}
                                 loadingPosition="start"
-                                startIcon={<DescriptionIcon />}
+                                startIcon={<MdDescription />}
                                 variant="contained"
                             >
                                 SUBMIT

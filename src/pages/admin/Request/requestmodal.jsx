@@ -7,9 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { toast } from 'react-toastify';
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { memshipentry } from "../../../store/admin";
-import SaveIcon from '@mui/icons-material/Save';
+import { FaSave } from "react-icons/fa";
 
 const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
     const [other, setother] = useState({
@@ -96,7 +96,7 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                             </section>
                             <TextField multiline rows={2} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '100%' }} label="Remarks" size="small" />
                             <div className="btn">
-                                <Button startIcon={<SaveIcon />} disabled={isloading} type="submit" variant="contained"> Submit</Button>
+                                <Button startIcon={<FaSave />} disabled={isloading} type="submit" variant="contained"> Submit</Button>
                                 <Button onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
                             </div>
                         </span>

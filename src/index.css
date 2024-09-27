@@ -88,6 +88,12 @@ code {
   justify-content: center;
   align-items: center;
   z-index: 50;
+
+  .conatneer {
+    /* border: 1px solid red; */
+    width: 250px;
+    height: 250px;
+  }
 }
 
 .splbtn {
@@ -161,5 +167,9 @@ input {
       width: 95%;
       height: max-content;
     }
+  }
+  .preloder {
+    position: fixed;
+    height: 100vh;
   }
 }

@@ -2,21 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import { MdExpandMore } from "react-icons/md";
+import { IoMailOutline } from "react-icons/io5";
+import { MdLocalPhone } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { FaUndo } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { MdInsertPhoto } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdThumbUp } from "react-icons/md";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
-import UndoIcon from '@mui/icons-material/Undo';
-import EditIcon from '@mui/icons-material/Edit';
-import PhotoIcon from '@mui/icons-material/Photo';
 import Badge from '@mui/material/Badge';
-// import group from '../../../assets/group.webp'
-// import group1 from '../../../assets/group1.webp'
-// import user from '../../../assets/user.webp'
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
     const hgfh = (ide) => {
@@ -58,7 +55,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         sx={{ mb: 1 }}>
 
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<MdExpandMore />}
                             aria-controls="panel1-content"
                             id="panel1-header"
                             className={`header ${player.status}`}
@@ -73,10 +70,10 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                 <div className='imageside'>
                                     <img src={player.teamLogo ? player.teamLogo : group1} alt="" />
                                     <div className="icon">
-                                        <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
-                                        <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>
-                                        <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><WhatsAppIcon titleAccess='Whatsapp' /></a>
-                                        {player.screenss && <PhotoIcon color='primary' titleAccess='Show ScreenShot' onClick={() => showss(player.screenss)} />}
+                                        <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
+                                        <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
+                                        <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><FaWhatsapp title='Whatsapp' /></a>
+                                        {player.screenss && <MdInsertPhoto color='primary' title='Show ScreenShot' onClick={() => showss(player.screenss)} />}
                                     </div>
                                 </div>
                                 <div className='teamside'>
@@ -97,34 +94,34 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                 })}
                                 <div>
                                     {callfrom == "pending" && <>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} size='small' onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} size='small' onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                             Approve
                                         </Button>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                             Reject
                                         </Button>
                                     </>}
                                     {callfrom == "Approved" && <>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
                                             Pending
                                         </Button>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                             Reject
                                         </Button>
                                     </>}
                                     {callfrom == "Rejected" && <>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
                                             Pending
                                         </Button>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                             Approve
                                         </Button>
                                     </>}
                                     {callfrom == "manageteam" && <>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                             Delete
                                         </Button>
-                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<EditIcon />}>
+                                        <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<MdEdit />}>
                                             Edit
                                         </Button>
                                     </>}

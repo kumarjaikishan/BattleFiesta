@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Modalbox from "../../../components/custommodal/Modalbox";
-import SaveIcon from '@mui/icons-material/Save';
+import { FaSave } from "react-icons/fa";
 
 const Voucher = () => {
     const dispatch = useDispatch();
@@ -171,8 +171,8 @@ const Voucher = () => {
                             </Select>
                         </FormControl>
                         <div style={{ width: '100%' }}>
-                            {!isedit && <Button startIcon={<SaveIcon/>}  type="submit" variant="contained"> Submit</Button>}
-                            {isedit && <Button startIcon={<SaveIcon/>} onClick={edit} variant="contained"> Update</Button>}
+                            {!isedit && <Button startIcon={<FaSave/>}  type="submit" variant="contained"> Submit</Button>}
+                            {isedit && <Button startIcon={<FaSave/>} onClick={edit} variant="contained"> Update</Button>}
                             <Button  onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                         </div>
                     </span>

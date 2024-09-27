@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import "./tournasetting.css";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Detail from './Manageforms/detail';
 import Registerform from './basicSetting/registerform';
@@ -11,15 +11,15 @@ import ManageTeam from './ManageTeams/ManageTeam';
 import Pointsystem from './PointSystem/Pointsystem';
 import ViewMatches from './ViewMatches/ViewMatches';
 import Stack from '@mui/material/Stack';
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import PostAddIcon from '@mui/icons-material/PostAdd';
-import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
-import GroupIcon from '@mui/icons-material/Group';
-import DescriptionIcon from '@mui/icons-material/Description';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { MdSettingsSuggest } from "react-icons/md";
+import { MdPostAdd } from "react-icons/md";
+import { FaChartPie } from "react-icons/fa";
+import { MdLeaderboard } from "react-icons/md";
+import { MdDescription } from "react-icons/md";
+import { MdOutlineGroup } from "react-icons/md";
+import { MdContentCopy } from "react-icons/md";
+import { MdOpenInNew } from "react-icons/md";
 import Button from '@mui/material/Button';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import TextField from '@mui/material/TextField';
 import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
@@ -108,27 +108,27 @@ const Tournasetting = () => {
       <div className="tournasetting">
         <div className="controller">
           <div className="cont active" onClick={() => handleactive(0)}>
-            <SettingsSuggestIcon className='icon' />
+            <MdSettingsSuggest className='icon' />
             <h3>Basic Settings</h3>
           </div>
           <div className="cont" onClick={() => handleactive(1)}>
-            <DescriptionIcon className='icon' />
+            <MdDescription className='icon' />
             <h3>Manage Forms</h3>
           </div>
           <div className="cont" onClick={() => handleactive(2)}>
-            <LeaderboardIcon className='icon' />
+            <MdLeaderboard className='icon' />
             <h3>Enter Results</h3>
           </div>
           <div className="cont" onClick={() => handleactive(3)}>
-            <GroupIcon className='icon' />
+            <MdOutlineGroup className='icon' />
             <h3>Manage Teams</h3>
           </div>
           <div className="cont" onClick={() => handleactive(4)}>
-            <PostAddIcon className='icon' />
+            <MdPostAdd className='icon' />
             <h3>Points System</h3>
           </div>
           <div className="cont" onClick={() => handleactive(5)}>
-            <PieChartOutlineIcon className='icon' />
+            <FaChartPie className='icon' />
             <h3>View Matches</h3>
           </div>
         </div>
@@ -148,10 +148,11 @@ const Tournasetting = () => {
             <p>Check out the link for the latest: Points, Top Fraggers, Team Stats, and Match Performances. Share it with the participants!</p>
             <Stack spacing={2} direction="row" className='inpline'>
               <TextField aria-readonly sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/stat/${tournacenter.links}`} label="Stats Page Link" variant="outlined" />
-              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
+              <MdContentCopy title='Copy Link' className='copy' onClick={() => copyUrlToClipboard("stat")} />
             </Stack>
-            <a href={`${localhos}/stat/${tid}`} target="_blank" title='Visit Page'> 
-            <Button sx={{ pb: 0.2 , pt:0.3}} startIcon={<OpenInNewIcon/>} size='small'  variant="contained">Visit</Button></a>
+            <a href={`${localhos}/stat/${tid}`} target="_blank" title='Visit Page'>
+              <Button sx={{ pb: 0.2, pt: 0.3 }} startIcon={<MdOpenInNew />} size='small' variant="contained">Visit</Button>
+              </a>
           </div>
 
           <div className="box">
@@ -159,10 +160,10 @@ const Tournasetting = () => {
             <p>Teams can register for this tournament using the following link.</p>
             <Stack spacing={2} direction="row" className='inpline'>
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/register/${tournacenter.links}`} label="Registration Form Link" variant="outlined" />
-              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
+              <MdContentCopy title='Copy Link' className='copy' onClick={() => copyUrlToClipboard("register")} />
             </Stack>
             <a href={`${localhos}/register/${tid}`} target="_blank" title='Visit Page'>
-             <Button sx={{ pb: 0.2 , pt:0.3}}  startIcon={<OpenInNewIcon/>} size='small' variant="contained">Visit</Button></a>
+              <Button sx={{ pb: 0.2, pt: 0.3 }} startIcon={<MdOpenInNew />} size='small' variant="contained">Visit</Button></a>
           </div>
 
           <div className="box">
@@ -170,10 +171,10 @@ const Tournasetting = () => {
             <p>Find the tournament's public page here. Ensure the tournament visibility is set to 'PUBLISHED' and remember to add content to the public post.</p>
             <Stack spacing={2} direction="row" className='inpline'>
               <TextField sx={{ width: "250px" }} inputProps={{ style: { fontSize: 12 } }} id="outlined-basic" size='small' value={tournacenter.links && `${localhos}/tournaments/${tournacenter.links}`} label="Public Post Link" variant="outlined" />
-              <ContentCopyIcon titleAccess='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tournaments")} />
+              <MdContentCopy title='Copy Link' className='copy' onClick={() => copyUrlToClipboard("tournaments")} />
             </Stack>
             <a href={`${localhos}/tournaments/${tid}`} target="_blank" title='Visit Page'>
-             <Button sx={{ pb: 0.2 , pt:0.3}} startIcon={<OpenInNewIcon/>} size='small' variant="contained">Visit</Button></a>
+              <Button sx={{ pb: 0.2, pt: 0.3 }} startIcon={<MdOpenInNew />} size='small' variant="contained">Visit</Button></a>
           </div>
         </div>
 

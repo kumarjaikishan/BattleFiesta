@@ -180,17 +180,14 @@
                 align-items: center;
                 justify-content: space-between;
                 
-                svg{
-                    margin-left: 5px;
-                    padding:5px;
+                svg {
+                    margin-left: 8px;
                     transition: 0.2s;
                     cursor: pointer;
-                    /* border-radius: 50%; */
-                    border-radius: 5px;
-                    height: 100%;
                 }
-                svg:hover{
-                    background-color: rgba(172, 171, 171, 0.422);
+
+                svg:hover {
+                    color: rgb(3, 93, 93);
                 }
             }
             .registered{

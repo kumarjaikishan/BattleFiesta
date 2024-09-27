@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { alltourna } from '../../../store/api'
 import { useParams } from "react-router-dom";
 import { classicfetch } from '../../../store/classic';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import { TbMoodSad } from "react-icons/tb";
 
 const ManageTeam = ({ setting, showss }) => {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const ManageTeam = ({ setting, showss }) => {
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
 
           {classic.classicplayers.length < 1 && <div className="middle">
-            <div> <SentimentSatisfiedIcon className='emoji' /> </div>
+            <div> <TbMoodSad className='emoji' /> </div>
             <h2>Nothing To Show</h2>
             <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>
           </div>}

@@ -1,8 +1,7 @@
 import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel } from '@mui/material';
 import './TournaFormSetting.css'
-import { useEffect, useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
-import SaveIcon from '@mui/icons-material/Save';
+import { FaSave } from "react-icons/fa";
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
 
@@ -212,7 +211,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         onClick={submit}
                         loading={isloading}
                         loadingPosition="start"
-                        startIcon={<SaveIcon />}
+                        startIcon={<FaSave />}
                         variant="contained"
                         type="submit"
                     >

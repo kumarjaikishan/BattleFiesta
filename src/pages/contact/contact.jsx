@@ -2,12 +2,12 @@ import './contact.css'
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';
-import SaveIcon from '@mui/icons-material/Save';
+import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import InputAdornment from '@mui/material/InputAdornment';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import Person4Icon from '@mui/icons-material/Person4';
+import { CiMail } from "react-icons/ci";
+import { MdPerson4 } from "react-icons/md";
 
 
 const Contact = () => {
@@ -68,7 +68,7 @@ const Contact = () => {
                         variant="outlined"
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <Person4Icon />
+                                <MdPerson4 />
                             </InputAdornment>,
                         }}
                     />
@@ -83,7 +83,7 @@ const Contact = () => {
                         variant="outlined"
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <MailOutlineIcon />
+                                <CiMail />
                             </InputAdornment>,
                         }}
                     />
@@ -103,7 +103,7 @@ const Contact = () => {
                         className='inp'
                         loading={isloading}
                         loadingPosition="start"
-                        startIcon={<SaveIcon />}
+                        startIcon={<FaSave />}
                         variant="contained"
                         sx={{width:"100%"}}
                     >

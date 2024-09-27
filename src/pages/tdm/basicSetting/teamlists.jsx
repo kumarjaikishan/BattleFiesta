@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import { MdExpandMore } from "react-icons/md";
+import { IoMailOutline } from "react-icons/io5";
+import { MdLocalPhone } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { FaUndo } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { MdInsertPhoto } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdThumbUp } from "react-icons/md";
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
-import UndoIcon from '@mui/icons-material/Undo';
-import EditIcon from '@mui/icons-material/Edit';
-import PhotoIcon from '@mui/icons-material/Photo';
 import Badge from '@mui/material/Badge';
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
@@ -24,7 +24,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
 
     const tdmrtk = useSelector((state) => state.tdm);
     useEffect(() => {
-        console.log("tdm arraylist", teamarray);
+        // console.log("tdm arraylist", teamarray);
         // console.log(tdmrtk.tdmdetail.slotCategory);
     })
     const hidenotification=async(player)=>{
@@ -54,7 +54,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                     <Accordion  style={{ borderRadius: "10px", overflow: "hidden" }}
                         sx={{ mb: 1 }}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<MdExpandMore />}
                             aria-controls="panel1-content"
                             id="panel1-header"
                             onClick={() => hidenotification(player)}
@@ -70,10 +70,10 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                 <div className='imageside'>
                                     <img src={player?.logo || user} alt="PlayerLogo" />
                                     <div className="icon">
-                                        <a href={`mailto:${player.email}`} target="_blank" ><MailOutlineIcon titleAccess='Email' /></a>
-                                        <a href={`tel:${player.mobile}`} target="_blank" ><PhoneEnabledIcon titleAccess='Phone' /></a>
-                                        <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><WhatsAppIcon titleAccess='Whatsapp' /></a>
-                                        {player.paymentss && <PhotoIcon color='primary' titleAccess='Show ScreenShot' onClick={() => showss(player.paymentss)} />}
+                                        <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
+                                        <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
+                                        <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><FaWhatsapp title='Whatsapp' /></a>
+                                        {player.paymentss && <MdInsertPhoto color='primary' title='Show ScreenShot' onClick={() => showss(player.paymentss)} />}
                                     </div>
                                 </div>
                                 <div className='teamside'>
@@ -92,34 +92,34 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             <div className="playerdata">
                                 <div>
                                     {callfrom == "pending" && <>
-                                        <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
+                                        <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                             Approve
                                         </Button>
-                                        <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                             Reject
                                         </Button>
                                     </>}
                                     {callfrom == "Approved" && <>
-                                        <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
+                                        <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
                                             Pending
                                         </Button>
-                                        <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                             Reject
                                         </Button>
                                     </>}
                                     {callfrom == "Rejected" && <>
-                                        <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<UndoIcon />}>
+                                        <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
                                             Pending
                                         </Button>
-                                        <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<ThumbUpAltIcon />}>
+                                        <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                             Approve
                                         </Button>
                                     </>}
                                     {callfrom == "manageteam" && <>
-                                        <Button color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                             Delete
                                         </Button>
-                                        <Button color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<EditIcon />}>
+                                        <Button color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<MdEdit />}>
                                             Edit
                                         </Button>
                                     </>}

@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import CloseIcon from '@mui/icons-material/Close';
-import PhotoIcon from '@mui/icons-material/Photo';
+import { IoMdPhotos } from "react-icons/io";
+import { MdCloudUpload } from "react-icons/md";
+import { IoMdCloseCircle } from "react-icons/io";
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -205,7 +205,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                                         inp.logo && <img src={inp.logo} alt="" />
                                     }
                                 </div>
-                                <Button disabled size="small" sx={{ mb: 3 }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                                <Button disabled size="small" sx={{ mb: 3 }} component="label" variant="contained" startIcon={<MdCloudUpload />}>
                                     Upload Logo
                                     <VisuallyHiddenInput
                                         type="file"
@@ -226,7 +226,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                                     inp.paymentss && <img src={inp.paymentss} alt="" />
                                 }
                             </div>
-                            <Button disabled size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<PhotoIcon />}>
+                            <Button disabled size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<IoMdPhotos />}>
                                 Upload S.S
                                 <VisuallyHiddenInput
                                     type="file"
@@ -243,10 +243,10 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                             <br />
                         </>}
 
-                        <Button sx={{ mr: 2 }} type="submit" startIcon={<CloudUploadIcon />} disabled={disable} variant="contained" color="primary">
+                        <Button sx={{ mr: 2 }} type="submit" startIcon={<MdCloudUpload />} disabled={disable} variant="contained" color="primary">
                             Save Team
                         </Button>
-                        <Button onClick={() => setcalledit(false)} startIcon={<CloseIcon />} disabled={disable} variant="outlined" color="secondary">
+                        <Button onClick={() => setcalledit(false)} startIcon={<IoMdCloseCircle />} disabled={disable} variant="outlined" color="secondary">
                             close
                         </Button>
                     </form>

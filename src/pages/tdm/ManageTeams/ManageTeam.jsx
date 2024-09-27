@@ -10,8 +10,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useEffect, useState } from 'react';
 import { tdmfetch } from '../../../store/tdm';
-import Button from '@mui/material/Button';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import { TbMoodSad } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
 
 const ManageTeam = ({ showss }) => {
@@ -116,7 +115,7 @@ const ManageTeam = ({ showss }) => {
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
 
           {tdmrtk.tdmplayers.length < 1 && <div className="middle">
-            <div> <SentimentSatisfiedIcon className='emoji' /> </div>
+            <div> <TbMoodSad className='emoji' /> </div>
             <h2>Nothing To Show</h2>
             <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>
           </div>}

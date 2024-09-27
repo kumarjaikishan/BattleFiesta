@@ -2,9 +2,9 @@
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { IoIosArrowDown } from "react-icons/io";
 import TextField from '@mui/material/TextField';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import { TbMoodSad } from "react-icons/tb";
 
 const Teams = ({ entry }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950086/battlefiesta/assets/icon/group2_gqiyup.webp'
@@ -18,7 +18,7 @@ const Teams = ({ entry }) => {
                 {
                     entry.length < 1 && <div className="notfound">
                         <div>
-                            <SentimentVeryDissatisfiedIcon className="sad" />
+                            <TbMoodSad className="sad" />
                             <h1>Ops! This List is Empty</h1>
                             <p>No Team Registered Yet</p>
                         </div>
@@ -29,7 +29,7 @@ const Teams = ({ entry }) => {
                         style={{ borderRadius: "10px", overflow: "hidden" }}
                         sx={{ mb: 1, minWidth: "95%" }}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<IoIosArrowDown />}
                             aria-controls="panel1-content"
                             id="panel1-header"
                             className={`headere ${player.status}`}

@@ -9,8 +9,8 @@ import './theme/theme4.css'
 import { styled } from '@mui/material';
 import html2canvas from "html2canvas";
 import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { IoCloudDownloadSharp } from "react-icons/io5";
+import { IoMdCloudUpload } from "react-icons/io";
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
 import { setloader, header } from '../../store/login';
@@ -311,7 +311,7 @@ const Stats = () => {
         </div>
         <div className='conti' >
           <h3>Set Background</h3>
-          <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+          <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
             Upload
             <VisuallyHiddenInput type="file" />
           </Button>
@@ -359,7 +359,7 @@ const Stats = () => {
         </table>
       </Container>
       {log.islogin &&
-        <Button disabled={disable} onClick={() => imagedownload('#wrapper', 'Stats')} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<CloudDownloadIcon />}>
+        <Button disabled={disable} onClick={() => imagedownload('#wrapper', 'Stats')} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadSharp />}>
           Download Stats
         </Button>}
       <Fragger log={log} disable={disable} imagedownload={imagedownload} topteam={topteam} topplayer={topplayer} />
