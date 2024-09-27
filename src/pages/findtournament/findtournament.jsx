@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setloader, header } from '../../store/login';
 import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
 import SearchIcon from '@mui/icons-material/Search';
-import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { TextField } from '@mui/material';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const Findtournament = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp';
-    
+
     useEffect(() => {
         dispatch(header("Tournaments"));
         dispatch(setloader(true));
         fetchTournaments();
     }, []);
-    
+
     const [ongoinglist, setOngoingList] = useState([]);
     const [upcominglist, setUpcomingList] = useState([]);
     const [completedlist, setCompletedList] = useState([]);
@@ -55,7 +56,7 @@ const Findtournament = () => {
             console.log(data)
             dispatch(setloader(false));
             if (!response.ok) {
-                return toast.warn(data.message, { autoclose: 2100 });
+                return toast.warn(data.message, { autoClose: 2000 });
             }
 
             let ongoing = [];
@@ -82,7 +83,7 @@ const Findtournament = () => {
         if (searchQuery.trim() === "") {
             // If searchQuery is empty, restore the active list
             setShowingList(activeList);
-            return; // Exit the function early
+            return toast.warn("Search is Empty", { autoClose: 1200 });
         }
 
         try {
@@ -96,7 +97,7 @@ const Findtournament = () => {
 
             const data = await response.json();
             if (!response.ok) {
-                return toast.warn(data.message, { autoclose: 1500 });
+                return toast.warn(data.message, { autoClose: 1500 });
             }
 
             // Update showing list with the search result
@@ -141,19 +142,8 @@ const Findtournament = () => {
                                 setShowingList(activeList); // Restore active list on empty input
                             }
                         }}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={handleSearch}
-                                        className="search-icon-button"
-                                    >
-                                        <SearchIcon titleAccess="Search" />
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
                     />
+                    <SearchIcon onClick={handleSearch} titleAccess="Search" className="searchIcon" />
                 </div>
             </div>
             <div className="cards">
@@ -193,6 +183,13 @@ const Findtournament = () => {
                             <h3 className="organiser">- {val.organiser}</h3>
                             <div className="time">
                                 {formattedDate}, {formattedTime} <span>{val.type}</span>
+                            </div>
+                            <div className="tournId">
+                                ID :- {val.tournid}
+                                <ContentCopyIcon titleAccess="Copy Id" onClick={() => {
+                                    navigator.clipboard.writeText(val.tournid);
+                                    toast.success('Copied', { autoClose: 1000 })
+                                }} />
                             </div>
                             <div className="controller">
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>

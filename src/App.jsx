@@ -83,7 +83,8 @@ function App() {
 
   return (
     <>
-      <ToastContainer closeOnClick pauseOnFocusLoss />
+     {/* //pauseOnFocusLoss for toast */}
+    <ToastContainer closeOnClick  />
       <div className="App">
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>

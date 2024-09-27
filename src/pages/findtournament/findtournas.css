@@ -48,25 +48,21 @@
         }
 
         >div:nth-child(2) {
+            display: flex;
+            align-items: center;
 
-            /* border: 1px solid red; */
-            .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
-                padding-right: 0 !important;
-            }
-
-            .search-bar-container {
-                display: flex;
-                align-items: center;
-            }
-
-            .search-icon-button {
+            .searchIcon {
                 background-color: var(--primarycolor);
                 color: white;
-                padding: 8px;
+                width: 35px;
+                height: auto;
+                padding: 7px;
+                margin-left: 5px;
                 border-radius: 4px;
+                cursor: pointer;
             }
 
-            .search-icon-button:hover {
+            .searchIcon:hover {
                 background-color: var(--hovercolor);
             }
 
@@ -169,6 +165,30 @@
 
             .time {
                 font-size: 13px;
+            }
+
+            .tournId {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                margin-bottom: 5px;
+                margin-left: 10px;
+
+
+                svg {
+                    margin-left: 6px;
+                    padding: 4px;
+                    transition: 0.2s;
+                    cursor: pointer;
+                    /* border-radius: 50%; */
+                    border-radius: 5px;
+                    height: 100%;
+                }
+
+                svg:hover {
+                    background-color: rgba(172, 171, 171, 0.422);
+                }
+
             }
 
             .controller {
@@ -370,7 +390,7 @@
             &>div {
                 /* border: 1px solid red; */
                 width: 100%;
-                background: rgba(6, 146, 6, 0.218);
+                /* background: rgba(6, 146, 6, 0.218); */
             }
 
             >div:nth-child(1) {
@@ -381,6 +401,7 @@
                 line-height: 30px;
                 font-weight: 500;
                 font-size: .7em;
+                margin-bottom: 8px;
                 letter-spacing: 0.5px;
 
                 div {

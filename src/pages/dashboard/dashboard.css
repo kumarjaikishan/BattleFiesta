@@ -190,8 +190,7 @@
                     height: 100%;
                 }
                 svg:hover{
-                     color: white;
-                    background-color: rgb(172, 171, 171);
+                    background-color: rgba(172, 171, 171, 0.422);
                 }
             }
             .registered{

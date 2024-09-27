@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./dashboard.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
 import { header, setloader } from "../../store/login";
@@ -27,7 +27,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
 import Modalbox from "../../components/custommodal/Modalbox";
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -43,7 +42,7 @@ const Dashboard = () => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
     tournacenter?.alltournaments && calc();
-    console.log(tournacenter.alltournaments);
+    // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
 
