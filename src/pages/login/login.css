@@ -87,6 +87,11 @@
                     justify-content: space-around;
                     align-items: center;
 
+                    svg{
+                        width: 20px;
+                        height: 20px;
+                    }
+
                     .forget {
                         width: 80%;
                         /* border: 1px solid red; */

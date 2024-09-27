@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import './user.css'
 import swal from 'sweetalert';
 import LoadingButton from '@mui/lab/LoadingButton';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { IoMdRefresh } from "react-icons/io";
 import { Users } from "../../../store/admin";
 import { toast } from 'react-toastify';
 import Button from '@mui/material/Button';
@@ -148,7 +148,7 @@ const User = () => {
                     loading={userprofile.loading}
                     onClick={() => dispatch(Users())}
                     loadingPosition="end"
-                    endIcon={<RefreshIcon />}
+                    endIcon={<IoMdRefresh />}
                     variant="outlined"
                     type="submit"
                     size="small"

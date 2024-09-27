@@ -6,8 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
 import SearchIcon from '@mui/icons-material/Search';
+<<<<<<< HEAD
 import { TextField } from '@mui/material';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+=======
+import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { MdMenuOpen } from "react-icons/md";
+>>>>>>> 5b3e711d478619c13051b5bdb3bc347a536a1ebe
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -192,7 +197,7 @@ const Findtournament = () => {
                                 }} />
                             </div>
                             <div className="controller">
-                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MenuOpenIcon />}>
+                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE
                                 </Button>
                                 <p className="status" title="Status">{val.status}</p>

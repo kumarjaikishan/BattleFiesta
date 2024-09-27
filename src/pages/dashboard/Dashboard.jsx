@@ -1,36 +1,40 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./dashboard.css";
+<<<<<<< HEAD
 import {  useNavigate } from "react-router-dom";
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> 5b3e711d478619c13051b5bdb3bc347a536a1ebe
 import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
 import { header, setloader } from "../../store/login";
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
-import DeleteIcon from "@mui/icons-material/Delete";
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import swal from 'sweetalert';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import SaveIcon from '@mui/icons-material/Save';
 import { NavLink } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
 import Modalbox from "../../components/custommodal/Modalbox";
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import GroupsIcon from '@mui/icons-material/Groups';
+import { BsGearFill } from "react-icons/bs";
+import { GiConsoleController } from "react-icons/gi";
+import { IoMdRefresh } from "react-icons/io";
+import { LuSaveAll } from "react-icons/lu";
+import { MdDelete } from "react-icons/md";
+import { TiGroupOutline } from "react-icons/ti";
+import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -117,7 +121,7 @@ const Dashboard = () => {
     setload(true);
     const { name, organiser, slots, type } = inp;
     const token = localStorage.getItem("token");
-    
+
 
     try {
       const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}addtournament`, {
@@ -253,22 +257,22 @@ const Dashboard = () => {
             <div>
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
             </div>
-            {getTimeDifference(userprofile.membership.expire_date) < 0 && <NavLink className='buy' to='/plan'>
-
-              <Button size="small" fullWidth variant="contained" startIcon={<AddShoppingCartIcon />}> Buy Membership</Button>
+            {getTimeDifference(userprofile.membership.expire_date) < 0 && 
+            <NavLink className='buy' to='/plan'>
+              <Button size="small" fullWidth variant="contained" startIcon={<MdOutlineAddShoppingCart />}> Buy Membership</Button>
             </NavLink>}
 
           </div>
           <div className="operator">
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button endIcon={<SportsEsportsIcon />} title="Create New Tournament"
+              <Button endIcon={<GiConsoleController />} title="Create New Tournament"
                 onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button>
               <LoadingButton
                 loading={tournacenter.loading}
                 onClick={() => dispatch(alltourna())}
                 loadingPosition="end"
                 sx={{ width: '48%' }}
-                endIcon={<RefreshIcon />}
+                endIcon={<IoMdRefresh />}
                 variant="outlined"
                 type="submit"
               // size="small"
@@ -330,20 +334,20 @@ const Dashboard = () => {
                     <span className={`status ${val.status}`}>{val.status}</span>
                     <h3 className="organiser">by {val.organiser} </h3>
                     <div className="time">
-                     <span>ID:{val.tournid}
-                      <ContentCopyIcon  titleAccess="Copy Id" onClick={()=>{
-                         navigator.clipboard.writeText(val.tournid);
-                         toast.success('Copied', { autoClose: 1000 })
-                      }} /></span>
-                     <span> {formattedDate}</span>  
+                      <span>ID:{val.tournid}
+                        <MdOutlineContentCopy titleAccess="Copy Id" onClick={() => {
+                          navigator.clipboard.writeText(val.tournid);
+                          toast.success('Copied', { autoClose: 1000 })
+                        }} /></span>
+                      <span> {formattedDate}</span>
                     </div>
                     <div className="registered">
                       <span >{val.type}</span>
-                      <span> <GroupsIcon /> . {val.totalTeamsRegistered}/{val.slots} </span>
+                      <span> <TiGroupOutline style={{ fontSize: '20px' }} /> . {val.totalTeamsRegistered}/{val.slots} </span>
                     </div>
                     <div className="controller">
-                      <Button startIcon={<SettingsIcon />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                      <DeleteIcon titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
+                      <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
+                      <MdDelete titleAccess="delete tournament" className="delete" onClick={() => deletee(val._id)} />
                     </div>
                   </motion.div>
                 </Badge>
@@ -406,7 +410,7 @@ const Dashboard = () => {
                 <LoadingButton
                   loading={load}
                   loadingPosition="start"
-                  startIcon={<SaveIcon />}
+                  startIcon={<LuSaveAll />}
                   variant="contained"
                   type="submit"
                 >

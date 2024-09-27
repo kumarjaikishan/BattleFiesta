@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import Person4Icon from '@mui/icons-material/Person4';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import { MdOutlineMail } from "react-icons/md";
+import { IoKeyOutline } from "react-icons/io5";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { FaUserAstronaut } from "react-icons/fa";
+import { MdLocalPhone } from "react-icons/md";
+import { LiaUmbrellaBeachSolid } from "react-icons/lia";
 import { setloader, setlogin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 
 const Signup = ({ setlog, setshowmsg }) => {
     const dispatch = useDispatch();
@@ -110,14 +110,14 @@ const Signup = ({ setlog, setshowmsg }) => {
                         value={signinp.name}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <Person4Icon />
+                                <FaUserAstronaut />
                             </InputAdornment>,
                         }}
                     />
                     <TextField
                         label="Email"
                         size="small"
-                         autoComplete='off'
+                        autoComplete='off'
                         className='filled'
                         onChange={signhandle}
                         name="email"
@@ -126,14 +126,14 @@ const Signup = ({ setlog, setshowmsg }) => {
                         value={signinp.email}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <MailOutlineIcon />
+                                <MdOutlineMail />
                             </InputAdornment>,
                         }}
                     />
                     <TextField
                         label="Phone"
                         size="small"
-                         autoComplete='off'
+                        autoComplete='off'
                         color={signinp.phone.length == 10 ? "primary" : "warning"}
                         className='filled'
                         onChange={signhandle}
@@ -145,7 +145,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                         value={signinp.phone}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <LocalPhoneIcon />
+                                <MdLocalPhone />
                             </InputAdornment>,
                         }}
                     />
@@ -153,7 +153,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                         label="Password"
                         className='filled'
                         size="small"
-                       autoComplete="off"
+                        autoComplete="off"
                         onChange={signhandle}
                         name="password"
                         required
@@ -161,17 +161,17 @@ const Signup = ({ setlog, setshowmsg }) => {
                         value={signinp.password}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <VpnKeyIcon />
+                                <IoKeyOutline />
                             </InputAdornment>,
                             endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => signuppass ? setsignuppass(false) : setsignuppass(true)}>
-                                {signuppass ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                                {signuppass ? <IoEyeOutline /> : <FaRegEyeSlash />}
                             </InputAdornment>
                         }}
                     />
                     <TextField
                         label="Confirm Password"
                         className='filled'
-                         autoComplete='off'
+                        autoComplete='off'
                         color={signinp.password == signinp.cpassword ? "primary" : "warning"}
                         size="small"
                         onChange={signhandle}
@@ -180,20 +180,20 @@ const Signup = ({ setlog, setshowmsg }) => {
                         value={signinp.cpassword}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <VpnKeyIcon />
+                                <IoKeyOutline />
                             </InputAdornment>,
                         }}
                     />
-                        <LoadingButton
+                    <LoadingButton
                         fullWidth
-                            loading={btnclick}
-                            type='submit'
-                            loadingPosition="start"
-                            variant="contained"
-                            startIcon={<BeachAccessIcon />}
-                        >
-                            Signup
-                        </LoadingButton>
+                        loading={btnclick}
+                        type='submit'
+                        loadingPosition="start"
+                        variant="contained"
+                        startIcon={<LiaUmbrellaBeachSolid />}
+                    >
+                        Signup
+                    </LoadingButton>
                 </form>
             </div>
         </>

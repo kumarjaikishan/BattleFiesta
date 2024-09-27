@@ -1,7 +1,7 @@
 import('./membership.css')
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { IoMdRefresh } from "react-icons/io";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { membership } from "../../../store/admin";
 
@@ -22,7 +22,7 @@ const Membership = () => {
              loading={admin.loading}
             onClick={() => dispatch(membership())}
             loadingPosition="end"
-            endIcon={<RefreshIcon />}
+            endIcon={<IoMdRefresh />}
             variant="outlined"
             type="submit"
             size="small"

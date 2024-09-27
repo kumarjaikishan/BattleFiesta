@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import LoadingButton from '@mui/lab/LoadingButton';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { IoMdRefresh } from "react-icons/io";
 import { Button } from "@mui/material";
 import { toast } from 'react-toastify';
 import './dashboard.css'
@@ -81,7 +81,7 @@ const Admindashboard = () => {
             loading={loading}
             onClick={() => fetchdblist()}
             loadingPosition="end"
-            endIcon={<RefreshIcon />}
+            endIcon={<IoMdRefresh />}
             variant="outlined"
             type="submit"
             size="small"
