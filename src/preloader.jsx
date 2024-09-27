@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Lottie from "lottie-react";
-
 const Preloader = () => {
-  const [pre, setpre] = useState('');
-  const url = 'https://res.cloudinary.com/dusxlxlvm/raw/upload/v1718947937/battlefiesta/assets/loader2_cxkkhr.json'
-
-  useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setpre(data))
-      .catch(error => console.error('Error fetching animation:', error));
-  }, [])
-
   return (
     <div className='preloder'>
-      <div className="conatneer">
-        <Lottie animationData={pre} loop={true} autoPlay={true} />
-      </div>
+      <svg width='182px' height='182px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ripple">
+        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+        <g>
+          <animate attributeName="opacity" dur="2s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="1;1;0"></animate>
+          <circle cx="50" cy="50" r="40" stroke="#2c76b3" fill="none" stroke-width="4" stroke-linecap="round">
+            <animate attributeName="r" dur="2s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="0;22;44"></animate>
+          </circle>
+        </g>
+        <g>
+          <animate attributeName="opacity" dur="2s" repeatCount="indefinite" begin="1s" keyTimes="0;0.33;1" values="1;1;0"></animate>
+          <circle cx="50" cy="50" r="40" stroke="#c5c5c5" fill="none" stroke-width="4" stroke-linecap="round">
+            <animate attributeName="r" dur="2s" repeatCount="indefinite" begin="1s" keyTimes="0;0.33;1" values="0;22;44"></animate>
+          </circle>
+        </g>
+      </svg>
     </div>
   );
 };

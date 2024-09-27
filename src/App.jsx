@@ -14,7 +14,6 @@ import { Errorpage } from './pages/Error/Errorpage';
 import Logout from './pages/login/logout';
 import Tournasetting from './pages/SettingPage/tournasetting';
 import Register from './pages/RegistrationPage/Register';
-import Stats from './pages/stats/Stats';
 import Tournamentstatpage from './pages/findtournament/tournamentstat/tournamentstatpage';
 import Contact from './pages/contact/contact';
 import Faq from './pages/faq/faq';
@@ -42,6 +41,7 @@ const Query = lazy(() => import('./pages/admin/query/query'));
 const Voucher = lazy(() => import('./pages/admin/voucher/voucher'));
 const Membership = lazy(() => import('./pages/admin/membership/membership'));
 const User = lazy(() => import('./pages/admin/user/user'));
+const Stats = lazy(() => import('./pages/stats/Stats'));
 
 function App() {
   const log = useSelector((state) => state.login);
@@ -132,9 +132,18 @@ function App() {
               />
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
+            <Route path="/stat/:tid">
+              <Route
+                index
+                element={
+                  <Suspense fallback={<Preloader />}>
+                    <Stats />
+                  </Suspense>
+                }
+              />
+            </Route>
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
-            <Route path="/stat/:tid" element={<Stats />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsAndConditions />} />
