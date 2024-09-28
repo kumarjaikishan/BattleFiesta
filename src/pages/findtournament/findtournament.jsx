@@ -10,6 +10,9 @@ import { TextField } from '@mui/material';
 import { TbMoodSad } from "react-icons/tb";
 import { MdContentCopy } from "react-icons/md";
 import { MdMenuOpen } from "react-icons/md";
+import { GiGamepad } from "react-icons/gi";
+import { FaPlay } from "react-icons/fa6";
+import { BiReset } from "react-icons/bi";
 
 const Findtournament = () => {
     const dispatch = useDispatch();
@@ -116,15 +119,15 @@ const Findtournament = () => {
             <div className="conta">
                 <div className="cate">
                     <div onClick={() => handleActive(0)} className="active">
-                        <i className="fa fa-gamepad" aria-hidden="true"></i>
+                        <GiGamepad />
                         <span>UPCOMING</span>
                     </div>
                     <div onClick={() => handleActive(1)}>
-                        <i className="fa fa-play" aria-hidden="true"></i>
+                    <FaPlay/>
                         <span>ONGOING</span>
                     </div>
                     <div onClick={() => handleActive(2)}>
-                        <i className="fa fa-undo" aria-hidden="true"></i>
+                       <BiReset/>
                         <span>COMPLETED</span>
                     </div>
                 </div>

@@ -21,6 +21,13 @@ import { IoMdSave } from "react-icons/io";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { FaRegFaceSmile } from "react-icons/fa6";
 import { IoMdCloudUpload } from "react-icons/io";
+import { CiFacebook } from "react-icons/ci";
+import { FaYoutube } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { LuGamepad2 } from "react-icons/lu";
+import { FaTelegramPlane } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { IoMdLink } from "react-icons/io";
 
 const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
@@ -260,16 +267,6 @@ const Profile = () => {
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
                 className="circle circle2"></motion.div>
-            {/* <div className="menu">
-                <div>
-                    <i className="fa fa-user-o" aria-hidden="true"></i>
-                    <span>Profile</span>
-                </div>
-                <div className='active'>
-                    <i className="fa fa-credit-card" aria-hidden="true"></i>
-                    <span>Membership</span>
-                </div>
-            </div> */}
             <div className="materials">
                 <div className="profilepic glass">
                     <h2>Profile Picture</h2>
@@ -295,17 +292,17 @@ const Profile = () => {
                     <h2>Profile</h2>
                     <form onSubmit={submit}>
                         <div className="input">
-                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half"  label="Display Name" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half"  label="UserName" variant="outlined" />
-                            <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half"  label="Email" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" label="Display Name" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half" label="UserName" variant="outlined" />
+                            <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half" label="Email" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='phone'
                                 value={inp.phone} type='tel'
                                 inputProps={{ minLength: 10, maxLength: 10 }}
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                 className="half" label="Phone" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half"  label="City" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half"  label="State" variant="outlined" />
-                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full"  label="Bio" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half" label="City" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half" label="State" variant="outlined" />
+                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" label="Bio" variant="outlined" />
                         </div>
                         {/* <button disabled={isloadinge} type='submit'>Save</button> */}
                         <Button
@@ -355,13 +352,13 @@ const Profile = () => {
                 <div className="privacy glass">
                     <h2>Privacy</h2>
                     <div className="input">
-                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full" 
+                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full"
                             helperText="This emaill will be visible on your profile page"
                             label="Public Email" variant="outlined" />
                         <TextField onChange={handlechangee} type='tel'
                             inputProps={{ minLength: 10, maxLength: 10 }}
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            name='publicphone' value={inp.publicphone} className="full" 
+                            name='publicphone' value={inp.publicphone} className="full"
                             helperText="This phone number will be visible on your profile page"
                             label="Public Phone" variant="outlined" />
                     </div>
@@ -387,27 +384,27 @@ const Profile = () => {
                                         <InputLabel >Name*</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
-                                           
+
                                             value={val.name}
                                             required
                                             label="Name"
                                             name='name'
                                             onChange={(e) => handleChange(e, ind)}
                                         >
-                                            <MenuItem value={'facebook'}><i className="fa fa-whatsapp" aria-hidden="true"> </i> &nbsp; Facebook</MenuItem>
-                                            <MenuItem value={'youtube'}><i className="fa fa-youtube-play" aria-hidden="true"></i> &nbsp; Youtube</MenuItem>
-                                            <MenuItem value={'instagram'}><i className="fa fa-instagram" aria-hidden="true"></i>&nbsp; Instagram</MenuItem>
-                                            <MenuItem value={'discord'}><i className="fa fa-gamepad" aria-hidden="true"></i>&nbsp; Discord</MenuItem>
-                                            <MenuItem value={'telegram'}><i className="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</MenuItem>
-                                            <MenuItem value={'twitter'}><i className="fa fa-twitter" aria-hidden="true"></i>&nbsp; Twitter</MenuItem>
-                                            <MenuItem value={'website'}><i className="fa fa-link" aria-hidden="true"></i>&nbsp; Website</MenuItem>
+                                            <MenuItem value={'facebook'}><CiFacebook /> &nbsp; Facebook</MenuItem>
+                                            <MenuItem value={'youtube'}><FaYoutube /> &nbsp; Youtube</MenuItem>
+                                            <MenuItem value={'instagram'}><FaInstagram />&nbsp; Instagram</MenuItem>
+                                            <MenuItem value={'discord'}><LuGamepad2 />&nbsp; Discord</MenuItem>
+                                            <MenuItem value={'telegram'}><FaTelegramPlane />&nbsp; Telegram</MenuItem>
+                                            <MenuItem value={'twitter'}><FaTwitter />&nbsp; Twitter</MenuItem>
+                                            <MenuItem value={'website'}><IoMdLink />&nbsp; Website</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </span>
                                 <span>
                                     <TextField required value={val.link} name='link' fullWidth size='small'
                                         onChange={(e) => handleChange(e, ind)}
-                                        className="half"  label=" Url" variant="outlined" />
+                                        className="half" label=" Url" variant="outlined" />
                                 </span>
                                 <span title='Remove This' onClick={() => deletelink(ind)}> <IoCloseSharp /> </span>
                             </div>

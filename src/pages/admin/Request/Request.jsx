@@ -7,6 +7,8 @@ import { IoMdRefresh } from "react-icons/io";
 import { motion } from 'framer-motion';
 import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
+import { HiPencilSquare } from "react-icons/hi2";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Request = () => {
    const admin = useSelector((state) => state.admin);
@@ -120,8 +122,10 @@ const Request = () => {
                   <span>{formattedDate}</span>
                   <span title={val.status == 'success' ? val.membershipId : ""}>{val.txn_no}</span>
                   <span className={`status ${val.status}`} title={val.status == 'rejected' ? val.remarks : ''}>{val.status}</span>
-                  <span><i className="fa fa-pencil" onClick={() => actione(val)} aria-hidden="true"></i>
-                     <i className="fa fa-trash" onClick={() => Deletee(val._id)} aria-hidden="true"></i></span>
+                  <span>
+                     <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
+                     <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
+                  </span>
                </motion.div>
             })}
          </motion.div>

@@ -11,6 +11,8 @@ import { motion } from 'framer-motion';
 import swal from 'sweetalert';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Modalbox from "../../../components/custommodal/Modalbox";
+import { HiPencilSquare } from "react-icons/hi2";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Query = () => {
     const dispatch = useDispatch();
@@ -141,8 +143,10 @@ const Query = () => {
                             <span>{val.email}</span>
                             <span>{val.message}</span>
                             <span className={val.resolve ? `status done` : 'status pending'} title={val.resolve ? val.resolvemsg : ''}>{val.resolve ? "Resolved" : "Pending"}</span>
-                            <span><i className="fa fa-pencil" onClick={() => openmodale(val.email, val._id)} aria-hidden="true"></i>
-                                <i className="fa fa-trash" onClick={() => deletee(val._id)} aria-hidden="true"></i></span>
+                            <span>
+                                <HiPencilSquare className='editicon ico' title="Edit" onClick={() => openmodale(val.email, val._id)} />
+                                <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => deletee(val._id)} />
+                            </span>
                         </motion.div>
                     })}
                 </motion.div>

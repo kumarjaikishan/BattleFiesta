@@ -19,6 +19,8 @@ input {
   --hovercolor: #011f22;
   --secondarycolor: #02363a;
   --thirdcolor: #0d585e;
+  --editicon:rgb(7, 120, 182);
+  --deleteicon:rgb(220, 7, 25);
 }
 
 

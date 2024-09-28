@@ -186,6 +186,7 @@
                 justify-content: space-between;
                 align-items: center;
                 border-radius: 5px;
+               
 
                 & span:nth-child(1) {
                     width: 28%;

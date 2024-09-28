@@ -11,6 +11,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { FaSave } from "react-icons/fa";
+import { HiPencilSquare } from "react-icons/hi2";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaPlus } from "react-icons/fa";
 
 const Voucher = () => {
     const dispatch = useDispatch();
@@ -131,8 +134,8 @@ const Voucher = () => {
 
     return <>
         <div className="voucherpage">
-            <div className="conta">
-                <i className="fa fa-plus" onClick={() => { setmodal(true); setisedit(false) }} aria-hidden="true"></i>
+            <div className="conta" onClick={() => { setmodal(true); setisedit(false) }} title="Add New Voucher">
+                <FaPlus />
             </div>
             <div className="cards">
                 {admin.voucher && admin.voucher.map((val, ind) => {
@@ -141,8 +144,8 @@ const Voucher = () => {
                         <div><span>Percent</span> <span>:</span> <span>{val.percent}</span></div>
                         <div><span>Status</span> <span>:</span> <span>{val.isactive ? "Active" : 'Expired'}</span></div>
                         <div>
-                            <i className="fa fa-pencil" onClick={() => setedit(val)} aria-hidden="true"></i>
-                            <i className="fa fa-trash" onClick={() => deletee(val._id)} aria-hidden="true"></i>
+                            <HiPencilSquare className='editicon ico' title="Edit" onClick={() => setedit(val)} />
+                            <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => deletee(val._id)} style={{ marginLeft: '20px' }} />
                         </div>
                     </div>
                 })}
@@ -171,9 +174,9 @@ const Voucher = () => {
                             </Select>
                         </FormControl>
                         <div style={{ width: '100%' }}>
-                            {!isedit && <Button startIcon={<FaSave/>}  type="submit" variant="contained"> Submit</Button>}
-                            {isedit && <Button startIcon={<FaSave/>} onClick={edit} variant="contained"> Update</Button>}
-                            <Button  onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                            {!isedit && <Button startIcon={<FaSave />} type="submit" variant="contained"> Submit</Button>}
+                            {isedit && <Button startIcon={<FaSave />} onClick={edit} variant="contained"> Update</Button>}
+                            <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                         </div>
                     </span>
                 </form>

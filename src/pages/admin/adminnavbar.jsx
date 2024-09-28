@@ -5,6 +5,9 @@ import './Request/Request.css'
 import Badge from '@mui/material/Badge';
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { FaTachometerAlt } from "react-icons/fa";
+import { FaRegCreditCard } from "react-icons/fa";
+import { BiLogoJquery } from "react-icons/bi";
 
 const Adminnavbar = () => {
     const admin = useSelector((state) => state.admin);
@@ -16,7 +19,7 @@ const Adminnavbar = () => {
             <div className="adminnav">
                 <NavLink className="navlink" end to='/admin' >
                     <div >
-                        <i className="fa fa-tachometer" aria-hidden="true"></i>
+                        <FaTachometerAlt />
                         <span>Dashboard</span>
                     </div>
                 </NavLink>
@@ -33,7 +36,7 @@ const Adminnavbar = () => {
                         }}
                         badgeContent={admin.membershipentry.filter(entry => entry.status === 'pending').length} color="warning">
                         <div >
-                            <i className="fa fa-credit-card" aria-hidden="true"></i>
+                            <FaRegCreditCard />
                             <span>Requests</span>
                         </div>
                     </Badge>
@@ -50,27 +53,27 @@ const Adminnavbar = () => {
                             }
                         }} badgeContent={admin.contactusform.filter(entry => entry.resolve === false).length} color="warning">
                         <div >
-                            <i className="fa fa-address-book-o" aria-hidden="true"></i>
+                        <BiLogoJquery/>
                             <span>Queries</span>
                         </div>
                     </Badge>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/voucher' >
                     <div >
-                        <i className="fa fa-credit-card" aria-hidden="true"></i>
-                        <span>Voucher</span>
+                    <FaRegCreditCard />
+                     <span>Voucher</span>
                     </div>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/membership' >
                     <div >
-                        <i className="fa fa-credit-card" aria-hidden="true"></i>
-                        <span>Memberships</span>
+                    <FaRegCreditCard />
+                     <span>Memberships</span>
                     </div>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/users' >
                     <div >
-                        <i className="fa fa-credit-card" aria-hidden="true"></i>
-                        <span>Users</span>
+                    <FaRegCreditCard />
+                     <span>Users</span>
                     </div>
                 </NavLink>
             </div>

@@ -15,6 +15,8 @@ import Select from '@mui/material/Select';
 import { motion } from 'framer-motion';
 import { FaSave } from "react-icons/fa";
 import Modalbox from "../../../components/custommodal/Modalbox";
+import { HiPencilSquare } from "react-icons/hi2";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const User = () => {
     const admin = useSelector((state) => state.admin);
@@ -178,8 +180,10 @@ const User = () => {
                         <span>{val.phone}</span>
                         <span>{val.email}</span>
                         <span>{formatDate(val.createdAt)}</span>
-                        <span><i className="fa fa-pencil" onClick={() => actione(val)} aria-hidden="true"></i>
-                            <i className="fa fa-trash" onClick={() => Deletee(val._id)} aria-hidden="true"></i></span>
+                        <span>
+                            <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
+                            <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
+                        </span>
                     </motion.div>
                 })}
             </motion.div>
@@ -219,8 +223,8 @@ const User = () => {
                                 </Select>
                             </FormControl>
                             <div style={{ width: '100%' }}>
-                                <Button  startIcon={<FaSave/>} type="submit" variant="contained"> Update</Button>
-                                <Button  onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                                <Button startIcon={<FaSave />} type="submit" variant="contained"> Update</Button>
+                                <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                             </div>
                         </span>
                     </form>
