@@ -68,7 +68,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
 
 
                     </AccordionSummary>
-                    <AccordionDetails className='details'>
+                    <AccordionDetails className='details' sx={{pb:0}}>
                         <div className="teamdata">
                             <div className='imageside'>
                                 <img src={player?.logo || user} alt="PlayerLogo" />

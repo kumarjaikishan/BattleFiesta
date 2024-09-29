@@ -109,11 +109,12 @@
                     } 
                     div{
                         border-top: 1px solid grey;
+                        /* border: 1px solid red; */
                         width: 100%;
                         display: flex;
                         justify-content: space-around;
                         align-items: center;
-                        padding: 5px 0px;
+                        padding-top: 5px;
     
                     }
                    

@@ -14,6 +14,8 @@ import { MdThumbUp } from "react-icons/md";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Badge from '@mui/material/Badge';
+import { HiUserGroup } from "react-icons/hi2";
+import { FaDiscord } from "react-icons/fa";
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
     const hgfh = (ide) => {
@@ -49,7 +51,6 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
     return (<>
         {teamarray.length > 0 && teamarray.map((player, ind) => {
             return (
-
                 <Accordion
                     style={{ borderRadius: "10px", overflow: "hidden" }}
                     sx={{ mb: 1 }}>
@@ -66,7 +67,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         </Badge>
                         <span>{player.teamName} </span>
                     </AccordionSummary>
-                    <AccordionDetails className='details'>
+                    <AccordionDetails className='details' sx={{pb:1}}>
                         <div className="teamdata">
                             <div className='imageside'>
                                 <img src={player.teamLogo ? player.teamLogo : group1} alt="" />
@@ -78,10 +79,10 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                 </div>
                             </div>
                             <div className='teamside'>
-                                <span> <span>Team</span> <span>: {player?.teamName}</span></span>
-                                <span> <span>Email</span> <span>: {player?.email || 'N/A'}</span></span>
-                                <span> <span>Phone</span> <span>: {player?.mobile || 'N/A'}</span></span>
-                                <span> <span>Discord</span> <span>: {player?.discordID || 'N/A'}</span></span>
+                                <span> <span><HiUserGroup/> </span> <span>: {player?.teamName}</span></span>
+                                <span> <span><IoMailOutline/> </span> <span>: {player?.email || 'N/A'}</span></span>
+                                <span> <span><MdLocalPhone/> </span> <span>: {player?.mobile || 'N/A'}</span></span>
+                                <span> <span><FaDiscord/> </span> <span>: {player?.discordID || 'N/A'}</span></span>
                             </div>
                         </div>
                         <div className="playerdata">
