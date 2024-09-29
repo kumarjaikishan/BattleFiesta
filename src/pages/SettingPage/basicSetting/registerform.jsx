@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setloader } from "../../../store/login";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { MdSettingsSuggest } from "react-icons/md";
+import { FaUserCheck } from "react-icons/fa";
 import { MdGroup } from "react-icons/md";
-import { MdGroupAdd } from "react-icons/md";
 import { MdPersonOff } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
+import { MdLocalPhone } from "react-icons/md";
 import TournaFormSetting from "./formSetting/TournaFormSetting";
 import PendingPage from "./pendinglist/Pending";
 import ApprovedPage from "./Approvedpage/ApprovedPage";
@@ -18,7 +18,6 @@ import Contactinfo from "./contactinfo/contactinfo";
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -156,6 +155,7 @@ const Registerform = ({ showss }) => {
     }
     const forward = () => {
         // console.log(id, ":", reason);
+        if (reason === "") return toast.warn('Enter Reason', {autoClose:1800})
         statuschange(id, "rejected", reason)
         setOpen(false);
     }
@@ -168,7 +168,7 @@ const Registerform = ({ showss }) => {
                         <h3>Setting</h3>
                     </div>
                     <div onClick={() => handleactive(1)}>
-                        <FaPhoneAlt />
+                        <MdLocalPhone />
                         <h3>Contact Info</h3>
                     </div>
                     <div onClick={() => handleactive(2)}>
@@ -178,7 +178,7 @@ const Registerform = ({ showss }) => {
                         </Badge>
                     </div>
                     <div onClick={() => handleactive(3)}>
-                        <MdGroupAdd />
+                        <FaUserCheck />
                         <Badge badgeContent={approvedPlayer.length} color="success">
                             <h3>Approved &nbsp;</h3>
                         </Badge>
