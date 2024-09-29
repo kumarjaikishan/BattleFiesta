@@ -140,12 +140,13 @@
         display: grid;
         place-items: center;
         font-weight: 700;
-        transition: 0.1s;
+        transition: 0.2s;
 
-        &:hover{
+        &:hover {
+            border: 1px solid white;
             color: white;
             background: grey;
-            scale: 1.1;
+            transform: scale(1.1) rotate(180deg) translateX(0);
         }
     }
 
@@ -257,12 +258,15 @@
         width: 95vw;
         height: 80vh;
 
-        span{
+        span {
             right: 50%;
-            transform: translateX(-50%);
+            transform: translateX(50%);
             width: 40px;
             height: 40px;
 
+            &:hover {
+                transform: scale(1.1) rotate(180deg) translateX(-50%);
+            }
         }
     }
 }
