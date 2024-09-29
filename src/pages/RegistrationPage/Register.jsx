@@ -313,7 +313,7 @@ const Register = () => {
     const common = async (event, id) => {
         let WIDTH = 180;
         if (id == "paymentss") {
-            WIDTH = 600;
+            WIDTH = 680;
         }
         let image_file = event.target.files[0];
 
@@ -460,7 +460,6 @@ const Register = () => {
                                         <VisuallyHiddenInput
                                             type="file"
                                             accept="image/*"
-
                                             // onChange={handleTeamLogoChange}
                                             onChange={(event) => common(event, "teamlogo")}
                                         />
