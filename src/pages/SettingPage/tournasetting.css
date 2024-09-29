@@ -256,5 +256,12 @@
     .paymentssmodal {
         width: 95vw;
         height: 87vh;
+
+        span{
+            right: 8px;
+            width: 35px;
+            height: 35px;
+
+        }
     }
 }
