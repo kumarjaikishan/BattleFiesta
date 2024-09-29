@@ -131,8 +131,8 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         cursor: pointer;
         background: white;
         color: grey;
@@ -254,13 +254,14 @@
     }
 
     .paymentssmodal {
-        width: 90vw;
+        width: 95vw;
         height: 80vh;
 
         span{
-            right: 8px;
-            width: 35px;
-            height: 35px;
+            right: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
 
         }
     }
