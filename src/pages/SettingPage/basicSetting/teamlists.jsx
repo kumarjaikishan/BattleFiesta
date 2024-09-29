@@ -75,7 +75,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
                                     <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
                                     <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><FaWhatsapp title='Whatsapp' /></a>
-                                    {player.screenss && <MdInsertPhoto color='primary' title='Show ScreenShot' onClick={() => showss(player.screenss)} />}
+                                    {player.screenss && <a href="#"> <MdInsertPhoto style={{color:'green'}} title='Show ScreenShot' onClick={() => showss(player.screenss)} /> </a>}
                                 </div>
                             </div>
                             <div className='teamside'>

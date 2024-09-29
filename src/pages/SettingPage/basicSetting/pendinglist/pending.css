@@ -84,11 +84,23 @@
                         .icon {
                             width: 100%;
                             display: flex;
+                            align-items: center;
                             justify-content: space-around;
                             border-top: 1px solid grey;
                             border-bottom: 1px solid grey;
                             padding: 5px;
                             margin-top: 10px;
+
+                            a {
+                                color: green;
+                                height: fit-content;
+                                display: flex;
+                                align-items: center;
+
+                                svg {
+                                    font-size: 20px;
+                                }
+                            }
                         }
                     }
 
@@ -241,6 +253,12 @@
                             .icon {
                                 padding: 5px 2px;
                                 margin-top: 10px;
+
+                                a {
+                                    svg {
+                                        font-size: 17px;
+                                    }
+                                }
                             }
                         }
 

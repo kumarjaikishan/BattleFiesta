@@ -1,6 +1,9 @@
-.tdmtournasetting{
+.tdmtournasetting {
 
-    .pendingList , .approvedList, .manageteams,.rejectedlist{
+    .pendingList,
+    .approvedList,
+    .manageteams,
+    .rejectedlist {
         /* border: 1px solid red; */
         width: 100%;
         height: 100%;
@@ -8,45 +11,48 @@
         justify-content: center;
         overflow-y: auto;
         padding-top: 10px;
-    
-        & .box{
+
+        & .box {
             padding: 20px;
             width: 700px;
             height: max-content;
             border: 1px solid grey;
             border-radius: 10px;
-    
-            & h2{
+
+            & h2 {
                 margin-bottom: 5px;
                 color: rgb(64, 62, 62);
-            } 
-            .header{
-    
-                & img{
+            }
+
+            .header {
+
+                & img {
                     width: 40px;
                     height: 40px;
                     border-radius: 50px;
                     margin-right: 20px;
                     border: .8px dotted grey;
                 }
-                span{
+
+                span {
                     font-size: 1.3em;
                     line-height: 40px;
                     font-weight: 600;
                     letter-spacing: 1px;
                 }
             }
-            .details{
+
+            .details {
                 width: 100%;
-    
-                & .teamdata{
+
+                & .teamdata {
                     width: 100%;
                     height: 200px;
                     /* border: 1px solid red; */
                     display: flex;
                     justify-content: space-between;
-    
-                    & .imageside{
+
+                    & .imageside {
                         width: 200px;
                         height: 100%;
                         /* border: 1px solid blue; */
@@ -54,25 +60,39 @@
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
-    
-                        & img{ 
+
+                        & img {
                             width: 140px;
                             height: 140px;
                             object-fit: cover;
                             border-radius: 20px;
                             border: 1px solid grey;
                         }
-                        .icon{
+
+                        .icon {
                             width: 100%;
                             display: flex;
                             justify-content: space-around;
+                            align-items: center;
                             border-top: 1px solid grey;
                             border-bottom: 1px solid grey;
-                            padding: 5px;
+                            padding: 4px 5px;
                             margin-top: 10px;
+
+                            a {
+                                color: green;
+                                height: fit-content;
+                                display: flex;
+                                align-items: center;
+
+                                svg {
+                                    font-size: 20px;
+                                }
+                            }
                         }
                     }
-                    .teamside{
+
+                    .teamside {
                         width: 360px;
                         height: 100%;
                         border-left: 1px solid grey;
@@ -80,34 +100,35 @@
                         flex-direction: column;
                         justify-content: space-around;
                         padding-left: 15px;
-    
-                        & span{
+
+                        & span {
                             display: flex;
                             /* justify-content: space-be/tween; */
-    
-                            & span:nth-child(1){
+
+                            & span:nth-child(1) {
                                 font-weight: 600;
                                 width: 70px;
                                 /* border: 1px solid red; */
                             }
-                            & span:nth-child(2){
-                               margin-left: 5px;
+
+                            & span:nth-child(2) {
+                                margin-left: 5px;
                             }
                         }
                     }
-                    a{
-                        color: green;
-                    }
+
                 }
-                .playerdata{
+
+                .playerdata {
                     border-radius: 10px;
                     padding: 5px;
-    
-                    & h2{
+
+                    & h2 {
                         font-size: 1.1em;
                         margin: 10px 0px;
-                    } 
-                    div{
+                    }
+
+                    div {
                         border-top: 1px solid grey;
                         /* border: 1px solid red; */
                         width: 100%;
@@ -115,10 +136,10 @@
                         justify-content: space-around;
                         align-items: center;
                         padding-top: 5px;
-    
+
                     }
-                   
-                    BUTTON{
+
+                    BUTTON {
                         margin: 10px 0px;
                         font-weight: 800;
                         letter-spacing: 1px;
@@ -126,14 +147,15 @@
                 }
             }
         }
-        .middle{
+
+        .middle {
             text-align: center;
             color: rgb(56, 54, 54);
-    
-            & div{
+
+            & div {
                 font-size: 2em;
-    
-                & .emoji{
+
+                & .emoji {
                     font-size: 3em;
                 }
             }
@@ -143,83 +165,96 @@
 
 
 @media only screen and (max-width: 600px) {
-    .tdmtournasetting{
-        .pendingList , .approvedList, .manageteams,.rejectedlist{
-      
+    .tdmtournasetting {
+
+        .pendingList,
+        .approvedList,
+        .manageteams,
+        .rejectedlist {
+
             padding-top: 10px;
-        
-            & .box{
+
+            & .box {
                 padding: 5px;
                 width: 98%;
-        
-                .header{
-        
-                    & 
-                    span{
+
+                .header {
+
+                    & span {
                         font-size: 1.2em;
                         letter-spacing: .5px;
                     }
                 }
-                .details{
+
+                .details {
                     width: 100%;
                     padding: 1px;
 
-                    & .teamdata{
-        
-                        & .imageside{
+                    & .teamdata {
+
+                        & .imageside {
                             width: 150px;
                             /* border: 1px solid blue; */
-        
-                            & img{ 
+
+                            & img {
                                 width: 110px;
                                 height: 110px;
-            
+
                             }
-                            .icon{
-                               
+
+                            .icon {
                                 padding: 4px 2px;
                                 margin-top: 10px;
+                                a {
+                                    svg {
+                                        font-size: 17px;
+                                    }
+                                }
                             }
                         }
-                        .teamside{
+
+                        .teamside {
                             width: 360px;
                             padding-left: 5px;
-        
-                            & span{
+
+                            & span {
                                 display: flex;
                                 align-items: center;
-        
-                                & span:nth-child(1){
+
+                                & span:nth-child(1) {
                                     width: 55px;
                                     font-size: 14px;
                                 }
-                                & span:nth-child(2){
-                                   margin-left: 5px;
-                                   font-size: 12px;
+
+                                & span:nth-child(2) {
+                                    margin-left: 5px;
+                                    font-size: 12px;
                                 }
-                               
+
                             }
                         }
-                        a{
+
+                        a {
                             color: green;
                         }
                     }
                 }
-                
+
             }
-            .middle{
+
+            .middle {
                 text-align: center;
                 color: rgb(56, 54, 54);
-        
-                & div{
+
+                & div {
                     font-size: 2em;
-        
-                    & .emoji{
+
+                    & .emoji {
                         font-size: 3em;
                     }
                 }
             }
         }
     }
-    
+
 }

@@ -21,9 +21,9 @@ import { MdContentCopy } from "react-icons/md";
 import { MdOpenInNew } from "react-icons/md";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
 import { classicfetch, setowner } from '../../store/classic';
+import Modalbox from '../../components/custommodal/Modalbox';
 
 const Tournasetting = () => {
   const navigate = useNavigate();
@@ -139,7 +139,15 @@ const Tournasetting = () => {
           {active == 3 && <ManageTeam showss={showss} />}
           {active == 4 && <Pointsystem />}
           {active == 5 && <ViewMatches />}
-          {showmodal && <Imagemodal setshowmodal={setshowmodal} paymentss={paymentss} />}
+          <Modalbox
+            shadow={false}
+            open={showmodal}
+            onClose={() => setshowmodal(false)}>
+            <div className="paymentssmodal">
+              <span title='close' onClick={() => setshowmodal(false)}> X </span>
+              <img src={paymentss} alt="payment SS" />
+            </div>
+          </Modalbox>
         </div>
 
         <div className="links">
@@ -152,7 +160,7 @@ const Tournasetting = () => {
             </Stack>
             <a href={`${localhos}/stat/${tid}`} target="_blank" title='Visit Page'>
               <Button sx={{ pb: 0.2, pt: 0.3 }} startIcon={<MdOpenInNew />} size='small' variant="contained">Visit</Button>
-              </a>
+            </a>
           </div>
 
           <div className="box">

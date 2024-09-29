@@ -15,9 +15,9 @@ import ManageTeam from './ManageTeams/ManageTeam';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Imagemodal from './basicSetting/imagemodal';
 import { setloader, header } from '../../store/login';
 import { tdmfetch, setowner } from '../../store/tdm';
+import Modalbox from '../../components/custommodal/Modalbox';
 
 const Tdmsetting = () => {
   const navigate = useNavigate();
@@ -115,9 +115,15 @@ const Tdmsetting = () => {
           {active == 1 && <Detail />}
           {/* {active == 2 && <EnterResult setting={setting} />} */}
           {active == 2 && <ManageTeam showss={showss} />}
-          {/* {active == 4 && <Pointsystem setting={setting} />} */}
-          {/* {active == 5 && <ViewMatches setting={setting} />} */}
-          {showmodal && <Imagemodal setshowmodal={setshowmodal} paymentss={paymentss} />}
+          <Modalbox
+            shadow={false}
+            open={showmodal}
+            onClose={() => setshowmodal(false)}>
+            <div className="paymentssmodal">
+              <span title='close' onClick={() => setshowmodal(false)}> X </span>
+              <img src={paymentss} alt="payment SS" />
+            </div>
+          </Modalbox>
         </div>
 
         <div className="links">
