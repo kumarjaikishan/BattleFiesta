@@ -9,7 +9,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
    
     useEffect(() => {
         // console.log("matches -", matches);
-       matches.length > 0 && handlee(matches[0])
+       matches?.length > 0 && handlee(matches[0])
     }, [matches])
     const [currentmatch, setcurrentmatch] = useState("");
 
@@ -54,7 +54,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
         <> 
             <div className="matchtable">
                 <h1>Match Stats</h1>
-              {matches.length > 0 ? <>
+              {matches?.length > 0 ? <>
                 <div>
                     <FormControl  sx={{width:'350px'}}>
                         <h3> Select Match :</h3>
