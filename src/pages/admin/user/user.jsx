@@ -12,8 +12,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { motion } from 'framer-motion';
 import { FaSave } from "react-icons/fa";
+import { SiMinutemailer } from "react-icons/si";
+import { IoMailOutline } from "react-icons/io5";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -30,6 +31,12 @@ const User = () => {
         isadmin: ''
     }
     const [inp, setinp] = useState(init)
+
+    const mailinit = {
+        email: '',
+        message: '',
+    }
+    const [mailinp, setmailinp] = useState(mailinit)
 
     useEffect(() => {
         // console.log(admin.users);
@@ -83,6 +90,7 @@ const User = () => {
     }
 
     const [modal, setmodal] = useState(false);
+    const [mailmodal, setmailmodal] = useState(false);
 
     const handlee = async (e) => {
         e.preventDefault();
@@ -107,7 +115,40 @@ const User = () => {
                 toast.warn(data.message, { autoClose: 1500 });
             }
         } catch (error) {
+            toast.error(error.message, { autoClose: 1900 })
             console.log(error);
+            setmodal(false);
+        }
+    }
+    const mailhandlee = async (e) => {
+        e.preventDefault();
+        console.log(mailinp)
+        try {
+            const token = localStorage.getItem("token");
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}emailreply`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: mailinp.email,
+                    reply: mailinp.message
+                })
+            });
+            const data = await responsee.json();
+            // console.log(data);
+            setmailmodal(false)
+            if (responsee.status == 200) {
+                setmailinp(mailinit);
+                toast.success(data.message, { autoClose: 1300 });
+            } else {
+                toast.warn(data.message, { autoClose: 1500 });
+            }
+        } catch (error) {
+            console.log(error);
+            setmailmodal(false)
+            toast.error(error.message, { autoClose: 1900 })
         }
     }
     const actione = (val) => {
@@ -121,29 +162,27 @@ const User = () => {
         })
         setmodal(true);
     }
+    const mail = (val) => {
+        console.log(val);
+        setmailinp({
+            email: val.email,
+            message: '',
+        })
+        setmailmodal(true);
+    }
     const handleChange = (e, field) => {
         setinp({
             ...inp, [field]: e.target.value
         })
     }
-    const container = {
-        hidden: { opacity: 1, scale: 0 },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                delayChildren: .2, //this is overall delay for whole children
-                staggerChildren: 0.15
-            }
-        }
-    };
+    const handlemailChange = (e, field) => {
+        setmailinp({
+            ...mailinp, [field]: e.target.value
+        })
+    }
 
-    const item = {
-        hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
-        visible: { y: 0, x: 0, scale: 1, opacity: 1 }
-    };
     return <>
-        <motion.div className="adminusers">
+        <div className="adminusers">
             <div className="controler">
                 <h2 style={{ textAlign: 'center' }}>Users</h2>
                 <LoadingButton
@@ -167,14 +206,9 @@ const User = () => {
                 <span>Date</span>
                 <span>Actions</span>
             </div>
-            <motion.div
-                variants={container}
-                initial="hidden"
-                animate="visible"
-                layout
-                className="body">
+            <div className="body">
                 {admin?.users?.map((val, ind) => {
-                    return <motion.div variants={item} layout key={ind} className={`status ${val.membership?.isActive ? 'active' : 'expired'}`}>
+                    return <div key={ind} className={`status ${val.membership?.isActive ? 'active' : 'expired'}`}>
                         <span>{ind + 1}</span>
                         <span>{val.name}</span>
                         <span>{val.phone}</span>
@@ -182,11 +216,12 @@ const User = () => {
                         <span>{formatDate(val.createdAt)}</span>
                         <span>
                             <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
+                            <IoMailOutline className='printicon ico' title="Mail" onClick={() => mail(val)} />
                             <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
                         </span>
-                    </motion.div>
+                    </div>
                 })}
-            </motion.div>
+            </div>
             <Modalbox open={modal} onClose={() => setmodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={handlee}>
@@ -230,7 +265,32 @@ const User = () => {
                     </form>
                 </div>
             </Modalbox>
-        </motion.div>
+            <Modalbox open={mailmodal} onClose={() => setmailmodal(false)}>
+                <div className="membermodal mail">
+                    <form onSubmit={mailhandlee}>
+                        <h2>Send Email</h2>
+                        <span className="modalcontent">
+                            <TextField required value={mailinp.email}
+                                sx={{ width: '98%' }}
+                                label="Email Id"
+                                disabled
+                                size="small" />
+                            <TextField required value={mailinp.message}
+                                onChange={(e) => handlemailChange(e, 'message')}
+                                sx={{ width: '98%' }}
+                                multiline rows={5}
+                                label="Message"
+                                size="small" />
+
+                            <div style={{ width: '100%' }}>
+                                <Button startIcon={<SiMinutemailer />} type="submit" variant="contained"> Send</Button>
+                                <Button onClick={() => { setmailmodal(false); setmailinp(mailinit) }} variant="outlined"> cancel</Button>
+                            </div>
+                        </span>
+                    </form>
+                </div>
+            </Modalbox>
+        </div>
     </>
 }
 export default User;

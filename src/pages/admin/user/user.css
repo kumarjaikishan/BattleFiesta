@@ -3,7 +3,50 @@
 
     .header {
         border-left: 4px solid transparent;
-        padding-right: 10px;
+        /* padding-right: 10px; */
+    }
+    .membermodal.mail{
+        /* width: 700px !important; */
+    }
+
+    .ico {
+        padding: 2px 5px;
+        box-sizing: content-box;
+        width: 17px;
+        height: 17px;
+        border-radius: .2rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .ico.editicon {
+        color: var(--editicon);
+        background: rgba(7, 121, 182, 0.116);
+    
+        &:hover {
+            background: var(--editicon);
+            color: white;
+        }
+    }
+    
+    .ico.deleteicon {
+        color: var(--deleteicon);
+        background: rgba(182, 7, 16, 0.116);
+    
+        &:hover {
+            background: var(--deleteicon);
+            color: white;
+        }
+    }
+    
+    .ico.printicon {
+        color: rgb(16, 16, 149);
+        background: rgba(29, 10, 198, 0.116);
+    
+        &:hover {
+            background: rgb(16, 16, 149);
+            color: white;
+        }
     }
 
     .body {
@@ -54,28 +97,12 @@
         }
 
         & span:last-child {
-            width: 60px;
+            width: 90px;
             /* border: 1px solid red; */
-            padding-left: 5px;
+            padding-left: 0px;
             display: inline-flex;
             justify-content: space-around;
 
-            i {
-                width: 25px;
-                height: 25px;
-                line-height: 25px;
-                cursor: pointer;
-                border-radius: 50%;
-                color: rgb(6, 93, 112);
-
-                &:last-child {
-                    color: red;
-                }
-
-                &:hover {
-                    background: rgba(133, 196, 192, 0.4);
-                }
-            }
         }
     }
 }
