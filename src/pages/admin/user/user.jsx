@@ -122,10 +122,10 @@ const User = () => {
     }
     const mailhandlee = async (e) => {
         e.preventDefault();
-        console.log(mailinp)
+        // console.log(mailinp)
         try {
             const token = localStorage.getItem("token");
-            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}emailreply`, {
+            const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}emailsend`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
