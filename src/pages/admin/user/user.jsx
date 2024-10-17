@@ -123,6 +123,7 @@ const User = () => {
     const mailhandlee = async (e) => {
         e.preventDefault();
         // console.log(mailinp)
+        const formattedMessage = mailinp.message.replace(/\n/g, '<br />');
         try {
             const token = localStorage.getItem("token");
             const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}emailsend`, {
@@ -133,7 +134,7 @@ const User = () => {
                 },
                 body: JSON.stringify({
                     email: mailinp.email,
-                    reply: mailinp.message
+                    reply: formattedMessage
                 })
             });
             const data = await responsee.json();
