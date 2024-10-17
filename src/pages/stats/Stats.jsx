@@ -7,7 +7,7 @@ import './theme/theme2.css'
 import './theme/theme3.css'
 import './theme/theme4.css'
 import { styled } from '@mui/material';
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
 import { IoCloudDownloadSharp } from "react-icons/io5";
 import { IoMdCloudUpload } from "react-icons/io";
@@ -163,7 +163,7 @@ const Stats = () => {
         })
       })
     })
-    console.log(topPlayerMap)
+    // console.log(topPlayerMap)
   }
 
 
@@ -245,8 +245,9 @@ const Stats = () => {
 
   const [disable, setdisable] = useState(false);
 
-  const imagedownload = (id, filename) => {
+  const imagedownload =async (id, filename) => {
     setdisable(true);
+    const html2canvas = (await import("html2canvas")).default;
     const timenow = new Date();
     const rand = timenow.getMinutes();
 

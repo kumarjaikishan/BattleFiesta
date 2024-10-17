@@ -74,7 +74,7 @@ useEffect(()=>{
             <div className="fragger" id="fragger">
                 <h2>Top Fraggers</h2>
                 {!topplayer.length && <div><h3 style={{ color: 'white', textAlign: 'center' }}>No Match Found</h3></div>}
-                {topplayer.length && <><div className="boxes">
+                {topplayer?.length && <><div className="boxes">
                     {topplayer && topplayer.slice(0,5).map((player, ind) => {
                         let {team, playerName, playerLogo, kills} = player;
                         return <div className="box" key={ind}>
