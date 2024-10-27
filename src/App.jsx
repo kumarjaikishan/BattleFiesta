@@ -32,6 +32,7 @@ import { toast } from 'react-toastify';
 import Modalbox from './components/custommodal/Modalbox';
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
+import Channeldashboard from './pages/userDashboard/channeldashboard';
 
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
@@ -134,6 +135,7 @@ function App() {
               <Route path=":tid" element={<Tournamentstatpage />} />
             </Route>
             <Route path="/stat/:tid" element={<Stats />} />
+            <Route path="/channel/:uid" element={<Channeldashboard />} />
             <Route path="/register/:registerId" element={<Register />} />
             <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
             <Route path="/about" element={<AboutUs />} />

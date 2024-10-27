@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./dashboard.css";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
 import { header, setloader } from "../../store/login";
@@ -42,7 +42,7 @@ const Dashboard = () => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
     tournacenter?.alltournaments && calc();
-    // console.log(tournacenter.alltournaments);
+    console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
 
@@ -251,10 +251,10 @@ const Dashboard = () => {
             <div>
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
             </div>
-            {getTimeDifference(userprofile.membership.expire_date) < 0 && 
-            <NavLink className='buy' to='/plan'>
-              <Button size="small" fullWidth variant="contained" startIcon={<MdOutlineAddShoppingCart />}> Buy Membership</Button>
-            </NavLink>}
+            {getTimeDifference(userprofile.membership.expire_date) < 0 &&
+              <NavLink className='buy' to='/plan'>
+                <Button size="small" fullWidth variant="contained" startIcon={<MdOutlineAddShoppingCart />}> Buy Membership</Button>
+              </NavLink>}
 
           </div>
           <div className="operator">
@@ -339,6 +339,11 @@ const Dashboard = () => {
                       <span >{val.type}</span>
                       <span> <TiGroupOutline style={{ fontSize: '20px' }} /> . {val.totalTeamsRegistered}/{val.slots} </span>
                     </div>
+                    <div className="label">
+                      {val.label.split(',').map((eac) => {
+                        return <span>{eac}</span>
+                      })}
+                    </div>
                     <div className="controller">
                       <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
                       <MdDelete title="delete tournament" className="delete" onClick={() => deletee(val._id)} />
@@ -354,7 +359,7 @@ const Dashboard = () => {
               </div>
             </div>
           }
-          
+
         </motion.div>
 
         {tournacenter?.alltournaments?.length > howmany &&

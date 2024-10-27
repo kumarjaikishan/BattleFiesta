@@ -227,6 +227,7 @@ const Detail = () => {
                         id="demo-helper-text-misaligned"
                         label="Label"
                         sx={{ m: 1 }}
+                        inputProps={{ maxLength: 27 }}
                         size='small'
                         name='label'
                         value={inp.label}

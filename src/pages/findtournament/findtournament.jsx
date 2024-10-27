@@ -199,6 +199,11 @@ const Findtournament = () => {
                                     toast.success('Copied', { autoClose: 1000 })
                                 }} />
                             </div>
+                            <div className="label">
+                                {val.label.split(',').map((eac) => {
+                                    return <span>{eac}</span>
+                                })}
+                            </div>
                             <div className="controller">
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE

@@ -255,7 +255,7 @@ const EnterResult = () => {
               onChange={handleChange}
             >
               <MenuItem disabled value="">
-                <em>PUBG/BGMI Maps</em>
+                <em>-------PUBG/BGMI Maps-------</em>
               </MenuItem>
               <MenuItem value={"Erangle"}>Erangle</MenuItem>
               <MenuItem value={"Livik"}>Livik</MenuItem>
@@ -265,13 +265,18 @@ const EnterResult = () => {
               <MenuItem value={"Karakin"}>Karakin</MenuItem>
               <MenuItem value={"Nusa"}>Nusa</MenuItem>
               <MenuItem disabled value="">
-                <em>FreeFire Maps</em>
+                <em>-------FreeFire Maps-------</em>
               </MenuItem>
               <MenuItem value={"Bermuda"}>Bermuda</MenuItem>
               <MenuItem value={"Purgatory"}>Purgatory</MenuItem>
               <MenuItem value={"Kalahari"}>Kalahari</MenuItem>
               <MenuItem value={"Alpine"}>Alpine</MenuItem>
               <MenuItem value={"Nexterra"}>Nexterra</MenuItem>
+              <MenuItem disabled value="">
+                <em>-------PUBG LITE Maps-------</em>
+              </MenuItem>
+              <MenuItem value={"VARENGA"}>VARENGA</MenuItem>
+              <MenuItem value={"GOLDEN WOODS"}>GOLDEN WOODS</MenuItem>
             </Select>
             <Divider variant="middle" />
             <TableContainer component={Paper} sx={{ mt: 2, mb: 2 }}>

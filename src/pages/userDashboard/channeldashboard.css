@@ -1,0 +1,92 @@
+.channeldashboard {
+    width: 100%;
+    min-height: 100vh;
+    background: white;
+    display: inline-flex;
+    justify-content: center;
+    padding: 20px 5px;
+
+    .profile {
+        position: relative;
+        width: 1000px;
+        padding: 10px;
+        border: 1px solid black;
+
+        .coverimage {
+            width: 100%;
+            height: 200px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+
+        .maininfo {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background: rgb(219, 213, 187);
+            gap: 10px;
+
+            .top {
+                position: relative;
+                width: 100%;
+                height: 100px;
+                border: 1px solid red;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+
+                .profileimage {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border: 1px solid black;
+                    transform: translateY(-40%);
+                    margin-left: 10px;
+                    display: flex;
+                    align-items: end;
+
+
+
+                    img {
+                        width: 140px;
+                        height: 140px;
+                        border-radius: 50%;
+                        border: 1px solid white;
+                        object-fit: cover;
+                    }
+
+                    .names {
+                        border: 1px solid black;
+                        margin-left: 5px;
+                        padding: 5px;
+
+                        div {
+                            color: black;
+                        }
+
+                        span {
+                            color: rgb(51, 50, 50);
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                .infoo {
+                    width: 120px;
+                    height: 80px;
+                    border: 1px solid black;
+                }
+            }
+
+            .navbare {
+                width: 100%;
+                border: 1px solid green;
+            }
+        }
+    }
+}

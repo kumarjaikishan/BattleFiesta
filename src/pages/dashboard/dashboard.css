@@ -216,6 +216,25 @@
                     background: var(--primarycolor);
                 }
             }
+            .label{
+                width: 100%;
+                /* border: 1px solid grey; */
+                padding: 2px 4px;
+                display: flex;
+                gap: 5px;
+                flex-wrap: wrap;
+                margin:  5px 0px;
+
+                >span{
+                    background: var(--primarycolor);
+                    color: white;
+                    padding: 0px 8px;
+                    font-size: 12px;
+                    height: 25px;
+                    line-height: 25px;
+                    border-radius: 20px;
+                }
+            }
 
             .controller {
                 width: 100%;
