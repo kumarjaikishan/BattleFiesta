@@ -135,7 +135,7 @@ const Detail = () => {
 
         } catch (error) {
             setLoading(false);
-            toast.update(ide, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
             console.log(error);
         }
     }

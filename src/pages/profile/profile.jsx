@@ -170,7 +170,7 @@ const Profile = () => {
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
             // console.log(data);
         } catch (error) {
-            toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
             console.log(error);
             setisloadinge(false)
         }

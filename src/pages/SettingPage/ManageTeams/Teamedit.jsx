@@ -158,7 +158,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                             // toast.success(vfdvdf.message, { autoClose: 3300 });
                         }
                     } catch (error) {
-                        toast.error(responseData.error, { autoClose: 1300 });
+                        toast.error(error.message, { autoClose: 1800 });
                     }
                 });
                 dispatch(classicfetch(tid));

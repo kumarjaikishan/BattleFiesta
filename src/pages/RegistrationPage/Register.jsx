@@ -201,7 +201,7 @@ const Register = () => {
                 dispatch(setloader(false));
             }
         } catch (error) {
-            toast.warn("Tournament Id not Valid", { autoClose: 2300 });
+            toast.warn(error.message, { autoClose: 2300 });
             dispatch(setloader(false));
         }
     }
@@ -290,7 +290,7 @@ const Register = () => {
                             // toast.success(vfdvdf.message, { autoClose: 3300 });
                         }
                     } catch (error) {
-                        toast.error(responseData.error, { autoClose: 1300 });
+                        toast.error(error.message, { autoClose: 1300 });
                     }
                 });
                 toast.update(id, { render: all.success_msg ? all.success_msg : "Registered Successful", type: "success", isLoading: false, autoClose: 1600 });

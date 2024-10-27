@@ -91,10 +91,10 @@ const Contactinfo = ({ all }) => {
             }
             dispatch(classicfetch(tid))
             setisloading(false)
-            toast.success(data.message, { autoClose: 1300 });
+            toast.success(data.message, { autoClose: 1800 });
 
         } catch (error) {
-            toast.warn(error.message, { autoClose: 1300 });
+            toast.warn(error.message, { autoClose: 1800 });
             console.log(error);
         }
     }

@@ -51,7 +51,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
             }
             setisloading(false);
         } catch (error) {
-            toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
             setisloading(false);
             console.log(error);
         }

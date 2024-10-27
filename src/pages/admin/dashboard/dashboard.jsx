@@ -24,7 +24,7 @@ const Admindashboard = () => {
         },
       });
       const data = await responsee.json();
-      console.log(data)
+      // console.log(data)
       // Filter out system databases 'admin' and 'local'
       const filteredDatabases = data.database.filter(db => db.name !== 'admin' && db.name !== 'local');
       

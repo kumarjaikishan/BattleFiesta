@@ -88,7 +88,7 @@ const Dashboard = () => {
 
         } catch (error) {
           console.log(error);
-          toast.update(id, { render: error, type: "warning", isLoading: false, autoClose: 1600 });
+          toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
         }
 
       } else {
@@ -141,7 +141,7 @@ const Dashboard = () => {
       setinp(init);
     } catch (error) {
       console.log(error);
-      toast.warn(res.message, { autoClose: 2100 })
+      toast.warn(error.message, { autoClose: 2100 })
       setload(false);
     }
   }

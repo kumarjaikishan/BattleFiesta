@@ -70,7 +70,7 @@ const Stats = () => {
       setteamdeatil(result.teamdeatil);
       // setrule(result.rules)
     } catch (error) {
-      console.error('Error:', error);
+      console.error( error);
       dispatch(setloader(false));
     }
   };

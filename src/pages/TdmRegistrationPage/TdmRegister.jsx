@@ -131,7 +131,7 @@ const TdmRegister = () => {
 
             }
         } catch (error) {
-            toast.warn("Tournament Id not Valid", { autoClose: 2300 });
+            toast.warn(error.message, { autoClose: 2300 });
             dispatch(setloader(false));
         }
     }

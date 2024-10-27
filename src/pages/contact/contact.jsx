@@ -45,7 +45,7 @@ const Contact = () => {
             }
         } catch (error) {
             setisloading(false)
-            toast.error("Something wrong", { autoClose: 1300 });
+            toast.error(error.message, { autoClose: 1300 });
             console.log(error);
         }
     }

@@ -120,7 +120,7 @@ const Detail = () => {
             }
             setLoading(false);
         } catch (error) {
-            toast.update(ide, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
+            toast.update(ide, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
             setLoading(false);
             console.log(error);
         }

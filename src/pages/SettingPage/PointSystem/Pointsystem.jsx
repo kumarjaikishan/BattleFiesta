@@ -85,7 +85,7 @@ const Pointsystem = () => {
 
 
       } catch (error) {
-        // console.log(error);
+        console.log(error);
         setisloading(false)
         toast.update(id, { render: "Failed", type: "warning", isLoading: false, autoClose: 1600 });
       }

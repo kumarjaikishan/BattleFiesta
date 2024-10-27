@@ -134,7 +134,7 @@ const Registerform = ({ showss }) => {
 
         } catch (error) {
             console.log(error);
-            toast.update(id, { render: "Failed", type: "warning", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
         }
     }
 

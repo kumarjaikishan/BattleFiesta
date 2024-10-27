@@ -77,7 +77,7 @@ const User = () => {
                         return toast.update(toaste, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
                     }
                 } catch (error) {
-                    toast.update(toaste, { render: data.message, type: "warn", isLoading: false, autoClose: 5200 });
+                    toast.update(toaste, { render: error.message, type: "warn", isLoading: false, autoClose: 5200 });
                     console.log(error);
                 }
             } else {
@@ -155,7 +155,7 @@ const User = () => {
         }
     }
     const actione = (val) => {
-        console.log(val);
+        // console.log(val);
         setinp({
             id: val._id,
             name: val.name,
