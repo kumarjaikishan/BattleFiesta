@@ -84,9 +84,12 @@ const Findtournament = () => {
 
     const handleSearch = async () => {
         if (searchQuery.trim() === "") {
-            // If searchQuery is empty, restore the active list
             setShowingList(activeList);
             return toast.warn("Search is Empty", { autoClose: 1200 });
+        }
+        if (searchQuery.trim().length != 8) {
+            setShowingList(activeList);
+            return toast.warn("Tournament Id must be 8 Digits", { autoClose: 1200 });
         }
 
         try {
@@ -123,19 +126,21 @@ const Findtournament = () => {
                         <span>UPCOMING</span>
                     </div>
                     <div onClick={() => handleActive(1)}>
-                    <FaPlay/>
+                        <FaPlay />
                         <span>ONGOING</span>
                     </div>
                     <div onClick={() => handleActive(2)}>
-                       <BiReset/>
+                        <BiReset />
                         <span>COMPLETED</span>
                     </div>
                 </div>
                 <div>
                     <TextField
-                        label="Tournament Id..."
+                        label="Tournament ID"
                         fullWidth
                         size="small"
+                        inputProps={{ minLength: 8, maxLength: 8 }}
+                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         className="filled"
                         value={searchQuery}
                         onChange={(e) => {

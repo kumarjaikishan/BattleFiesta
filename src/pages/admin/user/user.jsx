@@ -42,10 +42,12 @@ const User = () => {
         // console.log(admin.users);
     }, [])
     const formatDate = (dateString) => {
-        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        const options = { day: '2-digit', month: 'short', year: '2-digit' };
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-GB', options);
+        const formattedDate = date.toLocaleDateString('en-GB', options);
+        return formattedDate.replace(/(\d{2} \w{3}) (\d{2})/, '$1, $2'); 
     };
+    
     const Deletee = async (userid) => {
         // console.log(userid);
         swal({
