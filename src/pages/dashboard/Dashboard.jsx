@@ -339,11 +339,11 @@ const Dashboard = () => {
                       <span >{val.type}</span>
                       <span> <TiGroupOutline style={{ fontSize: '20px' }} /> . {val.totalTeamsRegistered}/{val.slots} </span>
                     </div>
-                    <div className="label">
+                    {/* {val.label.length > 0 && <div className="label">
                       {val.label.split(',').map((eac) => {
                         return <span>{eac}</span>
                       })}
-                    </div>
+                    </div>} */}
                     <div className="controller">
                       <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
                       <MdDelete title="delete tournament" className="delete" onClick={() => deletee(val._id)} />

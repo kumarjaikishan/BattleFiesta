@@ -174,7 +174,6 @@ const Findtournament = () => {
                     const formattedTime = new Date(val.createdAt).toLocaleTimeString("en-US", {
                         hour: "numeric",
                         minute: "numeric",
-                        second: "numeric",
                         hour12: true,
                     });
 
@@ -199,11 +198,11 @@ const Findtournament = () => {
                                     toast.success('Copied', { autoClose: 1000 })
                                 }} />
                             </div>
-                            <div className="label">
+                            {/* <div className="label">
                                 {val.label.split(',').map((eac) => {
                                     return <span>{eac}</span>
                                 })}
-                            </div>
+                            </div> */}
                             <div className="controller">
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE

@@ -75,8 +75,6 @@ const Stats = () => {
     }
   };
 
-
-
   const Impfunction = (teamdeatil, matches) => {
     // console.time("GPTfunc");
     const teamLogoMap = new Map(teamdeatil.map(team => [
