@@ -1,7 +1,7 @@
 .channeldashboard {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
-    background: white;
+    background: linear-gradient(to right top, #65dfc9, #0ba8c0);
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -10,8 +10,9 @@
     .profile {
         position: relative;
         width: 1000px;
-        padding: 10px;
-        border: 1px solid black;
+        border-radius: 10px;
+        overflow: hidden;
+        /* border: 1px dotted grey; */
 
         .coverimage {
             width: 100%;
@@ -28,28 +29,27 @@
         .maininfo {
             position: relative;
             width: 100%;
-            height: 150px;
-            background: rgb(219, 213, 187);
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 255, 255, 0.2));
             gap: 10px;
+            padding-bottom: 10px;
 
             .top {
                 position: relative;
                 width: 100%;
                 height: 80px;
-                border: 1px solid red;
                 display: flex;
                 justify-content: space-between;
-                align-items: end;
+                align-items: center;
                 gap: 10px;
+                padding: 0 10px;
 
                 .profileimage {
-                    border: 1px solid black;
-                    /* transform: translateY(-30%); */
-                    margin-left: 10px;
+                    /* border: 1px solid black; */
+                    transform: translateY(-30px);
                     display: flex;
                     align-items: end;
-
-
 
                     img {
                         width: 140px;
@@ -60,7 +60,7 @@
                     }
 
                     .names {
-                        border: 1px solid black;
+                        /* border: 1px solid black; */
                         margin-left: 5px;
                         padding: 5px;
 
@@ -76,9 +76,35 @@
                 }
 
                 .infoo {
-                    width: 120px;
+                    width: 140px;
+                    text-align: center;
                     height: 80px;
-                    border: 1px solid black;
+                    padding: 5px 0;
+                    /* border: 1px solid black; */
+
+                    div {
+                        color: black;
+                        /* border: 1px solid grey; */
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 5px;
+                        font-weight: 500;
+                        color: var(--primarycolor);
+
+                        svg {
+                            font-size: 1.3em;
+                        }
+                    }
+
+                    i {
+                        color: rgb(83, 82, 82);
+                        font-size: 0.8em;
+                    }
+
+                    p {
+                        font-weight: 500;
+                        font-size: 18px;
+                    }
                 }
             }
         }
@@ -98,24 +124,74 @@
         >div {
             padding: 10px;
             border-radius: 10px;
-            background: rgb(216, 216, 207);
             /* border: 1px solid black; */
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 255, 255, 0.2));
+
         }
 
         .about {
             grid-column: span 4;
+
+            div {
+                width: 100%;
+                /* border: 1px solid red; */
+                margin: 8px 0;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 14px;
+
+               svg{
+                font-size: 1.5em;
+               }
+            }
         }
 
         .socallink {
             grid-column: span 3;
 
-            >div {
-                /* outline: auto; */
-                width: fit-content;
-                margin: 8px 0;
-                cursor: pointer;
+            div {
+                width: 100%;
+                /* border: 1px solid red; */
+                margin: 5px 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    display: inline-block;
+                    /* border: 1px solid red; */
+                    display: flex;
+                    align-items: center;
+                }
+
+                span:nth-child(1) {
+                    width: 10%;
+                    font-size: 1.3em;
+                }
+
+                span:nth-child(2) {
+                    width: 80%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+                .copyicon {
+                    width: 10%;
+                    cursor: pointer;
+                    transition: 0.2s;
+
+                    &:hover {
+                        scale: 1.1;
+                        color: rgb(4, 62, 85);
+                    }
+                }
             }
         }
+
     }
 
     .tournamentss {
@@ -230,16 +306,17 @@
                     color: rgb(3, 93, 93);
                 }
             }
-            .label{
+
+            .label {
                 width: 100%;
                 /* border: 1px solid grey; */
                 padding: 2px 4px;
                 display: flex;
                 gap: 5px;
                 flex-wrap: wrap;
-                margin:  5px 0px;
+                margin: 5px 0px;
 
-                >span{
+                >span {
                     background: var(--primarycolor);
                     color: white;
                     padding: 0px 8px;

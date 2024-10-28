@@ -162,6 +162,7 @@ const Profile = () => {
                 body: JSON.stringify(inp)
             })
             const data = await res.json();
+            console.log(data)
             setisloadinge(false)
             if (!res.ok) {
                 return toast.update(id, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
@@ -294,7 +295,7 @@ const Profile = () => {
                         <div className="input">
                             <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" label="Display Name" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half" label="UserName" variant="outlined" />
-                            <TextField size='small' contentEditable={false} name='email' value={inp.email} className="half" label="Email" variant="outlined" />
+                            <TextField size='small' contentEditable={false} disabled name='email' value={inp.email} className="half" label="Email" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='phone'
                                 value={inp.phone} type='tel'
                                 inputProps={{ minLength: 10, maxLength: 10 }}
