@@ -1,21 +1,33 @@
 import './contact.css'
+import { useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 import InputAdornment from '@mui/material/InputAdornment';
 import { CiMail } from "react-icons/ci";
 import { MdPerson4 } from "react-icons/md";
 
 
 const Contact = () => {
+    const userprofile = useSelector((state) => state.userprofile);
+    const log = useSelector((state) => state.login);
     const init = {
         name: '',
         email: "",
         message: ''
     }
+
+    useEffect(() => {
+        console.log(userprofile)
+        console.log(log)
+        log.islogin && setinp({
+            name: userprofile.userprofile.name,
+            email: userprofile.userprofile.email,
+            message: ''
+        })
+    }, [])
 
     const tournacenter = useSelector((state) => state.tournacenter);
     const [inp, setinp] = useState(init);
@@ -40,7 +52,8 @@ const Contact = () => {
             const data = await responsee.json();
             if (responsee) {
                 setisloading(false)
-                setinp(init);
+                !log.islogin && setinp(init);
+                log.islogin && setinp({...inp,message:'' });
                 toast.success(data.message, { autoClose: 1300 });
             }
         } catch (error) {
@@ -62,6 +75,7 @@ const Contact = () => {
                         fullWidth id="outlined-basic"
                         label="Name"
                         name='name'
+                        disabled={log.islogin}
                         className='inp'
                         onChange={handlechange}
                         value={inp.name}
@@ -76,6 +90,7 @@ const Contact = () => {
                         fullWidth id="outlined-basic"
                         label="Email"
                         type='email'
+                        disabled={log.islogin}
                         name='email'
                         className='inp'
                         onChange={handlechange}
@@ -105,7 +120,7 @@ const Contact = () => {
                         loadingPosition="start"
                         startIcon={<FaSave />}
                         variant="contained"
-                        sx={{width:"100%"}}
+                        sx={{ width: "100%" }}
                     >
                         SUBMIT
                     </LoadingButton>
