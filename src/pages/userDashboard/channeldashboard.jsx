@@ -219,7 +219,8 @@ const Channeldashboard = () => {
           {pro.sociallinks?.map((val, ind) => (
             <div key={ind}>
               <span className="icon">{socialIcons[val.name]}</span>
-              <span>{val.link}</span>
+              <a href={val.link} target="_blank" rel="noopener noreferrer">
+                <span>{val.link}</span></a>
               <MdContentCopy className='copyicon' title='Copy Link' onClick={() => copyfunc(val.link)} />
             </div>
           ))}

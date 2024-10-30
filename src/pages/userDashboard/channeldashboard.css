@@ -172,17 +172,21 @@
                     align-items: center;
                 }
 
-                span:nth-child(1) {
+                >span:nth-child(1) {
                     width: 10%;
                     font-size: 1.3em;
                 }
 
-                span:nth-child(2) {
+                a {
+                    text-decoration: none;
+                    color: black;
                     width: 80%;
+                    font-size: 15px;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
                 }
+
 
                 .copyicon {
                     width: 10%;
@@ -498,6 +502,16 @@
             .socallink {
                 grid-column: span 1;
             }
+
+            .socallink {
+
+                div {
+
+                    a {
+                        font-size: 13px;
+                    }
+                }
+            }
         }
 
         .tournamentss {
@@ -506,18 +520,10 @@
             gap: 1rem 0.1rem;
 
             & .card {
-                width: 200px;
+                width: 190px;
 
                 & .img {
-                    height: 220px;
-
-                    >span {
-                        font-size: 1.0rem;
-                    }
-                }
-
-                & .img {
-                    height: 220px;
+                    height: 200px;
 
                     >span {
                         font-size: 1.0rem;
@@ -534,13 +540,13 @@
                     padding-left: 5px;
 
                     span {
-                        font-size: 8px;
+                        font-size: 9px;
                         margin-right: 5px;
                     }
                 }
 
                 .time {
-                    font-size: 12px;
+                    font-size: 11px;
                 }
 
                 .tournId {
