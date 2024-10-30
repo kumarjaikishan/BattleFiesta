@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import './channeldashboard.css';
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 import { MdMenuOpen, MdContentCopy } from "react-icons/md";
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
@@ -19,6 +19,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { TbTournament } from "react-icons/tb";
 import { IoMdRefresh } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logopng250.webp'
@@ -27,7 +28,9 @@ import { useSelector } from 'react-redux';
 const Channeldashboard = () => {
   const dispatch = useDispatch();
   const { uid } = useParams();
+  const navigate = useNavigate();
   const log = useSelector((state) => state.login);
+  const userprofile = useSelector((state) => state.userprofile);
 
   const [pro, setPro] = useState(null);
   const [tournas, settournas] = useState(null);
@@ -38,6 +41,7 @@ const Channeldashboard = () => {
   useEffect(() => {
     dispatch(setloader(true)); // Set loader when component mounts
     fetchData();
+    // console.log(userprofile.userprofile.username)
   }, [log.islogin]);
 
 
@@ -170,14 +174,39 @@ const Channeldashboard = () => {
                 </div>
               </div>
               <div className='followsbtn'>
-                {isfollowing ?
-                  <Button title='Unfollow' onClick={() => dofollow(false)} style={{ fontWeight: 700, background: '#DFE3E8', color: '#212B36' }} variant="contained" startIcon={<SlUserFollowing />}>
-                    Following
-                  </Button> :
-                  <Button title='Follow' onClick={() => dofollow(true)} variant="contained" startIcon={<SlUserFollow />}>
-                    Follow
+                {userprofile?.userprofile?.username === uid.split('@')[1] ? (
+                  <Button
+                    title='Edit Profile'
+                   variant="outlined"
+                   onClick={()=> navigate('/profile')}
+                   sx={{fontWeight:700}}
+                    startIcon={<MdEdit />}
+                  >
+                    Edit Profile
                   </Button>
-                }
+                ) : (
+                  isfollowing ? (
+                    <Button
+                      title='Unfollow'
+                      onClick={() => dofollow(false)}
+                      style={{ fontWeight: 700, background: '#DFE3E8', color: '#212B36' }}
+                      variant="contained"
+                      startIcon={<SlUserFollowing />}
+                    >
+                      Following
+                    </Button>
+                  ) : (
+                    <Button
+                      title='Follow'
+                      onClick={() => dofollow(true)}
+                      variant="contained"
+                      startIcon={<SlUserFollow />}
+                    >
+                      Follow
+                    </Button>
+                  )
+                )}
+
               </div>
             </div>
           </div>
@@ -250,7 +279,7 @@ const Channeldashboard = () => {
           </div>
         }
       </div>
-    </div>
+    </div >
   );
 };
 

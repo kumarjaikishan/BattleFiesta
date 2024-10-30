@@ -24,6 +24,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px 0px;
+    overflow-x: hidden;
 
     .splbtn {
         background: rgb(40, 37, 37);
@@ -178,6 +179,7 @@
                         width: 100%;
                         height: 100%;
                         padding: 1px;
+                        object-fit: cover;
                         border-radius: 50%;
                     }
                 }

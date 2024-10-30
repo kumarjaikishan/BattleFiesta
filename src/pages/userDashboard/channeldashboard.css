@@ -378,6 +378,8 @@
 
 @media only screen and (max-width: 600px) {
     .channeldashboard {
+        padding: 10px 5px;
+
         .profile {
             position: relative;
             width: 95vw;
@@ -406,10 +408,10 @@
                     height: min-content;
                     flex-wrap: wrap;
                     padding: 0 2px;
-                    
+
                     .profileimage {
                         transform: translateY(-40px);
-                       
+
                         img {
                             width: 100px;
                             height: 100px;
@@ -418,7 +420,7 @@
                         .names {
                             /* border: 1px solid black; */
 
-                            h2{
+                            h2 {
                                 font-size: 16px;
                             }
 
@@ -433,15 +435,15 @@
                         display: flex;
                         justify-content: space-around;
                         margin-top: -30px;
-    
-    
+
+
                         .infoo {
                             width: 140px;
                             text-align: center;
                             height: 80px;
                             padding: 5px 0;
                             /* border: 1px solid black; */
-    
+
                             div {
                                 /* border: 1px solid grey; */
                                 display: inline-flex;
@@ -449,17 +451,17 @@
                                 gap: 5px;
                                 font-weight: 500;
                                 color: var(--primarycolor);
-    
+
                                 svg {
                                     font-size: 1.3em;
                                 }
                             }
-    
+
                             i {
                                 color: rgb(83, 82, 82);
                                 font-size: 0.8em;
                             }
-    
+
                             p {
                                 color: rgb(27, 25, 25);
                                 font-weight: 500;
@@ -468,16 +470,17 @@
                         }
                     }
                 }
-                .followsbtn{
+
+                .followsbtn {
                     position: absolute;
                     top: 8px;
                     right: 2px;
 
-                    button{
+                    button {
                         /* transform: scale(0.7); */
                         font-size: 7px;
 
-                        svg{
+                        svg {
                             font-size: 10px;
                         }
                     }
@@ -494,22 +497,76 @@
             .about,
             .socallink {
                 grid-column: span 1;
-
             }
         }
 
         .tournamentss {
-            width: 95vw;
+            width: 98vw;
             grid-template-columns: repeat(2, 1fr);
+            gap: 1rem 0.1rem;
 
             & .card {
-                width: 220px;
+                width: 200px;
 
                 & .img {
                     height: 220px;
 
                     >span {
                         font-size: 1.0rem;
+                    }
+                }
+
+                & .img {
+                    height: 220px;
+
+                    >span {
+                        font-size: 1.0rem;
+                    }
+                }
+
+                h3 {
+                    font-size: 12px;
+                }
+
+                .organiser,
+                .time {
+                    margin: 5px 0px;
+                    padding-left: 5px;
+
+                    span {
+                        font-size: 8px;
+                        margin-right: 5px;
+                    }
+                }
+
+                .time {
+                    font-size: 12px;
+                }
+
+                .tournId {
+                    font-size: 13px;
+                    margin-left: 5px;
+
+                    svg {
+                        margin-left: 12px;
+
+                    }
+                }
+
+                .controller {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 5px;
+
+                    & button {
+                        letter-spacing: 1px;
+                        font-size: 0.5em;
+                    }
+
+                    .status {
+                        letter-spacing: 1px;
+                        font-size: 0.5em;
                     }
                 }
             }
