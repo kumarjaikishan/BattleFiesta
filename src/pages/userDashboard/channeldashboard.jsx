@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import './channeldashboard.css';
-import { useParams ,useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { MdMenuOpen, MdContentCopy } from "react-icons/md";
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
@@ -36,6 +36,7 @@ const Channeldashboard = () => {
   const [tournas, settournas] = useState(null);
   const [error, setError] = useState(null);
   const [isfollowing, setisfollowing] = useState(false);
+  const [loading, setloading] = useState(false)
 
 
   useEffect(() => {
@@ -87,6 +88,7 @@ const Channeldashboard = () => {
     }
     const channeluserid = pro._id;
     try {
+      setloading(true)
       const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}follow`, {
         method: 'POST',
         headers: {
@@ -97,6 +99,7 @@ const Channeldashboard = () => {
       });
       const result = await rese.json();
       console.log(result)
+      setloading(false)
 
       if (!rese.ok) {
         toast.warn(result.message, { autoClose: 1900 });
@@ -106,6 +109,7 @@ const Channeldashboard = () => {
       fetchData();
       setError(null);  // Clear error if fetch is successful
     } catch (error) {
+      setloading(false)
       console.error(error);
       toast.error(error.message, { autoClose: 1900 });
     }
@@ -177,34 +181,23 @@ const Channeldashboard = () => {
                 {userprofile?.userprofile?.username === uid.split('@')[1] ? (
                   <Button
                     title='Edit Profile'
-                   variant="outlined"
-                   onClick={()=> navigate('/profile')}
-                   sx={{fontWeight:700}}
+                    variant="outlined"
+                    onClick={() => navigate('/profile')}
+                    sx={{ fontWeight: 700 }}
                     startIcon={<MdEdit />}
                   >
                     Edit Profile
                   </Button>
                 ) : (
-                  isfollowing ? (
-                    <Button
-                      title='Unfollow'
-                      onClick={() => dofollow(false)}
-                      style={{ fontWeight: 700, background: '#DFE3E8', color: '#212B36' }}
-                      variant="contained"
-                      startIcon={<SlUserFollowing />}
-                    >
-                      Following
-                    </Button>
-                  ) : (
-                    <Button
-                      title='Follow'
-                      onClick={() => dofollow(true)}
-                      variant="contained"
-                      startIcon={<SlUserFollow />}
-                    >
-                      Follow
-                    </Button>
-                  )
+                  <LoadingButton
+                    loading={loading}
+                    loadingPosition="start"
+                    startIcon={isfollowing ? <SlUserFollowing /> : <SlUserFollow />}
+                    variant="contained"
+                    onClick={() => dofollow(!isfollowing)}
+                  >
+                    {isfollowing ? "Following" : "Follow"}
+                  </LoadingButton>
                 )}
 
               </div>

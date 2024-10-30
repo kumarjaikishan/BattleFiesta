@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import './channeldashboard.css';
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 import { MdMenuOpen, MdContentCopy } from "react-icons/md";
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
@@ -16,92 +16,70 @@ import { FaWhatsapp } from "react-icons/fa";
 import { MdLocalPhone } from "react-icons/md";
 import { CiFacebook } from "react-icons/ci";
 import { FaYoutube } from "react-icons/fa";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { TbTournament } from "react-icons/tb";
 import { IoMdRefresh } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
 import LoadingButton from '@mui/lab/LoadingButton';
+import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logopng250.webp'
 import { useSelector } from 'react-redux';
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
   const { uid } = useParams();
+  const navigate = useNavigate();
   const log = useSelector((state) => state.login);
+  const userprofile = useSelector((state) => state.userprofile);
 
-  const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp';
-
-  const [pro, setpro] = useState(null);
+  const [pro, setPro] = useState(null);
   const [tournas, settournas] = useState(null);
   const [error, setError] = useState(null);
   const [isfollowing, setisfollowing] = useState(false);
+  const [loading, setloading]= useState(false)
 
 
   useEffect(() => {
     dispatch(setloader(true)); // Set loader when component mounts
-    firstfetch();
-  }, []);
-  const firstfetch = () => {
-    log.islogin && fetchelogin();
-    !log.islogin && fetche();
-  }
+    fetchData();
+    // console.log(userprofile.userprofile.username)
+  }, [log.islogin]);
 
-  const fetche = async () => {
-    try {
-      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}channel`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ uid: uid.split('@')[1] })
-      });
-      const result = await rese.json();
-      console.log(result)
 
-      dispatch(setloader(false));
-      if (!rese.ok) {
-        setError(result.message);  // Set error message if username is incorrect
-        toast.warn(result.message, { autoClose: 1900 });
-        return;
-      }
-
-      setpro(result.data);  // Set profile data
-      settournas(result.tournaments);
-      setError(null);
-    } catch (error) {
-      console.error(error);
-      setError('Something went wrong, please try again.');  // Set a generic error
-      dispatch(setloader(false));  // Remove loader on error
-    }
-  };
-  const fetchelogin = async () => {
+  const fetchData = async () => {
     const token = localStorage.getItem("token");
+    const url = log.islogin ? `${import.meta.env.VITE_API_ADDRESS}loginchannel` : `${import.meta.env.VITE_API_ADDRESS}channel`;
+    const headers = {
+      "Content-Type": "application/json",
+      ...(log.islogin && { "Authorization": `Bearer ${token}` })
+    };
+    const body = JSON.stringify({ uid: uid.split('@')[1] });
+
     try {
-      const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}loginchannel`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({ uid: uid.split('@')[1] })
-      });
-      const result = await rese.json();
+      const response = await fetch(url, { method: 'POST', headers, body });
+      const result = await response.json();
+      dispatch(setloader(false));
       console.log(result)
 
-      dispatch(setloader(false));
-      if (!rese.ok) {
-        setError(result.message);  // Set error message if username is incorrect
+      if (!response.ok) {
+        setError(result.message);
         toast.warn(result.message, { autoClose: 1900 });
         return;
       }
 
-      setpro(result.data);  // Set profile data
+      setPro(result.data);
       settournas(result.tournaments);
-      setisfollowing(result.isfollowed)
+      if (log.islogin) {
+        setisfollowing(result.isfollowed);
+      }
       setError(null);
     } catch (error) {
       console.error(error);
-      setError('Something went wrong, please try again.');  // Set a generic error
-      dispatch(setloader(false));  // Remove loader on error
+      setError('Something went wrong, please try again.');
+      dispatch(setloader(false));
     }
   };
+
   const dofollow = async (flag) => {
     console.log(flag)
     const token = localStorage.getItem("token");
@@ -126,7 +104,7 @@ const Channeldashboard = () => {
         return;
       }
       toast.success(result.message, { autoClose: 1500 });
-      firstfetch();
+      fetchData();
       setError(null);  // Clear error if fetch is successful
     } catch (error) {
       console.error(error);
@@ -134,7 +112,19 @@ const Channeldashboard = () => {
     }
   };
 
-  // Display error message if username is incorrect
+  function copyfunc(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => toast.success('Copied', { autoClose: 1000 }))
+      .catch(err => toast.error('Failed to copy', { autoClose: 1000 }));
+  }
+
+  const socialIcons = useMemo(() => ({
+    youtube: <FaYoutube />,
+    facebook: <CiFacebook />,
+    whatsapp: <FaWhatsapp />,
+    instagram: <FaInstagram />,
+  }), []);
+
   if (error) {
     return (
       <div className='channeldashboard'>
@@ -142,74 +132,82 @@ const Channeldashboard = () => {
       </div>
     );
   }
-
   if (!pro) {
     return;  // Show loader until profile data is set
   }
-  function copyfunc(text) {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        toast.success('Copied', { autoClose: 1000 });
-      })
-      .catch(err => {
-        console.error('Could not copy text: ', err);
-        toast.error('Failed to copy', { autoClose: 1000 });
-      });
-  }
-
-  const fine = {
-    "youtube": <FaYoutube />,
-    "facebook": <CiFacebook />,
-    "whatsapp": <FaWhatsapp />,
-    "instagram": <FaInstagram />,
-  }
+  const defaultcoverimage = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp'
 
   return (
     <div className='channeldashboard'>
       <div className="profile">
         <div className="upperinfo">
           <div className="coverimage">
-            <img src="https://firebasestorage.googleapis.com/v0/b/esportswebin.appspot.com/o/users%2FOyGza3wnnfT082g2YsrO1ag2umK2%2Fcover.webp?alt=media&token=10828b44-1acb-4a36-bdec-d7ac4e24a67d" alt="cover image" />
+            <img src={pro.coversrc || defaultcoverimage} alt="cover image" />
           </div>
 
           <div className="maininfo">
             <div className="top">
               <div className="profileimage">
-                <img src="https://firebasestorage.googleapis.com/v0/b/esportswebin.appspot.com/o/users%2FOyGza3wnnfT082g2YsrO1ag2umK2%2Fphoto.webp?alt=media&token=18e2c5f4-0182-4ac8-ab5e-d7c25dc00835" alt="profile image" />
+                <img src={pro.imgsrc || logo} alt="profile image" />
                 <div className='names'>
-                  <h2>{pro.name} {log.islogin ? "login" : "logout"}</h2>
+                  <h2>{pro.name}</h2>
                   <span>{uid}</span>
+                  {pro.city && pro.state ? (
+                    <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>
+                      ({pro.city}, {pro.state})
+                    </span>
+                  ) : pro.city || pro.state ? (
+                    <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>
+                      ({pro.city || pro.state})
+                    </span>
+                  ) : null}
                 </div>
               </div>
-              <div className="tournament infoo">
-                <div>Tournament</div>
-                <div>(Private included)</div>
-                <div>{tournas.length}</div>
+              <div className='mis'>
+                <div className="tournament infoo">
+                  <div><TbTournament /> Tournaments</div>
+                  <p>{tournas.length}</p>
+                  <i>(Private included)</i>
+                </div>
+                <div className="followers infoo">
+                  <div><FaPeopleGroup /> Followers</div>
+                  <p>{pro.followers.length || 0}</p>
+                </div>
               </div>
-              <div className="followers infoo">
-                <div>Followers</div>
-                <div>{pro.followers.length || 0}</div>
-              </div>
-              <div>
-                {isfollowing ?
-                  <Button onClick={() => dofollow(false)} style={{ background: 'grey', color: 'black' }} variant="contained" startIcon={<SlUserFollowing />}>
-                    Following
-                  </Button> :
-                  <Button onClick={() => dofollow(true)} variant="contained" startIcon={<SlUserFollow />}>
-                    Follow
+              <div className='followsbtn'>
+                {userprofile?.userprofile?.username === uid.split('@')[1] ? (
+                  <Button
+                    title='Edit Profile'
+                   variant="outlined"
+                   onClick={()=> navigate('/profile')}
+                   sx={{fontWeight:700}}
+                    startIcon={<MdEdit />}
+                  >
+                    Edit Profile
                   </Button>
-                }
-                {/* <LoadingButton
-                  loading={tournacenter.loading}
-                  onClick={() => dispatch(alltourna())}
-                  loadingPosition="end"
-                  sx={{ width: '48%' }}
-                  startIcon={<IoMdRefresh />}
-                  variant="outlined"
-                  type="submit"
-                >
-                  REFRESH
-                </LoadingButton> */}
+                ) : (
+                  isfollowing ? (
+                    <Button
+                      title='Unfollow'
+                      onClick={() => dofollow(false)}
+                      style={{ fontWeight: 700, background: '#DFE3E8', color: '#212B36' }}
+                      variant="contained"
+                      startIcon={<SlUserFollowing />}
+                    >
+                      Following
+                    </Button>
+                  ) : (
+                    <Button
+                      title='Follow'
+                      onClick={() => dofollow(true)}
+                      variant="contained"
+                      startIcon={<SlUserFollow />}
+                    >
+                      Follow
+                    </Button>
+                  )
+                )}
+
               </div>
             </div>
           </div>
@@ -219,21 +217,25 @@ const Channeldashboard = () => {
       <div className='more'>
         <div className="about">
           <h2>About</h2>
-          <div style={{ marginBottom: '12px' }}> {pro.bio}</div>
-          <div> <MdLocalPhone /> {pro.publicphone}</div>
-          <div> <IoIosMail /> {pro.publicemail}</div>
+          <p style={{ marginBottom: '12px' }}> {pro.bio}</p>
+          {pro.publicphone && <div> <MdLocalPhone /> {pro.publicphone}</div>}
+          {pro.publicemail && <div> <IoIosMail /> {pro.publicemail}</div>}
         </div>
         <div className="socallink">
           <h2>Social Links</h2>
-
-          {pro.sociallinks?.map((val, ind) => {
-            return <div key={ind}> <span className="icon"> {fine[val.name]} </span> <span>{val.link}</span> <MdContentCopy className='copyicon' title='copy Link' onClick={() => copyfunc(val.link)} /> </div>
-          })}
+          {pro.sociallinks.length < 1 && <div>no data found</div>}
+          {pro.sociallinks?.map((val, ind) => (
+            <div key={ind}>
+              <span className="icon">{socialIcons[val.name]}</span>
+              <span>{val.link}</span>
+              <MdContentCopy className='copyicon' title='Copy Link' onClick={() => copyfunc(val.link)} />
+            </div>
+          ))}
         </div>
       </div>
 
       <div className="tournamentss">
-        {tournas && tournas.map((tourn, ind) => {
+        {tournas.length > 0 ? tournas.map((tourn, ind) => {
           const formattedDate = new Date(tourn.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
             month: "short",
@@ -250,7 +252,7 @@ const Channeldashboard = () => {
             <div className="img">
               <img
                 loading="lazy"
-                src={tourn.tournment_logo || tournlogo}
+                src={tourn.tournment_logo || logo}
                 alt="logo"
               />
               <span title={tourn.title}>{tourn.title}</span>
@@ -261,10 +263,7 @@ const Channeldashboard = () => {
             </div>
             <div className="tournId">
               ID :- {tourn.tournid}
-              <MdContentCopy title="Copy Id" onClick={() => {
-                navigator.clipboard.writeText(tourn.tournid);
-                toast.success('Copied', { autoClose: 1000 })
-              }} />
+              <MdContentCopy title="Copy Id" onClick={() => copyfunc(tourn.tournid)} />
             </div>
             <div className="controller">
               <Button size="small" variant="contained" endIcon={<MdMenuOpen />}>
@@ -273,9 +272,15 @@ const Channeldashboard = () => {
               <p className="status" title="Status">{tourn.status}</p>
             </div>
           </div>
-        })}
+        }) :
+          <div className='notfoundtourn'>
+            <TbMoodSad className="sad" />
+            <h2>No Tournament Found</h2>
+            {/* <p>Please Add Tournament.</p> */}
+          </div>
+        }
       </div>
-    </div>
+    </div >
   );
 };
 
