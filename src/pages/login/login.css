@@ -76,6 +76,7 @@
             .logine {
                 height: 100%;
                 width: 100%;
+                /* border: 1px solid red; */
 
                 & form {
                     height: 100%;
@@ -166,8 +167,16 @@
 
         .box {
             margin-top: 20px;
-            width: 80vw;
-            height: 70vh;
+            width: 90vw;
+            height: 67vh;
+            border-radius: 10px;
+        }
+
+        .both .filled {
+            /* border: 1px solid red; */
+            border-radius: 40px;
+            height: 40px;
+            width: 95%;
         }
     }
 }
