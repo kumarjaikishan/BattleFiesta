@@ -20,6 +20,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { TbTournament } from "react-icons/tb";
 import { IoMdRefresh } from "react-icons/io";
 import LoadingButton from '@mui/lab/LoadingButton';
+import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logopng250.webp'
 import { useSelector } from 'react-redux';
 
@@ -53,6 +54,7 @@ const Channeldashboard = () => {
       const response = await fetch(url, { method: 'POST', headers, body });
       const result = await response.json();
       dispatch(setloader(false));
+      console.log(result)
 
       if (!response.ok) {
         setError(result.message);
@@ -128,36 +130,48 @@ const Channeldashboard = () => {
   if (!pro) {
     return;  // Show loader until profile data is set
   }
+  const defaultcoverimage = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp'
 
   return (
     <div className='channeldashboard'>
       <div className="profile">
         <div className="upperinfo">
           <div className="coverimage">
-            <img src="https://firebasestorage.googleapis.com/v0/b/esportswebin.appspot.com/o/users%2FOyGza3wnnfT082g2YsrO1ag2umK2%2Fcover.webp?alt=media&token=10828b44-1acb-4a36-bdec-d7ac4e24a67d" alt="cover image" />
+            <img src={pro.coversrc || defaultcoverimage} alt="cover image" />
           </div>
 
           <div className="maininfo">
             <div className="top">
               <div className="profileimage">
-                <img src="https://firebasestorage.googleapis.com/v0/b/esportswebin.appspot.com/o/users%2FOyGza3wnnfT082g2YsrO1ag2umK2%2Fphoto.webp?alt=media&token=18e2c5f4-0182-4ac8-ab5e-d7c25dc00835" alt="profile image" />
+                <img src={pro.imgsrc || logo} alt="profile image" />
                 <div className='names'>
                   <h2>{pro.name}</h2>
                   <span>{uid}</span>
+                  {pro.city && pro.state ? (
+                    <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>
+                      ({pro.city}, {pro.state})
+                    </span>
+                  ) : pro.city || pro.state ? (
+                    <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>
+                      ({pro.city || pro.state})
+                    </span>
+                  ) : null}
                 </div>
               </div>
-              <div className="tournament infoo">
-                <div><TbTournament/> Tournament</div>
-                <p>{tournas.length}</p>
-                <i>(Private included)</i>
+              <div className='mis'>
+                <div className="tournament infoo">
+                  <div><TbTournament /> Tournaments</div>
+                  <p>{tournas.length}</p>
+                  <i>(Private included)</i>
+                </div>
+                <div className="followers infoo">
+                  <div><FaPeopleGroup /> Followers</div>
+                  <p>{pro.followers.length || 0}</p>
+                </div>
               </div>
-              <div className="followers infoo">
-                <div><FaPeopleGroup/> Followers</div>
-                <p>{pro.followers.length || 0}</p>
-              </div>
-              <div>
+              <div className='followsbtn'>
                 {isfollowing ?
-                  <Button title='Unfollow' onClick={() => dofollow(false)} style={{fontWeight:700, background: '#DFE3E8', color: '#212B36' }} variant="contained" startIcon={<SlUserFollowing />}>
+                  <Button title='Unfollow' onClick={() => dofollow(false)} style={{ fontWeight: 700, background: '#DFE3E8', color: '#212B36' }} variant="contained" startIcon={<SlUserFollowing />}>
                     Following
                   </Button> :
                   <Button title='Follow' onClick={() => dofollow(true)} variant="contained" startIcon={<SlUserFollow />}>
@@ -174,11 +188,12 @@ const Channeldashboard = () => {
         <div className="about">
           <h2>About</h2>
           <p style={{ marginBottom: '12px' }}> {pro.bio}</p>
-          <div> <MdLocalPhone /> {pro.publicphone}</div>
-          <div> <IoIosMail /> {pro.publicemail}</div>
+          {pro.publicphone && <div> <MdLocalPhone /> {pro.publicphone}</div>}
+          {pro.publicemail && <div> <IoIosMail /> {pro.publicemail}</div>}
         </div>
         <div className="socallink">
           <h2>Social Links</h2>
+          {pro.sociallinks.length < 1 && <div>no data found</div>}
           {pro.sociallinks?.map((val, ind) => (
             <div key={ind}>
               <span className="icon">{socialIcons[val.name]}</span>
@@ -190,7 +205,7 @@ const Channeldashboard = () => {
       </div>
 
       <div className="tournamentss">
-        {tournas && tournas.map((tourn, ind) => {
+        {tournas.length > 0 ? tournas.map((tourn, ind) => {
           const formattedDate = new Date(tourn.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
             month: "short",
@@ -218,7 +233,7 @@ const Channeldashboard = () => {
             </div>
             <div className="tournId">
               ID :- {tourn.tournid}
-              <MdContentCopy title="Copy Id" onClick={() => copyfunc(tourn.tournid)}  />
+              <MdContentCopy title="Copy Id" onClick={() => copyfunc(tourn.tournid)} />
             </div>
             <div className="controller">
               <Button size="small" variant="contained" endIcon={<MdMenuOpen />}>
@@ -227,7 +242,13 @@ const Channeldashboard = () => {
               <p className="status" title="Status">{tourn.status}</p>
             </div>
           </div>
-        })}
+        }) :
+          <div className='notfoundtourn'>
+            <TbMoodSad className="sad" />
+            <h2>No Tournament Found</h2>
+            {/* <p>Please Add Tournament.</p> */}
+          </div>
+        }
       </div>
     </div>
   );

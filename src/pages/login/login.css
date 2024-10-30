@@ -146,8 +146,11 @@
 
 .login .both button {
     letter-spacing: 1px;
+    position: sticky;
+    bottom: 10px;
     transition: 0.1s;
     text-align: center;
+    /* border: 2px solid red; */
 }
 
 

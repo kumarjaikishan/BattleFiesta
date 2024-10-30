@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 import InputAdornment from '@mui/material/InputAdornment';
-import { CiMail } from "react-icons/ci";
+import { IoMdMail } from "react-icons/io";
 import { MdPerson4 } from "react-icons/md";
 
 
@@ -75,9 +75,8 @@ const Contact = () => {
                         fullWidth id="outlined-basic"
                         label="Name"
                         name='name'
-                        disabled={log.islogin}
                         className='inp'
-                        onChange={handlechange}
+                        onChange={!log.islogin && handlechange}
                         value={inp.name}
                         variant="outlined"
                         InputProps={{
@@ -90,15 +89,14 @@ const Contact = () => {
                         fullWidth id="outlined-basic"
                         label="Email"
                         type='email'
-                        disabled={log.islogin}
                         name='email'
                         className='inp'
-                        onChange={handlechange}
+                        onChange={!log.islogin && handlechange}
                         value={inp.email}
                         variant="outlined"
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <CiMail />
+                                <IoMdMail />
                             </InputAdornment>,
                         }}
                     />

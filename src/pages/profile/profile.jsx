@@ -46,6 +46,7 @@ const Profile = () => {
         publicemail: '',
         publicphone: '',
         profile: '',
+        cover: '',
         sociallinks: ''
     }
     const [inp, setinp] = useState(init);
@@ -61,6 +62,7 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
+        // console.log(userprofile.userprofile)
     }, [userprofile])
 
 
@@ -95,7 +97,8 @@ const Profile = () => {
             publicemail: data.publicemail,
             publicphone: data.publicphone,
             sociallinks: data.sociallinks,
-            profile: data.imgsrc
+            profile: data.imgsrc,
+            cover: data.coversrc
         })
         if (!userprofile.membership.planid.plan_name) {
             return;
@@ -176,10 +179,19 @@ const Profile = () => {
             setisloadinge(false)
         }
     }
-    const handlefilechange = async (event) => {
+    const handlefilechange = async (event, which) => {
         const imageFile = event.target.files[0];
+        let resizedfile;
+        let url;
+        if (which == 'profile') {
+            resizedfile = await handleImage(230, imageFile);
+            url = `${import.meta.env.VITE_API_ADDRESS}updateprofilepic`
+        } else {
+            resizedfile = await handleImage(500, imageFile);
+            url = `${import.meta.env.VITE_API_ADDRESS}updatecoverpic`
+        }
 
-        let resizedfile = await handleImage(200, imageFile);
+
         // console.log(resizedfile);
 
         if (resizedfile) {
@@ -187,8 +199,9 @@ const Profile = () => {
             try {
                 const token = localStorage.getItem("token");
                 const formData = new FormData();
-                formData.append(`profilepic`, resizedfile);
-                const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}updateprofilepic`, {
+                formData.append(which === 'profile' ? 'profilepic' : 'coverpic', resizedfile);  // Dynamic key
+
+                const res = await fetch(url, {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -196,13 +209,17 @@ const Profile = () => {
                     body: formData
                 })
                 const data = await res.json();
+                toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                 if (res.ok) {
-                    toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                     // console.log(data);
-                    setinp({ ...inp, profile: data.url });
+                    if (which == 'profile') {
+                        setinp({ ...inp, profile: data.url });
+                    } else {
+                        setinp({ ...inp, cover: data.url })
+                    }
                 }
             } catch (error) {
-                toast.update(id, { render: error, type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
                 console.log(error);
             }
         }
@@ -271,14 +288,30 @@ const Profile = () => {
             <div className="materials">
                 <div className="profilepic glass">
                     <h2>Profile Picture</h2>
-                    <div className="img">
-                        <img src={inp.profile ? inp.profile : photo}
-                            loading="lazy" alt="" />
+                    <div className="coverimg">
+                        <img src={inp.cover ? inp.cover : photo}
+                            loading="lazy" alt="cover picture" />
+                        <div className="img">
+                            <img src={inp.profile ? inp.profile : photo}
+                                loading="lazy" alt="profile picture" />
+                        </div>
                     </div>
-                    <div> <h2>{inp.name}</h2></div>
+
                     <Button
                         component="label"
-                        sx={{ mt: 2 }}
+                        sx={{ mt: 6 }}
+                        role={undefined}
+                        variant="contained"
+                        tabIndex={-1}
+                        startIcon={<IoMdCloudUpload />}
+                        className='splbtn'
+                    >
+                        Change Cover
+                        <VisuallyHiddenInput onChange={(e) => handlefilechange(e, 'cover')} type="file" accept="image/*" />
+                    </Button>
+                    <Button
+                        component="label"
+                        sx={{ mt: 1 }}
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
@@ -286,7 +319,7 @@ const Profile = () => {
                         className='splbtn'
                     >
                         Change Profile
-                        <VisuallyHiddenInput onChange={handlefilechange} type="file" accept="image/*" />
+                        <VisuallyHiddenInput onChange={(e) => handlefilechange(e, 'profile')} type="file" accept="image/*" />
                     </Button>
                 </div>
                 <div className="profiledeatil glass">

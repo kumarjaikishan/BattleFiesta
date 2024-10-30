@@ -31,6 +31,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { MdReadMore } from "react-icons/md";
 import { TbMoodSad } from "react-icons/tb";
+import tournlogo from '../../assets/logopng250.webp'
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,6 @@ const Dashboard = () => {
   }, [tournacenter.alltournaments]);
 
 
-  const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp'
   const setdata = (data) => {
     // console.log(data);
     if (data.type == 'tdm') {
@@ -292,7 +292,7 @@ const Dashboard = () => {
           </div>
         </div>
         <motion.div layout className="cards">
-          {filtered ?
+          {filtered.length > 0 ?
             filtered.slice(0, howmany)?.map((val) => {
               // Format the date
               const formattedDate = new Date(val.createdAt).toLocaleDateString(
@@ -339,11 +339,6 @@ const Dashboard = () => {
                       <span >{val.type}</span>
                       <span> <TiGroupOutline style={{ fontSize: '20px' }} /> . {val.totalTeamsRegistered}/{val.slots} </span>
                     </div>
-                    {/* {val.label.length > 0 && <div className="label">
-                      {val.label.split(',').map((eac) => {
-                        return <span>{eac}</span>
-                      })}
-                    </div>} */}
                     <div className="controller">
                       <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
                       <MdDelete title="delete tournament" className="delete" onClick={() => deletee(val._id)} />
@@ -351,7 +346,8 @@ const Dashboard = () => {
                   </motion.div>
                 </Badge>
               )
-            }) : <div className="notfound">
+            }) :
+            <div className="notfound">
               <div>
                 <TbMoodSad className="sad" />
                 <h2>No Tournament Found</h2>

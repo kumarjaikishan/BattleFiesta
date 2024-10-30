@@ -136,36 +136,53 @@
 
         .profilepic {
             height: 370px;
-            /* border: 1px solid red; */
             display: flex;
             flex-direction: column;
-            align-items: center;
             grid-column: span 3;
+            position: relative;
 
-            .img {
-                margin: 20px 0px;
+            .coverimg {
+                margin: 8px 0px;
                 position: relative;
-                width: 170px;
+                width: 100%;
                 height: 170px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent, #ff2770);
-                animation: rotate 5s linear infinite;
-                border-radius: 23px;
-                /* border-radius: 50%; */
-                padding: 3px;
+                padding: 0px;
 
-                img {
+                >img {
                     background: linear-gradient(to right bottom,
                             rgba(255, 255, 255, 0.7),
                             rgba(255, 255, 255, 0.3));
                     width: 100%;
                     height: 100%;
-                    border-radius: 20px;
-                    /* border-radius: 50%; */
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+
+                .img {
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    left: 0;
+                    bottom: -50px;
+                    /* border: 1px solid black; */
+                    /* background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent, #ff2770);
+                    animation: rotate 5s linear infinite; */
+
+                    padding: 3px;
+
+                    img {
+                        background: linear-gradient(to right bottom,
+                                rgba(255, 255, 255, 0.7),
+                                rgba(255, 255, 255, 0.3));
+                        border: 1px solid white;
+                        width: 100%;
+                        height: 100%;
+                        padding: 1px;
+                        border-radius: 50%;
+                    }
                 }
             }
+
         }
 
         .profiledeatil {
@@ -186,7 +203,7 @@
                 justify-content: space-between;
                 align-items: center;
                 border-radius: 5px;
-               
+
 
                 & span:nth-child(1) {
                     width: 28%;
@@ -364,7 +381,7 @@
             .profilepic {
                 height: max-content;
                 grid-column: span 8;
-                width: 80%;
+                width: 100%;
                 margin: 0 auto;
 
                 .img {
