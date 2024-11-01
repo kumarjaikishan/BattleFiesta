@@ -79,7 +79,11 @@ function App() {
     });
   }, []);
 
+  const baseURL = `${window.location.origin}`;
+
+
   useEffect(() => {
+    console.log(baseURL);
     log.islogin && requestPermission();
   }, [log.islogin]);
 
