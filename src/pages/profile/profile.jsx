@@ -187,7 +187,7 @@ const Profile = () => {
             resizedfile = await handleImage(230, imageFile);
             url = `${import.meta.env.VITE_API_ADDRESS}updateprofilepic`
         } else {
-            resizedfile = await handleImage(500, imageFile);
+            resizedfile = await handleImage(600, imageFile);
             url = `${import.meta.env.VITE_API_ADDRESS}updatecoverpic`
         }
 
