@@ -83,10 +83,13 @@ function App() {
   const targetBaseURL = 'https://battlefiesta.in';
 
   useEffect(() => {
-    if (baseURL !== targetBaseURL) {
+    const isLocalhost = window.location.hostname === 'localhost';
+
+    // Only redirect if not on localhost and the base URL does not match the target base URL
+    if (!isLocalhost && baseURL !== targetBaseURL) {
       window.location.href = `${targetBaseURL}${window.location.pathname}`;
     } else {
-      console.log("URL is correct, no redirection needed");
+      console.log("URL is correct or running on localhost, no redirection needed");
     }
     log.islogin && requestPermission();
   }, [log.islogin]);

@@ -512,8 +512,18 @@
                 }
                 div:nth-child(3) {
                     font-size: 14px;
-                    margin-top: 5px;
+                    margin-top: 8px;
+
+                    button {
+                        font-size: 9px;
+                        margin-top: -3px;
+                    }
+    
+                    svg {
+                        font-size: 12px;
+                    }
                 }
+                
 
             }
         }
