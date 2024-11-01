@@ -196,6 +196,7 @@ const Profile = () => {
 
         if (resizedfile) {
             const id = toast.loading("Uploading Please wait...")
+            setisloadinge(true)
             try {
                 const token = localStorage.getItem("token");
                 const formData = new FormData();
@@ -209,18 +210,18 @@ const Profile = () => {
                     body: formData
                 })
                 const data = await res.json();
-                toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
+                setisloadinge(false)
                 if (res.ok) {
                     // console.log(data);
-                    if (which == 'profile') {
-                        setinp({ ...inp, profile: data.url });
-                    } else {
-                        setinp({ ...inp, cover: data.url })
-                    }
+                    toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
+                    dispatch(profilefetch());
+                    return;
                 }
+                toast.update(id, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
             } catch (error) {
                 toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
                 console.log(error);
+                setisloadinge(false)
             }
         }
     }
@@ -300,6 +301,7 @@ const Profile = () => {
                     <Button
                         component="label"
                         sx={{ mt: 6 }}
+                        disabled={isloadinge}
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
@@ -312,6 +314,7 @@ const Profile = () => {
                     <Button
                         component="label"
                         sx={{ mt: 1 }}
+                        disabled={isloadinge}
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}

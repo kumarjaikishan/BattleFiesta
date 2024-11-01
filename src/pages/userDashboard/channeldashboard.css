@@ -365,17 +365,18 @@
             transform: scale(1.03);
         }
 
-        .notfoundtourn {
-            margin: 0 auto;
-            width: 500px;
-            border: 1px solid rgb(207, 203, 203);
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
+        
+    }
+    .notfoundtourn {
+        margin: 0 auto;
+        width: 500px;
+        border: 1px solid rgb(95, 93, 93);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
 
-            & .sad {
-                font-size: 4em;
-            }
+        & .sad {
+            font-size: 4em;
         }
     }
 }
@@ -577,9 +578,10 @@
                 }
             }
 
-            .notfoundtourn {
-                width: 95vw;
-            }
+           
+        }
+        .notfoundtourn {
+            width: 95vw;
         }
     }
 }

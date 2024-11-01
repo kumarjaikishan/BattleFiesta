@@ -1,13 +1,13 @@
-import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel } from '@mui/material';
+import { FormLabel, RadioGroup, FormHelperText, Radio, Box, TextField, FormControlLabel } from '@mui/material';
 import './TournaFormSetting.css'
 import { useEffect } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { FaSave } from "react-icons/fa";
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
-useEffect(()=>{
-// console.log("form setting", all);
-},[])
+    useEffect(() => {
+        // console.log("form setting", all);
+    }, [])
     return (
         <>
             <div className="maine">
@@ -47,7 +47,7 @@ useEffect(()=>{
                     />
                     <TextField
                         id="outlined-multiline-static"
-                        label="Successful  Message"
+                        label="Registration Successful Message"
                         multiline
                         className='taxi'
                         value={all.success_message}
@@ -143,6 +143,22 @@ useEffect(()=>{
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
+
+                    {/* <FormLabel id="demo-row-radio-buttons-group-label">Enable Notification</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="notification"
+                        defaultValue={false}
+                        value={all.notification}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
+                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+                    </RadioGroup>
+                    <FormHelperText>Receive Notification on Team Registration </FormHelperText> */}
+
+
                     <FormLabel id="demo-row-radio-buttons-group-label">Show Payment Option</FormLabel>
                     <RadioGroup
                         row
@@ -157,6 +173,7 @@ useEffect(()=>{
                         <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
                     </RadioGroup>
+
                     {all.show_payment && <>
                         <TextField
                             id="outlined-number"

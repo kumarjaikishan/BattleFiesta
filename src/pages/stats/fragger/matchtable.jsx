@@ -10,14 +10,25 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
     useEffect(() => {
         // console.log("matches -", matches);
        matches?.length > 0 && handlee(matches[0])
+       matches?.length > 0 && settitle(`${matches[0].map} - ${formtdate(0)}`)
     }, [matches])
     const [currentmatch, setcurrentmatch] = useState("");
+    const [title,settitle]= useState(null)
 
     const handleChange = (event) => {
-        // console.log(event.target.value);
+       
+        // console.log(matches[event.target.value]);
+        settitle(`${matches[event.target.value].map} - ${formtdate(event.target.value)}`)
         handlee(matches[event.target.value])
         setcurrentmatch(event.target.value);
     };
+    const formtdate = (inde)=>{
+        const originalDate = new Date(matches[inde].createdAt);
+        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
+        const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(originalDate);
+        return formattedDate;
+    }
     const handlee = (sdvdf) => {
         // console.log(sdvdf);
         let matchlist = [];
@@ -78,6 +89,7 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
                         </Select>
                     </FormControl>
                 </div>
+                <p> Match #{currentmatch+1}-{title && title} </p>
                 <div className="table">
                     <table>
                         <thead>

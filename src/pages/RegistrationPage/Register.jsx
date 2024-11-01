@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import { GrOverview } from "react-icons/gr";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Teams from "./teams";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
@@ -45,7 +46,6 @@ const Register = () => {
     const [newfresh, setnewfresh] = useState(false);
     const [isloading, setisloading] = useState(false)
     const { registerId } = useParams();
-    const tournacenter = useSelector((state) => state.tournacenter);
     const [disable, setdisable] = useState(false);
     useEffect(() => {
         dispatch(header("Registration"));
@@ -146,7 +146,7 @@ const Register = () => {
                 body: JSON.stringify({ tid: id })
             })
             const resuke = await rese.json();
-            console.log(resuke);
+            // console.log(resuke);
             if (rese.ok) {
                 // toast.success(resuke.message, { autoClose: 1300 });
                 setdisable(false);
@@ -183,7 +183,8 @@ const Register = () => {
                     status: actualdata2.status,
                     tourna_banner: actualdata2.tournment_banner,
                     tourna_logo: actualdata2.tournment_logo,
-                    slots: actualdata2.slots
+                    slots: actualdata2.slots,
+                    channel: actualdata2.userid.username
                 })
                 setinp({
                     ...inp,
@@ -413,7 +414,13 @@ const Register = () => {
                 </div>
                     {!teamlist && <div className="form">
                         <h2>Registration : {all.title}</h2>
-                        <h4>Organised by : {all.organiser}</h4>
+                        <h4>Organised by : {all.organiser}
+                            <Button variant="outlined"
+                              startIcon={<GrOverview />}
+                                onClick={() => window.open(`/channel/@${all.channel}`, '_blank')}
+                            > View Channel
+                            </Button>
+                        </h4>
                         <div className="slots">
                             <span>Total Slots : {all.slots}</span>
                             <span>Registered : {filteredentry.length}</span>
@@ -556,7 +563,7 @@ const Register = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {all.isopen && all.show_payment &&  all.slots > filteredentry.length && <div className="showpayment">
+                        {all.isopen && all.show_payment && all.slots > filteredentry.length && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

@@ -12,6 +12,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { MdInsertLink } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdLocalPhone } from "react-icons/md";
+import { GrOverview } from "react-icons/gr";
 
 const Tournamentstatpage = () => {
   const dispatch = useDispatch();
@@ -85,7 +86,14 @@ const Tournamentstatpage = () => {
           <div className="upper">
             <div>{tournament.title} <span>{tournament.status}</span></div>
             <div>Organised by: {tournament.organiser} </div>
-            <div>Created At: {changeformat(tournament.createdAt)} </div>
+            <div>Created At: {changeformat(tournament.createdAt)}
+              <Button variant="outlined"
+                title={`View ${tournament?.userid?.name}'s Channel`}
+                startIcon={<GrOverview />}
+                onClick={() => window.open(`/channel/@${tournament?.userid?.username}`, '_blank')}
+              > View Channel
+              </Button>
+            </div>
           </div>
           {publicpost && <div style={{ margin: "10px 0px" }}>
             {publicpost.split('\n').map((line, index) => (

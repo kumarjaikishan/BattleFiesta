@@ -18,11 +18,14 @@ import { IoMailOutline } from "react-icons/io5";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
+
 
 const User = () => {
     const admin = useSelector((state) => state.admin);
     const userprofile = useSelector((state) => state.admin);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const init = {
         id: '',
         name: '',
@@ -166,7 +169,7 @@ const User = () => {
         setmodal(true);
     }
     const mail = (val) => {
-        console.log(val);
+        // console.log(val);
         setmailinp({
             email: val.email,
             message: '',
@@ -213,7 +216,10 @@ const User = () => {
                 {admin?.users?.map((val, ind) => {
                     return <div key={ind} className={`status ${val.membership?.isActive ? 'active' : 'expired'}`}>
                         <span>{ind + 1}</span>
-                        <span>{val.name}</span>
+                        <span style={{cursor:'pointer'}}
+                        //  onClick={()=> navigate(`/channel/@${val.username}`)}
+                         onClick={() => window.open(`/channel/@${val.username}`, '_blank')}
+                         >{val.name}</span>
                         <span>{val.phone}</span>
                         <span>{val.email}</span>
                         <span>{formatDate(val.createdAt)}</span>
@@ -281,7 +287,7 @@ const User = () => {
                             <TextField required value={mailinp.message}
                                 onChange={(e) => handlemailChange(e, 'message')}
                                 sx={{ width: '98%' }}
-                                multiline rows={5}
+                                multiline rows={8}
                                 label="Message"
                                 size="small" />
 

@@ -270,12 +270,20 @@
       color: grey;
       background: whitesmoke;
     }
-
+    p{
+      text-align: center;
+      color: white;
+      text-transform: capitalize;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 20px;
+    }
     .table {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 5px;
 
 
       & table {

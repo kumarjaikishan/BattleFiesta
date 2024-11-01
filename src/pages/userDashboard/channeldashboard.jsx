@@ -138,7 +138,7 @@ const Channeldashboard = () => {
   if (!pro) {
     return;  // Show loader until profile data is set
   }
-  const defaultcoverimage = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp'
+  const defaultcoverimage = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1730449433/battlefiesta/coverpic/bgmi-33-update-image-2_tfng.1080_myyj43.webp'
 
   return (
     <div className='channeldashboard'>
@@ -209,13 +209,14 @@ const Channeldashboard = () => {
       <div className='more'>
         <div className="about">
           <h2>About</h2>
+          {(!pro.bio && !pro.publicphone && !pro.publicemail) && <p>Not Added Yet</p>}
           <p style={{ marginBottom: '12px' }}> {pro.bio}</p>
           {pro.publicphone && <div> <MdLocalPhone /> {pro.publicphone}</div>}
           {pro.publicemail && <div> <IoIosMail /> {pro.publicemail}</div>}
         </div>
         <div className="socallink">
           <h2>Social Links</h2>
-          {pro.sociallinks.length < 1 && <div>no data found</div>}
+          {pro.sociallinks.length < 1 && <div>No Data Found</div>}
           {pro.sociallinks?.map((val, ind) => (
             <div key={ind}>
               <span className="icon">{socialIcons[val.name]}</span>
@@ -228,7 +229,7 @@ const Channeldashboard = () => {
       </div>
 
       <div className="tournamentss">
-        {tournas.length > 0 ? tournas.map((tourn, ind) => {
+        {tournas && tournas.filter((tourn)=> tourn.visibility).map((tourn, ind) => {
           const formattedDate = new Date(tourn.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
             month: "short",
@@ -259,20 +260,21 @@ const Channeldashboard = () => {
               <MdContentCopy title="Copy Id" onClick={() => copyfunc(tourn.tournid)} />
             </div>
             <div className="controller">
-              <Button size="small" variant="contained" endIcon={<MdMenuOpen />}>
+              <Button size="small" onClick={() => navigate(`/tournaments/${tourn._id}`)} variant="contained" endIcon={<MdMenuOpen />}>
                 READ MORE
               </Button>
               <p className="status" title="Status">{tourn.status}</p>
             </div>
           </div>
-        }) :
-          <div className='notfoundtourn'>
-            <TbMoodSad className="sad" />
-            <h2>No Tournament Found</h2>
-            {/* <p>Please Add Tournament.</p> */}
-          </div>
-        }
+        })}
       </div>
+      {tournas?.length < 1 &&
+        <div className='notfoundtourn'>
+          <TbMoodSad className="sad" />
+          <h2>No Tournament Found</h2>
+          {/* <p>Please Add Tournament.</p> */}
+        </div>
+      }
     </div >
   );
 };
