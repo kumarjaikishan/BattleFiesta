@@ -59,7 +59,7 @@ const Channeldashboard = () => {
       const response = await fetch(url, { method: 'POST', headers, body });
       const result = await response.json();
       dispatch(setloader(false));
-      console.log(result)
+      // console.log(result)
 
       if (!response.ok) {
         setError(result.message);
@@ -81,7 +81,7 @@ const Channeldashboard = () => {
   };
 
   const dofollow = async (flag) => {
-    console.log(flag)
+    // console.log(flag)
     const token = localStorage.getItem("token");
     if (!token) {
       return toast.warn('You are not Logged In', { autoClose: 1900 });
@@ -98,7 +98,7 @@ const Channeldashboard = () => {
         body: JSON.stringify({ flag, channeluserid })
       });
       const result = await rese.json();
-      console.log(result)
+      // console.log(result)
       setloading(false)
 
       if (!rese.ok) {
@@ -268,7 +268,7 @@ const Channeldashboard = () => {
           </div>
         })}
       </div>
-      {tournas?.length < 1 &&
+      {tournas?.filter((tourn)=> tourn.visibility).length < 1 &&
         <div className='notfoundtourn'>
           <TbMoodSad className="sad" />
           <h2>No Tournament Found</h2>
