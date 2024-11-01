@@ -80,14 +80,13 @@ function App() {
   }, []);
 
   const baseURL = `${window.location.origin}`;
-
+  const targetBaseURL = 'https://battlefiesta.in';
 
   useEffect(() => {
-    console.log(baseURL);
-    if(baseURL != 'https://battlefiesta.in'){
-      console.log("redirect hoga")
-    }else{
-      console.log("redirect nahi hoga")
+    if (baseURL !== targetBaseURL) {
+      window.location.href = `${targetBaseURL}${window.location.pathname}`;
+    } else {
+      console.log("URL is correct, no redirection needed");
     }
     log.islogin && requestPermission();
   }, [log.islogin]);
