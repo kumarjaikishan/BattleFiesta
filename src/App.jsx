@@ -84,6 +84,11 @@ function App() {
 
   useEffect(() => {
     console.log(baseURL);
+    if(baseURL != 'https://battlefiesta.in'){
+      console.log("redirect hoga")
+    }else{
+      console.log("redirect nahi hoga")
+    }
     log.islogin && requestPermission();
   }, [log.islogin]);
 
