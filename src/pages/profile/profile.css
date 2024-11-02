@@ -14,7 +14,7 @@
     }
 }
 
-.profile {
+.profilepage {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
     position: relative;
@@ -306,7 +306,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .profile {
+    .profilepage {
         min-height: calc(100vh - var(--navheightmobile));
 
         .circle {

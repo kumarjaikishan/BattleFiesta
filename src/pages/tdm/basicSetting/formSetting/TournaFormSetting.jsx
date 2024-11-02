@@ -37,7 +37,8 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         multiline
                         name="description"
                         className='taxi'
-                        rows={4}
+                         size='small'
+                        rows={7}
                         inputProps={{ style: { fontSize: "11px", lineHeight: "12px" } }}
                         onChange={handleChange}
                         value={all.description}
@@ -48,6 +49,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         label="Successful  Message"
                         multiline
                         className='taxi'
+                         size='small'
                         value={all.success_message}
                         inputProps={{ style: { fontSize: 11 } }}
                         rows={1}

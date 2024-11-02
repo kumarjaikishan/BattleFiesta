@@ -85,7 +85,6 @@ function App() {
   useEffect(() => {
     const isLocalhost = window.location.hostname === 'localhost';
 
-    // Only redirect if not on localhost and the base URL does not match the target base URL
     if (!isLocalhost && baseURL !== targetBaseURL) {
       window.location.href = `${targetBaseURL}${window.location.pathname}`;
     } else {

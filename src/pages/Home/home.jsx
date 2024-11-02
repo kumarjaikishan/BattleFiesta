@@ -119,7 +119,7 @@ const Home = () => {
                         <div>
                             <h1>
                             All-In-One platform for &nbsp;
-                            <span style={{color:'Yellow', fontSize:'1.5em'}}>
+                            <span className='reacttype' style={{color:'Yellow', fontSize:'1.5em'}}>
                                 <ReactTyped
                                     strings={["Create", "Host", "Manage"]}
                                     typeSpeed={140}

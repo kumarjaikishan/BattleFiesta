@@ -269,7 +269,7 @@ const Profile = () => {
     }
 
     return (
-        <div className="profile">
+        <div className="profilepage">
             <motion.div
                 animate={{
                     scale: [1, 1.2, 1.2, 1],
@@ -339,7 +339,7 @@ const Profile = () => {
                                 className="half" label="Phone" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half" label="City" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half" label="State" variant="outlined" />
-                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" label="Bio" variant="outlined" />
+                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" label="Bio/About" variant="outlined" />
                         </div>
                         {/* <button disabled={isloadinge} type='submit'>Save</button> */}
                         <Button

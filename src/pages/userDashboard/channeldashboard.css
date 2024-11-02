@@ -1,18 +1,21 @@
 .channeldashboard {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
-    background: linear-gradient(to right top, #65dfc9, #0ba8c0);
+    background: linear-gradient(to right top, #06816a, #0ba8c0);
+    /* background: radial-gradient(circle at center, #0ba8c0, #025b4a); */
+    /* background: radial-gradient(circle at center, #0d8891 10%, #02363a 90%); */
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 5px;
 
-    .profile {
+    & .profile {
         position: relative;
         width: 1000px;
         border-radius: 10px;
         overflow: hidden;
-        /* border: 1px dotted grey; */
+        box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.4);
+           
 
         .coverimage {
             width: 100%;
@@ -30,9 +33,9 @@
             position: relative;
             width: 100%;
             background: linear-gradient(to right bottom,
-                    rgba(255, 255, 255, 0.5),
-                    rgba(255, 255, 255, 0.2));
-            gap: 10px;
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.3));
+           gap: 10px;
             padding-bottom: 10px;
 
             .top {
@@ -131,9 +134,9 @@
             border-radius: 10px;
             /* border: 1px solid black; */
             background: linear-gradient(to right bottom,
-                    rgba(255, 255, 255, 0.5),
-                    rgba(255, 255, 255, 0.2));
-
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.3));
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
         }
 
         .about {
@@ -365,12 +368,13 @@
             transform: scale(1.03);
         }
 
-        
+
     }
+
     .notfoundtourn {
         margin: 0 auto;
         width: 500px;
-        border: 1px solid rgb(95, 93, 93);
+        border: 1px solid rgb(21, 21, 21);
         border-radius: 10px;
         padding: 10px;
         text-align: center;
@@ -580,8 +584,9 @@
                 }
             }
 
-           
+
         }
+
         .notfoundtourn {
             width: 95vw;
         }

@@ -251,7 +251,7 @@
     background: white;
 
     & .img {
-        border-radius: 40px;
+        border-radius: 30px;
         overflow: hidden;
         width: 80%;
         /* border: 1px solid red; */
@@ -259,7 +259,7 @@
 
         & img {
             width: 100%;
-            border-radius: 40px;
+            border-radius: 30px;    
         }
     }
 
