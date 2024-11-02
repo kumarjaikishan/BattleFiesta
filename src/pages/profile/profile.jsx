@@ -441,7 +441,7 @@ const Profile = () => {
                                 <span>
                                     <TextField required value={val.link} name='link' fullWidth size='small'
                                         onChange={(e) => handleChange(e, ind)}
-                                        className="half" label=" Url" variant="outlined" />
+                                        className="half" label="Url" variant="outlined" />
                                 </span>
                                 <span title='Remove This' onClick={() => deletelink(ind)}> <IoCloseSharp /> </span>
                             </div>

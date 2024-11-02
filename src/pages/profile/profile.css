@@ -421,16 +421,16 @@
                     align-items: center;
                     border-radius: 5px;
 
-                    & span:nth-child(1) {
+                    & >span:nth-child(1) {
                         width: 98%;
                         margin-bottom: 12px;
                     }
 
-                    span:nth-child(2) {
+                    >span:nth-child(2) {
                         width: 90%;
                     }
 
-                    span:nth-child(3) {
+                    >span:nth-child(3) {
                         width: 25px;
                         cursor: pointer;
                         height: 25px;
