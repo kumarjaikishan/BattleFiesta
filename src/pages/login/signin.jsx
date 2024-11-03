@@ -60,7 +60,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
             if (res.ok && res.status == 200) {
                 dispatch(setlogin(true));
                 // console.log("login data",data);
-                toast.success(data.message, { autoClose: 1700 });
+                toast.success(data.message, { autoClose: 1000 });
                 setbtnclick(false);
                 dispatch(setloader(true));
                 dispatch(setadmin(data.isadmin));
