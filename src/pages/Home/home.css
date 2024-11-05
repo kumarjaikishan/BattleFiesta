@@ -9,6 +9,10 @@
         position: relative;
         width: 100%;
         min-height: calc(100vh - 70px);
+
+        a{
+            text-decoration: none;
+        }
     }
 
     .section1 {
@@ -308,7 +312,8 @@
             }
 
             & .left-content {
-                padding: 10px 5px;
+                padding: 10px 10px;
+                /* padding-left: 12px; */
                 margin: 0;
                 width: 100%;
                 height: fit-content;
