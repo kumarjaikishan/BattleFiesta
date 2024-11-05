@@ -399,7 +399,8 @@ const TdmRegister = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on PlayerList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {!newfresh && setting.show_payment && setting.isopen && (about.slotCategory?.[category]?.slots) > (categoryenteries?.[category]?.length ?? 0) && <div className="showpayment">
+                        {/* {!newfresh && setting.show_payment && setting.isopen && (about.slotCategory?.[category]?.slots) > (categoryenteries?.[category]?.length ?? 0) && <div className="showpayment"> */}
+                        {!newfresh && setting.show_payment && (about.slotCategory?.[category]?.slots) > (categoryenteries?.[category]?.length ?? 0) && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

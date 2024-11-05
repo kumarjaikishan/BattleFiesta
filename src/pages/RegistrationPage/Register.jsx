@@ -563,7 +563,8 @@ const Register = () => {
                             <h1>Registration Done 👍</h1>
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
-                        {all.isopen && all.show_payment && all.slots > filteredentry.length && <div className="showpayment">
+                        {/* {all.isopen && all.show_payment && all.slots > filteredentry.length && <div className="showpayment"> */}
+                        { all.show_payment  && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

@@ -155,7 +155,6 @@
             }
         }
         .contacts {
-            margin-top: 20px;
             padding-top: 10px;
             border-top: 1px solid grey;
             text-align: center;
@@ -350,7 +349,6 @@
             }
 
             .contacts {
-                margin-top: 10px;
                 padding-top: 5px;
 
                 & .links {
