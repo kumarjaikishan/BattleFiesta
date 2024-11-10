@@ -127,7 +127,7 @@
                             margin-left: 5px;
                             font-size: 18px;
                             border-radius: 50px;
-                            padding: 4px 100px;
+                            padding: 10px 100px;
                         }
                     }
                 }
@@ -173,7 +173,7 @@
                     li {
                         margin-left: 0px;
                         font-size: 12px;
-                        padding: 4px 80px;
+                        padding: 8px 80px;
                     }
                 }
             }
