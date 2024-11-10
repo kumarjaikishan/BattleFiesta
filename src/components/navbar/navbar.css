@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
 
 .nav {
-    /* border: 1px solid red; */
     backdrop-filter: blur(10px);
     background: var(--primarycolor);
-    /* background: #058ce7ae; */
     transition: 0.2s;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
     user-select: none;
+
+    svg {
+        display: none;
+    }
 
     /* font-family:Arial */
     header {
@@ -72,12 +74,17 @@
 }
 
 
-
-
-
 @media only screen and (max-width: 800px) {
 
     .nav {
+        overflow: visible;
+
+        svg {
+            display: block;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
 
         & header {
             padding: 5px;
@@ -90,22 +97,45 @@
                 }
             }
 
-            nav ul {
+            nav {
+                position: fixed;
+                display: none;
+                opacity: 0;
+                width: 100%;
+                top: var(--navheightmobile);
+                height: calc(100vh - var(--navheightmobile));
+                left: 0;
+                background: var(--primarycolor);
+                background: rgba(0, 0, 0, 0.4);
+                backdrop-filter: blur(5px);
+                transition: display 0.3s ease, opacity 0.3s ease;
 
-                .navlink {
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 10px 0;
+                    background: var(--primarycolor);
+                    background: rgb(22, 22, 22);
+                    gap: 15px;
+                    border-top: 1px solid grey;
 
-                    li {
-                        /* border: 1px solid red; */
-                        margin-left: 5px;
-                        font-size: 12px;
-                        border-radius: 50px;
-                        padding: 4px 6px;
+                    .navlink {
+
+                        li {
+                            /* border: 1px solid red; */
+                            margin-left: 5px;
+                            font-size: 14px;
+                            border-radius: 50px;
+                            padding: 4px 60px;
+                        }
                     }
                 }
+            }
 
-                .btna {
-                    transform: scale(.7);
-                }
+            nav.open {
+                display: block;
+                opacity: 1;
             }
         }
     }
@@ -120,17 +150,18 @@
 
             & .logo {
 
-                .navlink{
+                .navlink {
 
                     img {
                         width: 50px;
                     }
-                    h2{
+
+                    h2 {
                         display: none;
                         font-size: 14px;
                     }
                 }
- 
+
             }
 
             nav ul {
@@ -138,14 +169,10 @@
                 .navlink {
 
                     li {
-                        margin-left: 2px;
-                        font-size: 10px;
-                        padding: 3px 5px;
+                        margin-left: 0px;
+                        font-size: 12px;
+                        padding: 4px 60px;
                     }
-                }
-
-                .btna {
-                    transform: scale(.5);
                 }
             }
         }

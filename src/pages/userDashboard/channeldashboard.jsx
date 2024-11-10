@@ -220,7 +220,6 @@ const Channeldashboard = () => {
                     {isfollowing ? "Following" : "Follow"}
                   </LoadingButton>
                 )}
-
               </div>
             </div>
           </div>

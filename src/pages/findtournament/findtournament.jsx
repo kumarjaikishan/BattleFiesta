@@ -103,6 +103,7 @@ const Findtournament = () => {
             });
 
             const data = await response.json();
+            console.log(data)
             if (!response.ok) {
                 return toast.warn(data.message, { autoClose: 1500 });
             }
@@ -140,6 +141,7 @@ const Findtournament = () => {
                         label="Tournament ID"
                         fullWidth
                         size="small"
+                        type='tel'
                         inputProps={{ minLength: 8, maxLength: 8 }}
                         onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         className="filled"

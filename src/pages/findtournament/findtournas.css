@@ -259,7 +259,7 @@
 
         & img {
             width: 100%;
-            border-radius: 30px;    
+            border-radius: 30px;
         }
     }
 
@@ -511,6 +511,7 @@
                 div:nth-child(2) {
                     font-size: 1.6em;
                 }
+
                 div:nth-child(3) {
                     font-size: 14px;
                     margin-top: 8px;
@@ -519,12 +520,12 @@
                         font-size: 9px;
                         margin-top: -5px;
                     }
-    
+
                     svg {
                         font-size: 12px;
                     }
                 }
-                
+
 
             }
         }
