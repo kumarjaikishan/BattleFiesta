@@ -210,19 +210,19 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        if (!inp.teamname) {
+        if (!inp.teamname?.trim()) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
-        if (all.ask_email && !inp.teamemail) {
+        if (all.ask_email && !inp.teamemail?.trim()) {
             return toast.warn("Email is Required", { autoClose: 2300 });
         }
-        if (all.ask_phone && !inp.teammobile) {
+        if (all.ask_phone && !inp.teammobile?.trim()) {
             return toast.warn("Phone is Required", { autoClose: 2300 });
         }
-        if (all.ask_phone && inp.teammobile.length != 10) {
+        if (all.ask_phone && inp.teammobile.trim().length !== 10) {
             return toast.warn("Phone must be 10 digits", { autoClose: 2300 });
         }
-        if (all.ask_discord && !inp.teamdiscord) {
+        if (all.ask_discord && !inp.teamdiscord?.trim()) {
             return toast.warn("Discord is Required", { autoClose: 2300 });
         }
         if (all.ask_team_logo && !inp.selectedTeamLogo) {
@@ -231,14 +231,15 @@ const Register = () => {
         if (all.ask_payment_ss && !inp.paymentss) {
             return toast.warn("Select Payment Screenshot", { autoClose: 2300 });
         }
+        
         let playernameerror = false;
         let playerlogoerror = false;
         inp.players.forEach((player) => {
-            if (!player.inGameName) {
+            if (!player.inGameName?.trim()) {
                 playernameerror = true;
             }
             if (all.ask_player_logo && !player.playerLogo) {
-                playerlogoerror = true
+                playerlogoerror = true;
             }
         });
         if (playernameerror) {
@@ -247,17 +248,17 @@ const Register = () => {
         if (playerlogoerror) {
             return toast.warn("Select All Player Logo", { autoClose: 2300 });
         }
-
+        
         const formData = new FormData();
         formData.append("tid", inp.tournament_id);
         formData.append("userid", inp.userid);
-        formData.append("teamName", inp.teamname);
-        formData.append("email", inp.teamemail);
-        formData.append("mobile", inp.teammobile);
-        formData.append("discordID", inp.teamdiscord);
+        formData.append("teamName", inp.teamname.trim());
+        formData.append("email", inp.teamemail.trim());
+        formData.append("mobile", inp.teammobile.trim());
+        formData.append("discordID", inp.teamdiscord.trim());
         formData.append("teamLogo", inp.selectedTeamLogo);
         formData.append("paymentScreenshot", inp.paymentss);
-
+        
 
         try {
             setisloading(true);
@@ -301,12 +302,12 @@ const Register = () => {
                 setnewfresh(true);
                 getenteries();
             } else {
-                toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: responseData.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
             setisloading(false);
         } catch (error) {
             console.error(error);
-            toast.update(id, { render: "Registration failed. Please try again.", type: "error", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: error.message, type: "error", isLoading: false, autoClose: 1600 });
             setisloading(false);
         }
     };

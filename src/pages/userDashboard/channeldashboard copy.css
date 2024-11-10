@@ -9,19 +9,13 @@
     flex-direction: column;
     align-items: center;
     padding: 20px 5px;
-    background: #e4e3e3;
 
     & .profile {
         position: relative;
         width: 1000px;
         border-radius: 10px;
-        background: #ecf0f3;
-        box-shadow: 0 0 10px #fff,
-            5px 5px 10px #a7aaaf,
-            -5px -5px 10px #fff;
         overflow: hidden;
-        border: 1px dotted grey;
-        /* box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.4); */
+        box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.4);
 
 
         .coverimage {
@@ -43,8 +37,6 @@
                     rgba(255, 255, 255, 0.7),
                     rgba(255, 255, 255, 0.3));
             gap: 10px;
-            background: #ecf0f3;
-            /* box-shadow:  0 -5px 5px #fff; */
             padding-bottom: 10px;
 
             .top {
@@ -67,7 +59,7 @@
                         width: 140px;
                         height: 140px;
                         border-radius: 50%;
-                        border: 2px dotted grey;
+                        border: 2px solid white;
                         padding: 2px;
                         object-fit: cover;
                     }
@@ -81,7 +73,6 @@
                         span {
                             color: rgb(51, 50, 50);
                             font-weight: 500;
-                            font-size: 14px;
                         }
                     }
                 }
@@ -133,7 +124,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 30px;
-        margin-top: 20px;
+        margin-top: 10px;
 
         h2 {
             margin-bottom: 10px;
@@ -143,11 +134,10 @@
             padding: 10px;
             border-radius: 10px;
             /* border: 1px solid black; */
-            background: #ecf0f3;
-        /* border: 1px dotted grey; */
-            box-shadow: 0 0 10px #fff,
-                5px 5px 10px #a7aaaf,
-                -5px -5px 10px #fff;
+            background: linear-gradient(to right bottom,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.3));
+            box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         .about {
@@ -221,7 +211,7 @@
         width: 1000px;
         position: relative;
         /* border: 1px solid black; */
-        margin-top: 20px;
+        margin-top: 10px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 1rem;
@@ -231,7 +221,7 @@
             width: 240px;
             height: max-content;
             overflow: hidden;
-            background: #ecf0f3;
+            background: white;
             padding-bottom: 10px;
             border-radius: 8px;
             box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
@@ -521,15 +511,14 @@
             .socallink {
                 grid-column: span 1;
             }
-
-            >div {
+            >div{
                 box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
             }
 
             .socallink {
 
                 div {
-
+                   
 
                     a {
                         font-size: 13px;

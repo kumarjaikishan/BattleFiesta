@@ -7,10 +7,10 @@ import './theme/theme2.css'
 import './theme/theme3.css'
 import './theme/theme4.css'
 import { styled } from '@mui/material';
-// import html2canvas from "html2canvas";
 import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
 import { IoCloudDownloadSharp } from "react-icons/io5";
 import { IoMdCloudUpload } from "react-icons/io";
+import { IoCloudDownloadOutline } from "react-icons/io5";
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
 import { setloader, header } from '../../store/login';
@@ -21,12 +21,14 @@ const Stats = () => {
   const { tid } = useParams();
   const [matches, setmatches] = useState([]);
   const log = useSelector((state) => state.login);
+  const userprofile = useSelector((state) => state.userprofile);
   const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
 
   useEffect(() => {
     dispatch(header("Stats"));
     dispatch(setloader(true));
     fetche(tid);
+    console.log("user id: ", userprofile.userprofile._id)
   }, [])
   const [topplayer, settopplayer] = useState([]);
   const [topteam, settopteam] = useState([]);
@@ -55,7 +57,7 @@ const Stats = () => {
         body: JSON.stringify({ tid: id })
       });
       const result = await rese.json();
-      // console.log(result.teamdeatil);
+      console.log(result)
       dispatch(setloader(false));
       if (!rese.ok) {
         return toast.warn("someting went wrong", { autoclose: 1900 });
@@ -70,7 +72,7 @@ const Stats = () => {
       setteamdeatil(result.teamdeatil);
       // setrule(result.rules)
     } catch (error) {
-      console.error( error);
+      console.error(error);
       dispatch(setloader(false));
     }
   };
@@ -243,7 +245,7 @@ const Stats = () => {
 
   const [disable, setdisable] = useState(false);
 
-  const imagedownload =async (id, filename) => {
+  const imagedownload = async (id, filename) => {
     setdisable(true);
     const html2canvas = (await import("html2canvas")).default;
     const timenow = new Date();
@@ -285,6 +287,7 @@ const Stats = () => {
         boxElement.style.minHeight = originalHeight;
       });
   };
+  const tournamentOwner = kuch?.userid == userprofile?.userprofile._id;
 
 
   return (
@@ -357,11 +360,15 @@ const Stats = () => {
           </tbody>
         </table>
       </Container>
-      {log.islogin &&
-        <Button disabled={disable} onClick={() => imagedownload('#wrapper', 'Stats')} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadSharp />}>
-          Download Stats
+      {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
+      <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
+      </p>}
+
+      {log.islogin && tournamentOwner &&
+        <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
+          Score Board
         </Button>}
-      <Fragger log={log} disable={disable} imagedownload={imagedownload} topteam={topteam} topplayer={topplayer} />
+      <Fragger log={log} disable={disable} imagedownload={imagedownload} topteam={topteam} topplayer={topplayer} tournamentOwner={tournamentOwner} />
       <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
     </div>
   );

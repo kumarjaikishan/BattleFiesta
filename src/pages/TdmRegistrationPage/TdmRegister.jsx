@@ -182,7 +182,7 @@ const TdmRegister = () => {
                 setnewfresh(true);
                 // getenteries();
             } else {
-                toast.update(id, { render: "Something Went Wrong", type: "warn", isLoading: false, autoClose: 1600 });
+                toast.update(id, { render: "Something Went Wrong", type: "warning", isLoading: false, autoClose: 1600 });
             }
             setisloading(false);
         } catch (error) {

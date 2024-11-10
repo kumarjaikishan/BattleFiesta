@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import './channeldashboard.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MdMenuOpen, MdContentCopy } from "react-icons/md";
@@ -24,6 +24,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logopng250.webp'
 import { useSelector } from 'react-redux';
+import confetti from 'canvas-confetti';
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Channeldashboard = () => {
   const [error, setError] = useState(null);
   const [isfollowing, setisfollowing] = useState(false);
   const [loading, setloading] = useState(false)
+  const followBtnRef = useRef(null);
 
 
   useEffect(() => {
@@ -105,7 +107,24 @@ const Channeldashboard = () => {
         toast.warn(result.message, { autoClose: 1900 });
         return;
       }
-      toast.success(result.message, { autoClose: 1500 });
+      // toast.success(result.message, { autoClose: 1500 });
+      setisfollowing(flag)
+
+      if (flag && followBtnRef.current) {
+        const rect = followBtnRef.current.getBoundingClientRect();
+        const originX = (rect.left + rect.right) / 2 / window.innerWidth;
+        const originY = (rect.top + rect.bottom) / 2 / window.innerHeight;
+
+        confetti({
+          particleCount: 50, // Reduce to make it localized
+          spread: 360, // Full 360-degree spread
+          origin: { x: originX, y: originY },
+          scalar: 0.9, // Smaller particles for a closer effect
+          startVelocity: 30, // Lower speed for burst-like effect
+          decay: 0.8, // Faster decay to limit the range
+        });
+      }
+
       fetchData();
       setError(null);  // Clear error if fetch is successful
     } catch (error) {
@@ -190,10 +209,12 @@ const Channeldashboard = () => {
                   </Button>
                 ) : (
                   <LoadingButton
+                    ref={followBtnRef}
                     loading={loading}
+                    sx={{ fontWeight: 600 }}
                     loadingPosition="start"
                     startIcon={isfollowing ? <SlUserFollowing /> : <SlUserFollow />}
-                    variant="contained"
+                    variant={isfollowing ? "outlined" : "contained"}
                     onClick={() => dofollow(!isfollowing)}
                   >
                     {isfollowing ? "Following" : "Follow"}
@@ -229,7 +250,7 @@ const Channeldashboard = () => {
       </div>
 
       <div className="tournamentss">
-        {tournas && tournas.filter((tourn)=> tourn.visibility).map((tourn, ind) => {
+        {tournas && tournas.filter((tourn) => tourn.visibility).map((tourn, ind) => {
           const formattedDate = new Date(tourn.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
             month: "short",
@@ -268,7 +289,7 @@ const Channeldashboard = () => {
           </div>
         })}
       </div>
-      {tournas?.filter((tourn)=> tourn.visibility).length < 1 &&
+      {tournas?.filter((tourn) => tourn.visibility).length < 1 &&
         <div className='notfoundtourn'>
           <TbMoodSad className="sad" />
           <h2>No Tournament Found</h2>

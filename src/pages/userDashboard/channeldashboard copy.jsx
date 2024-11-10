@@ -1,6 +1,6 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import './channeldashboard.css';
-import { useParams ,useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { MdMenuOpen, MdContentCopy } from "react-icons/md";
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
@@ -24,6 +24,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logopng250.webp'
 import { useSelector } from 'react-redux';
+import confetti from 'canvas-confetti';
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,8 @@ const Channeldashboard = () => {
   const [tournas, settournas] = useState(null);
   const [error, setError] = useState(null);
   const [isfollowing, setisfollowing] = useState(false);
-  const [loading, setloading]= useState(false)
+  const [loading, setloading] = useState(false)
+  const followBtnRef = useRef(null);
 
 
   useEffect(() => {
@@ -59,7 +61,7 @@ const Channeldashboard = () => {
       const response = await fetch(url, { method: 'POST', headers, body });
       const result = await response.json();
       dispatch(setloader(false));
-      console.log(result)
+      // console.log(result)
 
       if (!response.ok) {
         setError(result.message);
@@ -81,13 +83,14 @@ const Channeldashboard = () => {
   };
 
   const dofollow = async (flag) => {
-    console.log(flag)
+    // console.log(flag)
     const token = localStorage.getItem("token");
     if (!token) {
       return toast.warn('You are not Logged In', { autoClose: 1900 });
     }
     const channeluserid = pro._id;
     try {
+      setloading(true)
       const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}follow`, {
         method: 'POST',
         headers: {
@@ -97,16 +100,35 @@ const Channeldashboard = () => {
         body: JSON.stringify({ flag, channeluserid })
       });
       const result = await rese.json();
-      console.log(result)
+      // console.log(result)
+      setloading(false)
 
       if (!rese.ok) {
         toast.warn(result.message, { autoClose: 1900 });
         return;
       }
-      toast.success(result.message, { autoClose: 1500 });
+      // toast.success(result.message, { autoClose: 1500 });
+      setisfollowing(flag)
+
+      if (flag && followBtnRef.current) {
+        const rect = followBtnRef.current.getBoundingClientRect();
+        const originX = (rect.left + rect.right) / 2 / window.innerWidth;
+        const originY = (rect.top + rect.bottom) / 2 / window.innerHeight;
+
+        confetti({
+          particleCount: 50, // Reduce to make it localized
+          spread: 360, // Full 360-degree spread
+          origin: { x: originX, y: originY },
+          scalar: 0.9, // Smaller particles for a closer effect
+          startVelocity: 30, // Lower speed for burst-like effect
+          decay: 0.8, // Faster decay to limit the range
+        });
+      }
+
       fetchData();
       setError(null);  // Clear error if fetch is successful
     } catch (error) {
+      setloading(false)
       console.error(error);
       toast.error(error.message, { autoClose: 1900 });
     }
@@ -135,7 +157,7 @@ const Channeldashboard = () => {
   if (!pro) {
     return;  // Show loader until profile data is set
   }
-  const defaultcoverimage = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp'
+  const defaultcoverimage = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1730449433/battlefiesta/coverpic/bgmi-33-update-image-2_tfng.1080_myyj43.webp'
 
   return (
     <div className='channeldashboard'>
@@ -178,34 +200,25 @@ const Channeldashboard = () => {
                 {userprofile?.userprofile?.username === uid.split('@')[1] ? (
                   <Button
                     title='Edit Profile'
-                   variant="outlined"
-                   onClick={()=> navigate('/profile')}
-                   sx={{fontWeight:700}}
+                    variant="outlined"
+                    onClick={() => navigate('/profile')}
+                    sx={{ fontWeight: 700 }}
                     startIcon={<MdEdit />}
                   >
                     Edit Profile
                   </Button>
                 ) : (
-                  isfollowing ? (
-                    <Button
-                      title='Unfollow'
-                      onClick={() => dofollow(false)}
-                      style={{ fontWeight: 700, background: '#DFE3E8', color: '#212B36' }}
-                      variant="contained"
-                      startIcon={<SlUserFollowing />}
-                    >
-                      Following
-                    </Button>
-                  ) : (
-                    <Button
-                      title='Follow'
-                      onClick={() => dofollow(true)}
-                      variant="contained"
-                      startIcon={<SlUserFollow />}
-                    >
-                      Follow
-                    </Button>
-                  )
+                  <LoadingButton
+                    ref={followBtnRef}
+                    loading={loading}
+                    sx={{ fontWeight: 600 }}
+                    loadingPosition="start"
+                    startIcon={isfollowing ? <SlUserFollowing /> : <SlUserFollow />}
+                    variant={isfollowing ? "outlined" : "contained"}
+                    onClick={() => dofollow(!isfollowing)}
+                  >
+                    {isfollowing ? "Following" : "Follow"}
+                  </LoadingButton>
                 )}
 
               </div>
@@ -217,17 +230,19 @@ const Channeldashboard = () => {
       <div className='more'>
         <div className="about">
           <h2>About</h2>
+          {(!pro.bio && !pro.publicphone && !pro.publicemail) && <p>Not Added Yet</p>}
           <p style={{ marginBottom: '12px' }}> {pro.bio}</p>
           {pro.publicphone && <div> <MdLocalPhone /> {pro.publicphone}</div>}
           {pro.publicemail && <div> <IoIosMail /> {pro.publicemail}</div>}
         </div>
         <div className="socallink">
           <h2>Social Links</h2>
-          {pro.sociallinks.length < 1 && <div>no data found</div>}
+          {pro.sociallinks.length < 1 && <div>No Data Found</div>}
           {pro.sociallinks?.map((val, ind) => (
             <div key={ind}>
               <span className="icon">{socialIcons[val.name]}</span>
-              <span>{val.link}</span>
+              <a href={val.link} target="_blank" rel="noopener noreferrer">
+                <span>{val.link}</span></a>
               <MdContentCopy className='copyicon' title='Copy Link' onClick={() => copyfunc(val.link)} />
             </div>
           ))}
@@ -235,7 +250,7 @@ const Channeldashboard = () => {
       </div>
 
       <div className="tournamentss">
-        {tournas.length > 0 ? tournas.map((tourn, ind) => {
+        {tournas && tournas.filter((tourn) => tourn.visibility).map((tourn, ind) => {
           const formattedDate = new Date(tourn.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
             month: "short",
@@ -266,20 +281,21 @@ const Channeldashboard = () => {
               <MdContentCopy title="Copy Id" onClick={() => copyfunc(tourn.tournid)} />
             </div>
             <div className="controller">
-              <Button size="small" variant="contained" endIcon={<MdMenuOpen />}>
+              <Button size="small" onClick={() => navigate(`/tournaments/${tourn._id}`)} variant="contained" endIcon={<MdMenuOpen />}>
                 READ MORE
               </Button>
               <p className="status" title="Status">{tourn.status}</p>
             </div>
           </div>
-        }) :
-          <div className='notfoundtourn'>
-            <TbMoodSad className="sad" />
-            <h2>No Tournament Found</h2>
-            {/* <p>Please Add Tournament.</p> */}
-          </div>
-        }
+        })}
       </div>
+      {tournas?.filter((tourn) => tourn.visibility).length < 1 &&
+        <div className='notfoundtourn'>
+          <TbMoodSad className="sad" />
+          <h2>No Tournament Found</h2>
+          {/* <p>Please Add Tournament.</p> */}
+        </div>
+      }
     </div >
   );
 };
