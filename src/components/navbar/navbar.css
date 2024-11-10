@@ -114,10 +114,10 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding: 10px 0;
+                    padding: 20px 0;
                     background: var(--primarycolor);
                     background: rgb(22, 22, 22);
-                    gap: 15px;
+                    gap: 25px;
                     border-top: 1px solid grey;
 
                     .navlink {
@@ -125,9 +125,9 @@
                         li {
                             /* border: 1px solid red; */
                             margin-left: 5px;
-                            font-size: 14px;
+                            font-size: 18px;
                             border-radius: 50px;
-                            padding: 4px 60px;
+                            padding: 4px 100px;
                         }
                     }
                 }
@@ -158,20 +158,22 @@
 
                     h2 {
                         display: none;
-                        font-size: 14px;
+                        font-size: 16px;
                     }
                 }
 
             }
 
             nav ul {
+                gap: 20px;
+                padding: 15px 0;
 
                 .navlink {
 
                     li {
                         margin-left: 0px;
                         font-size: 12px;
-                        padding: 4px 60px;
+                        padding: 4px 80px;
                     }
                 }
             }
