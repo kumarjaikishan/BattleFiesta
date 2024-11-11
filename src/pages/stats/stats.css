@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Gajraj+One&display=swap');
+
 .stats {
   width: 100%;
   overflow: auto;
@@ -32,6 +35,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    h1 {
+      font-family: "Gajraj One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
 
 
     &>div {
@@ -119,6 +128,9 @@
       text-align: center;
       color: whitesmoke;
       font-size: 2em;
+      font-family: "Caveat Brush", cursive;
+      font-weight: 400;
+      font-style: normal;
     }
 
     .boxes {
@@ -134,7 +146,7 @@
         border-radius: 10px;
         overflow: hidden;
 
-        svg{
+        svg {
           font-size: 20px;
         }
 
@@ -266,11 +278,18 @@
       letter-spacing: 2px;
     }
 
+    h1 {
+      font-family: "Caveat Brush", cursive;
+      font-weight: 400;
+      font-style: normal;
+    }
+
     .selected {
       color: grey;
       background: whitesmoke;
     }
-    p{
+
+    p {
       text-align: center;
       color: white;
       text-transform: capitalize;
@@ -279,6 +298,7 @@
       letter-spacing: 1px;
       margin-top: 20px;
     }
+
     .table {
       width: 100%;
       display: flex;
@@ -347,6 +367,12 @@
     padding: 7px;
     min-height: calc(100vh - var(--navheightmobile));
 
+    p,em {
+      width: 100%;
+      font-size: 0.8em;
+      text-align: center;
+    }
+
     & .controls {
       max-width: 100%;
       padding: 5px;
@@ -371,6 +397,8 @@
       max-width: 100%;
       padding: 5px;
       border-radius: 10px;
+
+     
 
       &>div {
         width: 80px;

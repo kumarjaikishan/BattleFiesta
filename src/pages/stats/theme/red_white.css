@@ -1,25 +1,30 @@
-.conta.theme4 {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
+
+.conta.red_white {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731315165/battlefiesta/assets/red_white_itbzjg.webp');
+   /* background: url('../../../assets/11879.jpg'); */
     background-size: cover;
+    
 
     h1,
-    h2,h3 {
-        color: whitesmoke;
+    h2 ,h3{
+        color: transparent;
         text-align: center;
         text-transform: capitalize;
         font-size: 4em;
         letter-spacing: 2px;
+        -webkit-text-stroke: 1px #0c0c0c;
+        color: white;
+       
     }
 
     h2 {
         font-size: 2em;
-        color: transparent;
+        color: #f51c20;
         text-transform: uppercase;
-        -webkit-text-stroke: 0.6px white;
-    } 
+        -webkit-text-stroke: 0px white;
+    }
     h3{
-        font-size: 2.01em;
-        
+        font-size: 2.1em;
       }
 
     table {
@@ -30,11 +35,14 @@
         border-spacing: 4px 8px;
 
         & thead {
+            background: linear-gradient(to bottom right, #890103, #f30717ba);
+            color: white;
 
             & tr {
 
                 & th {
-                    padding: 5px 3px;
+                    padding: 3px;
+                    border-radius: 5px;
                     font-weight: 800;
                     font-size: 1.2em;
                     letter-spacing: 2px;
@@ -53,12 +61,14 @@
 
             & tr {
                 color: whitesmoke;
+                border-radius: 10px;
+                margin: 40px 0px;
 
                 & td {
-                    padding: 5px;
+                    padding: 1px 5px;
                     font-size: 1.1em;
                     font-weight: 600;
-                    border-radius: 15px;
+                    border-radius: 15px 0px 15px 0px;
 
 
                     & img {
@@ -68,6 +78,7 @@
                         margin-left: 5px;
                         margin-right: 10px;
                     }
+
                 }
 
                 td:nth-child(2) {
@@ -76,15 +87,13 @@
                 }
 
                 td:nth-child(odd) {
-                    background: linear-gradient(to bottom right, #4b494992, #1d1b1b);
+                    background: linear-gradient(to bottom right, #890103f5, #f30717a4);
                     color: white;
-                    border: 1px solid white;
                 }
 
                 td:nth-child(even) {
-                    background: rgba(255, 255, 255, 0.719);
-                    border: 2px solid #222020;
-                    color: #222020;
+                    background: linear-gradient(to right, #f8f7f7f5, #faf8f8a4);
+                    color: #890103;
                 }
             }
         }
@@ -92,32 +101,33 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .conta.theme4 {
+    .conta.red_white {
+
 
         h1 {
-            font-size: 1.4em;
-            letter-spacing: 1.2px;
-          }
-    
-          h2 {
+            font-size: 1.5em;
+            letter-spacing: 1.3px;
+            font-weight: 500;
+        }
+
+        h2 {
             font-size: 1.1em;
             letter-spacing: 1.2px;
-          }
+        }
 
         table {
             width: 100%;
-            padding: 1px 2px;
-            border-spacing: 2px 3px;
+            padding: 2px;
 
             & thead {
 
                 & tr {
 
                     & th {
-                        padding: 0px 3px;
-                        font-weight: 700;
+                        padding: 2px;
+                        font-weight: 600;
                         font-size: .8em;
-                        letter-spacing: .4px;
+                        letter-spacing: .2px;
                     }
                 }
             }
@@ -125,12 +135,14 @@
             tbody {
 
                 & tr {
+                    margin: 10px 0px;
 
                     & td {
-                        padding: 1px 3px;
-                        font-size: .6em;
-                        font-weight: 700;
-                        border-radius: 10px;
+                        padding: 1px 5px;
+                        font-size: .8em;
+                        font-weight: 600;
+                        border-radius: 7px 0px 7px 0px;
+
 
                         & img {
                             width: 30px;

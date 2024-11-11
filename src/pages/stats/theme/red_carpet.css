@@ -1,4 +1,4 @@
-.conta.theme1 {
+.conta.red_carpet {
   background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/back-des-gobzXdNv_axwaw6.webp');
   background-size: cover;
  
@@ -19,7 +19,6 @@
     color: transparent;
     text-transform: uppercase;
     color: white;
-    -webkit-text-stroke: 1px black;
   }
   h3{
     font-size: 1.7em;
@@ -88,7 +87,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .conta.theme1 {
+  .conta.red_carpet {
 
     h1 {
       font-size: 1.5em;

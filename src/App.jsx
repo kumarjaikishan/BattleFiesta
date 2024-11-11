@@ -83,7 +83,7 @@ function App() {
   const targetBaseURL = 'https://battlefiesta.in';
 
   useEffect(() => {
-    const isLocalhost = window.location.hostname === 'localhost';
+    const isLocalhost = window.location.hostname === 'localhost' || /^192\./.test(window.location.hostname);
 
     if (!isLocalhost && baseURL !== targetBaseURL) {
       window.location.href = `${targetBaseURL}${window.location.pathname}`;

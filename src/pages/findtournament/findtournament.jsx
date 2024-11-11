@@ -13,6 +13,7 @@ import { MdMenuOpen } from "react-icons/md";
 import { GiGamepad } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa6";
 import { BiReset } from "react-icons/bi";
+import { MdGroups } from "react-icons/md";
 import tournlogo from '../../assets/logopng250.webp'
 
 const Findtournament = () => {
@@ -168,7 +169,7 @@ const Findtournament = () => {
                     </div>
                 )}
                 {showinglist.map((val) => {
-                    const formattedDate = new Date(val.createdAt).toLocaleDateString("en-US", {
+                    const formattedDate = new Date(val.createdAt).toLocaleDateString("en-GB", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -195,11 +196,13 @@ const Findtournament = () => {
                                 {formattedDate}, {formattedTime} <span>{val.type}</span>
                             </div>
                             <div className="tournId">
-                                ID :- {val.tournid}
-                                <MdContentCopy title="Copy Id" onClick={() => {
-                                    navigator.clipboard.writeText(val.tournid);
-                                    toast.success('Copied', { autoClose: 1000 })
-                                }} />
+                                <span> ID :- {val.tournid}
+                                    <MdContentCopy title="Copy Id" onClick={() => {
+                                        navigator.clipboard.writeText(val.tournid);
+                                        toast.success('Copied', { autoClose: 1000 })
+                                    }} />
+                                </span>
+                                <span > <MdGroups/> {val.totalTeamsRegistered} /{val.slots} </span>
                             </div>
                             {/* <div className="label">
                                 {val.label.split(',').map((eac) => {

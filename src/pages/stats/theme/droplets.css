@@ -1,26 +1,31 @@
-.conta.theme2 {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/white-nI_TFbIi_aevkq4.webp');
+.conta.droplets {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/drop-_1iar9wF_ivnuoy.webp');
     background-size: cover;
     
 
     h1,
-    h2 ,h3{
-        color: transparent;
+    h2,h3 {
         text-align: center;
         text-transform: capitalize;
-        font-size: 4em;
-        letter-spacing: 2px;
-        -webkit-text-stroke: 2px #890103;
+    }
+    h1{
+        color: white;
+        font-size: 2.8em;
+        padding: 0 30px;
+        border-radius: 200px;
+        background: #013135cb;
     }
 
     h2 {
         font-size: 2em;
-        color: #890103;
+        color: #042d31ef;
         text-transform: uppercase;
         -webkit-text-stroke: 0px black;
     }
     h3{
-        font-size: 2.1em;
+        color: #033438f6;
+        font-size: 2.3em;
+        -webkit-text-stroke: 0px black;
       }
 
     table {
@@ -28,20 +33,20 @@
         padding: 5px 10px;
         text-align: center;
         border-collapse: separate;
-        border-spacing: 4px 8px;
+        border-spacing: 4px 6px;
 
         & thead {
-            background: linear-gradient(to bottom right, #890103, #f30717ba);
-            color: white;
 
             & tr {
 
                 & th {
-                    padding: 3px;
-                    border-radius: 5px;
+                    background: #013135cb;
+                    padding: 5px 3px;
                     font-weight: 800;
-                    font-size: 1.2em;
+                    font-size: 1.1em;
                     letter-spacing: 2px;
+                    border: 2px solid white;
+                    border-radius: 10px;
 
                     &:nth-child(1){
                         width: 50px;
@@ -56,15 +61,12 @@
         tbody {
 
             & tr {
-                color: whitesmoke;
-                border-radius: 10px;
-                margin: 40px 0px;
 
                 & td {
-                    padding: 1px 5px;
+                    padding: 5px;
                     font-size: 1.1em;
                     font-weight: 600;
-                    border-radius: 15px 0px 15px 0px;
+                    border-radius: 10px 0px 25px 0px;
 
 
                     & img {
@@ -83,14 +85,15 @@
                 }
 
                 td:nth-child(odd) {
-                    background: linear-gradient(to bottom right, #890103, #f30717ba);
+                    background: linear-gradient(to bottom right, #0c7097c0, #013135);
                     color: white;
+                    border: 2px solid white;
                 }
 
                 td:nth-child(even) {
-                    background: white;
-                    border: 2px solid #890103;
-                    color: #890103;
+                    background: rgba(255, 255, 255, 0.712);
+                    border: 2px solid #013135;
+                    color: #013135;
                 }
             }
         }
@@ -98,13 +101,15 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .conta.theme2 {
-
+    .conta.droplets {
 
         h1 {
+          
+            padding: 0 20px;
+            border-radius: 200px;
             font-size: 1.5em;
-            letter-spacing: 1.3px;
-            font-weight: 500;
+            letter-spacing: 1.2px;
+            -webkit-text-stroke: .2px transparent;
         }
 
         h2 {
@@ -114,17 +119,19 @@
 
         table {
             width: 100%;
-            padding: 2px;
+            padding: 1px 2px;
+            border-spacing: 2px 3px;
 
             & thead {
 
                 & tr {
 
                     & th {
-                        padding: 2px;
+                        padding: 0px 3px;
                         font-weight: 600;
-                        font-size: .8em;
-                        letter-spacing: .2px;
+                        font-size: 1em;
+                        letter-spacing: 1px;
+                        border-radius: 7px;
                     }
                 }
             }
@@ -132,13 +139,12 @@
             tbody {
 
                 & tr {
-                    margin: 10px 0px;
 
                     & td {
                         padding: 1px 5px;
                         font-size: .8em;
                         font-weight: 600;
-                        border-radius: 7px 0px 7px 0px;
+                        border-radius: 10px 0px 15px 0px;
 
 
                         & img {
@@ -147,6 +153,7 @@
                             margin-left: 0px;
                             margin-right: 4px;
                         }
+
                     }
                 }
             }

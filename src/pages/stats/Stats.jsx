@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './stats.css'
-import './theme/theme1.css'
-import './theme/theme2.css'
-import './theme/theme3.css'
-import './theme/theme4.css'
+import './theme/red_carpet.css'
+import './theme/red_white.css'
+import './theme/droplets.css'
+import './theme/royal_grey.css'
 import { styled } from '@mui/material';
 import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
-import { IoCloudDownloadSharp } from "react-icons/io5";
 import { IoMdCloudUpload } from "react-icons/io";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import Fragger from './fragger/fragger';
@@ -32,7 +31,7 @@ const Stats = () => {
   }, [])
   const [topplayer, settopplayer] = useState([]);
   const [topteam, settopteam] = useState([]);
-  const [theme, settheme] = useState("theme1");
+  const [theme, settheme] = useState("red_carpet");
   const [title, settitle] = useState('Overall Standings')
 
   const handleChange = (event) => {
@@ -260,7 +259,8 @@ const Stats = () => {
 
     // Force the element to behave like a desktop size
     boxElement.style.width = '1680px'; // Set desired desktop width
-    boxElement.style.minHeight = '945px'; // Set desired desktop height
+    // boxElement.style.minHeight = '945px'; // Set desired desktop height
+    boxElement.style.minHeight = originalHeight; // Set desired desktop height
 
     let quality = 3; // Adjust this if needed
     html2canvas(boxElement, { scale: quality, useCORS: true })
@@ -304,10 +304,10 @@ const Stats = () => {
               label="Theme"
               onChange={handleChange}
             >
-              <MenuItem value={"theme1"}>Red Carpet</MenuItem>
-              <MenuItem value={"theme4"}>Royal Grey</MenuItem>
-              <MenuItem value={"theme3"}>Droplets</MenuItem>
-              <MenuItem value={"theme2"}>Red & White</MenuItem>
+              <MenuItem value={"red_carpet"}>Red Carpet</MenuItem>
+              <MenuItem value={"royal_grey"}>Royal Grey</MenuItem>
+              <MenuItem value={"droplets"}>Droplets</MenuItem>
+              <MenuItem value={"red_white"}>Red & White</MenuItem>
             </Select>
           </FormControl>
         </div>

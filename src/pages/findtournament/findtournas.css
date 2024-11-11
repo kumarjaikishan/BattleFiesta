@@ -175,19 +175,38 @@
             .tournId {
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 font-size: 14px;
+                margin: 0 10px;
                 margin-bottom: 5px;
-                margin-left: 10px;
 
-                svg {
-                    margin-left: 12px;
-                    transition: 0.2s;
-                    cursor: pointer;
+                span {
+                    display: flex;
+                    align-items: center;
                 }
 
-                svg:hover {
-                    color: rgb(3, 93, 93);
+                span:nth-child(1) {
+                    svg {
+                        font-size: 16px;
+                        margin-left: 12px;
+                        transition: 0.2s;
+                        cursor: pointer;
+                    }
+
+                    svg:hover {
+                        color: rgb(3, 93, 93);
+                    }
                 }
+
+                span:nth-child(2) {
+                    gap: 5px;
+
+                    svg {
+                        font-size: 20px;
+                    }
+                }
+
+
             }
 
             .label {
@@ -579,6 +598,10 @@
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 20px;
             padding: 0.6em 1em;
+
+            & .card {
+                width: 270px;
+            }
         }
     }
 }

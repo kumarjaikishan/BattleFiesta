@@ -25,6 +25,7 @@ import { BsGearFill } from "react-icons/bs";
 import { GiConsoleController } from "react-icons/gi";
 import { IoMdRefresh } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
+import { MdGroups } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
 import { MdOutlineContentCopy } from "react-icons/md";
@@ -337,7 +338,7 @@ const Dashboard = () => {
                     </div>
                     <div className="registered">
                       <span >{val.type}</span>
-                      <span> <TiGroupOutline style={{ fontSize: '20px' }} /> . {val.totalTeamsRegistered}/{val.slots} </span>
+                      <span> <MdGroups /> . {val.totalTeamsRegistered}/{val.slots} </span>
                     </div>
                     <div className="controller">
                       <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>

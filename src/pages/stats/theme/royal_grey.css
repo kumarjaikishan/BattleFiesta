@@ -1,31 +1,26 @@
-.conta.theme3 {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/drop-_1iar9wF_ivnuoy.webp');
+.conta.royal_grey {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
     background-size: cover;
-    
 
     h1,
     h2,h3 {
+        color: whitesmoke;
         text-align: center;
         text-transform: capitalize;
-    }
-    h1{
-        color: white;
-        font-size: 2.8em;
-        padding: 0 30px;
-        border-radius: 200px;
-        background: #013135cb;
+        font-size: 4em;
+        letter-spacing: 2px;
     }
 
     h2 {
         font-size: 2em;
-        color: #042d31ef;
+        color: transparent;
         text-transform: uppercase;
-        -webkit-text-stroke: 0px black;
-    }
+        color: white;
+        -webkit-text-stroke: 0.6px white;
+    } 
     h3{
-        color: #033438f6;
-        font-size: 2.3em;
-        -webkit-text-stroke: 0px black;
+        font-size: 2.01em;
+        
       }
 
     table {
@@ -33,20 +28,17 @@
         padding: 5px 10px;
         text-align: center;
         border-collapse: separate;
-        border-spacing: 4px 6px;
+        border-spacing: 4px 8px;
 
         & thead {
 
             & tr {
 
                 & th {
-                    background: #013135cb;
                     padding: 5px 3px;
                     font-weight: 800;
-                    font-size: 1.1em;
+                    font-size: 1.2em;
                     letter-spacing: 2px;
-                    border: 2px solid white;
-                    border-radius: 10px;
 
                     &:nth-child(1){
                         width: 50px;
@@ -61,12 +53,13 @@
         tbody {
 
             & tr {
+                color: whitesmoke;
 
                 & td {
                     padding: 5px;
                     font-size: 1.1em;
                     font-weight: 600;
-                    border-radius: 10px 0px 25px 0px;
+                    border-radius: 15px;
 
 
                     & img {
@@ -76,7 +69,6 @@
                         margin-left: 5px;
                         margin-right: 10px;
                     }
-
                 }
 
                 td:nth-child(2) {
@@ -85,15 +77,15 @@
                 }
 
                 td:nth-child(odd) {
-                    background: linear-gradient(to bottom right, #0c7097c0, #013135);
+                    background: linear-gradient(to bottom right, #4b494992, #1d1b1b);
                     color: white;
-                    border: 2px solid white;
+                    border: 1px solid white;
                 }
 
                 td:nth-child(even) {
-                    background: rgba(255, 255, 255, 0.712);
-                    border: 2px solid #013135;
-                    color: #013135;
+                    background: rgba(255, 255, 255, 0.719);
+                    border: 2px solid #222020;
+                    color: #222020;
                 }
             }
         }
@@ -101,21 +93,17 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .conta.theme3 {
+    .conta.royal_grey {
 
         h1 {
-          
-            padding: 0 20px;
-            border-radius: 200px;
-            font-size: 1.5em;
+            font-size: 1.4em;
             letter-spacing: 1.2px;
-            -webkit-text-stroke: .2px transparent;
-        }
-
-        h2 {
+          }
+    
+          h2 {
             font-size: 1.1em;
             letter-spacing: 1.2px;
-        }
+          }
 
         table {
             width: 100%;
@@ -128,10 +116,9 @@
 
                     & th {
                         padding: 0px 3px;
-                        font-weight: 600;
-                        font-size: 1em;
-                        letter-spacing: 1px;
-                        border-radius: 7px;
+                        font-weight: 700;
+                        font-size: .8em;
+                        letter-spacing: .4px;
                     }
                 }
             }
@@ -141,11 +128,10 @@
                 & tr {
 
                     & td {
-                        padding: 1px 5px;
-                        font-size: .8em;
-                        font-weight: 600;
-                        border-radius: 10px 0px 15px 0px;
-
+                        padding: 1px 3px;
+                        font-size: .6em;
+                        font-weight: 700;
+                        border-radius: 10px;
 
                         & img {
                             width: 30px;
@@ -153,7 +139,6 @@
                             margin-left: 0px;
                             margin-right: 4px;
                         }
-
                     }
                 }
             }
