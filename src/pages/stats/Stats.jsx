@@ -322,7 +322,7 @@ const Stats = () => {
         </div>
       </div>}
       <div>
-        <Unique/>
+        <Unique tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} />
       </div>
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
@@ -362,7 +362,7 @@ const Stats = () => {
         </table>
       </Container>
       {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
-      <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
+        <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
       </p>}
 
       {log.islogin && tournamentOwner &&
