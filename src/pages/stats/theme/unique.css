@@ -1,0 +1,114 @@
+
+.unique {
+    width: 1280px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    --imagewidth:70px;
+
+    .main {
+        width: 1000px;
+        border: 1px solid red;
+
+        .top {
+            width: 100%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 5px;
+
+            .card {
+                width: 200px;
+
+                .upper {
+                    width: 100%;
+                    height: 30px;
+
+                    span {
+                        display: inline-block;
+                        height: 100%;
+                        line-height: 30px;
+                    }
+
+                    .position {
+                        width: 40px;
+                        background: brown;
+                        color: white;
+                        text-align: center;
+                    }
+
+                    .name {
+                        padding-left: 5px;
+                        background: yellow;
+                        color: brown;
+                        width: calc(100% - 40px);
+                    }
+                }
+
+                .bottom {
+                    display: flex;
+
+                    .logo {
+                        width: var(--imagewidth);
+                        height: var(--imagewidth);
+                        background: rgb(114, 53, 2);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        img {
+                            width: 80%;
+                            height: 80%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .stat {
+                        width: calc(100% - var(--imagewidth) );
+
+                        .headerr {
+                            span {
+                                background: green;
+                                color: white;
+                            }
+                        }
+
+                        .statss {
+                            span {
+                                background: rgb(209, 207, 179);
+                                color: black;
+                            }
+                        }
+
+                        .headerr,
+                        .statss {
+                            /* border: 1px solid black; */
+                            height: 50%;
+
+                            span {
+                                height: 100%;
+                                display: inline-block;
+                                text-align: center;
+                                width: 25%;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        .bottomtable{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .divider{
+                width: 48%;
+                height: 200px;
+                border: 1px solid red;
+            }
+        }
+
+    }
+}

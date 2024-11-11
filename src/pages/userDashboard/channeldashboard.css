@@ -142,9 +142,8 @@
         >div {
             padding: 10px;
             border-radius: 10px;
-            /* border: 1px solid black; */
             background: #ecf0f3;
-        /* border: 1px dotted grey; */
+            /* border: 1px dotted grey; */
             box-shadow: 0 0 10px #fff,
                 5px 5px 10px #a7aaaf,
                 -5px -5px 10px #fff;
@@ -523,7 +522,10 @@
             }
 
             >div {
-                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+                margin-top: 10px;
+                box-shadow: 0 0 10px #fff,
+                5px 5px 10px #a7aaaf,
+                -5px -5px 10px #fff;
             }
 
             .socallink {
@@ -540,6 +542,8 @@
 
         .tournamentss {
             width: 98vw;
+            margin-top: 25px;
+            margin-bottom: 15px;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem 0.1rem;
 

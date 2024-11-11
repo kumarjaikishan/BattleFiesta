@@ -28,9 +28,11 @@
         padding: 5px 10px;
         text-align: center;
         border-collapse: separate;
-        border-spacing: 4px 8px;
+        border-spacing: 4px 4px;
 
         & thead {
+            /* background: rgba(0,0,0,0.4); */
+            color: white;
 
             & tr {
 
@@ -39,6 +41,8 @@
                     font-weight: 800;
                     font-size: 1.2em;
                     letter-spacing: 2px;
+                    border-radius: 4px;
+                    background: rgba(0,0,0,0.6);
 
                     &:nth-child(1){
                         width: 50px;
@@ -56,11 +60,11 @@
                 color: whitesmoke;
 
                 & td {
-                    padding: 5px;
+                    padding: 2px 5px;
                     font-size: 1.1em;
                     font-weight: 600;
                     border-radius: 15px;
-
+                    box-shadow: 0px 2px 0px rgba(255, 255, 255, 0.6);
 
                     & img {
                         width: 40px;

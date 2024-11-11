@@ -6,6 +6,7 @@ import './theme/red_carpet.css'
 import './theme/red_white.css'
 import './theme/droplets.css'
 import './theme/royal_grey.css'
+import Unique from './theme/unique';
 import { styled } from '@mui/material';
 import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
 import { IoMdCloudUpload } from "react-icons/io";
@@ -66,7 +67,7 @@ const Stats = () => {
       funck(result.matches);
       setmatches(result.matches);
       Impfunction(result.teamdeatil, result.matches);
-      Impfunction1(result.teamdeatil, result.matches);
+      // Impfunction1(result.teamdeatil, result.matches);
       createTeamLogoObj(result.teamdeatil);
       setteamdeatil(result.teamdeatil);
       // setrule(result.rules)
@@ -214,9 +215,6 @@ const Stats = () => {
     settablerow(sortedTableData);
   };
 
-
-
-
   function comparePlayers(playerA, playerB) {
     // Compare total points first
     if (playerA.total !== playerB.total) {
@@ -268,7 +266,7 @@ const Stats = () => {
         const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
         const anchor = document.createElement('a');
         anchor.href = dataUrl;
-        anchor.download = `${filename} @${rand}.png`; // Change the filename as needed
+        anchor.download = `${filename} @${rand}.jpg`; // Change the filename as needed
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
@@ -323,6 +321,9 @@ const Stats = () => {
           <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
         </div>
       </div>}
+      <div>
+        <Unique/>
+      </div>
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
           <img loading="lazy" src={kuch?.tournment_logo || defaultlogo} alt="Tournament Logo" />

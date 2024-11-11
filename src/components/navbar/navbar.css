@@ -117,10 +117,10 @@
                     justify-content: center;
                     padding: 20px 0;
                     background: var(--primarycolor);
-                    background: rgba(22, 22, 22, 0.904);
+                    background: rgb(20, 20, 20);
                     height: 100%;
-                    gap: 25px;
-                    border-top: 1px solid grey;
+                    gap: 30px;
+                    /* border-top: 1px solid grey; */
 
                     .navlink {
 
@@ -167,14 +167,14 @@
             }
 
             nav ul {
-                gap: 20px;
+                gap: 25px;
                 padding: 15px 0;
 
                 .navlink {
 
                     li {
                         margin-left: 0px;
-                        font-size: 16px;
+                        font-size: 18px;
                         font-weight: 700;
                         letter-spacing: 2px;
                         padding: 8px 80px;

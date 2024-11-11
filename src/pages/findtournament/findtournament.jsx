@@ -95,6 +95,7 @@ const Findtournament = () => {
         }
 
         try {
+            dispatch(setloader(true));
             const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}tournamnetsearch`, {
                 method: "POST",
                 headers: {
@@ -105,6 +106,7 @@ const Findtournament = () => {
 
             const data = await response.json();
             console.log(data)
+            dispatch(setloader(false));
             if (!response.ok) {
                 return toast.warn(data.message, { autoClose: 1500 });
             }
@@ -112,6 +114,7 @@ const Findtournament = () => {
             // Update showing list with the search result
             setShowingList([data.query]);
         } catch (error) {
+            dispatch(setloader(false));
             console.log(error);
         }
     };
@@ -202,7 +205,7 @@ const Findtournament = () => {
                                         toast.success('Copied', { autoClose: 1000 })
                                     }} />
                                 </span>
-                                <span > <MdGroups/> {val.totalTeamsRegistered} /{val.slots} </span>
+                                <span > <MdGroups /> {val.totalTeamsRegistered} /{val.slots} </span>
                             </div>
                             {/* <div className="label">
                                 {val.label.split(',').map((eac) => {
