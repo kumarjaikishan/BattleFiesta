@@ -1,5 +1,4 @@
 import './unique.css'
-import wood from '../../../assets/wood.png'
 
 const Unique = ({ tablerow, teamlogo, kuch }) => {
     const logourl = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731223081/battlefiesta/teamlogo/papvdyttgvonksceujen.jpg'
@@ -103,7 +102,7 @@ const Unique = ({ tablerow, teamlogo, kuch }) => {
 
             </div>
             <div className="foterr">
-                <img src={wood} alt="" />
+                <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731391704/battlefiesta/assets/themes/wood_ytbjgt.webp'} alt="" />
                 <div className="orgname">
                     <i>Organiser</i>
                     <p>{kuch.organiser}</p>

@@ -254,7 +254,7 @@ const Detail = () => {
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournbanner' onChange={() => upload("tournbanner")} />
                             </Button>
-                            <p>A cover image for the tournament.</p>
+                            <p>*A cover image for the tournament.This will shown on Public Post</p>
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
                             {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}
@@ -262,7 +262,7 @@ const Detail = () => {
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournlogo' onChange={() => upload("tournlogo")} />
                             </Button>
-                            <p>Tips: The Image should be in Square</p>
+                            <p>*Tips: The Image should be in Square</p>
                         </div>
                     </div>
                 </div>

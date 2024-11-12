@@ -23,7 +23,6 @@ const ManageTeam = ({ setting, showss }) => {
     // console.log(teamid);
     swal({
       title: 'Are you sure?',
-      text: 'Once deleted, you will not be able to recover this Tournament!',
       icon: 'warning',
       buttons: true,
       dangerMode: true,

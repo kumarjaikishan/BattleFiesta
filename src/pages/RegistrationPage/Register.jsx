@@ -110,31 +110,7 @@ const Register = () => {
         // console.log('randomstring',randomString);
         return randomString;
     }
-    const getenteries = async () => {
-        try {
-            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}getenteries`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ tid: registerId })
-            })
-            const resuke = await rese.json();
-            if (!rese.ok) {
-                return toast.warn(resuke.message, { autoClose: 2100 })
-            }
-
-            let enteries = resuke.enteries;
-            let filtenteries = enteries.filter((val) => {
-                return val.status != "rejected"
-            })
-            setfilteredentry(filtenteries);
-            setentry(enteries);
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
     const fetche = async (id) => {
         setdisable(true);
         try {
@@ -300,7 +276,6 @@ const Register = () => {
                 setinp(inpinit)
                 fetche(registerId);
                 setnewfresh(true);
-                getenteries();
             } else {
                 toast.update(id, { render: responseData.message, type: "warning", isLoading: false, autoClose: 1600 });
             }

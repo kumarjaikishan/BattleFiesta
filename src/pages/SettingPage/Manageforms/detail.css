@@ -107,12 +107,17 @@
             & .logos {
                 padding: 2px;
                 margin-top: 10px;
+                /* border: 1px solid red; */
+                display: flex;
+                flex-wrap: wrap;
 
                 & div {
+                    /* border: 1px solid red; */
+                    width: 100%;
 
                     & img {
-                        width: 100px;
-                        height: 100px;
+                        width: 300px;
+                        height: 200px;
                         margin: 5px 0px;
                     }
 
@@ -132,7 +137,8 @@
                 }
 
                 .tourna_logo {
-                    border-left: 1px solid grey;
+                    border-top: 1px solid grey;
+                    border-left: none;
                 }
             }
 

@@ -44,7 +44,7 @@ const Dashboard = () => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
     tournacenter?.alltournaments && calc();
-    console.log(tournacenter.alltournaments);
+    // console.log(tournacenter.alltournaments);
   }, [tournacenter.alltournaments]);
 
 

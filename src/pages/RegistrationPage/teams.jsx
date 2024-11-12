@@ -9,7 +9,7 @@ import { TbMoodSad } from "react-icons/tb";
 const Teams = ({ entry }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950086/battlefiesta/assets/icon/group2_gqiyup.webp'
     const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
-   
+
 
     return (
         <>
@@ -48,17 +48,41 @@ const Teams = ({ entry }) => {
                                 })}
                             </div>
                         </AccordionDetails>
-                        {player.status == "rejected" && <TextField
-                            id="outlined-multiline-flexible"
-                            label="Reason of Rejection"
-                            multiline
-                            color="error"
-                            focused
-                            inputProps={{ style: { fontSize: 14 } }}
-                            value={player.reason || "your Fault"}
-                            maxRows={6}
-                            sx={{ minWidth: "96%", mb: 1, ml: 1 }}
-                        />}
+                        {player.status === "rejected" && (
+                            <TextField
+                                id="outlined-multiline-flexible"
+                                label="Reason of Rejection"
+                                multiline
+                                color="error" // sets the error color (red) to label and border
+                                focused
+                                inputProps={{ style: { fontSize: 14 } }}
+                                value={player.reason || "your Fault"}
+                                maxRows={6}
+                                sx={{
+                                    minWidth: "96%",
+                                    mb: 1,
+                                    ml: 1,
+                                    "& .MuiOutlinedInput-root": {
+                                        "& fieldset": {
+                                            borderColor: "red", // border color
+                                        },
+                                        "&:hover fieldset": {
+                                            borderColor: "red",
+                                        },
+                                        "&.Mui-focused fieldset": {
+                                            borderColor: "red",
+                                        },
+                                    },
+                                    "& .MuiInputLabel-root": {
+                                        color: "red", // label color
+                                    },
+                                    "& .MuiInputLabel-root.Mui-focused": {
+                                        color: "red",
+                                    },
+                                }}
+                            />
+                        )}
+
                     </Accordion>)
                 })}
             </div>

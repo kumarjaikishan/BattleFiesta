@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     --imagewidth: 70px;
-    background: url('../../../assets/dff.png');
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731391705/battlefiesta/assets/themes/scenery_rqzxhz.webp');
     background-size: cover;
     padding: 10px 0;
 
@@ -12,7 +12,7 @@
         padding: 20px 40px;
         width: 1080px;
         background: rgb(204, 197, 167);
-        background: url('../../../assets/paper.png');
+        background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731391707/battlefiesta/assets/themes/paper_pdntco.webp');
         background-size: cover;
         background-position: center;
         /* border: 1px solid red; */

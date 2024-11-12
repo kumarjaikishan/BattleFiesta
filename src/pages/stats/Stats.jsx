@@ -321,9 +321,9 @@ const Stats = () => {
           <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
         </div>
       </div>}
-      <div>
+      {/* <div>
         <Unique tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} />
-      </div>
+      </div> */}
       <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
         <div>
           <img loading="lazy" src={kuch?.tournment_logo || defaultlogo} alt="Tournament Logo" />
