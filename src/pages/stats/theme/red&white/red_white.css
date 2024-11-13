@@ -1,12 +1,12 @@
-
-.conta.red_white {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731315165/battlefiesta/assets/red_white_itbzjg.webp');
-   /* background: url('../../../assets/11879.jpg'); */
+.red_white {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490262/battlefiesta/assets/themes/red_white_itbzjg_hccrmm.webp');
     background-size: cover;
-    
+    padding: 20px 80px;
+
 
     h1,
-    h2 ,h3{
+    h2,
+    h3 {
         color: transparent;
         text-align: center;
         text-transform: capitalize;
@@ -14,7 +14,7 @@
         letter-spacing: 2px;
         -webkit-text-stroke: 1px #0c0c0c;
         color: white;
-       
+
     }
 
     h2 {
@@ -23,9 +23,10 @@
         text-transform: uppercase;
         -webkit-text-stroke: 0px white;
     }
-    h3{
+
+    h3 {
         font-size: 2.1em;
-      }
+    }
 
     table {
         width: 100%;
@@ -47,12 +48,13 @@
                     font-size: 1.2em;
                     letter-spacing: 2px;
 
-                    &:nth-child(1){
+                    &:nth-child(1) {
                         width: 50px;
-                      }
-                      &:nth-child(3){
+                    }
+
+                    &:nth-child(3) {
                         width: 50px;
-                      }
+                    }
                 }
             }
         }
@@ -101,54 +103,56 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .conta.red_white {
+    .conta:not(.desktop-mode) {
+        .red_white {
+            padding: 10px 0px;
 
-
-        h1 {
-            font-size: 1.5em;
-            letter-spacing: 1.3px;
-            font-weight: 500;
-        }
-
-        h2 {
-            font-size: 1.1em;
-            letter-spacing: 1.2px;
-        }
-
-        table {
-            width: 100%;
-            padding: 2px;
-
-            & thead {
-
-                & tr {
-
-                    & th {
-                        padding: 2px;
-                        font-weight: 600;
-                        font-size: .8em;
-                        letter-spacing: .2px;
-                    }
-                }
+            h1 {
+                font-size: 1.5em;
+                letter-spacing: 1.3px;
+                font-weight: 500;
             }
 
-            tbody {
+            h2 {
+                font-size: 1.1em;
+                letter-spacing: 1.2px;
+            }
 
-                & tr {
-                    margin: 10px 0px;
+            table {
+                width: 100%;
+                padding: 2px;
 
-                    & td {
-                        padding: 1px 5px;
-                        font-size: .8em;
-                        font-weight: 600;
-                        border-radius: 7px 0px 7px 0px;
+                & thead {
+
+                    & tr {
+
+                        & th {
+                            padding: 2px;
+                            font-weight: 600;
+                            font-size: .8em;
+                            letter-spacing: .2px;
+                        }
+                    }
+                }
+
+                tbody {
+
+                    & tr {
+                        margin: 10px 0px;
+
+                        & td {
+                            padding: 1px 5px;
+                            font-size: .8em;
+                            font-weight: 600;
+                            border-radius: 7px 0px 7px 0px;
 
 
-                        & img {
-                            width: 30px;
-                            height: 30px;
-                            margin-left: 0px;
-                            margin-right: 4px;
+                            & img {
+                                width: 30px;
+                                height: 30px;
+                                margin-left: 0px;
+                                margin-right: 4px;
+                            }
                         }
                     }
                 }

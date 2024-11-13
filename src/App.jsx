@@ -26,13 +26,15 @@ import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
 import Stats from './pages/stats/Stats';
-import { messaging } from './firebase';
-import { getToken, onMessage } from 'firebase/messaging';
 import { toast } from 'react-toastify';
 import Modalbox from './components/custommodal/Modalbox';
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
 import Channeldashboard from './pages/userDashboard/channeldashboard';
+
+// off this for disable notification
+// import { messaging } from './firebase';
+// import { getToken, onMessage } from 'firebase/messaging';
 
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
@@ -74,9 +76,10 @@ function App() {
   }
 
   useEffect(() => {
-    onMessage(messaging, (payload) => {
-      toast.success(payload.notification.body, { autoClose: false });
-    });
+    // off this for disable notification
+    // onMessage(messaging, (payload) => {
+    //   toast.success(payload.notification.body, { autoClose: false });
+    // });
   }, []);
 
   const baseURL = `${window.location.origin}`;
@@ -90,7 +93,9 @@ function App() {
     } else {
       console.log("URL is correct or running on localhost, no redirection needed");
     }
-    log.islogin && requestPermission();
+
+    // off this for disable notification
+    // log.islogin && requestPermission();
   }, [log.islogin]);
 
   return (

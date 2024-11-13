@@ -1,9 +1,11 @@
-.conta.royal_grey {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/grey--Mu-C4ll_eo06fj.webp');
+.royal_grey {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
     background-size: cover;
+    padding: 20px 80px;
 
     h1,
-    h2,h3 {
+    h2,
+    h3 {
         color: whitesmoke;
         text-align: center;
         text-transform: capitalize;
@@ -17,11 +19,12 @@
         text-transform: uppercase;
         color: white;
         -webkit-text-stroke: 0.6px white;
-    } 
-    h3{
+    }
+
+    h3 {
         font-size: 2.01em;
-        
-      }
+
+    }
 
     table {
         width: 100%;
@@ -42,14 +45,15 @@
                     font-size: 1.2em;
                     letter-spacing: 2px;
                     border-radius: 4px;
-                    background: rgba(0,0,0,0.6);
+                    background: rgba(0, 0, 0, 0.6);
 
-                    &:nth-child(1){
+                    &:nth-child(1) {
                         width: 50px;
-                      }
-                      &:nth-child(3){
+                    }
+
+                    &:nth-child(3) {
                         width: 50px;
-                      }
+                    }
                 }
             }
         }
@@ -97,51 +101,54 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .conta.royal_grey {
+    .conta:not(.desktop-mode) {
+        .royal_grey {
+            padding: 10px 3px;
 
-        h1 {
-            font-size: 1.4em;
-            letter-spacing: 1.2px;
-          }
-    
-          h2 {
-            font-size: 1.1em;
-            letter-spacing: 1.2px;
-          }
-
-        table {
-            width: 100%;
-            padding: 1px 2px;
-            border-spacing: 2px 3px;
-
-            & thead {
-
-                & tr {
-
-                    & th {
-                        padding: 0px 3px;
-                        font-weight: 700;
-                        font-size: .8em;
-                        letter-spacing: .4px;
-                    }
-                }
+            h1 {
+                font-size: 1.4em;
+                letter-spacing: 1.2px;
             }
 
-            tbody {
+            h2 {
+                font-size: 1.1em;
+                letter-spacing: 1.2px;
+            }
 
-                & tr {
+            table {
+                width: 100%;
+                padding: 1px 2px;
+                border-spacing: 2px 3px;
 
-                    & td {
-                        padding: 1px 3px;
-                        font-size: .6em;
-                        font-weight: 700;
-                        border-radius: 10px;
+                & thead {
 
-                        & img {
-                            width: 30px;
-                            height: 30px;
-                            margin-left: 0px;
-                            margin-right: 4px;
+                    & tr {
+
+                        & th {
+                            padding: 0px 3px;
+                            font-weight: 700;
+                            font-size: .8em;
+                            letter-spacing: .4px;
+                        }
+                    }
+                }
+
+                tbody {
+
+                    & tr {
+
+                        & td {
+                            padding: 1px 3px;
+                            font-size: .6em;
+                            font-weight: 700;
+                            border-radius: 10px;
+
+                            & img {
+                                width: 30px;
+                                height: 30px;
+                                margin-left: 0px;
+                                margin-right: 4px;
+                            }
                         }
                     }
                 }

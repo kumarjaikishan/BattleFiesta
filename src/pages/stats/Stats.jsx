@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './stats.css'
-import './theme/red_carpet.css'
-import './theme/red_white.css'
-import './theme/droplets.css'
-import './theme/royal_grey.css'
-import Unique from './theme/unique';
+import Unique from './theme/unique/unique';
+import Droplet from './theme/droplets/Droplets';
+import Red_carpet from './theme/RED_Carpet/red_Carpet';
+import { toast } from "react-toastify";
+import Red_white from './theme/red&white/red_white';
+import Royal_grey from './theme/royal_grey/royal_grey';
 import { styled } from '@mui/material';
 import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Container } from '@mui/material';
 import { IoMdCloudUpload } from "react-icons/io";
@@ -32,7 +33,7 @@ const Stats = () => {
   }, [])
   const [topplayer, settopplayer] = useState([]);
   const [topteam, settopteam] = useState([]);
-  const [theme, settheme] = useState("red_carpet");
+  const [theme, settheme] = useState(1);
   const [title, settitle] = useState('Overall Standings')
 
   const handleChange = (event) => {
@@ -242,51 +243,58 @@ const Stats = () => {
 
   const [disable, setdisable] = useState(false);
 
+  const [isDesktopMode, setIsDesktopMode] = useState(false);
+
   const imagedownload = async (id, filename) => {
     setdisable(true);
-    const html2canvas = (await import("html2canvas")).default;
-    const timenow = new Date();
-    const rand = timenow.getMinutes();
+    dispatch(setloader(true));
+    setIsDesktopMode(true);
+  
+    try {
+      // Dynamically import html2canvas and set up date-based randomness for filename
+      const html2canvas = (await import("html2canvas")).default;
+      const timestamp = new Date().getMinutes();
+  
+      // Select the element and store its original style properties
+      const boxElement = document.querySelector(`${id}`);
+      const { width: originalWidth, minHeight: originalHeight } = boxElement.style;
+  
+      // Temporarily set desktop styles to the element
+      boxElement.style.width = originalWidth; 
+      boxElement.style.minHeight = originalHeight;
+  
+      // Define quality scale for high-resolution output
+      const quality = 3;
+      const canvas = await html2canvas(boxElement, { scale: quality, useCORS: true });
+      
+      // Convert canvas to a data URL and trigger download
+      const dataUrl = canvas.toDataURL();
+      const anchor = document.createElement('a');
+      anchor.href = dataUrl;
+      anchor.download = `${filename} @${timestamp}.png`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
 
-    // Override mobile layout by temporarily simulating a large screen size
-    const boxElement = document.querySelector(`${id}`);
-
-    // Save the current style
-    const originalWidth = boxElement.style.width;
-    const originalHeight = boxElement.style.height;
-
-    // Force the element to behave like a desktop size
-    boxElement.style.width = '1680px'; // Set desired desktop width
-    // boxElement.style.minHeight = '945px'; // Set desired desktop height
-    boxElement.style.minHeight = originalHeight; // Set desired desktop height
-
-    let quality = 3; // Adjust this if needed
-    html2canvas(boxElement, { scale: quality, useCORS: true })
-      .then((canvas) => {
-        const dataUrl = canvas.toDataURL(); // Get the data URL of the canvas
-        const anchor = document.createElement('a');
-        anchor.href = dataUrl;
-        anchor.download = `${filename} @${rand}.jpg`; // Change the filename as needed
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
-        setdisable(false);
-
-        // Restore the original styles after capturing
-        boxElement.style.width = originalWidth;
-        boxElement.style.minHeight = originalHeight;
-      })
-      .catch((error) => {
-        console.error('Error generating image:', error);
-        setdisable(false);
-
-        // Restore the original styles if an error occurs
-        boxElement.style.width = originalWidth;
-        boxElement.style.minHeight = originalHeight;
-      });
+      boxElement.style.width = originalWidth;
+      boxElement.style.minHeight = originalHeight;
+      dispatch(setloader(false));
+      setIsDesktopMode(false);
+      setdisable(false);
+      if (window.innerWidth < 768) {
+        toast.success("Image Downloaded", { autoClose: 2100 })
+      }
+    } catch (error) {
+      console.error('Error generating image:', error);
+      boxElement.style.width = originalWidth;
+      boxElement.style.minHeight = originalHeight;
+      dispatch(setloader(false));
+      setIsDesktopMode(false);
+      setdisable(false);
+    } 
   };
+  
   const tournamentOwner = kuch?.userid == userprofile?.userprofile._id;
-
 
   return (
     <div className='stats'>
@@ -302,10 +310,11 @@ const Stats = () => {
               label="Theme"
               onChange={handleChange}
             >
-              <MenuItem value={"red_carpet"}>Red Carpet</MenuItem>
-              <MenuItem value={"royal_grey"}>Royal Grey</MenuItem>
-              <MenuItem value={"droplets"}>Droplets</MenuItem>
-              <MenuItem value={"red_white"}>Red & White</MenuItem>
+              <MenuItem value={1}>Red Carpet</MenuItem>
+              <MenuItem value={2}>Royal Grey</MenuItem>
+              <MenuItem value={3}>Droplets</MenuItem>
+              <MenuItem value={4}>Red & White</MenuItem>
+              <MenuItem value={5}>Golden Coast</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -321,46 +330,14 @@ const Stats = () => {
           <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
         </div>
       </div>}
-      {/* <div>
-        <Unique tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} />
-      </div> */}
-      <Container id="wrapper" maxWidth="fixed" className={`conta ${theme}`}>
-        <div>
-          <img loading="lazy" src={kuch?.tournment_logo || defaultlogo} alt="Tournament Logo" />
-        </div>
-        <h3>{kuch.title}</h3>
-        <h2>{kuch.organiser}</h2>
-        <h1>{title}</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th style={{ textAlign: "left" }}>Team</th>
-              <th>M</th>
-              <th style={{ fontSize: "2em" }}>🍗</th>
-              <th>Place Pts</th>
-              <th>Kill Pts</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tablerow.length > 0 ? tablerow.map((row, ind) => {
-              return <tr key={ind}>
-                <td>{ind + 1}</td>
-                <td style={{ textAlign: "left" }}><span><img loading="lazy" src={teamlogo[row.teamid] || group}
-                  alt="TeamLogo" /></span> <span>{row.teamname}</span> </td>
-                <td>{row.matchplayed}</td>
-                <td>{row.matchwon}</td>
-                <td>{row.placepoints}</td>
-                <td>{row.killpoints}</td>
-                <td>{row.total}</td>
-              </tr>
-            }) : <tr>
-              <td colSpan={7}>No Match Found</td>
-            </tr>}
-          </tbody>
-        </table>
-      </Container>
+      <div id="wrapper" maxWidth="fixed" className={`capture-area ${isDesktopMode ? 'conta desktop-mode' : 'conta'}`}>
+        {theme == 1 && <Red_carpet tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
+        {theme == 2 && <Royal_grey tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
+        {theme == 3 && <Droplet tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
+        {theme == 4 && <Red_white tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
+        {theme == 5 && <Unique tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} />}
+
+      </div>
       {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
         <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
       </p>}

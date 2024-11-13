@@ -110,7 +110,7 @@ const Register = () => {
         // console.log('randomstring',randomString);
         return randomString;
     }
-    
+
     const fetche = async (id) => {
         setdisable(true);
         try {
@@ -207,7 +207,7 @@ const Register = () => {
         if (all.ask_payment_ss && !inp.paymentss) {
             return toast.warn("Select Payment Screenshot", { autoClose: 2300 });
         }
-        
+
         let playernameerror = false;
         let playerlogoerror = false;
         inp.players.forEach((player) => {
@@ -224,7 +224,7 @@ const Register = () => {
         if (playerlogoerror) {
             return toast.warn("Select All Player Logo", { autoClose: 2300 });
         }
-        
+
         const formData = new FormData();
         formData.append("tid", inp.tournament_id);
         formData.append("userid", inp.userid);
@@ -234,7 +234,7 @@ const Register = () => {
         formData.append("discordID", inp.teamdiscord.trim());
         formData.append("teamLogo", inp.selectedTeamLogo);
         formData.append("paymentScreenshot", inp.paymentss);
-        
+
 
         try {
             setisloading(true);
@@ -392,7 +392,7 @@ const Register = () => {
                         <h2>Registration : {all.title}</h2>
                         <h4>Organised by : {all.organiser}
                             <Button variant="outlined"
-                              startIcon={<GrOverview />}
+                                startIcon={<GrOverview />}
                                 onClick={() => window.open(`/channel/@${all.channel}`, '_blank')}
                             > View Channel
                             </Button>
@@ -417,8 +417,21 @@ const Register = () => {
                         </>}
                         {!newfresh && all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
                             <div className="compart">
-                                <TextField className="cominp" size="small" required id="outlined-basic" label="Team Name" value={inp.teamname} name="teamname" onChange={realhandlechange} variant="outlined" />
-                                {all.ask_email && <TextField className="cominp" type="email" required={all.ask_email} value={inp.teamemail} size="small" id="outlined-basic" name="teamemail" label="Email ID" onChange={realhandlechange} variant="outlined" />}
+                                <TextField className="cominp"
+                                    size="small" required id="outlined-basic"
+                                    label="Team Name"
+                                    inputProps={{ minLength: 3 }}
+                                    value={inp.teamname} name="teamname"
+                                    helperText={inp.teamname.length < 3 ? "Minimum length is 3 characters" : ""}
+                                    onChange={realhandlechange}
+                                    variant="outlined"
+                                />
+                                {all.ask_email && <TextField className="cominp" type="email"
+                                    required={all.ask_email} value={inp.teamemail}
+                                    size="small" id="outlined-basic" name="teamemail"
+                                    label="Email ID" onChange={realhandlechange}
+                                    variant="outlined"
+                                />}
 
                                 {all.ask_phone && <TextField className="cominp" required={all.ask_phone}
                                     size="small" id="outlined-basic" name="teammobile"
@@ -430,8 +443,12 @@ const Register = () => {
                                     color={inp.teammobile.length == 10 ? "primary" : "warning"}
                                 />}
                                 {all.ask_discord && <TextField
-                                    inputProps={{ minLength: 5, maxLength: 22 }}
-                                    className="cominp" required={all.ask_discord} size="small" id="outlined-basic" name="teamdiscord" onChange={realhandlechange} label="Discord ID" variant="outlined" />}
+                                    inputProps={{ minLength: 15, maxLength: 20 }}
+                                    className="cominp" required={all.ask_discord} size="small"
+                                    id="outlined-basic" name="teamdiscord"
+                                    onChange={realhandlechange} label="Discord ID"
+                                    variant="outlined"
+                                />}
                             </div>
                             <Divider variant="middle" />
                             {
@@ -443,7 +460,6 @@ const Register = () => {
                                         <VisuallyHiddenInput
                                             type="file"
                                             accept="image/*"
-                                            // onChange={handleTeamLogoChange}
                                             onChange={(event) => common(event, "teamlogo")}
                                         />
                                     </Button>
@@ -479,10 +495,17 @@ const Register = () => {
                                         noValidate
                                         autoComplete="off"
                                     >
-                                        <TextField size="small" id={`in-game-name-${index}`} value={inp.players[index].inGameName} onChange={(e) => realplayerchange(e, index, 'inGameName')} label="In Game Name*" variant="outlined" />
+                                        <TextField size="small" id={`in-game-name-${index}`}
+                                            value={inp.players[index].inGameName}
+                                            onChange={(e) => realplayerchange(e, index, 'inGameName')}
+                                            label="In Game Name*"
+                                            inputProps={{ minLength: 3 }}
+                                            variant="outlined"
+                                            helperText={inp.players[index].inGameName.length < 3 ? "Minimum length is 3 characters" : ""}
+                                        />
                                         <TextField size="small" id={`in-game-id-${index}`}
                                             value={inp.players[index].inGameID}
-                                            inputProps={{ minLength: 5, maxLength: 15 }}
+                                            inputProps={{ minLength: 8, maxLength: 13}}
                                             type='tel'
                                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                             onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined"
@@ -540,7 +563,7 @@ const Register = () => {
                             <p>You can now check your registration status on TeamList at any time, whether it is Pending, Approved, or Rejected</p>
                         </div>}
                         {/* {all.isopen && all.show_payment && all.slots > filteredentry.length && <div className="showpayment"> */}
-                        { all.show_payment  && <div className="showpayment">
+                        {all.show_payment && <div className="showpayment">
                             <div className="img">
                                 <QRCode
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}

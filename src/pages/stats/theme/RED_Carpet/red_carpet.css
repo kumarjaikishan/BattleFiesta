@@ -1,16 +1,17 @@
-.conta.red_carpet {
-  background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/back-des-gobzXdNv_axwaw6.webp');
+.red_carpet {
+  background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490263/battlefiesta/assets/themes/back-des-gobzXdNv_axwaw6_ottbke.webp');
   background-size: cover;
- 
+  padding: 20px 80px;
 
   h1,
-  h2,h3 {
+  h2,
+  h3 {
     color: whitesmoke;
     text-transform: capitalize;
     text-align: center;
     font-size: 4em;
     letter-spacing: 2px;
-    
+
   }
 
   h2 {
@@ -20,7 +21,8 @@
     text-transform: uppercase;
     color: white;
   }
-  h3{
+
+  h3 {
     font-size: 1.7em;
   }
 
@@ -43,10 +45,11 @@
           font-size: 1.2em;
           letter-spacing: 2px;
 
-          &:nth-child(1){
+          &:nth-child(1) {
             width: 50px;
           }
-          &:nth-child(3){
+
+          &:nth-child(3) {
             width: 50px;
           }
         }
@@ -88,55 +91,60 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .conta.red_carpet {
-
-    h1 {
-      font-size: 1.5em;
-      letter-spacing: 1.3px;
-      font-weight: 500;
-    }
-
-    h2 {
-      font-size: 1.1em;
-      letter-spacing: 1.2px;
-      -webkit-text-stroke: 0.2px white;
-    }
-    h3{
-      font-size: 1em;
-    }
-
-    table {
+  .conta:not(.desktop-mode) {
+    .red_carpet {
       width: 100%;
-      padding: 2px;
+      padding: 10px 0px;
 
-      & thead {
-
-        & tr {
-
-          & th {
-            padding: 2px;
-            font-weight: 600;
-            font-size: .8em;
-            letter-spacing: .2px;
-          }
-        }
+      h1 {
+        font-size: 1.5em;
+        letter-spacing: 1.3px;
+        font-weight: 500;
       }
 
-      tbody {
+      h2 {
+        font-size: 1.1em;
+        letter-spacing: 1.2px;
+        -webkit-text-stroke: 0.2px white;
+      }
 
-        & tr {
+      h3 {
+        font-size: 1em;
+      }
 
-          & td {
-            padding: 1px 5px;
-            font-size: .8em;
-            font-weight: 600;
-            border-radius: 7px 0px 7px 0px;
+      table {
+        width: 100%;
+        padding: 2px;
 
-            & img {
-              width: 30px;
-              height: 30px;
-              margin-left: 0px;
-              margin-right: 4px;
+        & thead {
+
+          & tr {
+
+            & th {
+              padding: 2px;
+              font-weight: 600;
+              font-size: .8em;
+              letter-spacing: .2px;
+            }
+          }
+        }
+
+        tbody {
+
+          & tr {
+
+            & td {
+              padding: 1px 5px;
+              font-size: .8em;
+              font-weight: 600;
+              border-radius: 7px 0px 7px 0px;
+
+              & img {
+                width: 30px;
+                height: 30px;
+                margin-left: 0px;
+                margin-right: 4px;
+              }
             }
           }
         }

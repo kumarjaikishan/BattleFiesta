@@ -1,14 +1,17 @@
-.conta.droplets {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/drop-_1iar9wF_ivnuoy.webp');
+.droplets {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490263/battlefiesta/assets/themes/drop-_1iar9wF_ivnuoy_euz40m.webp');
     background-size: cover;
-    
+    padding: 20px 80px;
+
 
     h1,
-    h2,h3 {
+    h2,
+    h3 {
         text-align: center;
         text-transform: capitalize;
     }
-    h1{
+
+    h1 {
         color: white;
         font-size: 2.8em;
         padding: 0 30px;
@@ -22,11 +25,12 @@
         text-transform: uppercase;
         -webkit-text-stroke: 0px black;
     }
-    h3{
+
+    h3 {
         color: #033438f6;
         font-size: 2.3em;
         -webkit-text-stroke: 0px black;
-      }
+    }
 
     table {
         width: 100%;
@@ -49,12 +53,13 @@
                     border: 2px solid white;
                     border-radius: 10px;
 
-                    &:nth-child(1){
+                    &:nth-child(1) {
                         width: 50px;
-                      }
-                      &:nth-child(3){
+                    }
+
+                    &:nth-child(3) {
                         width: 50px;
-                      }
+                    }
                 }
             }
         }
@@ -102,59 +107,61 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .conta.droplets {
+    .conta:not(.desktop-mode) {
+        .droplets {
+            padding: 10px 0px;
 
-        h1 {
-          
-            padding: 0 20px;
-            border-radius: 200px;
-            font-size: 1.5em;
-            letter-spacing: 1.2px;
-            -webkit-text-stroke: .2px transparent;
-        }
-
-        h2 {
-            font-size: 1.1em;
-            letter-spacing: 1.2px;
-        }
-
-        table {
-            width: 100%;
-            padding: 1px 2px;
-            border-spacing: 2px 3px;
-
-            & thead {
-
-                & tr {
-
-                    & th {
-                        padding: 0px 3px;
-                        font-weight: 600;
-                        font-size: 1em;
-                        letter-spacing: 1px;
-                        border-radius: 7px;
-                    }
-                }
+            h1 {
+                padding: 0 10px;
+                border-radius: 200px;
+                font-size: 1.5em;
+                letter-spacing: 1.2px;
+                -webkit-text-stroke: .2px transparent;
             }
 
-            tbody {
+            h2 {
+                font-size: 1.1em;
+                letter-spacing: 1.2px;
+            }
 
-                & tr {
+            table {
+                width: 100%;
+                padding: 1px 2px;
+                border-spacing: 2px 3px;
 
-                    & td {
-                        padding: 1px 5px;
-                        font-size: .8em;
-                        font-weight: 600;
-                        border-radius: 10px 0px 15px 0px;
+                & thead {
 
+                    & tr {
 
-                        & img {
-                            width: 30px;
-                            height: 30px;
-                            margin-left: 0px;
-                            margin-right: 4px;
+                        & th {
+                            padding: 0px 3px;
+                            font-weight: 600;
+                            font-size: 1em;
+                            letter-spacing: 1px;
+                            border-radius: 7px;
                         }
+                    }
+                }
 
+                tbody {
+
+                    & tr {
+
+                        & td {
+                            padding: 1px 5px;
+                            font-size: .8em;
+                            font-weight: 600;
+                            border-radius: 10px 0px 15px 0px;
+
+
+                            & img {
+                                width: 30px;
+                                height: 30px;
+                                margin-left: 0px;
+                                margin-right: 4px;
+                            }
+
+                        }
                     }
                 }
             }
