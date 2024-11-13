@@ -4,7 +4,7 @@ import { MdDiversity3 } from "react-icons/md";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import { IoCloudDownloadSharp } from "react-icons/io5";
 
-const Fragger = ({ topplayer, disable, topteam, imagedownload, log, tournamentOwner }) => {
+const Fragger = ({ topplayer, isDesktopMode, topteam,  }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
     const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
 
@@ -15,7 +15,7 @@ const Fragger = ({ topplayer, disable, topteam, imagedownload, log, tournamentOw
 
     return (
         <>
-            <div className="fragger" id="fragger">
+            <div className={`${isDesktopMode ? 'fragger desktop-mode' : 'fragger'}`} id="fragger">
                 <h2>Top Fraggers</h2>
                 {!topplayer.length && <div><h3 style={{ color: 'white', textAlign: 'center' }}>No Match Found</h3></div>}
                 {topplayer?.length && <><div className="boxes">
@@ -71,16 +71,9 @@ const Fragger = ({ topplayer, disable, topteam, imagedownload, log, tournamentOw
 
                 </>}
             </div>
-            {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
+            {/* {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
             <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
-            </p>}
-            {log?.islogin && tournamentOwner &&
-                <div style={{ textAlign: 'center' }}>
-                    <Button disabled={disable} onClick={() => imagedownload('#fragger', "Fraggers")} title='Download Fraggers Stat' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
-                        Fraggers
-                    </Button>
-                </div>
-            }
+            </p>} */}
         </>
     )
 }

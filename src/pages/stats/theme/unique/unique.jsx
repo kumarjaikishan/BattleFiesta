@@ -2,7 +2,7 @@ import './unique.css'
 
 const Unique = ({ tablerow, teamlogo, kuch, title }) => {
     const logourl = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731223081/battlefiesta/teamlogo/papvdyttgvonksceujen.jpg'
-    console.log(tablerow)
+    // console.log(tablerow)
 
     return (
         <div className='unique'>
@@ -58,7 +58,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             const team = tablerow.slice(3, 14)[ind] || null; // Use an empty object if the entry does not exist
                             return (
                                 <div key={ind} className="bodre">
-                                    <span>{team && String(ind + 3).padStart(2, 0)}</span>
+                                    <span>{team && String(ind + 4).padStart(2, 0)}</span>
                                     <span>
                                         {team && <img src={team && teamlogo[team.teamid] || 'default-logo.png'} alt="" />}
                                         {team && team?.teamname}
@@ -87,7 +87,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             const team = tablerow.slice(15, 26)[ind] || null; // Use an empty object if the entry does not exist
                             return (
                                 <div key={ind} className={team ? "bodre":"bodre off"}>
-                                    <span>{team && ind + 15}</span>
+                                    <span>{team && ind + 16}</span>
                                     <span>
                                         {team && <img src={team && teamlogo[team.teamid] || 'default-logo.png'} alt="" />}
                                         {team && team?.teamname}

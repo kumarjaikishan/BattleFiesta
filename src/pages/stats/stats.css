@@ -21,6 +21,7 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
+   
 
     & .conti {
       width: 30%;
@@ -46,7 +47,6 @@
     &.desktop-mode {
       width: 1280px !important;
       margin: 0 auto;
-      transform: scale(0.8);
     }
 
     .tournlogoo {
@@ -74,6 +74,11 @@
     background-size: cover;
     border-radius: 20px;
     padding: 20px;
+
+    &.desktop-mode {
+      width: 1280px !important;
+      margin: 0 auto;
+    }
 
     & h2 {
       text-align: center;
@@ -221,6 +226,11 @@
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
     background-size: cover;
 
+    &.desktop-mode {
+      width: 1280px !important;
+      margin: 0 auto;
+    }
+
     & h1,
     h3 {
       color: white;
@@ -310,8 +320,7 @@
 
 
 @media only screen and (max-width: 600px) {
-  /* Media queries apply only when .desktop-mode is NOT active */
-  .stats:not(.desktop-mode) {
+  .stats {
     min-height: calc(100vh - var(--navheightmobile));
     padding: 7px;
 
@@ -319,6 +328,11 @@
       max-width: 100%;
       padding: 5px;
       margin-bottom: 5px;
+      /* border: 1px solid red; */
+
+      h3{
+        font-size: 0.8em;
+      }
 
       & .conti {
         width: 32%;
@@ -338,8 +352,7 @@
       }
     }
 
-
-    .fragger {
+    .fragger:not(.desktop-mode) {
       width: 100%;
       margin-top: 30px;
       background-size: cover;
@@ -396,7 +409,7 @@
       }
     }
 
-    .matchtable {
+    .matchtable:not(.desktop-mode) {
       width: 100%;
       margin-top: 30px;
       border-radius: 10px;
