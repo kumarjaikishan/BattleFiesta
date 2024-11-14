@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import { Button } from '@mui/material';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import { IoCloudDownloadOutline } from "react-icons/io5";
 
-const MatchTable = ({ rules, matches, teamdeatil }) => {
+const MatchTable = ({ rules, matches, isDesktopMode, tournamentOwner, teamdeatil, log, disable, imagedownload }) => {
     const [row, setrow] = useState([]);
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
 
@@ -64,62 +66,64 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
 
     return (
         <>
-            <div className="matchtable">
+            <div className={`${isDesktopMode ? 'matchtable desktop-mode' : 'matchtable'}`} id="matchtable">
                 <h1>Match Stats</h1>
                 {matches?.length > 0 ? <>
                     <div>
-                        <FormControl size="small" sx={{ width: '350px', mt:1 }}>
-                            <InputLabel
-                                id="demo-simple-select-label"
-                                sx={{
-                                    color: 'white', // Customize label color
-                                    '&.Mui-focused': {
-                                        color: 'white', // Color when label is focused
-                                    },
-                                }}
-                            >
-                                Select Match
-                            </InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={currentmatch}
-                                label="Select Match"
-                                onChange={handleChange}
-                                sx={{
-                                    minWidth: 250,
-                                    color: 'white', // Customize text color
-                                    backgroundColor: 'rgba(0,0,0,0.6)',
-                                    '& .MuiSelect-icon': {
-                                        color: 'white', // Customize dropdown arrow icon color
-                                    },
-                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: 'white', // Outline color when focused
-                                    },
-                                    '& .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: 'white', // Default outline color
-                                    },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: 'white', // Outline color on hover
-                                    },
-                                }}
-                            >
-                                <MenuItem value="" disabled>
+                        {!isDesktopMode &&
+                            <FormControl size="small" sx={{ width: '350px', mt: 1 }}>
+                                <InputLabel
+                                    id="demo-simple-select-label"
+                                    sx={{
+                                        color: 'white', // Customize label color
+                                        '&.Mui-focused': {
+                                            color: 'white', // Color when label is focused
+                                        },
+                                    }}
+                                >
                                     Select Match
-                                </MenuItem>
-                                {matches.map((match, ind) => {
-                                    const originalDate = new Date(match.createdAt);
-                                    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-                                    const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(originalDate);
+                                </InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={currentmatch}
+                                    label="Select Match"
+                                    onChange={handleChange}
+                                    sx={{
+                                        minWidth: 250,
+                                        color: 'white', // Customize text color
+                                        backgroundColor: 'rgba(0,0,0,0.6)',
+                                        '& .MuiSelect-icon': {
+                                            color: 'white', // Customize dropdown arrow icon color
+                                        },
+                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white', // Outline color when focused
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white', // Default outline color
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white', // Outline color on hover
+                                        },
+                                    }}
+                                >
+                                    <MenuItem value="" disabled>
+                                        Select Match
+                                    </MenuItem>
+                                    {matches.map((match, ind) => {
+                                        const originalDate = new Date(match.createdAt);
+                                        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+                                        const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(originalDate);
 
-                                    return (
-                                        <MenuItem key={ind} value={ind}>
-                                            Match #{ind + 1} - {match.map || 'N/A'} - {formattedDate}
-                                        </MenuItem>
-                                    );
-                                })}
-                            </Select>
-                        </FormControl>
+                                        return (
+                                            <MenuItem key={ind} value={ind}>
+                                                Match #{ind + 1} - {match.map || 'N/A'} - {formattedDate}
+                                            </MenuItem>
+                                        );
+                                    })}
+                                </Select>
+                            </FormControl>
+                        }
                     </div>
                     <p> Match #{currentmatch + 1}-{title && title} </p>
                     <div className="table">
@@ -146,7 +150,15 @@ const MatchTable = ({ rules, matches, teamdeatil }) => {
                         </table>
                     </div>
                 </> : <div><h3>No Match Found</h3></div>}
+
             </div>
+            {log?.islogin && tournamentOwner &&
+                <div style={{ textAlign: 'center' }}>
+                    <Button disabled={disable} onClick={() => imagedownload('#matchtable', `Match #${currentmatch + 1} - ${title}`)} title='Download Fraggers Stat' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
+                        Match
+                    </Button>
+                </div>
+            }
         </>
     )
 }

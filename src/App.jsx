@@ -33,8 +33,8 @@ import UserRoute from './utils/UserRoute';
 import Channeldashboard from './pages/userDashboard/channeldashboard';
 
 // off this for disable notification
-// import { messaging } from './firebase';
-// import { getToken, onMessage } from 'firebase/messaging';
+import { messaging } from './firebase';
+import { getToken, onMessage } from 'firebase/messaging';
 
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
@@ -45,7 +45,6 @@ const Query = lazy(() => import('./pages/admin/query/query'));
 const Voucher = lazy(() => import('./pages/admin/voucher/voucher'));
 const Membership = lazy(() => import('./pages/admin/membership/membership'));
 const User = lazy(() => import('./pages/admin/user/user'));
-// const Stats = lazy(() => import('./pages/stats/Stats'));
 
 function App() {
   const log = useSelector((state) => state.login);
@@ -77,9 +76,9 @@ function App() {
 
   useEffect(() => {
     // off this for disable notification
-    // onMessage(messaging, (payload) => {
-    //   toast.success(payload.notification.body, { autoClose: false });
-    // });
+    onMessage(messaging, (payload) => {
+      toast.success(payload.notification.body, { autoClose: false });
+    });
   }, []);
 
   const baseURL = `${window.location.origin}`;
@@ -95,7 +94,7 @@ function App() {
     }
 
     // off this for disable notification
-    // log.islogin && requestPermission();
+    log.islogin && requestPermission();
   }, [log.islogin]);
 
   return (

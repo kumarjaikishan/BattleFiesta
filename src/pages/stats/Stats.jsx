@@ -249,29 +249,31 @@ const Stats = () => {
     setdisable(true);
     dispatch(setloader(true));
     setIsDesktopMode(true);
-  
+
     try {
       // Dynamically import html2canvas and set up date-based randomness for filename
       const html2canvas = (await import("html2canvas")).default;
       const timestamp = new Date().getMinutes();
-  
+
       // Select the element and store its original style properties
       const boxElement = document.querySelector(`${id}`);
       const { width: originalWidth, minHeight: originalHeight } = boxElement.style;
-  
+
       // Temporarily set desktop styles to the element
-      boxElement.style.width = originalWidth; 
+      // boxElement.style.width = originalWidth; 
+      boxElement.style.width = '1680 px';
       boxElement.style.minHeight = originalHeight;
-  
+
       // Define quality scale for high-resolution output
       const quality = 3;
       const canvas = await html2canvas(boxElement, { scale: quality, useCORS: true });
-      
+
       // Convert canvas to a data URL and trigger download
       const dataUrl = canvas.toDataURL();
       const anchor = document.createElement('a');
       anchor.href = dataUrl;
-      anchor.download = `${filename} @${timestamp}.png`;
+      // anchor.download = `${filename} @${timestamp}.png`;
+      anchor.download = `${filename}.png`;
       document.body.appendChild(anchor);
       anchor.click();
       document.body.removeChild(anchor);
@@ -291,9 +293,9 @@ const Stats = () => {
       dispatch(setloader(false));
       setIsDesktopMode(false);
       setdisable(false);
-    } 
+    }
   };
-  
+
   const tournamentOwner = kuch?.userid == userprofile?.userprofile._id;
 
   return (
@@ -338,16 +340,23 @@ const Stats = () => {
         {theme == 5 && <Unique tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} />}
 
       </div>
-      {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
+      {/* {log.islogin && tournamentOwner && <p style={{ fontSize: '0.9em', color: 'gray', marginBottom: '0.5em' }}>
         <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
-      </p>}
+      </p>} */}
 
       {log.islogin && tournamentOwner &&
         <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
           Score Board
         </Button>}
-      <Fragger log={log} disable={disable} imagedownload={imagedownload} topteam={topteam} topplayer={topplayer} tournamentOwner={tournamentOwner} />
-      <MatchTable rules={kuch} matches={matches} teamdeatil={teamdeatil} />
+      <Fragger isDesktopMode={isDesktopMode} topteam={topteam} topplayer={topplayer} />
+      {log.islogin && tournamentOwner &&
+        <div style={{ textAlign: 'center' }}>
+          <Button disabled={disable} onClick={() => imagedownload('#fragger', `${kuch.title} - Fraggers`)} title='Download Fraggers Stat' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
+            Fraggers
+          </Button>
+        </div>
+      }
+      <MatchTable isDesktopMode={isDesktopMode} rules={kuch} matches={matches} log={log} teamdeatil={teamdeatil} disable={disable} imagedownload={imagedownload} tournamentOwner={tournamentOwner} />
     </div>
   );
 };
