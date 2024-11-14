@@ -114,8 +114,9 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    /* justify-content: center; */
                     padding: 20px 0;
+                    padding-top: 40px;
                     background: var(--primarycolor);
                     background: rgb(20, 20, 20);
                     height: 100%;
@@ -169,6 +170,7 @@
             nav ul {
                 gap: 25px;
                 padding: 15px 0;
+                padding-top: 40px;
 
                 .navlink {
 

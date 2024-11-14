@@ -60,7 +60,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             <span>KP</span>
                             <span>TP</span>
                         </div>
-                        {Array.from({ length: 11 }).map((_, ind) => {
+                        {tablerow.length > 0 ? Array.from({ length: 11 }).map((_, ind) => {
                             const team = tablerow.slice(3, 14)[ind] || null; // Use an empty object if the entry does not exist
                             return (
                                 <div key={ind} className="bodre">
@@ -77,7 +77,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <span className="cut"></span>
                                 </div>
                             );
-                        })}
+                        }) : <div className='bodre' style={{padding:"0 20px" , margin:'0 auto'}} > No Match Found</div> }
                     </div>
                     <div className="divider">
                         <div className={tablerow.length > 14 ? "headere":"headere off" }>
@@ -89,7 +89,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             <span>KP</span>
                             <span>TP</span>
                         </div>
-                        {Array.from({ length: 11 }).map((_, ind) => {
+                        {tablerow.length > 0 ? Array.from({ length: 11 }).map((_, ind) => {
                             const team = tablerow.slice(15, 26)[ind] || null; // Use an empty object if the entry does not exist
                             return (
                                 <div key={ind} className={team ? "bodre":"bodre off"}>
@@ -111,7 +111,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <span className="cut"></span>
                                 </div>
                             );
-                        })}
+                        }) : <div className={tablerow.length > 14 ? "bodre":"bodre off"} style={{padding:"0 20px" , margin:'0 auto'}} > No Match Found</div>  }
                     </div>
                 </div>
             </div>

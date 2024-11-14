@@ -342,6 +342,12 @@ const EnterResult = () => {
                     key={ind}
                     helperText="Leave Empty for 0"
                     type='tel'
+                    onPaste={(event) => {
+                      const pasteData = event.clipboardData.getData('Text');
+                      if (!/^[0-9]*$/.test(pasteData)) {
+                        event.preventDefault();
+                      }
+                    }}
                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                     sx={{ m: 1, maxWidth: 140 }}
                     label={each.inGameName}

@@ -33,7 +33,7 @@ const Registerform = ({ showss }) => {
     const [isloading, setisloading] = useState(false)
 
     useEffect(() => {
-        // console.log(classic.classicdetail);
+        // console.log(classic);
         // console.log("from setting",classic.classicsetting);
         // dispatch(setloader(true));
     }, [])
