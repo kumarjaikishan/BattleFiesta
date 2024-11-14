@@ -189,6 +189,10 @@ const Register = () => {
         if (!inp.teamname?.trim()) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
+        if (!inp.teamname || inp.teamname.trim().length < 3) {
+            return toast.warn("Minimum 3 letters required for Team name", { autoClose: 2300 });
+        }
+
         if (all.ask_email && !inp.teamemail?.trim()) {
             return toast.warn("Email is Required", { autoClose: 2300 });
         }
@@ -211,19 +215,22 @@ const Register = () => {
         let playernameerror = false;
         let playerlogoerror = false;
         inp.players.forEach((player) => {
-            if (!player.inGameName?.trim()) {
+            if (!player.inGameName?.trim() || player.inGameName.trim().length < 3) {
                 playernameerror = true;
             }
             if (all.ask_player_logo && !player.playerLogo) {
                 playerlogoerror = true;
             }
         });
+
         if (playernameerror) {
-            return toast.warn("All Player Name is Required", { autoClose: 2300 });
+            return toast.warn("Each player name must have at least 3 characters", { autoClose: 2300 });
         }
+
         if (playerlogoerror) {
-            return toast.warn("Select All Player Logo", { autoClose: 2300 });
+            return toast.warn("Select a logo for each player", { autoClose: 2300 });
         }
+
 
         const formData = new FormData();
         formData.append("tid", inp.tournament_id);
@@ -501,12 +508,18 @@ const Register = () => {
                                             label="In Game Name*"
                                             inputProps={{ minLength: 3 }}
                                             variant="outlined"
-                                            helperText={inp.players[index].inGameName.length < 3 ? "Minimum length is 3 characters" : ""}
+                                        // helperText={inp.players[index].inGameName.length < 3 ? "Minimum length is 3 characters" : ""}
                                         />
                                         <TextField size="small" id={`in-game-id-${index}`}
                                             value={inp.players[index].inGameID}
-                                            inputProps={{ minLength: 8, maxLength: 13}}
+                                            inputProps={{ minLength: 8, maxLength: 13 }}
                                             type='tel'
+                                            onPaste={(event) => {
+                                                const pasteData = event.clipboardData.getData('Text');
+                                                if (!/^[0-9]*$/.test(pasteData)) {
+                                                    event.preventDefault();
+                                                }
+                                            }}
                                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                             onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined"
                                         />
@@ -530,7 +543,8 @@ const Register = () => {
                             <div>
                                 <Button title="Add New Player" sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<MdAdd />} disabled={disable} variant="outlined" color="primary">
                                     Add player
-                                </Button></div>
+                                </Button>
+                            </div>
 
                             <LoadingButton
                                 loading={isloading}
@@ -538,6 +552,7 @@ const Register = () => {
                                 startIcon={<IoMdCloudUpload />}
                                 variant="contained"
                                 type="submit"
+                                className="registerbtn"
                             >
                                 Register
                             </LoadingButton>

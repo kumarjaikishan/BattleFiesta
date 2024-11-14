@@ -1,7 +1,7 @@
 .registartionform {
     width: 100%;
     display: flex;
-    min-height: calc(100vh - var(--navheight) );
+    min-height: calc(100vh - var(--navheight));
     position: relative;
     flex-direction: column;
     background: white;
@@ -38,8 +38,10 @@
             width: 100%;
             background-color: var(--primarycolor);
         }
-          >h4{
+
+        >h4 {
             margin: 10px 0;
+
             button {
                 font-size: 10px;
                 font-weight: 700;
@@ -50,8 +52,9 @@
             svg {
                 font-size: 14px;
             }
-          }
-        .compart{
+        }
+
+        .compart {
             width: 100%;
             display: flex;
             flex-wrap: wrap;
@@ -59,7 +62,7 @@
             margin: 10px 0px;
             /* border: 1px solid red; */
 
-            .cominp{
+            .cominp {
                 width: 48%;
                 margin: 10px 0px;
             }
@@ -131,6 +134,7 @@
                 font-size: 3em;
             }
         }
+
         .showpayment {
             margin-top: 20px;
             padding: 10px 0px;
@@ -139,10 +143,11 @@
             justify-content: center;
             align-items: center;
 
-            .img{
+            .img {
                 width: 120px;
             }
-            .remain{
+
+            .remain {
                 margin-left: 20px;
                 height: 120px;
                 /* border: 1px solid red; */
@@ -150,10 +155,12 @@
                 flex-direction: column;
                 justify-content: space-between;
             }
-            a{
+
+            a {
                 text-decoration: none;
             }
         }
+
         .contacts {
             padding-top: 10px;
             border-top: 1px solid grey;
@@ -166,7 +173,7 @@
                 padding-bottom: 5px;
                 flex-wrap: wrap;
                 justify-content: space-around;
-    
+
                 & a {
                     /* background: red; */
                     display: flex;
@@ -183,17 +190,22 @@
                     font-weight: 600;
                     cursor: pointer;
                     margin-top: 10px;
-    
+
                     &:hover {
                         background-color: #212529;
                         color: white;
                     }
-    
+
                     >span {
                         margin: 0 3px;
                     }
                 }
             }
+        }
+
+        .registerbtn {
+            margin: 5px auto;
+            margin-bottom: 10px;
         }
     }
 
@@ -293,17 +305,22 @@
                     border-top: 1px dashed grey;
                     /* background: red; */
                     width: 100%;
+                    position: relative;
                     display: flex;
-                    justify-content: space-between;
                     align-items: center;
                     padding: 3px 10px;
 
                     & img {
-                        width: 50px !important;
-                        height: 50px !important;
+                        width: 45px !important;
+                        height: 45px !important;
                         object-fit: cover;
                         border-radius: 50%;
                         border: none;
+                        margin-right: 10px;
+                    }
+
+                    span:nth-child(3) {
+                        margin-left: auto;
                     }
                 }
             }
@@ -316,7 +333,7 @@
 @media only screen and (max-width: 600px) {
     .registartionform {
         padding: 10px 0px;
-        min-height: calc(100vh - var(--navheightmobile) );
+        min-height: calc(100vh - var(--navheightmobile));
 
         & .controler {
             width: 99%;
@@ -325,16 +342,17 @@
 
         .form {
             width: 98%;
-            padding:10px 5px;
-            
-            .compart{
+            padding: 10px 5px;
+
+            .compart {
                 justify-content: center;
-                
-                .cominp{
+
+                .cominp {
                     width: 95%;
                     margin: 5px 0px;
                 }
             }
+
             .slots {
                 height: 30px;
                 letter-spacing: .5px;
@@ -352,22 +370,26 @@
                 padding-top: 5px;
 
                 & .links {
-                   
+
                     & a {
                         padding: 2px 6px;
                         font-weight: 500;
                         margin-top: 5px;
-    
+
                         & span:nth-child(2) {
                             font-size: 14px;
                             letter-spacing: .2px;
                         }
-    
+
                         .ico {
                             font-size: 18px;
                         }
                     }
                 }
+            }
+
+            .registerbtn {
+                width: 100%;
             }
         }
 
@@ -395,7 +417,7 @@
                 }
 
                 span {
-                    font-size: 1.1em;
+                    font-size: 0.9em;
                     letter-spacing: 0.5px;
                 }
 
@@ -419,6 +441,14 @@
 
                     div {
                         padding: 5px;
+
+                        span:nth-child(2) {
+                            font-size: 14px;
+                        }
+
+                        span:nth-child(3) {
+                            font-size: 13px;
+                        }
                     }
                 }
             }
