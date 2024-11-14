@@ -4,7 +4,7 @@ import { MdDiversity3 } from "react-icons/md";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import { IoCloudDownloadSharp } from "react-icons/io5";
 
-const Fragger = ({ topplayer, isDesktopMode, topteam,  }) => {
+const Fragger = ({ topplayer, isDesktopMode, topteam  }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
     const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
 

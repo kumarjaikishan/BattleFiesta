@@ -348,7 +348,7 @@ const Stats = () => {
         <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
           Score Board
         </Button>}
-      <Fragger isDesktopMode={isDesktopMode} topteam={topteam} topplayer={topplayer} />
+      <Fragger isDesktopMode={isDesktopMode} topteam={topteam} topplayer={topplayer} group={group} />
       {log.islogin && tournamentOwner &&
         <div style={{ textAlign: 'center' }}>
           <Button disabled={disable} onClick={() => imagedownload('#fragger', `${kuch.title} - Fraggers`)} title='Download Fraggers Stat' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
