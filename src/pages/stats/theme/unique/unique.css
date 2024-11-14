@@ -7,28 +7,41 @@
     background-size: cover;
     padding: 10px 0;
 
-    & h1 {
-        font-family: "Gajraj One", sans-serif;
-        font-weight: 400;
-        font-size: 2.5em;
-        font-style: normal;
-        letter-spacing: 2px;
-        color: #2d2a26;
+    & .tite {
         /* border: 1px solid red; */
-        text-shadow:
-            -1px -1px 0 #f3eab1,
-            1px -1px 0 #f3eab1,
-            -1px 1px 0 #f3eab1,
-            1px 1px 0 #f3eab1;
+        
         width: 900px;
         --hiheight: 160px;
-        text-align: center;
-        line-height: var(--hiheight);
         height: var(--hiheight);
         background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731486881/battlefiesta/assets/themes/beach/lstest_zc8uph.webp');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            /* border: 2px solid blue; */
+            text-shadow:
+            -1px -1px 0 #f3eab1,
+            1px -1px 0 #f3eab1,
+            -1px 1px 0 #f3eab1,
+            1px 1px 0 #f3eab1;
+            font-family: "Gajraj One", sans-serif;
+            font-weight: 400;
+            font-size: 2.2em;
+            font-style: normal;
+            letter-spacing: 2px;
+            color: #2d2a26;
+            width: 520px;
+            height: 100px;
+            transform: translateY(7px);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
 
@@ -316,12 +329,20 @@
             --imagewidth: 50px;
             padding: 10px 0;
 
-            & h1 {
 
-                font-size: 1.2em !important;
-                letter-spacing: 1px;
+            & .tite {
                 width: 500px;
-                --hiheight: 90px;
+                --hiheight: 160px;
+
+
+                h1 {
+                    /* border: 2px solid blue; */
+                    font-size: 1.2em;
+                    letter-spacing: 1px;
+                    width: 350px;
+                    height: 100px;
+                    transform: translateY(5px);
+                }
             }
 
 

@@ -2,11 +2,17 @@ import './unique.css'
 
 const Unique = ({ tablerow, teamlogo, kuch, title }) => {
     const logourl = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731223081/battlefiesta/teamlogo/papvdyttgvonksceujen.jpg'
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
+    const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
+
     // console.log(tablerow)
 
     return (
         <div className='unique'>
+        <div className="tite">
+
             <h1>{kuch.title}</h1>
+        </div>
             <h3>{title}</h3>
             <div className="maine">
                 <div className="top">
@@ -19,7 +25,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                 </div>
                                 <div className="bottom">
                                     <div className="logo">
-                                        <img src={teamlogo[team.teamid]} alt="logo" />
+                                        <img src={teamlogo[team.teamid] || group} alt="logo" />
                                     </div>
                                     <div className="stat">
                                         <div className="headerr">
