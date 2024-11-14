@@ -215,6 +215,9 @@
             }
         }
     }
+    .section5 .left .img{
+        width: 500px;
+    }
 
     .section3,
     .section5 {

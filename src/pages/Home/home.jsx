@@ -297,7 +297,7 @@ const Home = () => {
                         animate={control3}
                         className="left">
                         <div className="img">
-                            <img loading='lazy' src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660499/battlefiesta/assets/icon/stats_cie5xv.webp'} alt="" />
+                            <img loading='lazy' src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731566361/battlefiesta/assets/icon/stats.webp'} alt="" />
                         </div>
                     </motion.div>
                     <motion.div
@@ -313,7 +313,7 @@ const Home = () => {
                         <p> <span><img src={tick2} alt="" /></span> <span>Points table is updated automatically each time you enter results of a new match.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Option to export the points table to an image file.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Detailed analytics.</span></p>
-                        <a href="https://battlefiesta.in/tournaments/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
+                        <a href="https://battlefiesta.in/stat/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
                             <Button variant="contained" sx={{border:'1px solid white'}} size='small'>See Demo</Button>
                         </a>
                     </motion.div>
