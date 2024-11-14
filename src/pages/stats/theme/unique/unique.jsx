@@ -77,7 +77,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <span className="cut"></span>
                                 </div>
                             );
-                        }) : <div className='bodre' style={{padding:"0 20px" , margin:'0 auto'}} > No Match Found</div> }
+                        }) : <div className='bodre' style={{paddingLeft:'30px', margin:'0 auto'}} > No Match Found</div> }
                     </div>
                     <div className="divider">
                         <div className={tablerow.length > 14 ? "headere":"headere off" }>
@@ -111,7 +111,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <span className="cut"></span>
                                 </div>
                             );
-                        }) : <div className={tablerow.length > 14 ? "bodre":"bodre off"} style={{padding:"0 20px" , margin:'0 auto'}} > No Match Found</div>  }
+                        }) : <div className={tablerow.length > 14 ? "bodre":"bodre off"} style={{ margin:'0 auto', paddingLeft:'30px'}} > No Match Found</div>  }
                     </div>
                 </div>
             </div>
