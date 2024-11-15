@@ -30,7 +30,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <div className="stat">
                                         <div className="headerr">
                                             <span>M</span>
-                                            <span>🍗</span>
+                                            <span>🏆</span>
                                             <span>PP</span>
                                             <span>KP</span>
                                             <span>TP</span>
@@ -55,7 +55,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             <span>#</span>
                             <span>TEAM NAME</span>
                             <span>M</span>
-                            <span>🍗</span>
+                            <span style={{fontSize:'1.4em'}}>🏆</span>
                             <span>PP</span>
                             <span>KP</span>
                             <span>TP</span>
@@ -84,7 +84,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             <span>#</span>
                             <span>TEAM NAME</span>
                             <span>M</span>
-                            <span>🍗</span>
+                            <span style={{fontSize:'1.4em'}}>🏆</span>
                             <span>PP</span>
                             <span>KP</span>
                             <span>TP</span>
