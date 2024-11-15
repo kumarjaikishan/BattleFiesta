@@ -86,45 +86,50 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         e.preventDefault();
         let tid = inp.tournament_id;
         //    return  console.log(tid);
-        if (!inp.teamname) {
+        if (!inp.teamname.trim()) {
             return toast.warn("Team Name is Required.", { autoClose: 2300 });
         }
-        if (all.ask_email && !inp.teamemail) {
+        if (all.ask_email && !inp.teamemail.trim()) {
             return toast.warn("Email is Required", { autoClose: 2300 });
         }
-        if (all.ask_phone && !inp.teammobile) {
+        if (all.ask_phone && !inp.teammobile.trim()) {
             return toast.warn("Phone is Required", { autoClose: 2300 });
         }
-        if (all.ask_discord && !inp.teamdiscord) {
+        if (all.ask_discord && !inp.teamdiscord.trim()) {
             return toast.warn("Discord is Required", { autoClose: 2300 });
         }
         if (all.ask_team_logo && !inp.selectedTeamLogo) {
             return toast.warn("Select Team Logo", { autoClose: 2300 });
         }
+        
         let playernameerror = false;
         let playerlogoerror = false;
+        
         inp.players.forEach((player) => {
-            if (!player.inGameName) {
+            if (!player.inGameName.trim()) {
                 playernameerror = true;
             }
             if (all.ask_player_logo && !player.playerLogo) {
-                playerlogoerror = true
+                playerlogoerror = true;
             }
         });
+        
         if (playernameerror) {
             return toast.warn("All Player Name is Required", { autoClose: 2300 });
         }
         if (playerlogoerror) {
             return toast.warn("Select All Player Logo", { autoClose: 2300 });
         }
+        
 
         const formData = new FormData();
         formData.append("id", teamdetail._id);
         formData.append("teamName", inp.teamname);
         formData.append("email", inp.teamemail);
-        formData.append("mobile", inp.teammobile);
+        formData.append("mobile", inp.teammobile || null);
         formData.append("discordID", inp.teamdiscord);
         formData.append("teamLogo", inp.selectedTeamLogo);
+
 
 
         try {
@@ -149,11 +154,12 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                     formData.append(`playerLogo`, player.playerLogo);
 
                     try {
-                        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}playerupdate`, {
+                        const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}classicplayerupdate`, {
                             method: "POST",
                             body: formData
                         });
                         const vfdvdf = await responsee.json();
+                        // console.log(vfdvdf)
                         if (responsee.ok) {
                             // toast.success(vfdvdf.message, { autoClose: 3300 });
                         }
@@ -320,10 +326,10 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                             <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<IoMdAdd />} disabled={disable} variant="outlined" color="primary">
                                 Add player
                             </Button></div>
-                        <Button sx={{ mr: 2 }} type="submit" startIcon={<MdCloudUpload />} disabled={disable} variant="contained" color="primary">
+                        <Button sx={{ mr: 2, mb:1 }} type="submit" startIcon={<MdCloudUpload />} disabled={disable} variant="contained" color="primary">
                             Save Team
                         </Button>
-                        <Button onClick={() => setcalledit(false)} startIcon={<IoMdCloseCircle />} disabled={disable} variant="outlined" color="secondary">
+                        <Button sx={{  mb:1 }} onClick={() => setcalledit(false)} startIcon={<IoMdCloseCircle />} disabled={disable} variant="outlined" color="secondary">
                             close
                         </Button>
                     </form>

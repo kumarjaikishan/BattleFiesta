@@ -10,6 +10,7 @@ import { FaUndo } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { MdInsertPhoto } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 import { MdThumbUp } from "react-icons/md";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -67,7 +68,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         </Badge>
                         <span>{player.teamName} </span>
                     </AccordionSummary>
-                    <AccordionDetails className='details' sx={{pb:1}}>
+                    <AccordionDetails className='details' sx={{ pb: 1 }}>
                         <div className="teamdata">
                             <div className='imageside'>
                                 <img src={player.teamLogo ? player.teamLogo : group1} alt="" />
@@ -75,14 +76,21 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
                                     <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
                                     <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><FaWhatsapp title='Whatsapp' /></a>
-                                    {player.screenss && <a href="#"> <MdInsertPhoto style={{color:'green'}} title='Show ScreenShot' onClick={() => showss(player.screenss)} /> </a>}
+                                 </div>
+                                {player.screenss && 
+                                <div className='payss' onClick={() => showss(player.screenss)}>
+                                    <IoEyeOutline />
+                                     Payment S.S
+                                    {/* <span><IoEyeOutline/> </span>
+                                    <span>See Payment SS </span> */}
                                 </div>
+                                }
                             </div>
                             <div className='teamside'>
-                                <span> <span><HiUserGroup/> </span> <span>: {player?.teamName}</span></span>
-                                <span> <span><IoMailOutline/> </span> <span>: {player?.email || 'N/A'}</span></span>
-                                <span> <span><MdLocalPhone/> </span> <span>: {player?.mobile || 'N/A'}</span></span>
-                                <span> <span><FaDiscord/> </span> <span>: {player?.discordID || 'N/A'}</span></span>
+                                <span> <span><HiUserGroup /> </span> <span>: {player?.teamName}</span></span>
+                                <span> <span><IoMailOutline /> </span> <span>: {player?.email || 'N/A'}</span></span>
+                                <span> <span><MdLocalPhone /> </span> <span>: {player?.mobile || 'N/A'}</span></span>
+                                <span> <span><FaDiscord /> </span> <span>: {player?.discordID || 'N/A'}</span></span>
                             </div>
                         </div>
                         <div className="playerdata">

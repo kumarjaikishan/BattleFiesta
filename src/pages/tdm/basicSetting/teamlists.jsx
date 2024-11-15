@@ -50,7 +50,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
     return (<>
         {teamarray.length > 0 && teamarray.map((player, ind) => {
             return (
-                <Accordion style={{ borderRadius: "10px", overflow: "hidden" }}
+                <Accordion key={ind} style={{ borderRadius: "10px", overflow: "hidden" }}
                     sx={{ mb: 1 }}>
                     <AccordionSummary
                         expandIcon={<MdExpandMore />}

@@ -13,7 +13,7 @@ export const classicfetch = createAsyncThunk("classicfetch", async (tid) => {
             body: JSON.stringify({ tid })
           });
         const data = await responsee.json();
-        console.log('classic fetch', data);
+        // console.log('classic fetch', data);
         return data;
     } catch (error) {
         console.log(error);

@@ -74,8 +74,8 @@
                         align-items: center;
 
                         & img {
-                            width: 140px;
-                            height: 140px;
+                            width: 120px;
+                            height: 120px;
                             object-fit: cover;
                             border-radius: 20px;
                             border: 1px solid grey;
@@ -87,7 +87,7 @@
                             align-items: center;
                             justify-content: space-around;
                             border-top: 1px solid grey;
-                            border-bottom: 1px solid grey;
+                            /* border-bottom: 1px solid grey; */
                             padding: 5px;
                             margin-top: 10px;
 
@@ -100,6 +100,25 @@
                                 svg {
                                     font-size: 20px;
                                 }
+                            }
+
+                        }
+
+                        .payss {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            border-radius: 5px;
+                            padding: 5px 0;
+                            gap: 8px;
+                            background: var(--primarycolor);
+                            color: white;
+                            font-size: 14px;
+
+                            svg{
+                                font-size: 20px;
                             }
                         }
                     }
@@ -125,14 +144,16 @@
                                 font-weight: 600;
                                 width: 30px;
 
-                                svg{
-                                    font-size: 26px;
+                                svg {
+                                    font-size: 24px;
                                 }
+
                                 /* border: 1px solid red; */
                             }
 
                             & span:nth-child(2) {
                                 margin-left: 5px;
+                                font-size: 15px;
                             }
                         }
                     }
@@ -167,13 +188,14 @@
                             border-radius: 50%;
                         }
 
-                        span {
+                        >span {
                             /* border: 1px solid red; */
                             display: inline-block;
                         }
 
-                        span:nth-child(2) {
-                            margin-left: 10px;
+                        >span:nth-child(2) {
+                            margin-left: 15px;
+                            /* border: 1px solid red; */
                             width: 380px;
                             float: left;
                             line-height: 30px;
@@ -182,7 +204,7 @@
                             text-overflow: ellipsis;
                         }
 
-                        span:nth-child(3) {
+                        >span:nth-child(3) {
                             line-height: 30px;
                             width: 170px;
                             float: right;
@@ -260,6 +282,18 @@
                                     }
                                 }
                             }
+                            .payss {
+                                border-radius: 5px;
+                                padding: 4px 0;
+                                gap: 5px;
+                                width: 95%;
+                                font-size: 12px;
+                               
+    
+                                svg{
+                                    font-size: 18px;
+                                }
+                            }
                         }
 
                         .teamside {
@@ -275,9 +309,10 @@
                                     font-weight: 600;
                                     width: 20px;
 
-                                    svg{
+                                    svg {
                                         font-size: 20px;
                                     }
+
                                     /* border: 1px solid red; */
                                 }
 
@@ -318,13 +353,13 @@
                                 border-radius: 50%;
                                 border: 1px solid grey;
                             }
-                          
-                            span:nth-child(2) {
-                                margin-left: 5px;
+
+                            >span:nth-child(2) {
+                                margin-left: 8px;
                                 width: 380px;
                             }
-    
-                            span:nth-child(3) {
+
+                            >span:nth-child(3) {
                                 width: 150px;
                                 font-size: 13px;
                             }
