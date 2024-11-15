@@ -62,8 +62,8 @@
                         align-items: center;
 
                         & img {
-                            width: 140px;
-                            height: 140px;
+                            width: 130px;
+                            height: 130px;
                             object-fit: cover;
                             border-radius: 20px;
                             border: 1px solid grey;
@@ -75,7 +75,7 @@
                             justify-content: space-around;
                             align-items: center;
                             border-top: 1px solid grey;
-                            border-bottom: 1px solid grey;
+                            /* border-bottom: 1px solid grey; */
                             padding: 4px 5px;
                             margin-top: 10px;
 
@@ -88,6 +88,23 @@
                                 svg {
                                     font-size: 20px;
                                 }
+                            }
+                        }
+                        .payss {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            border-radius: 5px;
+                            padding: 5px 0;
+                            gap: 8px;
+                            background: var(--primarycolor);
+                            color: white;
+                            font-size: 14px;
+
+                            svg{
+                                font-size: 20px;
                             }
                         }
                     }
@@ -209,6 +226,18 @@
                                     svg {
                                         font-size: 17px;
                                     }
+                                }
+                            }
+                            .payss {
+                                border-radius: 5px;
+                                padding: 4px 0;
+                                gap: 5px;
+                                width: 95%;
+                                font-size: 12px;
+                               
+    
+                                svg{
+                                    font-size: 18px;
                                 }
                             }
                         }

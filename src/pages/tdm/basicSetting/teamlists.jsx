@@ -7,6 +7,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { MdLocalPhone } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { FaUndo } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { MdInsertPhoto } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
@@ -76,8 +77,13 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
                                     <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
                                     <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><FaWhatsapp title='Whatsapp' /></a>
-                                    {player.paymentss && <a href="#"> <MdInsertPhoto style={{color:'green'}} title='Show ScreenShot' onClick={() => showss(player.paymentss)} /> </a>}
                                 </div>
+                                {player.paymentss &&
+                                    <div className='payss' onClick={() => showss(player.paymentss)}>
+                                        <IoEyeOutline />
+                                        Payment S.S
+                                    </div>
+                                }
                             </div>
                             <div className='teamside'>
                                 <span> <span>Name</span><span>: {player.name || 'N/A'}</span></span>

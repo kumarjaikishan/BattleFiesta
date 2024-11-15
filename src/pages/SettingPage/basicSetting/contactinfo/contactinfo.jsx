@@ -7,6 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
+import { FaPlus } from "react-icons/fa6";
 import { MdDescription } from "react-icons/md";
 import { IoArrowDownOutline } from "react-icons/io5";
 import { IoArrowUpOutline } from "react-icons/io5";
@@ -178,7 +179,7 @@ const Contactinfo = ({ all }) => {
 
 
                         <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
-                            <Button size='small' onClick={addsection} variant="outlined" >
+                            <Button size='small' startIcon={<FaPlus/> } onClick={addsection} variant="outlined" >
                                 ADD
                             </Button>
                         </Stack>

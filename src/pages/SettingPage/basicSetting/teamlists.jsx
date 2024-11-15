@@ -76,14 +76,12 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
                                     <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
                                     <a href={`https://wa.me/+91${player.mobile}`} target="_blank" ><FaWhatsapp title='Whatsapp' /></a>
-                                 </div>
-                                {player.screenss && 
-                                <div className='payss' onClick={() => showss(player.screenss)}>
-                                    <IoEyeOutline />
-                                     Payment S.S
-                                    {/* <span><IoEyeOutline/> </span>
-                                    <span>See Payment SS </span> */}
                                 </div>
+                                {player.screenss &&
+                                    <div className='payss' onClick={() => showss(player.screenss)}>
+                                        <IoEyeOutline />
+                                        Payment S.S
+                                    </div>
                                 }
                             </div>
                             <div className='teamside'>

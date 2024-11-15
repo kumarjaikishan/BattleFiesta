@@ -2,7 +2,9 @@ import React from 'react'
 
 const Sametable = ({cname,kuch, title, tablerow, teamlogo, defaultlogo}) => {
      const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
-    return (
+    //  const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950086/battlefiesta/assets/icon/group2_gqiyup.webp'
+   
+     return (
         <div className={cname}>
             <div className='tournlogoo'>
                 <img loading="lazy" src={kuch?.tournment_logo || defaultlogo} alt="Tournament Logo" />
