@@ -13,6 +13,8 @@ import { Button, TextField, Grid, Select, FormControl, MenuItem, InputLabel, Con
 import { IoMdCloudUpload } from "react-icons/io";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import Fragger from './fragger/fragger';
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import MatchTable from './fragger/matchtable';
 import { setloader, header } from '../../store/login';
 import defaultlogo from '../../assets/logopng250.webp'
@@ -251,28 +253,21 @@ const Stats = () => {
     setIsDesktopMode(true);
 
     try {
-      // Dynamically import html2canvas and set up date-based randomness for filename
       const html2canvas = (await import("html2canvas")).default;
       const timestamp = new Date().getMinutes();
 
-      // Select the element and store its original style properties
       const boxElement = document.querySelector(`${id}`);
       const { width: originalWidth, minHeight: originalHeight } = boxElement.style;
 
-      // Temporarily set desktop styles to the element
-      // boxElement.style.width = originalWidth; 
       boxElement.style.width = '1680 px';
       boxElement.style.minHeight = originalHeight;
 
-      // Define quality scale for high-resolution output
       const quality = 3;
       const canvas = await html2canvas(boxElement, { scale: quality, useCORS: true });
 
-      // Convert canvas to a data URL and trigger download
       const dataUrl = canvas.toDataURL();
       const anchor = document.createElement('a');
       anchor.href = dataUrl;
-      // anchor.download = `${filename} @${timestamp}.png`;
       anchor.download = `${filename}.png`;
       document.body.appendChild(anchor);
       anchor.click();
@@ -295,6 +290,57 @@ const Stats = () => {
       setdisable(false);
     }
   };
+
+
+  const imagedownload2 = async (id, filename) => {
+    setdisable(true);
+    dispatch(setloader(true));
+    setIsDesktopMode(true);
+
+    const boxElement = document.querySelector(id);
+    if (!boxElement) {
+      console.error("Element not found:", id);
+      setdisable(false);
+      return;
+    }
+
+    const originalStyle = boxElement.getAttribute('style');
+    boxElement.setAttribute('style', `
+        width: 1680px !important;
+        min-height: 945px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important; /* Ensure no padding or border affects the size */
+    `);
+
+    htmlToImage.toPng(boxElement)
+      .then((dataUrl) => {
+        const anchor = document.createElement('a');
+        anchor.href = dataUrl;
+        anchor.download = `${filename}.png`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+        setdisable(false);
+        dispatch(setloader(false));
+        setIsDesktopMode(false);
+
+        // Restore the original style after download
+        boxElement.setAttribute('style', originalStyle || '');
+      })
+      .catch((error) => {
+        console.error('Error generating image:', error);
+        setdisable(false);
+        dispatch(setloader(false));
+        setIsDesktopMode(false);
+
+        // Restore the original style in case of error
+        boxElement.setAttribute('style', originalStyle || '');
+      });
+  };
+
+
+
 
   const tournamentOwner = kuch?.userid == userprofile?.userprofile._id;
 
@@ -345,7 +391,7 @@ const Stats = () => {
       </p>} */}
 
       {log.islogin && tournamentOwner &&
-        <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
+        <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board-new`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
           Score Board
         </Button>}
       <Fragger isDesktopMode={isDesktopMode} topteam={topteam} topplayer={topplayer} group={group} />

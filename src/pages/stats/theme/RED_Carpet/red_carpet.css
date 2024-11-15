@@ -26,20 +26,20 @@
     font-size: 1.7em;
   }
 
-  table {
+  >table {
     width: 100%;
     padding: 5px 10px;
     text-align: center;
-    border-collapse: separate !important;
-    border-spacing: 4px 2px !important;
+    border-collapse: separate;
+    border-spacing: 4px 2px;
 
     & thead {
-      background: rgba(0, 0, 0, 0.4);
       color: whitesmoke;
 
       & tr {
 
         & th {
+          background: rgba(0, 0, 0, 0.4);
           padding: 5px 3px;
           font-weight: 800;
           font-size: 1.2em;
@@ -59,17 +59,18 @@
     tbody {
 
       & tr {
-        background: rgba(59, 2, 2, 0.595);
         color: whitesmoke;
         border-radius: 10px;
         margin: 40px 0px;
 
         & td {
+          background: rgba(59, 2, 2, 0.595);
           padding: 5px;
           font-size: 1.1em;
           font-weight: 600;
           border-radius: 10px 0px 10px 0px;
           box-shadow: 0px 2px 0px rgba(255, 255, 255, 0.6);
+
 
           & img {
             width: 40px;

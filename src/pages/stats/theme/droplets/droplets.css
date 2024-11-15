@@ -21,15 +21,24 @@
 
     h2 {
         font-size: 2em;
-        color: #042d31ef;
+        color: #112A46;
+        text-shadow:
+        -1px -1px 0 #f3eab1,
+        1px -1px 0 #f3eab1,
+        -1px 1px 0 #f3eab1,
+        1px 1px 0 #f3eab1;
         text-transform: uppercase;
         -webkit-text-stroke: 0px black;
     }
 
     h3 {
-        color: #033438f6;
+        color: #09223E;
+        text-shadow:
+            -1px -1px 0 #f3eab1,
+            1px -1px 0 #f3eab1,
+            -1px 1px 0 #f3eab1,
+            1px 1px 0 #f3eab1;
         font-size: 2.3em;
-        -webkit-text-stroke: 0px black;
     }
 
     table {

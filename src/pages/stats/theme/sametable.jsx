@@ -16,7 +16,7 @@ const Sametable = ({cname,kuch, title, tablerow, teamlogo, defaultlogo}) => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th style={{ textAlign: "left" }}>Team</th>
+                        <th >Team</th>
                         <th>M</th>
                         <th style={{ fontSize: "1.8em" }}>🏆</th>
                         <th>Place Pts</th>
