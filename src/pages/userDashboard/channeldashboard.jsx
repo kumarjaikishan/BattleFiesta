@@ -291,7 +291,7 @@ const Channeldashboard = () => {
       {tournas?.filter((tourn) => tourn.visibility).length < 1 &&
         <div className='notfoundtourn'>
           <TbMoodSad className="sad" />
-          <h2>No Tournament Found</h2>
+          <h2>No Public Tournament Found</h2>
           {/* <p>Please Add Tournament.</p> */}
         </div>
       }

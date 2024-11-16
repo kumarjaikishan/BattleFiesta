@@ -3,6 +3,7 @@
     /* border: 2px solid red; */
     min-height: calc(100vh - var(--navheight));
     background: white;
+    position: relative;
 
     & .conta {
         width: 100%;
@@ -12,6 +13,10 @@
         justify-content: space-between;
         align-items: center;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        position: sticky;
+        background: white;
+        top: var(--navheight);
+        z-index: 10;
         /* border: 1px solid red; */
 
         &>div:nth-child(1) {
@@ -438,6 +443,7 @@
             gap: 5px 0;
             padding-bottom: 5px;
             flex-wrap: wrap;
+            top: var(--navheightmobile);
 
             &>div {
                 /* border: 1px solid red; */

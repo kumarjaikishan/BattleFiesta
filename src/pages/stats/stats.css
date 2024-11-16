@@ -372,13 +372,15 @@
         cursor: pointer;
         transition: 0.2s;
         margin-top: 10px;
+        background: rgba(0,0,0,0.6);
 
         &:hover {
           background: white;
           color: black;
         }
 
-        span {
+        >span {
+          /* border: 1px solid red; */
           margin: 0 3px;
           display: flex;
         }
@@ -574,6 +576,9 @@
             font-size: 18px;
           }
         }
+      }
+      p{
+        font-size: 13px;
       }
     }
   }

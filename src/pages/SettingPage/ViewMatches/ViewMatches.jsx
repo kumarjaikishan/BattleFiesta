@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { setloader } from "../../../store/login";
 import './viewmatches.css'
+import swal from 'sweetalert';
 import Button from '@mui/material/Button';
 import { TbMoodSad } from "react-icons/tb";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -13,6 +14,7 @@ import { MdDelete } from "react-icons/md";
 import { IoMdCreate } from "react-icons/io";
 import Stack from '@mui/material/Stack';
 import { toast } from 'react-toastify';
+import EditEnterResult from './editmatch';
 
 const PointSystem = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,8 @@ const PointSystem = () => {
   const [isloading, setisloading] = useState(false)
   const [matches, setmatches] = useState([]);
   const [rules, setrules] = useState([])
+  const [calleditmatch, setcalleditmatch] = useState(false);
+  const [editmatch_id, seteditmatch_id] = useState('');
   useEffect(() => {
     feteche();
   }, []);
@@ -86,104 +90,124 @@ const PointSystem = () => {
     return temparray;
   }
   const deletee = async (matchid) => {
-    try {
-      setisloading(true)
-      const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}deletematch`, {
-        method: "POST",
-        headers: {
-          "Content-Type": 'application/json'
-        },
-        body: JSON.stringify({ matchid })
-      });
 
-      const responseData = await response.json();
-      // console.log(responseData);
-      if (response.ok) {
-        toast.success(responseData.message, { autoClose: 1500 });
-        feteche();
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this Match!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        try {
+          setisloading(true)
+          const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}deletematch`, {
+            method: "POST",
+            headers: {
+              "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({ matchid })
+          });
+
+          const responseData = await response.json();
+          // console.log(responseData);
+          if (response.ok) {
+            toast.success(responseData.message, { autoClose: 1500 });
+            feteche();
+          }
+          setisloading(false)
+        } catch (error) {
+          console.error(error);
+          setisloading(false)
+        }
       }
-      setisloading(false)
-    } catch (error) {
-      console.error(error);
-      setisloading(false)
-    }
+    })
+  }
+  const edit = (data) => {
+    console.log(data);
+    setcalleditmatch(true);
+    seteditmatch_id(data)
   }
 
   return (
-    <div className='viewmatches'>
-      <h2>Matches List</h2>
-      {matches.length < 1 &&
-        <div className="notfound">
-          <div>
-            <TbMoodSad className="sad" />
-            <h2>No Match Found for this Tournament</h2>
-            <p>Please Add Matches First in 'Enter Results' Section.</p>
-          </div>
-        </div>}
-      {matches.map((match, ind) => {
-        const originalDate = new Date(match.createdAt);
-        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    <>
+      {!calleditmatch ? <div className='viewmatches'>
+        <h2>Matches List</h2>
+        {matches.length < 1 &&
+          <div className="notfound">
+            <div>
+              <TbMoodSad className="sad" />
+              <h2>No Match Found for this Tournament</h2>
+              <p>Please Add Matches First in 'Enter Results' Section.</p>
+            </div>
+          </div>}
+        {matches.map((match, ind) => {
+          const originalDate = new Date(match.createdAt);
+          const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
 
-        const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(originalDate);
-        return <Accordion key={ind} className=''>
-          <AccordionSummary
-            expandIcon={<MdKeyboardArrowDown />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-            className='panelheader'
-          >
-            <span className='title'>
-              <span>Match #{ind + 1} - {match.map ? match.map : "N/A"}</span>
-              <span>{formattedDate}</span>
-            </span>
-          </AccordionSummary>
-          <AccordionDetails className='tablehead'>
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Team</th>
-                  <th>Place</th>
-                  <th>Place Pts</th>
-                  <th>Kill Pts</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sabthikhai(match.points).map((val, index) => {
-                  return <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{val.team}</td>
-                    <td>{val.place}</td>
-                    <td>{val.placepts}</td>
-                    <td>{val.killpts}</td>
-                    <td>{val.total}</td>
+          const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(originalDate);
+          return <Accordion key={ind} className=''>
+            <AccordionSummary
+              expandIcon={<MdKeyboardArrowDown />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              className='panelheader'
+            >
+              <span className='title'>
+                <span>Match #{ind + 1} - {match.map ? match.map : "N/A"}</span>
+                <span>{formattedDate}</span>
+              </span>
+            </AccordionSummary>
+            <AccordionDetails className='tablehead'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Team</th>
+                    <th>Place</th>
+                    <th>Place Pts</th>
+                    <th>Kill Pts</th>
+                    <th>Total</th>
                   </tr>
-                })}
-              </tbody>
-            </table>
-            <Stack direction="row" spacing={2}>
-              <Button variant="outlined" startIcon={<IoMdCreate />}>
-                Edit
-              </Button>
-              <LoadingButton
-                onClick={() => deletee(match._id)}
-                loading={isloading}
-                color='warning'
-                loadingPosition="start"
-                startIcon={<MdDelete />}
-                variant="outlined"
-                type="submit"
-              >
-                DELETE
-              </LoadingButton>
-            </Stack>
-          </AccordionDetails>
-        </Accordion>
-      })}
+                </thead>
+                <tbody>
+                  {sabthikhai(match.points).map((val, index) => {
+                    return <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{val.team}</td>
+                      <td>{val.place}</td>
+                      <td>{val.placepts}</td>
+                      <td>{val.killpts}</td>
+                      <td>{val.total}</td>
+                    </tr>
+                  })}
+                </tbody>
+              </table>
+              <Stack direction="row" spacing={2}>
+                {/* <Button variant="outlined"
+                  onClick={() => edit(match._id)}
+                  startIcon={<IoMdCreate />}>
+                  Edit
+                </Button> */}
+                <LoadingButton
+                  onClick={() => deletee(match._id)}
+                  loading={isloading}
+                  color='error'
+                  loadingPosition="start"
+                  startIcon={<MdDelete />}
+                  variant="outlined"
+                  type="submit"
+                >
+                  DELETE
+                </LoadingButton>
+              </Stack>
+            </AccordionDetails>
+          </Accordion>
+        })}
 
-    </div>
-  );
+      </div> :
+        <EditEnterResult match_id={editmatch_id} />}
+    </>);
 };
 
 

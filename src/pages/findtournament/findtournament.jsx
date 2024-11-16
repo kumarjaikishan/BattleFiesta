@@ -33,6 +33,7 @@ const Findtournament = () => {
     const [showinglist, setShowingList] = useState([]);
     const [activeList, setActiveList] = useState([]); // Store the currently active list
     const [searchQuery, setSearchQuery] = useState("");
+    const [searching,setsearching]= useState(false)
 
     const handleActive = (index) => {
         let alldiv = document.querySelectorAll(".conta .cate div");
@@ -110,7 +111,7 @@ const Findtournament = () => {
             if (!response.ok) {
                 return toast.warn(data.message, { autoClose: 1500 });
             }
-
+            setsearching(true)
             // Update showing list with the search result
             setShowingList([data.query]);
         } catch (error) {
@@ -155,6 +156,7 @@ const Findtournament = () => {
                             setSearchQuery(value);
                             if (value === "") {
                                 setShowingList(activeList); // Restore active list on empty input
+                                setsearching(false)
                             }
                         }}
                     />
@@ -216,7 +218,8 @@ const Findtournament = () => {
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE
                                 </Button>
-                                <p className="status" title="Status">{val.status}</p>
+                                {searching && 
+                                <p className="status" title="Status">{val.status}</p>}
                             </div>
                         </div>
                     );
