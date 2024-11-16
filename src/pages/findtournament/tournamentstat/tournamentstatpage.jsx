@@ -91,7 +91,7 @@ const Tournamentstatpage = () => {
                 title={`View ${tournament?.userid?.name}'s Channel`}
                 startIcon={<GrOverview />}
                 onClick={() => window.open(`/channel/@${tournament?.userid?.username}`, '_blank')}
-              > View Channel
+              > View Profile
               </Button>
             </div>
           </div>

@@ -11,7 +11,8 @@
   flex-direction: column;
   align-items: center;
 
-  p, em {
+  p,
+  em {
     text-align: center;
   }
 
@@ -21,7 +22,7 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
-   
+
 
     & .conti {
       width: 30%;
@@ -30,7 +31,7 @@
       justify-content: center;
     }
   }
-  
+
   .conta {
     border-radius: 20px;
     overflow: hidden;
@@ -65,6 +66,7 @@
       }
     }
   }
+
   .conta.desktop-mode {
     width: 1280px !important;
   }
@@ -220,6 +222,7 @@
       }
     }
   }
+
   .matchtable {
     width: 100%;
     max-width: 1200px;
@@ -319,6 +322,76 @@
       }
     }
   }
+
+  .contacts {
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
+    background-size: cover;
+    color: white;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 10px;
+    padding: 10px 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & div:nth-child(1) {
+      font-size: 2em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    & div:nth-child(2) {
+      font-size: 1.4em;
+      font-weight: 500;
+    }
+
+    .links {
+      width: 100%;
+      height: max-content;
+      display: flex;
+      padding-bottom: 5px;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      & a {
+        /* background: red; */
+        display: flex;
+        align-items: center;
+        padding: 3px 8px;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-top: 10px;
+
+        &:hover {
+          background: white;
+          color: black;
+        }
+
+        span {
+          margin: 0 3px;
+          display: flex;
+        }
+      }
+    }
+
+    p {
+      margin-top: 5px;
+      background: rgba(0,0,0,0.6);
+      padding: 2px 5px;
+      font-weight: 500;
+    }
+  }
 }
 
 
@@ -333,7 +406,7 @@
       margin-bottom: 5px;
       /* border: 1px solid red; */
 
-      h3{
+      h3 {
         font-size: 0.8em;
       }
 
@@ -467,6 +540,38 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+
+    .contacts {
+      padding: 5px;
+
+      & div:nth-child(1) {
+        font-size: 1.6em;
+        font-weight: 600;
+        gap: 30px;
+      }
+
+      & div:nth-child(2) {
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+
+      .links {
+
+        & a {
+          padding: 2px 6px;
+          font-weight: 500;
+          margin-top: 5px;
+
+          & span:nth-child(2) {
+            font-size: 14px;
+          }
+
+          .ico {
+            font-size: 18px;
           }
         }
       }

@@ -16,6 +16,12 @@ import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
 import { setloader, header } from '../../store/login';
 import defaultlogo from '../../assets/logopng250.webp'
+import { FaInstagram } from "react-icons/fa";
+import { IoMailOutline } from "react-icons/io5";
+import { MdInsertLink } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdLocalPhone } from "react-icons/md";
+import { GrOverview } from "react-icons/gr";
 
 const Stats = () => {
   const dispatch = useDispatch();
@@ -25,16 +31,20 @@ const Stats = () => {
   const userprofile = useSelector((state) => state.userprofile);
   const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
 
-  useEffect(() => {
-    dispatch(header("Stats"));
-    dispatch(setloader(true));
-    fetche(tid);
-    console.log("user id: ", userprofile.userprofile._id)
-  }, [])
+
+
+
   const [topplayer, settopplayer] = useState([]);
   const [topteam, settopteam] = useState([]);
   const [theme, settheme] = useState(1);
   const [title, settitle] = useState('Overall Standings')
+
+  useEffect(() => {
+    dispatch(header("Stats"));
+    dispatch(setloader(true));
+    fetche(tid);
+    // console.log("user id: ", userprofile.userprofile._id)
+  }, [])
 
   const handleChange = (event) => {
     settheme(event.target.value);
@@ -46,6 +56,7 @@ const Stats = () => {
   const [kuch, setkuch] = useState({});
   const [teamlogo, setteamlogo] = useState({});
   const [teamdeatil, setteamdeatil] = useState([]);
+  const [links, setlinks] = useState([]);
 
   let temptemlogo = {};
   const fetche = async (id) => {
@@ -67,6 +78,7 @@ const Stats = () => {
       setkuch(result.rules);
       funck(result.matches);
       setmatches(result.matches);
+      setlinks(result.contact.links)
       Impfunction(result.teamdeatil, result.matches);
       // Impfunction1(result.teamdeatil, result.matches);
       createTeamLogoObj(result.teamdeatil);
@@ -276,9 +288,7 @@ const Stats = () => {
       dispatch(setloader(false));
       setIsDesktopMode(false);
       setdisable(false);
-      if (window.innerWidth < 768) {
-        toast.success("Image Downloaded", { autoClose: 2100 })
-      }
+      smallscreen && toast.success("Image Downloaded", { autoClose: 2100 })
     } catch (error) {
       console.error('Error generating image:', error);
       boxElement.style.width = originalWidth;
@@ -293,7 +303,7 @@ const Stats = () => {
 
   return (
     <div className='stats'>
-      {log.islogin && <div className='controls'>
+      <div className='controls'>
         <div className='conti'>
           <h3>Select Theme</h3>
           <FormControl sx={{ mt: 1, width: "100%" }} size='small' >
@@ -313,19 +323,19 @@ const Stats = () => {
             </Select>
           </FormControl>
         </div>
-        <div className='conti' >
+        {log.islogin && <> <div className='conti' >
           <h3>Set Background</h3>
           <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
             Upload
             <VisuallyHiddenInput type="file" />
           </Button>
         </div>
-        <div className='conti'>
-          <h3>Set Title</h3>
-          <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
-        </div>
-      </div>}
-      <div id="wrapper" maxWidth="fixed" className={`capture-area ${isDesktopMode ? 'conta desktop-mode' : 'conta'}`}>
+          <div className='conti'>
+            <h3>Set Title</h3>
+            <TextField size='small' sx={{ mt: 1, width: "100%" }} id="outlined-basic" label="Title" onChange={(e) => settitle(e.target.value)} value={title} variant="outlined" />
+          </div> </>}
+      </div>
+      <div id="wrapper" className={`${isDesktopMode ? 'conta desktop-mode' : 'conta'}`}>
         {theme == 1 && <Red_carpet tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
         {theme == 2 && <Royal_grey tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
         {theme == 3 && <Droplet tablerow={tablerow} teamlogo={teamlogo} kuch={kuch} title={title} defaultlogo={defaultlogo} />}
@@ -337,10 +347,10 @@ const Stats = () => {
         <em>*Note - please switch to desktop view to download the scoreboard in the best quality, if viewing on mobile</em>
       </p>} */}
 
-      {log.islogin && tournamentOwner &&
-        <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board-new`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
-          Score Board
-        </Button>}
+      <Button disabled={disable} onClick={() => imagedownload('#wrapper', `${kuch.title}-Score Board-new`)} title='Download Points Table' sx={{ mt: 0.3 }} component="label" variant="contained" startIcon={<IoCloudDownloadOutline />}>
+        Score Board
+      </Button>
+
       <Fragger isDesktopMode={isDesktopMode} topteam={topteam} topplayer={topplayer} group={group} />
       {log.islogin && tournamentOwner &&
         <div style={{ textAlign: 'center' }}>
@@ -349,7 +359,45 @@ const Stats = () => {
           </Button>
         </div>
       }
+
       <MatchTable isDesktopMode={isDesktopMode} rules={kuch} matches={matches} log={log} teamdeatil={teamdeatil} disable={disable} imagedownload={imagedownload} tournamentOwner={tournamentOwner} />
+
+      <div className="contacts">
+        <div>Contacts Details
+          <Button variant="contained"
+            color='secondary'
+            size='small'
+            title={`View ${kuch?.userid?.name}'s Channel`}
+            startIcon={<GrOverview />}
+            onClick={() => window.open(`/channel/@${kuch?.userid?.username}`, '_blank')}
+          > View Profile
+          </Button> </div>
+        {links.length > 0 && <>
+          <div>Links</div>
+          <div className="links">
+            {links.map((val, ind) => {
+              if (val.linkType == "whatsapp") {
+                return <a key={ind} title='whatsapp' href={`https://wa.me/+91${val.link}`} target="_blank"><span><FaWhatsapp className='ico' /></span> <span>{val.linkName}</span> </a>
+              }
+              if (val.linkType == "instagram") {
+                return <a key={ind} title='instagram' href={`https://www.instagram.com/${val.link}`} target="_blank"><span> <FaInstagram className='ico' /></span><span>{val.linkName}</span> </a>
+              }
+              if (val.linkType == "phone") {
+                return <a key={ind} title='phone' href={`tel:${parseInt(val.link)}`} target="_blank"><span> <MdLocalPhone className='ico' /></span><span> {val.linkName}</span></a>
+              }
+              if (val.linkType == "email") {
+                return <a key={ind} title='email' href={`mailto:${val.link}`} target="_blank"><span><IoMailOutline className='ico' /></span><span> {val.linkName}</span></a>
+              }
+              if (val.linkType == "link") {
+                return <a key={ind} title='link' href={val.link} target="_blank"><span><MdInsertLink className='ico' /></span><span>{val.linkName}</span> </a>
+              }
+            })}
+          </div>
+        </>}
+        {links.length < 1 && <p>The organiser has not provided any contact details for the tournament.
+          If you are the organiser, check "Contact Info" section in the Basic Setting.</p>}
+      </div>
+
     </div>
   );
 };
