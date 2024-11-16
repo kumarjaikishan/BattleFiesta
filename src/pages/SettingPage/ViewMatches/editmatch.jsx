@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useSelector } from 'react-redux';
 
-const EditEnterResult = ({ match_id }) => {
+const EditEnterResult = ({ match }) => {
     const classic = useSelector((state) => state.classic);
     const [setting, setseting] = useState(classic.classicdetail)
     const [player, setplayer] = useState([]);
@@ -36,7 +36,9 @@ const EditEnterResult = ({ match_id }) => {
     }
 
     useEffect(() => {
-        fetchee(match_id);
+        setRows(match.points)
+        setmap(match.map)
+        // fetderfreche
     }, [])
 
     useEffect(() => {
@@ -94,6 +96,26 @@ const EditEnterResult = ({ match_id }) => {
         return { place, team, kills, teamid, playerKills };
     }
 
+    const updown = (up, ind) => {
+        if (up) {
+            const old = ind;
+            const newpo = ind - 1;
+            setRows((prevItems) => {
+                const newItems = [...prevItems];
+                [newItems[old], newItems[newpo]] = [newItems[newpo], newItems[old]];
+                console.log(newItems)
+                return newItems;
+            });
+        } else {
+            const old = ind;
+            const newpo = ind + 1;
+            setRows((prevItems) => {
+                const newItems = [...prevItems];
+                [newItems[old], newItems[newpo]] = [newItems[newpo], newItems[old]];
+                return newItems;
+            });
+        }
+    }
 
     const addToTable = async () => {
         // console.log(selectedTeam);
@@ -201,28 +223,28 @@ const EditEnterResult = ({ match_id }) => {
         },
     }));
 
-    const fetchee = async (tid) => {
-      
-        try {
-            const token = localStorage.getItem("token");
-            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}editmatch`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    tid
-                })
-            })
+    const savecloud = async (tid) => {
+console.log(rows)
+        // try {
+        //     const token = localStorage.getItem("token");
+        //     const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}editmatch`, {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Authorization": `Bearer ${token}`
+        //         },
+        //         body: JSON.stringify({
+        //             tid
+        //         })
+        //     })
 
-            const result = await rese.json();
-            console.log(result);
-           } catch (error) {
-            console.log(error);
-            setisloading(false)
-            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
-        }
+        //     const result = await rese.json();
+        //     console.log(result);
+        // } catch (error) {
+        //     console.log(error);
+        //     setisloading(false)
+        //     toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
+        // }
     }
 
     const reset = () => {
@@ -278,22 +300,29 @@ const EditEnterResult = ({ match_id }) => {
 
                             {rows && rows?.map((team, ind) => {
                                 return <div key={ind} className="teamdetail">
-                                    <h2>Team name</h2>
+                                    <h2>{team.team}</h2>
                                     <div>
                                         <span>Place : {ind + 1}</span>
                                         <span> Total Kills: 9</span>
-                                        <span> <FaArrowUp />
-                                            <FaArrowDown /> </span>
+                                        <span>
+                                            {ind > 0 && (
+                                                <FaArrowUp onClick={() => updown(true, ind)} />
+                                            )}
+                                            {ind < rows.length - 1 && (
+                                                <FaArrowDown onClick={() => updown(false, ind)} />
+                                            )}
+                                        </span>
                                         <span><MdDelete /> </span>
                                     </div>
                                     <div>Player Kills</div>
                                     <div>
-                                        {team?.points?.map((each, ind) => {
+                                        {team?.playerKills?.map((each, ind) => {
                                             return <TextField
                                                 key={ind}
                                                 helperText="Leave Empty for 0"
                                                 type='tel'
                                                 size='small'
+                                                value={each.kills}
                                                 onPaste={(event) => {
                                                     const pasteData = event.clipboardData.getData('Text');
                                                     if (!/^[0-9]*$/.test(pasteData)) {
@@ -302,7 +331,7 @@ const EditEnterResult = ({ match_id }) => {
                                                 }}
                                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                                 sx={{ m: 1, maxWidth: 140 }}
-                                                label={each.team}
+                                                label={each.inGameName}
                                                 variant="outlined"
                                             // onChange={(e) => {
                                             //     const updatedPlayers = selectedTeam.players.map((player, index) => {
@@ -322,8 +351,7 @@ const EditEnterResult = ({ match_id }) => {
 
                         </div>
                         <Divider variant="middle" />
-                        <h2>Enter Results</h2>
-                        <h2>PLACE #{indexe}</h2>
+                        <h2>Add Team</h2>
                         <Autocomplete
                             disablePortal
                             id="combo-box-demo"
@@ -381,7 +409,7 @@ const EditEnterResult = ({ match_id }) => {
                             alignItems="center">
                             <LoadingButton
                                 sx={{ m: 1, minWidth: 110 }}
-                                // onClick={savecloud}
+                                onClick={savecloud}
                                 loading={isloading}
                                 loadingPosition="start"
                                 startIcon={<MdCloudUpload />}

@@ -23,7 +23,7 @@ const PointSystem = () => {
   const [matches, setmatches] = useState([]);
   const [rules, setrules] = useState([])
   const [calleditmatch, setcalleditmatch] = useState(false);
-  const [editmatch_id, seteditmatch_id] = useState('');
+  const [editmatchinfo, seteditmatchinfo] = useState([]);
   useEffect(() => {
     feteche();
   }, []);
@@ -126,7 +126,7 @@ const PointSystem = () => {
   const edit = (data) => {
     console.log(data);
     setcalleditmatch(true);
-    seteditmatch_id(data)
+    seteditmatchinfo(data)
   }
 
   return (
@@ -184,11 +184,11 @@ const PointSystem = () => {
                 </tbody>
               </table>
               <Stack direction="row" spacing={2}>
-                {/* <Button variant="outlined"
-                  onClick={() => edit(match._id)}
+                <Button variant="outlined"
+                  onClick={() => edit(match)}
                   startIcon={<IoMdCreate />}>
                   Edit
-                </Button> */}
+                </Button>
                 <LoadingButton
                   onClick={() => deletee(match._id)}
                   loading={isloading}
@@ -206,7 +206,7 @@ const PointSystem = () => {
         })}
 
       </div> :
-        <EditEnterResult match_id={editmatch_id} />}
+        <EditEnterResult match={editmatchinfo} />}
     </>);
 };
 
