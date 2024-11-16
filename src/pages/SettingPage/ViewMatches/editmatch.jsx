@@ -224,7 +224,7 @@ const EditEnterResult = ({ match }) => {
     }));
 
     const savecloud = async (tid) => {
-console.log(rows)
+        console.log(rows)
         // try {
         //     const token = localStorage.getItem("token");
         //     const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}editmatch`, {
