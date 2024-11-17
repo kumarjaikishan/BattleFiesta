@@ -124,7 +124,7 @@ const PointSystem = () => {
     })
   }
   const edit = (data) => {
-    console.log(data);
+    // console.log(data);
     setcalleditmatch(true);
     seteditmatchinfo(data)
   }

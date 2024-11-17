@@ -83,7 +83,6 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                         <div className={tablerow.length > 14 ? "headere":"headere off" }>
                             <span>#</span>
                             <span>TEAM NAME</span>
-                            
                             <span>M</span>
                             <span style={{fontSize:'1.4em'}}>🏆</span>
                             <span>PP</span>

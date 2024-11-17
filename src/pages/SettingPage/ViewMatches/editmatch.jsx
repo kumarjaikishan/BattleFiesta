@@ -34,20 +34,34 @@ const EditEnterResult = ({ match }) => {
         placepoints: setting.pointsystem,
         tiepreference: setting.tiepreference
     }
+    useEffect(() => {
+        // fetderfreche();
+    }, [player])
 
     useEffect(() => {
         setRows(match.points)
         setmap(match.map)
-        // fetderfreche
+        const finest = classic.classicplayers.filter((val) => val.status == 'approved').map((item, ind) => {
+            return {
+                place: ind + 1,
+                label: item.teamName,
+                teamid: item._id,
+                players: item.player.map((val, ind) => {
+                    return { id: ind, kills: 0, inGameName: val.inGameName, playerId: val.playerId }
+                })
+            }
+        })
+
+        const removeaddedtotable = finest.filter((val) => {
+            return !match.points.some(point => point.teamid === val.teamid);
+        });
+        // console.log(removeaddedtotable)
+        setteamlist(removeaddedtotable);
     }, [])
 
     useEffect(() => {
         sortplayerdata(classic.classicplayers)
     }, [classic.classicplayers])
-
-    useEffect(() => {
-        fetderfreche();
-    }, [player])
 
 
     const handleChange = (event) => {
@@ -77,7 +91,6 @@ const EditEnterResult = ({ match }) => {
                     })
                 }
             })
-            // console.log('teamlist:', vcvdv);
             setteamlist(vcvdv);
         }
 
@@ -89,8 +102,8 @@ const EditEnterResult = ({ match }) => {
     }
 
 
-    function createData(team, place, placepts, killpts, total, teamid, playerKills) {
-        return { team, place, placepts, killpts, total, teamid, playerKills };
+    function createData(team, place, kills, teamid, playerKills) {
+        return { team, place, kills, teamid, playerKills };
     }
     function createDataforupload(place, team, kills, teamid, playerKills) {
         return { place, team, kills, teamid, playerKills };
@@ -129,20 +142,14 @@ const EditEnterResult = ({ match }) => {
 
         setteamlist(removeaddedtotable);
 
-        // Calculate total kill points for the team
-        let totalKillPoints = selectedTeam.players.reduce((total, player) => total + (player.kills || 0), 0);
-        totalKillPoints = totalKillPoints * pointssystem.killpts;
+        let kills = selectedTeam.players.reduce((total, player) => total + (player.kills || 0), 0);
 
-        let total = totalKillPoints + parseInt(pointssystem.placepoints[indexe])
-        let placepts = parseInt(pointssystem.placepoints[indexe])
 
         // Generate a new row data
         const newRow = createData(
             selectedTeam.label,  // Team name
-            indexe,  // Increase # tag position
-            placepts,
-            totalKillPoints,  // Total kill points for the team
-            total,
+            indexe,
+            kills,
             selectedTeam.teamid,// Total points (place points + kill points)
             selectedTeam.players
         );
@@ -162,7 +169,7 @@ const EditEnterResult = ({ match }) => {
 
         let temparray = [...rows, newRow];
         let sortinge = temparray.sort(comparePlayers);
-        setRows(sortinge);
+        setRows(temparray);
         // Clear the selected team
         setselectedTeam(null);
 
@@ -184,22 +191,13 @@ const EditEnterResult = ({ match }) => {
         }
     }
 
-    const removefromTable = () => {
-        const last = rows[rows.length - 1];
-
-        const dffd = rows.filter((val, ind) => {
-            return ind != rows.length - 1;
-        })
-        setRows(dffd);
-
-        const dffd2 = forupload.filter((val, ind) => {
-            return ind != forupload.length - 1;
-        })
-        setforupload(dffd2);
+    const removefromTable = (inde) => {
+        const last = rows[inde];
 
         const deerfg = player.filter((val) => {
             return val._id == last.teamid
         })
+
         const fgfb = {
             label: deerfg[0].teamName,
             teamid: deerfg[0]._id,
@@ -209,8 +207,12 @@ const EditEnterResult = ({ match }) => {
         }
 
         setteamlist([...teamlist, fgfb])
-        setindexe(indexe - 1);
+        // setindexe(indexe - 1);
         // console.log("retrive back 2nd", fgfb);
+    }
+    const deletee = (index) => {
+        setRows(rows.filter((val, ind) => ind != index));
+        removefromTable(index)
     }
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -224,27 +226,42 @@ const EditEnterResult = ({ match }) => {
     }));
 
     const savecloud = async (tid) => {
-        console.log(rows)
-        // try {
-        //     const token = localStorage.getItem("token");
-        //     const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}editmatch`, {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Authorization": `Bearer ${token}`
-        //         },
-        //         body: JSON.stringify({
-        //             tid
-        //         })
-        //     })
 
-        //     const result = await rese.json();
-        //     console.log(result);
-        // } catch (error) {
-        //     console.log(error);
-        //     setisloading(false)
-        //     toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
-        // }
+        const newpoints = rows.map((team, ind) => {
+            return { ...team, place: ind + 1 }
+        })
+
+        console.log(newpoints)
+        return
+        const final = { ...match }
+        final.map = map;
+        final.points = newpoints;
+        try {
+            const id = toast.loading("Please wait...")
+            const token = localStorage.getItem("token");
+            const rese = await fetch(`${import.meta.env.VITE_API_ADDRESS}editmatch`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    match: final
+                })
+            })
+
+            const result = await rese.json();
+
+            if (!rese.ok) {
+                return toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
+            }
+            toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+            setisloading(false)
+            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
+        }
     }
 
     const reset = () => {
@@ -305,14 +322,26 @@ const EditEnterResult = ({ match }) => {
                                         <span>Place : {ind + 1}</span>
                                         <span> Total Kills: 9</span>
                                         <span>
-                                            {ind > 0 && (
-                                                <FaArrowUp onClick={() => updown(true, ind)} />
-                                            )}
-                                            {ind < rows.length - 1 && (
-                                                <FaArrowDown onClick={() => updown(false, ind)} />
-                                            )}
+                                            <FaArrowUp
+                                                title='Move Up'
+                                                onClick={ind > 0 ? () => updown(true, ind) : null}
+                                                style={{
+                                                    marginRight: '9px',
+                                                    color: ind > 0 ? "inherit" : "grey",
+                                                    cursor: ind > 0 ? "pointer" : "not-allowed",
+                                                }}
+                                            />
+                                            <FaArrowDown
+                                                title='Move Down'
+                                                onClick={ind < rows.length - 1 ? () => updown(false, ind) : null}
+                                                style={{
+                                                    color: ind < rows.length - 1 ? "inherit" : "grey",
+                                                    cursor: ind < rows.length - 1 ? "pointer" : "not-allowed",
+                                                }}
+                                            />
                                         </span>
-                                        <span><MdDelete /> </span>
+
+                                        <span><MdDelete onClick={() => deletee(ind)} /> </span>
                                     </div>
                                     <div>Player Kills</div>
                                     <div>
@@ -416,7 +445,7 @@ const EditEnterResult = ({ match }) => {
                                 variant="contained"
                                 size='small'
                             >
-                                Save To Cloud
+                                Save Changes
                             </LoadingButton>
                             <Button size='small' startIcon={<FaUndoAlt />} onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
                         </Box>
