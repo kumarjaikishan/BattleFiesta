@@ -200,7 +200,7 @@ const EnterResult = () => {
     if (!matchmap) {
       return toast.warn("Select Map", { autoClose: 1500 })
     }
-    // console.log(forupload);
+  //  return console.log(forupload);
     try {
       setisloading(true)
       const id = toast.loading("Please wait...")

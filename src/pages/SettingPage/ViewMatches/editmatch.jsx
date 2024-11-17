@@ -116,7 +116,7 @@ const EditEnterResult = ({ match }) => {
             setRows((prevItems) => {
                 const newItems = [...prevItems];
                 [newItems[old], newItems[newpo]] = [newItems[newpo], newItems[old]];
-                console.log(newItems)
+                // console.log(newItems)
                 return newItems;
             });
         } else {
@@ -228,14 +228,14 @@ const EditEnterResult = ({ match }) => {
     const savecloud = async (tid) => {
 
         const newpoints = rows.map((team, ind) => {
-            return { ...team, place: ind + 1 }
+            return { ...team, place: ind + 1, kills: team.playerKills.reduce((accum,val)=> accum + (val.kills || 0), 0) }
         })
 
-        console.log(newpoints)
-        return
         const final = { ...match }
         final.map = map;
         final.points = newpoints;
+
+        // return console.log(final)
         try {
             const id = toast.loading("Please wait...")
             const token = localStorage.getItem("token");
@@ -256,7 +256,7 @@ const EditEnterResult = ({ match }) => {
                 return toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
             toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
-            console.log(result);
+            // console.log(result);
         } catch (error) {
             console.log(error);
             setisloading(false)
@@ -315,69 +315,72 @@ const EditEnterResult = ({ match }) => {
                         <Divider variant="middle" />
                         <div component={Paper} sx={{ mt: 2, mb: 2 }}>
 
-                            {rows && rows?.map((team, ind) => {
-                                return <div key={ind} className="teamdetail">
-                                    <h2>{team.team}</h2>
-                                    <div>
-                                        <span>Place : {ind + 1}</span>
-                                        <span> Total Kills: 9</span>
-                                        <span>
-                                            <FaArrowUp
-                                                title='Move Up'
-                                                onClick={ind > 0 ? () => updown(true, ind) : null}
-                                                style={{
-                                                    marginRight: '9px',
-                                                    color: ind > 0 ? "inherit" : "grey",
-                                                    cursor: ind > 0 ? "pointer" : "not-allowed",
-                                                }}
-                                            />
-                                            <FaArrowDown
-                                                title='Move Down'
-                                                onClick={ind < rows.length - 1 ? () => updown(false, ind) : null}
-                                                style={{
-                                                    color: ind < rows.length - 1 ? "inherit" : "grey",
-                                                    cursor: ind < rows.length - 1 ? "pointer" : "not-allowed",
-                                                }}
-                                            />
-                                        </span>
-
-                                        <span><MdDelete onClick={() => deletee(ind)} /> </span>
+                            {rows && rows.map((team, teamIndex) => {
+                                return (
+                                    <div key={teamIndex} className="teamdetail">
+                                        <h2>{team.team}</h2>
+                                        <div>
+                                            <span>Place : {teamIndex + 1}</span>
+                                            <span>Total Kills: {team.playerKills?.reduce((accum, val) => accum + (val.kills || 0), 0)}</span>
+                                            <span>
+                                                <FaArrowUp
+                                                    title="Move Up"
+                                                    onClick={teamIndex > 0 ? () => updown(true, teamIndex) : null}
+                                                    style={{
+                                                        marginRight: "9px",
+                                                        color: teamIndex > 0 ? "inherit" : "grey",
+                                                        cursor: teamIndex > 0 ? "pointer" : "not-allowed",
+                                                    }}
+                                                />
+                                                <FaArrowDown
+                                                    title="Move Down"
+                                                    onClick={teamIndex < rows.length - 1 ? () => updown(false, teamIndex) : null}
+                                                    style={{
+                                                        color: teamIndex < rows.length - 1 ? "inherit" : "grey",
+                                                        cursor: teamIndex < rows.length - 1 ? "pointer" : "not-allowed",
+                                                    }}
+                                                />
+                                            </span>
+                                            <span>
+                                                <MdDelete onClick={() => deletee(teamIndex)} />
+                                            </span>
+                                        </div>
+                                        <div>Player Kills</div>
+                                        <div>
+                                            {team?.playerKills?.map((player, playerIndex) => {
+                                                return (
+                                                    <TextField
+                                                        key={playerIndex}
+                                                        helperText="Leave Empty for 0"
+                                                        type="tel"
+                                                        size="small"
+                                                        value={player.kills}
+                                                        onPaste={(event) => {
+                                                            const pasteData = event.clipboardData.getData("Text");
+                                                            if (!/^[0-9]*$/.test(pasteData)) {
+                                                                event.preventDefault();
+                                                            }
+                                                        }}
+                                                        onKeyPress={(event) => {
+                                                            if (!/[0-9]/.test(event.key)) {
+                                                                event.preventDefault();
+                                                            }
+                                                        }}
+                                                        sx={{ m: 1, maxWidth: 140 }}
+                                                        label={player.inGameName}
+                                                        variant="outlined"
+                                                        onChange={(e) => {
+                                                            const updatedRows = [...rows]; // Create a copy of the rows array
+                                                            updatedRows[teamIndex].playerKills[playerIndex].kills = parseInt(e.target.value) || 0; // Update the specific kill count
+                                                            setRows(updatedRows); // Update the state
+                                                        }}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                    <div>Player Kills</div>
-                                    <div>
-                                        {team?.playerKills?.map((each, ind) => {
-                                            return <TextField
-                                                key={ind}
-                                                helperText="Leave Empty for 0"
-                                                type='tel'
-                                                size='small'
-                                                value={each.kills}
-                                                onPaste={(event) => {
-                                                    const pasteData = event.clipboardData.getData('Text');
-                                                    if (!/^[0-9]*$/.test(pasteData)) {
-                                                        event.preventDefault();
-                                                    }
-                                                }}
-                                                onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                                sx={{ m: 1, maxWidth: 140 }}
-                                                label={each.inGameName}
-                                                variant="outlined"
-                                            // onChange={(e) => {
-                                            //     const updatedPlayers = selectedTeam.players.map((player, index) => {
-                                            //         if (index === ind) {
-                                            //             return { ...player, kills: parseInt(e.target.value) };
-                                            //         }
-                                            //         return player;
-                                            //     });
-                                            //     setselectedTeam({ ...selectedTeam, players: updatedPlayers });
-                                            // }}
-                                            />
-                                        })}
-
-                                    </div>
-                                </div>
+                                );
                             })}
-
                         </div>
                         <Divider variant="middle" />
                         <h2>Add Team</h2>
