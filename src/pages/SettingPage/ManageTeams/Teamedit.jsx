@@ -44,7 +44,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
     const [disable, setdisable] = useState(false);
     useEffect(() => {
         // fetche(registerId);
-        // console.log(teamdetail);
+        console.log(teamdetail);
         setinp({
             userid: teamdetail.userid,
             tournament_id: teamdetail.tournament_id,
@@ -81,6 +81,17 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
     };
     const [all, setall] = useState(init);
 
+    function generateRandomString() {
+        const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let randomString = '';
+
+        for (let i = 0; i < 18; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            randomString += characters.charAt(randomIndex);
+        }
+        // console.log('randomstring',randomString);
+        return randomString;
+    }
 
     const editTeam = async (e) => {
         e.preventDefault();
@@ -101,10 +112,10 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         if (all.ask_team_logo && !inp.selectedTeamLogo) {
             return toast.warn("Select Team Logo", { autoClose: 2300 });
         }
-        
+
         let playernameerror = false;
         let playerlogoerror = false;
-        
+
         inp.players.forEach((player) => {
             if (!player.inGameName.trim()) {
                 playernameerror = true;
@@ -113,15 +124,16 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                 playerlogoerror = true;
             }
         });
-        
+
         if (playernameerror) {
             return toast.warn("All Player Name is Required", { autoClose: 2300 });
         }
         if (playerlogoerror) {
             return toast.warn("Select All Player Logo", { autoClose: 2300 });
         }
+      
         
-
+        console.log(inp)
         const formData = new FormData();
         formData.append("id", teamdetail._id);
         formData.append("teamName", inp.teamname);
@@ -146,12 +158,14 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
             if (response.ok) {
                 // toast.success(responseData.message, { autoClose: 3300 });
                 inp.players.forEach(async (player, index) => {
+                    let uniqueId = generateRandomString();
                     const formData = new FormData();
                     formData.append("id", teamdetail._id);
                     formData.append("index", index);
                     formData.append(`inGameName`, player.inGameName);
                     formData.append(`inGameID`, player.inGameID);
                     formData.append(`playerLogo`, player.playerLogo);
+                    formData.append(`playerId`, player.playerId);
 
                     try {
                         const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}classicplayerupdate`, {
@@ -233,6 +247,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
             inGameName: "",
             inGameID: "",
             playerLogo: "",
+            playerId:generateRandomString()
         };
 
         // Use the spread operator to create a new object with an updated players array
@@ -326,10 +341,10 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                             <Button sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<IoMdAdd />} disabled={disable} variant="outlined" color="primary">
                                 Add player
                             </Button></div>
-                        <Button sx={{ mr: 2, mb:1 }} type="submit" startIcon={<MdCloudUpload />} disabled={disable} variant="contained" color="primary">
+                        <Button sx={{ mr: 2, mb: 1 }} type="submit" startIcon={<MdCloudUpload />} disabled={disable} variant="contained" color="primary">
                             Save Team
                         </Button>
-                        <Button sx={{  mb:1 }} onClick={() => setcalledit(false)} startIcon={<IoMdCloseCircle />} disabled={disable} variant="outlined" color="secondary">
+                        <Button sx={{ mb: 1 }} onClick={() => setcalledit(false)} startIcon={<IoMdCloseCircle />} disabled={disable} variant="outlined" color="secondary">
                             close
                         </Button>
                     </form>

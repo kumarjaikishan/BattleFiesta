@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useSelector } from 'react-redux';
 
-const EditEnterResult = ({ match }) => {
+const EditEnterResult = ({ match, setcalleditmatch }) => {
     const classic = useSelector((state) => state.classic);
     const [setting, setseting] = useState(classic.classicdetail)
     const [player, setplayer] = useState([]);
@@ -228,7 +228,7 @@ const EditEnterResult = ({ match }) => {
     const savecloud = async (tid) => {
 
         const newpoints = rows.map((team, ind) => {
-            return { ...team, place: ind + 1, kills: team.playerKills.reduce((accum,val)=> accum + (val.kills || 0), 0) }
+            return { ...team, place: ind + 1, kills: team.playerKills.reduce((accum, val) => accum + (val.kills || 0), 0) }
         })
 
         const final = { ...match }
@@ -272,12 +272,12 @@ const EditEnterResult = ({ match }) => {
 
     return (
         <>
-            <div className="enterresult">
+            <div className="enterresult matchedit">
                 <div className="box">
                     <h2>Edit Match Info</h2>
                     <p>The Teams are sorted in accordance to their places (not points).
                         Use arrow bottons to change their place.</p>
-                    <FormControl sx={{ m: 1, minWidth: '98%' }} size="small">
+                    <FormControl sx={{ mb: 2, mt: 4, minWidth: '88%' }} size="small">
                         <InputLabel id="demo-select-small-label">Map</InputLabel>
                         <Select
                             labelId="demo-select-small-label"
@@ -451,6 +451,7 @@ const EditEnterResult = ({ match }) => {
                                 Save Changes
                             </LoadingButton>
                             <Button size='small' startIcon={<FaUndoAlt />} onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
+                            <Button size='small' onClick={() => setcalleditmatch(false)} variant="contained" color="secondary" sx={{ m: 1, maxWidth: 110 }} >Go Back</Button>
                         </Box>
                     </FormControl>
                 </div>

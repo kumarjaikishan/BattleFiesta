@@ -206,7 +206,7 @@ const PointSystem = () => {
         })}
 
       </div> :
-        <EditEnterResult match={editmatchinfo} />}
+        <EditEnterResult match={editmatchinfo} setcalleditmatch={setcalleditmatch} />}
     </>);
 };
 

@@ -28,6 +28,7 @@
         border-radius: 10px;
         padding:  5px;
 
+
         & >h2{
             text-align: center;
             color: #212529;
@@ -51,6 +52,11 @@
              }
         }
     }
+}
+.matchedit .box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 @media only screen and (max-width: 600px) {
     .enterresult{
