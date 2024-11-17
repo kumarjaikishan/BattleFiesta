@@ -44,7 +44,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
     const [disable, setdisable] = useState(false);
     useEffect(() => {
         // fetche(registerId);
-        console.log(teamdetail);
+        // console.log(teamdetail);
         setinp({
             userid: teamdetail.userid,
             tournament_id: teamdetail.tournament_id,
@@ -133,7 +133,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         }
       
         
-        console.log(inp)
+        // console.log(inp)
         const formData = new FormData();
         formData.append("id", teamdetail._id);
         formData.append("teamName", inp.teamname);

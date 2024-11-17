@@ -66,7 +66,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                 <div key={ind} className="bodre">
                                     <span>{team && String(ind + 4).padStart(2, 0)}</span>
                                     <span>
-                                        {team && <img src={team && teamlogo[team.teamid] || 'default-logo.png'} alt="" />}
+                                        {team && <img src={team && teamlogo[team.teamid] || group} alt="" />}
                                         {team && team?.teamname}
                                     </span>
                                     <span>{team ? String(team.matchplayed).padStart(2, '0') : '\u00A0'}</span>

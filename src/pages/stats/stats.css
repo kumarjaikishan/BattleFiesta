@@ -88,6 +88,7 @@
     & h2 {
       text-align: center;
       color: whitesmoke;
+      /* color: rgb(251, 175, 52); */
       font-size: 2.5em;
       font-family: "Caveat Brush", cursive;
       font-weight: 400;
@@ -115,6 +116,7 @@
           width: 170px;
           height: 170px;
           background: radial-gradient(#e7e9e8, #09eedb);
+          background: radial-gradient(transparent, grey);
           position: relative;
 
           & img {
@@ -183,6 +185,7 @@
         & div {
           width: 100%;
           background: -webkit-linear-gradient(45deg, rgb(255, 221, 0), rgb(241, 223, 61));
+          background: -webkit-linear-gradient(45deg,  rgb(251, 175, 52),rgb(255, 221, 0));
           margin: 7px 0px;
           padding: 2px 5px;
           border-radius: 10px 0 10px 0;
@@ -456,13 +459,13 @@
 
           & .img {
             width: 170px;
-            height: 150px;
+            height: 160px;
           }
 
           .below {
             font-weight: 600;
             padding: 2px;
-            font-size: 0.7em;
+            font-size: 0.9em;
           }
 
           .below:nth-child(3) {
