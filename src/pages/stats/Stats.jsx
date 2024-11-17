@@ -31,9 +31,6 @@ const Stats = () => {
   const userprofile = useSelector((state) => state.userprofile);
   const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group_a3fhyv.webp'
 
-
-
-
   const [topplayer, settopplayer] = useState([]);
   const [topteam, settopteam] = useState([]);
   const [theme, settheme] = useState(1);
@@ -299,7 +296,7 @@ const Stats = () => {
     }
   };
 
-  const tournamentOwner = kuch?.userid == userprofile?.userprofile._id;
+  const tournamentOwner = kuch?.userid?._id == userprofile?.userprofile?._id;
 
   return (
     <div className='stats'>
@@ -323,7 +320,7 @@ const Stats = () => {
             </Select>
           </FormControl>
         </div>
-        {log.islogin && <> <div className='conti' >
+        {log.islogin && tournamentOwner && <> <div className='conti' >
           <h3>Set Background</h3>
           <Button disabled className='btna' sx={{ mt: 1, width: "100%" }} component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
             Upload
