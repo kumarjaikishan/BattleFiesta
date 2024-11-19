@@ -292,7 +292,8 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
 
                             autoComplete="off"
                         > <TextField size="small" id="outlined-basic" name="teammobile" type='tel'
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} value={inp.teammobile} onChange={realhandlechange} label="Mobile" variant="outlined" />
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} 
+                            value={inp.teammobile} onChange={realhandlechange} label="Mobile" variant="outlined" />
                             <TextField size="small" id="outlined-basic" name="teamdiscord" value={inp.teamdiscord} onChange={realhandlechange} label="Discord ID" variant="outlined" />
                         </Box>
 

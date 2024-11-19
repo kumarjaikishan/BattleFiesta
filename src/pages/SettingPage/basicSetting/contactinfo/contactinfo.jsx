@@ -115,7 +115,7 @@ const Contactinfo = ({ all }) => {
     }
     let helpere = {
         whatsapp: "Provide Whatsapp No.",
-        instagram: "Provide Instagram userId",
+        instagram: "Provide Instagram userId(not Link)",
         phone: "Provide phone no.",
         link: "Provide Website Link",
         email: "Provide Email"
@@ -163,7 +163,22 @@ const Contactinfo = ({ all }) => {
                                     <TextField required value={val.link}
                                         onChange={(e) => handlee(e, ind, "link")}
                                         fullWidth id="outlined-basic"
+                                        onKeyPress={(event) => {
+                                            if ((links[ind].linkType === "whatsapp" || links[ind].linkType === "phone") && !/[0-9]/.test(event.key)) {
+                                                event.preventDefault();
+                                            }
+                                        }}
+                                        inputProps={{
+                                            maxLength: links[ind].linkType === "whatsapp" || links[ind].linkType === "phone" ? 10 : undefined,
+                                        }}
+                                        type={(links[ind].linkType === "whatsapp" || links[ind].linkType === "phone") ? "tel" : "text"}
                                         label={helpere[links[ind].linkType]}
+                                        helperText={`**Just ${helpere[links[ind].linkType]}`}
+                                        FormHelperTextProps={{
+                                            style: {
+                                                color: links[ind].linkType === 'phone' && links[ind].link.length !== 10 ? 'red' : '#0abde3',
+                                            },
+                                        }}
                                         size='small'
                                         color={links[ind].linkType == 'phone' && links[ind].link.length != 10 ? "error" : 'primary'}
                                         variant="outlined"
@@ -179,7 +194,7 @@ const Contactinfo = ({ all }) => {
 
 
                         <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
-                            <Button size='small' startIcon={<FaPlus/> } onClick={addsection} variant="outlined" >
+                            <Button size='small' startIcon={<FaPlus />} onClick={addsection} variant="outlined" >
                                 ADD
                             </Button>
                         </Stack>
