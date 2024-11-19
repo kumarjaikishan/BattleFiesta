@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Preloader from './preloader';
 import './pages/findtournament/findtournas.css'
@@ -48,6 +48,7 @@ const User = lazy(() => import('./pages/admin/user/user'));
 
 function App() {
   const log = useSelector((state) => state.login);
+  let navigate = useNavigate();
 
   async function requestPermission() {
     const permission = await Notification.requestPermission();
@@ -95,7 +96,52 @@ function App() {
 
     // off this for disable notification
     log.islogin && requestPermission();
+    log.islogin && jwtcheck()
   }, [log.islogin]);
+
+  const jwtcheck = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}jwtcheck`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log(responsee)
+      const data = await responsee.json();
+      console.log("jwt check", data);
+
+      if (data.message === 'jwt expired') {
+        swal({
+          title: 'Session Expired',
+          text: 'Your session has expired. Please log in again.',
+          icon: 'warning',
+          button: {
+            text: 'OK',
+          },
+        }).then(() => {
+          return navigate('/logout');
+        });
+      }
+      if (data.message === 'Invalid Token') {
+        swal({
+          title: 'Invalid Token',
+          text: 'You need to log in again.',
+          icon: 'warning',
+          button: {
+            text: 'OK',
+          },
+        }).then(() => {
+          return navigate('/logout');
+        });
+      }
+
+
+    } catch (error) {
+      console.log("catch part", error);
+    }
+  }
 
   return (
     <>
