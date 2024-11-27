@@ -13,6 +13,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { IoIosMail } from "react-icons/io";
 import { MdInsertLink } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
+import { MdVerified } from "react-icons/md";
 import { MdLocalPhone } from "react-icons/md";
 import { CiFacebook } from "react-icons/ci";
 import { FaYoutube } from "react-icons/fa";
@@ -172,7 +173,7 @@ const Channeldashboard = () => {
               <div className="profileimage">
                 <img src={pro.imgsrc || logo} alt="profile image" />
                 <div className='names'>
-                  <h2>{pro.name}</h2>
+                  <h2>{pro.name} { <MdVerified className='sve' />}</h2>
                   <span>{uid}</span>
                   {pro.city && pro.state ? (
                     <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>

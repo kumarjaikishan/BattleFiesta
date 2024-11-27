@@ -3,17 +3,26 @@ import Accordion from '@mui/material/Accordion';
 import './faq.css'
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { IoIosArrowDown } from "react-icons/io";
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import { FaRegEye } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const Faq = () => {
 
     const [expanded, setExpanded] = useState(false);
-
+    const navigate = useNavigate();
+    const log = useSelector((state) => state.login);
+    const userprofile = useSelector((state) => state.userprofile);
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+    useEffect(() => {
+        // console.log(userprofile)
+    }, [])
 
     return (
         <div className="faq">
@@ -31,12 +40,21 @@ const Faq = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            BattleFiesta is your go-to platform for effortlessly creating, managing, and tracking esports tournaments.
-                            Say goodbye to manual tasks - it streamlines everything from team management to points calculation, all in one
-                            convenient place. Plus, each tournament gets its own dedicated points table web page for easy access.
+                            BattleFiesta is your ultimate platform for seamlessly creating, managing, and tracking esports tournaments.
+                            Simplify your workflow with features like team management, automatic points calculation, and personalized points
+                            table web pages for each tournament.  Enhance your tournaments with support for team logos, and streamline payments
+                            with UPI QR codes, all in one convenient place. Say goodbye to manual tasks and elevate your esports experience with BattleFiesta!
+
                         </Typography>
+                        <Button sx={{ mt: 1 }} variant='contained'
+                            onClick={() => {
+                                window.open('https://www.youtube.com/watch?v=a4zVxjXq8Ic');
+                            }}
+                            startIcon={<FaRegEye />} color='secondary'> Watch Tutorial
+                        </Button>
                     </AccordionDetails>
                 </Accordion>
+
                 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                     <AccordionSummary
                         expandIcon={<IoIosArrowDown />}
@@ -92,6 +110,38 @@ const Faq = () => {
                             Focus on organizing your tournaments while leaving technical tasks like Points Table calculation to our app.
                             Save time and access all your data securely from any device, anywhere, thanks to cloud storage.
                         </Typography>
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel8'} onChange={handleChange('panel8')}>
+                    <AccordionSummary
+                        expandIcon={<IoIosArrowDown />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
+                    >
+                        <Typography >
+                            Advantages of Username ?
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            When you sign up with BattleFiesta, a unique UserID (email) is assigned to you. This UserID
+                            can later be changed, subject to availability. Your UserID serves as your identity on the platform,
+                            allowing your followers or other users to easily view your profile, including all your activities,
+                            tournaments, and participation details—all in one place.
+                            <br /> <br />
+                            Additionally, logged-in users can follow your profile to stay updated on your tournaments and activities.
+                            BattleFiesta ensures seamless engagement and connectivity within the esports community.
+                        </Typography>
+                        {log.islogin ?
+                            <Button sx={{ mt: 1 }} variant='contained'
+                                onClick={() => navigate(`/channel/@${userprofile.userprofile.username}`)}
+                                startIcon={<FaRegEye />} color='secondary'> Your Profile
+                            </Button>:
+                            <Button sx={{ mt: 1 }} variant='contained'
+                                onClick={() => navigate(`/channel/@battlefiesta`)}
+                                startIcon={<FaRegEye />} color='secondary'> Admin Profile
+                            </Button>
+                            }
                     </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>

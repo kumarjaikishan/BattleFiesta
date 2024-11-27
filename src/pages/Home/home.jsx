@@ -1,5 +1,5 @@
 import './home.css'
-import {  useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setloader, header } from '../../store/login';
 import { useEffect, useRef, useref } from 'react';
 import Button from '@mui/material/Button';
@@ -118,27 +118,30 @@ const Home = () => {
                         <h2>Welcome to <span>BattleFiesta!</span> </h2>
                         <div>
                             <h1>
-                            All-In-One platform for &nbsp;
-                            <span className='reacttype' style={{color:'Yellow', fontSize:'1.5em'}}>
-                                <ReactTyped
-                                    strings={["Create", "Host", "Manage"]}
-                                    typeSpeed={140}
-                                    delay={5000}
-                                    loop
-                                    backSpeed={50}
-                                    cursorChar="|"
-                                    showCursor={true}
-                                
-                                />
+                                All-In-One platform for &nbsp;
+                                <span className='reacttype' style={{ color: 'Yellow', fontSize: '1.5em' }}>
+                                    <ReactTyped
+                                        strings={["Create", "Host", "Manage"]}
+                                        typeSpeed={140}
+                                        delay={5000}
+                                        loop
+                                        backSpeed={50}
+                                        cursorChar="|"
+                                        showCursor={true}
+
+                                    />
                                 </span> <br />
-                              <span className='yellow'>E</span>sport <span className='yellow'>T</span>ournaments
+                                <span className='yellow'>E</span>sport <span className='yellow'>T</span>ournaments
                             </h1>
                         </div>
 
-                        <p>Your ultimate destination for creating, hosting and managing in ESport games like PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups, exciting prizes, and an active gaming community.</p>
-                       <div className="links">
+                        <p>Your ultimate destination for creating, hosting and managing in ESport games like
+                            PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups,
+                            exciting prizes, and an active gaming community.</p>
+                        <div className="links">
                             <NavLink className="navlink" to='/dashboard'>Dashboard </NavLink>
                             <NavLink className="navlink" to='/tournaments'>Find Tournament </NavLink>
+
                         </div>
                     </motion.div>
                     <motion.div
@@ -314,7 +317,7 @@ const Home = () => {
                         <p> <span><img src={tick2} alt="" /></span> <span>Option to export the points table to an image file.</span></p>
                         <p> <span><img src={tick2} alt="" /></span> <span>Detailed analytics.</span></p>
                         <a href="https://battlefiesta.in/stat/6610e3f5c0c776d5020339ca" target="_blank" rel="noopener noreferrer">
-                            <Button variant="contained" sx={{border:'1px solid white'}} size='small'>See Demo</Button>
+                            <Button variant="contained" sx={{ border: '1px solid white' }} size='small'>See Demo</Button>
                         </a>
                     </motion.div>
                 </section>

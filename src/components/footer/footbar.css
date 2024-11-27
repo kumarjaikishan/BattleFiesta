@@ -5,7 +5,7 @@
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660918/battlefiesta/assets/icon/honeywhite_qim3oy.webp');
     background-size: cover;
     padding: 15px 8px;
-    margin-top: 2px;
+    border-top: 3px solid var(--primarycolor);
     display: flex;
     user-select: none;
     flex-wrap: wrap;
@@ -34,6 +34,12 @@
                     list-style: none;
                     margin: 5px 0px;
                 }
+                
+            }
+            .navlink{
+                font-weight: 500;
+                list-style: none;
+                margin: 5px 0px;
             }
         }
         a *{
