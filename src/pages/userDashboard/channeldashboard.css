@@ -431,7 +431,7 @@
                 position: relative;
                 width: 100%;
                 gap: 10px;
-                padding-bottom: 10px;
+                padding-bottom: 5px;
 
                 .top {
                     position: relative;
@@ -513,8 +513,8 @@
                     right: 2px;
 
                     button {
-                        /* transform: scale(0.7); */
-                        font-size: 7px;
+                        font-size: 9px;
+                        /* padding: 4px 9px; */
 
                         svg {
                             font-size: 10px;
