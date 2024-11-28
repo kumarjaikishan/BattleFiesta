@@ -160,7 +160,8 @@ const Contactinfo = ({ all }) => {
                                     <TextField size='small' required value={val.linkName} onChange={(e) => handlee(e, ind, "linkName")} sx={{ width: "50%" }} id="outlined-basic" label="Link Name" variant="outlined" />
                                 </Stack>
                                 <Stack direction="row" sx={{ mt: 2 }} spacing={2}>
-                                    <TextField required value={val.link}
+                                    <TextField required
+                                        value={val.link}
                                         onChange={(e) => handlee(e, ind, "link")}
                                         fullWidth id="outlined-basic"
                                         onKeyPress={(event) => {
@@ -173,7 +174,7 @@ const Contactinfo = ({ all }) => {
                                         }}
                                         type={(links[ind].linkType === "whatsapp" || links[ind].linkType === "phone") ? "tel" : "text"}
                                         label={helpere[links[ind].linkType]}
-                                        helperText={`**Just ${helpere[links[ind].linkType]}`}
+                                        helperText={val.link ? `Just ${helpere[links[ind].linkType]}` : ""}
                                         FormHelperTextProps={{
                                             style: {
                                                 color: links[ind].linkType === 'phone' && links[ind].link.length !== 10 ? 'red' : '#0abde3',
