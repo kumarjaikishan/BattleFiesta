@@ -62,7 +62,7 @@ const Channeldashboard = () => {
       const response = await fetch(url, { method: 'POST', headers, body });
       const result = await response.json();
       dispatch(setloader(false));
-      // console.log(result)
+      console.log(result)
 
       if (!response.ok) {
         setError(result.message);
@@ -173,7 +173,7 @@ const Channeldashboard = () => {
               <div className="profileimage">
                 <img src={pro.imgsrc || logo} alt="profile image" />
                 <div className='names'>
-                  <h2>{pro.name} { <MdVerified className='sve' />}</h2>
+                  <h2>{pro.name} {pro.bluetick && <MdVerified className='sve' />}</h2>
                   <span>{uid}</span>
                   {pro.city && pro.state ? (
                     <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>
