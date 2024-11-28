@@ -48,7 +48,7 @@ const Faq = () => {
                         </Typography>
                         <Button sx={{ mt: 1 }} variant='contained'
                             onClick={() => {
-                                window.open('https://www.youtube.com/watch?v=a4zVxjXq8Ic');
+                                window.open('https://www.youtube.com/watch?v=vDEUTuRPZHM');
                             }}
                             startIcon={<FaRegEye />} color='secondary'> Watch Tutorial
                         </Button>

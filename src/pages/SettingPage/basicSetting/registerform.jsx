@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import "./registerform.css";
 import apiWrapper from "../../../store/apiWrapper";
 import { toast } from "react-toastify";
@@ -37,6 +37,24 @@ const Registerform = ({ showss }) => {
         // console.log("from setting",classic.classicsetting);
         // dispatch(setloader(true));
     }, [])
+    const controlRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      if (controlRef.current) {
+        event.preventDefault(); // Prevent default vertical scroll
+        controlRef.current.scrollLeft += event.deltaY; // Scroll horizontally
+      }
+    };
+
+    const control = controlRef.current;
+    control.addEventListener("wheel", handleScroll);
+
+    return () => {
+      control.removeEventListener("wheel", handleScroll);
+    };
+  }, []);
+
     useEffect(() => {
         sortplayerdata(classic.classicplayers)
     }, [classic.classicplayers])
@@ -162,7 +180,7 @@ const Registerform = ({ showss }) => {
     return (
         <>
             <div className="form_setting">
-                <div className="control">
+                <div className="control"  ref={controlRef}>
                     <div className="active" onClick={() => handleactive(0)}>
                         <MdSettingsSuggest />
                         <h3>Setting</h3>

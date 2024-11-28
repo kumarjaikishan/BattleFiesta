@@ -72,21 +72,41 @@
         & .control {
             height: fit-content;
             display: flex;
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
+            overflow-x: auto;
+            white-space: nowrap;
             gap: 5px;
+            padding: 10px 5px;
+            /* scrollbar-width: thin; */
             justify-content: start;
             border-bottom: 1px solid #212529;
+
+            &::-webkit-scrollbar {
+                width: 2px;
+                height: 4px;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background-color: grey;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--primarycolor);
+            }
             
     
             & div {
                 display: flex;
-                width: 32%;
+                /* width: 32%; */
+                width: fit-content;
                 align-items: center;
                 justify-content: start;
+                padding: 0 4px;
                 padding-left: 8px;
                 border: 1px solid transparent;
                 color: grey;
                 cursor: pointer;
+                /* border: 1px solid grey; */
                 border-radius: 5px;
     
                 &:hover {
