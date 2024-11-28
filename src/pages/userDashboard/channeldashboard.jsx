@@ -230,14 +230,14 @@ const Channeldashboard = () => {
       <div className='more'>
         <div className="about">
           <h2>About</h2>
-          {(!pro.bio && !pro.publicphone && !pro.publicemail) && <p>Not Added Yet</p>}
+          {(!pro.bio && !pro.publicphone && !pro.publicemail) && <p>No Details Provided</p>}
           <p style={{ marginBottom: '12px' }}> {pro.bio}</p>
           {pro.publicphone && <div> <MdLocalPhone /> {pro.publicphone}</div>}
           {pro.publicemail && <div> <IoIosMail /> {pro.publicemail}</div>}
         </div>
         <div className="socallink">
           <h2>Social Links</h2>
-          {pro.sociallinks.length < 1 && <div>No Data Found</div>}
+          {pro.sociallinks.length < 1 && <div>No Details Provided</div>}
           {pro.sociallinks?.map((val, ind) => (
             <div key={ind}>
               <span className="icon">{socialIcons[val.name]}</span>
