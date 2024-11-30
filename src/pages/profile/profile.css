@@ -133,6 +133,9 @@
                 margin-top: 15px;
                 width: 100%;
             }
+            textarea{
+                font-size: 15px !important;
+            }
         }
 
         .profilepic {
@@ -377,6 +380,10 @@
 
                 .full {
                     margin-top: 20px;
+                }
+                textarea{
+                    font-size: 14px !important;
+                    height: 80px !important;
                 }
             }
 

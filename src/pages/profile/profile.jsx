@@ -13,7 +13,9 @@ import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { setloader } from '../../store/login';
+import { useNavigate } from 'react-router-dom';
 import { profilefetch } from '../../store/profile'
 import useImageUpload from '../utils/imageresizer';
 import { styled } from '@mui/material/styles';
@@ -33,6 +35,7 @@ const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
     const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
+    const navigate = useNavigate();
     const photo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
 
     const init = {
@@ -62,7 +65,7 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
-        // console.log(userprofile.userprofile)
+        console.log(userprofile.userprofile)
     }, [userprofile])
 
 
@@ -339,7 +342,7 @@ const Profile = () => {
                                 className="half" label="Phone" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='city' value={inp.city} className="half" label="City" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='state' value={inp.state} className="half" label="State" variant="outlined" />
-                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full" label="Bio/About" variant="outlined" />
+                            <TextField onChange={handlechangee} name='bio' value={inp.bio} multiline rows={2} className="full textarea" label="Bio/About" variant="outlined" />
                         </div>
                         {/* <button disabled={isloadinge} type='submit'>Save</button> */}
                         <Button
@@ -351,6 +354,16 @@ const Profile = () => {
                             size='small'
                         >
                             Save
+                        </Button>
+                        <Button
+                            variant="contained"
+                            startIcon={<MdOutlineRemoveRedEye />}
+                            className='splbtn'
+                            size='small'
+                            sx={{marginLeft:1}}
+                            onClick={() => navigate(`/channel/@${userprofile.userprofile.username}`)}
+                        >
+                            Public Profile
                         </Button>
                     </form>
                 </div>
