@@ -10,6 +10,7 @@ import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
 import swal from 'sweetalert';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { NavLink } from 'react-router-dom';
@@ -260,6 +261,8 @@ const Dashboard = () => {
           </div>
           <div className="operator">
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {/* <Button endIcon={<CircularProgress size={15} color="inherit" />} title="Create New Tournament"
+                onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button> */}
               <Button endIcon={<GiConsoleController />} title="Create New Tournament"
                 onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button>
               <LoadingButton
