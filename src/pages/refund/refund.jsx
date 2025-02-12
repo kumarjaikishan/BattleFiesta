@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from "react-helmet-async";
 
 const RefundAndCancellationPolicy = () => {
   return (
     <div className="refund-cancellation-policy-container">
+      <Helmet>
+        <title>Refund & Cancellation || BattleFiesta</title>
+        <meta name="description"
+          content="Learn about BattleFiesta's refund and cancellation policies. Find out how refunds work, eligibility criteria, and steps to request a cancellation for your subscription or tournament services." />
+      </Helmet>
+
       <div className="container">
         <h2>Refund and Cancellation Policy</h2>
         <p>

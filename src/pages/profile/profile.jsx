@@ -24,12 +24,10 @@ import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { FaRegFaceSmile } from "react-icons/fa6";
 import { IoMdCloudUpload } from "react-icons/io";
 import { CiFacebook } from "react-icons/ci";
-import { FaYoutube } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
+import { FaYoutube, FaInstagram, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { LuGamepad2 } from "react-icons/lu";
-import { FaTelegramPlane } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
 import { IoMdLink } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
@@ -273,6 +271,13 @@ const Profile = () => {
 
     return (
         <div className="profilepage">
+            <Helmet>
+                <title>Profile || BattleFiesta</title>
+                {/* <meta name="robots" content="noindex, nofollow" /> */}
+                <meta name="description"
+                    content="Manage your BattleFiesta profile, update personal details, track tournament history, and customize settings for a better gaming experience." />
+            </Helmet>
+
             <motion.div
                 animate={{
                     scale: [1, 1.2, 1.2, 1],
@@ -360,7 +365,7 @@ const Profile = () => {
                             startIcon={<MdOutlineRemoveRedEye />}
                             className='splbtn'
                             size='small'
-                            sx={{marginLeft:1}}
+                            sx={{ marginLeft: 1 }}
                             onClick={() => navigate(`/channel/@${userprofile.userprofile.username}`)}
                         >
                             Public Profile

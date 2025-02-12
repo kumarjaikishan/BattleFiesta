@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation  } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { MdOutlineMail } from "react-icons/md";
@@ -17,13 +17,18 @@ import { memshipentry, contactusform, voucher, membership, Users } from '../../s
 const Signin = ({ showmsg, setshowmsg }) => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
+    let location = useLocation();
+
     const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
         email: "",
         password: ""
     }
+    // const from = location.state?.from || "/dashboard";
+
     useEffect(() => {
         dispatch(setloader(false));
+        // console.log(location.state)
         // console.log("api call:",import.meta.env.VITE_API_ADDRESS);
     }, [])
 

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FaTachometerAlt } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 import { BiLogoJquery } from "react-icons/bi";
 
 const Adminnavbar = () => {
@@ -16,6 +17,13 @@ const Adminnavbar = () => {
     }, [])
     return <>
         <div className="Adminnavbar">
+            <Helmet>
+                <title>Admin Panel || BattleFiesta</title>
+                <meta name="description"
+                    content="BattleFiesta Admin Panel - Manage tournaments, users, and platform settings with ease. Access exclusive tools for seamless tournament management." />
+                <meta name="robots" content="noindex, nofollow" />
+            </Helmet>
+
             <div className="adminnav">
                 <NavLink className="navlink" end to='/admin' >
                     <div >
@@ -53,27 +61,27 @@ const Adminnavbar = () => {
                             }
                         }} badgeContent={admin.contactusform.filter(entry => entry.resolve === false).length} color="warning">
                         <div >
-                        <BiLogoJquery/>
+                            <BiLogoJquery />
                             <span>Queries</span>
                         </div>
                     </Badge>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/voucher' >
                     <div >
-                    <FaRegCreditCard />
-                     <span>Voucher</span>
+                        <FaRegCreditCard />
+                        <span>Voucher</span>
                     </div>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/membership' >
                     <div >
-                    <FaRegCreditCard />
-                     <span>Memberships</span>
+                        <FaRegCreditCard />
+                        <span>Memberships</span>
                     </div>
                 </NavLink>
                 <NavLink className="navlink" to='/admin/users' >
                     <div >
-                    <FaRegCreditCard />
-                     <span>Users</span>
+                        <FaRegCreditCard />
+                        <span>Users</span>
                     </div>
                 </NavLink>
             </div>

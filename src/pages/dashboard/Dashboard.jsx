@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
 import swal from 'sweetalert';
+import { Helmet } from "react-helmet-async";
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
@@ -26,12 +27,8 @@ import { BsGearFill } from "react-icons/bs";
 import { GiConsoleController } from "react-icons/gi";
 import { IoMdRefresh } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
-import { MdGroups } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
+import { MdGroups, MdDelete, MdOutlineContentCopy, MdOutlineAddShoppingCart, MdReadMore } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
-import { MdOutlineContentCopy } from "react-icons/md";
-import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { MdReadMore } from "react-icons/md";
 import { TbMoodSad } from "react-icons/tb";
 import tournlogo from '../../assets/logopng250.webp'
 
@@ -223,6 +220,13 @@ const Dashboard = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dashboard || BattleFiesta</title>
+        <meta name="description"
+          content="Access the BattleFiesta Dashboard to create, manage, and track PUBG, BGMI, and Free Fire tournaments. View real-time points tables, monitor rankings, and organize esports events effortlessly." />
+      </Helmet>
+
       <motion.div
         variants={container}
         initial="hidden"

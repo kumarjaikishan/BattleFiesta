@@ -13,6 +13,7 @@ import { MdMenuOpen } from "react-icons/md";
 import { GiGamepad } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa6";
 import { BiReset } from "react-icons/bi";
+import { Helmet } from "react-helmet-async";
 import { MdGroups } from "react-icons/md";
 import tournlogo from '../../assets/logopng250.webp'
 
@@ -33,7 +34,7 @@ const Findtournament = () => {
     const [showinglist, setShowingList] = useState([]);
     const [activeList, setActiveList] = useState([]); // Store the currently active list
     const [searchQuery, setSearchQuery] = useState("");
-    const [searching,setsearching]= useState(false)
+    const [searching, setsearching] = useState(false)
 
     const handleActive = (index) => {
         let alldiv = document.querySelectorAll(".conta .cate div");
@@ -126,6 +127,13 @@ const Findtournament = () => {
 
     return (
         <div className="findtournas">
+            <Helmet>
+                <title>Find Tournaments || BattleFiesta</title>
+                <meta name="description"
+                    content="Discover and join exciting PUBG, BGMI, and Free Fire tournaments on BattleFiesta. Browse ongoing and upcoming competitions, check rankings with automatic points tables, and compete with top players." />
+            </Helmet>
+
+
             <div className="conta">
                 <div className="cate">
                     <div onClick={() => handleActive(0)} className="active">
@@ -218,8 +226,8 @@ const Findtournament = () => {
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE
                                 </Button>
-                                {searching && 
-                                <p className="status" title="Status">{val.status}</p>}
+                                {searching &&
+                                    <p className="status" title="Status">{val.status}</p>}
                             </div>
                         </div>
                     );

@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from "react-helmet-async";
 
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy-container">
+      <Helmet>
+        <title>Privacy Policy || BattleFiesta</title>
+        <meta name="description"
+          content="Read BattleFiesta's Privacy Policy to understand how we collect, use, and protect your personal information. Learn about data security, user rights, and how we handle tournament and subscription-related data." />
+      </Helmet>
+
       <div className="container">
         <h2>Privacy Policy</h2>
         <p>At BattleFiesta, we take your privacy seriously. This Privacy Policy outlines the types of personal information we collect, how we use it, and how we protect your information.</p>

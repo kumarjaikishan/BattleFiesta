@@ -21,7 +21,7 @@ import AboutUs from './pages/aboutus/aboutus';
 import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
-import Payment from './pages/payment/payment';
+import Subscription from './pages/Subscription/subscription';
 import PasswordReset from './pages/password/password';
 import Tdmsetting from './pages/tdm/main';
 import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
@@ -203,7 +203,7 @@ function App() {
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/resetpassword/:token" element={<PasswordReset />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/plan" element={<Payment />} />
+            <Route path="/subscription" element={<Subscription />} />
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/modal" element={<Modalbox />} />

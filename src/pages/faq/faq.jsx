@@ -10,6 +10,7 @@ import { FaRegEye } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Helmet } from "react-helmet-async";
 
 const Faq = () => {
 
@@ -26,6 +27,13 @@ const Faq = () => {
 
     return (
         <div className="faq">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>FAQ || BattleFiesta</title>
+                <meta name="description"
+                    content="Find answers to common questions about BattleFiesta. Learn how to create and manage PUBG, BGMI, and Free Fire tournaments, generate automatic points tables, and get the most out of our platform." />
+            </Helmet>
+
             <div className="accord">
                 <h1>Frequently Asked Question</h1>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -40,11 +48,10 @@ const Faq = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            BattleFiesta is your ultimate platform for seamlessly creating, managing, and tracking esports tournaments.
+                            BattleFiesta is your ultimate platform for seamlessly creating, managing, and tracking esports tournaments with automatic points tables that update instantly.
                             Simplify your workflow with features like team management, automatic points calculation, and personalized points
                             table web pages for each tournament.  Enhance your tournaments with support for team logos, and streamline payments
                             with UPI QR codes, all in one convenient place. Say goodbye to manual tasks and elevate your esports experience with BattleFiesta!
-
                         </Typography>
                         <Button sx={{ mt: 1 }} variant='contained'
                             onClick={() => {
@@ -136,12 +143,12 @@ const Faq = () => {
                             <Button sx={{ mt: 1 }} variant='contained'
                                 onClick={() => navigate(`/channel/@${userprofile.userprofile.username}`)}
                                 startIcon={<FaRegEye />} color='secondary'> Your Profile
-                            </Button>:
+                            </Button> :
                             <Button sx={{ mt: 1 }} variant='contained'
                                 onClick={() => navigate(`/channel/@battlefiesta`)}
                                 startIcon={<FaRegEye />} color='secondary'> Admin Profile
                             </Button>
-                            }
+                        }
                     </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>

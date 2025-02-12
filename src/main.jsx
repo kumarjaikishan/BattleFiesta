@@ -9,17 +9,20 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme.js';
+import { HelmetProvider } from "react-helmet-async";
 
 
 let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter >
-      <PersistGate persistor={persistor} >
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </PersistGate>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter >
+        <PersistGate persistor={persistor} >
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </PersistGate>
+      </BrowserRouter>
+    </HelmetProvider>
   </Provider>
 )

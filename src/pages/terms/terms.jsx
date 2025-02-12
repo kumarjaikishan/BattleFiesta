@@ -1,6 +1,14 @@
+import { Helmet } from "react-helmet-async";
+
 const TermsAndConditions = () => {
   return (
     <div className="terms-and-conditions-container">
+      <Helmet>
+        <title>Terms & Conditions || BattleFiesta</title>
+        <meta name="description"
+          content="Read BattleFiesta's Terms & Conditions to understand the rules and guidelines for using our platform. Learn about tournament policies, user responsibilities, and other important legal information." />
+      </Helmet>
+
       <div className="container">
         <h2>Terms and Conditions</h2>
         <p>Welcome to BattleFiesta. By accessing our website and using our services, you agree to comply with and be bound by the following terms and conditions:</p>

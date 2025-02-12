@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './payment.css'
+import './subscription.css'
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import upi from '../../assets/payment/upi-payment-icon.webp'
@@ -11,16 +11,12 @@ import { NavLink } from 'react-router-dom';
 import { setloader } from '../../store/login';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
+import { Helmet } from "react-helmet-async";
 
-const Payment = () => {
-  const tournacenter = useSelector((state) => state.tournacenter);
+const Subscription = () => {
   const userprofile = useSelector((state) => state.userprofile);
   const dispatch = useDispatch();
-  const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-  ]
+
 
   const init = {
     fullname: '',
@@ -140,7 +136,7 @@ const Payment = () => {
   const coupon = 0;
   const [paymodalopen, setpaymodalopen] = useState(false);
 
-  const [fetchCouponData, setfetchCouponData]= useState(false);
+  const [fetchCouponData, setfetchCouponData] = useState(false);
   const checkcoupon = async () => {
     let coupon = inp.couponname.trim().toLowerCase();
     // console.log(coupon);
@@ -192,6 +188,13 @@ const Payment = () => {
   return (
     <>
       <div className="payment">
+        <Helmet>
+          <title>Subscription Plans || BattleFiesta</title>
+          <meta name="description"
+            content="Choose from our weekly, monthly, or yearly subscription plans to access powerful tournament management tools.
+                    Automate points tables, manage teams, and streamline your PUBG, BGMI, and Free Fire tournaments with ease." />
+        </Helmet>
+
         <svg className='svg' xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320"><path d="M0,288L1440,128L1440,0L0,0Z"></path></svg>
         {/* <svg className='svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,224L60,197.3C120,171,240,117,360,112C480,107,600,149,720,154.7C840,160,960,128,1080,101.3C1200,75,1320,53,1380,42.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg> */}
         <div className="mater">
@@ -308,5 +311,5 @@ const Payment = () => {
   )
 }
 
-export default Payment;
+export default Subscription;
 
