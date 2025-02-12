@@ -31,6 +31,7 @@ import Modalbox from './components/custommodal/Modalbox';
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
 import Channeldashboard from './pages/userDashboard/channeldashboard';
+import { Helmet } from "react-helmet-async";
 
 // off this for disable notification
 import { messaging } from './firebase';
@@ -148,6 +149,13 @@ function App() {
       {/* //pauseOnFocusLoss for toast */}
       <ToastContainer closeOnClick />
       <div className="App">
+        <Helmet>
+        <title>BattleFiesta - Best PUBG, BGMI & Free Fire Tournaments Manager | Points Table Maker & Manager</title>
+          {/* <meta name="robots" content="noindex, nofollow" /> */}
+          <meta name="description"
+            content="BattleFiesta is India's #1 platform for PUBG, BGMI, and Free Fire tournaments organiser. Create & manage real-time esports
+                           events with an advanced points table maker, automated rankings." />
+        </Helmet>
         <Navbar />
         <div className={log.loader ? 'main loader' : 'main'}>
           <Routes>
