@@ -382,7 +382,7 @@ const Profile = () => {
                         <p><span> Expiry Date</span> <span>:</span> <span>{formatDate(membership.expirydate)} </span> </p>
                         <p><span> Expire In</span> <span>:</span> <span style={{ color: membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
                         <p><span> Status</span> <span>:</span> <span className={`status ${membership.status}`}>{membership.status}</span> </p>
-                        <NavLink className="navlink" to='/plan'>  <Button variant="contained" className='splbtn' startIcon={<MdOutlineAddShoppingCart />}>
+                        <NavLink className="navlink" to='/subscription'>  <Button variant="contained" className='splbtn' startIcon={<MdOutlineAddShoppingCart />}>
                             Buy Membership
                         </Button></NavLink>
                     </div>

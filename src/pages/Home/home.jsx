@@ -135,7 +135,7 @@ const Home = () => {
                             </h1>
                         </div>
 
-                        <p>Your ultimate destination for creating, hosting and managing in ESport games like
+                        <p>Battlefiesta, Your ultimate destination for creating, hosting and managing in ESport games like
                             PUBG/BGMI/FREEFIRE tournaments. Elevate your gaming experience with professional setups,
                             exciting prizes, and an active gaming community.</p>
                         <div className="links">
@@ -153,7 +153,7 @@ const Home = () => {
                         animate='visible'
                         transition={{ duration: 1, delay: 0.8 }}
                         className="image">
-                        <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660664/battlefiesta/assets/icon/anime_d1c7if.webp'} alt="PUBG Character" />
+                        <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660664/battlefiesta/assets/icon/anime_d1c7if.webp'} alt="battlefiesta" />
                     </motion.div>
                 </section>
                 <section className='section2'>
