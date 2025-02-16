@@ -190,6 +190,7 @@ const Subscription = () => {
       <div className="payment">
         <Helmet>
           <title>Subscription Plans || BattleFiesta</title>
+          <link rel="canonical" href={`${window.location.origin}/subscription`} />
           <meta name="description"
             content="Choose from our weekly, monthly, or yearly subscription plans to access powerful tournament management tools.
                     Automate points tables, manage teams, and streamline your PUBG, BGMI, and Free Fire tournaments with ease." />

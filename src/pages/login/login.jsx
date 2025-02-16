@@ -4,17 +4,23 @@ import { useState } from 'react';
 import { MdOutlineGrass } from "react-icons/md";
 import Signin from './signin';
 import Signup from './signup';
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const [log, setlog] = useState(true);
     const fun = (val) => {
         setlog(val);
     }
-    const [showmsg,setshowmsg]= useState(false);
+    const [showmsg, setshowmsg] = useState(false);
 
     return (
         <>
             <div className="login">
+                <Helmet>
+                    <title>Login/Signup || BattleFiesta</title>
+                    <link rel="canonical" href={`${window.location.origin}/login`} />
+                    <meta name="description" content="Log in or sign up to BattleFiesta to join PUBG, BGMI, and Free Fire tournaments. Create your account, track your progress, and compete with top players." />
+                </Helmet>
                 <div className="box">
                     <div className="logo">
                         <MdOutlineGrass className='company' />
@@ -26,8 +32,8 @@ const Login = () => {
                     <div className="both" style={{ transform: log ? "translateX(0%)" : "translateX(-50%)" }}>
                         <Signin showmsg={showmsg} setshowmsg={setshowmsg} />
                         <Signup setshowmsg={setshowmsg} setlog={setlog} />
-                     </div>
-                 </div>
+                    </div>
+                </div>
             </div>
         </>
     )

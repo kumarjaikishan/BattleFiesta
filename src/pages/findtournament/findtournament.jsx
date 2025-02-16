@@ -129,6 +129,7 @@ const Findtournament = () => {
         <div className="findtournas">
             <Helmet>
                 <title>Find Tournaments || BattleFiesta</title>
+                <link rel="canonical" href={`${window.location.origin}/tournaments`} />
                 <meta name="description"
                     content="Discover and join exciting PUBG, BGMI, and Free Fire tournaments on BattleFiesta. Browse ongoing and upcoming competitions, check rankings with automatic points tables, and compete with top players." />
             </Helmet>

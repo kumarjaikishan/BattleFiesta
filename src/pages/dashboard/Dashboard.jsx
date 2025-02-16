@@ -38,6 +38,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const userprofile = useSelector((state) => state.userprofile);
   const tournacenter = useSelector((state) => state.tournacenter);
+
   useEffect(() => {
     dispatch(header("Dashboard"));
     dispatch(setloader(false));
@@ -223,6 +224,7 @@ const Dashboard = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Dashboard || BattleFiesta</title>
+        <link rel="canonical" href={`${window.location.origin}/dashboard`} />
         <meta name="description"
           content="Access the BattleFiesta Dashboard to create, manage, and track PUBG, BGMI, and Free Fire tournaments. View real-time points tables, monitor rankings, and organize esports events effortlessly." />
       </Helmet>
