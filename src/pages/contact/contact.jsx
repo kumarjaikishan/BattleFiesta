@@ -69,15 +69,14 @@ const Contact = () => {
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Contact || BattleFiesta</title>
-                <link rel="canonical" href={`${window.location.origin}/contact`} />
-                <meta name="description"
-                    content="Get in touch with BattleFiesta. Contact us for support, inquiries, or collaborations
-                     regarding PUBG, BGMI, and Free Fire tournaments. We're here to help!" />
 
-                {/* Do Follow Links for Instagram and YouTube */}
-                <link rel="canonical" href="https://www.instagram.com/battlefiesta" />
-                <link rel="canonical" href="https://www.youtube.com/@Battle_Fiesta" />
+                {/* Single Correct Canonical URL */}
+                <link rel="canonical" href={`${window.location.origin}/contact`} />
+
+                <meta name="description"
+                    content="Get in touch with BattleFiesta. Contact us for support, inquiries, or collaborations regarding PUBG, BGMI, and Free Fire tournaments. We're here to help!" />
             </Helmet>
+
 
 
             <div className="img">

@@ -12,11 +12,7 @@ const AboutUs = () => {
         <meta name="description"
           content="Learn more about BattleFiesta, the ultimate platform for organizing and managing PUBG, BGMI,
      and Free Fire tournaments. Create automatic stunning points tables, discover our mission, vision, and how we bring esports to life." />
-
-        {/* Do Follow Links for Instagram and YouTube */}
-        <link rel="canonical" href="https://www.instagram.com/battlefiesta" />
-        <link rel="canonical" href="https://www.youtube.com/@Battle_Fiesta" />
-      </Helmet>
+    </Helmet>
 
       <div className="container">
         <h2>About BattleFiesta</h2>
