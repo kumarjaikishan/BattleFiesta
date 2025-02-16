@@ -152,6 +152,7 @@ function App() {
         <Helmet>
         <title>BattleFiesta - Best PUBG, BGMI & Free Fire Tournaments Manager | Points Table Maker & Manager</title>
           {/* <meta name="robots" content="noindex, nofollow" /> */}
+          <link rel="canonical" href={`${window.location.origin}`} />
           <meta name="description"
             content="BattleFiesta is India's #1 platform for PUBG, BGMI, and Free Fire tournaments organiser. Create & manage real-time esports
                            events with an advanced points table maker, automated rankings." />
