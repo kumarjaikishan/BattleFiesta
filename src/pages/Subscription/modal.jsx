@@ -91,7 +91,7 @@ const Paymentmodal = ({ handleinput, reset, setinp, inp, tax, planchoosed, paymo
                         </div>
                         <div className="right">
                             <form onSubmit={handlee}>
-                                <img src={logo} alt="" />
+                                <img src={logo} alt="logo" />
                                 <h3>{planchoosed?.duration} plan - ₹{qrcodeamount}.00</h3>
                                 <TextField onChange={handleinput}
                                     required id="outlined-basic"

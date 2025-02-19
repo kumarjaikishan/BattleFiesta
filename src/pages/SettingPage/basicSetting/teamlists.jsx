@@ -71,7 +71,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                     <AccordionDetails className='details' sx={{ pb: 1 }}>
                         <div className="teamdata">
                             <div className='imageside'>
-                                <img src={player.teamLogo ? player.teamLogo : group1} alt="" />
+                                <img src={player.teamLogo ? player.teamLogo : group1} alt="teamLogo" />
                                 <div className="icon">
                                     <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
                                     <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
@@ -95,7 +95,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             <h2>Player List : </h2>
                             {player.player.map((each, ind) => {
                                 return <div key={ind}>
-                                    <span>{<img src={each.playerLogo ? each.playerLogo : user} alt="" />}</span>
+                                    <span>{<img src={each.playerLogo ? each.playerLogo : user} alt="playerLogo" />}</span>
                                     <span>{each?.inGameName || 'N/A'}</span>
                                     <span>{each?.inGameID || 'N/A'}</span>
                                 </div>

@@ -202,7 +202,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                                 <h4>Set a PlayerLogo*</h4>
                                 <div id="logo">
                                     {
-                                        inp.logo && <img src={inp.logo} alt="" />
+                                        inp.logo && <img src={inp.logo} alt="logo" />
                                     }
                                 </div>
                                 <Button disabled size="small" sx={{ mb: 3 }} component="label" variant="contained" startIcon={<MdCloudUpload />}>
@@ -223,7 +223,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                             <h4>Set Payment Screenshot*</h4>
                             <div id="paymentss">
                                 {
-                                    inp.paymentss && <img src={inp.paymentss} alt="" />
+                                    inp.paymentss && <img src={inp.paymentss} alt="payment ss" />
                                 }
                             </div>
                             <Button disabled size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<IoMdPhotos />}>

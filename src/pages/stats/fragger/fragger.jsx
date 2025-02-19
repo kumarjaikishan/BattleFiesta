@@ -23,7 +23,7 @@ const Fragger = ({ topplayer, isDesktopMode, topteam  }) => {
                         let { team, playerName, playerLogo, kills } = player;
                         return <div className="box" key={ind}>
                             <div className="img">
-                                <img src={playerLogo ? playerLogo : user} alt="" />
+                                <img src={playerLogo ? playerLogo : user} alt="playerLogo" />
                                 <span>{playerName}</span>
                             </div>
                             <div className="below">
@@ -46,7 +46,7 @@ const Fragger = ({ topplayer, isDesktopMode, topteam  }) => {
                                 return <div key={ind}>
                                     <span>
                                         <span>#{ind + 1}</span>
-                                        <span><img src={playerLogo ? playerLogo : user} alt="" /> </span>
+                                        <span><img src={playerLogo ? playerLogo : user} alt="playerLogo" /> </span>
                                         <span>{playerName}</span>
                                     </span>
                                     <span>{kills}</span>
@@ -62,7 +62,7 @@ const Fragger = ({ topplayer, isDesktopMode, topteam  }) => {
                             {topteam.slice(0, 10).map((team, ind) => {
                                 let { teamname, teamLogo, kills } = team;
                                 return <div key={ind}>
-                                    <span> <span>#{ind + 1}</span> <span><img src={teamLogo ? teamLogo : group} alt="" /> </span><span>{teamname}</span></span>
+                                    <span> <span>#{ind + 1}</span> <span><img src={teamLogo ? teamLogo : group} alt="teamlogo" /> </span><span>{teamname}</span></span>
                                     <span>{kills}</span>
                                 </div>
                             })}

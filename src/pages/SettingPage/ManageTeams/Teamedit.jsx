@@ -298,7 +298,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                         </Box>
 
                         <h4>Set a logo for the Team* </h4>
-                        <div id="teamlogo"><img src={inp.selectedTeamLogo} alt="" /></div>
+                        <div id="teamlogo"><img src={inp.selectedTeamLogo} alt="team logo" /></div>
                         <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<MdCloudUpload />}>
                             Upload Logo
                             <VisuallyHiddenInput
@@ -324,7 +324,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                                     <TextField size="small" id={`in-game-id-${index}`} value={inp.players[index].inGameID} onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined" />
 
                                     <h4>Set a logo for the player</h4>
-                                    <div id={`playerLogo${index}`}> <img src={inp.players[index].playerLogo} alt="" /></div>
+                                    <div id={`playerLogo${index}`}> <img src={inp.players[index].playerLogo} alt="playerLogo" /></div>
                                     <Button component="label" variant="contained" startIcon={<MdCloudUpload />}>
                                         Upload Logo
                                         <VisuallyHiddenInput

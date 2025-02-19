@@ -79,7 +79,7 @@ const Teams = ({ about, categoryenteries, entry }) => {
                             id="panel1-header"
                             className={`headere ${player.status}`}
                         >
-                            <img src={player.logo ? player.logo : user} alt="" />
+                            <img src={player.logo ? player.logo : user} alt="playerLogo" />
                             <span>{player.name} </span>
                             <span className={player.status}> {player.status}</span>
                         </AccordionSummary>

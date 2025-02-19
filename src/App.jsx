@@ -150,7 +150,7 @@ function App() {
       <ToastContainer closeOnClick />
       <div className="App">
         <Helmet>
-        <title>BattleFiesta - Best PUBG, BGMI & Free Fire Tournaments Manager | Points Table Maker & Manager</title>
+        <title>BattleFiesta - Esports Tournament Management Service</title>
           {/* <meta name="robots" content="noindex, nofollow" /> */}
           <link rel="canonical" href={`${window.location.origin}`} />
           <meta name="description"

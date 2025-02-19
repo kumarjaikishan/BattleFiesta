@@ -332,7 +332,7 @@ const Detail = () => {
                     <div className="logos">
                         <div className="tourn_banner">
                             <h2>Tournament Banner</h2>
-                            {inp.banner ? <img src={inp.banner} alt="" /> : <h3>No Banner has been uploaded for the tournament</h3>}
+                            {inp.banner ? <img src={inp.banner} alt="banner" /> : <h3>No Banner has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained"
                                 startIcon={<MdCloudUpload />}>
                                 Upload
@@ -341,7 +341,7 @@ const Detail = () => {
                             <p>A cover image for the tournament.</p>
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
-                            {inp.logo ? <img src={inp.logo} alt="" /> : <h3>No Logo has been uploaded for the tournament</h3>}
+                            {inp.logo ? <img src={inp.logo} alt="logo" /> : <h3>No Logo has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<MdCloudUpload />}>
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournlogo' onChange={() => upload("tournlogo")} />

@@ -80,7 +80,7 @@ const Contact = () => {
 
 
             <div className="img">
-                <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1720771216/battlefiesta/assets/contact_nbvdng.svg" alt="" />
+                <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1720771216/battlefiesta/assets/contact_nbvdng.svg" alt="contact svg" />
             </div>
             <div className="box">
                 <form onSubmit={register}>

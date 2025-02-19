@@ -17,7 +17,7 @@ const Footbar = () => {
                     <h3>
                         BattleFiesta
                     </h3>
-                    <p>Tournament Management services for Esport.</p>
+                    <p>Esports Tournament Management Service</p>
                     <section>
                         <h3>Follow Us</h3>
                         <a target="_blank" href="https://www.instagram.com/battlefiesta"><FaInstagram /></a>

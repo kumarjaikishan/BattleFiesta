@@ -223,15 +223,15 @@ const Subscription = () => {
             <div className="method">
               <div className="card active" title='Pay via UPI'>
                 <span>UPI</span>
-                <span><img src={upi} alt="" /></span>
+                <span><img src={upi} alt="upi logo" /></span>
               </div>
               <div className="card disable" title='coming soon'>
                 <span>Razorpay</span>
-                <span><img src={razorpay} alt="" /></span>
+                <span><img src={razorpay} alt="razorpay logo" /></span>
               </div>
               <div className="card disable" title='coming soon'>
                 <span>PayTM</span>
-                <span><img src={paytm} alt="" /></span>
+                <span><img src={paytm} alt="paytm logo" /></span>
               </div>
             </div>
             <div className="paymentdetail">

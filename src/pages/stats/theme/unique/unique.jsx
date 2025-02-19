@@ -66,7 +66,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                 <div key={ind} className="bodre">
                                     <span>{team && String(ind + 4).padStart(2, 0)}</span>
                                     <span>
-                                        {team && <img src={team && teamlogo[team.teamid] || group} alt="" />}
+                                        {team && <img src={team && teamlogo[team.teamid] || group} alt="teamlogo" />}
                                         {team && team?.teamname}
                                     </span>
                                     <span>{team ? String(team.matchplayed).padStart(2, '0') : '\u00A0'}</span>
@@ -95,7 +95,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                 <div key={ind} className={team ? "bodre":"bodre off"}>
                                     <span>{team && ind + 16}</span>
                                     <span>
-                                        {team && <img src={team && teamlogo[team.teamid] || 'default-logo.png'} alt="" />}
+                                        {team && <img src={team && teamlogo[team.teamid] || 'default-logo.png'} alt="teamlogo" />}
                                         {team && team?.teamname}
                                     </span>
                                     <span>{team ? String(team.matchplayed).padStart(2, '0') : '\u00A0'}</span>
@@ -116,7 +116,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                 </div>
             </div>
             <div className="foterr">
-                <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731486558/battlefiesta/assets/themes/beach/wood_ytbjgt_lwbvni.webp'} alt="" />
+                <img src={'https://res.cloudinary.com/dusxlxlvm/image/upload/v1731486558/battlefiesta/assets/themes/beach/wood_ytbjgt_lwbvni.webp'} alt="image" />
                 <div className="orgname">
                     <i>Organiser</i>
                     <p>{kuch.organiser}</p>

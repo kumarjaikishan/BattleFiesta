@@ -34,14 +34,14 @@ const Teams = ({ entry }) => {
                             id="panel1-header"
                             className={`headere ${player.status}`}
                         >
-                            <img src={player.teamLogo ? player.teamLogo : group} alt="" /> <span>{player.teamName} </span> <span className={player.status}> {player.status}</span>
+                            <img src={player.teamLogo ? player.teamLogo : group} alt="teamLogo" /> <span>{player.teamName} </span> <span className={player.status}> {player.status}</span>
                         </AccordionSummary>
                         <AccordionDetails className='detailse'>
                             <div className="playerdata">
                                 <h2>Player List : </h2>
                                 {player.player.map((each, ind) => {
                                     return <div key={ind}>
-                                        <span><img src={each.playerLogo ? each.playerLogo : user} alt="" /></span>
+                                        <span><img src={each.playerLogo ? each.playerLogo : user} alt="playerLogo" /></span>
                                         <span title='InGameName'>{each.inGameName}</span>
                                         <span title='InGameID'>{each?.inGameID || 'N/A'}</span>
                                     </div>
