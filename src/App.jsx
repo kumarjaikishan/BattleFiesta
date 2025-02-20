@@ -154,7 +154,7 @@ function App() {
           {/* <meta name="robots" content="noindex, nofollow" /> */}
           <link rel="canonical" href={`${window.location.origin}`} />
           <meta name="description"
-            content="BattleFiesta is India's #1 platform for PUBG, BGMI, and Free Fire tournaments organiser. Create & manage real-time esports
+            content="BattleFiesta is India's best platform for PUBG, BGMI, and Free Fire tournaments organiser. Create & manage real-time esports
                            events with an advanced points table maker, automated rankings." />
         </Helmet>
         <Navbar />
