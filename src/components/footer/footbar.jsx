@@ -27,7 +27,7 @@ const Footbar = () => {
                 <section className="section2">
                     <h3>Information</h3>
                     <ul>
-                        <a className="navlink" target="_blank" href="https://www.youtube.com/watch?v=vDEUTuRPZHM">Watch Tutorial</a>
+                        <a className="navlink" target="_blank" href="https://www.youtube.com/watch?v=vDEUTuRPZHM"><li> Watch Tutorial</li></a>
                         <NavLink className="navlink" to='/about'><li>About Us</li></NavLink>
                         <NavLink className="navlink" to='/privacy'><li>Privacy Policy</li></NavLink>
                         <NavLink className="navlink" to='/terms'><li>Terms and Conditions</li></NavLink>

@@ -25,11 +25,26 @@
         }
 
         ul {
+
             a {
+                position: relative;
                 text-decoration: none;
                 color: #212529;
+                border-radius: 5px;
+
+                &::before{
+                    position: absolute;
+                    content: '';
+                    top: 0;
+                    left: -5px;
+                    width: 2px ;
+                    height: 100%;
+                    visibility: hidden;
+                    background: var(--primarycolor);
+                }
 
                 li {
+                    width: 100%;
                     font-weight: 500;
                     list-style: none;
                     margin: 5px 0px;
@@ -41,6 +56,12 @@
                 list-style: none;
                 margin: 5px 0px;
             }
+        }
+        ul a:hover::before{
+            visibility: visible;
+        }
+        ul a:hover{
+            color: var(--primarycolor);
         }
         a *{
             text-decoration: none;
