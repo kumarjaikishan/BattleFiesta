@@ -46,7 +46,8 @@ const Footbar = () => {
                 </section>
                 <section className="section3">
                     <h3>Reach Us</h3>
-                    <p>battlefiesta07@gmail.com</p>
+                    {/* <p>contact@battlefiesta.in</p> */}
+                     <a href="mailto:contact@battlefiesta.in" target="_blank" >contact@battlefiesta.in</a>                                
                 </section>
             </footer>
         </>

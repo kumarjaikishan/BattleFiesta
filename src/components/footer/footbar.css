@@ -91,6 +91,14 @@
             }
         }
     }
+    .section3{
+
+        a{
+            text-decoration: none;
+            color: #212529;
+            font-weight: 500;
+        }
+    }
 }
 
 @media only screen and (max-width:600px) {
