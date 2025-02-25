@@ -133,8 +133,6 @@ const Findtournament = () => {
                 <meta name="description"
                     content="Discover and join exciting PUBG, BGMI, and Free Fire tournaments on BattleFiesta. Browse ongoing and upcoming competitions, check rankings with automatic points tables, and compete with top players." />
             </Helmet>
-
-
             <div className="conta">
                 <div className="cate">
                     <div onClick={() => handleActive(0)} className="active">

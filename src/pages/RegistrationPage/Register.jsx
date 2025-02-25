@@ -28,6 +28,7 @@ import { FaRegSmileWink } from "react-icons/fa";
 import Badge from '@mui/material/Badge';
 import QRCode from "react-qr-code";
 import useImageUpload from "../utils/imageresizer";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -381,6 +382,10 @@ const Register = () => {
     return (
         <>
             <div className="registartionform">
+                <Helmet>
+                    <title>Registration || BattleFiesta</title>
+                    <meta name="robots" content="noindex, nofollow" />
+                </Helmet>
                 {errore && <div className="notfound">
                     <div>
                         <TbMoodSad className="sad" />

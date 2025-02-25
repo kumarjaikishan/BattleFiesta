@@ -13,6 +13,7 @@ import { MdInsertLink } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdLocalPhone } from "react-icons/md";
 import { GrOverview } from "react-icons/gr";
+import { Helmet } from "react-helmet-async";
 
 const Tournamentstatpage = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,10 @@ const Tournamentstatpage = () => {
 
   return (
     <div className="tournastat">
+      <Helmet>
+        <title>Public Post || BattleFiesta</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       {iserror && <div className="notfound">
         <div>
           <TbMoodSad className="sad" />

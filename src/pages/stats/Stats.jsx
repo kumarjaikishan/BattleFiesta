@@ -22,6 +22,7 @@ import { MdInsertLink } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdLocalPhone } from "react-icons/md";
 import { GrOverview } from "react-icons/gr";
+import { Helmet } from "react-helmet-async";
 
 const Stats = () => {
   const dispatch = useDispatch();
@@ -300,6 +301,10 @@ const Stats = () => {
 
   return (
     <div className='stats'>
+      <Helmet>
+        <title>Stats || BattleFiesta</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className='controls'>
         <div className='conti'>
           <h3>Select Theme</h3>
