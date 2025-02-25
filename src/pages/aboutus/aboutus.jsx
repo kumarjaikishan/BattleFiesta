@@ -8,6 +8,7 @@ const AboutUs = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>About Us || BattleFiesta</title>
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${window.location.origin}/about`} />
         <meta name="description"
           content="Learn more about BattleFiesta, the ultimate platform for organizing and managing PUBG, BGMI,

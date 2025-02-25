@@ -18,6 +18,7 @@ const Login = () => {
             <div className="login">
                 <Helmet>
                     <title>Login/Signup || BattleFiesta</title>
+                    <meta name="robots" content="index, follow" />
                     <link rel="canonical" href={`${window.location.origin}/login`} />
                     <meta name="description" content="Log in or sign up to BattleFiesta to join PUBG, BGMI, and Free Fire tournaments. Create your account, track your progress, and compete with top players." />
                 </Helmet>

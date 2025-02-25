@@ -5,6 +5,7 @@ const TermsAndConditions = () => {
     <div className="terms-and-conditions-container">
       <Helmet>
         <title>Terms & Conditions || BattleFiesta</title>
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${window.location.origin}/terms`} />
         <meta name="description"
           content="Read BattleFiesta's Terms & Conditions to understand the rules and guidelines for using our platform. Learn about tournament policies, user responsibilities, and other important legal information." />

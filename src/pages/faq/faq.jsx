@@ -30,6 +30,7 @@ const Faq = () => {
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>FAQ || BattleFiesta</title>
+                <meta name="robots" content="index, follow" />
                 <link rel="canonical" href={`${window.location.origin}/faq`} />
                 <meta name="description"
                     content="Find answers to common questions about BattleFiesta. Learn how to create and manage PUBG, BGMI, and Free Fire tournaments, generate automatic points tables, and get the most out of our platform." />

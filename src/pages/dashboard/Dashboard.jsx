@@ -225,6 +225,7 @@ const Dashboard = () => {
         <meta charSet="utf-8" />
         <title>Dashboard || BattleFiesta</title>
         <link rel="canonical" href={`${window.location.origin}/dashboard`} />
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="description"
           content="Access the BattleFiesta Dashboard to create, manage, and track PUBG, BGMI, and Free Fire tournaments. View real-time points tables, monitor rankings, and organize esports events effortlessly." />
       </Helmet>
