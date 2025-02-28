@@ -38,11 +38,12 @@ body {
   /* user-select: none; */
 
   &::-webkit-scrollbar {
-    width: 12px;
+    width: 7px;
   }
 
   &::-webkit-scrollbar-track {
     background-color: grey;
+    /* background-color: transparent; */
   }
 
   &::-webkit-scrollbar-thumb {

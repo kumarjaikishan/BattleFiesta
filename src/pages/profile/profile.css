@@ -96,7 +96,7 @@
         margin-top: 20px;
         display: grid;
         grid-template-columns: repeat(8, 1fr);
-        gap: 30px;
+        gap: 25px;
 
         .glass {
             background: linear-gradient(to right bottom,
