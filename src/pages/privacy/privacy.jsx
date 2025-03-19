@@ -6,8 +6,7 @@ const PrivacyPolicy = () => {
     <div className="privacy-policy-container">
       <Helmet>
         <title>Privacy Policy || BattleFiesta</title>
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`${window.location.origin}/privacy`} />
+       <link rel="canonical" href={`${window.location.origin}/privacy`} />
         <meta name="description"
           content="Read BattleFiesta's Privacy Policy to understand how we collect, use, and protect your personal information. Learn about data security, user rights, and how we handle tournament and subscription-related data." />
       </Helmet>

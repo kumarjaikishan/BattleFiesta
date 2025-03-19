@@ -8,6 +8,7 @@ import { setloader } from '../../store/login';
 import { SlUserFollow } from "react-icons/sl";
 import { SlUserFollowing } from "react-icons/sl";
 import { toast } from 'react-toastify';
+import { MdPinDrop } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
 import { IoIosMail } from "react-icons/io";
@@ -174,10 +175,10 @@ const Channeldashboard = () => {
                 <img src={pro.imgsrc || logo} alt="profile image" />
                 <div className='names'>
                   <h2>{pro.name} {pro.bluetick && <MdVerified className='sve' />}</h2>
-                  <span>{uid}</span>
+                  <span>{uid}</span> <br />
                   {pro.city && pro.state ? (
-                    <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>
-                      ({pro.city}, {pro.state})
+                    <span className='address' >
+                     <MdPinDrop/> {pro.city}, {pro.state}
                     </span>
                   ) : pro.city || pro.state ? (
                     <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>

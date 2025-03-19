@@ -19,10 +19,8 @@ const Adminnavbar = () => {
         <div className="Adminnavbar">
             <Helmet>
                 <title>Admin Panel || BattleFiesta</title>
-                <meta name="robots" content="index, follow" />
                 <meta name="description"
                     content="BattleFiesta Admin Panel - Manage tournaments, users, and platform settings with ease. Access exclusive tools for seamless tournament management." />
-                <meta name="robots" content="noindex, nofollow" />
             </Helmet>
 
             <div className="adminnav">

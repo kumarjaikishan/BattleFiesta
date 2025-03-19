@@ -384,8 +384,7 @@ const Register = () => {
             <div className="registartionform">
                 <Helmet>
                     <title>Registration || BattleFiesta</title>
-                    <meta name="robots" content="noindex, nofollow" />
-                </Helmet>
+               </Helmet>
                 {errore && <div className="notfound">
                     <div>
                         <TbMoodSad className="sad" />

@@ -274,7 +274,6 @@ const Profile = () => {
             <Helmet>
                 <title>Profile || BattleFiesta</title>
                 <link rel="canonical" href={`${window.location.origin}/profile`} />
-                {/* <meta name="robots" content="noindex, nofollow" /> */}
                 <meta name="description"
                     content="Manage your BattleFiesta profile, update personal details, track tournament history, and customize settings for a better gaming experience." />
             </Helmet>

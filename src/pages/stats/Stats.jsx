@@ -303,8 +303,7 @@ const Stats = () => {
     <div className='stats'>
       <Helmet>
         <title>Stats || BattleFiesta</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+     </Helmet>
       <div className='controls'>
         <div className='conti'>
           <h3>Select Theme</h3>

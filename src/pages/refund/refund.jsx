@@ -6,8 +6,7 @@ const RefundAndCancellationPolicy = () => {
     <div className="refund-cancellation-policy-container">
       <Helmet>
         <title>Refund & Cancellation || BattleFiesta</title>
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`${window.location.origin}/refund`} />
+      <link rel="canonical" href={`${window.location.origin}/refund`} />
         <meta name="description"
           content="Learn about BattleFiesta's refund and cancellation policies. Find out how refunds work, eligibility criteria, and steps to request a cancellation for your subscription or tournament services." />
       </Helmet>

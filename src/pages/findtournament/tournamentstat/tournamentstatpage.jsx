@@ -74,7 +74,6 @@ const Tournamentstatpage = () => {
     <div className="tournastat">
       <Helmet>
         <title>Public Post || BattleFiesta</title>
-        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       {iserror && <div className="notfound">
         <div>

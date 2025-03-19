@@ -96,8 +96,8 @@ function App() {
     }
 
     // off this for disable notification
-    log.islogin && requestPermission();
-    log.islogin && jwtcheck()
+    // log.islogin && requestPermission();
+    log.islogin && jwtcheck();
   }, [log.islogin]);
 
   const jwtcheck = async () => {
@@ -149,10 +149,9 @@ function App() {
       <ToastContainer closeOnClick />
       <div className="App">
         <Helmet>
-        <title>BattleFiesta - Esports Tournament Management Service</title>
+          <title>BattleFiesta - Esports Tournament Management Service</title>
           {/* <meta name="robots" content="noindex, nofollow" /> */}
           <link rel="canonical" href={`${window.location.origin}`} />
-          <meta name="robots" content="index, follow" />
           <meta name="description"
             content="BattleFiesta is India's best platform for PUBG, BGMI, and Free Fire tournaments organiser. Create & manage real-time esports
                            events with an advanced points table maker, automated rankings." />
