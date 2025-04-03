@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /tournament
+Disallow: /tournament/
+Disallow: /stat
+Disallow: /stat/
+Disallow: /register
+Disallow: /register/
+
+
+Sitemap: https://battlefiesta.in/sitemap.xml

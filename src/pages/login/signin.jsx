@@ -202,7 +202,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     >
                         Email sent
                     </LoadingButton>}
-                    {showmsg && <p>*Note-Email sent successfully, If you can't find the email in your inbox, please check the spam or junk mail section. </p>}
+                    {showmsg && <p>*Note-Note: Email sent successfully. If not in your inbox, check spam/junk mail. </p>}
                 </form>
             </div>
         </>
