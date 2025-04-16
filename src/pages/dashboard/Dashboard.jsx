@@ -225,7 +225,7 @@ const Dashboard = () => {
         <meta charSet="utf-8" />
         <title>Dashboard || BattleFiesta</title>
         <link rel="canonical" href={`${window.location.origin}/dashboard`} />
-       <meta name="description"
+        <meta name="description"
           content="Access the BattleFiesta Dashboard to create, manage, and track PUBG, BGMI, and Free Fire tournaments. View real-time points tables, monitor rankings, and organize esports events effortlessly." />
       </Helmet>
 
@@ -273,7 +273,15 @@ const Dashboard = () => {
                 onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button>
               <LoadingButton
                 loading={tournacenter.loading}
-                onClick={() => dispatch(alltourna())}
+                // onClick={() => dispatch(alltourna())}
+                onClick={async () => {
+                  try {
+                    await dispatch(alltourna()).unwrap();
+                    toast.success('Refreshed!',{ autoClose: 900 });
+                  } catch (error) {
+                    toast.error('Failed to refresh!');
+                  }
+                }}
                 loadingPosition="end"
                 sx={{ width: '48%' }}
                 endIcon={<IoMdRefresh />}

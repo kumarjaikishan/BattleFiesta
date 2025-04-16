@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IoMdRefresh } from "react-icons/io";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { membership } from "../../../store/admin";
+import { toast } from "react-toastify";
 
 const Membership = () => {
   const admin = useSelector((state) => state.admin);
@@ -12,6 +13,12 @@ const Membership = () => {
   useEffect(() => {
     // console.log(admin.membership);
   }, [])
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options).replace(/ /g, ' ').replace(',', ',');
+  }
+
 
   return <>
     <div className="adminmembership">
@@ -19,8 +26,16 @@ const Membership = () => {
         <div className="controler">
           <h2 style={{ textAlign: 'center' }}>Active Memberships</h2>
           <LoadingButton
-             loading={admin.loading}
-            onClick={() => dispatch(membership())}
+            loading={admin.loading}
+            // onClick={() => dispatch(membership())}
+            onClick={async () => {
+              try {
+                await dispatch(membership()).unwrap();
+                toast.success('Refreshed!', { autoClose: 900 });
+              } catch (error) {
+                toast.error('Failed to refresh!');
+              }
+            }}
             loadingPosition="end"
             endIcon={<IoMdRefresh />}
             variant="outlined"
@@ -43,11 +58,11 @@ const Membership = () => {
           {admin?.membership?.map((val, ind) => {
             return <div key={ind}>
               <span>{ind + 1}</span>
-              <span>{val.userid?.name}</span>
+              <span title={val.isActive && `Valid till ${formatDate(val.expire_date)}`}>{val.userid?.name}</span>
               <span>{val.planid.plan_name}</span>
               <span>{val.planid.price}</span>
               <span>{val.finalpricepaid}</span>
-              <span className={val.isActive ? 'status active': 'status expired'}>{val.isActive ? "Active": "Expired"}</span>
+              <span className={val.isActive ? 'status active' : 'status expired'}>{val.isActive ? "Active" : "Expired"}</span>
             </div>
           })}
 

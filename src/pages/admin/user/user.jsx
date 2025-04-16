@@ -48,9 +48,9 @@ const User = () => {
         const options = { day: '2-digit', month: 'short', year: '2-digit' };
         const date = new Date(dateString);
         const formattedDate = date.toLocaleDateString('en-GB', options);
-        return formattedDate.replace(/(\d{2} \w{3}) (\d{2})/, '$1, $2'); 
+        return formattedDate.replace(/(\d{2} \w{3}) (\d{2})/, '$1, $2');
     };
-    
+
     const Deletee = async (userid) => {
         // console.log(userid);
         swal({
@@ -193,7 +193,15 @@ const User = () => {
                 <h2 style={{ textAlign: 'center' }}>Users</h2>
                 <LoadingButton
                     loading={userprofile.loading}
-                    onClick={() => dispatch(Users())}
+                    // onClick={() => dispatch(Users())}
+                    onClick={async () => {
+                        try {
+                            await dispatch(Users()).unwrap();
+                            toast.success('Refreshed!', { autoClose: 900 });
+                        } catch (error) {
+                            toast.error('Failed to refresh!');
+                        }
+                    }}
                     loadingPosition="end"
                     endIcon={<IoMdRefresh />}
                     variant="outlined"
@@ -216,10 +224,10 @@ const User = () => {
                 {admin?.users?.map((val, ind) => {
                     return <div key={ind} className={`status ${val.membership?.isActive ? 'active' : 'expired'}`}>
                         <span>{ind + 1}</span>
-                        <span style={{cursor:'pointer'}}
-                        //  onClick={()=> navigate(`/channel/@${val.username}`)}
-                         onClick={() => window.open(`/channel/@${val.username}`, '_blank')}
-                         >{val.name}</span>
+                        <span style={{ cursor: 'pointer' }}
+                            //  onClick={()=> navigate(`/channel/@${val.username}`)}
+                            onClick={() => window.open(`/channel/@${val.username}`, '_blank')}
+                        >{val.name}</span>
                         <span>{val.phone}</span>
                         <span>{val.email}</span>
                         <span>{formatDate(val.createdAt)}</span>
