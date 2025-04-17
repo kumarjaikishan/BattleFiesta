@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import { MdOutlineMail } from "react-icons/md";
-import { IoKeyOutline } from "react-icons/io5";
-import { IoEyeOutline } from "react-icons/io5";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { FaUserAstronaut } from "react-icons/fa";
-import { MdLocalPhone } from "react-icons/md";
-import { LiaUmbrellaBeachSolid } from "react-icons/lia";
+import { MdOutlineMail,MdLocalPhone } from "react-icons/md";
+import { IoKeyOutline,IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash,FaUserAstronaut } from "react-icons/fa";
+import { FaHandsHoldingCircle } from "react-icons/fa6";
 import { setloader, setlogin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -190,7 +187,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                         type='submit'
                         loadingPosition="start"
                         variant="contained"
-                        startIcon={<LiaUmbrellaBeachSolid />}
+                        startIcon={<FaHandsHoldingCircle />}
                     >
                         Signup
                     </LoadingButton>

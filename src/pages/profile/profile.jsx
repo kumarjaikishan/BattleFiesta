@@ -272,7 +272,7 @@ const Profile = () => {
     return (
         <div className="profilepage">
             <Helmet>
-                <title>Profile || BattleFiesta</title>
+                <title>{inp.name} | Profile</title>
                 <link rel="canonical" href={`${window.location.origin}/profile`} />
                 <meta name="description"
                     content="Manage your BattleFiesta profile, update personal details, track tournament history, and customize settings for a better gaming experience." />

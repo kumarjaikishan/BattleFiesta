@@ -11,7 +11,6 @@ import { alltourna } from '../../store/api'
 import swal from 'sweetalert';
 import { Helmet } from "react-helmet-async";
 import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { NavLink } from 'react-router-dom';
@@ -28,7 +27,6 @@ import { GiConsoleController } from "react-icons/gi";
 import { IoMdRefresh } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
 import { MdGroups, MdDelete, MdOutlineContentCopy, MdOutlineAddShoppingCart, MdReadMore } from "react-icons/md";
-import { TiGroupOutline } from "react-icons/ti";
 import { TbMoodSad } from "react-icons/tb";
 import tournlogo from '../../assets/logopng250.webp'
 
@@ -355,7 +353,7 @@ const Dashboard = () => {
                     </div>
                     <div className="registered">
                       <span >{val.type}</span>
-                      <span> <MdGroups /> . {val.totalTeamsRegistered}/{val.slots} </span>
+                      <span title={`${val.totalTeamsRegistered} out of ${val.slots} slots Registered (including Approved and Pending teams)`}> <MdGroups /> . {val.totalTeamsRegistered}/{val.slots} </span>
                     </div>
                     <div className="controller">
                       <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>

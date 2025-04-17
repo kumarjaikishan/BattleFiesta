@@ -27,6 +27,7 @@ import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logopng250.webp'
 import { useSelector } from 'react-redux';
 import confetti from 'canvas-confetti';
+import { Helmet } from "react-helmet-async";
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
@@ -163,6 +164,12 @@ const Channeldashboard = () => {
 
   return (
     <div className='channeldashboard'>
+      <Helmet>
+        <title>{pro.name} | Battlefiesta</title>
+        <link rel="canonical" href={`${window.location.origin}/profile`} />
+        <meta name="description"
+          content="Manage your BattleFiesta profile, update personal details, track tournament history, and customize settings for a better gaming experience." />
+      </Helmet>
       <div className="profile">
         <div className="upperinfo">
           <div className="coverimage">
@@ -178,7 +185,7 @@ const Channeldashboard = () => {
                   <span>{uid}</span> <br />
                   {pro.city && pro.state ? (
                     <span className='address' >
-                     <MdPinDrop/> {pro.city}, {pro.state}
+                      <MdPinDrop /> {pro.city}, {pro.state}
                     </span>
                   ) : pro.city || pro.state ? (
                     <span style={{ fontSize: '12px', marginLeft: '10px', textTransform: 'capitalize' }}>

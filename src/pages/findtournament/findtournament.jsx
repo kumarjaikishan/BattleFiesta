@@ -5,16 +5,14 @@ import './findtournas.css'
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
-import { IoMdSearch } from "react-icons/io";
 import { TextField } from '@mui/material';
+import { IoMdSearch } from "react-icons/io";
 import { TbMoodSad } from "react-icons/tb";
-import { MdContentCopy } from "react-icons/md";
-import { MdMenuOpen } from "react-icons/md";
+import { MdContentCopy,MdMenuOpen,MdGroups } from "react-icons/md";
 import { GiGamepad } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa6";
 import { BiReset } from "react-icons/bi";
 import { Helmet } from "react-helmet-async";
-import { MdGroups } from "react-icons/md";
 import tournlogo from '../../assets/logopng250.webp'
 
 const Findtournament = () => {
@@ -214,7 +212,7 @@ const Findtournament = () => {
                                         toast.success('Copied', { autoClose: 1000 })
                                     }} />
                                 </span>
-                                <span > <MdGroups /> {val.totalTeamsRegistered} /{val.slots} </span>
+                                <span title={`${val.totalTeamsRegistered} out of ${val.slots} slots Registered (including Approved and Pending teams)`}> <MdGroups /> {val.totalTeamsRegistered} /{val.slots} </span>
                             </div>
                             {/* <div className="label">
                                 {val.label.split(',').map((eac) => {
