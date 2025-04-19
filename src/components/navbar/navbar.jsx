@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FiMenu } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
-import logo from '../../assets/logopng250.webp';
+import logo from '../../assets/logowebp_250.webp';
 
 const Navbar = () => {
   const log = useSelector((state) => state.login);

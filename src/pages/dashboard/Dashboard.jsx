@@ -28,7 +28,7 @@ import { IoMdRefresh } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
 import { MdGroups, MdDelete, MdOutlineContentCopy, MdOutlineAddShoppingCart, MdReadMore } from "react-icons/md";
 import { TbMoodSad } from "react-icons/tb";
-import tournlogo from '../../assets/logopng250.webp'
+import tournlogo from '../../assets/logowebp_250.webp'
 
 const Dashboard = () => {
   const dispatch = useDispatch();

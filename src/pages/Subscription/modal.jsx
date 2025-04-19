@@ -1,5 +1,5 @@
 import Dialogbox from "../utils/dialogbox";
-import logo from '../../assets/logopng250.webp'
+import logo from '../../assets/logowebp_250.webp'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useParams } from 'react-router-dom';

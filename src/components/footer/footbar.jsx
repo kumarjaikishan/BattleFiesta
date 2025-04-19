@@ -1,8 +1,7 @@
 import React from 'react';
 import './footbar.css';
-import logo from '../../assets/logopng250.webp'
-import { FaInstagram } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
+import logo from '../../assets/logowebp_250.webp'
+import { FaInstagram,FaYoutube } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
 const Footbar = () => {

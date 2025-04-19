@@ -24,7 +24,7 @@ import { IoMdRefresh } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { TbMoodSad } from "react-icons/tb";
-import logo from '../../assets/logopng250.webp'
+import logo from '../../assets/logowebp_250.webp'
 import { useSelector } from 'react-redux';
 import confetti from 'canvas-confetti';
 import { Helmet } from "react-helmet-async";

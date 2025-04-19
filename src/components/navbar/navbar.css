@@ -40,7 +40,7 @@
                 align-items: center;
 
                 & img {
-                    width: 60px;
+                    width: 50px;
                 }
             }
         }
@@ -98,7 +98,7 @@
                 padding: 0 5px;
 
                 & img {
-                    width: 50px;
+                    width: 40px;
                 }
             }
 
@@ -175,7 +175,7 @@
                 .navlink {
 
                     img {
-                        width: 50px;
+                        width: 40px;
                     }
 
                     h2 {

@@ -15,7 +15,7 @@ import { IoCloudDownloadOutline } from "react-icons/io5";
 import Fragger from './fragger/fragger';
 import MatchTable from './fragger/matchtable';
 import { setloader, header } from '../../store/login';
-import defaultlogo from '../../assets/logopng250.webp'
+import defaultlogo from '../../assets/logowebp_250.webp'
 import { FaInstagram } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
 import { MdInsertLink } from "react-icons/md";

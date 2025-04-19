@@ -13,12 +13,11 @@ import { GiGamepad } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa6";
 import { BiReset } from "react-icons/bi";
 import { Helmet } from "react-helmet-async";
-import tournlogo from '../../assets/logopng250.webp'
+import tournlogo from '../../assets/logowebp_250.webp'
 
 const Findtournament = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const tournlogo = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1709654642/battlefiesta/assets/logo/logopng250_vuhy4f.webp';
 
     useEffect(() => {
         dispatch(header("Tournaments"));
