@@ -115,7 +115,7 @@ const Contactinfo = ({ all }) => {
     }
     let helpere = {
         whatsapp: "Provide Whatsapp No.",
-        instagram: "Provide Instagram userId(not Link)",
+        instagram: "Provide only Instagram userId (not full Link)",
         phone: "Provide phone no.",
         link: "Provide Website Link",
         email: "Provide Email"
