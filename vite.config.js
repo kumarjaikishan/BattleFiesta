@@ -6,9 +6,9 @@ import { visualizer } from 'rollup-plugin-visualizer';
 export default defineConfig({
   plugins: [
     react(),
-    visualizer({
-      filename: './stats.html',
-      open: true,
-    })
+    // visualizer({
+    //   filename: './stats.html',
+    //   open: true,
+    // })
   ]
 });
