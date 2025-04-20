@@ -68,7 +68,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                 })
             })
             const datae = await res.json();
-            console.log(res);
+            console.log(datae);
             if (res.ok && res.status == 200) {
                 setshowmsg(true)
                 setsigninp(init);
@@ -76,7 +76,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                 setlog(true)
                 dispatch(setloader(false));
             } else if (res.ok && res.status == 201) {
-               dispatch(setloader(false));
+                dispatch(setloader(false));
                 setbtnclick(false);
                 setshowmsg(true);
                 setsigninp(init);
