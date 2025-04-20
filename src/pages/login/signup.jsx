@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import { MdOutlineMail,MdLocalPhone } from "react-icons/md";
-import { IoKeyOutline,IoEyeOutline } from "react-icons/io5";
-import { FaRegEyeSlash,FaUserAstronaut } from "react-icons/fa";
+import { MdOutlineMail, MdLocalPhone } from "react-icons/md";
+import { IoKeyOutline, IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash, FaUserAstronaut } from "react-icons/fa";
 import { FaHandsHoldingCircle } from "react-icons/fa6";
 import { setloader, setlogin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
+import swal from 'sweetalert';
 
 const Signup = ({ setlog, setshowmsg }) => {
     const dispatch = useDispatch();
@@ -67,14 +68,24 @@ const Signup = ({ setlog, setshowmsg }) => {
                 })
             })
             const datae = await res.json();
-            // console.log(datae);
-            if (res.ok) {
+            console.log(res);
+            if (res.ok && res.status == 200) {
                 setshowmsg(true)
                 setsigninp(init);
-                toast.success(datae.message, { autoClose: 2800 })
                 setbtnclick(false);
                 setlog(true)
                 dispatch(setloader(false));
+            } else if (res.ok && res.status == 201) {
+               dispatch(setloader(false));
+                setbtnclick(false);
+                setshowmsg(true);
+                setsigninp(init);
+                swal({
+                    title: 'Email Sent',
+                    text: 'Please check your inbox to verify your email address. If you don’t see the message, check your spam or junk folder.',
+                    icon: 'success',
+                })
+                setlog(true)
             } else {
                 setshowmsg(false)
                 dispatch(setloader(false));

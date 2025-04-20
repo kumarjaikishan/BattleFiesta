@@ -117,8 +117,8 @@
 
 
                 & img {
-                    width: 90%;
-                    height: 90%;
+                    width: 100%;
+                    height: 100%;
                     transition: 0.3s;
                     object-fit: cover;
                 }
@@ -609,11 +609,7 @@
                 width: 270px;
 
                 & .img {
-    
-                    img {
-                        object-fit: contain;
-                        /* border: 1px solid red; */
-                    }
+                   height: 270px;
                 }
             }
         }

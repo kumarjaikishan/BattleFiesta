@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate,useLocation  } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { MdOutlineMail } from "react-icons/md";
-import { IoKeyOutline,IoEyeOutline } from "react-icons/io5";
+import { IoKeyOutline, IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { setloader, setlogin, setadmin } from '../../store/login';
+import swal from 'sweetalert';
 import { useSelector, useDispatch } from 'react-redux';
 import { alltourna } from '../../store/api'
 import { profilefetch } from '../../store/profile'
@@ -85,7 +86,12 @@ const Signin = ({ showmsg, setshowmsg }) => {
                 dispatch(setloader(false));
                 setbtnclick(false);
                 setshowmsg(true)
-                toast.warn("Verify Email", { autoClose: 3700 });
+                // toast.warn("Verify Email", { autoClose: 3700 });
+                swal({
+                    title: 'Email Sent',
+                    text: 'Please check your inbox to verify your email address. If you don’t see the message, check your spam or junk folder.',
+                    icon: 'success',
+                })
             }
             else {
                 setshowmsg(false)
@@ -201,7 +207,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     >
                         Email sent
                     </LoadingButton>}
-                    {showmsg && <p>*Note-Note: Email sent successfully. If not in your inbox, check spam/junk mail. </p>}
+                    {/* {showmsg && <p>*Note: Email sent successfully. If not in your inbox, check spam/junk mail. </p>} */}
                 </form>
             </div>
         </>

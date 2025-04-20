@@ -137,8 +137,6 @@ function App() {
           return navigate('/logout');
         });
       }
-
-
     } catch (error) {
       console.log("catch part", error);
     }
