@@ -71,8 +71,8 @@ code {
   position: relative;
   min-height: calc(100vh - var(--navheight));
   width: 100%;
-  /* border: 2px solid red; */
 }
+
 
 .main.loader {
   position: relative;

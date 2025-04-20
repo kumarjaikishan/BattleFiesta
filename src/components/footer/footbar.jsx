@@ -19,8 +19,8 @@ const Footbar = () => {
                     <p>Esports Tournament Management Service</p>
                     <section>
                         <h3>Follow Us</h3>
-                        <a target="_blank" href="https://www.instagram.com/battlefiesta"><FaInstagram /></a>
-                        <a target="_blank" href="https://www.youtube.com/@Battle_Fiesta"><FaYoutube /></a>
+                        <a target="_blank" title='BattleFiesta Instagram' href="https://www.instagram.com/battlefiesta"><FaInstagram /></a>
+                        <a target="_blank" title='Battlefiesta Youtube channel' href="https://www.youtube.com/@Battle_Fiesta"><FaYoutube /></a>
                     </section>
                 </section>
                 <section className="section2">
@@ -46,7 +46,7 @@ const Footbar = () => {
                 <section className="section3">
                     <h3>Reach Us</h3>
                     {/* <p>contact@battlefiesta.in</p> */}
-                     <a href="mailto:contact@battlefiesta.in" target="_blank" >contact@battlefiesta.in</a>                                
+                     <a href="mailto:contact@battlefiesta.in" title='click here to send mail' target="_blank" >contact@battlefiesta.in</a>                                
                 </section>
             </footer>
         </>

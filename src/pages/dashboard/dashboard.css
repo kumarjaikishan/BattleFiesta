@@ -111,6 +111,7 @@
                 background: radial-gradient(transparent, grey);
                 justify-content: center;
                 /* align-items: center; */
+                /* border: 1px solid red; */
                 position: relative;
 
                 img {
@@ -392,7 +393,6 @@
                         width: 160px;
                     }
                 }
-
             }
 
             .operator {
@@ -408,6 +408,14 @@
 
             & .card {
                 width: 270px;
+
+                & .img {
+    
+                    img {
+                        object-fit: contain;
+                        /* border: 1px solid red; */
+                    }
+                }
             }
         }
     }

@@ -75,8 +75,14 @@
                     margin: 10px 0px;
                 }
 
-                h3 {
-                    margin: 20px 0px;
+                h2 {
+                    /* margin: 10px 0px; */
+                    color: #333;
+                }
+                p{
+                    font-size: 0.8em;
+                    margin-top: 5px;
+                    color: #222;
                 }
             }
 

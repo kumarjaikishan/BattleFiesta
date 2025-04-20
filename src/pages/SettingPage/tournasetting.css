@@ -24,6 +24,7 @@
             border-radius: 10px;
             cursor: pointer;
             color: grey;
+            /* border: 1px solid red; */
 
             &:hover {
                 color: var(--primarycolor);

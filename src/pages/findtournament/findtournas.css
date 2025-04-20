@@ -607,6 +607,14 @@
 
             & .card {
                 width: 270px;
+
+                & .img {
+    
+                    img {
+                        object-fit: contain;
+                        /* border: 1px solid red; */
+                    }
+                }
             }
         }
     }

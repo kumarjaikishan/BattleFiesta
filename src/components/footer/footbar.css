@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
-    & section {
+    & >section {
         width: 24%;
         padding: 0 5px;
 

@@ -10,7 +10,7 @@
         display: flex;
         justify-content: center;
         overflow-y: auto;
-        padding-top: 10px;
+        padding: 10px 0px;
 
         &::-webkit-scrollbar {
             width: 4px;
