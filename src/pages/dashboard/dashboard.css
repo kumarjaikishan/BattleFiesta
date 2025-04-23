@@ -309,7 +309,7 @@
     height: fit-content;
     border-radius: 15px 15px 5px 5px;
     overflow: hidden;
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg');
+    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg'); */
     background-size: 120%;
     animation: ani 6s ease-in-out infinite alternate;
 

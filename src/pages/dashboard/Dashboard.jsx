@@ -275,7 +275,7 @@ const Dashboard = () => {
                 onClick={async () => {
                   try {
                     await dispatch(alltourna()).unwrap();
-                    toast.success('Refreshed!',{ autoClose: 900 });
+                    toast.success('Refreshed!', { autoClose: 900 });
                   } catch (error) {
                     toast.error('Failed to refresh!');
                   }
@@ -382,11 +382,9 @@ const Dashboard = () => {
           shadow={false}
           open={tournacenter.createnewmodal}
           onClose={() => dispatch(setcreatenewmodal(false))}>
-          <motion.div
-            initial={{ scale: 0.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: .5 }}
-            className="dashboardbox">
+          <div className="dashboardbox"
+            style={{ backgroundImage: "url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717760858/battlefiesta/assets/formback3-B7itQDrI_f1svum.jpg')" }}
+          >
             <header>Create Tournament</header>
             <form onSubmit={handleRegister}>
               <section>
@@ -431,7 +429,7 @@ const Dashboard = () => {
                 <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
               </Stack>
             </form>
-          </motion.div>
+          </div>
         </Modalbox>
       </motion.div>
     </>
