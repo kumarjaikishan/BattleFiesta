@@ -1,4 +1,4 @@
-.enterresult{
+.enterresult {
     width: 100%;
     height: 100%;
     border-right: 1px solid grey;
@@ -8,60 +8,63 @@
     padding: 15px 0px;
     position: relative;
 
-    
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
 
-    &::-webkit-scrollbar-track {
-        background-color: grey;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--primarycolor);
-    }
-
-     .box{
+    .box {
         width: 600px;
         height: max-content;
         border: 1px solid grey;
         border-radius: 10px;
-        padding:  5px;
+        padding: 5px;
 
-
-        & >h2{
-            text-align: center;
-            color: #212529;
+        li{
+            list-style: none;
         }
 
-        .teamdetail{
+
+        /* &>h3 {
+            text-align: center;
+            color: #212529;
+        } */
+
+        .teamdetail {
             margin: 5px 0;
             border-radius: 5px;
             padding: 5px;
-             border: 1px solid grey !important;
+            border: 1px dotted grey !important;
+            user-select: none;
+            
 
-             > div:nth-child(2){
+            >div:nth-child(2) {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 /* border: 1px solid red; */
 
-                svg{
+                svg {
                     font-size: 22px;
                 }
-             }
+            }
+            >div:nth-child(4){
+                 /* border: 1px solid red; */
+            }
+        }
+        .teamdetail:active {
+            cursor: grabbing;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
     }
 }
-.matchedit .box{
+
+.matchedit .box {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 @media only screen and (max-width: 600px) {
-    .enterresult{
-    
-        & .box{
+    .enterresult {
+
+        & .box {
             width: 98%;
         }
     }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -24,12 +25,13 @@ const PointSystem = () => {
   const [rules, setrules] = useState([])
   const [calleditmatch, setcalleditmatch] = useState(false);
   const [editmatchinfo, seteditmatchinfo] = useState([]);
+  const { tid } = useParams();
+
   useEffect(() => {
     feteche();
   }, []);
-  const feteche = async () => {
-    const tid = classic.classicdetail._id;
 
+  const feteche = async () => {
     try {
       dispatch(setloader(true));
       const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}getmatches`, {
@@ -206,7 +208,7 @@ const PointSystem = () => {
         })}
 
       </div> :
-        <EditEnterResult match={editmatchinfo} setcalleditmatch={setcalleditmatch} />}
+        <EditEnterResult feteche={feteche} match={editmatchinfo} setcalleditmatch={setcalleditmatch} />}
     </>);
 };
 
