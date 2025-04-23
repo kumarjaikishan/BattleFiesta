@@ -15,7 +15,7 @@ import { MdDelete } from "react-icons/md";
 import { IoMdCreate } from "react-icons/io";
 import Stack from '@mui/material/Stack';
 import { toast } from 'react-toastify';
-import EditEnterResult from './editmatch';
+import EditEnterResult from './editmatch1';
 
 const PointSystem = () => {
   const dispatch = useDispatch();

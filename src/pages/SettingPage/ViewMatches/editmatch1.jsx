@@ -4,6 +4,7 @@ import {
     Select, FormControl, MenuItem, InputLabel
 } from '@mui/material';
 import './enterresult.css'
+import { useParams } from "react-router-dom";
 import { FaUndoAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -13,19 +14,22 @@ import { MdCloudUpload } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
 import LoadingButton from '@mui/lab/LoadingButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { classicfetch } from '../../../store/classic';
 
-const EditEnterResult = ({ match, setcalleditmatch }) => {
+
+const EditEnterResult = ({ match, feteche, setcalleditmatch }) => {
     const classic = useSelector((state) => state.classic);
     const [setting, setseting] = useState(classic.classicdetail)
     const [player, setplayer] = useState([]);
-    const tid = setting._id;
     const [map, setmap] = useState('');
     const [teamlist, setteamlist] = useState([]);
     const [selectedTeam, setselectedTeam] = useState();
     const [rows, setRows] = useState([]);
     const [forupload, setforupload] = useState([]);
-    const [isloading, setisloading] = useState(false)
+    const [isloading, setisloading] = useState(false);
+    const { tid } = useParams();
+    const dispatch = useDispatch(tid);
 
 
     // return console.log("from edited match", match)
@@ -225,7 +229,7 @@ const EditEnterResult = ({ match, setcalleditmatch }) => {
         },
     }));
 
-    const savecloud = async (tid) => {
+    const savecloud = async () => {
 
         const newpoints = rows.map((team, ind) => {
             return { ...team, place: ind + 1, kills: team.playerKills.reduce((accum, val) => accum + (val.kills || 0), 0) }
@@ -255,6 +259,8 @@ const EditEnterResult = ({ match, setcalleditmatch }) => {
             if (!rese.ok) {
                 return toast.update(id, { render: result.message, type: "warning", isLoading: false, autoClose: 1600 });
             }
+            feteche();
+            dispatch(classicfetch(tid));
             toast.update(id, { render: result.message, type: "success", isLoading: false, autoClose: 1600 });
             // console.log(result);
         } catch (error) {
@@ -275,8 +281,19 @@ const EditEnterResult = ({ match, setcalleditmatch }) => {
             <div className="enterresult matchedit">
                 <div className="box">
                     <h2>Edit Match Info</h2>
-                    <p>The Teams are sorted in accordance to their places (not points).
-                        Use arrow bottons to change their place.</p>
+                    <p style={{
+                        fontStyle: 'italic',
+                        color: '#666',
+                        display: 'block',
+                        marginTop: '10px',
+                        fontSize: '13px',
+                        width: '100%',
+                        textAlign: 'center'
+                    }}
+                    >
+                        *Note: Drag the team name to change its position (this affects only the position points).<br />
+                        Final rankings are calculated based on position and kill points after saving.
+                    </p>
                     <FormControl sx={{ mb: 2, mt: 4, minWidth: '88%' }} size="small">
                         <InputLabel id="demo-select-small-label">Map</InputLabel>
                         <Select
@@ -383,7 +400,7 @@ const EditEnterResult = ({ match, setcalleditmatch }) => {
                             })}
                         </div>
                         <Divider variant="middle" />
-                        <div style={{background:'rgb(241, 240, 239)', borderRadius:'5px', padding:'2px'}}>
+                        <div style={{ background: 'rgb(241, 240, 239)', borderRadius: '5px', padding: '2px' }}>
                             <h2>Add Team</h2>
                             <Autocomplete
                                 disablePortal
