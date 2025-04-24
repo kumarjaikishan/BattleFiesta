@@ -11,13 +11,14 @@ import { toast } from 'react-toastify';
 import { MdPinDrop } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
+import { IoMdLink } from "react-icons/io";
 import { IoIosMail } from "react-icons/io";
 import { MdInsertLink } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { MdLocalPhone } from "react-icons/md";
 import { CiFacebook } from "react-icons/ci";
-import { FaYoutube } from "react-icons/fa";
+import { FaYoutube,FaTelegramPlane,FaTwitter } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { TbTournament } from "react-icons/tb";
 import { IoMdRefresh } from "react-icons/io";
@@ -28,6 +29,7 @@ import logo from '../../assets/logowebp_250.webp'
 import { useSelector } from 'react-redux';
 import confetti from 'canvas-confetti';
 import { Helmet } from "react-helmet-async";
+import { LuGamepad2 } from "react-icons/lu";
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
@@ -64,7 +66,7 @@ const Channeldashboard = () => {
       const response = await fetch(url, { method: 'POST', headers, body });
       const result = await response.json();
       dispatch(setloader(false));
-      console.log(result)
+      // console.log(result)
 
       if (!response.ok) {
         setError(result.message);
@@ -146,8 +148,11 @@ const Channeldashboard = () => {
   const socialIcons = useMemo(() => ({
     youtube: <FaYoutube />,
     facebook: <CiFacebook />,
-    whatsapp: <FaWhatsapp />,
     instagram: <FaInstagram />,
+    telegram: <FaTelegramPlane/>,
+    discord: <LuGamepad2/>,
+    twitter: <FaTwitter/>,
+    website: <IoMdLink/>
   }), []);
 
   if (error) {

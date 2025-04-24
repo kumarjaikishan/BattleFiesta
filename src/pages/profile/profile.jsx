@@ -63,7 +63,7 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
-        console.log(userprofile.userprofile)
+        // console.log(userprofile.userprofile)
     }, [userprofile])
 
 
