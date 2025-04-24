@@ -4,7 +4,7 @@
 
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1710500405/battlefiesta/assets/Screenshot_2024-03-15_162648_ohnlc2.webp" width="150" height="150" alt="Battle Fiesta Logo">
+  <img src="https://res.cloudinary.com/dusxlxlvm/image/upload/v1745043938/battlefiesta/assets/logo/logowebp_250_ockuou.webp" width="150" height="150" alt="Battle Fiesta Logo">
 </p>
 
 BattleFiesta is an online platform designed for Creating and Hosting Esport Tournaments(PUBG/BGMI/FREEFIRE) to bring gamers together to compete in exciting tournaments and It's provide easy manage entries, notification to Tournament owner, various detailed Stats, etc. Whether you're a casual player or a seasoned pro, BattleFiesta offers a range of tournaments to suit every skill level and interest.
