@@ -9,7 +9,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import Login from './pages/login/login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { Errorpage } from './pages/Error/Errorpage';
 import Logout from './pages/login/logout';
 import Tournasetting from './pages/SettingPage/tournasetting';
@@ -32,6 +32,7 @@ import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
 import Channeldashboard from './pages/userDashboard/channeldashboard';
 import { Helmet } from "react-helmet-async";
+import { profilefetch } from './store/profile';
 
 // off this for disable notification
 import { messaging } from './firebase';
@@ -50,6 +51,7 @@ const User = lazy(() => import('./pages/admin/user/user'));
 function App() {
   const log = useSelector((state) => state.login);
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function requestPermission() {
     const permission = await Notification.requestPermission();
@@ -98,6 +100,7 @@ function App() {
     // off this for disable notification
     // log.islogin && requestPermission();
     log.islogin && jwtcheck();
+    log.islogin && dispatch(profilefetch());
   }, [log.islogin]);
 
   const jwtcheck = async () => {
