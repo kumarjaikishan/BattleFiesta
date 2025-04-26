@@ -23,6 +23,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { setloader, header } from '../../store/login';
 import { classicfetch, setowner } from '../../store/classic';
+import swal from 'sweetalert';
 import Modalbox from '../../components/custommodal/Modalbox';
 
 const Tournasetting = () => {
@@ -49,9 +50,14 @@ const Tournasetting = () => {
 
   useEffect(() => {
     if (!classic.isowner && !classic.loading) {
-      alert("This Tournament does not belongs to you");
+      swal({
+        title: 'Access Denied',
+        text: 'You are not authorized to manage this tournament.',
+        icon: 'warning',
+      })
       dispatch(setowner(true));
-      navigate('/dashboard')
+      navigate('/dashboard');
+      return;
     }
   }, [classic.loading])
 

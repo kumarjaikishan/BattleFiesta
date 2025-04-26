@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { setloader, header } from '../../store/login';
 import { tdmfetch, setowner } from '../../store/tdm';
+import swal from 'sweetalert';
 import Modalbox from '../../components/custommodal/Modalbox';
 
 const Tdmsetting = () => {
@@ -40,9 +41,14 @@ const Tdmsetting = () => {
 
   useEffect(() => {
     if (!tdmrtk.isowner && !tdmrtk.loading) {
-      alert("This Tournament does not belongs to you");
+      swal({
+        title: 'Access Denied',
+        text: 'You are not authorized to manage this tournament.',
+        icon: 'warning',
+      })
       dispatch(setowner(true));
       navigate('/dashboard');
+      return;
     }
   }, [tdmrtk.loading])
 
