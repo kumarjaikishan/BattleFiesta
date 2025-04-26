@@ -127,13 +127,15 @@ const Dashboard = () => {
         body: JSON.stringify(inp)
       });
       const res = await responsee.json();
-      // console.log(res);
+      console.log(responsee);
+      console.log(res);
       setload(false);
-      if (!responsee || responsee.status == 429 || responsee.status == 400) {
+      if (!responsee.ok || responsee.status == 429 || responsee.status == 400) {
         // console.log("error wala");
         return toast.warn(res.message, { autoClose: 2100 })
       }
-      toast.success(res.message, { autoClose: 1700 })
+      toast.success(res.message, { autoClose: 1700 });
+      console.log("isme kyu aa raha hai")
       dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
       setinp(init);
