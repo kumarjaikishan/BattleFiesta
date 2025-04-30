@@ -111,11 +111,11 @@ const Dashboard = () => {
   }
 
   const handleRegister = async (e) => {
+
     e.preventDefault();
     setload(true);
     const { name, organiser, slots, type } = inp;
     const token = localStorage.getItem("token");
-
 
     try {
       const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}addtournament`, {
@@ -129,16 +129,15 @@ const Dashboard = () => {
       const res = await responsee.json();
       console.log(responsee);
       console.log(res);
-      setload(false);
       if (!responsee.ok || responsee.status == 429 || responsee.status == 400) {
         // console.log("error wala");
         return toast.warn(res.message, { autoClose: 2100 })
       }
-      toast.success(res.message, { autoClose: 1700 });
-      console.log("isme kyu aa raha hai")
-      dispatch(alltourna());
+      await dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
+      setload(false);
       setinp(init);
+      toast.success(res.message, { autoClose: 1700 });
     } catch (error) {
       console.log(error);
       toast.warn(error.message, { autoClose: 2100 })
