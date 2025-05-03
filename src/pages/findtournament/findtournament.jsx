@@ -8,12 +8,14 @@ import { toast } from "react-toastify";
 import { TextField } from '@mui/material';
 import { IoMdSearch } from "react-icons/io";
 import { TbMoodSad } from "react-icons/tb";
-import { MdContentCopy,MdMenuOpen,MdGroups } from "react-icons/md";
+import { MdContentCopy, MdMenuOpen, MdGroups } from "react-icons/md";
 import { GiGamepad } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa6";
 import { BiReset } from "react-icons/bi";
 import { Helmet } from "react-helmet-async";
 import tournlogo from '../../assets/logowebp_250.webp'
+import InputAdornment from '@mui/material/InputAdornment';
+import { IoClose } from "react-icons/io5";
 
 const Findtournament = () => {
     const dispatch = useDispatch();
@@ -162,6 +164,13 @@ const Findtournament = () => {
                                 setShowingList(activeList); // Restore active list on empty input
                                 setsearching(false)
                             }
+                        }}
+                        InputProps={searchQuery && {
+                            endAdornment: (
+                                <InputAdornment className="cross" onClick={()=>setSearchQuery("") } position="end" sx={{cursor:"pointer"}}>
+                                    <IoClose />
+                                </InputAdornment>
+                            ),
                         }}
                     />
                     <IoMdSearch onClick={handleSearch} title="Search" className="searchIcon" />

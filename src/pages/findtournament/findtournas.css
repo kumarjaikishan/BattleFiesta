@@ -5,6 +5,12 @@
     background: white;
     position: relative;
 
+    .cross{
+        height: 35px;
+        display: flex;
+        justify-content: center;
+    }
+
     & .conta {
         width: 100%;
         height: 55px;
