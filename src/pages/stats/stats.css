@@ -104,12 +104,27 @@
 
       & .box {
         /* width: 170px; */
-        border: 1px solid grey;
+        position: relative;
+        /* border: 1px solid grey; */
         border-radius: 10px;
         overflow: hidden;
 
         svg {
           font-size: 20px;
+        }
+
+        .position {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 65px;
+          height: 20px;
+          border-radius: 0 0 10px 0;
+          background: -webkit-linear-gradient(45deg, rgb(255, 221, 0), rgb(251, 175, 52));
+          background: yellow;
+          font-size: 14px;
+          text-align: center;
+          font-weight: 500;
         }
 
         & .img {
@@ -118,6 +133,7 @@
           background: radial-gradient(#e7e9e8, #09eedb);
           background: radial-gradient(transparent, grey);
           position: relative;
+          clip-path: path("M 10,25 L 60,25 A 10,10 0 0,0 70,10 L 70,10 A 10,10 0 0,1 80,0 L 160,0 A 10,10 0 0,1 170,10 L 170,240 A 10,10 0 0,1 160,250 L 10,250 A 10,10 0 0,1 0,240 L 0,30 A 10,10 0 0,1 10,25 Z");
 
           & img {
             width: 100%;
@@ -185,7 +201,7 @@
         & div {
           width: 100%;
           background: -webkit-linear-gradient(45deg, rgb(255, 221, 0), rgb(241, 223, 61));
-          background: -webkit-linear-gradient(45deg,  rgb(251, 175, 52),rgb(255, 221, 0));
+          background: -webkit-linear-gradient(45deg, rgb(251, 175, 52), rgb(255, 221, 0));
           margin: 7px 0px;
           padding: 2px 5px;
           border-radius: 10px 0 10px 0;
@@ -375,7 +391,7 @@
         cursor: pointer;
         transition: 0.2s;
         margin-top: 10px;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.6);
 
         &:hover {
           background: white;
@@ -392,7 +408,7 @@
 
     p {
       margin-top: 5px;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       padding: 2px 5px;
       font-weight: 500;
     }
@@ -580,7 +596,8 @@
           }
         }
       }
-      p{
+
+      p {
         font-size: 13px;
       }
     }
