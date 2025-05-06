@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://battlefiesta.in/</loc>
+        <lastmod>2024-11-30T06:12:47+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/login</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/tournaments</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/faq</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/about</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/privacy</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/terms</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/contact</loc>
+    </url>
+    <url>
+        <loc>https://battlefiesta.in/subscription</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+</urlset>
