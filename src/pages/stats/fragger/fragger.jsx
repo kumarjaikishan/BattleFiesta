@@ -33,7 +33,6 @@ const Fragger = ({ topplayer, isDesktopMode, topteam }) => {
                                         {kills} kills
                                     </div>
                                     <div className="below"><MdDiversity3 /> <span>-{team}</span></div>
-
                                 </div>
                             })}
                         </div>
