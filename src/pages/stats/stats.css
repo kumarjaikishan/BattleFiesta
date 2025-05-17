@@ -75,10 +75,8 @@
     width: 100%;
     max-width: 1200px;
     margin-top: 20px;
-    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp'); */
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747466460/battlefiesta/assets/themes/grey_aghfxd.webp');
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747474201/battlefiesta/assets/themes/grey_500_dzz28k.webp');
     background-size: 500px;
-    /* background-repeat: no-repeat; */
     border-radius: 20px;
     padding: 20px;
 
@@ -137,7 +135,7 @@
           position: relative;
           clip-path: path("M 10,25 L 60,25 A 10,10 0 0,0 70,10 L 70,10 A 10,10 0 0,1 80,0 L 160,0 A 10,10 0 0,1 170,10 L 170,240 A 10,10 0 0,1 160,250 L 10,250 A 10,10 0 0,1 0,240 L 0,30 A 10,10 0 0,1 10,25 Z");
           clip-path: path("M 10,25 L 50,25 A 10,10 0 0,0 60,20 L 60,10 A 10,10 0 0,1 70,0 L 160,0 A 10,10 0 0,1 170,10 L 170,240 A 10,10 0 0,1 160,250 L 10,250 A 10,10 0 0,1 0,240 L 0,35 A 10,10 0 0,1 10,25 Z");
-       
+
           & img {
             width: 100%;
             height: 100%;
@@ -163,7 +161,7 @@
           font-weight: 700;
           padding: 4px 5px;
           font-size: 0.9em;
-         
+
           text-transform: uppercase;
           background: -webkit-linear-gradient(45deg, rgb(255, 221, 0), rgb(251, 175, 52));
         }
@@ -209,7 +207,7 @@
           margin: 7px 0px;
           padding: 2px 5px;
           border-radius: 10px 0 10px 0;
-          display: flex; 
+          display: flex;
           justify-content: space-between;
           align-items: center;
           font-size: 1em;
@@ -252,9 +250,7 @@
     margin-top: 20px;
     border-radius: 20px;
     padding: 10px;
-    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
-    background-size: cover; */
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747466460/battlefiesta/assets/themes/grey_aghfxd.webp');
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747474201/battlefiesta/assets/themes/grey_500_dzz28k.webp');
     background-size: 500px;
 
 
@@ -350,11 +346,8 @@
   }
 
   .contacts {
-    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
-    background-size: cover; */
-      background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747466460/battlefiesta/assets/themes/grey_aghfxd.webp');
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747474201/battlefiesta/assets/themes/grey_500_dzz28k.webp');
     background-size: 300px;
-   
     color: white;
     margin-top: 10px;
     width: 100%;
