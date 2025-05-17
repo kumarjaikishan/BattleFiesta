@@ -18,16 +18,30 @@ import { Helmet } from "react-helmet-async";
 const Tournamentstatpage = () => {
   const dispatch = useDispatch();
   const { tid } = useParams();
-  const tournacenter = useSelector((state) => state.tournacenter);
   useEffect(() => {
     dispatch(setloader(true));
     fetche();
   }, [])
+
   const [iserror, setiserror] = useState(false);
   const [tournament, settournament] = useState("");
   const [data2, setdata2] = useState(false);
   const [links, setlinks] = useState([]);
   const [publicpost, setpublicpost] = useState('');
+  const [ImageLoaded, setImageLoaded] = useState(false);
+  const [dataFetched, setdataFetched] = useState(false);
+
+  useEffect(() => {
+    if (!tournament.tournment_banner || tournament.tournment_banner === "") {
+      setImageLoaded(true);
+    }
+  }, [tournament])
+
+  useEffect(() => {
+    if (ImageLoaded && dataFetched) {
+      dispatch(setloader(false));
+    }
+  }, [ImageLoaded, dataFetched])
 
   const fetche = async () => {
     try {
@@ -51,7 +65,8 @@ const Tournamentstatpage = () => {
         setiserror(true)
         return toast.warn(data.message, { autoclose: 2100 })
       }
-      dispatch(setloader(false));
+      setdataFetched(true);
+      // dispatch(setloader(false));
     } catch (error) {
       console.log(error);
       dispatch(setloader(false));
@@ -84,7 +99,12 @@ const Tournamentstatpage = () => {
       </div>}
       {!iserror && <>
         {tournament.tournment_banner != "" && <div className="img">
-          <img src={tournament.tournment_banner} loading="lazy" alt="Tournament Banner" />
+          <img
+            src={tournament.tournment_banner}
+            loading="lazy"
+            alt="Tournament Banner"
+            onLoad={() => setImageLoaded(true)}
+          />
         </div>}
         <div className="info">
           <div className="upper">

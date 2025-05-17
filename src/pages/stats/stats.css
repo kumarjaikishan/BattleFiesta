@@ -75,8 +75,10 @@
     width: 100%;
     max-width: 1200px;
     margin-top: 20px;
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
-    background-size: cover;
+    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp'); */
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747466460/battlefiesta/assets/themes/grey_aghfxd.webp');
+    background-size: 500px;
+    /* background-repeat: no-repeat; */
     border-radius: 20px;
     padding: 20px;
 
@@ -248,8 +250,11 @@
     margin-top: 20px;
     border-radius: 20px;
     padding: 10px;
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
-    background-size: cover;
+    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
+    background-size: cover; */
+    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747466460/battlefiesta/assets/themes/grey_aghfxd.webp');
+    background-size: 500px;
+
 
     &.desktop-mode {
       width: 1280px !important;
@@ -343,8 +348,11 @@
   }
 
   .contacts {
-    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
-    background-size: cover;
+    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1731490264/battlefiesta/assets/themes/grey--Mu-C4ll_eo06fj_s8omhz.webp');
+    background-size: cover; */
+      background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1747466460/battlefiesta/assets/themes/grey_aghfxd.webp');
+    background-size: 300px;
+   
     color: white;
     margin-top: 10px;
     width: 100%;
