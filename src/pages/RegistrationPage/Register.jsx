@@ -296,7 +296,7 @@ const Register = () => {
     };
 
     const common = async (event, id) => {
-        let WIDTH = 180;
+        let WIDTH = 150;
         if (id == "paymentss") {
             WIDTH = 680;
         }
