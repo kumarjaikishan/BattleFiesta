@@ -48,7 +48,7 @@ const Profile = () => {
         publicphone: '',
         profile: '',
         cover: '',
-        sociallinks: ''
+        sociallinks: []
     }
     const [inp, setinp] = useState(init);
     const [messagesent, setmessagesent] = useState('')
@@ -337,11 +337,11 @@ const Profile = () => {
                     <h2>Profile</h2>
                     <form onSubmit={submit}>
                         <div className="input">
-                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name} className="half" label="Display Name" variant="outlined" />
-                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username} className="half" label="UserName" variant="outlined" />
-                            <TextField size='small' contentEditable={false} disabled name='email' value={inp.email} className="half" label="Email" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name="name" value={inp.name || ''} className="half" label="Display Name" variant="outlined" />
+                            <TextField size='small' onChange={handlechangee} name='username' value={inp.username || ''} className="half" label="UserName" variant="outlined" />
+                            <TextField size='small' contentEditable={false} disabled name='email' value={inp.email || ''} className="half" label="Email" variant="outlined" />
                             <TextField size='small' onChange={handlechangee} name='phone'
-                                value={inp.phone} type='tel'
+                                value={inp.phone || ''} type='tel'
                                 inputProps={{ minLength: 10, maxLength: 10 }}
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                                 className="half" label="Phone" variant="outlined" />
@@ -366,7 +366,7 @@ const Profile = () => {
                             className='splbtn'
                             size='small'
                             sx={{ marginLeft: 1 }}
-                            onClick={() => navigate(`/channel/@${userprofile.userprofile.username}`)}
+                            onClick={() => navigate(`/channel/@${userprofile?.userprofile?.username}`)}
                         >
                             Public Profile
                         </Button>
@@ -407,13 +407,13 @@ const Profile = () => {
                 <div className="privacy glass">
                     <h2>Privacy</h2>
                     <div className="input">
-                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail} className="full"
+                        <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail || ''} className="full"
                             helperText="This emaill will be visible on your profile page"
                             label="Public Email" variant="outlined" />
                         <TextField onChange={handlechangee} type='tel'
                             inputProps={{ minLength: 10, maxLength: 10 }}
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                            name='publicphone' value={inp.publicphone} className="full"
+                            name='publicphone' value={inp.publicphone || ''} className="full"
                             helperText="This phone number will be visible on your profile page"
                             label="Public Phone" variant="outlined" />
                     </div>

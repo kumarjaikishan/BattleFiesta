@@ -408,6 +408,7 @@
             & a {
                 /* background: red; */
                 display: flex;
+                /* border: 1px solid var(--primarycolor); */
                 align-items: center;
                 padding: 3px 8px;
                 letter-spacing: 1px;

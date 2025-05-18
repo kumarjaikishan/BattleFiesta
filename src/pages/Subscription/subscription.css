@@ -51,7 +51,7 @@
 
             .card {
                 cursor: pointer;
-                transition: 0.3s ease-in-out;
+                transition: 0.2s ;
                 position: relative;
                 text-align: center;
                 border: 2px solid transparent;
@@ -98,7 +98,7 @@
 
                 span {
                     position: absolute;
-                    transition: 0.3s;
+                    transition: 0.1s;
                     border: 1px solid white;
                     display: inline-block;
                     background: rgb(232, 228, 228);
@@ -120,7 +120,7 @@
             }
 
             .card:hover, .card.active  {
-                transform: scale(1.05);
+                transform: scale(1.02);
                 border: 2px solid var(--secondarycolor);
             }
 
@@ -181,7 +181,7 @@
                         position: absolute;
                         left: 0;
                         top: 0;
-                        width: 7px;
+                        width: 5px;
                         height: 100%;
                         background:transparent ;
                     }

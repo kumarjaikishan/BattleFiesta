@@ -48,7 +48,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                     />
                     <TextField
                         id="outlined-multiline-static"
-                        label="Registration Successful Message"
+                        label="success message"
                         multiline
                         size='small'
                         className='taxi'
@@ -57,7 +57,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         rows={1}
                         name="success_message"
                         onChange={handleChange}
-                        placeholder="Add description or message to show after Successful Registration"
+                        helperText="Add description or message to show after Successful Registration"
                     />
 
                     <h3>Options:</h3>

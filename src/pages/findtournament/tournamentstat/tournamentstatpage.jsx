@@ -4,14 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setloader } from '../../../store/login';
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
-import { MdLeaderboard } from "react-icons/md";
-import { MdFeed } from "react-icons/md";
 import { TbMoodSad } from "react-icons/tb";
-import { FaInstagram } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
-import { MdInsertLink } from "react-icons/md";
-import { FaWhatsapp } from "react-icons/fa";
-import { MdLocalPhone } from "react-icons/md";
+import { FaWhatsapp,FaInstagram } from "react-icons/fa";
+import { MdLocalPhone,MdInsertLink,MdFeed,MdLeaderboard } from "react-icons/md";
 import { GrOverview } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
 
@@ -127,15 +123,15 @@ const Tournamentstatpage = () => {
               </React.Fragment>
             ))}
           </div>}
-
-          <div className="btn">
-            {data2.isopen && <a href={`${localhos}/${tournament.type == 'tdm' ? 'tdmregister' : 'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
-              <Button variant="contained" startIcon={<MdFeed />}> REGISTER </Button>
-            </a>}
-            {tournament.type == 'classic' && <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
-              <Button variant="outlined" startIcon={<MdLeaderboard />}> LEADERBOARD </Button>
-            </a>} <br />
-          </div>
+          {!data2.isopen && tournament.type == 'classic' &&
+            <div className="btn">
+              {data2.isopen && <a href={`${localhos}/${tournament.type == 'tdm' ? 'tdmregister' : 'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
+                <Button variant="contained" startIcon={<MdFeed />}> REGISTER </Button>
+              </a>}
+              {tournament.type == 'classic' && <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
+                <Button variant="outlined" startIcon={<MdLeaderboard />}> LEADERBOARD </Button>
+              </a>} <br />
+            </div>}
           {!data2.isopen && <div style={{ color: 'red', textAlign: 'center' }}>**Registration is Closed for this Tournament**</div>}
           <div className="contacts">
             <div>Contacts Details</div>

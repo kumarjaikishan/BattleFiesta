@@ -56,16 +56,15 @@ const Subscription = () => {
       });
       const data = await responsee.json();
       // console.log("dataplan ", data);
-      dispatch(setloader(false));
       if (!responsee.ok) {
         return toast.warn("someting went wrong", { autoclose: 1700 })
       }
 
       setplandetail(data.plans)
       setplanchoosed(data.plans[0])
-
     } catch (error) {
       console.log(error);
+    } finally {
       dispatch(setloader(false));
     }
   }
@@ -80,12 +79,9 @@ const Subscription = () => {
 
   const baseprice = 29;
 
-  const padZero = (value) => {
-    return value < 10 ? `0${value}` : value;
-  };
 
   const calculateDate = (offset) => {
-    const currentDate = new Date();
+    const currentDate = new Date("2025-05-08");
     const targetDate = new Date(currentDate.getTime());
 
     if (offset === '1 Week') {
@@ -98,8 +94,8 @@ const Subscription = () => {
       targetDate.setMonth(currentDate.getMonth() + 6);
     }
 
-    const day = padZero(targetDate.getDate());
-    const month = padZero(targetDate.getMonth() + 1);
+    const day = String(targetDate.getDate()).padStart(2, '0');
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
     const year = targetDate.getFullYear();
 
     return `${day}/${month}/${year}`;
@@ -291,7 +287,15 @@ const Subscription = () => {
                 </div>
                 <Divider variant="middle" />
                 <div style={{ padding: '10px 0px' }}>
-                  <input required type="checkbox" name="" id="termsCheckbox" />
+                  <input
+                    style={{
+                      width: '16px',
+                      height: '16px',
+                      accentColor: '#02363a',
+                      cursor: 'pointer',
+                    }}
+                    required type="checkbox" name="" id="termsCheckbox"
+                  />
                   <label style={{ marginLeft: 8, cursor: 'pointer' }} htmlFor="termsCheckbox">
                     I Agree to the <NavLink to='/terms' style={{ textDecoration: "none" }}>
                       Terms and Conditions
