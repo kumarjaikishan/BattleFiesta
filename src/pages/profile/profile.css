@@ -1,24 +1,10 @@
-@property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-@keyframes rotate {
-    0% {
-        --angle: 0deg;
-    }
-
-    100% {
-        --angle: 360deg;
-    }
-}
 
 .profilepage {
     width: 100%;
     min-height: calc(100vh - var(--navheight));
     position: relative;
     background: linear-gradient(to right top, #65dfc9, #0ba8c0);
+    /* background-image: url('../../../public/3.jpg'); */
     display: flex;
     position: relative;
     flex-direction: column;
@@ -104,7 +90,8 @@
                     rgba(255, 255, 255, 0.2));
             padding: 10px 15px;
             border-radius: 10px;
-            backdrop-filter: blur(15px);
+            /* backdrop-filter: blur(15px); */
+            backdrop-filter: blur(12px);
         }
 
         h2 {
@@ -169,8 +156,6 @@
                     left: 0;
                     bottom: -50px;
                     /* border: 1px solid black; */
-                    /* background: conic-gradient(from var(--angle), #ff2770, transparent, transparent, #057485, transparent, transparent, #ff2770);
-                    animation: rotate 5s linear infinite; */
 
                     padding: 3px;
 

@@ -3,9 +3,10 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.2);
     background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660918/battlefiesta/assets/icon/honeywhite_qim3oy.webp');
+    /* background-image: url('../../../public/3.jpg'); */
     background-size: cover;
     padding: 15px 8px;
-    border-top: 3px solid var(--primarycolor);
+    border-top: 2px solid var(--primarycolor);
     display: flex;
     user-select: none;
     flex-wrap: wrap;
@@ -111,7 +112,7 @@
     .footer {
         padding: 5px;
         background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1717660663/battlefiesta/assets/icon/honeywhite1_yduwma.webp');
-
+       
         & section {
             margin-top: 10px;
             width: 95%;
