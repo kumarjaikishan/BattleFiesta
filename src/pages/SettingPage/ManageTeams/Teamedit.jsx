@@ -13,6 +13,8 @@ import { classicfetch } from "../../../store/classic";
 
 const Teamedit = ({ teamdetail, setcalledit }) => {
 
+     const group1 = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group1_oxfqan.webp'
+    const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
     const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
     const VisuallyHiddenInput = styled('input')({
@@ -44,7 +46,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
     const [disable, setdisable] = useState(false);
     useEffect(() => {
         // fetche(registerId);
-        // console.log(teamdetail);
+        console.log(teamdetail);
         setinp({
             userid: teamdetail.userid,
             tournament_id: teamdetail.tournament_id,
@@ -131,8 +133,8 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         if (playerlogoerror) {
             return toast.warn("Select All Player Logo", { autoClose: 2300 });
         }
-      
-        
+
+
         // console.log(inp)
         const formData = new FormData();
         formData.append("id", teamdetail._id);
@@ -247,7 +249,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
             inGameName: "",
             inGameID: "",
             playerLogo: "",
-            playerId:generateRandomString()
+            playerId: generateRandomString()
         };
 
         // Use the spread operator to create a new object with an updated players array
@@ -292,13 +294,13 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
 
                             autoComplete="off"
                         > <TextField size="small" id="outlined-basic" name="teammobile" type='tel'
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }} 
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                             value={inp.teammobile} onChange={realhandlechange} label="Mobile" variant="outlined" />
                             <TextField size="small" id="outlined-basic" name="teamdiscord" value={inp.teamdiscord} onChange={realhandlechange} label="Discord ID" variant="outlined" />
                         </Box>
 
                         <h4>Set a logo for the Team* </h4>
-                        <div id="teamlogo"><img src={inp.selectedTeamLogo} alt="team logo" /></div>
+                        <div id="teamlogo"><img src={inp.selectedTeamLogo || group1} alt="team logo" /></div>
                         <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<MdCloudUpload />}>
                             Upload Logo
                             <VisuallyHiddenInput
@@ -324,7 +326,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                                     <TextField size="small" id={`in-game-id-${index}`} value={inp.players[index].inGameID} onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined" />
 
                                     <h4>Set a logo for the player</h4>
-                                    <div id={`playerLogo${index}`}> <img src={inp.players[index].playerLogo} alt="playerLogo" /></div>
+                                    <div id={`playerLogo${index}`}> <img src={inp?.players[index]?.playerLogo || user} alt="playerLogo" /></div>
                                     <Button component="label" variant="contained" startIcon={<MdCloudUpload />}>
                                         Upload Logo
                                         <VisuallyHiddenInput
