@@ -14,12 +14,12 @@ const AdminRoutes = () => {
     }
   }, [admin]);
 
-  return admin ? (
+  return admin ?
     <>
       <Adminnavbar />
       <Outlet />
     </>
-  ) : <Navigate to="/logout" />;
+    : <Navigate to="/logout" />;
 };
 
 export default AdminRoutes;

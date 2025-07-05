@@ -22,7 +22,7 @@
         padding: 10px 20px;
         margin-top: 10px;
         border: 1px dotted grey;
-        border-radius: 10px;
+        /* border-radius: 10px; */
         position: relative;
         background: white;
         overflow: hidden;
@@ -96,7 +96,7 @@
         }
 
         .player {
-            border: 1px solid grey;
+            border: 2px dotted grey;
             margin: 5px 0px;
             border-radius: 10px;
             padding: 10px;
@@ -219,9 +219,9 @@
     }
 
     .teamse {
-        width: 600px;
+        width: 700px;
         border: 1px solid grey;
-        border-radius: 15px;
+        border-radius: 10px;
         /* height: 200px; */
         padding: 5px 0px;
         display: flex;
@@ -278,15 +278,15 @@
         }
 
         .headere.approved {
-            border-right: 10px solid green;
+            border-right: 6px solid green;
         }
 
         .headere.pending {
-            border-right: 10px solid orange;
+            border-right: 6px solid orange;
         }
 
         .headere.rejected {
-            border-right: 10px solid rgb(150, 7, 7);
+            border-right: 6px solid rgb(150, 7, 7);
         }
 
         .detailse {

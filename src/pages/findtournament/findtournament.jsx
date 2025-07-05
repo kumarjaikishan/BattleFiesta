@@ -165,13 +165,14 @@ const Findtournament = () => {
                                 setsearching(false)
                             }
                         }}
-                        InputProps={searchQuery && {
-                            endAdornment: (
-                                <InputAdornment className="cross" onClick={()=>setSearchQuery("") } position="end" sx={{cursor:"pointer"}}>
+                        InputProps={{
+                            endAdornment: searchQuery ? (
+                                <InputAdornment className="cross" onClick={() => setSearchQuery("")} position="end" sx={{ cursor: "pointer" }}>
                                     <IoClose />
                                 </InputAdornment>
-                            ),
+                            ) : null,
                         }}
+
                     />
                     <IoMdSearch onClick={handleSearch} title="Search" className="searchIcon" />
                 </div>

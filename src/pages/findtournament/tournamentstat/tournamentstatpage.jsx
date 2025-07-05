@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
 import { TbMoodSad } from "react-icons/tb";
 import { IoMailOutline } from "react-icons/io5";
-import { FaWhatsapp,FaInstagram } from "react-icons/fa";
-import { MdLocalPhone,MdInsertLink,MdFeed,MdLeaderboard } from "react-icons/md";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
+import { MdLocalPhone, MdInsertLink, MdFeed, MdLeaderboard } from "react-icons/md";
 import { GrOverview } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
 
@@ -123,15 +123,28 @@ const Tournamentstatpage = () => {
               </React.Fragment>
             ))}
           </div>}
-          {!data2.isopen && tournament.type == 'classic' &&
+
+          {tournament.type === 'classic' && (
             <div className="btn">
-              {data2.isopen && <a href={`${localhos}/${tournament.type == 'tdm' ? 'tdmregister' : 'register'}/${tid}`} target="_blank" title='Register for this Tournament'>
+              {data2.isopen && <a
+                href={`${localhos}/${tournament.type === 'tdm' ? 'tdmregister' : 'register'}/${tid}`}
+                target="_blank"
+                title="Register for this Tournament"
+              >
                 <Button variant="contained" startIcon={<MdFeed />}> REGISTER </Button>
-              </a>}
-              {tournament.type == 'classic' && <a href={`${localhos}/stat/${tid}`} target="_blank" title='View Stats for this tournament'>
+              </a>
+              }
+              <a
+                href={`${localhos}/stat/${tid}`}
+                target="_blank"
+                title="View Stats for this tournament"
+              >
                 <Button variant="outlined" startIcon={<MdLeaderboard />}> LEADERBOARD </Button>
-              </a>} <br />
-            </div>}
+              </a>
+
+            </div>
+          )}
+
           {!data2.isopen && <div style={{ color: 'red', textAlign: 'center' }}>**Registration is Closed for this Tournament**</div>}
           <div className="contacts">
             <div>Contacts Details</div>

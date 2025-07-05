@@ -26,7 +26,7 @@ const Teams = ({ entry }) => {
                 }
                 {entry.map((player, ind) => {
                     return (<Accordion key={ind}
-                        style={{ borderRadius: "10px", overflow: "hidden" }}
+                        style={{ borderRadius: "6px", overflow: "hidden" }}
                         sx={{ mb: 1, minWidth: "95%" }}>
                         <AccordionSummary
                             expandIcon={<IoIosArrowDown />}
