@@ -256,9 +256,9 @@ const Dashboard = () => {
               <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit || 'N/A'}</span>
             </div>
             <div>
-              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile.membership.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile.membership.expire_date)} Days`)} </span>
+              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile?.membership?.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile?.membership?.expire_date)} Days`)} </span>
             </div>
-            {getTimeDifference(userprofile.membership.expire_date) < 0 &&
+            {getTimeDifference(userprofile?.membership?.expire_date) < 0 &&
               <NavLink className='buy' to='/subscription'>
                 <Button size="small" fullWidth variant="contained" startIcon={<MdOutlineAddShoppingCart />}> Buy Membership</Button>
               </NavLink>}
