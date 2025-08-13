@@ -258,11 +258,19 @@ const Dashboard = () => {
             <div>
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile?.membership?.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile?.membership?.expire_date)} Days`)} </span>
             </div>
-            {getTimeDifference(userprofile?.membership?.expire_date) < 0 &&
-              <NavLink className='buy' to='/subscription'>
-                <Button size="small" fullWidth variant="contained" startIcon={<MdOutlineAddShoppingCart />}> Buy Membership</Button>
-              </NavLink>}
-
+            {userprofile?.membership?.expire_date &&
+              getTimeDifference(userprofile.membership.expire_date) < 0 && (
+                <NavLink className="buy" to="/subscription">
+                  <Button
+                    size="small"
+                    fullWidth
+                    variant="contained"
+                    startIcon={<MdOutlineAddShoppingCart />}
+                  >
+                    Buy Membership
+                  </Button>
+                </NavLink>
+              )}
           </div>
           <div className="operator">
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
