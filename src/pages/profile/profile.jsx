@@ -398,7 +398,7 @@ const Profile = () => {
                             className="half" label="Email Address" variant="outlined" />
                         {messagesent && <p style={{ color: 'green', fontSize: '14px' }}>{messagesent}</p>}
                         {!messagesent.length && <p style={{ fontSize: '14px' }}>A verification email will be sent to <b>{inp.email}</b>.</p>}
-                        <Button disabled={isloadinge} onClick={resetpassword} title='Feature coming soon' variant="contained" className='splbtn' startIcon={<FaRegFaceSmile />}>
+                        <Button disabled={isloadinge} onClick={resetpassword} title='Send Password Reset Link' variant="contained" className='splbtn' startIcon={<FaRegFaceSmile />}>
                             Send Password Reset Link
                         </Button>
                     </div>
