@@ -37,6 +37,7 @@ const Query = () => {
         setcontactid(id)
     }
     const [isload, setisload] = useState(false);
+
     const handlee = async (e) => {
         e.preventDefault();
         // console.log(email,reply);
@@ -110,18 +111,31 @@ const Query = () => {
             <div className="all">
                 <div className="controler">
                     <h2 style={{ textAlign: 'center' }}>Query List</h2>
-                    <LoadingButton
-                        loading={admin.loading}
-                        onClick={() => dispatch(contactusform())}
-                        loadingPosition="end"
-                        endIcon={<IoMdRefresh />}
-                        variant="outlined"
-                        type="submit"
-                        size="small"
-                        className="refreshe"
-                    >
-                        REFRESH
-                    </LoadingButton>
+                    <div>
+                        <LoadingButton
+                            loading={admin.loading}
+                            onClick={() => dispatch(contactusform())}
+                            loadingPosition="end"
+                            variant="contained"
+                            type="submit"
+                            size="small"
+                        // className="refreshe"
+                        >
+                            Custom
+                        </LoadingButton>
+                        <LoadingButton
+                            loading={admin.loading}
+                            onClick={() => dispatch(contactusform())}
+                            loadingPosition="end"
+                            endIcon={<IoMdRefresh />}
+                            variant="outlined"
+                            type="submit"
+                            size="small"
+                            className="refreshe"
+                        >
+                            REFRESH
+                        </LoadingButton>
+                    </div>
                 </div>
                 <div className="header">
                     <span>#</span>
@@ -155,7 +169,10 @@ const Query = () => {
                         <form onSubmit={handlee}>
                             <h2>Reply</h2>
                             <span className="modalcontent">
-                                <TextField sx={{ width: '98%' }} value={email} contentEditable={false} label="Email" size="small" />
+                                <TextField sx={{ width: '98%' }} value={email}
+                                    // contentEditable={false} 
+                                    onChange={(e) => setemail(e.target.value)}
+                                    label="Email" size="small" />
                                 <TextField autoFocus multiline rows={4} onChange={handleChange} value={reply} sx={{ width: '98%' }} label="Reply" size="small" />
                                 <div>
                                     <LoadingButton
