@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet-async";
 import tournlogo from '../../assets/logowebp_250.webp'
 import InputAdornment from '@mui/material/InputAdornment';
 import { IoClose } from "react-icons/io5";
+import { cloudinaryUrl } from "../../utils/imageurlsetter";
 
 const Findtournament = () => {
     const dispatch = useDispatch();
@@ -205,7 +206,11 @@ const Findtournament = () => {
                             <div className="img">
                                 <img
                                     loading="lazy"
-                                    src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                                    src={cloudinaryUrl(val?.tournment_logo, {
+                                        format: "webp",
+                                        width: 300,
+                                        // height: 300,
+                                    }) || tournlogo}
                                     alt="logo"
                                 />
                                 <span title={val.title}>{val.title}</span>

@@ -10,6 +10,7 @@ import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { MdLocalPhone, MdInsertLink, MdFeed, MdLeaderboard } from "react-icons/md";
 import { GrOverview } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
+import { cloudinaryUrl } from '../../../utils/imageurlsetter';
 
 const Tournamentstatpage = () => {
   const dispatch = useDispatch();
@@ -96,7 +97,12 @@ const Tournamentstatpage = () => {
       {!iserror && <>
         {tournament.tournment_banner != "" && <div className="img">
           <img
-            src={tournament.tournment_banner}
+            // src={tournament.tournment_banner}
+            src={cloudinaryUrl(tournament?.tournment_banner, {
+              format: "webp",
+              // width: 1000,
+              // height: 300,
+            })}
             loading="lazy"
             alt="Tournament Banner"
             onLoad={() => setImageLoaded(true)}

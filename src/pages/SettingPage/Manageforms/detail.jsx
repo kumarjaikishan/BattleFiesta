@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { MdCloudUpload } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { classicfetch } from '../../../store/classic';
+import { cloudinaryUrl } from '../../../utils/imageurlsetter';
 
 const Detail = () => {
     const classic = useSelector((state) => state.classic);
@@ -53,7 +54,7 @@ const Detail = () => {
 
         if (konsa == 2) {
             newimage = await handleImage(300, newimage);
-        }else{
+        } else {
             newimage = await handleImage(900, newimage);
         }
 
@@ -191,7 +192,7 @@ const Detail = () => {
                         </Select>
                         <FormHelperText>The type: Classic or TDM</FormHelperText>
                     </FormControl>
-                    <FormControl size='small' sx={{ m: 1,mb:1.5, Width: "96%" }}>
+                    <FormControl size='small' sx={{ m: 1, mb: 1.5, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Status*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -207,7 +208,7 @@ const Detail = () => {
                         </Select>
                         <FormHelperText>Status of your tournament</FormHelperText>
                     </FormControl>
-                    <FormControl size='small' sx={{ m: 1, mb:1.5, Width: "96%" }}>
+                    <FormControl size='small' sx={{ m: 1, mb: 1.5, Width: "96%" }}>
                         <InputLabel id="demo-simple-select-helper-label">Visibility*</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
@@ -248,7 +249,14 @@ const Detail = () => {
                     <div className="logos">
                         <div className="tourn_banner">
                             <h2>Tournament Banner</h2>
-                            {inp.banner ? <img src={inp.banner} alt="banner" /> : <h3>No Banner has been uploaded for the tournament</h3>}
+                            {inp.banner ? <img
+                                // src={inp.banner}
+                                src={cloudinaryUrl(inp?.banner, {
+                                    format: "webp",
+                                    width: 600,
+                                    //   height: 300,
+                                })}
+                                alt="banner" /> : <h3>No Banner has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained"
                                 startIcon={<MdCloudUpload />}>
                                 Upload
@@ -257,7 +265,14 @@ const Detail = () => {
                             <p>*A cover image for the tournament.This will shown on Public Post</p>
                         </div>
                         <div className="tourna_logo"><h2>Tournament Logo</h2>
-                            {inp.logo ? <img src={inp.logo} alt="logo" /> : <h3>No Logo has been uploaded for the tournament</h3>}
+                            {inp.logo ? <img
+                                // src={inp.logo}
+                                src={cloudinaryUrl(inp?.logo, {
+                                    format: "webp",
+                                    // width: 150,
+                                    //   height: 300,
+                                })}
+                                alt="logo" /> : <h3>No Logo has been uploaded for the tournament</h3>}
                             <Button disabled={loading} component="label" size='small' variant="contained" startIcon={<MdCloudUpload />}>
                                 Upload
                                 <VisuallyHiddenInput accept="image/*" type="file" id='tournlogo' onChange={() => upload("tournlogo")} />

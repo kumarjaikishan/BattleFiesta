@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import { IoCloudDownloadOutline } from "react-icons/io5";
+import { cloudinaryUrl } from "../../../utils/imageurlsetter";
 
 const MatchTable = ({ rules, matches, isDesktopMode, tournamentOwner, teamdeatil, log, disable, imagedownload }) => {
     const [row, setrow] = useState([]);
@@ -137,9 +138,21 @@ const MatchTable = ({ rules, matches, isDesktopMode, tournamentOwner, teamdeatil
                                 </tr>
                             </thead>
                             <tbody>
-                                {row.sort((a,b)=> b.total - a.total).map((team, ind) => {
+                                {row.sort((a, b) => b.total - a.total).map((team, ind) => {
                                     return <tr key={ind}>
-                                        <td style={{ textAlign: "left" }}> <span>{ind + 1}</span><span> <img src={team.logo ? team.logo : group} alt="teamlogo" /> </span><span> {team.team}</span></td>
+                                        <td style={{ textAlign: "left" }}> <span>{ind + 1}</span>
+                                            <span>
+                                                <img
+                                                    // src={team.logo ? team.logo : group}
+                                                    src={cloudinaryUrl(team?.logo, {
+                                                        format: "webp",
+                                                        width: 150,
+                                                        //   height: 300,
+                                                    }) || group}
+                                                    alt="teamlogo"
+                                                />
+                                            </span>
+                                            <span> {team.team}</span></td>
                                         <td>{team.placepts}</td>
                                         <td>{team.killpts}</td>
                                         <td>{team.total}</td>

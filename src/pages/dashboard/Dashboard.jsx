@@ -29,6 +29,7 @@ import { LuSaveAll } from "react-icons/lu";
 import { MdGroups, MdDelete, MdOutlineContentCopy, MdOutlineAddShoppingCart, MdReadMore } from "react-icons/md";
 import { TbMoodSad } from "react-icons/tb";
 import tournlogo from '../../assets/logowebp_250.webp'
+import { cloudinaryUrl } from "../../utils/imageurlsetter";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -259,7 +260,7 @@ const Dashboard = () => {
               <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile?.membership?.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile?.membership?.expire_date)} Days`)} </span>
             </div>
             {userprofile?.membership?.expire_date &&
-              getTimeDifference(userprofile.membership.expire_date) < 0 && (
+              getTimeDifference(userprofile?.membership?.expire_date) < 0 && (
                 <NavLink className="buy" to="/subscription">
                   <Button
                     size="small"
@@ -345,7 +346,12 @@ const Dashboard = () => {
                     <div className="img">
                       <img
                         loading="lazy"
-                        src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                        // src={val.tournment_logo ? val.tournment_logo : tournlogo}
+                        src={cloudinaryUrl(val?.tournment_logo, {
+                          format: "webp",
+                          width: 250,
+                          height: 250,
+                        }) || tournlogo}
                         alt="logo"
                       />
                       <span title={val.title}>{val.title}</span>

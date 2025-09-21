@@ -17,6 +17,7 @@ import TextField from '@mui/material/TextField';
 import Badge from '@mui/material/Badge';
 import { HiUserGroup } from "react-icons/hi2";
 import { FaDiscord } from "react-icons/fa";
+import { cloudinaryUrl } from '../../../utils/imageurlsetter';
 
 const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss, decline }) => {
     const hgfh = (ide) => {
@@ -64,14 +65,28 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                         sx={{ background: player.newEntry ? 'rgba(6, 146, 6, 0.218)' : '' }}
                     >
                         <Badge key={ind} variant="dot" color="error" invisible={!player.newEntry}>
-                            <img src={player.teamLogo ? player.teamLogo : group} alt="Team logo" />
+                            <img
+                                // src={player.teamLogo ? player.teamLogo : group}
+                                src={cloudinaryUrl(player?.teamLogo, {
+                                    format: "webp",
+                                    // width: 150,
+                                    //   height: 300,
+                                }) || group}
+                                alt="Team logo" />
                         </Badge>
                         <span>{player.teamName} </span>
                     </AccordionSummary>
                     <AccordionDetails className='details' sx={{ pb: 1 }}>
                         <div className="teamdata">
                             <div className='imageside'>
-                                <img src={player.teamLogo ? player.teamLogo : group1} alt="teamLogo" />
+                                <img
+                                    // src={player.teamLogo ? player.teamLogo : group1} 
+                                    src={cloudinaryUrl(player?.teamLogo, {
+                                        format: "webp",
+                                        // width: 150,
+                                        //   height: 300,
+                                    }) || group1}
+                                    alt="teamLogo" />
                                 <div className="icon">
                                     <a href={`mailto:${player.email}`} target="_blank" ><IoMailOutline title='Email' /></a>
                                     <a href={`tel:${player.mobile}`} target="_blank" ><MdLocalPhone title='Phone' /></a>
@@ -95,7 +110,14 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             <h2>Player List : </h2>
                             {player.player.map((each, ind) => {
                                 return <div key={ind}>
-                                    <span>{<img src={each.playerLogo ? each.playerLogo : user} alt="playerLogo" />}</span>
+                                    <span>{<img 
+                                    // src={each.playerLogo ? each.playerLogo : user} 
+                                    src={cloudinaryUrl(each?.playerLogo, {
+                                        format: "webp",
+                                        // width: 150,
+                                        //   height: 300,
+                                    }) || user}
+                                    alt="playerLogo" />}</span>
                                     <span>{each?.inGameName || 'N/A'}</span>
                                     <span>{each?.inGameID || 'N/A'}</span>
                                 </div>

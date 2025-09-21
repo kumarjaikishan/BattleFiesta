@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import { IoIosArrowDown } from "react-icons/io";
 import TextField from '@mui/material/TextField';
 import { TbMoodSad } from "react-icons/tb";
+import { cloudinaryUrl } from '../../utils/imageurlsetter';
 
 const Teams = ({ entry }) => {
     const group = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950086/battlefiesta/assets/icon/group2_gqiyup.webp'
@@ -34,14 +35,31 @@ const Teams = ({ entry }) => {
                             id="panel1-header"
                             className={`headere ${player.status}`}
                         >
-                            <img src={player.teamLogo ? player.teamLogo : group} alt="teamLogo" /> <span>{player.teamName} </span> <span className={player.status}> {player.status}</span>
+                            <img
+                                // src={player.teamLogo ? player.teamLogo : group}
+                                src={cloudinaryUrl(player?.teamLogo, {
+                                    format: "webp",
+                                    width: 100,
+                                    //   height: 300,
+                                }) || group}
+                                alt="teamLogo" /> <span>{player.teamName} </span> <span className={player.status}> {player.status}</span>
                         </AccordionSummary>
                         <AccordionDetails className='detailse'>
                             <div className="playerdata">
                                 <h2>Player List : </h2>
                                 {player.player.map((each, ind) => {
                                     return <div key={ind}>
-                                        <span><img src={each.playerLogo ? each.playerLogo : user} alt="playerLogo" /></span>
+                                        <span>
+                                            <img
+                                                // src={each.playerLogo ? each.playerLogo : user} 
+                                                src={cloudinaryUrl(each?.playerLogo, {
+                                                    format: "webp",
+                                                    width: 60,
+                                                    //   height: 300,
+                                                }) || user}
+                                                alt="playerLogo" />
+
+                                        </span>
                                         <span title='InGameName'>{each.inGameName}</span>
                                         <span title='InGameID'>{each?.inGameID || 'N/A'}</span>
                                     </div>

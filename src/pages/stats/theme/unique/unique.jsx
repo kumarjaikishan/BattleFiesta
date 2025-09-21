@@ -1,3 +1,4 @@
+import { cloudinaryUrl } from '../../../../utils/imageurlsetter'
 import './unique.css'
 
 const Unique = ({ tablerow, teamlogo, kuch, title }) => {
@@ -9,10 +10,10 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
 
     return (
         <div className='unique'>
-        <div className="tite">
+            <div className="tite">
 
-            <h1>{kuch.title}</h1>
-        </div>
+                <h1>{kuch.title}</h1>
+            </div>
             <h3>{title}</h3>
             <div className="maine">
                 <div className="top">
@@ -25,7 +26,14 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                 </div>
                                 <div className="bottom">
                                     <div className="logo">
-                                        <img src={teamlogo[team.teamid] || group} alt="logo" />
+                                        <img
+                                            // src={teamlogo[team.teamid] || group}
+                                            src={cloudinaryUrl(teamlogo[team.teamid], {
+                                                format: "webp",
+                                                width: 100,
+                                                //   height: 300,
+                                            }) || group}
+                                            alt="logo" />
                                     </div>
                                     <div className="stat">
                                         <div className="headerr">
@@ -55,10 +63,10 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                             <span>#</span>
                             <span>TEAM NAME</span>
                             <span>M</span>
-                            <span style={{fontSize:'1.4em'}}>🏆</span>
+                            <span style={{ fontSize: '1.4em' }}>🏆</span>
                             <span>PP</span>
                             <span>KP</span>
-                            <span>TP</span>
+                            <span>ja</span>
                         </div>
                         {tablerow.length > 0 ? Array.from({ length: 11 }).map((_, ind) => {
                             const team = tablerow.slice(3, 14)[ind] || null; // Use an empty object if the entry does not exist
@@ -66,7 +74,14 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                 <div key={ind} className="bodre">
                                     <span>{team && String(ind + 4).padStart(2, 0)}</span>
                                     <span>
-                                        {team && <img src={team && teamlogo[team.teamid] || group} alt="teamlogo" />}
+                                        {team && <img
+                                            // src={team && teamlogo[team.teamid] || group}
+                                            src={team && cloudinaryUrl(teamlogo[team.teamid], {
+                                                format: "webp",
+                                                width: 100,
+                                                //   height: 300,
+                                            }) || group}
+                                            alt="teamlogo" />}
                                         {team && team?.teamname}
                                     </span>
                                     <span>{team ? String(team.matchplayed).padStart(2, '0') : '\u00A0'}</span>
@@ -77,14 +92,14 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <span className="cut"></span>
                                 </div>
                             );
-                        }) : <div className='bodre' style={{paddingLeft:'30px', margin:'0 auto'}} > No Match Found</div> }
+                        }) : <div className='bodre' style={{ paddingLeft: '30px', margin: '0 auto' }} > No Match Found</div>}
                     </div>
                     <div className="divider">
-                        <div className={tablerow.length > 14 ? "headere":"headere off" }>
+                        <div className={tablerow.length > 14 ? "headere" : "headere off"}>
                             <span>#</span>
                             <span>TEAM NAME</span>
                             <span>M</span>
-                            <span style={{fontSize:'1.4em'}}>🏆</span>
+                            <span style={{ fontSize: '1.4em' }}>🏆</span>
                             <span>PP</span>
                             <span>KP</span>
                             <span>TP</span>
@@ -92,10 +107,17 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                         {tablerow.length > 0 ? Array.from({ length: 11 }).map((_, ind) => {
                             const team = tablerow.slice(15, 26)[ind] || null; // Use an empty object if the entry does not exist
                             return (
-                                <div key={ind} className={team ? "bodre":"bodre off"}>
+                                <div key={ind} className={team ? "bodre" : "bodre off"}>
                                     <span>{team && ind + 16}</span>
                                     <span>
-                                        {team && <img src={team && teamlogo[team.teamid] || 'default-logo.png'} alt="teamlogo" />}
+                                        {team && <img
+                                            // src={team && teamlogo[team.teamid] || 'default-logo.png'}
+                                            src={team && cloudinaryUrl(teamlogo[team.teamid], {
+                                                format: "webp",
+                                                width: 100,
+                                                //   height: 300,
+                                            }) || 'default-logo.png'}
+                                            alt="teamlogo" />}
                                         {team && team?.teamname}
                                     </span>
                                     <span>{team ? String(team.matchplayed).padStart(2, '0') : '\u00A0'}</span>
@@ -111,7 +133,7 @@ const Unique = ({ tablerow, teamlogo, kuch, title }) => {
                                     <span className="cut"></span>
                                 </div>
                             );
-                        }) : <div className={tablerow.length > 14 ? "bodre":"bodre off"} style={{ margin:'0 auto', paddingLeft:'30px'}} > No Match Found</div>  }
+                        }) : <div className={tablerow.length > 14 ? "bodre" : "bodre off"} style={{ margin: '0 auto', paddingLeft: '30px' }} > No Match Found</div>}
                     </div>
                 </div>
             </div>

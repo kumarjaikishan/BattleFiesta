@@ -34,7 +34,7 @@
                     position: absolute;
                     content: '';
                     inset: 0;
-                    background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp');
+                    /* background: url('https://res.cloudinary.com/dusxlxlvm/image/upload/v1725526409/accusoft/assets/preloader/fox_ajgfyv.webp'); */
                     background-size: 120px;
                     background-repeat: no-repeat;
                     background-position: -8px;

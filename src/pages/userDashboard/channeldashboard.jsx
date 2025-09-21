@@ -18,7 +18,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { MdLocalPhone } from "react-icons/md";
 import { CiFacebook } from "react-icons/ci";
-import { FaYoutube,FaTelegramPlane,FaTwitter } from "react-icons/fa";
+import { FaYoutube, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { TbTournament } from "react-icons/tb";
 import { IoMdRefresh } from "react-icons/io";
@@ -30,6 +30,7 @@ import { useSelector } from 'react-redux';
 import confetti from 'canvas-confetti';
 import { Helmet } from "react-helmet-async";
 import { LuGamepad2 } from "react-icons/lu";
+import { cloudinaryUrl } from '../../utils/imageurlsetter';
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
@@ -149,10 +150,10 @@ const Channeldashboard = () => {
     youtube: <FaYoutube />,
     facebook: <CiFacebook />,
     instagram: <FaInstagram />,
-    telegram: <FaTelegramPlane/>,
-    discord: <LuGamepad2/>,
-    twitter: <FaTwitter/>,
-    website: <IoMdLink/>
+    telegram: <FaTelegramPlane />,
+    discord: <LuGamepad2 />,
+    twitter: <FaTwitter />,
+    website: <IoMdLink />
   }), []);
 
   if (error) {
@@ -178,13 +179,27 @@ const Channeldashboard = () => {
       <div className="profile">
         <div className="upperinfo">
           <div className="coverimage">
-            <img src={pro.coversrc || defaultcoverimage} alt="cover image" />
+            <img
+              // src={pro.coversrc || defaultcoverimage}
+              src={cloudinaryUrl(pro?.coversrc, {
+                format: "webp",
+                // width: 600,
+                //   height: 300,
+              }) || defaultcoverimage}
+              alt="cover image" />
           </div>
 
           <div className="maininfo">
             <div className="top">
               <div className="profileimage">
-                <img src={pro.imgsrc || logo} alt="profile image" />
+                <img
+                  // src={pro.imgsrc || logo} 
+                  src={cloudinaryUrl(pro?.imgsrc, {
+                    format: "webp",
+                    width: 200,
+                    //   height: 300,
+                  }) || logo}
+                  alt="profile image" />
                 <div className='names'>
                   <h2>{pro.name} {pro.bluetick && <MdVerified className='sve' />}</h2>
                   <span>{uid}</span> <br />
@@ -280,7 +295,12 @@ const Channeldashboard = () => {
             <div className="img">
               <img
                 loading="lazy"
-                src={tourn.tournment_logo || logo}
+                // src={tourn.tournment_logo || logo}
+                src={cloudinaryUrl(tourn?.tournment_logo, {
+                  format: "webp",
+                  width: 300,
+                  //   height: 300,
+                }) || logo}
                 alt="logo"
               />
               <span title={tourn.title}>{tourn.title}</span>

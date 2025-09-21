@@ -28,6 +28,7 @@ import { FaYoutube, FaInstagram, FaTelegramPlane, FaTwitter } from "react-icons/
 import { LuGamepad2 } from "react-icons/lu";
 import { IoMdLink } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
+import { cloudinaryUrl } from '../../utils/imageurlsetter';
 
 const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
@@ -298,10 +299,20 @@ const Profile = () => {
                 <div className="profilepic glass">
                     <h2>Profile Picture</h2>
                     <div className="coverimg">
-                        <img src={inp.cover ? inp.cover : photo}
+                        <img
+                            src={cloudinaryUrl(inp?.cover, {
+                                format: "webp",
+                                //   width: 250,
+                                //   height: 250,
+                            }) || photo}
                             loading="lazy" alt="cover picture" />
                         <div className="img">
-                            <img src={inp.profile ? inp.profile : photo}
+                            <img
+                                src={cloudinaryUrl(inp?.profile, {
+                                    format: "webp",
+                                      width: 150,
+                                      height: 150,
+                                }) || photo}
                                 loading="lazy" alt="profile picture" />
                         </div>
                     </div>
