@@ -349,8 +349,8 @@ const Dashboard = () => {
                         // src={val.tournment_logo ? val.tournment_logo : tournlogo}
                         src={cloudinaryUrl(val?.tournment_logo, {
                           format: "webp",
-                          width: 250,
-                          height: 250,
+                          // width: 250,
+                          // height: 250,
                         }) || tournlogo}
                         alt="logo"
                       />
