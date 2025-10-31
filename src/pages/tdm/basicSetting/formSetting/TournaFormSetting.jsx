@@ -1,11 +1,24 @@
-import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel } from '@mui/material';
+import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel, Switch } from '@mui/material';
 import './TournaFormSetting.css'
 import LoadingButton from '@mui/lab/LoadingButton';
 import { FaSave } from "react-icons/fa";
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
 
-   
+    const renderSwitch = (label, field) => (
+        <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 1, px: 1 }}>
+            <FormLabel>{label}</FormLabel>
+            <Switch
+                checked={Boolean(all[field])}
+                onChange={(e) =>
+                    handleChange({
+                        target: { name: field, value: e.target.checked },
+                    })
+                }
+                color="success"
+            />
+        </Box>
+    );
 
     return (
         <>
@@ -37,7 +50,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         multiline
                         name="description"
                         className='taxi'
-                         size='small'
+                        size='small'
                         rows={7}
                         inputProps={{ style: { fontSize: "11px", lineHeight: "12px" } }}
                         onChange={handleChange}
@@ -49,7 +62,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         label="Successful  Message"
                         multiline
                         className='taxi'
-                         size='small'
+                        size='small'
                         value={all.success_message}
                         inputProps={{ style: { fontSize: 11 } }}
                         rows={1}
@@ -59,86 +72,15 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                     />
 
                     <h3>Options:</h3>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Email</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_email"
-                        value={all.ask_email}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+                    {renderSwitch("Ask for Email", "ask_email")}
+                    {renderSwitch("Ask for Phone Number", "ask_phone")}
+                    {renderSwitch("Ask for Discord ID", "ask_discord")}
+                    {renderSwitch("Ask for Team Logo", "ask_teamlogo")}
+                    {renderSwitch("Ask for Player Logo", "ask_playerlogo")}
+                    {renderSwitch("Ask for Payment Screenshot Upload", "ask_payment_ss")}
+                    {renderSwitch("Show Payment Option", "show_payment")}
+                   
 
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Phone Number</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_phone"
-                        value={all.ask_phone}
-                        sx={{ mb: 2 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Discord ID</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_discord"
-                        value={all.ask_discord}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Player Logo</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_playerlogo"
-                        value={all.ask_playerlogo}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Payment Screenshort</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_payment_ss"
-                        value={all.ask_payment_ss}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-
-                    <FormLabel id="demo-row-radio-buttons-group-label">Show Payment Option</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="show_payment"
-                        value={all.show_payment}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
                     {all.show_payment && <>
                         <TextField
                             id="outlined-number"
@@ -169,46 +111,12 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                             helperText="Enter Amount to be received"
                         />
                     </>}
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask OS</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_os"
-                        value={all.ask_os}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
 
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask FPS</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_fps"
-                        value={all.ask_fps}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+                     {renderSwitch("Ask for OS", "ask_os")}
+                    {renderSwitch("Ask for FPS", "ask_fps")}
+                    {renderSwitch("Ask for Device Name", "ask_devicename")}
+                    
 
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask Device name</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_devicename"
-                        value={all.ask_devicename}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-                  
                     <LoadingButton
                         onClick={submit}
                         loading={isloading}

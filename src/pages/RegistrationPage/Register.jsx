@@ -363,20 +363,26 @@ const Register = () => {
                 players: [...prevState.players, newPlayer],
             }));
         } else {
-            toast.warn(`Max of ${all.max_player} Palyers are Allowed`, { autoClose: 2100 })
+            toast.warn(`Max of ${all.max_player} Palyers are Allowed`, { autoClose: 3100 })
         }
     }
 
     const deleteplayer = (index) => {
-        let afterdeleteplayerlist = inp.players.filter((val, ind) => {
-            return ind != index;
-        })
-        //    console.log(dfdf);
-        setinp(prevState => ({
-            ...prevState,
-            players: afterdeleteplayerlist,
-        }));
+        let playerlen = inp.players.length;
+        if (playerlen > all.min_player) {
+            let afterdeleteplayerlist = inp.players.filter((val, ind) => {
+                return ind != index;
+            })
+            //    console.log(dfdf);
+            setinp(prevState => ({
+                ...prevState,
+                players: afterdeleteplayerlist,
+            }));
+        } else {
+            toast.warn(`Min of ${all.min_player} Palyers are Required`, { autoClose: 3100 })
+        }
     }
+
     const [teamlist, setteamlist] = useState(false);
 
     return (
@@ -384,7 +390,7 @@ const Register = () => {
             <div className="registartionform">
                 <Helmet>
                     <title>Registration || BattleFiesta</title>
-               </Helmet>
+                </Helmet>
                 {errore && <div className="notfound">
                     <div>
                         <TbMoodSad className="sad" />
@@ -426,142 +432,143 @@ const Register = () => {
                             </p>
                             <Divider variant="middle" />
                         </>}
-                        {!newfresh && all.isopen && all.slots > filteredentry.length && <form onSubmit={handleRegister}>
-                            <div className="compart">
-                                <TextField className="cominp"
-                                    size="small" required id="outlined-basic"
-                                    label="Team Name"
-                                    inputProps={{ minLength: 3 }}
-                                    value={inp.teamname} name="teamname"
-                                    helperText={inp.teamname.length < 3 ? "Minimum length is 3 characters" : ""}
-                                    onChange={realhandlechange}
-                                    variant="outlined"
-                                />
-                                {all.ask_email && <TextField className="cominp" type="email"
-                                    required={all.ask_email} value={inp.teamemail}
-                                    size="small" id="outlined-basic" name="teamemail"
-                                    label="Email ID" onChange={realhandlechange}
-                                    variant="outlined"
-                                />}
+                        {!newfresh && all.isopen && all.slots > filteredentry.length &&
+                            <form onSubmit={handleRegister}>
+                                <div className="compart">
+                                    <TextField className="cominp"
+                                        size="small" required id="outlined-basic"
+                                        label="Team Name"
+                                        inputProps={{ minLength: 3 }}
+                                        value={inp.teamname} name="teamname"
+                                        helperText={inp.teamname.length < 3 ? "Minimum length is 3 characters" : ""}
+                                        onChange={realhandlechange}
+                                        variant="outlined"
+                                    />
+                                    {all.ask_email && <TextField className="cominp" type="email"
+                                        required={all.ask_email} value={inp.teamemail}
+                                        size="small" id="outlined-basic" name="teamemail"
+                                        label="Email ID" onChange={realhandlechange}
+                                        variant="outlined"
+                                    />}
 
-                                {all.ask_phone && <TextField className="cominp" required={all.ask_phone}
-                                    size="small" id="outlined-basic" name="teammobile"
-                                    value={inp.teammobile}
-                                    type='tel'
-                                    inputProps={{ minLength: 10, maxLength: 10 }}
-                                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                    onChange={realhandlechange} label="Mobile" variant="outlined"
-                                    color={inp.teammobile.length == 10 ? "primary" : "warning"}
-                                />}
-                                {all.ask_discord && <TextField
-                                    inputProps={{ minLength: 15, maxLength: 20 }}
-                                    className="cominp" required={all.ask_discord} size="small"
-                                    id="outlined-basic" name="teamdiscord"
-                                    onChange={realhandlechange} label="Discord ID"
-                                    variant="outlined"
-                                />}
-                            </div>
-                            <Divider variant="middle" />
-                            {
-                                all.ask_team_logo && <>
-                                    <h4>Set a logo for the Team*</h4>
-                                    <div id="teamlogo"></div>
-                                    <Button sx={{ mb: 3, mt: 0.5 }} component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
-                                        Upload Logo
-                                        <VisuallyHiddenInput
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={(event) => common(event, "teamlogo")}
-                                        />
-                                    </Button>
-                                    <br />
-                                </>
-                            }
-                            <Divider variant="middle" />
-                            {
-                                all.ask_payment_ss && <>
-                                    <h4>Set Payment Screenshot*</h4>
-                                    <div id="paymentss"></div>
-                                    <Button size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<MdInsertPhoto />}>
-                                        Upload S.S
-                                        <VisuallyHiddenInput
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={(event) => common(event, "paymentss")}
-                                        />
-                                    </Button>
-                                    <p style={{ color: 'green', fontSize: '12px' }}>*Note- UTR/Txn No. must be visible in Screenshot</p>
-                                    <br />
-                                </>
-                            }
-
-                            <h3>Player List</h3>
-                            {inp.players.map((player, index) => (
-                                <div className="player" key={index}>
-                                    <h4>Player {index + 1} <MdDelete className="DeleteIcon" onClick={() => deleteplayer(index)} /></h4>
-                                    <Box
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField size="small" id={`in-game-name-${index}`}
-                                            value={inp.players[index].inGameName}
-                                            onChange={(e) => realplayerchange(e, index, 'inGameName')}
-                                            label="In Game Name*"
-                                            inputProps={{ minLength: 3 }}
-                                            variant="outlined"
-                                        // helperText={inp.players[index].inGameName.length < 3 ? "Minimum length is 3 characters" : ""}
-                                        />
-                                        <TextField size="small" id={`in-game-id-${index}`}
-                                            value={inp.players[index].inGameID}
-                                            inputProps={{ minLength: 8, maxLength: 13 }}
-                                            type='tel'
-                                            onPaste={(event) => {
-                                                const pasteData = event.clipboardData.getData('Text');
-                                                if (!/^[0-9]*$/.test(pasteData)) {
-                                                    event.preventDefault();
-                                                }
-                                            }}
-                                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                                            onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined"
-                                        />
-                                        {all.ask_player_logo && <>
-                                            <h4>Set a logo for the player</h4>
-                                            <div id={`playerLogo${index}`}></div>
-                                            <Button component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
-                                                Upload Logo
-                                                <VisuallyHiddenInput
-                                                    type="file"
-                                                    accept="image/*"
-                                                    // onChange={(event) => handlePlayerLogoChange(event, index)}
-                                                    onChange={(event) => common2(event, `playerLogo${index}`, index)}
-                                                />
-                                            </Button>
-                                        </>
-                                        }
-                                    </Box>
+                                    {all.ask_phone && <TextField className="cominp" required={all.ask_phone}
+                                        size="small" id="outlined-basic" name="teammobile"
+                                        value={inp.teammobile}
+                                        type='tel'
+                                        inputProps={{ minLength: 10, maxLength: 10 }}
+                                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                        onChange={realhandlechange} label="Mobile" variant="outlined"
+                                        color={inp.teammobile.length == 10 ? "primary" : "warning"}
+                                    />}
+                                    {all.ask_discord && <TextField
+                                        inputProps={{ minLength: 15, maxLength: 20 }}
+                                        className="cominp" required={all.ask_discord} size="small"
+                                        id="outlined-basic" name="teamdiscord"
+                                        onChange={realhandlechange} label="Discord ID"
+                                        variant="outlined"
+                                    />}
                                 </div>
-                            ))}
-                            <div>
-                                <Button title="Add New Player" sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<MdAdd />} disabled={disable} variant="outlined" color="primary">
-                                    Add player
-                                </Button>
-                            </div>
+                                <Divider variant="middle" />
+                                {
+                                    all.ask_team_logo && <>
+                                        <h4>Set a logo for the Team*</h4>
+                                        <div id="teamlogo"></div>
+                                        <Button sx={{ mb: 3, mt: 0.5 }} component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
+                                            Upload Logo
+                                            <VisuallyHiddenInput
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(event) => common(event, "teamlogo")}
+                                            />
+                                        </Button>
+                                        <br />
+                                    </>
+                                }
+                                <Divider variant="middle" />
+                                {
+                                    all.ask_payment_ss && <>
+                                        <h4>Set Payment Screenshot*</h4>
+                                        <div id="paymentss"></div>
+                                        <Button size="small" sx={{ mb: 0.5, mt: 0.5 }} component="label" variant="contained" startIcon={<MdInsertPhoto />}>
+                                            Upload S.S
+                                            <VisuallyHiddenInput
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(event) => common(event, "paymentss")}
+                                            />
+                                        </Button>
+                                        <p style={{ color: 'green', fontSize: '12px' }}>*Note- UTR/Txn No. must be visible in Screenshot</p>
+                                        <br />
+                                    </>
+                                }
 
-                            <LoadingButton
-                                loading={isloading}
-                                loadingPosition="start"
-                                startIcon={<IoMdCloudUpload />}
-                                variant="contained"
-                                type="submit"
-                                className="registerbtn"
-                            >
-                                Register
-                            </LoadingButton>
+                                <h3>Player List</h3>
+                                {inp.players.map((player, index) => (
+                                    <div className="player" key={index}>
+                                        <h4>Player {index + 1} <MdDelete className="DeleteIcon" onClick={() => deleteplayer(index)} /></h4>
+                                        <Box
+                                            sx={{
+                                                '& > :not(style)': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <TextField size="small" id={`in-game-name-${index}`}
+                                                value={inp.players[index].inGameName}
+                                                onChange={(e) => realplayerchange(e, index, 'inGameName')}
+                                                label="In Game Name*"
+                                                inputProps={{ minLength: 3 }}
+                                                variant="outlined"
+                                            // helperText={inp.players[index].inGameName.length < 3 ? "Minimum length is 3 characters" : ""}
+                                            />
+                                            <TextField size="small" id={`in-game-id-${index}`}
+                                                value={inp.players[index].inGameID}
+                                                inputProps={{ minLength: 8, maxLength: 13 }}
+                                                type='tel'
+                                                onPaste={(event) => {
+                                                    const pasteData = event.clipboardData.getData('Text');
+                                                    if (!/^[0-9]*$/.test(pasteData)) {
+                                                        event.preventDefault();
+                                                    }
+                                                }}
+                                                onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                                                onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined"
+                                            />
+                                            {all.ask_player_logo && <>
+                                                <h4>Set a logo for the player</h4>
+                                                <div id={`playerLogo${index}`}></div>
+                                                <Button component="label" variant="contained" startIcon={<IoMdCloudUpload />}>
+                                                    Upload Logo
+                                                    <VisuallyHiddenInput
+                                                        type="file"
+                                                        accept="image/*"
+                                                        // onChange={(event) => handlePlayerLogoChange(event, index)}
+                                                        onChange={(event) => common2(event, `playerLogo${index}`, index)}
+                                                    />
+                                                </Button>
+                                            </>
+                                            }
+                                        </Box>
+                                    </div>
+                                ))}
+                                <div>
+                                    <Button title="Add New Player" sx={{ mb: 2 }} onClick={addnewplayer} startIcon={<MdAdd />} disabled={disable} variant="outlined" color="primary">
+                                        Add player
+                                    </Button>
+                                </div>
 
-                        </form>}
+                                <LoadingButton
+                                    loading={isloading}
+                                    loadingPosition="start"
+                                    startIcon={<IoMdCloudUpload />}
+                                    variant="contained"
+                                    type="submit"
+                                    className="registerbtn"
+                                >
+                                    Register
+                                </LoadingButton>
+
+                            </form>}
 
                         {!all.isopen && <div className="closed">
                             <div> <MdPanTool className="stop" /></div>

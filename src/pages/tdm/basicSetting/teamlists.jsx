@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { MdExpandMore } from "react-icons/md";
+import { MdCancel, MdExpandMore } from "react-icons/md";
 import { IoMailOutline } from "react-icons/io5";
 import { MdLocalPhone } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
@@ -104,7 +104,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <Button onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                         Approve
                                     </Button>
-                                    <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
+                                    <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdCancel />}>
                                         Reject
                                     </Button>
                                 </>}
@@ -112,7 +112,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <Button onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
                                         Pending
                                     </Button>
-                                    <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
+                                    <Button color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdCancel />}>
                                         Reject
                                     </Button>
                                 </>}

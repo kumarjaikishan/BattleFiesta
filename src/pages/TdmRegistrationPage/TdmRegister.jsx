@@ -298,16 +298,16 @@ const TdmRegister = () => {
                                     onChange={realhandlechange} label="Mobile" variant="outlined"
                                 // color={inp.teammobile.length == 10 ? "primary" : "warning"}
                                 />}
-                                {setting.ask_email && <TextField className="cominp" size="small" id="outlined-basic" value={inp.email} name="email" type="email" onChange={realhandlechange} label="Email ID" variant="outlined" />}
+                                {setting.ask_email && <TextField required className="cominp" size="small" id="outlined-basic" value={inp.email} name="email" type="email" onChange={realhandlechange} label="Email ID" variant="outlined" />}
 
 
-                                {setting.ask_os && <FormControl className="cominp" size="small">
+                                {setting.ask_os && 
+                                <FormControl required className="cominp" size="small">
                                     <InputLabel id="demo-simple-select-label">Choose OS</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         value={inp.os}
-                                        required
                                         name="os"
                                         label="Choose OS"
                                         onChange={realhandlechange}

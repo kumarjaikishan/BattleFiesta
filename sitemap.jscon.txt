@@ -1,0 +1,35 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BattleFiesta",
+  "url": "https://battlefiesta.in",
+  "logo": "https://battlefiesta.in/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/YourPage",
+    "https://twitter.com/YourHandle",
+    "https://www.instagram.com/YourHandle",
+    "https://t.me/YourTelegramGroup"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-XXXXXXXXXX",
+    "contactType": "customer support",
+    "areaServed": "IN",
+    "availableLanguage": "English"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://battlefiesta.in/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://battlefiesta.in/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

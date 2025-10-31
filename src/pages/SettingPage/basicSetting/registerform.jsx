@@ -98,7 +98,7 @@ const Registerform = ({ showss }) => {
         })
     }
     const submit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         // console.log(all);
         // return;
         setisloading(true)

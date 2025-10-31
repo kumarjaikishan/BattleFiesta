@@ -1,255 +1,222 @@
-import { FormLabel, RadioGroup, FormHelperText, Radio, Box, TextField, FormControlLabel } from '@mui/material';
-import './TournaFormSetting.css'
+import { FormLabel, Switch, Box, TextField, FormControlLabel, Button, RadioGroup, Radio } from '@mui/material';
+import './TournaFormSetting.css';
 import { useEffect } from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
 import { FaSave } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
+
     useEffect(() => {
         // console.log("form setting", all);
-    }, [])
+    }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // --- Basic custom validation ---
+        if (!all.description || all.description.trim() === "") {
+            toast.warn('Description is required', { autoClose: 2900 });
+            return;
+        }
+
+        if (all.show_payment) {
+            if (!all.upi_id || all.upi_id.trim() === "") {
+                toast.warn('UPI ID is required when payment is enabled', { autoClose: 2900 });
+                return;
+            }
+            if (!all.amount || isNaN(all.amount) || Number(all.amount) <= 0) {
+                toast.warn('Please enter a valid payment amount', { autoClose: 2900 });
+                return;
+            }
+        }
+
+        if (
+            !all.minimum_players ||
+            isNaN(all.minimum_players) ||
+            Number(all.minimum_players) < 1 ||
+            Number(all.minimum_players) > 10
+        ) {
+            toast.warn('Minimum players must be between 1 and 10', { autoClose: 2900 });
+            return;
+        }
+
+        if (
+            !all.maximum_players ||
+            isNaN(all.maximum_players) ||
+            Number(all.maximum_players) < all.minimum_players ||
+            Number(all.maximum_players) > 10
+        ) {
+            toast.warn('Maximum players must be between minimum players and 10', { autoClose: 3900 });
+            return;
+        }
+
+        // ✅ Call parent submit only if validations pass
+        submit();
+    };
+
+    const renderSwitch = (label, field) => (
+        <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 1, px: 1 }}>
+            <FormLabel>{label}</FormLabel>
+            <Switch
+                checked={Boolean(all[field])}
+                onChange={(e) =>
+                    handleChange({
+                        target: { name: field, value: e.target.checked },
+                    })
+                }
+                color="success"
+            />
+        </Box>
+    );
+
     return (
-        <>
-            <div className="maine">
-                <h2>Form Setting</h2>
-                <Box className="box"
-                    component="form"
-                    sx={{
-                        '& .MuiTextField-root': { m: 1 },
-                    }}
-                    noValidate
-                    autoComplete="off"
+        <div className="maine">
+            <h2>Form Setting</h2>
+            <Box
+                className="box"
+                component="form"
+                sx={{ '& .MuiTextField-root': { m: 1 } }}
+                onSubmit={handleSubmit}
+                autoComplete="off"
+            >
+                <FormLabel>Registration Open</FormLabel>
+                <RadioGroup
+                    sx={{ mb: 2 }}
+                    row
+                    name="isopen"
+                    value={all.isopen}
+                    onChange={handleChange}
                 >
-                    <FormLabel id="demo-row-radio-buttons-group-label">Registration</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="isopen"
-                        defaultValue={false}
-                        value={all.isopen}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Open" />
-                        <FormControlLabel value={false} control={<Radio />} label="closed" />
+                    <FormControlLabel value={true} control={<Radio />} label="Open" />
+                    <FormControlLabel value={false} control={<Radio />} label="Closed" />
+                </RadioGroup>
+                {/* <Switch
+                    checked={Boolean(all.isopen)}
+                    onChange={(e) =>
+                        handleChange({
+                            target: { name: 'isopen', value: e.target.checked },
+                        })
+                    }
+                    color="success"
+                    sx={{ mb: 2 }}
+                /> */}
 
-                    </RadioGroup>
-                    <TextField
-                        id="outlined-multiline-static"
-                        label="Description"
-                        multiline
-                        name="description"
-                         size='small'
-                        className='taxi'
-                        rows={7}
-                        inputProps={{ style: { fontSize: "11px", lineHeight: "12px" } }}
-                        onChange={handleChange}
-                        value={all.description}
-                        helperText="Add description or message to show on registration page."
-                    />
-                    <TextField
-                        id="outlined-multiline-static"
-                        label="success message"
-                        multiline
-                        size='small'
-                        className='taxi'
-                        value={all.success_message}
-                        inputProps={{ style: { fontSize: 11 } }}
-                        rows={1}
-                        name="success_message"
-                        onChange={handleChange}
-                        helperText="Add description or message to show after Successful Registration"
-                    />
+                <TextField
+                    label="Description"
+                    multiline
+                    name="description"
+                    size="small"
+                    className="taxi"
+                    rows={7}
+                    required
+                    inputProps={{ style: { fontSize: "11px", lineHeight: "12px" } }}
+                    onChange={handleChange}
+                    value={all.description}
+                    helperText="Add description or message to show on registration page."
+                />
 
-                    <h3>Options:</h3>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Email</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_email"
-                        defaultValue={false}
-                        value={all.ask_email}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+                <TextField
+                    label="Success Message"
+                    multiline
+                    size="small"
+                    className="taxi"
+                    name="success_message"
+                    inputProps={{ style: { fontSize: 11 } }}
+                    rows={1}
+                    onChange={handleChange}
+                    value={all.success_message}
+                    helperText="Add message to show after successful registration"
+                />
 
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Phone Number</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_phone"
-                        defaultValue={false}
-                        value={all.ask_phone}
-                        sx={{ mb: 2 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+                <h3>Options:</h3>
 
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Discord ID</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_discord"
-                        defaultValue={false}
-                        value={all.ask_discord}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
+                {renderSwitch("Ask for Email", "ask_email")}
+                {renderSwitch("Ask for Phone Number", "ask_phone")}
+                {renderSwitch("Ask for Discord ID", "ask_discord")}
+                {renderSwitch("Ask for Team Logo", "ask_teamlogo")}
+                {renderSwitch("Ask for Player Logo", "ask_playerlogo")}
+                {renderSwitch("Ask for Payment Screenshot Upload", "ask_payment_ss")}
+                {renderSwitch("Show Payment Option", "show_payment")}
 
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Team Logo</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_teamlogo"
-                        defaultValue={false}
-                        value={all.ask_teamlogo}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Player Logo</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_playerlogo"
-                        defaultValue={false}
-                        value={all.ask_playerlogo}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Ask for Payment Screenshort</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="ask_payment_ss"
-                        defaultValue={false}
-                        value={all.ask_payment_ss}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-
-                    {/* <FormLabel id="demo-row-radio-buttons-group-label">Enable Notification</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="notification"
-                        defaultValue={false}
-                        value={all.notification}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-                    </RadioGroup>
-                    <FormHelperText>Receive Notification on Team Registration </FormHelperText> */}
-
-
-                    <FormLabel id="demo-row-radio-buttons-group-label">Show Payment Option</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="show_payment"
-                        defaultValue={false}
-                        value={all.show_payment}
-                        sx={{ mb: 1 }}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value={true} control={<Radio />} label="Enable" />
-                        <FormControlLabel value={false} control={<Radio />} label="Disabled" />
-
-                    </RadioGroup>
-
-                    {all.show_payment && <>
+                {all.show_payment && (
+                    <>
                         <TextField
-                            id="outlined-number"
-                            label="Upi Id"
-                            className='taxi'
-                            value={all.upi_id}
+                            label="UPI ID"
+                            className="taxi"
                             name="upi_id"
-                            size='small'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            size="small"
+                            required
+                            value={all.upi_id}
                             onChange={handleChange}
-                            helperText="Enter upi to receive Payment"
+                            helperText="Enter UPI ID to receive payment"
                         />
                         <TextField
-                            id="outlined-number"
                             label="Amount"
                             type="tel"
-                            className='taxi'
-                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                            className="taxi"
+                            required
+                            onKeyPress={(event) => {
+                                if (!/[0-9]/.test(event.key)) event.preventDefault();
+                            }}
                             value={all.amount}
                             name="amount"
-                            size='small'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            size="small"
                             onChange={handleChange}
-                            helperText="Enter Amount to be received"
+                            helperText="Enter amount to be received"
                         />
-                    </>}
+                    </>
+                )}
 
-                    <TextField
-                        id="outlined-number"
-                        label="Minimum Players"
-                        type="tel"
-                        className='taxi'
-                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                        value={all.minimum_players}
-                        name="minimum_players"
-                        size='small'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={handleChange}
-                        helperText="Minimum no. of players need to be registered."
-                    />
-                    <TextField
-                        id="outlined-number"
-                        label="Maximum Players"
-                        className='taxi'
-                        type="tel"
-                        size='small'
-                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                        name="maximum_players"
-                        value={all.maximum_players}
-                        onChange={handleChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        helperText="Maximim no. of players need to be registered."
-                    />
-                    <LoadingButton
-                        onClick={submit}
-                        loading={isloading}
-                        loadingPosition="start"
-                        startIcon={<FaSave />}
-                        variant="contained"
-                        type="submit"
-                    >
-                        SAVE
-                    </LoadingButton>
-                </Box>
-            </div>
-        </>
-    )
-}
+                <TextField
+                    label="Minimum Players"
+                    type="tel"
+                    className="taxi"
+                    required
+                    onKeyPress={(event) => {
+                        if (!/[0-9]/.test(event.key)) event.preventDefault();
+                    }}
+                    value={all.minimum_players}
+                    name="minimum_players"
+                    size="small"
+                    inputProps={{ min: 1, max: 10 }}
+                    onChange={handleChange}
+                    helperText="Minimum number of players to register (1–10)."
+                />
+
+                <TextField
+                    label="Maximum Players"
+                    type="tel"
+                    className="taxi"
+                    required
+                    onKeyPress={(event) => {
+                        if (!/[0-9]/.test(event.key)) event.preventDefault();
+                    }}
+                    value={all.maximum_players}
+                    name="maximum_players"
+                    size="small"
+                    inputProps={{ min: 1, max: 10 }}
+                    onChange={handleChange}
+                    helperText="Maximum number of players to register (1–10)."
+                />
+
+                <Button
+                    variant="contained"
+                    type="submit"
+                    disabled={isloading}
+                    startIcon={<FaSave />}
+                    sx={{
+                        mt: 2,
+                        bgcolor: isloading ? 'grey.400' : 'primary.main',
+                        '&:hover': {
+                            bgcolor: isloading ? 'grey.400' : 'primary.dark',
+                        },
+                    }}
+                >
+                    {isloading ? 'Saving...' : 'Save'}
+                </Button>
+            </Box>
+        </div>
+    );
+};
+
 export default TournaFormSetting;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { MdExpandMore } from "react-icons/md";
+import { MdCancel, MdExpandMore } from "react-icons/md";
 import { IoMailOutline } from "react-icons/io5";
 import { MdLocalPhone } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
@@ -110,24 +110,24 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             <h2>Player List : </h2>
                             {player.player.map((each, ind) => {
                                 return <div key={ind}>
-                                    <span>{<img 
-                                    // src={each.playerLogo ? each.playerLogo : user} 
-                                    src={cloudinaryUrl(each?.playerLogo, {
-                                        format: "webp",
-                                        // width: 150,
-                                        //   height: 300,
-                                    }) || user}
-                                    alt="playerLogo" />}</span>
+                                    <span>{<img
+                                        // src={each.playerLogo ? each.playerLogo : user} 
+                                        src={cloudinaryUrl(each?.playerLogo, {
+                                            format: "webp",
+                                            // width: 150,
+                                            //   height: 300,
+                                        }) || user}
+                                        alt="playerLogo" />}</span>
                                     <span>{each?.inGameName || 'N/A'}</span>
                                     <span>{each?.inGameID || 'N/A'}</span>
                                 </div>
                             })}
                             <div>
                                 {callfrom == "pending" && <>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} size='small' onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
+                                    <Button title="Approve this team" sx={{ padding: 1, margin: 0, lineHeight: 0 }} size='small' onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                         Approve
                                     </Button>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
+                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdCancel />}>
                                         Reject
                                     </Button>
                                 </>}
@@ -135,23 +135,30 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                     <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
                                         Pending
                                     </Button>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdDelete />}>
+                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => hgfh(player._id)} variant="outlined" startIcon={<MdCancel />}>
                                         Reject
                                     </Button>
                                 </>}
                                 {callfrom == "Rejected" && <>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "pending")} color="warning" variant="outlined" startIcon={<FaUndo />}>
+                                    <Button
+                                        sx={{ padding: 1, margin: 0, lineHeight: 0 }}
+                                        onClick={() => statuschange(player._id, "pending")} color="warning"
+                                        variant="outlined"
+                                        startIcon={<FaUndo size={15} />}>
                                         Pending
                                     </Button>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
+                                    <Button title="Approve this team" sx={{ padding: 1, margin: 0, lineHeight: 0 }} onClick={() => statuschange(player._id, "approved")} color="success" variant="outlined" startIcon={<MdThumbUp />}>
                                         Approve
+                                    </Button>
+                                    <Button title='Delete this team (if deleted, this team will not show in the list)' sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<MdDelete />}>
+                                        Delete
                                     </Button>
                                 </>}
                                 {callfrom == "manageteam" && <>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<MdDelete />}>
+                                    <Button title="Delete this team (if deleted, this team will not show in the list)" sx={{ padding: 1, margin: 0, lineHeight: 0 }} color='error' onClick={() => deletee(player._id)} variant="outlined" startIcon={<MdDelete />}>
                                         Delete
                                     </Button>
-                                    <Button sx={{ padding: 1, margin: 0, lineHeight: 0 }} color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<MdEdit />}>
+                                    <Button title='Edit this team' sx={{ padding: 1, margin: 0, lineHeight: 0 }} color="primary" onClick={() => edetee(player)} variant="outlined" startIcon={<MdEdit />}>
                                         Edit
                                     </Button>
                                 </>}
@@ -159,18 +166,19 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                             </div>
                         </div>
                     </AccordionDetails>
-                    {player.status == "rejected" && <TextField
-                        id="outlined-multiline-flexible"
-                        label="Reason of Rejection  .."
-                        multiline
-                        color="error"
-                        focused
-                        inputProps={{ style: { fontSize: 14 } }}
-                        InputLabelProps={{ style: { fontSize: 18 } }}
-                        value={player.reason || "your Fault"}
-                        maxRows={6}
-                        sx={{ minWidth: "96%", mb: 1, ml: 1 }}
-                    />}
+                    {player.status == "rejected" &&
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Reason of Rejection  .."
+                            multiline
+                            color="error"
+                            focused
+                            inputProps={{ style: { fontSize: 14 } }}
+                            InputLabelProps={{ style: { fontSize: 18 } }}
+                            value={player.reason || "your Fault"}
+                            maxRows={6}
+                            sx={{ minWidth: "96%", my: 1, ml: 1 }}
+                        />}
                 </Accordion>
             )
         })}
