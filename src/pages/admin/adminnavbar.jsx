@@ -41,7 +41,7 @@ const Adminnavbar = () => {
                                 top: '7px'
                             }
                         }}
-                        badgeContent={admin.membershipentry.filter(entry => entry.status === 'pending').length} color="warning">
+                        badgeContent={admin?.membershipentry?.filter(entry => entry.status === 'pending').length} color="warning">
                         <div >
                             <FaRegCreditCard />
                             <span>Requests</span>
@@ -58,7 +58,7 @@ const Adminnavbar = () => {
                                 padding: '0 4px',   // Adjust padding inside the badge
                                 top: '7px'
                             }
-                        }} badgeContent={admin.contactusform.filter(entry => entry.resolve === false).length} color="warning">
+                        }} badgeContent={admin?.contactusform?.filter(entry => entry.resolve === false).length} color="warning">
                         <div >
                             <BiLogoJquery />
                             <span>Queries</span>

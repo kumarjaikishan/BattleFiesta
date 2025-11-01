@@ -58,7 +58,7 @@ const Membership = () => {
           {admin?.membership?.map((val, ind) => {
             return <div key={ind}>
               <span>{ind + 1}</span>
-              <span title={val.isActive && `Valid till ${formatDate(val.expire_date)}`}>{val.userid?.name}</span>
+              <span title={val.isActive ? `Valid till ${formatDate(val.expire_date)}`:''}>{val.userid?.name}</span>
               <span>{val.planid.plan_name}</span>
               <span>{val.planid.price}</span>
               <span>{val.finalpricepaid}</span>

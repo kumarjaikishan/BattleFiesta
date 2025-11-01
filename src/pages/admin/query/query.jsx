@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
 import './query.css'
 import Button from '@mui/material/Button';
-import { IoMdRefresh } from "react-icons/io";
-import { IoIosSend } from "react-icons/io";
+import { IoIosSend, IoMdRefresh } from "react-icons/io";
 import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
 import { motion } from 'framer-motion';
@@ -115,7 +114,6 @@ const Query = () => {
                         <LoadingButton
                             loading={admin.loading}
                             onClick={() => dispatch(contactusform())}
-                            loadingPosition="end"
                             variant="contained"
                             type="submit"
                             size="small"
