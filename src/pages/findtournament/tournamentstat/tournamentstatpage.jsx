@@ -29,6 +29,7 @@ const Tournamentstatpage = () => {
   const [dataFetched, setdataFetched] = useState(false);
 
   useEffect(() => {
+    console.log(tournament)
     if (!tournament.tournment_banner || tournament.tournment_banner === "") {
       setImageLoaded(true);
     }
@@ -150,8 +151,20 @@ const Tournamentstatpage = () => {
 
             </div>
           )}
+          {tournament.type === 'tdm' && data2.isopen && (
+            <div className="btn">
+              <a
+                href={`${localhos}/tdmregister/${tid}`}
+                target="_blank"
+                title="Register for this Tournament"
+              >
+                <Button variant="contained" startIcon={<MdFeed />}> REGISTER </Button>
+              </a>
 
-          {!data2.isopen && <div style={{ color: 'red', textAlign: 'center' }}>**Registration is Closed for this Tournament**</div>}
+            </div>
+          )}
+
+          {!data2.isopen && <div style={{ color: 'red', textAlign: 'center', marginTop:'20px',marginBottom:'20px', fontWeight:500 }}>**Registration is Closed for this Tournament**</div>}
           <div className="contacts">
             <div>Contacts Details</div>
             {links.length > 0 && <>

@@ -22,7 +22,7 @@
         padding: 10px 20px;
         margin-top: 10px;
         border: 1px dotted grey;
-        /* border-radius: 10px; */
+        border-radius: 10px;
         position: relative;
         background: white;
         overflow: hidden;
