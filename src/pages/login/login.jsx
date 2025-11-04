@@ -23,13 +23,13 @@ const Login = () => {
                     <meta name="description" content="Log in or sign up to BattleFiesta to join PUBG, BGMI, and Free Fire tournaments. Create your account, track your progress, and compete with top players." />
                 </Helmet>
                 <div className="box">
-                    {/* <div className="logo">
+                    <div className="logo">
                         <MdOutlineGrass className='company' />
-                    </div> */}
-                    <div className="want">
+                    </div>
+                    {/* <div className="want">
                         <span className={log ? "active" : null} onClick={() => fun(true)}>Login</span>
                         <span className={log ? null : "active"} onClick={() => fun(false)}>Register</span>
-                    </div>
+                    </div> */}
                     <div className="both" style={{ transform: log ? "translateX(0%)" : "translateX(-50%)" }}>
                         <Signin showmsg={showmsg} setshowmsg={setshowmsg} />
                         <Signup setshowmsg={setshowmsg} setlog={setlog} />

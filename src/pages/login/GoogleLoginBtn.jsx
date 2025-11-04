@@ -8,7 +8,7 @@ import { alltourna } from '../../store/api';
 import { profilefetch } from '../../store/profile';
 import { contactusform, membership, memshipentry, Users, voucher } from '../../store/admin';
 
-const GoogleLoginBtn = ({text='signup_with'}) => {
+const GoogleLoginBtn = ({ text = 'signup_with' }) => {
     const dispatch = useDispatch();
 
     const handleSuccess = async (credentialResponse) => {
@@ -64,19 +64,36 @@ const GoogleLoginBtn = ({text='signup_with'}) => {
     };
 
     return (
-        <div 
-        style={{ marginLeft:'auto',marginRight:'10px', marginTop:'5px', width:'100%'
-        , display:'flex', justifyContent:'end'}}
+        <div
+            style={{
+                marginLeft: 'auto', marginRight: '10px', marginTop: '5px', width: '100%'
+                
+            }}
         >
-        <GoogleLogin
-            onSuccess={handleSuccess}
-            onError={() => console.log("Login Failed")}
-            theme="filled_blue"
-            // logo_alignment='center'
-            size='medium'
-            shape="pill"
-            text={text}
-        />
+            <GoogleLogin
+                onSuccess={handleSuccess}
+                onError={() =>  toast.warn("Login Failed",{autoClose:2500})}
+                theme="filled_blue"
+                // logo_alignment='center'
+                size='large'
+                shape="pill"
+                text={text}
+            />
+
+            {/* <GoogleLogin
+                onSuccess={handleSuccess}
+                onError={() => console.log("Login Failed")}
+                theme="filled_blue"
+                size="large"
+                text="signin_with"
+                shape="pill"
+                logo_alignment="left"
+                width="260px"
+                locale="en"
+                type="standard"
+                ux_mode="popup"
+            /> */}
+
         </div>
 
     )

@@ -150,6 +150,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         label="Email"
                         fullWidth
                         size="small"
+                        variant='standard'
                         className='filled'
                         onChange={signhandle}
                         name="email"
@@ -167,6 +168,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         label="Password"
                         className='filled'
                         size="small"
+                         variant='standard'
                         required
                         type={loginpass ? "password" : null}
                         onChange={signhandle}
@@ -183,7 +185,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
 
                     />}
                     {!forget && <div className='forget'>
-                        <span onClick={() => setforget(true)}>Forget Password?</span>
+                        <span onClick={() => setforget(true)}>Forgot Password?</span>
                     </div>}
 
                     {forget && <div className='forget'>

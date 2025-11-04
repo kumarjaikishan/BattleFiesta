@@ -111,7 +111,7 @@ const Signup = ({ setlog, setshowmsg }) => {
             <div className="singup">
                 <form onSubmit={submite}>
                     <TextField
-                  
+
                         label="Name"
                         size="small"
                         autoComplete='off'
@@ -213,8 +213,12 @@ const Signup = ({ setlog, setshowmsg }) => {
                     </Tooltip>
                 </form>
 
-                <p>OR</p>
-                <GoogleLoginBtn />
+                {/* <p>OR</p> */}
+                <div
+                style={{marginTop:'30px'}}
+                >
+                    <GoogleLoginBtn />
+                </div>
 
             </div>
         </>
