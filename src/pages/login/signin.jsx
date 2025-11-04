@@ -168,7 +168,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         label="Password"
                         className='filled'
                         size="small"
-                         variant='standard'
+                        variant='standard'
                         required
                         type={loginpass ? "password" : null}
                         onChange={signhandle}
@@ -202,9 +202,9 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         Login
                     </LoadingButton>}
                     <p>OR</p>
-                  
-                        <GoogleLoginBtn text={'signin_with'} />
-                    
+
+                    <GoogleLoginBtn text={'Signin/SignUp with'} />
+
                     {forget && <LoadingButton
                         fullWidth
                         loading={btnclick}

@@ -1,102 +1,123 @@
-import React from 'react'
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-import { useDispatch } from 'react-redux';
-import { setadmin, setloader, setlogin } from '../../store/login';
-import { toast } from 'react-toastify';
-import { alltourna } from '../../store/api';
-import { profilefetch } from '../../store/profile';
-import { contactusform, membership, memshipentry, Users, voucher } from '../../store/admin';
+import React from "react";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { setadmin, setloader, setlogin } from "../../store/login";
+import { alltourna } from "../../store/api";
+import { profilefetch } from "../../store/profile";
+import {
+  contactusform,
+  membership,
+  memshipentry,
+  Users,
+  voucher,
+} from "../../store/admin";
+import { FcGoogle } from "react-icons/fc";
 
-const GoogleLoginBtn = ({ text = 'signup_with' }) => {
-    const dispatch = useDispatch();
+const GoogleLoginBtn = ({ text = "Sign up with Google" }) => {
+  const dispatch = useDispatch();
 
-    const handleSuccess = async (credentialResponse) => {
-        const token = credentialResponse.credential;
-        const userData = jwtDecode(token);
-        console.log(userData)
+  // ✅ Google Login Hook
+  const login = useGoogleLogin({
+    flow: "implicit",
+    onSuccess: async (credentialResponse) => {
+      try {
+        const accessToken = credentialResponse.access_token;
 
-        // send token to backend for verification
-        // await fetch("http://localhost:5000/api/auth/google", {
-        const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}auth/google`, {
+        // Fetch user info from Google
+        const resGoogle = await fetch(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+        const userData = await resGoogle.json();
+        console.log("Google user:", userData);
+
+        // Send token to backend
+        const res = await fetch(
+          `${import.meta.env.VITE_API_ADDRESS}auth/google`,
+          {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token }),
-        });
+            body: JSON.stringify({ token: accessToken }),
+          }
+        );
 
         const data = await res.json();
-        // console.log(data);
-        if (res.ok && res.status == 200) {
-            dispatch(setlogin(true));
-            // console.log("login data",data);
-            toast.success(data.message, { autoClose: 1000 });
-            // setbtnclick(false);
-            dispatch(setloader(true));
-            dispatch(setadmin(data.isadmin));
-            localStorage.setItem("token", data.token);
-            dispatch(alltourna());
-            dispatch(profilefetch());
 
-            if (data.isadmin) {
-                dispatch(memshipentry());
-                dispatch(contactusform());
-                dispatch(voucher());
-                dispatch(membership());
-                dispatch(Users());
-            }
-            return navigate('/dashboard');
+        if (res.ok && res.status === 200) {
+          dispatch(setlogin(true));
+          toast.success(data.message, { autoClose: 1000 });
+          dispatch(setloader(true));
+          dispatch(setadmin(data.isadmin));
+          localStorage.setItem("token", data.token);
+          dispatch(alltourna());
+          dispatch(profilefetch());
+
+          if (data.isadmin) {
+            dispatch(memshipentry());
+            dispatch(contactusform());
+            dispatch(voucher());
+            dispatch(membership());
+            dispatch(Users());
+          }
+          // navigate('/dashboard');
+        } else {
+          toast.warn(data.message || "Error occurred", { autoClose: 1500 });
+          dispatch(setloader(false));
         }
-        else if (res.ok && res.status == 201) {
-            dispatch(setloader(false));
-            // setbtnclick(false);
-            // setshowmsg(true)
-            // toast.warn("Verify Email", { autoClose: 3700 });
+      } catch (error) {
+        console.error(error);
+        toast.error("Google Login Failed", { autoClose: 2000 });
+      }
+    },
+    onError: () => toast.error("Google Login Failed", { autoClose: 2000 }),
+  });
 
-        }
-        else {
-            // setshowmsg(false)
-            // console.log(data);
-            toast.warn(data.message ? data.message : "Error Occured", { autoClose: 1500 });
-            // setbtnclick(false);
-            dispatch(setloader(false));
-        }
+  // ✅ Inline Styles
+  const buttonStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+    width: "100%",
+    padding: "12px",
+    marginTop: "10px",
+    marginRight: "10px",
+    backgroundColor: "#ffffff",
+    border: "1px solid #d1d5db",
+    borderRadius: "50px",
+    color: "#374151",
+    fontWeight: "500",
+    fontSize: "14px",
+    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+    cursor: "pointer",
+    transition: "all 0.2s ease-in-out",
+  };
 
-    };
+  const hoverStyle = {
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+    transform: "scale(0.98)",
+  };
 
-    return (
-        <div
-            style={{
-                marginLeft: 'auto', marginRight: '10px', marginTop: '5px', width: '100%'
-                
-            }}
-        >
-            <GoogleLogin
-                onSuccess={handleSuccess}
-                onError={() =>  toast.warn("Login Failed",{autoClose:2500})}
-                theme="filled_blue"
-                // logo_alignment='center'
-                size='large'
-                shape="pill"
-                text={text}
-            />
+  // ✅ Hover effect using React state
+  const [isHovered, setIsHovered] = React.useState(false);
 
-            {/* <GoogleLogin
-                onSuccess={handleSuccess}
-                onError={() => console.log("Login Failed")}
-                theme="filled_blue"
-                size="large"
-                text="signin_with"
-                shape="pill"
-                logo_alignment="left"
-                width="260px"
-                locale="en"
-                type="standard"
-                ux_mode="popup"
-            /> */}
+  return (
+    <button
+      onClick={() => login()}
+      style={{
+        ...buttonStyle,
+        ...(isHovered ? hoverStyle : {}),
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <FcGoogle size={20} />
+      {text}
+    </button>
+  );
+};
 
-        </div>
-
-    )
-}
-
-export default GoogleLoginBtn
+export default GoogleLoginBtn;
