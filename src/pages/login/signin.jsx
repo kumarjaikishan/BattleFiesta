@@ -203,7 +203,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     </LoadingButton>}
                     <p>OR</p>
 
-                    <GoogleLoginBtn text={'Signin/SignUp with'} />
+                    <GoogleLoginBtn text={'Signin/SignUp with Google'} />
 
                     {forget && <LoadingButton
                         fullWidth
