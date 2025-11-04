@@ -237,6 +237,7 @@ const Findtournament = () => {
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE
                                 </Button>
+                              
                                 {searching &&
                                     <p className="status" title="Status">{val.status}</p>}
                             </div>

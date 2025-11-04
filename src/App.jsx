@@ -37,6 +37,7 @@ import { profilefetch } from './store/profile';
 // off this for disable notification
 import { messaging } from './firebase';
 import { getToken, onMessage } from 'firebase/messaging';
+import LoginSuccess from './pages/login/LoginSucess';
 
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
@@ -217,6 +218,7 @@ function App() {
             <Route path="/faq" element={<Faq />} />
             <Route path="/modal" element={<Modalbox />} />
 
+            <Route path="/login/success" element={<LoginSuccess />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<Errorpage />} />
 

@@ -13,6 +13,7 @@ import { profilefetch } from '../../store/profile'
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { memshipentry, contactusform, voucher, membership, Users } from '../../store/admin';
+import GoogleLoginBtn from './GoogleLoginBtn';
 
 const Signin = ({ showmsg, setshowmsg }) => {
     let navigate = useNavigate();
@@ -109,6 +110,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
             dispatch(setloader(false));
         }
     }
+
     const [forget, setforget] = useState(false);
     const emailset = async () => {
         const email = signinp.email;
@@ -197,6 +199,10 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     >
                         Login
                     </LoadingButton>}
+                    <p>OR</p>
+                  
+                        <GoogleLoginBtn text={'signin_with'} />
+                    
                     {forget && <LoadingButton
                         fullWidth
                         loading={btnclick}

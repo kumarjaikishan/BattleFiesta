@@ -10,8 +10,9 @@ import { persistStore } from 'redux-persist';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme.js';
 import { HelmetProvider } from "react-helmet-async";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
+const clientId = import.meta.env.VITE_API_GOOGLE_CLIENTID
 let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter >
         <PersistGate persistor={persistor} >
           <ThemeProvider theme={theme}>
-            <App />
+            <GoogleOAuthProvider clientId={clientId}>
+              <App />
+            </GoogleOAuthProvider>
           </ThemeProvider>
         </PersistGate>
       </BrowserRouter>

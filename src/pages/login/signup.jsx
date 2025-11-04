@@ -5,11 +5,13 @@ import { MdOutlineMail, MdLocalPhone } from "react-icons/md";
 import { IoKeyOutline, IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash, FaUserAstronaut } from "react-icons/fa";
 import { FaHandsHoldingCircle } from "react-icons/fa6";
-import { setloader, setlogin } from '../../store/login';
+import { setadmin, setloader, setlogin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import swal from 'sweetalert';
+import GoogleLoginBtn from './GoogleLoginBtn';
+import { Tooltip } from '@mui/material';
 
 const Signup = ({ setlog, setshowmsg }) => {
     const dispatch = useDispatch();
@@ -103,11 +105,13 @@ const Signup = ({ setlog, setshowmsg }) => {
         }
     }
 
+
     return (
         <>
             <div className="singup">
                 <form onSubmit={submite}>
                     <TextField
+                  
                         label="Name"
                         size="small"
                         autoComplete='off'
@@ -192,17 +196,26 @@ const Signup = ({ setlog, setshowmsg }) => {
                             </InputAdornment>,
                         }}
                     />
-                    <LoadingButton
-                        fullWidth
-                        loading={btnclick}
-                        type='submit'
-                        loadingPosition="start"
-                        variant="contained"
-                        startIcon={<FaHandsHoldingCircle />}
-                    >
-                        Signup
-                    </LoadingButton>
+                    <Tooltip title="Please Proceed with Google Signup">
+                        <span style={{ width: '100%' }}>
+                            <LoadingButton
+                                fullWidth
+                                loading={btnclick}
+                                type='submit'
+                                loadingPosition="start"
+                                variant="contained"
+                                disabled
+                                startIcon={<FaHandsHoldingCircle />}
+                            >
+                                Signup
+                            </LoadingButton>
+                        </span>
+                    </Tooltip>
                 </form>
+
+                <p>OR</p>
+                <GoogleLoginBtn />
+
             </div>
         </>
     )

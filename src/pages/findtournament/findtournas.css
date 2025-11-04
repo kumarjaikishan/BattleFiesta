@@ -250,6 +250,13 @@
                     letter-spacing: 1px;
                     font-size: 0.8em;
                     background: black;
+                    background: url('/btn-bg1.webp');
+                    /* background: url('/btn-bg2.webp'); */
+                    background-size: cover;
+                    outline: none;
+                    border: none;
+                    padding: 5px 10px;
+                    box-shadow: none;
                 }
 
                 .status {

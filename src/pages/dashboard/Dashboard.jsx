@@ -237,7 +237,7 @@ const Dashboard = () => {
         <div className="controles">
           <div className="card">
             <div>
-              <span>Total Tournament</span> <span>:</span><span>{count.total || "N/A"}</span>
+              <span>Total Tournament</span> <span>:</span><span>{count.total || 0}</span>
             </div>
             <div>
               <span>Upcoming</span> <span>:</span><span>{count.upcoming || 0}</span>

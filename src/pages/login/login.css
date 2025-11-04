@@ -20,6 +20,7 @@
 
     .box {
         margin-top: 20px;
+        padding-top: 10px;
         border-radius: 20px;
         position: relative;
         width: 420px;
@@ -58,11 +59,12 @@
             .singup {
                 height: 100%;
                 width: 100%;
+                 padding: 0 10px;
 
                 & form {
                     height: 100%;
-                    padding: 0 10px;
                     width: 100%;
+                   
                     position: relative;
                     display: flex;
                     flex-direction: column;
@@ -88,10 +90,6 @@
                     justify-content: space-around;
                     align-items: center;
 
-                    svg{
-                        width: 20px;
-                        height: 20px;
-                    }
 
                     .forget {
                         width: 80%;
