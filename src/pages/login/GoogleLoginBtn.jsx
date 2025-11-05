@@ -14,17 +14,16 @@ import {
 } from "../../store/admin";
 import { FcGoogle } from "react-icons/fc";
 
-const GoogleLoginBtn = ({ text = "Sign up with Google" }) => {
+const GoogleLoginBtn = ({ text = "Sign in with Google" }) => {
   const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = React.useState(false);
 
-  // ✅ Google Login Hook
   const login = useGoogleLogin({
     flow: "implicit",
     onSuccess: async (credentialResponse) => {
       try {
         const accessToken = credentialResponse.access_token;
 
-        // Fetch user info from Google
         const resGoogle = await fetch(
           "https://www.googleapis.com/oauth2/v3/userinfo",
           {
@@ -32,9 +31,7 @@ const GoogleLoginBtn = ({ text = "Sign up with Google" }) => {
           }
         );
         const userData = await resGoogle.json();
-        console.log("Google user:", userData);
 
-        // Send token to backend
         const res = await fetch(
           `${import.meta.env.VITE_API_ADDRESS}auth/google`,
           {
@@ -62,7 +59,6 @@ const GoogleLoginBtn = ({ text = "Sign up with Google" }) => {
             dispatch(membership());
             dispatch(Users());
           }
-          // navigate('/dashboard');
         } else {
           toast.warn(data.message || "Error occurred", { autoClose: 1500 });
           dispatch(setloader(false));
@@ -75,46 +71,62 @@ const GoogleLoginBtn = ({ text = "Sign up with Google" }) => {
     onError: () => toast.error("Google Login Failed", { autoClose: 2000 }),
   });
 
-  // ✅ Inline Styles
-  const buttonStyle = {
+  const buttonStyle1 = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "10px",
+    gap: "12px",
     width: "100%",
-    padding: "12px",
-    marginTop: "10px",
-    marginRight: "10px",
-    backgroundColor: "#ffffff",
-    border: "1px solid #d1d5db",
-    borderRadius: "50px",
+    padding: "12px 16px",
+    marginTop: "12px",
+    background: isHovered
+      ? "linear-gradient(145deg, #ffffff, #f3f4f6)"
+      : "linear-gradient(145deg, #f9fafb, #ffffff)",
+    border: "1px solid #e5e7eb",
+    borderRadius: "12px",
     color: "#374151",
-    fontWeight: "500",
-    fontSize: "14px",
-    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+    // fontWeight: "600",
+    fontSize: "15px",
     cursor: "pointer",
     transition: "all 0.2s ease-in-out",
+    boxShadow: isHovered
+      ? "0 6px 14px rgba(0, 0, 0, 0.12)"
+      : "0 2px 8px rgba(0, 0, 0, 0.06)",
+    transform: isHovered ? "translateY(-2px)" : "translateY(0px)",
   };
+  const buttonStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "10px",
+  width: "100%",
+  padding: "12px 18px",
+  marginTop: "10px",
+  background: isHovered
+    ? "linear-gradient(90deg, #f5f5f5 0%, #fff 100%)"
+    : "#fff",
+  border: "1px solid #d1d5db",
+  borderRadius: "50px",
+  color: "#111827",
+  // fontWeight: "600",
+  fontSize: "15px",
+  cursor: "pointer",
+  boxShadow: isHovered
+    ? "0 0 12px rgba(66, 133, 244, 0.4)"
+    : "0 1px 4px rgba(0, 0, 0, 0.1)",
+  transition: "all 0.25s ease-in-out",
+};
 
-  const hoverStyle = {
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-    transform: "scale(0.98)",
-  };
-
-  // ✅ Hover effect using React state
-  const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <button
+      type="button"
       onClick={() => login()}
-      style={{
-        ...buttonStyle,
-        ...(isHovered ? hoverStyle : {}),
-      }}
+      style={buttonStyle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <FcGoogle size={20} />
+      <FcGoogle size={22} />
       {text}
     </button>
   );

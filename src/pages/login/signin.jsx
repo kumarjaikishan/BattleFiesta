@@ -184,13 +184,38 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         }}
 
                     />}
-                    {!forget && <div className='forget'>
-                        <span onClick={() => setforget(true)}>Forgot Password?</span>
-                    </div>}
-
-                    {forget && <div className='forget'>
-                        <span onClick={() => setforget(false)}>SignIn?</span>
-                    </div>}
+                    <div
+                        style={{
+                            textAlign: "right",
+                            marginTop: "-0.5rem",
+                            fontSize: "0.9rem",
+                            width: '100%'
+                        }}
+                    >
+                        {!forget ? (
+                            <span
+                                onClick={() => setforget(true)}
+                                style={{
+                                    color: "#3b82f6",
+                                    cursor: "pointer",
+                                    textDecoration: "underline",
+                                }}
+                            >
+                                Forgot Password?
+                            </span>
+                        ) : (
+                            <span
+                                onClick={() => setforget(false)}
+                                style={{
+                                    color: "#3b82f6",
+                                    cursor: "pointer",
+                                    textDecoration: "underline",
+                                }}
+                            >
+                                Back to Sign In
+                            </span>
+                        )}
+                    </div>
                     {!forget && <LoadingButton
                         loading={btnclick}
                         fullWidth
@@ -201,10 +226,6 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     >
                         Login
                     </LoadingButton>}
-                    <p>OR</p>
-
-                    <GoogleLoginBtn text={'Signin/SignUp with Google'} />
-
                     {forget && <LoadingButton
                         fullWidth
                         loading={btnclick}
@@ -213,8 +234,27 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         loadingPosition="start"
                         variant="contained"
                     >
-                        Email sent
+                        Send Email
                     </LoadingButton>}
+
+
+                    <div
+                        style={{
+                            textAlign: "center",
+                            color: "#60636a",
+                            fontSize: "0.9rem",
+                            margin: "0.5rem 0",
+                        }}
+                    >
+                        — OR —
+                    </div>
+
+
+                    <GoogleLoginBtn text="Sign in or Sign up with Google" />
+                    {/* <GoogleLoginBtn text="Continue with Google" /> */}
+
+
+
                     {/* {showmsg && <p>*Note: Email sent successfully. If not in your inbox, check spam/junk mail. </p>} */}
                 </form>
             </div>
