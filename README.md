@@ -35,7 +35,7 @@ To get started with BattleFiesta, follow these steps:
 
 ## Feedback
 
-We're constantly working to improve the BattleFiesta experience. If you have any feedback, suggestions, or encounter any issues while using the website, please don't hesitate to [contact us](https://battlefiesta.vercel.app/contact).
+We're constantly working to improve the BattleFiesta experience. If you have any feedback, suggestions, or encounter any issues while using the website, please don't hesitate to [contact us](https://battlefiesta.in/contact).
 
 ## Contributors
 
