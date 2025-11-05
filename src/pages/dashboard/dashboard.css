@@ -254,10 +254,16 @@
                     font-size: 0.8em;
                     transition: 0.2s;
                     background: black;
+                     /* background: url('/btn-bg1.webp'); */
+                    /* background: url('/btn-bg2.webp');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    box-shadow: none; */
                 }
 
                 button:hover {
                     background: rgb(34, 33, 33);
+                      /* background: url('/btn-bg1.webp'); */
                 }
 
                 .status {

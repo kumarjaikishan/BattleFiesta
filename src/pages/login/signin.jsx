@@ -187,7 +187,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                     <div
                         style={{
                             textAlign: "right",
-                            marginTop: "-0.5rem",
+                            marginTop: "5px",
                             fontSize: "0.9rem",
                             width: '100%'
                         }}
@@ -196,7 +196,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                             <span
                                 onClick={() => setforget(true)}
                                 style={{
-                                    color: "#3b82f6",
+                                    // color: "#3b82f6",
                                     cursor: "pointer",
                                     textDecoration: "underline",
                                 }}
@@ -207,12 +207,12 @@ const Signin = ({ showmsg, setshowmsg }) => {
                             <span
                                 onClick={() => setforget(false)}
                                 style={{
-                                    color: "#3b82f6",
+                                    // color: "#3b82f6",
                                     cursor: "pointer",
                                     textDecoration: "underline",
                                 }}
                             >
-                                Back to Sign In
+                                ← Back to Sign In
                             </span>
                         )}
                     </div>
