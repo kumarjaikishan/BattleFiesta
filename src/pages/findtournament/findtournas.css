@@ -252,7 +252,7 @@
                     background: black;
                     background: url('/btn-bg1.webp');
                     /* background: url('/btn-bg2.webp'); */
-                    background-size: cover;
+                    background-size: contain;
                     outline: none;
                     border: none;
                     padding: 5px 10px;
