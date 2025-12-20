@@ -21,19 +21,19 @@ const Tournamentstatpage = () => {
   }, [])
 
   const [iserror, setiserror] = useState(false);
-  const [tournament, settournament] = useState("");
   const [data2, setdata2] = useState(false);
   const [links, setlinks] = useState([]);
   const [publicpost, setpublicpost] = useState('');
+  const [tournament, settournament] = useState(null);
   const [ImageLoaded, setImageLoaded] = useState(false);
   const [dataFetched, setdataFetched] = useState(false);
 
   useEffect(() => {
-    console.log(tournament)
-    if (!tournament.tournment_banner || tournament.tournment_banner === "") {
+    // console.log(tournament)
+    if (dataFetched && (!tournament?.tournment_banner || tournament?.tournment_banner === "")) {
       setImageLoaded(true);
     }
-  }, [tournament])
+  }, [tournament, dataFetched])
 
   useEffect(() => {
     if (ImageLoaded && dataFetched) {
@@ -96,24 +96,27 @@ const Tournamentstatpage = () => {
         </div>
       </div>}
       {!iserror && <>
-        {tournament.tournment_banner != "" && <div className="img">
-          <img
-            // src={tournament.tournment_banner}
-            src={cloudinaryUrl(tournament?.tournment_banner, {
-              format: "webp",
-              // width: 1000,
-              // height: 300,
-            })}
-            loading="lazy"
-            alt="Tournament Banner"
-            onLoad={() => setImageLoaded(true)}
-          />
-        </div>}
+        {
+          tournament?.tournment_banner != "" && <div className="img">
+            <img
+              // src={tournament.tournment_banner}
+              src={cloudinaryUrl(tournament?.tournment_banner, {
+                format: "webp",
+                // width: 1000,
+                // height: 300,
+              })}
+              loading="lazy"
+              alt="Tournament Banner"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
+            />
+          </div>
+        }
         <div className="info">
           <div className="upper">
-            <div>{tournament.title} <span>{tournament.status}</span></div>
-            <div>Organised by: {tournament.organiser} </div>
-            <div>Created At: {changeformat(tournament.createdAt)}
+            <div>{tournament?.title} <span>{tournament?.status}</span></div>
+            <div>Organised by: {tournament?.organiser} </div>
+            <div>Created At: {changeformat(tournament?.createdAt)}
               <Button variant="outlined"
                 title={`View ${tournament?.userid?.name}'s Channel`}
                 startIcon={<GrOverview />}
@@ -131,11 +134,11 @@ const Tournamentstatpage = () => {
             ))}
           </div>}
 
-          {tournament.type === 'classic' && (
+          {tournament?.type === 'classic' && (
             <div className="btn">
               {data2.isopen && <a
-                href={`${localhos}/${tournament.type === 'tdm' ? 'tdmregister' : 'register'}/${tid}`}
-                target="_blank"
+                href={`${localhos}/${tournament?.type === 'tdm' ? 'tdmregister' : 'register'}/${tid}`}
+                // target="_blank"
                 title="Register for this Tournament"
               >
                 <Button variant="contained" startIcon={<MdFeed />}> REGISTER </Button>
@@ -143,7 +146,7 @@ const Tournamentstatpage = () => {
               }
               <a
                 href={`${localhos}/stat/${tid}`}
-                target="_blank"
+                // target="_blank"
                 title="View Stats for this tournament"
               >
                 <Button variant="outlined" startIcon={<MdLeaderboard />}> LEADERBOARD </Button>
@@ -151,7 +154,7 @@ const Tournamentstatpage = () => {
 
             </div>
           )}
-          {tournament.type === 'tdm' && data2.isopen && (
+          {tournament?.type === 'tdm' && data2.isopen && (
             <div className="btn">
               <a
                 href={`${localhos}/tdmregister/${tid}`}
@@ -164,7 +167,7 @@ const Tournamentstatpage = () => {
             </div>
           )}
 
-          {!data2.isopen && <div style={{ color: 'red', textAlign: 'center', marginTop:'20px',marginBottom:'20px', fontWeight:500 }}>**Registration is Closed for this Tournament**</div>}
+          {!data2.isopen && <div style={{ color: 'red', textAlign: 'center', marginTop: '20px', marginBottom: '20px', fontWeight: 500 }}>**Registration is Closed for this Tournament**</div>}
           <div className="contacts">
             <div>Contacts Details</div>
             {links.length > 0 && <>
