@@ -1,6 +1,8 @@
 export function cloudinaryUrl(URL, options = {}) {
   if (!URL) return null; // nothing to transform
 
+  if(!URL.toLowerCase().includes('res.cloudinary.com')) return URL;
+
   const {
     width,
     height,
