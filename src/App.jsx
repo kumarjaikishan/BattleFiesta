@@ -38,6 +38,7 @@ import { profilefetch } from './store/profile';
 import { messaging } from './firebase';
 import { getToken, onMessage } from 'firebase/messaging';
 import LoginSuccess from './pages/login/LoginSucess';
+import BackupSchedulePage from './pages/admin/backups/Backups';
 
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
@@ -185,6 +186,7 @@ function App() {
               }
             >
               <Route path="" element={<Admindashboard />} />
+              <Route path="backup" element={<BackupSchedulePage />} />
               <Route path="request" element={<Membershiprequest />} />
               <Route path="query" element={<Query />} />
               <Route path="voucher" element={<Voucher />} />
