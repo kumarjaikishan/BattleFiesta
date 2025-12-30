@@ -13,10 +13,11 @@ import {
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { IoMdRefresh } from "react-icons/io";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { MdEdit, MdDelete, MdSearch } from "react-icons/md";
 import { toast } from "react-toastify";
 import "./dashboard.css";
 import Modalbox from "../../../components/custommodal/Modalbox";
+import dayjs from "dayjs";
 
 const API = `${import.meta.env.VITE_API_ADDRESS}backup-schedules`;
 
@@ -25,15 +26,16 @@ const validateCron = (cron) => {
     if (!cron) return { valid: false, message: "Cron expression required" };
 
     const parts = cron.trim().split(/\s+/);
-    if (parts.length !== 6) {
+    if (parts.length !== 5) {
         return {
             valid: false,
-            message: "Cron must have 6 fields (sec min hour day month week)"
+            message: "Cron must have 5 fields (min hour day month week)"
         };
     }
 
+    // ⬇️ changed {5} → {4} to make total fields = 5
     const cronRegex =
-        /^(\*|\*\/\d+|\d+|\d+\-\d+)(\s+(\*|\*\/\d+|\d+|\d+\-\d+)){5}$/;
+        /^(\*|\*\/\d+|\d+|\d+\-\d+)(\s+(\*|\*\/\d+|\d+|\d+\-\d+)){4}$/;
 
     if (!cronRegex.test(cron)) {
         return { valid: false, message: "Invalid cron syntax" };
@@ -42,15 +44,16 @@ const validateCron = (cron) => {
     return { valid: true, message: "Valid cron expression" };
 };
 
+
 /* ---------------- CRON EXPLAINER ---------------- */
 const explainCron = (cron) => {
     const { valid, message } = validateCron(cron);
     if (!valid) return message;
 
-    const [sec, min, hour, , , week] = cron.split(" ");
+    const [min, hour, , , week] = cron.split(" ");
 
-    if (sec.startsWith("*/")) {
-        return `Runs every ${sec.replace("*/", "")} seconds`;
+    if (min.startsWith("*/")) {
+        return `Runs every ${min.replace("*/", "")} Minutes`;
     }
 
     if (week === "*") {
@@ -77,7 +80,7 @@ const explainCron = (cron) => {
 /* ---------------- INITIAL STATE ---------------- */
 const emptyForm = {
     databases: [],
-    cron: "* * * * * *",
+    cron: "* * * * *",
     timezone: "Asia/Kolkata",
     enabled: true,
     emailNotification: {
@@ -93,6 +96,7 @@ const BackupScheduleAdmin = () => {
     const [editId, setEditId] = useState(null);
     const [modal, setModal] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [cronLogs, setCronLogs] = useState(null);
 
     useEffect(() => {
         fetchSchedules();
@@ -113,6 +117,25 @@ const BackupScheduleAdmin = () => {
 
             setSchedules(data.schedules || []);
             setDatabaselist((data.database || []).map((db) => db.name));
+        } catch {
+            toast.error("Failed to load schedules");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getStat = async () => {
+        const token = localStorage.getItem("token");
+        setLoading(true);
+
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_ADDRESS}getJobStatus`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            const data = await res.json();
+            console.log(data)
+
         } catch {
             toast.error("Failed to load schedules");
         } finally {
@@ -203,34 +226,44 @@ const BackupScheduleAdmin = () => {
             <div className="inner">
                 <div className="controler">
                     <h2>Backup Schedules</h2>
+                    <div>
+                        <LoadingButton
+                            loading={loading}
+                            onClick={fetchSchedules}
+                            endIcon={<IoMdRefresh />}
+                            variant="outlined"
+                            size="small"
+                        >
+                            REFRESH
+                        </LoadingButton>
 
-                    <LoadingButton
-                        loading={loading}
-                        onClick={fetchSchedules}
-                        endIcon={<IoMdRefresh />}
-                        variant="outlined"
-                        size="small"
-                    >
-                        REFRESH
-                    </LoadingButton>
 
-                    <Button
-                        size="small"
-                        variant="contained"
-                        onClick={() => {
-                            setForm(emptyForm);
-                            setEditId(null);
-                            setModal(true);
-                        }}
-                    >
-                        ADD
-                    </Button>
+                        <Button
+                            size="small"
+                            variant="contained"
+                            onClick={() => {
+                                setForm(emptyForm);
+                                setEditId(null);
+                                setModal(true);
+                            }}
+                        >
+                            ADD Jobs
+                        </Button>
+                        {/* <Button
+                            size="small"
+                            variant="contained"
+                            onClick={getStat}
+                        >
+                            Get stat
+                        </Button> */}
+                    </div>
                 </div>
 
                 <div className="header">
                     <span>#</span>
                     <span>Databases</span>
                     <span>Cron</span>
+                    <span>Email</span>
                     <span>status</span>
                     <span>Actions</span>
                 </div>
@@ -241,16 +274,22 @@ const BackupScheduleAdmin = () => {
                             <span>{i + 1}</span>
                             <span>{s.databases.join(", ")}</span>
                             <span>
-                                <p style={{letterSpacing:'4px'}}>{s.cron}</p>
-                                <p style={{fontSize:'14px', color:'GrayText'}}>{explainCron(s.cron)}</p>
+                                <p style={{ letterSpacing: '4px' }}>{s.cron}</p>
+                                <p style={{ fontSize: '13px', color: 'GrayText' }}>{explainCron(s.cron)}</p>
                             </span>
-                            <span>{s.enabled ? '✅': '❌'}</span>
+                            <span>{s?.emailNotification?.enabled ? s?.emailNotification.email : '-'}</span>
+                            <span>{s.enabled ? '✅' : '❌'}</span>
                             <span>
                                 <MdEdit
                                     onClick={() => {
                                         setForm(s);
                                         setEditId(s._id);
                                         setModal(true);
+                                    }}
+                                />
+                                <MdSearch
+                                    onClick={() => {
+                                        setCronLogs(s.logs)
                                     }}
                                 />
                                 <MdDelete onClick={() => deleteSchedule(s._id)} />
@@ -382,6 +421,25 @@ const BackupScheduleAdmin = () => {
                                     Cancel
                                 </Button>
                             </div>
+                        </span>
+                    </form>
+                </div>
+            </Modalbox>
+            <Modalbox open={cronLogs?.length > 0} onClose={() => setCronLogs(null)}>
+                <div className="membermodal">
+                    <form onSubmit={saveSchedule}>
+                        <h2>Schedules</h2>
+                        <span className="modalcontent">
+                            {
+                                cronLogs?.map((val, ind) => {
+                                    return <div key={ind} className="cronlogs">
+                                        <div>{ind + 1}</div>
+                                        <div>{ dayjs(val.startedAt).format('hh:mm:ss')}</div>
+                                        <div className={val.status=='SUCCESS' ?  'status success': val.status=='FAILED' ? "status failed": 'status running' }>{val.status}</div>
+                                        <div>{val.durationMs/1000 + ' Seconds'}</div>
+                                    </div>
+                                })
+                            }
                         </span>
                     </form>
                 </div>

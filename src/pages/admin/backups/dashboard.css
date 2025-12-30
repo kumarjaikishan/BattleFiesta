@@ -10,12 +10,12 @@
         .controler {
             position: relative;
             padding: 5px 0px;
+            display: flex;
+            justify-content: space-between;
 
-            .refreshe {
-                position: absolute;
-                top: 50%;
-                right: 10px;
-                transform: translateY(-50%);
+            >div {
+               display: flex;
+               gap: 10px;
             }
         }
 
@@ -67,41 +67,75 @@
 
             & span:nth-child(2) {
                 text-transform: capitalize;
-                 width: auto;
-                text-align: start;
+                width: 120px;
                 /* border: 1px solid red; */
             }
 
             & span:nth-child(3) {
-                width: auto;
+                width: 140px;
+                /* border: 1px solid red; */
+
             }
 
             & span:nth-child(4) {
-                width: 70px;
-                
+                width: 250px;
+                /* border: 1px solid red; */
             }
+
             & span:nth-child(5) {
-                width: 150px;
-                 display: flex;
-                  gap: 15px;
+                width: 60px;
+                /* border: 1px solid red; */
+
             }
-        
+
+            & span:nth-child(6) {
+                width: 60px;
+                display: flex;
+                gap: 15px;
+                /* border: 1px solid red; */
+            }
+
         }
-       
+
     }
+   
 }
+ .membermodal .modalcontent .cronlogs{
+        width: 100% ;
+        /* border:1px solid red ; */
+
+        .status{
+            padding: 2px 8px;
+            background: red;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status.success{
+            color: rgb(10, 73, 6);
+            background: rgba(26, 231, 26, 0.282);
+        }
+        .status.failed{
+            color: rgb(77, 8, 8);
+            background: rgba(255, 0, 0, 0.282);
+        }
+        .status.running{
+            color: rgb(7, 51, 73);
+            background: rgba(12, 128, 186, 0.348);
+        }
+    }
 
 @media only screen and (max-width: 500px) {
-    .admindashboard {
+    .backup {
         padding: 0 5px;
 
         .inner {
             font-size: 14px;
 
             .controler {
-               display: flex;
-               justify-content: space-between;
-    
+                display: flex;
+                justify-content: space-between;
+
                 .refreshe {
                     position: relative;
                     top: 0%;
@@ -121,7 +155,7 @@
             }
 
             .body {
-               font-size: 11px;
+                font-size: 11px;
 
                 div {
                     border-radius: 4px;
@@ -132,44 +166,46 @@
 
             .header,
             .body {
-
+             
 
                 & span:nth-child(1) {
-                    width: 30px;
+                    width: 20px;
+                    /* border: 1px solid red; */
                 }
 
                 & span:nth-child(2) {
-                    max-width: 80px;
+                    text-transform: capitalize;
+                    width: 120px;
                     /* border: 1px solid red; */
                 }
 
                 & span:nth-child(3) {
-                    width: 50px;
+                    width: 140px;
                     /* border: 1px solid red; */
+
                 }
 
                 & span:nth-child(4) {
-                    width: 40px;
+                    width: 150px;
                     /* border: 1px solid red; */
                 }
 
                 & span:nth-child(5) {
-                    width: 80px;
+                    width: 60px;
                     /* border: 1px solid red; */
-                    *{
-                        transform: scale(0.9);
-                    }
+
                 }
 
                 & span:nth-child(6) {
-                    width: 80px;
-                    *{
-                        transform: scale(0.9);
-                    }
+                    width: 60px;
+                    display: flex;
+                    gap: 15px;
+                    /* border: 1px solid red; */
                 }
             }
-            .body{
-                span{
+
+            .body {
+                span {
                     text-align: center;
                 }
             }
