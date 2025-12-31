@@ -205,23 +205,34 @@ const BackupScheduleAdmin = () => {
 
     /* ---------------- DELETE ---------------- */
     const deleteSchedule = async (id) => {
-        if (!window.confirm("Delete this schedule?")) return;
+        // if (!window.confirm("Delete this schedule?")) return;
 
-        const token = localStorage.getItem("token");
-        setLoading(true);
+        swal({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this Schedule',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then(async (willDelete) => {
+            if (willDelete) {
+                const token = localStorage.getItem("token");
+                setLoading(true);
 
-        try {
-            await fetch(`${API}/${id}`, {
-                method: "DELETE",
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            toast.success("Deleted");
-            fetchSchedules();
-        } catch {
-            toast.error("Delete failed");
-        } finally {
-            setLoading(false);
-        }
+                try {
+                    await fetch(`${API}/${id}`, {
+                        method: "DELETE",
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    toast.success("Deleted");
+                    fetchSchedules();
+                } catch {
+                    toast.error("Delete failed");
+                } finally {
+                    setLoading(false);
+                }
+            } else {
+            }
+        });
     };
 
     const columns = [
@@ -290,7 +301,7 @@ const BackupScheduleAdmin = () => {
         },
         {
             name: "Started At",
-            selector: (row) => dayjs(row.startedAt).format('hh:mm:ss')
+            selector: (row) => dayjs(row.startedAt).format('DD/MM/YY hh:mm A')
         },
         {
             name: "Status",
@@ -348,13 +359,13 @@ const BackupScheduleAdmin = () => {
                         </Button> */}
                     </div>
                 </div>
-              <div id="cronjobhistory">
-                <DataTable
-                    columns={columns}
-                    data={schedules}
-                    pagination
-                    customStyles={useCustomStyles()}
-                />
+                <div id="cronjobhistory">
+                    <DataTable
+                        columns={columns}
+                        data={schedules}
+                        pagination
+                        customStyles={useCustomStyles()}
+                    />
                 </div>
             </div>
 
