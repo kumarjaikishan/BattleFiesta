@@ -38,12 +38,11 @@ import { profilefetch } from './store/profile';
 import { messaging } from './firebase';
 import { getToken, onMessage } from 'firebase/messaging';
 import LoginSuccess from './pages/login/LoginSucess';
-import BackupSchedulePage from './pages/admin/backups/Backups';
 
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
-const Admindashboard = lazy(() => import('./pages/admin/dashboard/dashboard'));
+const BackupSchedulePage = lazy(() => import('./pages/admin/backups/Backups'));
 const Membershiprequest = lazy(() => import('./pages/admin/Request/Request'));
 const Query = lazy(() => import('./pages/admin/query/query'));
 const Voucher = lazy(() => import('./pages/admin/voucher/voucher'));
@@ -185,8 +184,7 @@ function App() {
                 </Suspense>
               }
             >
-              <Route path="" element={<Admindashboard />} />
-              <Route path="backup" element={<BackupSchedulePage />} />
+              <Route path="" element={<BackupSchedulePage />} />
               <Route path="request" element={<Membershiprequest />} />
               <Route path="query" element={<Query />} />
               <Route path="voucher" element={<Voucher />} />

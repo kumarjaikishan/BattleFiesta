@@ -30,12 +30,7 @@ const Adminnavbar = () => {
                         <span>Dashboard</span>
                     </div>
                 </NavLink>
-                 <NavLink className="navlink" to='/admin/backup' >
-                    <div >
-                        <FaRegCreditCard />
-                        <span>Backup</span>
-                    </div>
-                </NavLink>
+                
 
                 <NavLink className="navlink" to='/admin/request' >
                     <Badge

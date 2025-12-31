@@ -14,8 +14,8 @@
             justify-content: space-between;
 
             >div {
-               display: flex;
-               gap: 10px;
+                display: flex;
+                gap: 10px;
             }
         }
 
@@ -98,32 +98,36 @@
         }
 
     }
-   
-}
- .membermodal .modalcontent .cronlogs{
-        width: 100% ;
-        /* border:1px solid red ; */
 
-        .status{
-            padding: 2px 8px;
-            background: red;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        .status.success{
-            color: rgb(10, 73, 6);
-            background: rgba(26, 231, 26, 0.282);
-        }
-        .status.failed{
-            color: rgb(77, 8, 8);
-            background: rgba(255, 0, 0, 0.282);
-        }
-        .status.running{
-            color: rgb(7, 51, 73);
-            background: rgba(12, 128, 186, 0.348);
-        }
+}
+
+#cronjobhistory {
+    width: 100%;
+
+    .status {
+        padding: 2px 8px;
+        background: red;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
     }
+
+    .status.success {
+        color: rgb(10, 73, 6);
+        background: rgba(26, 231, 26, 0.282);
+    }
+
+    .status.failed {
+        color: rgb(77, 8, 8);
+        background: rgba(255, 0, 0, 0.282);
+    }
+
+    .status.running {
+        color: rgb(7, 51, 73);
+        background: rgba(12, 128, 186, 0.348);
+    }
+}
+
 
 @media only screen and (max-width: 500px) {
     .backup {
@@ -166,7 +170,7 @@
 
             .header,
             .body {
-             
+
 
                 & span:nth-child(1) {
                     width: 20px;

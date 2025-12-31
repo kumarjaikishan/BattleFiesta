@@ -18,6 +18,8 @@ import { toast } from "react-toastify";
 import "./dashboard.css";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import dayjs from "dayjs";
+import AllDbModal, { useCustomStyles } from "./AllDbModal";
+import DataTable from "react-data-table-component";
 
 const API = `${import.meta.env.VITE_API_ADDRESS}backup-schedules`;
 
@@ -95,6 +97,7 @@ const BackupScheduleAdmin = () => {
     const [form, setForm] = useState(emptyForm);
     const [editId, setEditId] = useState(null);
     const [modal, setModal] = useState(false);
+    const [dbmodal, setdbmodal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [cronLogs, setCronLogs] = useState(null);
 
@@ -113,10 +116,10 @@ const BackupScheduleAdmin = () => {
             });
 
             const data = await res.json();
-            // console.log(data)
+            console.log(data)
 
             setSchedules(data.schedules || []);
-            setDatabaselist((data.database || []).map((db) => db.name));
+            setDatabaselist((data.database || []));
         } catch {
             toast.error("Failed to load schedules");
         } finally {
@@ -221,11 +224,92 @@ const BackupScheduleAdmin = () => {
         }
     };
 
+    const columns = [
+        {
+            name: "S.no",
+            selector: (row, index) => index + 1,
+            width: '40px'
+        },
+        {
+            name: "Db Name",
+            selector: (row) => row.databases.join(", ")
+        },
+
+        {
+            name: "Cron",
+            selector: (row) => {
+                return (
+                    <span>
+                        <p style={{ letterSpacing: '4px' }}>{row.cron}</p>
+                        <p style={{ fontSize: '13px', color: 'GrayText' }}>{explainCron(row.cron)}</p>
+                    </span>
+                )
+            },
+            width: '200px'
+        },
+        {
+            name: "Email",
+            selector: (row) => row.emailNotification?.enabled ? row.emailNotification.email : '-'
+        },
+        {
+            name: "Status",
+            selector: (row) => row.enabled ? '✅ Active' : '❌ Inactive',
+            width: '80px'
+        },
+        {
+            name: "Action",
+            cell: (row) => (
+                <span style={{ display: 'flex', gap: '8px' }}>
+                    <MdEdit
+                        onClick={() => {
+                            setForm(row);
+                            setEditId(row._id);
+                            setModal(true);
+                        }}
+                    />
+                    <MdSearch
+                        onClick={() => {
+                            setCronLogs(row.logs)
+                        }}
+                    />
+                    <MdDelete onClick={() => deleteSchedule(row._id)} />
+                </span>
+            ),
+            width: '120px',
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true
+        }
+    ]
+
+    const editcolumns = [
+        {
+            name: "S.no",
+            selector: (row, index) => index + 1,
+            width: '40px'
+        },
+        {
+            name: "Started At",
+            selector: (row) => dayjs(row.startedAt).format('hh:mm:ss')
+        },
+        {
+            name: "Status",
+            selector: (row) => < div className={row.status == 'SUCCESS' ? 'status success' : row.status == 'FAILED' ? "status failed" : 'status running'} > {row.status}</div>,
+            width: '80px'
+        },
+
+        {
+            name: "Duration",
+            selector: (row) => row.durationMs / 1000 + ' Seconds',
+            width: '120px'
+        },
+    ]
+
     return (
         <div className="admindashboard backup">
             <div className="inner">
                 <div className="controler">
-                    <h2>Backup Schedules</h2>
+                    <h2>Admin Dashboard</h2>
                     <div>
                         <LoadingButton
                             loading={loading}
@@ -236,7 +320,6 @@ const BackupScheduleAdmin = () => {
                         >
                             REFRESH
                         </LoadingButton>
-
 
                         <Button
                             size="small"
@@ -249,6 +332,13 @@ const BackupScheduleAdmin = () => {
                         >
                             ADD Jobs
                         </Button>
+                        <Button
+                            size="small"
+                            variant="contained"
+                            onClick={() => setdbmodal(true)}
+                        >
+                            Dbs
+                        </Button>
                         {/* <Button
                             size="small"
                             variant="contained"
@@ -258,44 +348,13 @@ const BackupScheduleAdmin = () => {
                         </Button> */}
                     </div>
                 </div>
-
-                <div className="header">
-                    <span>#</span>
-                    <span>Databases</span>
-                    <span>Cron</span>
-                    <span>Email</span>
-                    <span>status</span>
-                    <span>Actions</span>
-                </div>
-
-                <div className="body">
-                    {schedules.map((s, i) => (
-                        <div key={s._id}>
-                            <span>{i + 1}</span>
-                            <span>{s.databases.join(", ")}</span>
-                            <span>
-                                <p style={{ letterSpacing: '4px' }}>{s.cron}</p>
-                                <p style={{ fontSize: '13px', color: 'GrayText' }}>{explainCron(s.cron)}</p>
-                            </span>
-                            <span>{s?.emailNotification?.enabled ? s?.emailNotification.email : '-'}</span>
-                            <span>{s.enabled ? '✅' : '❌'}</span>
-                            <span>
-                                <MdEdit
-                                    onClick={() => {
-                                        setForm(s);
-                                        setEditId(s._id);
-                                        setModal(true);
-                                    }}
-                                />
-                                <MdSearch
-                                    onClick={() => {
-                                        setCronLogs(s.logs)
-                                    }}
-                                />
-                                <MdDelete onClick={() => deleteSchedule(s._id)} />
-                            </span>
-                        </div>
-                    ))}
+              <div id="cronjobhistory">
+                <DataTable
+                    columns={columns}
+                    data={schedules}
+                    pagination
+                    customStyles={useCustomStyles()}
+                />
                 </div>
             </div>
 
@@ -331,9 +390,9 @@ const BackupScheduleAdmin = () => {
                                     }
                                 >
                                     {databaselist.map((db) => (
-                                        <MenuItem key={db} value={db}>
-                                            <Checkbox checked={form.databases.includes(db)} />
-                                            <ListItemText primary={db} />
+                                        <MenuItem key={db.name} value={db.name}>
+                                            <Checkbox checked={form.databases.includes(db.name)} />
+                                            <ListItemText primary={db.name} />
                                         </MenuItem>
                                     ))}
                                 </Select>
@@ -430,20 +489,18 @@ const BackupScheduleAdmin = () => {
                     <form onSubmit={saveSchedule}>
                         <h2>Schedules</h2>
                         <span className="modalcontent">
-                            {
-                                cronLogs?.map((val, ind) => {
-                                    return <div key={ind} className="cronlogs">
-                                        <div>{ind + 1}</div>
-                                        <div>{ dayjs(val.startedAt).format('hh:mm:ss')}</div>
-                                        <div className={val.status=='SUCCESS' ?  'status success': val.status=='FAILED' ? "status failed": 'status running' }>{val.status}</div>
-                                        <div>{val.durationMs/1000 + ' Seconds'}</div>
-                                    </div>
-                                })
-                            }
+                            <DataTable
+                                columns={editcolumns}
+                                data={cronLogs}
+                                pagination
+                                customStyles={useCustomStyles()}
+                                highlightOnHover
+                            />
                         </span>
                     </form>
                 </div>
             </Modalbox>
+            <AllDbModal databaselist={databaselist} dbmodal={dbmodal} setdbmodal={setdbmodal} />
         </div>
     );
 };
