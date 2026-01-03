@@ -114,11 +114,14 @@ const Dashboard = () => {
   const handleRegister = async (e) => {
 
     e.preventDefault();
-    setload(true);
     const { name, organiser, slots, type } = inp;
-    const token = localStorage.getItem("token");
+
+    if (slots < 1) return toast.warn('Minimum 1 slot Required')
+    if (slots > 64) return toast.warn('Maximum 64 slots Allowed')
 
     try {
+      const token = localStorage.getItem("token");
+      setload(true);
       const responsee = await fetch(`${import.meta.env.VITE_API_ADDRESS}addtournament`, {
         method: "POST",
         headers: {
@@ -128,20 +131,21 @@ const Dashboard = () => {
         body: JSON.stringify(inp)
       });
       const res = await responsee.json();
-      console.log(responsee);
-      console.log(res);
+      // console.log(responsee);
+      // console.log(res);
       if (!responsee.ok || responsee.status == 429 || responsee.status == 400) {
         // console.log("error wala");
         return toast.warn(res.message, { autoClose: 2100 })
       }
       await dispatch(alltourna());
       dispatch(setcreatenewmodal(false))
-      setload(false);
       setinp(init);
       toast.success(res.message, { autoClose: 1700 });
     } catch (error) {
       console.log(error);
       toast.warn(error.message, { autoClose: 2100 })
+
+    } finally {
       setload(false);
     }
   }
@@ -318,8 +322,8 @@ const Dashboard = () => {
           </div>
         </div>
         <motion.div layout className="cards">
-          {filtered.length > 0 ?
-            filtered.slice(0, howmany)?.map((val) => {
+          {filtered?.length > 0 ?
+            filtered?.slice(0, howmany)?.map((val) => {
               // Format the date
               const formattedDate = new Date(val.createdAt).toLocaleDateString(
                 "en-US",

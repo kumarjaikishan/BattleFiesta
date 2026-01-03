@@ -42,6 +42,7 @@ import LoginSuccess from './pages/login/LoginSucess';
 // Lazy loaded components
 const Profile = lazy(() => import('./pages/profile/profile'));
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
+const AllFindtournament = lazy(() => import('./pages/findtournament/allFindtournament'));
 const BackupSchedulePage = lazy(() => import('./pages/admin/backups/Backups'));
 const Membershiprequest = lazy(() => import('./pages/admin/Request/Request'));
 const Query = lazy(() => import('./pages/admin/query/query'));
@@ -203,6 +204,16 @@ function App() {
                 }
               />
               <Route path=":tid" element={<Tournamentstatpage />} />
+            </Route>
+            <Route path="/admintournaments">
+              <Route
+                index
+                element={
+                  <Suspense fallback={<Preloader />}>
+                    <AllFindtournament />
+                  </Suspense>
+                }
+              />
             </Route>
             <Route path="/stat/:tid" element={<Stats />} />
             <Route path="/channel/:uid" element={<Channeldashboard />} />

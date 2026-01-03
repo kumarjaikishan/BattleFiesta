@@ -62,6 +62,9 @@ const Navbar = () => {
               {log.islogin && log.isadmin && (
                 <NavLink className="navlink" to='/admin' onClick={closeMenu}><li>Admin</li></NavLink>
               )}
+              {log.islogin && log.isadmin && (
+                <NavLink className="navlink" to='/admintournaments' onClick={closeMenu}><li>All</li></NavLink>
+              )}
               <NavLink className="navlink" to='/tournaments' onClick={closeMenu}><li>Find Tournament</li></NavLink>
               {!log.islogin && (
                 <NavLink className="navlink" to='/login' onClick={closeMenu}><li>Login</li></NavLink>

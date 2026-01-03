@@ -19,6 +19,9 @@ import Modalbox from "../../../components/custommodal/Modalbox";
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import DataTable from "react-data-table-component";
+import { useCustomStyles } from "../backups/AllDbModal";
+import { Avatar, Box } from "@mui/material";
 
 
 const User = () => {
@@ -42,7 +45,7 @@ const User = () => {
     const [mailinp, setmailinp] = useState(mailinit)
 
     useEffect(() => {
-        // console.log(admin.users);
+        console.log(admin.users);
     }, [])
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: '2-digit' };
@@ -187,6 +190,73 @@ const User = () => {
         })
     }
 
+    const columns = [
+        {
+            name: "S.no",
+            selector: (row, index) => index + 1,
+            width: '50px'
+        },
+        {
+            name: "Name",
+            cell: (row) => (
+                <Box
+                    onClick={() => navigate(`/channel/@${row.username}`)}
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        cursor: "pointer",
+                        "&:hover span": {
+                            color: "primary.main",
+                        },
+                    }}
+                >
+                    <Avatar
+                        src={row.imgsrc}
+                        alt={row.name}
+                        sx={{ width: 32, height: 32 }}
+                    >
+                        {!row.imgsrc && row.name?.[0]}
+                    </Avatar>
+
+                    <span>{row.name}</span>
+                </Box>
+            ),
+        },
+        {
+            name: "Mobile",
+            selector: (row) => row.phone
+        },
+        {
+            name: "Email",
+            selector: (row) => row.email
+        },
+        {
+            name: "Date",
+            selector: (row) => formatDate(row.createdAt),
+            width: '80px'
+        },
+        {
+            name: "Member Stat",
+            selector: (row) => row?.membership?.isActive ? '✅ Active' : '❌ Expired',
+            width: '100px'
+        },
+        {
+            name: "Action",
+            cell: (row) => (
+                <span>
+                    <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
+                    <IoMailOutline className='printicon ico' title="Mail" onClick={() => mail(val)} />
+                    <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
+                </span>
+            ),
+            width: '120px',
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true
+        }
+    ]
+
     return <>
         <div className="adminusers">
             <div className="controler">
@@ -212,33 +282,15 @@ const User = () => {
                     REFRESH
                 </LoadingButton>
             </div>
-            <div className="header">
-                <span>#</span>
-                <span>Name</span>
-                <span>Mobile</span>
-                <span>Email</span>
-                <span>Date</span>
-                <span>Actions</span>
-            </div>
-            <div className="body">
-                {admin?.users?.map((val, ind) => {
-                    return <div key={ind} className={`status ${val.membership?.isActive ? 'active' : 'expired'}`}>
-                        <span>{ind + 1}</span>
-                        <span style={{ cursor: 'pointer' }}
-                            //  onClick={()=> navigate(`/channel/@${val.username}`)}
-                            onClick={() => window.open(`/channel/@${val.username}`, '_blank')}
-                        >{val.name}</span>
-                        <span>{val.phone}</span>
-                        <span>{val.email}</span>
-                        <span>{formatDate(val.createdAt)}</span>
-                        <span>
-                            <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
-                            <IoMailOutline className='printicon ico' title="Mail" onClick={() => mail(val)} />
-                            <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
-                        </span>
-                    </div>
-                })}
-            </div>
+
+            <DataTable
+                columns={columns}
+                data={admin?.users}
+                pagination
+                highlightOnHover
+                customStyles={useCustomStyles()}
+            />
+
             <Modalbox open={modal} onClose={() => setmodal(false)}>
                 <div className="membermodal">
                     <form onSubmit={handlee}>

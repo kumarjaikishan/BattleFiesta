@@ -18,7 +18,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { IoClose } from "react-icons/io5";
 import { cloudinaryUrl } from "../../utils/imageurlsetter";
 
-const Findtournament = () => {
+const AllFindtournament = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const Findtournament = () => {
 
     const fetchTournaments = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournament`, {
+            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}getalltournamentadmin`, {
                 method: "GET"
             });
 
@@ -249,4 +249,4 @@ const Findtournament = () => {
     );
 }
 
-export default Findtournament;
+export default AllFindtournament;
