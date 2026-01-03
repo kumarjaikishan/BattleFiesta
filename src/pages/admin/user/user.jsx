@@ -245,9 +245,9 @@ const User = () => {
             name: "Action",
             cell: (row) => (
                 <span>
-                    <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
-                    <IoMailOutline className='printicon ico' title="Mail" onClick={() => mail(val)} />
-                    <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
+                    <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(row)} />
+                    <IoMailOutline className='printicon ico' title="Mail" onClick={() => mail(row)} />
+                    <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(row._id)} />
                 </span>
             ),
             width: '120px',
