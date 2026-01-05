@@ -153,7 +153,7 @@ const Findtournament = () => {
                         label="Tournament ID"
                         fullWidth
                         size="small"
-                        type="text"                 // ⬅ no arrows
+                        type="tel"                 // ⬅ no arrows
                         inputMode="numeric"         // ⬅ mobile numeric keyboard
                         pattern="[0-9]*"
                         className="filled"
