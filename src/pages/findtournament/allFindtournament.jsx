@@ -35,6 +35,8 @@ const AllFindtournament = () => {
     const [activeList, setActiveList] = useState([]); // Store the currently active list
     const [searchQuery, setSearchQuery] = useState("");
     const [searching, setsearching] = useState(false)
+    const [visible, setvisible] = useState(2)
+
 
     const handleActive = (index) => {
         let alldiv = document.querySelectorAll(".conta .cate div");
@@ -188,7 +190,7 @@ const AllFindtournament = () => {
                         </div>
                     </div>
                 )}
-                {showinglist.map((val) => {
+                {showinglist.slice(0, visible).map((val) => {
                     const formattedDate = new Date(val.createdAt).toLocaleDateString("en-GB", {
                         day: "numeric",
                         month: "short",
@@ -237,13 +239,22 @@ const AllFindtournament = () => {
                                 <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
                                     READ MORE
                                 </Button>
-                              
+
                                 {searching &&
                                     <p className="status" title="Status">{val.status}</p>}
                             </div>
                         </div>
                     );
                 })}
+
+            </div>
+            <div style={{width:'100%',  paddingBottom:'15px', textAlign:'center'}}>
+
+            <Button size="small"
+             onClick={() => setvisible(visible + 2)}
+              variant="contained" endIcon={<MdMenuOpen />}>
+                Load MORE
+            </Button>
             </div>
         </div>
     );
