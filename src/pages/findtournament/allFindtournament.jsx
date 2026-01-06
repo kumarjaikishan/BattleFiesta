@@ -35,7 +35,7 @@ const AllFindtournament = () => {
     const [activeList, setActiveList] = useState([]); // Store the currently active list
     const [searchQuery, setSearchQuery] = useState("");
     const [searching, setsearching] = useState(false)
-    const [visible, setvisible] = useState(2)
+    const [visible, setvisible] = useState(8)
 
 
     const handleActive = (index) => {
@@ -251,7 +251,7 @@ const AllFindtournament = () => {
             <div style={{width:'100%',  paddingBottom:'15px', textAlign:'center'}}>
 
             <Button size="small"
-             onClick={() => setvisible(visible + 2)}
+             onClick={() => setvisible(visible + 8)}
               variant="contained" endIcon={<MdMenuOpen />}>
                 Load MORE
             </Button>

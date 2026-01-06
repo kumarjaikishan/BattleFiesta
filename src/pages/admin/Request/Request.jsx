@@ -9,6 +9,9 @@ import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useCustomStyles } from "../backups/AllDbModal";
+import dayjs from "dayjs";
+import DataTable from "react-data-table-component";
 
 const Request = () => {
    const admin = useSelector((state) => state.admin);
@@ -22,6 +25,7 @@ const Request = () => {
       setmembermodal(true)
       setinp(pre)
    }
+
    const Deletee = async (ide) => {
       swal({
          title: 'Are you sure?',
@@ -73,6 +77,53 @@ const Request = () => {
       hidden: { x: -80, y: 80, opacity: 0, scale: 0 },
       visible: { y: 0, x: 0, scale: 1, opacity: 1 }
    };
+
+   const columns = [
+      {
+         name: "#",
+         selector: (row, index) => index + 1,
+         width: '50px'
+      },
+      {
+         name: "Name",
+         cell: (row) => row.user?.name,
+
+      },
+      {
+         name: "Plan",
+         selector: (row) => row.plan_id.plan_name,
+         width: '80px'
+      },
+      {
+         name: "Final Price",
+         selector: (row) => row.finalpricepaid,
+         width: '100px'
+      },
+      {
+         name: "Date",
+         selector: (row) => dayjs(row.createdAt).format('DD MMM, YYYY'),
+         width: '100px'
+      },
+      {
+         name: "Txn. NO",
+         selector: (row) => row.txn_no,
+         width: '120px'
+      },
+      {
+         name: "Status",
+         selector: (row) => <span className={`status ${row.status}`} title={row.status == 'rejected' ? row.remarks : ''}>{row.status}</span>,
+         width: '120px'
+      },
+      {
+         name: "Action",
+         selector: (row) => <span>
+            <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(row)} />
+            <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(row._id)} />
+         </span>,
+         width: '120px'
+      },
+   ]
+
    return <>
       <motion.div className="membershiprequest">
          <div className="controler">
@@ -90,45 +141,16 @@ const Request = () => {
                REFRESH
             </LoadingButton>
          </div>
-         <div className="header">
-            <span>#</span>
-            <span>Name</span>
-            <span>Plan</span>
-            <span>Finalprice</span>
-            <span>Date</span>
-            <span>Txn. NO</span>
-            <span>Status</span>
-            <span>Actions</span>
-         </div>
-         {admin?.membershipentry.length < 1 &&
-            <div className="body">
-               No Membership Request Found
-            </div>}
-         <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            layout
-            className="body">
-            {admin?.membershipentry?.map((val, ind) => {
-               const options = { day: '2-digit', month: 'short', year: 'numeric' };
-               const date = new Date(val.createdAt);
-               const formattedDate = date.toLocaleDateString('en-GB', options);
-               return <motion.div variants={item} layout key={ind}>
-                  <span>{ind + 1}</span>
-                  <span>{val.user?.name}</span>
-                  <span>{val.plan_id.plan_name}</span>
-                  <span>{val.finalpricepaid}</span>
-                  <span>{formattedDate}</span>
-                  <span title={val.status == 'success' ? val.membershipId : ""}>{val.txn_no}</span>
-                  <span className={`status ${val.status}`} title={val.status == 'rejected' ? val.remarks : ''}>{val.status}</span>
-                  <span>
-                     <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(val)} />
-                     <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(val._id)} />
-                  </span>
-               </motion.div>
-            })}
-         </motion.div>
+
+         <DataTable
+            columns={columns}
+            data={admin?.membershipentry}
+            pagination
+            highlightOnHover
+            customStyles={useCustomStyles()}
+         />
+
+         
          {inp && <Membermodal setinp={setinp} inp={inp} membermodal={membermodal} setmembermodal={setmembermodal} />}
       </motion.div>
    </>

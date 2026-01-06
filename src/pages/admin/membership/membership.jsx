@@ -5,6 +5,8 @@ import { IoMdRefresh } from "react-icons/io";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { membership } from "../../../store/admin";
 import { toast } from "react-toastify";
+import DataTable from "react-data-table-component";
+import { useCustomStyles } from "../backups/AllDbModal";
 
 const Membership = () => {
   const admin = useSelector((state) => state.admin);
@@ -18,6 +20,38 @@ const Membership = () => {
     const options = { day: '2-digit', month: 'short', year: 'numeric' };
     return date.toLocaleDateString('en-GB', options).replace(/ /g, ' ').replace(',', ',');
   }
+
+  const columns = [
+    {
+      name: "#",
+      selector: (row, index) => index + 1,
+      width: '50px'
+    },
+    {
+      name: "Name",
+      cell: (row) => <span title={row.isActive ? `Valid till ${formatDate(row?.expire_date)}` : ''}>{row?.userid?.name}</span>
+
+    },
+    {
+      name: "Plan",
+      selector: (row) => row.planid.plan_name
+    },
+    {
+      name: "Price",
+      selector: (row) => row.planid.price,
+      width: '100px'
+    },
+    {
+      name: "Final",
+      selector: (row) => row.finalpricepaid,
+      width: '100px'
+    },
+    {
+      name: "Status",
+      selector: (row) => <span className={row?.isActive ? 'status active' : 'status expired'}>{row.isActive ? "Active" : "Expired"}</span>,
+      width: '100px'
+    },
+  ]
 
 
   return <>
@@ -46,27 +80,15 @@ const Membership = () => {
             REFRESH
           </LoadingButton>
         </div>
-        <div className="header">
-          <span>#</span>
-          <span>Name</span>
-          <span>Plan</span>
-          <span>price</span>
-          <span>Final</span>
-          <span>Status</span>
-        </div>
-        <div className="body">
-          {admin?.membership?.map((val, ind) => {
-            return <div key={ind}>
-              <span>{ind + 1}</span>
-              <span title={val.isActive ? `Valid till ${formatDate(val.expire_date)}`:''}>{val.userid?.name}</span>
-              <span>{val.planid.plan_name}</span>
-              <span>{val.planid.price}</span>
-              <span>{val.finalpricepaid}</span>
-              <span className={val.isActive ? 'status active' : 'status expired'}>{val.isActive ? "Active" : "Expired"}</span>
-            </div>
-          })}
 
-        </div>
+        <DataTable
+          columns={columns}
+          data={admin?.membership}
+          pagination
+          highlightOnHover
+          customStyles={useCustomStyles()}
+        />
+
       </div>
     </div>
   </>

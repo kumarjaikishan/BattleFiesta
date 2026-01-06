@@ -153,52 +153,28 @@ const Findtournament = () => {
                         label="Tournament ID"
                         fullWidth
                         size="small"
-                        type="tel"                 // ⬅ no arrows
-                        inputMode="numeric"         // ⬅ mobile numeric keyboard
-                        pattern="[0-9]*"
+                        type='tel'
+                        inputProps={{ minLength: 8, maxLength: 8 }}
+                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
                         className="filled"
                         value={searchQuery}
                         onChange={(e) => {
                             const value = e.target.value;
-
-                            // allow empty (for reset)
-                            if (value === "") {
-                                setSearchQuery("");
-                                setShowingList(activeList);
-                                setsearching(false);
-                                return;
-                            }
-
-                            // allow only digits
-                            if (!/^\d+$/.test(value)) return;
-
-                            // max length 8
-                            if (value.length > 8) return;
-
                             setSearchQuery(value);
-                            setsearching(true);
-                        }}
-                        inputProps={{
-                            maxLength: 8,   // ⬅ hard cap
+                            if (value === "") {
+                                setShowingList(activeList); // Restore active list on empty input
+                                setsearching(false)
+                            }
                         }}
                         InputProps={{
                             endAdornment: searchQuery ? (
-                                <InputAdornment
-                                    className="cross"
-                                    position="end"
-                                    sx={{ cursor: "pointer" }}
-                                    onClick={() => {
-                                        setSearchQuery("");
-                                        setShowingList(activeList);
-                                        setsearching(false);
-                                    }}
-                                >
+                                <InputAdornment className="cross" onClick={() => setSearchQuery("")} position="end" sx={{ cursor: "pointer" }}>
                                     <IoClose />
                                 </InputAdornment>
                             ) : null,
                         }}
-                    />
 
+                    />
                     <IoMdSearch onClick={handleSearch} title="Search" className="searchIcon" />
                 </div>
             </div>

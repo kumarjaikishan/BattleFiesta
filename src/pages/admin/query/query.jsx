@@ -12,6 +12,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useCustomStyles } from "../backups/AllDbModal";
+import DataTable from "react-data-table-component";
 
 const Query = () => {
     const dispatch = useDispatch();
@@ -68,6 +70,7 @@ const Query = () => {
             console.log(error);
         }
     }
+
     const deletee = async (id) => {
         swal({
             title: 'Are you sure?',
@@ -104,6 +107,42 @@ const Query = () => {
         });
     }
 
+    const columns = [
+        {
+            name: "#",
+            selector: (row, index) => index + 1,
+            width: '50px'
+        },
+        {
+            name: "Name",
+            cell: (row) => row.name,
+              width: '180px'
+
+        },
+        {
+            name: "Email",
+            selector: (row) => row.email,
+             width: '200px'
+        },
+        {
+            name: "Message",
+            selector: (row) => row.message,
+        },
+        {
+            name: "Status",
+            selector: (row) => <span className={row.resolve ? `status done` : 'status pending'} title={row.resolve ? row.resolvemsg : ''}>{row.resolve ? "Resolved" : "Pending"}</span>,
+            width: '100px'
+        },
+        {
+            name: "Action",
+            selector: (row) => <span>
+                <HiPencilSquare className='editicon ico' title="Edit" onClick={() => openmodale(row.email, row._id)} />
+                <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => deletee(row._id)} />
+            </span>,
+            width: '100px'
+        },
+    ]
+
     return <>
         <div className="query">
             <div className="all">
@@ -134,33 +173,15 @@ const Query = () => {
                         </LoadingButton>
                     </div>
                 </div>
-                <div className="header">
-                    <span>#</span>
-                    <span>Name</span>
-                    <span>Email</span>
-                    <span>Message</span>
-                    <span>Status</span>
-                    <span>Actions</span>
-                </div>
-                {admin?.contactusform.length < 1 &&
-                    <div className="body">
-                        No Query Found
-                    </div>}
-                <motion.div layout className="body">
-                    {admin.contactusform && admin.contactusform.map((val, ind) => {
-                        return <motion.div layout key={ind}>
-                            <span>{ind + 1}</span>
-                            <span>{val.name}</span>
-                            <span>{val.email}</span>
-                            <span>{val.message}</span>
-                            <span className={val.resolve ? `status done` : 'status pending'} title={val.resolve ? val.resolvemsg : ''}>{val.resolve ? "Resolved" : "Pending"}</span>
-                            <span>
-                                <HiPencilSquare className='editicon ico' title="Edit" onClick={() => openmodale(val.email, val._id)} />
-                                <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => deletee(val._id)} />
-                            </span>
-                        </motion.div>
-                    })}
-                </motion.div>
+
+                <DataTable
+                    columns={columns}
+                    data={admin?.contactusform}
+                    pagination
+                    highlightOnHover
+                    customStyles={useCustomStyles()}
+                />
+
                 <Modalbox open={openmodal} onClose={() => setopenmodal(false)}>
                     <div className="membermodal">
                         <form onSubmit={handlee}>

@@ -19,113 +19,30 @@
             }
         }
 
-        .header {
-            width: 100%;
-            padding: 5px;
-            background: rgb(2, 54, 58);
-            color: white;
-            text-transform: capitalize;
-            letter-spacing: 0.5px;
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            border-radius: 10px;
-            margin-bottom: 10px;
+        .status {
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+            padding-left: 5px;
+            /* padding: 8px 6xp; */
+            border-radius: 2px 4px 4px 2px;
+            border-left: 4px solid transparent;
+            font-weight: 500;
         }
 
-        .body {
-            width: 100%;
-            text-align: start;
-
-            div {
-                border-radius: 10px;
-                border: 0.5px solid rgb(4, 86, 145);
-                margin: 10px 0px;
-                display: flex;
-                justify-content: space-between;
-                padding: 5px 3px;
-                background: #ecf0f3;
-                box-shadow: 0 0 10px #fff, 5px 5px 10px #a7aaaf, -5px -5px 10px #fff;
-            }
+        .status.expired {
+            background: rgba(221, 179, 100, 0.486);
+            color: rgb(86, 56, 2);
+            border-left: 4px solid rgb(86, 56, 2);
         }
 
-        .header,
-        .body {
-
-            & span {
-                display: inline-block;
-                text-align: start;
-                padding: 2px 0px;
-                /* border: 1px solid red; */
-            }
-
-            & span:nth-child(1) {
-                width: 50px;
-                /* border: 1px solid red; */
-            }
-
-            & span:nth-child(2) {
-                width: 320px;
-                text-align: start;
-                /* border: 1px solid red; */
-            }
-
-            & span:nth-child(3) {
-                width: 120px;
-            }
-
-            & span:nth-child(4) {
-                width: 50px;
-                /* border: 1px solid red; */
-            }
-
-            & span:nth-child(5) {
-                width: 50px;
-                /* border: 1px solid red; */
-            }
-
-            & span:nth-child(6) {
-                width: 80px;
-                /* border: 1px solid red; */
-                display: inline-flex;
-                justify-content: space-around;
-
-                i {
-                    width: 25px;
-                    height: 25px;
-                    line-height: 25px;
-                    cursor: pointer;
-                    border-radius: 50%;
-                    color: rgb(6, 93, 112);
-
-                    &:last-child {
-                        color: red;
-                    }
-
-                    &:hover {
-                        background: rgba(133, 196, 192, 0.4);
-                    }
-                }
-            }
-
-            .status {
-                border-radius: 2px 4px 4px 2px;
-                border-left: 4px solid transparent;
-                font-weight: 500;
-            }
-
-            .status.expired {
-                background: rgba(221, 179, 100, 0.486);
-                color: rgb(86, 56, 2);
-                border-left: 4px solid rgb(86, 56, 2);
-            }
-
-            .status.active {
-                background-color: rgba(118, 234, 118, 0.504);
-                color: rgb(1, 59, 1);
-                border-left: 4px solid rgb(1, 59, 1);
-            }
+        .status.active {
+            background-color: rgba(118, 234, 118, 0.504);
+            color: rgb(1, 59, 1);
+            border-left: 4px solid rgb(1, 59, 1);
         }
+
+
     }
 }
 
@@ -137,9 +54,9 @@
             font-size: 14px;
 
             .controler {
-               display: flex;
-               justify-content: space-between;
-    
+                display: flex;
+                justify-content: space-between;
+
                 .refreshe {
                     position: relative;
                     top: 0%;
@@ -159,7 +76,7 @@
             }
 
             .body {
-               font-size: 11px;
+                font-size: 11px;
 
                 div {
                     border-radius: 4px;
@@ -198,8 +115,9 @@
                     width: 50px;
                 }
             }
-            .body{
-                span{
+
+            .body {
+                span {
                     text-align: center;
                 }
             }
