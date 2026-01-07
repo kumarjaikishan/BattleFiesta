@@ -100,6 +100,7 @@ const BackupScheduleAdmin = () => {
     const [dbmodal, setdbmodal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [cronLogs, setCronLogs] = useState(null);
+    const [inMemoryJob, setinMemoryJob] = useState(null);
 
     useEffect(() => {
         fetchSchedules();
@@ -138,6 +139,7 @@ const BackupScheduleAdmin = () => {
 
             const data = await res.json();
             console.log(data)
+            setinMemoryJob(data.jobs)
 
         } catch {
             toast.error("Failed to load schedules");
@@ -315,6 +317,17 @@ const BackupScheduleAdmin = () => {
             width: '120px'
         },
     ]
+    const inmomoryJobs = [
+        {
+            name: "S.no",
+            selector: (row, index) => index + 1,
+            width: '40px'
+        },
+        {
+            name: "Job Id",
+            selector: (row) => row.jobId
+        },
+    ]
 
     return (
         <div className="admindashboard backup">
@@ -350,13 +363,13 @@ const BackupScheduleAdmin = () => {
                         >
                             Dbs
                         </Button>
-                        {/* <Button
+                        <Button
                             size="small"
                             variant="contained"
                             onClick={getStat}
                         >
                             Get stat
-                        </Button> */}
+                        </Button>
                     </div>
                 </div>
                 <div id="cronjobhistory">
@@ -495,6 +508,7 @@ const BackupScheduleAdmin = () => {
                     </form>
                 </div>
             </Modalbox>
+
             <Modalbox open={cronLogs?.length > 0} onClose={() => setCronLogs(null)}>
                 <div className="membermodal">
                     <form onSubmit={saveSchedule}>
@@ -511,6 +525,24 @@ const BackupScheduleAdmin = () => {
                     </form>
                 </div>
             </Modalbox>
+
+            <Modalbox open={inMemoryJob?.length > 0} onClose={() => setinMemoryJob(null)}>
+                <div className="membermodal">
+                    <form onSubmit={saveSchedule}>
+                        <h2>Schedules</h2>
+                        <span className="modalcontent">
+                            <DataTable
+                                columns={inmomoryJobs}
+                                data={inMemoryJob}
+                                pagination
+                                customStyles={useCustomStyles()}
+                                highlightOnHover
+                            />
+                        </span>
+                    </form>
+                </div>
+            </Modalbox>
+
             <AllDbModal databaselist={databaselist} dbmodal={dbmodal} setdbmodal={setdbmodal} />
         </div>
     );
