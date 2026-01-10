@@ -43,11 +43,11 @@ const Footbar = () => {
                         <NavLink className="navlink" to='/faq'><li>FAQ</li></NavLink>
                     </ul>
                 </section>
-                <section className="section3">
+                <address className="section3">
                     <h3>Reach Us</h3>
                     {/* <p>contact@battlefiesta.in</p> */}
                      <a href="mailto:contact@battlefiesta.in" title='click here to send mail' target="_blank" >contact@battlefiesta.in</a>                                
-                </section>
+                </address>
             </footer>
         </>
     );

@@ -529,12 +529,12 @@ const BackupScheduleAdmin = () => {
             <Modalbox open={inMemoryJob?.length > 0} onClose={() => setinMemoryJob(null)}>
                 <div className="membermodal">
                     <form onSubmit={saveSchedule}>
-                        <h2>Schedules</h2>
+                        <h2>Task History Stats</h2>
                         <span className="modalcontent">
                             <DataTable
                                 columns={inmomoryJobs}
                                 data={inMemoryJob}
-                                pagination
+                                // pagination
                                 customStyles={useCustomStyles()}
                                 highlightOnHover
                             />
