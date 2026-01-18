@@ -57,6 +57,47 @@
     }
 }
 
+
+.ico {
+    padding: 2px 5px;
+    box-sizing: content-box;
+    width: 17px;
+    height: 17px;
+    border-radius: .2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ico.editicon {
+    color: var(--editicon);
+    background: rgba(7, 121, 182, 0.116);
+
+    &:hover {
+        background: var(--editicon);
+        color: white;
+    }
+}
+
+.ico.deleteicon {
+    color: var(--deleteicon);
+    background: rgba(182, 7, 16, 0.116);
+
+    &:hover {
+        background: var(--deleteicon);
+        color: white;
+    }
+}
+
+.ico.printicon {
+    color: rgb(16, 16, 149);
+    background: rgba(29, 10, 198, 0.116);
+
+    &:hover {
+        background: rgb(16, 16, 149);
+        color: white;
+    }
+}
+
 .admindashboard,
 .adminmembership,
 .membershiprequest,

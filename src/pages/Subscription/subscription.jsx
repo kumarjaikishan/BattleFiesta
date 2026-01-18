@@ -7,7 +7,7 @@ import razorpay from '../../assets/payment/razorpay-icon.webp'
 import paytm from '../../assets/payment/paytm-icon.webp'
 import Button from '@mui/material/Button';
 import Paymentmodal from './modal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { setloader } from '../../store/login';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +15,8 @@ import { Helmet } from "react-helmet-async";
 
 const Subscription = () => {
   const userprofile = useSelector((state) => state.userprofile);
+  const log = useSelector((state) => state.login);
+   let navigate = useNavigate();
   const dispatch = useDispatch();
 
 
@@ -122,7 +124,18 @@ const Subscription = () => {
   }
   const sub = (e) => {
     e.preventDefault();
+    console.log("islogin ", log.islogin)
     // console.log(inp);
+    swal({
+      title: 'You need to Login',
+      icon: 'warning',
+      button: {
+        text: 'OK',
+      },
+    }).then(() => {
+      return navigate('/login');
+    });
+
     setpaymodalopen(true);
   }
 

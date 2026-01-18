@@ -145,122 +145,119 @@ const Signin = ({ showmsg, setshowmsg }) => {
     return (
         <>
             <div className="logine" id='forme'>
-                
-                    <form onSubmit={submite}>
-                        <TextField
-                            label="Email"
-                            fullWidth
-                            size="small"
-                            variant='standard'
-                            className='filled'
-                            onChange={signhandle}
-                            name="email"
-                            type='email'
-                            required
-                            value={signinp.email}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">
-                                    <MdOutlineMail size={20} />
-                                </InputAdornment>,
+                <form onSubmit={submite}>
+                    <TextField
+                        label="Email"
+                        fullWidth
+                        size="small"
+                        variant='standard'
+                        className='filled'
+                        onChange={signhandle}
+                        name="email"
+                        type='email'
+                        required
+                        value={signinp.email}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <MdOutlineMail size={20} />
+                            </InputAdornment>,
 
-                            }}
-                        />
-                        {!forget && <TextField
-                            label="Password"
-                            className='filled'
-                            size="small"
-                            variant='standard'
-                            required
-                            type={loginpass ? "password" : null}
-                            onChange={signhandle}
-                            name="password"
-                            value={signinp.password}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">
-                                    <IoKeyOutline size={20} />
-                                </InputAdornment>,
-                                endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => loginpass ? setloginpass(false) : setloginpass(true)}>
-                                    {loginpass ? <IoEyeOutline size={20} /> : <FaRegEyeSlash size={20} />}
-                                </InputAdornment>
-                            }}
+                        }}
+                    />
+                    {!forget && <TextField
+                        label="Password"
+                        className='filled'
+                        size="small"
+                        variant='standard'
+                        required
+                        type={loginpass ? "password" : null}
+                        onChange={signhandle}
+                        name="password"
+                        value={signinp.password}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <IoKeyOutline size={20} />
+                            </InputAdornment>,
+                            endAdornment: <InputAdornment position="end" style={{ cursor: "pointer" }} onClick={() => loginpass ? setloginpass(false) : setloginpass(true)}>
+                                {loginpass ? <IoEyeOutline size={20} /> : <FaRegEyeSlash size={20} />}
+                            </InputAdornment>
+                        }}
 
-                        />}
-                        <div
-                            style={{
-                                textAlign: "right",
-                                marginTop: "5px",
-                                fontSize: "0.9rem",
-                                width: '100%'
-                            }}
-                            className='forget'
-                        >
-                            {!forget ? (
-                                <div
+                    />}
+                    <div
+                        style={{
+                            textAlign: "right",
+                            marginTop: "5px",
+                            fontSize: "0.9rem",
+                            width: '100%'
+                        }}
+                        className='forget'
+                    >
+                        {!forget ? (
+                            <div
+                                className=''
+                            >
+                                <span
                                     onClick={() => setforget(true)}
-                                    style={{
-                                        // color: "#3b82f6",
-                                        cursor: "pointer",
-                                        textDecoration: "underline",
-                                    }}
-                                    
-                                >
-                                    Forgot Password?
-                                </div>
-                            ) : (
-                                <div
-                                    onClick={() => setforget(false)}
-                                    style={{
-                                        // color: "#3b82f6",
-                                        cursor: "pointer",
-                                        textDecoration: "underline",
-                                    }}
-                                >
-                                    ← Back to Sign In
-                                </div>
-                            )}
-                        </div>
-                        {!forget && <LoadingButton
-                            loading={btnclick}
-                            fullWidth
-                            type='submit'
-                            startIcon={<IoKeyOutline />}
-                            loadingPosition="start"
-                            variant="contained"
-                        >
-                            Login
-                        </LoadingButton>}
-                        {forget && <LoadingButton
-                            fullWidth
-                            loading={btnclick}
-                            onClick={emailset}
-                            startIcon={<IoKeyOutline />}
-                            loadingPosition="start"
-                            variant="contained"
-                        >
-                            Send Email
-                        </LoadingButton>}
+                                    className=' text-gray-800 cursor-pointer underline'
+                                >  Forgot Password?</span>
+
+                            </div>
+                        ) : (
+                            <div
+                                onClick={() => setforget(false)}
+                                style={{
+                                    // color: "#3b82f6",
+                                    cursor: "pointer",
+                                    textDecoration: "underline",
+                                }}
+                            >
+                                ← Back to Sign In
+                            </div>
+                        )}
+                    </div>
+                    {!forget && <LoadingButton
+                        loading={btnclick}
+                        fullWidth
+                        type='submit'
+                        startIcon={<IoKeyOutline />}
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Login
+                    </LoadingButton>}
+                    {forget && <LoadingButton
+                        fullWidth
+                        loading={btnclick}
+                        onClick={emailset}
+                        startIcon={<IoKeyOutline />}
+                        loadingPosition="start"
+                        variant="contained"
+                    >
+                        Send Email
+                    </LoadingButton>}
 
 
-                        <div
-                            style={{
-                                textAlign: "center",
-                                color: "#60636a",
-                                fontSize: "0.9rem",
-                                margin: "0.5rem 0",
-                            }}
-                        >
-                            — OR —
-                        </div>
+                    <div
+                        style={{
+                            textAlign: "center",
+                            color: "#60636a",
+                            fontSize: "0.9rem",
+                            margin: "0.5rem 0",
+                        }}
+                    >
+                        — OR —
+                    </div>
 
 
-                        <GoogleLoginBtn text="Sign in or Sign up with Google" />
-                        {/* <GoogleLoginBtn text="Continue with Google" /> */}
+                    <GoogleLoginBtn text="Sign in or Sign up with Google" />
+                    {/* <GoogleLoginBtn text="Continue with Google" /> */}
 
 
 
-                        {/* {showmsg && <p>*Note: Email sent successfully. If not in your inbox, check spam/junk mail. </p>} */}
-                    </form>
-               
+                    {/* {showmsg && <p>*Note: Email sent successfully. If not in your inbox, check spam/junk mail. </p>} */}
+                </form>
+
             </div>
         </>
     )

@@ -9,6 +9,7 @@ const islogin = createSlice({
         isadmin:false,
     },
     reducers:{
+      
         setlogin(state, action){
            state.islogin = action.payload;
         },

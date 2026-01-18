@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import './user.css'
 import swal from 'sweetalert';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { IoMdRefresh } from "react-icons/io";
@@ -45,7 +44,7 @@ const User = () => {
     const [mailinp, setmailinp] = useState(mailinit)
 
     useEffect(() => {
-        console.log(admin.users);
+        // console.log(admin.users);
     }, [])
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: '2-digit' };
@@ -244,31 +243,31 @@ const User = () => {
         {
             name: "Action",
             cell: (row) => (
-                <span>
+                <div className="flex gap-2 lg:gap-1">
                     <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(row)} />
                     <IoMailOutline className='printicon ico' title="Mail" onClick={() => mail(row)} />
                     <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(row._id)} />
-                </span>
+                </div>
             ),
             width: '120px',
             ignoreRowClick: true,
-            allowOverflow: true,
-            button: true
         }
     ]
 
     return <>
-        <div className="adminusers">
-            <div className="controler">
-                <h2 style={{ textAlign: 'center' }}>Users</h2>
+        <div className="adminusers p-1">
+            <div className="controler flex flex-col items-center gap-2 py-[5px] sm:flex-row sm:justify-between">
+                <h2 className="text-center text-xl font-semibold sm:text-left">
+                    Users
+                </h2>
+
                 <LoadingButton
                     loading={userprofile.loading}
-                    // onClick={() => dispatch(Users())}
                     onClick={async () => {
                         try {
                             await dispatch(Users()).unwrap();
                             toast.success('Refreshed!', { autoClose: 900 });
-                        } catch (error) {
+                        } catch {
                             toast.error('Failed to refresh!');
                         }
                     }}
@@ -277,7 +276,6 @@ const User = () => {
                     variant="outlined"
                     type="submit"
                     size="small"
-                    className="refreshe"
                 >
                     REFRESH
                 </LoadingButton>

@@ -23,7 +23,7 @@ const Login = () => {
                     <meta name="description" content="Log in or sign up to BattleFiesta to join PUBG, BGMI, and Free Fire tournaments. Create your account, track your progress, and compete with top players." />
                 </Helmet>
                 <div className="box">
-                    <div className="logo">
+                    <div className="logo flex justify-center">
                         <MdOutlineGrass className='company' />
                     </div>
                     {/* <div className="want">

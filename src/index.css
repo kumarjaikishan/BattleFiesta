@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
+@import "tailwindcss";
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  /* font-family: "Times New Roman", Times, serif; */
+} */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 input {
@@ -154,7 +160,7 @@ input {
 }
 
 .modal {
-  border: 3px solid red;
+  /* border: 3px solid red; */
 }
 
 @media only screen and (max-width: 600px) {

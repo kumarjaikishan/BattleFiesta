@@ -116,18 +116,21 @@ const Request = () => {
       },
       {
          name: "Action",
-         selector: (row) => <span>
-            <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(row)} />
-            <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(row._id)} />
-         </span>,
-         width: '120px'
+         selector: (row) =>
+            <div className="flex gap-2 lg:gap-1">
+               <HiPencilSquare className='editicon ico' title="Edit" onClick={() => actione(row)} />
+               <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => Deletee(row._id)} />
+            </div>,
+         width: '80px'
       },
    ]
 
    return <>
-      <motion.div className="membershiprequest">
-         <div className="controler">
-            <h2 style={{ textAlign: 'center' }}>Membership Requests</h2>
+      <motion.div className="membershiprequest p-1">
+         <div className="controler flex flex-col items-center gap-2 py-[5px] sm:flex-row sm:justify-between">
+            <h2 className="text-center text-lg font-semibold sm:text-left">
+               Membership Requests
+            </h2>
             <LoadingButton
                loading={admin.loading}
                onClick={() => dispatch(memshipentry())}
@@ -136,12 +139,11 @@ const Request = () => {
                variant="outlined"
                type="submit"
                size="small"
-               className="refreshe"
             >
                REFRESH
             </LoadingButton>
          </div>
-
+         
          <DataTable
             columns={columns}
             data={admin?.membershipentry}
@@ -150,7 +152,7 @@ const Request = () => {
             customStyles={useCustomStyles()}
          />
 
-         
+
          {inp && <Membermodal setinp={setinp} inp={inp} membermodal={membermodal} setmembermodal={setmembermodal} />}
       </motion.div>
    </>

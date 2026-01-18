@@ -133,24 +133,74 @@ const Voucher = () => {
     const [inp, setinp] = useState(init)
 
     return <>
-        <div className="voucherpage">
-            <div className="conta" onClick={() => { setmodal(true); setisedit(false) }} title="Add New Voucher">
-                <FaPlus />
+        <div className="voucherpage w-full p-3 sm:p-4">
+            {/* PAGE TITLE + ADD BUTTON */}
+            <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold sm:text-xl">
+                    Voucher Page
+                </h2>
+
+                <div
+                    onClick={() => { setmodal(true); setisedit(false); }}
+                    title="Add New Voucher"
+                    className="flex items-center gap-2 px-3 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 cursor-pointer transition"
+                >
+                    <FaPlus className="w-4 h-4" />
+                    <span className="text-sm font-medium whitespace-nowrap">
+                        Create Voucher
+                    </span>
+                </div>
+
             </div>
-            <div className="cards">
-                {admin.voucher && admin.voucher.map((val, ind) => {
-                    return <div className="card" key={ind}>
-                        <div><span>Plan Name</span> <span>:</span> <span>{val.coupon}</span></div>
-                        <div><span>Percent</span> <span>:</span> <span>{val.percent}</span></div>
-                        <div><span>Status</span> <span>:</span> <span>{val.isactive ? "Active" : 'Expired'}</span></div>
-                        <div>
-                            <HiPencilSquare className='editicon ico' title="Edit" onClick={() => setedit(val)} />
-                            <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => deletee(val._id)} style={{ marginLeft: '20px' }} />
+
+            {/* CARDS */}
+            <div className="cards grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {admin.voucher && admin.voucher.map((val, ind) => (
+                    <div
+                        key={ind}
+                        className="card rounded-lg bg-white p-3  border border-gray-200"
+                    >
+                        <div className="flex justify-between text-sm mb-1">
+                            <span className="font-medium">Plan Name</span>
+                            <span>{val.coupon}</span>
+                        </div>
+
+                        <div className="flex justify-between text-sm mb-1">
+                            <span className="font-medium">Percent</span>
+                            <span>{val.percent}%</span>
+                        </div>
+
+                        <div className="flex justify-between text-sm mb-2">
+                            <span className="font-medium">Status</span>
+                            <span
+                                className={
+                                    val.isactive
+                                        ? "text-green-700 bg-green-100 px-2 py-[2px] rounded-full text-xs"
+                                        : "text-red-700 bg-red-100 px-2 py-[2px] rounded-full text-xs"
+                                }
+                            >
+                                {val.isactive ? "Active" : "Expired"}
+                            </span>
+                        </div>
+
+                        {/* ACTIONS */}
+                        <div className="flex justify-end gap-3 mt-2">
+                            <HiPencilSquare
+                                title="Edit"
+                                onClick={() => setedit(val)}
+                                className="w-5 h-5 text-blue-600 hover:text-blue-800 cursor-pointer transition"
+                            />
+                            <RiDeleteBin6Line
+                                title="Delete"
+                                onClick={() => deletee(val._id)}
+                                className="w-5 h-5 text-red-600 hover:text-red-800 cursor-pointer transition"
+                            />
                         </div>
                     </div>
-                })}
+                ))}
             </div>
         </div>
+
         <Modalbox open={modal} onClose={() => setmodal(false)}>
             <div className="membermodal">
                 <form onSubmit={handlee}>

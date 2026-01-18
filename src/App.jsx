@@ -9,7 +9,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import Login from './pages/login/login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Errorpage } from './pages/Error/Errorpage';
 import Logout from './pages/login/logout';
 import Tournasetting from './pages/SettingPage/tournasetting';
@@ -81,11 +81,13 @@ function App() {
   }
 
   useEffect(() => {
-    // off this for disable notification
-    onMessage(messaging, (payload) => {
-      toast.success(payload.notification.body, { autoClose: false });
+    const unsubscribe = onMessage(messaging, (payload) => {
+      toast.success(payload.notification?.body, { autoClose: false });
     });
+
+    return unsubscribe;
   }, []);
+
 
   const baseURL = `${window.location.origin}`;
   const targetBaseURL = 'https://battlefiesta.in';
@@ -101,6 +103,7 @@ function App() {
 
     // off this for disable notification
     // log.islogin && requestPermission();
+    // console.log("is admin: ", log.isadmin)
     log.islogin && jwtcheck();
     log.islogin && dispatch(profilefetch());
   }, [log.islogin]);
@@ -176,22 +179,28 @@ function App() {
               <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
             </Route>
 
-            {/* Suspense Wrapper around Admin Routes */}
+            {log.isadmin && (
+              <Route
+                path="/admin"
+                element={
+                  <Suspense fallback={<Preloader />}>
+                    <AdminRoutes />
+                  </Suspense>
+                }
+              >
+                <Route path="" element={<BackupSchedulePage />} />
+                <Route path="request" element={<Membershiprequest />} />
+                <Route path="query" element={<Query />} />
+                <Route path="voucher" element={<Voucher />} />
+                <Route path="membership" element={<Membership />} />
+                <Route path="users" element={<User />} />
+              </Route>
+            )}
             <Route
-              path="/admin"
-              element={
-                <Suspense fallback={<Preloader />}>
-                  <AdminRoutes />
-                </Suspense>
-              }
-            >
-              <Route path="" element={<BackupSchedulePage />} />
-              <Route path="request" element={<Membershiprequest />} />
-              <Route path="query" element={<Query />} />
-              <Route path="voucher" element={<Voucher />} />
-              <Route path="membership" element={<Membership />} />
-              <Route path="users" element={<User />} />
-            </Route>
+              path="/admin/*"
+              element={<Navigate to="/dashboard" replace />}
+            />
+
 
             <Route path="/" element={<Home />} />
             <Route path="/tournaments">
@@ -227,7 +236,6 @@ function App() {
             <Route path="/subscription" element={<Subscription />} />
             <Route path="/refund" element={<RefundAndCancellationPolicy />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/modal" element={<Modalbox />} />
 
             <Route path="/login/success" element={<LoginSuccess />} />
             <Route path="/logout" element={<Logout />} />

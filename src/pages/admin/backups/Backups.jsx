@@ -13,9 +13,8 @@ import {
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { IoMdRefresh } from "react-icons/io";
-import { MdEdit, MdDelete, MdSearch } from "react-icons/md";
+import { MdEdit, MdDelete, MdSearch, MdInfo } from "react-icons/md";
 import { toast } from "react-toastify";
-import "./dashboard.css";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import dayjs from "dayjs";
 import AllDbModal, { useCustomStyles } from "./AllDbModal";
@@ -121,6 +120,7 @@ const BackupScheduleAdmin = () => {
 
             setSchedules(data.schedules || []);
             setDatabaselist((data.database || []));
+            // toast.success("Refreshed",{autoClose:1000});
         } catch {
             toast.error("Failed to load schedules");
         } finally {
@@ -272,27 +272,39 @@ const BackupScheduleAdmin = () => {
         {
             name: "Action",
             cell: (row) => (
-                <span style={{ display: 'flex', gap: '8px' }}>
-                    <MdEdit
+                <div className="flex gap-2 lg:gap-1">
+                    <div
                         onClick={() => {
                             setForm(row);
                             setEditId(row._id);
                             setModal(true);
                         }}
-                    />
-                    <MdSearch
-                        onClick={() => {
-                            setCronLogs(row.logs)
-                        }}
-                    />
-                    <MdDelete onClick={() => deleteSchedule(row._id)} />
-                </span>
+                        className="w-7 h-7 flex items-center justify-center rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200 cursor-pointer transition"
+                    >
+                        <MdEdit className="w-4 h-4" />
+                    </div>
+
+                    <div
+                        onClick={() => setCronLogs(row.logs)}
+                        className="w-7 h-7 flex items-center justify-center rounded-md bg-green-100 text-green-700 hover:bg-green-200 cursor-pointer transition"
+                    >
+                        <MdInfo className="w-4 h-4" />
+                    </div>
+
+                    <div
+                        onClick={() => deleteSchedule(row._id)}
+                        className="w-7 h-7 flex items-center justify-center rounded-md bg-red-100 text-red-700 hover:bg-red-200 cursor-pointer transition"
+                    >
+                        <MdDelete className="w-4 h-4" />
+                    </div>
+
+                </div>
             ),
-            width: '120px',
+            width: "120px",
             ignoreRowClick: true,
-            allowOverflow: true,
-            button: true
         }
+
+
     ]
 
     const editcolumns = [
@@ -307,10 +319,21 @@ const BackupScheduleAdmin = () => {
         },
         {
             name: "Status",
-            selector: (row) => < div className={row.status == 'SUCCESS' ? 'status success' : row.status == 'FAILED' ? "status failed" : 'status running'} > {row.status}</div>,
-            width: '80px'
+            selector: (row) => (
+                <div
+                    className={
+                        row.status === "SUCCESS"
+                            ? "px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700"
+                            : row.status === "FAILED"
+                                ? "px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700"
+                                : "px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700"
+                    }
+                >
+                    {row.status}
+                </div>
+            ),
+            width: "90px"
         },
-
         {
             name: "Duration",
             selector: (row) => row.durationMs / 1000 + ' Seconds',
@@ -330,11 +353,15 @@ const BackupScheduleAdmin = () => {
     ]
 
     return (
-        <div className="admindashboard backup">
-            <div className="inner">
-                <div className="controler">
-                    <h2>Admin Dashboard</h2>
-                    <div>
+        <div className=" min-h-screen p-1 bg-amber-50 backup">
+            <div className="inner w-full">
+                {/* Controller */}
+                <div className="controler px-1 py-2 relative flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ">
+                    <h2 className="text-lg font-semibold sm:text-xl">
+                        Admin Dashboard
+                    </h2>
+
+                    <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:gap-[10px] ">
                         <LoadingButton
                             loading={loading}
                             onClick={fetchSchedules}
@@ -356,6 +383,7 @@ const BackupScheduleAdmin = () => {
                         >
                             ADD Jobs
                         </Button>
+
                         <Button
                             size="small"
                             variant="contained"
@@ -363,6 +391,7 @@ const BackupScheduleAdmin = () => {
                         >
                             Dbs
                         </Button>
+
                         <Button
                             size="small"
                             variant="contained"
@@ -372,15 +401,17 @@ const BackupScheduleAdmin = () => {
                         </Button>
                     </div>
                 </div>
-                <div id="cronjobhistory">
-                    <DataTable
-                        columns={columns}
-                        data={schedules}
-                        pagination
-                        customStyles={useCustomStyles()}
-                    />
-                </div>
+
+
+                <DataTable
+                    columns={columns}
+                    data={schedules}
+                    pagination
+                    customStyles={useCustomStyles()}
+                />
+
             </div>
+
 
             {/* ---------------- MODAL ---------------- */}
             <Modalbox open={modal} onClose={() => ''}>

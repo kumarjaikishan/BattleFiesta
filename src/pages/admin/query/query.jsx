@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
-import './query.css'
+// import './query.css'
 import Button from '@mui/material/Button';
 import { IoIosSend, IoMdRefresh } from "react-icons/io";
 import { toast } from 'react-toastify';
@@ -116,13 +116,13 @@ const Query = () => {
         {
             name: "Name",
             cell: (row) => row.name,
-              width: '180px'
+            width: '180px'
 
         },
         {
             name: "Email",
             selector: (row) => row.email,
-             width: '200px'
+            width: '200px'
         },
         {
             name: "Message",
@@ -135,30 +135,31 @@ const Query = () => {
         },
         {
             name: "Action",
-            selector: (row) => <span>
+            selector: (row) => <div className="flex gap-2 lg:gap-1">
                 <HiPencilSquare className='editicon ico' title="Edit" onClick={() => openmodale(row.email, row._id)} />
                 <RiDeleteBin6Line className='deleteicon ico' title="Delete" onClick={() => deletee(row._id)} />
-            </span>,
+            </div>,
             width: '100px'
         },
     ]
 
     return <>
-        <div className="query">
+        <div className="adminusers p-1">
             <div className="all">
-                <div className="controler">
-                    <h2 style={{ textAlign: 'center' }}>Query List</h2>
-                    <div>
+                <div className="controler flex flex-col gap-2 py-[5px] sm:flex-row sm:items-center sm:justify-between">
+                    <h2 className="text-center text-lg font-semibold sm:text-left">Query List</h2>
+
+                    <div className="flex flex-wrap justify-center gap-2 sm:flex-nowrap sm:justify-end">
                         <LoadingButton
                             loading={admin.loading}
                             onClick={() => dispatch(contactusform())}
                             variant="contained"
                             type="submit"
                             size="small"
-                        // className="refreshe"
                         >
                             Custom
                         </LoadingButton>
+
                         <LoadingButton
                             loading={admin.loading}
                             onClick={() => dispatch(contactusform())}
@@ -167,12 +168,12 @@ const Query = () => {
                             variant="outlined"
                             type="submit"
                             size="small"
-                            className="refreshe"
                         >
                             REFRESH
                         </LoadingButton>
                     </div>
                 </div>
+
 
                 <DataTable
                     columns={columns}

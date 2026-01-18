@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import "./dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Badge from '@mui/material/Badge';
 import { header, setloader } from "../../store/login";
 import { toast } from "react-toastify";
 import { settournaid } from "../../store/api";
@@ -22,14 +21,14 @@ import FormControl from '@mui/material/FormControl';
 import { setcreatenewmodal } from "../../store/api";
 import { motion } from 'framer-motion';
 import Modalbox from "../../components/custommodal/Modalbox";
-import { BsGearFill } from "react-icons/bs";
 import { GiConsoleController } from "react-icons/gi";
 import { IoMdRefresh } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
-import { MdGroups, MdDelete, MdOutlineContentCopy, MdOutlineAddShoppingCart, MdReadMore } from "react-icons/md";
+import { MdOutlineAddShoppingCart, MdReadMore } from "react-icons/md";
 import { TbMoodSad } from "react-icons/tb";
 import tournlogo from '../../assets/logowebp_250.webp'
 import { cloudinaryUrl } from "../../utils/imageurlsetter";
+import TournamentCard from "./card";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -233,39 +232,67 @@ const Dashboard = () => {
           content="Access the BattleFiesta Dashboard to create, manage, and track PUBG, BGMI, and Free Fire tournaments. View real-time points tables, monitor rankings, and organize esports events effortlessly." />
       </Helmet>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}>
-        <div className="controles">
-          <div className="card">
-            <div>
-              <span>Total Tournament</span> <span>:</span><span>{count.total || 0}</span>
+      <div
+        className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}
+      >
+
+        <div className="w-full flex flex-wrap items-stretch justify-around gap-6 px-5 lg-px-2 lg-py-2 py-2 ">
+
+          {/* CARD 1 — Tournament Stats */}
+          <div className="group relative w-full lg:w-[300px]  rounded-xl border border-gray-200 bg-white/80 backdrop-blur shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-2 lg-p-4 text-gray-800">
+
+            <div className="relative z-10 space-y-1 text-sm">
+              {[
+                ['Total Tournament', count.total || 0],
+                ['Upcoming', count.upcoming || 0],
+                ['Ongoing', count.ongoing || 0],
+                ['Completed', count.completed || 0],
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-center">
+                  <span className="font-semibold w-[160px] text-gray-600">{label}</span>
+                  <span className="text-gray-400">:</span>
+                  <span className="ml-2 font-medium text-gray-900">{value}</span>
+                </div>
+              ))}
             </div>
-            <div>
-              <span>Upcoming</span> <span>:</span><span>{count.upcoming || 0}</span>
-            </div>
-            <div>
-              <span>Ongoing</span> <span>:</span><span>{count.ongoing || 0}</span>
-            </div>
-            <div>
-              <span>Completed</span> <span>:</span><span>{count.completed || 0}</span>
-            </div>
+
+            {/* subtle background accent */}
+            <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-gradient-to-br from-indigo-500 to-blue-500 rounded-xl" />
           </div>
-          <div className="card">
-            <div>
-              <span>Plan</span> <span>:</span><span>{userprofile?.membership?.planid?.plan_name || 'N/A'}</span>
+
+          {/* CARD 2 — Membership Info */}
+          <div className="group w-full lg:w-[300px]  rounded-xl border border-gray-200 bg-white/80 backdrop-blur shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-2 text-gray-800 space-y-1 text-sm">
+
+            <div className="flex items-center">
+              <span className="font-semibold w-[160px] text-gray-600">Plan</span>
+              <span className="text-gray-400">:</span>
+              <span className="ml-2 font-medium text-gray-900">
+                {userprofile?.membership?.planid?.plan_name || 'N/A'}
+              </span>
             </div>
-            <div>
-              <span>Tournament Limit</span> <span>:</span><span>{userprofile?.membership?.planid?.create_limit || 'N/A'}</span>
+
+            <div className="flex items-center">
+              <span className="font-semibold w-[160px] text-gray-600">Tournament Limit</span>
+              <span className="text-gray-400">:</span>
+              <span className="ml-2 font-medium text-gray-900">
+                {userprofile?.membership?.planid?.create_limit || 'N/A'}
+              </span>
             </div>
-            <div>
-              <span>Expire In</span> <span>:</span><span>{userprofile?.membership?.expire_date && (getTimeDifference(userprofile?.membership?.expire_date) < 0 ? "Expired" : `${getTimeDifference(userprofile?.membership?.expire_date)} Days`)} </span>
+
+            <div className="flex items-center">
+              <span className="font-semibold w-[160px] text-gray-600">Expire In</span>
+              <span className="text-gray-400">:</span>
+              <span className="ml-2 font-medium text-gray-900">
+                {userprofile?.membership?.expire_date &&
+                  (getTimeDifference(userprofile?.membership?.expire_date) < 0
+                    ? 'Expired'
+                    : `${getTimeDifference(userprofile?.membership?.expire_date)} Days`)}
+              </span>
             </div>
+
             {userprofile?.membership?.expire_date &&
               getTimeDifference(userprofile?.membership?.expire_date) < 0 && (
-                <NavLink className="buy" to="/subscription">
+                <NavLink to="/subscription" className="block pt-1">
                   <Button
                     size="small"
                     fullWidth
@@ -277,121 +304,105 @@ const Dashboard = () => {
                 </NavLink>
               )}
           </div>
-          <div className="operator">
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              {/* <Button endIcon={<CircularProgress size={15} color="inherit" />} title="Create New Tournament"
-                onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button> */}
-              <Button endIcon={<GiConsoleController />} title="Create New Tournament"
-                onClick={() => dispatch(setcreatenewmodal(true))} sx={{ width: '48%' }} variant="contained">New</Button>
+
+          {/* OPERATOR */}
+          <div className="w-full lg:w-[300px] rounded-xl  bg-white/80   p-3 flex flex-col gap-3">
+
+            <div className="flex gap-2">
+              <Button
+                endIcon={<GiConsoleController />}
+                onClick={() => dispatch(setcreatenewmodal(true))}
+                className="w-1/2"
+                variant="contained"
+              >
+                New
+              </Button>
+
               <LoadingButton
                 loading={tournacenter.loading}
-                // onClick={() => dispatch(alltourna())}
                 onClick={async () => {
                   try {
                     await dispatch(alltourna()).unwrap();
                     toast.success('Refreshed!', { autoClose: 900 });
-                  } catch (error) {
+                  } catch {
                     toast.error('Failed to refresh!');
                   }
                 }}
-                loadingPosition="end"
-                sx={{ width: '48%' }}
                 endIcon={<IoMdRefresh />}
                 variant="outlined"
-                type="submit"
-              // size="small"
+                className="w-1/2"
               >
-                REFRESH
+                Refresh
               </LoadingButton>
             </div>
-            <FormControl size="small" sx={{ width: "100%", mt: 1 }}>
-              <InputLabel id="demo-simple-select-label">Filter</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={tournastatus}
-                label="Filter"
-                onChange={handleChangee}
-              >
-                <MenuItem value={'all'}>All</MenuItem>
-                <MenuItem value={'upcoming'}>Upcoming</MenuItem>
-                <MenuItem value={'ongoing'}>Ongoing</MenuItem>
-                <MenuItem value={'completed'}>Completed</MenuItem>
+
+            <FormControl size="small" fullWidth>
+              <InputLabel>Filter</InputLabel>
+              <Select value={tournastatus} label="Filter" onChange={handleChangee}>
+                <MenuItem value="all">All</MenuItem>
+                <MenuItem value="upcoming">Upcoming</MenuItem>
+                <MenuItem value="ongoing">Ongoing</MenuItem>
+                <MenuItem value="completed">Completed</MenuItem>
               </Select>
             </FormControl>
           </div>
-        </div>
-        <motion.div layout className="cards">
-          {filtered?.length > 0 ?
-            filtered?.slice(0, howmany)?.map((val) => {
-              // Format the date
-              const formattedDate = new Date(val.createdAt).toLocaleDateString(
-                "en-US",
-                {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                }
-              );
 
-              // Format the time
-              const formattedTime = new Date(val.createdAt).toLocaleTimeString(
-                "en-US",
-                {
-                  hour: "numeric",
-                  minute: "numeric",
-                  second: "numeric",
-                  hour12: true,
-                }
-              );
-              return (
-                <Badge badgeContent={1} key={val._id} color="error" invisible={!val.newEntry}>
-                  <motion.div layout variants={item} className="card" key={val._id}>
-                    <div className="img">
-                      <img
-                        loading="lazy"
-                        // src={val.tournment_logo ? val.tournment_logo : tournlogo}
-                        src={cloudinaryUrl(val?.tournment_logo, {
-                          format: "webp",
-                          // width: 250,
-                          // height: 250,
-                        }) || tournlogo}
-                        alt="logo"
-                      />
-                      <span title={val.title}>{val.title}</span>
-                    </div>
-                    <span className={`status ${val.status}`}>{val.status}</span>
-                    <h3 className="organiser">by {val.organiser} </h3>
-                    <div className="time">
-                      <span>ID- {val.tournid}
-                        <MdOutlineContentCopy title="Copy Id" onClick={() => {
-                          navigator.clipboard.writeText(val.tournid);
-                          toast.success('Copied', { autoClose: 1000 })
-                        }} /></span>
-                      <span> {formattedDate}</span>
-                    </div>
-                    <div className="registered">
-                      <span >{val.type}</span>
-                      <span title={`${val.totalTeamsRegistered} out of ${val.slots} slots Registered (including Approved and Pending teams)`}> <MdGroups /> . {val.totalTeamsRegistered}/{val.slots} </span>
-                    </div>
-                    <div className="controller">
-                      <Button startIcon={<BsGearFill />} size="small" onClick={() => setdata(val)} variant="contained">Manage</Button>
-                      <MdDelete title="delete tournament" className="delete" onClick={() => deletee(val._id)} />
-                    </div>
-                  </motion.div>
-                </Badge>
-              )
-            }) :
-            <div className="notfound">
-              <div>
-                <TbMoodSad className="sad" />
-                <h2>No Tournament Found</h2>
-                <p>Please Add Tournament.</p>
+        </div>
+
+
+
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-7 p-3"
+        >
+          {filtered?.length > 0 ? (
+            filtered.slice(0, howmany).map((val) => (
+              <TournamentCard
+                key={val._id}
+                data={val}
+                itemVariant={item}
+                onManage={setdata}
+                onDelete={deletee}
+                cloudinaryUrl={cloudinaryUrl}
+                fallbackImage={tournlogo}
+              />
+            ))
+          ) : (
+            <div className=" col-span-full flex justify-center">
+              <div
+                className="
+                             w-95vw lg:w-120  text-center bg-white rounded-xl p-2
+                             shadow-md border border-dashed border-gray-400
+                             hover:shadow-lg transition
+                             hover:-translate-y-1
+                           "
+              >
+                <TbMoodSad className="text-8xl mx-auto text-gray-400 mb-2" />
+
+                <h2 className="text-lg font-semibold text-gray-700">
+                  No Tournament Found
+                </h2>
+
+                <p className="text-sm text-gray-500 mt-1 mb-4">
+                  Looks empty here. Create your first tournament to get started.
+                </p>
+
+                <button
+                  onClick={() => dispatch(setcreatenewmodal(true))}
+                  className="
+                       not-last-of-type:  inline-flex items-center gap-2 px-4 py-2
+                       not-last-of-type:   bg-white-600 text-black 
+                       not-last-of-type:  text-sm font-medium cursor-pointer
+                       not-last-of-type:  rounded-lg hover:bg-black hover:text-white transition
+                       not-last-of-type:"
+                >
+                  <GiConsoleController className="text-lg" />
+                  Create Tournament
+                </button>
               </div>
             </div>
-          }
+          )}
+        </div>
 
-        </motion.div>
 
         {tournacenter?.alltournaments?.length > howmany &&
           <Button endIcon={<MdReadMore />} className="loadmore" onClick={() => sethowmany(howmany + 10)} variant="contained">Load More</Button>
@@ -450,7 +461,7 @@ const Dashboard = () => {
             </form>
           </div>
         </Modalbox>
-      </motion.div>
+      </div>
     </>
   );
 };

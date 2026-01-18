@@ -1,4 +1,4 @@
-import('./membership.css')
+
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdRefresh } from "react-icons/io";
@@ -48,25 +48,38 @@ const Membership = () => {
     },
     {
       name: "Status",
-      selector: (row) => <span className={row?.isActive ? 'status active' : 'status expired'}>{row.isActive ? "Active" : "Expired"}</span>,
-      width: '100px'
-    },
+      selector: (row) => (
+        <span
+          className={
+            row?.isActive
+              ? "inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700"
+              : "inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700"
+          }
+        >
+          {row.isActive ? "Active" : "Expired"}
+        </span>
+      ),
+      width: "100px"
+    }
+
   ]
 
 
   return <>
-    <div className="adminmembership">
+    <div className="adminmembership p-1">
       <div className="inner">
-        <div className="controler">
-          <h2 style={{ textAlign: 'center' }}>Active Memberships</h2>
+        <div className="controler flex flex-col items-center gap-2 py-[5px] sm:flex-row sm:justify-between">
+          <h2 className="text-center text-lg font-semibold sm:text-left">
+            Active Memberships
+          </h2>
+
           <LoadingButton
             loading={admin.loading}
-            // onClick={() => dispatch(membership())}
             onClick={async () => {
               try {
                 await dispatch(membership()).unwrap();
                 toast.success('Refreshed!', { autoClose: 900 });
-              } catch (error) {
+              } catch {
                 toast.error('Failed to refresh!');
               }
             }}
@@ -75,11 +88,11 @@ const Membership = () => {
             variant="outlined"
             type="submit"
             size="small"
-            className="refreshe"
           >
             REFRESH
           </LoadingButton>
         </div>
+
 
         <DataTable
           columns={columns}

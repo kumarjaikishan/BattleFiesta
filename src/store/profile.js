@@ -31,6 +31,9 @@ const profile = createSlice({
         profilepicupdtae(state, action) {
 
         },
+         userProfileClear(state, action) {
+            state.userprofile = {};
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(profilefetch.pending, (state,) => {
@@ -47,5 +50,5 @@ const profile = createSlice({
         })
     }
 })
-export const { profilepicupdtae } = profile.actions;
+export const { profilepicupdtae,userProfileClear } = profile.actions;
 export default profile.reducer;
