@@ -269,9 +269,6 @@ const Profile = () => {
 
         return days + 1;
     }
-    const glass =
-        "bg-gradient-to-br from-white/70 to-white/20 backdrop-blur-[12px] rounded-xl px-4 py-3";
-
 
     return (
         <div className="profilepage">
@@ -283,33 +280,23 @@ const Profile = () => {
             </Helmet>
 
             <motion.div
-                animate={{ scale: [1, 1.2, 1.2, 1], rotate: [0, 90, 90, 0], borderRadius: ["10%", "20%", "40%", "10%"] }}
-                transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
-                className="
-    absolute rounded-full
-    w-[300px] h-[300px]
-    bg-gradient-to-tr from-pink-200 to-orange-600
-    top-[45%] left-[15%]
-    max-[600px]:w-[250px] max-[600px]:h-[250px]
-  "
-            />
-
+                animate={{
+                    scale: [1, 1.2, 1.2, 1],
+                    rotate: [0, 90, 90, 0],
+                    borderRadius: ['10%', '20%', '40%', '10%']
+                }}
+                transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity }}
+                className="circle circle1"></motion.div>
             <motion.div
-                animate={{ scale: [1, 1.1, 1.1, 1] }}
+                animate={{
+                    scale: [1, 1.1, 1.1, 1],
+                    // rotate: [0, 180, 190, 0],
+                    // borderRadius: ['10%', '20%', '40%', '10%']
+                }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="
-    absolute rounded-full
-    w-[300px] h-[300px]
-    bg-gradient-to-tr from-pink-400 to-blue-700
-    top-[5%] right-[10%]
-    max-[600px]:top-[10%] max-[600px]:right-[5%]
-  "
-            />
-
-
+                className="circle circle2"></motion.div>
             <div className="materials">
-
-                <div className={`profilepic  ${glass}`}>
+                <div className="profilepic glass">
                     <h2>Profile Picture</h2>
                     <div className="coverimg">
                         <img
@@ -323,8 +310,8 @@ const Profile = () => {
                             <img
                                 src={cloudinaryUrl(inp?.profile, {
                                     format: "webp",
-                                    width: 150,
-                                    height: 150,
+                                      width: 150,
+                                      height: 150,
                                 }) || photo}
                                 loading="lazy" alt="profile picture" />
                         </div>
@@ -357,8 +344,7 @@ const Profile = () => {
                         <VisuallyHiddenInput onChange={(e) => handlefilechange(e, 'profile')} type="file" accept="image/*" />
                     </Button>
                 </div>
-
-                <div className={`profiledeatil  ${glass}`}>
+                <div className="profiledeatil glass">
                     <h2>Profile</h2>
                     <form onSubmit={submit}>
                         <div className="input">
@@ -397,8 +383,7 @@ const Profile = () => {
                         </Button>
                     </form>
                 </div>
-
-                <div className={`membership  ${glass}`}>
+                <div className="membership glass">
                     <h2>Membership</h2>
                     <div>
                         <p><span> Plan</span> <span>:</span> <span>{membership.plan} Plan</span> </p>
@@ -413,8 +398,7 @@ const Profile = () => {
                         </Button></NavLink>
                     </div>
                 </div>
-
-                <div className={`passchange  ${glass}`}>
+                <div className="passchange glass">
                     <h2>Change Password</h2>
                     <div>
                         <TextField required name='link'
@@ -431,8 +415,7 @@ const Profile = () => {
                     </div>
 
                 </div>
-
-                <div className={`privacy  ${glass}`}>
+                <div className="privacy glass">
                     <h2>Privacy</h2>
                     <div className="input">
                         <TextField onChange={handlechangee} name='publicemail' value={inp.publicemail || ''} className="full"
@@ -457,8 +440,7 @@ const Profile = () => {
                         Save
                     </Button>
                 </div>
-
-                <div className={`social  ${glass}`}>
+                <div className="social glass">
                     <h2>Social Links</h2>
                     <form onSubmit={submit}>
                         {inp.sociallinks && inp.sociallinks.map((val, ind) => {

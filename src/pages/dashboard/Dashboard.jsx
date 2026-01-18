@@ -233,12 +233,13 @@ const Dashboard = () => {
       </Helmet>
 
       <div
-        className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}
+        // className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}
+        className=" bg-white  min-h-screen Dashboard"
       >
         <div className="w-full flex flex-wrap items-stretch justify-around gap-6 px-5 lg-px-2 lg-py-2 py-2 ">
 
           {/* CARD 1 — Tournament Stats */}
-          <div className="group relative w-full lg:w-[300px]  rounded-xl border border-gray-200 bg-white/80 backdrop-blur shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-2 lg-p-4 text-gray-800">
+          <div className="group relative w-full md:w-[300px]  rounded-xl border border-gray-200 bg-white/80 backdrop-blur shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-2 lg-p-4 text-gray-800">
 
             <div className="relative z-10 space-y-1 text-sm">
               {[
@@ -260,7 +261,7 @@ const Dashboard = () => {
           </div>
 
           {/* CARD 2 — Membership Info */}
-          <div className="group w-full lg:w-[300px]  rounded-xl border border-gray-200 bg-white/80 backdrop-blur shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-2 text-gray-800 space-y-1 text-sm">
+          <div className="group w-full md:w-[300px]  rounded-xl border border-gray-200 bg-white/80 backdrop-blur shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-2 text-gray-800 space-y-1 text-sm">
 
             <div className="flex items-center">
               <span className="font-semibold w-[160px] text-gray-600">Plan</span>
@@ -305,7 +306,7 @@ const Dashboard = () => {
           </div>
 
           {/* OPERATOR */}
-          <div className="w-full lg:w-[300px] rounded-xl  bg-white/80   p-3 flex flex-col gap-3">
+          <div className="w-full md:w-[300px] rounded-xl  bg-white/80   p-3 flex flex-col gap-3">
 
             <div className="flex gap-2">
               <Button
@@ -348,10 +349,8 @@ const Dashboard = () => {
 
         </div>
 
-
-
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-7 p-3"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-3 justify-items-center"
         >
           {filtered?.length > 0 ? (
             filtered.slice(0, howmany).map((val) => (

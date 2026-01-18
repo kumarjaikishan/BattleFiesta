@@ -164,6 +164,24 @@ input {
   /* border: 3px solid red; */
 }
 
+/* .bottomshadow{
+  position: relative;
+  overflow: visible !important;
+  border-radius: 0 0 10px 10px !important;
+}
+
+.bottomshadow::before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 8px;
+  background: #011f22;
+  bottom: -8px;
+  border-radius: 0 0 8px 8px;
+  left: 0;
+} */
+
+
 @media only screen and (max-width: 600px) {
 
   .nav {

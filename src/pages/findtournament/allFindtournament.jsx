@@ -1,59 +1,38 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
-import { setloader, header } from '../../store/login';
-import './findtournas.css'
+import { useDispatch } from "react-redux";
+import { setloader, header } from "../../store/login";
 import { useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
-import { TextField } from '@mui/material';
+import { TextField, InputAdornment, Button } from "@mui/material";
 import { IoMdSearch } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
 import { TbMoodSad } from "react-icons/tb";
-import { MdContentCopy, MdMenuOpen, MdGroups } from "react-icons/md";
 import { GiGamepad } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa6";
 import { BiReset } from "react-icons/bi";
 import { Helmet } from "react-helmet-async";
-import tournlogo from '../../assets/logowebp_250.webp'
-import InputAdornment from '@mui/material/InputAdornment';
-import { IoClose } from "react-icons/io5";
-import { cloudinaryUrl } from "../../utils/imageurlsetter";
+import TournamentCard from "./FindTournCard";
+import { MdMenuOpen } from "react-icons/md";
 
 const AllFindtournament = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [ongoinglist, setOngoingList] = useState([]);
+    const [upcominglist, setUpcomingList] = useState([]);
+    const [completedlist, setCompletedList] = useState([]);
+    const [showinglist, setShowingList] = useState([]);
+    const [activeList, setActiveList] = useState([]);
+    const [activeTab, setActiveTab] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searching, setsearching] = useState(false);
+    const [visible, setvisible] = useState(10)
 
     useEffect(() => {
         dispatch(header("Tournaments"));
         dispatch(setloader(true));
         fetchTournaments();
     }, []);
-
-    const [ongoinglist, setOngoingList] = useState([]);
-    const [upcominglist, setUpcomingList] = useState([]);
-    const [completedlist, setCompletedList] = useState([]);
-    const [showinglist, setShowingList] = useState([]);
-    const [activeList, setActiveList] = useState([]); // Store the currently active list
-    const [searchQuery, setSearchQuery] = useState("");
-    const [searching, setsearching] = useState(false)
-    const [visible, setvisible] = useState(8)
-
-
-    const handleActive = (index) => {
-        let alldiv = document.querySelectorAll(".conta .cate div");
-        alldiv.forEach(div => div.classList.remove('active'));
-        alldiv[index].classList.add("active");
-
-        if (index === 0) {
-            setShowingList(upcominglist);
-            setActiveList(upcominglist); // Update the active list
-        } else if (index === 1) {
-            setShowingList(ongoinglist);
-            setActiveList(ongoinglist); // Update the active list
-        } else {
-            setShowingList(completedlist);
-            setActiveList(completedlist); // Update the active list
-        }
-    };
 
     const fetchTournaments = async () => {
         try {
@@ -88,176 +67,154 @@ const AllFindtournament = () => {
         }
     };
 
+    const handleActive = (i) => {
+        setActiveTab(i);
+        setsearching(false);
+
+        if (i === 0) {
+            setShowingList(upcominglist);
+            setActiveList(upcominglist);
+        } else if (i === 1) {
+            setShowingList(ongoinglist);
+            setActiveList(ongoinglist);
+        } else {
+            setShowingList(completedlist);
+            setActiveList(completedlist);
+        }
+    };
+
     const handleSearch = async () => {
-        if (searchQuery.trim() === "") {
-            setShowingList(activeList);
+        if (!searchQuery.trim())
             return toast.warn("Search is Empty", { autoClose: 1200 });
-        }
-        if (searchQuery.trim().length != 8) {
-            setShowingList(activeList);
+
+        if (searchQuery.length !== 8)
             return toast.warn("Tournament Id must be 8 Digits", { autoClose: 1200 });
-        }
 
         try {
             dispatch(setloader(true));
-            const response = await fetch(`${import.meta.env.VITE_API_ADDRESS}tournamnetsearch`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ tournid: searchQuery })
-            });
+            const res = await fetch(
+                `${import.meta.env.VITE_API_ADDRESS}tournamnetsearch`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ tournid: searchQuery }),
+                }
+            );
 
-            const data = await response.json();
-            console.log(data)
+            const data = await res.json();
             dispatch(setloader(false));
-            if (!response.ok) {
-                return toast.warn(data.message, { autoClose: 1500 });
-            }
-            setsearching(true)
-            // Update showing list with the search result
+
+            if (!res.ok) return toast.warn(data.message);
+
+            setsearching(true);
             setShowingList([data.query]);
-        } catch (error) {
+        } catch {
             dispatch(setloader(false));
-            console.log(error);
         }
     };
 
-    const findTournament = (tid) => {
-        navigate(`/tournaments/${tid}`);
-    };
-
     return (
-        <div className="findtournas">
+        <div className="findtournas relative min-h-[calc(100vh-var(--navheight))] bg-amber-50">
             <Helmet>
                 <title>Find Tournaments || BattleFiesta</title>
-                <link rel="canonical" href={`${window.location.origin}/tournaments`} />
-                <meta name="description"
-                    content="Discover and join exciting PUBG, BGMI, and Free Fire tournaments on BattleFiesta. Browse ongoing and upcoming competitions, check rankings with automatic points tables, and compete with top players." />
             </Helmet>
-            <div className="conta">
-                <div className="cate">
-                    <div onClick={() => handleActive(0)} className="active">
-                        <GiGamepad />
-                        <span>UPCOMING</span>
-                    </div>
-                    <div onClick={() => handleActive(1)}>
-                        <FaPlay />
-                        <span>ONGOING</span>
-                    </div>
-                    <div onClick={() => handleActive(2)}>
-                        <BiReset />
-                        <span>COMPLETED</span>
-                    </div>
+
+            {/* CONTROLLER */}
+            <div className="w-full top-(--navheightmobile) py-0.5 px-1.25 pb-1 md:py-1 bg-white sticky  z-10
+                shadow-[5px_5px_10px_rgba(0,0,0,0.4)]
+                flex flex-col sm:flex-row sm:h-[55px] sm:items-center justify-between gap-2">
+
+                {/* TABS */}
+                <div className="w-full sm:w-[65%] h-[30px] sm:h-[40px]
+                flex justify-between items-center rounded-[10px]
+                font-semibold text-[11px] md:text-[0.9em] tracking-wider">
+
+                    {[
+                        { icon: <GiGamepad />, label: "UPCOMING" },
+                        { icon: <FaPlay />, label: "ONGOING" },
+                        { icon: <BiReset />, label: "COMPLETED" },
+                    ].map((t, i) => (
+                        <div
+                            key={i}
+                            onClick={() => handleActive(i)}
+                            className={`w-1/3 h-full flex items-center justify-center gap-2 rounded-md cursor-pointer
+                          ${activeTab === i ? "bg-[var(--primarycolor)] text-white" : ""}`}
+                        >
+                            <span className="text-[20px] md:text-[24px]">{t.icon}</span>
+                            <span>{t.label}</span>
+                        </div>
+                    ))}
                 </div>
-                <div>
+
+                {/* SEARCH */}
+                <div className="w-full sm:w-auto flex items-center gap-2">
                     <TextField
                         label="Tournament ID"
-                        fullWidth
                         size="small"
-                        type='tel'
-                        inputProps={{ minLength: 8, maxLength: 8 }}
-                        onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
-                        className="filled"
+                        fullWidth
+                        type="tel"
                         value={searchQuery}
                         onChange={(e) => {
-                            const value = e.target.value;
-                            setSearchQuery(value);
-                            if (value === "") {
-                                setShowingList(activeList); // Restore active list on empty input
-                                setsearching(false)
+                            setSearchQuery(e.target.value);
+                            if (!e.target.value) {
+                                setShowingList(activeList);
+                                setsearching(false);
                             }
                         }}
                         InputProps={{
-                            endAdornment: searchQuery ? (
-                                <InputAdornment className="cross" onClick={() => setSearchQuery("")} position="end" sx={{ cursor: "pointer" }}>
-                                    <IoClose />
+                            endAdornment: searchQuery && (
+                                <InputAdornment position="end">
+                                    <IoClose
+                                        className="cursor-pointer"
+                                        onClick={() => {
+                                            setSearchQuery("");
+                                            setShowingList(activeList);
+                                            setsearching(false);
+                                        }}
+                                    />
                                 </InputAdornment>
-                            ) : null,
+                            ),
                         }}
-
                     />
-                    <IoMdSearch onClick={handleSearch} title="Search" className="searchIcon" />
+                    <IoMdSearch
+                        onClick={handleSearch}
+                        className=" w-10 h-8 p-1.5 rounded cursor-pointer text-white
+                      bg-[var(--primarycolor)] hover:bg-[var(--hovercolor)]"
+                    />
+
                 </div>
             </div>
-            <div className="cards">
-                {showinglist.length < 1 && (
-                    <div className="notfound">
-                        <div>
-                            <TbMoodSad className="sad" />
-                            <h2>No Tournament Found</h2>
-                            <p>This section will be auto updated once any Tournament comes under this section</p>
-                        </div>
+
+            {/* CARDS */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
+                gap-7 pt-5 md:p-3 justify-items-center">
+
+                {showinglist.length === 0 && (
+                    <div className="col-span-full text-center mt-6">
+                        <TbMoodSad className="text-7xl mx-auto text-gray-400 mb-2" />
+                        <p>No Tournament Found</p>
                     </div>
                 )}
-                {showinglist.slice(0, visible).map((val) => {
-                    const formattedDate = new Date(val.createdAt).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                    });
 
-                    const formattedTime = new Date(val.createdAt).toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "numeric",
-                        hour12: true,
-                    });
-
-                    return (
-                        <div className="card" key={val._id}>
-                            <div className="img">
-                                <img
-                                    loading="lazy"
-                                    src={cloudinaryUrl(val?.tournment_logo, {
-                                        format: "webp",
-                                        width: 300,
-                                        // height: 300,
-                                    }) || tournlogo}
-                                    alt="logo"
-                                />
-                                <span title={val.title}>{val.title}</span>
-                            </div>
-                            <h3 className="organiser">- {val.organiser}</h3>
-                            <div className="time">
-                                {formattedDate}, {formattedTime} <span>{val.type}</span>
-                            </div>
-                            <div className="tournId">
-                                <span> ID :- {val.tournid}
-                                    <MdContentCopy title="Copy Id" onClick={() => {
-                                        navigator.clipboard.writeText(val.tournid);
-                                        toast.success('Copied', { autoClose: 1000 })
-                                    }} />
-                                </span>
-                                <span title={`${val.totalTeamsRegistered} out of ${val.slots} slots Registered (including Approved and Pending teams)`}> <MdGroups /> {val.totalTeamsRegistered} /{val.slots} </span>
-                            </div>
-                            {/* <div className="label">
-                                {val.label.split(',').map((eac) => {
-                                    return <span>{eac}</span>
-                                })}
-                            </div> */}
-                            <div className="controller">
-                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
-                                    READ MORE
-                                </Button>
-
-                                {searching &&
-                                    <p className="status" title="Status">{val.status}</p>}
-                            </div>
-                        </div>
-                    );
-                })}
-
+                {showinglist?.slice(0, visible).map((t) => (
+                    <TournamentCard
+                        key={t._id}
+                        tournament={t}
+                        onReadMore={(id) => navigate(`/tournaments/${id}`)}
+                        showStatus={searching}
+                    />
+                ))}
             </div>
-            <div style={{width:'100%',  paddingBottom:'15px', textAlign:'center'}}>
+            <div style={{ width: '100%', paddingBottom: '15px', textAlign: 'center' }}>
 
-            <Button size="small"
-             onClick={() => setvisible(visible + 8)}
-              variant="contained" endIcon={<MdMenuOpen />}>
-                Load MORE
-            </Button>
+                <Button size="small"
+                    onClick={() => setvisible(visible + 10)}
+                    variant="contained" endIcon={<MdMenuOpen />}>
+                    Load MORE
+                </Button>
             </div>
         </div>
     );
-}
+};
 
 export default AllFindtournament;

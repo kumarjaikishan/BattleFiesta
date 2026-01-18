@@ -20,27 +20,8 @@
         }
     }
 
-    .circle {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background: linear-gradient(to top right, pink, orange);
-    }
+   
 
-    .circle1 {
-        top: 45%;
-        left: 15%;
-        width: 300px;
-        height: 300px;
-    }
-
-    .circle2 {
-        top: 5%;
-        right: 10%;
-        background: linear-gradient(to top right, pink, rgb(21, 10, 233));
-    }
 
     .menu {
         width: 900px;
@@ -84,15 +65,6 @@
         grid-template-columns: repeat(8, 1fr);
         gap: 25px;
 
-        .glass {
-            background: linear-gradient(to right bottom,
-                    rgba(255, 255, 255, 0.7),
-                    rgba(255, 255, 255, 0.2));
-            padding: 10px 15px;
-            border-radius: 10px;
-            /* backdrop-filter: blur(15px); */
-            backdrop-filter: blur(12px);
-        }
 
         h2 {
             width: 100%;
@@ -297,23 +269,7 @@
     .profilepage {
         min-height: calc(100vh - var(--navheightmobile));
 
-        .circle {
-            width: 250px;
-            height: 250px;
-        }
-
-        .circle1 {
-            bottom: 10px;
-            left: 15%;
-            width: 300px;
-            height: 300px;
-        }
-
-        .circle2 {
-            top: 10%;
-            right: 5%;
-            background: linear-gradient(to top right, pink, rgb(21, 10, 233));
-        }
+      
 
         .menu {
             width: 98%;

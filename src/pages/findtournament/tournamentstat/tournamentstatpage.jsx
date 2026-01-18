@@ -11,6 +11,7 @@ import { MdLocalPhone, MdInsertLink, MdFeed, MdLeaderboard } from "react-icons/m
 import { GrOverview } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
 import { cloudinaryUrl } from '../../../utils/imageurlsetter';
+import './tournastat.css'
 
 const Tournamentstatpage = () => {
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ const Tournamentstatpage = () => {
             />
           </div>
         }
-        <div className="info">
+        <div className="info bottomshadow">
           <div className="upper">
             <div>{tournament?.title} <span>{tournament?.status}</span></div>
             <div>Organised by: {tournament?.organiser} </div>
@@ -154,6 +155,7 @@ const Tournamentstatpage = () => {
 
             </div>
           )}
+
           {tournament?.type === 'tdm' && data2.isopen && (
             <div className="btn">
               <a
