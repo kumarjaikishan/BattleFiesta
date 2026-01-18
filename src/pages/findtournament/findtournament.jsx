@@ -17,6 +17,7 @@ import tournlogo from '../../assets/logowebp_250.webp'
 import InputAdornment from '@mui/material/InputAdornment';
 import { IoClose } from "react-icons/io5";
 import { cloudinaryUrl } from "../../utils/imageurlsetter";
+import TournamentCard from "./FindTournCard";
 
 const Findtournament = () => {
     const dispatch = useDispatch();
@@ -178,71 +179,35 @@ const Findtournament = () => {
                     <IoMdSearch onClick={handleSearch} title="Search" className="searchIcon" />
                 </div>
             </div>
+
             <div className="cards">
                 {showinglist.length < 1 && (
-                    <div className="notfound">
-                        <div>
-                            <TbMoodSad className="sad" />
-                            <h2>No Tournament Found</h2>
+                    <div className=" col-span-full flex justify-center">
+                        <div
+                            className="
+                                w-95vw lg:w-120 h-fit text-center bg-white rounded-xl p-2
+                                shadow-md border border-dashed border-gray-400 mt-4
+                                hover:shadow-lg transition hover:-translate-y-1
+                              "
+                        >
+                            <TbMoodSad className="text-8xl mx-auto text-gray-400 mb-2" />
+
+                            <h2 className="text-lg font-semibold text-gray-700">
+                                No Tournament Found
+                            </h2>
+
                             <p>This section will be auto updated once any Tournament comes under this section</p>
                         </div>
                     </div>
+
                 )}
                 {showinglist.map((val) => {
-                    const formattedDate = new Date(val.createdAt).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                    });
-
-                    const formattedTime = new Date(val.createdAt).toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "numeric",
-                        hour12: true,
-                    });
-
-                    return (
-                        <div className="card" key={val._id}>
-                            <div className="img">
-                                <img
-                                    loading="lazy"
-                                    src={cloudinaryUrl(val?.tournment_logo, {
-                                        format: "webp",
-                                        width: 300,
-                                        // height: 300,
-                                    }) || tournlogo}
-                                    alt="logo"
-                                />
-                                <span title={val.title}>{val.title}</span>
-                            </div>
-                            <h3 className="organiser">- {val.organiser}</h3>
-                            <div className="time">
-                                {formattedDate}, {formattedTime} <span>{val.type}</span>
-                            </div>
-                            <div className="tournId">
-                                <span> ID :- {val.tournid}
-                                    <MdContentCopy title="Copy Id" onClick={() => {
-                                        navigator.clipboard.writeText(val.tournid);
-                                        toast.success('Copied', { autoClose: 1000 })
-                                    }} />
-                                </span>
-                                <span title={`${val.totalTeamsRegistered} out of ${val.slots} slots Registered (including Approved and Pending teams)`}> <MdGroups /> {val.totalTeamsRegistered} /{val.slots} </span>
-                            </div>
-                            {/* <div className="label">
-                                {val.label.split(',').map((eac) => {
-                                    return <span>{eac}</span>
-                                })}
-                            </div> */}
-                            <div className="controller">
-                                <Button size="small" onClick={() => findTournament(val._id)} variant="contained" endIcon={<MdMenuOpen />}>
-                                    READ MORE
-                                </Button>
-
-                                {searching &&
-                                    <p className="status" title="Status">{val.status}</p>}
-                            </div>
-                        </div>
-                    );
+                    <TournamentCard
+                        key={val._id}
+                        tournament={val}
+                        onReadMore={findTournament}
+                        showStatus={searching}
+                    />
                 })}
             </div>
         </div>

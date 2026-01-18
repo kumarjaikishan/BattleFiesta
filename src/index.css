@@ -148,6 +148,7 @@ input {
     border-radius: 10px;
     padding: 10px;
     text-align: center;
+    
 
     & .sad {
       font-size: 4em;

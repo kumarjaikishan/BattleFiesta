@@ -235,7 +235,6 @@ const Dashboard = () => {
       <div
         className={tournacenter.createnewmodal ? "Dashboard modalopen" : "Dashboard"}
       >
-
         <div className="w-full flex flex-wrap items-stretch justify-around gap-6 px-5 lg-px-2 lg-py-2 py-2 ">
 
           {/* CARD 1 — Tournament Stats */}
