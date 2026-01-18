@@ -49,6 +49,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "rollup-plugin-visualizer": "^5.12.0",
     "vite": "^5.0.8",
+    "vite-plugin-compression": "^0.5.1",
     "webpack-bundle-analyzer": "^4.10.2"
   }
 }
