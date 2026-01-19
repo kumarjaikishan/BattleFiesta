@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 import { useCustomStyles } from "../backups/AllDbModal";
 import { Avatar, Box } from "@mui/material";
+import CustomModal from "../../../components/modalBox/Modal";
 
 
 const User = () => {
@@ -289,7 +290,7 @@ const User = () => {
                 customStyles={useCustomStyles()}
             />
 
-            <Modalbox open={modal} onClose={() => setmodal(false)}>
+            {/* <Modalbox open={modal} onClose={() => setmodal(false)}>
                 <div className="content w-100">
                     <p className="header">User Detail</p>
                     <div className="modalbody">
@@ -331,7 +332,7 @@ const User = () => {
                         <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
                     </div>
                 </div>
-            </Modalbox>
+            </Modalbox> */}
 
             <Modalbox open={mailmodal} onClose={() => setmailmodal(false)}>
                 <div className="content w-100 mail">
@@ -358,6 +359,58 @@ const User = () => {
                     </div>
                 </div>
             </Modalbox>
+
+            <CustomModal
+             open={modal} 
+             onClose={() => setmodal(false)}
+             width={420}
+             animation={true}
+             >
+                <CustomModal.Header>
+                    <p className="header">User Detail</p>
+                </CustomModal.Header>
+
+                <CustomModal.Body>
+                    <form id="form" onSubmit={handlee}>
+                        <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Name" size="small" />
+                        <TextField type="tel" required value={inp.phone} onChange={(e) => handleChange(e, 'phone')} sx={{ width: '98%' }} label="Mobile"
+                            onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
+                            size="small" />
+                        <FormControl sx={{ width: '98%' }} size="small">
+                            <InputLabel id="demo-simple-select-label">Verify</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={inp.isverified}
+                                label="status"
+                                onChange={(e) => handleChange(e, 'isverified')}
+                            >
+                                <MenuItem value={true}>Yes</MenuItem>
+                                <MenuItem value={false}>No</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl sx={{ width: '98%' }} size="small">
+                            <InputLabel id="demo-simple-select-label">Admin</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={inp.isadmin}
+                                label="status"
+                                onChange={(e) => handleChange(e, 'isadmin')}
+                            >
+                                <MenuItem value={true}>Yes</MenuItem>
+                                <MenuItem value={false}>No</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </form>
+                </CustomModal.Body>
+
+                <CustomModal.Footer>
+                    <Button startIcon={<FaSave />} form='form' type="submit" variant="contained"> Update</Button>
+                    <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                </CustomModal.Footer>
+
+            </CustomModal>
         </div>
     </>
 }
