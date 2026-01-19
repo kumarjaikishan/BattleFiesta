@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
+import './modalbox.css'
 
 const Modalbox = ({ open, onClose, children, shadow = true }) => {
 
@@ -34,7 +35,7 @@ const Modalbox = ({ open, onClose, children, shadow = true }) => {
       className="
         fixed inset-0 z-1000 
         bg-black/50 backdrop-blur-[5px]
-        flex items-center justify-center
+        flex items-center justify-center modalwrapper
       "
     >
       <motion.div
@@ -43,7 +44,7 @@ const Modalbox = ({ open, onClose, children, shadow = true }) => {
           relative
           w-min h-min
           max-w-[98vw] max-h-[95vh]
-          bg-white rounded-[15px]
+          bg-white rounded-[15px] modalbox
         "
         style={shadow ? { boxShadow: "0 10px 20px rgba(0,0,0,0.4)" } : undefined}
         initial={{ scale: 0.1 }}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import './voucher.css'
 import { useSelector, useDispatch } from "react-redux";
 import { voucher } from "../../../store/admin";
 import TextField from '@mui/material/TextField';
@@ -154,7 +153,7 @@ const Voucher = () => {
             </div>
 
             {/* CARDS */}
-            <div className="cards grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="cards grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                 {admin.voucher && admin.voucher.map((val, ind) => (
                     <div
                         key={ind}
