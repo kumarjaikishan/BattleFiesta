@@ -290,10 +290,10 @@ const User = () => {
             />
 
             <Modalbox open={modal} onClose={() => setmodal(false)}>
-                <div className="membermodal">
-                    <form onSubmit={handlee}>
-                        <h2>User Detail</h2>
-                        <span className="modalcontent">
+                <div className="content w-100">
+                    <p className="header">User Detail</p>
+                    <div className="modalbody">
+                        <form id="form" onSubmit={handlee}>
                             <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} sx={{ width: '98%' }} label="Name" size="small" />
                             <TextField type="tel" required value={inp.phone} onChange={(e) => handleChange(e, 'phone')} sx={{ width: '98%' }} label="Mobile"
                                 onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
@@ -324,19 +324,20 @@ const User = () => {
                                     <MenuItem value={false}>No</MenuItem>
                                 </Select>
                             </FormControl>
-                            <div style={{ width: '100%' }}>
-                                <Button startIcon={<FaSave />} type="submit" variant="contained"> Update</Button>
-                                <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
-                            </div>
-                        </span>
-                    </form>
+                        </form>
+                    </div>
+                    <div className="modalfooter">
+                        <Button startIcon={<FaSave />} form='form' type="submit" variant="contained"> Update</Button>
+                        <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                    </div>
                 </div>
             </Modalbox>
+
             <Modalbox open={mailmodal} onClose={() => setmailmodal(false)}>
-                <div className="membermodal mail">
-                    <form onSubmit={mailhandlee}>
-                        <h2>Send Email</h2>
-                        <span className="modalcontent">
+                <div className="content w-100 mail">
+                    <p className="header">User Detail</p>
+                    <div className="modalbody">
+                        <form id="form" onSubmit={mailhandlee}>
                             <TextField required value={mailinp.email}
                                 sx={{ width: '98%' }}
                                 label="Email Id"
@@ -348,13 +349,13 @@ const User = () => {
                                 multiline rows={8}
                                 label="Message"
                                 size="small" />
+                        </form>
+                    </div>
 
-                            <div style={{ width: '100%' }}>
-                                <Button startIcon={<SiMinutemailer />} type="submit" variant="contained"> Send</Button>
-                                <Button onClick={() => { setmailmodal(false); setmailinp(mailinit) }} variant="outlined"> cancel</Button>
-                            </div>
-                        </span>
-                    </form>
+                    <div className="modalfooter">
+                        <Button startIcon={<SiMinutemailer />} form="form" type="submit" variant="contained"> Send</Button>
+                        <Button onClick={() => { setmailmodal(false); setmailinp(mailinit) }} variant="outlined"> cancel</Button>
+                    </div>
                 </div>
             </Modalbox>
         </div>

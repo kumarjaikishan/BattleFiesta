@@ -16,7 +16,7 @@ import { Helmet } from "react-helmet-async";
 const Subscription = () => {
   const userprofile = useSelector((state) => state.userprofile);
   const log = useSelector((state) => state.login);
-   let navigate = useNavigate();
+  let navigate = useNavigate();
   const dispatch = useDispatch();
 
 
@@ -124,17 +124,19 @@ const Subscription = () => {
   }
   const sub = (e) => {
     e.preventDefault();
-    console.log("islogin ", log.islogin)
+    // console.log("islogin ", log.islogin)
     // console.log(inp);
-    swal({
-      title: 'You need to Login',
-      icon: 'warning',
-      button: {
-        text: 'OK',
-      },
-    }).then(() => {
-      return navigate('/login');
-    });
+    if (!log?.islogin) {
+      return swal({
+        title: 'You need to Login',
+        icon: 'warning',
+        button: {
+          text: 'OK',
+        },
+      }).then(() => {
+        return navigate('/login');
+      });
+    }
 
     setpaymodalopen(true);
   }

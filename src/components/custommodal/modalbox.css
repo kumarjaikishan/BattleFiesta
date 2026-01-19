@@ -1,0 +1,97 @@
+.modalboxe {
+    --modal_max_height: 100vh;
+    max-height: var(--modal_max_height);
+    max-width: 90vw;
+    /* border: 3px solid yellow; */
+    background: transparent;
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+    }
+
+    /* track (background) */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    /* thumb (scroll handle) */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+
+    .content {
+        position: relative;
+        background: var(--primarycolor);
+        border-radius: 10px 10px 4px 4px;
+        overflow: auto;
+        /* border: 3px solid red; */
+        max-height: fit-content;
+        max-width: 100%;
+
+        .header {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            height: 40px;
+            padding: 5px 5px;
+            color: white;
+        }
+
+        .modalbody {
+            background: white;
+            color: rgb(36, 35, 35);
+            overflow-y: auto;
+            max-height: calc(var(--modal_max_height) - 80px);
+            border-radius: 15px 15px 0 0;
+            padding: 10px 5px;
+            padding-top: 15px;
+        }
+
+        .modalfooter {
+            border-top: 1px solid rgba(128, 128, 128, 0.396);
+            display: flex;
+            gap: 10px;
+            justify-content: end;
+            height: 40px;
+            padding: 5px 5px;
+            background: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .modalboxe {
+        max-width: 96vw;
+
+
+        .content {
+            max-height: fit-content;
+            max-width: 100%;
+
+            .header {
+                font-size: 17px;
+                height: 35px;
+            }
+
+            .modalbody {
+                max-height: calc(var(--modal_max_height) - 75px);
+            }
+
+            .modalfooter {
+                height: 40px;
+                padding: 5px 8px;
+            }
+        }
+    }
+}

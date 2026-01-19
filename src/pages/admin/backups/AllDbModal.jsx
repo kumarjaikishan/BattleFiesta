@@ -80,19 +80,17 @@ const AllDbModal = ({ databaselist, dbmodal, setdbmodal }) => {
 
     return (
         <Modalbox open={dbmodal} onClose={() => setdbmodal(false)}>
-            <div className="membermodal">
-                <form >
-                    <h2>Data Base</h2>
-                    <span className="modalcontent">
-                        <DataTable
-                            columns={columns}
-                            data={databaselist}
-                            pagination
-                            customStyles={useCustomStyles()}
-                            highlightOnHover
-                        />
-                    </span>
-                </form>
+            <div className="content w-140">
+                <p className="header">Data Base</p>
+                <div className="modalbody">
+                    <DataTable
+                        columns={columns}
+                        data={databaselist}
+                        pagination
+                        customStyles={useCustomStyles()}
+                        highlightOnHover
+                    />
+                </div>
             </div>
         </Modalbox>
     )
@@ -122,7 +120,7 @@ export const useCustomStyles = () => {
         },
         rows: {
             style: {
-                minHeight: "48px",
+                minHeight: "45px",
                 borderBottom: "1px solid #eee",
             },
         },

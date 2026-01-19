@@ -184,30 +184,33 @@ const Query = () => {
                 />
 
                 <Modalbox open={openmodal} onClose={() => setopenmodal(false)}>
-                    <div className="membermodal">
-                        <form onSubmit={handlee}>
-                            <h2>Reply</h2>
-                            <span className="modalcontent">
+                    <div className="content w-100">
+                        <p className="header">Reply</p>
+                        <div className="modalbody">
+                            <form id="replyForm" onSubmit={handlee}>
                                 <TextField sx={{ width: '98%' }} value={email}
                                     // contentEditable={false} 
                                     onChange={(e) => setemail(e.target.value)}
                                     label="Email" size="small" />
                                 <TextField autoFocus multiline rows={4} onChange={handleChange} value={reply} sx={{ width: '98%' }} label="Reply" size="small" />
-                                <div>
-                                    <LoadingButton
-                                        sx={{ mr: 2 }}
-                                        loading={isload}
-                                        loadingPosition="end"
-                                        endIcon={<IoIosSend />}
-                                        variant="contained"
-                                        type="submit"
-                                    >
-                                        Send Email
-                                    </LoadingButton>
-                                    <Button size="small" onClick={() => setopenmodal(false)} variant="outlined"> cancel</Button>
-                                </div>
-                            </span>
-                        </form>
+
+                            </form>
+                        </div>
+                        <div className="modalfooter">
+                            <LoadingButton
+                                sx={{ mr: 2 }}
+                                loading={isload}
+                                loadingPosition="end"
+                                endIcon={<IoIosSend />}
+                                variant="contained"
+                                type="submit"
+                                form="replyForm"
+                            >
+                                Send Email
+                            </LoadingButton>
+                            <Button size="small" onClick={() => setopenmodal(false)} variant="outlined"> cancel</Button>
+
+                        </div>
                     </div>
                 </Modalbox>
             </div>

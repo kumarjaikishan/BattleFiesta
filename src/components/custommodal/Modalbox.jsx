@@ -35,17 +35,18 @@ const Modalbox = ({ open, onClose, children, shadow = true }) => {
       className="
         fixed inset-0 z-1000 
         bg-black/50 backdrop-blur-[5px]
-        flex items-center justify-center modalwrapper
+        flex items-center justify-center 
       "
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="
-          relative
-          w-min h-min
-          max-w-[98vw] max-h-[95vh]
-          bg-white rounded-[15px] modalbox
-        "
+        className="relative bg-white rounded-[15px] modalboxe"
+        // className="
+        //   relative
+        //   w-min h-min
+        //   max-w-[98vw] max-h-[60vh]
+        //   bg-white rounded-[15px] modalboxe
+        // "
         style={shadow ? { boxShadow: "0 10px 20px rgba(0,0,0,0.4)" } : undefined}
         initial={{ scale: 0.1 }}
         animate={{ scale: 1 }}

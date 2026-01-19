@@ -201,10 +201,10 @@ const Voucher = () => {
         </div>
 
         <Modalbox open={modal} onClose={() => setmodal(false)}>
-            <div className="membermodal">
-                <form onSubmit={handlee}>
-                    <h2>Create Voucher</h2>
-                    <span className="modalcontent">
+            <div className="content w-100">
+                <p className="header">Create Voucher</p>
+                <div className="modalbody">
+                    <form id='form' onSubmit={handlee}>
                         <TextField required value={inp.name} onChange={(e) => handleChange(e, 'name')} fullWidth label="Plan Name" size="small" />
                         <TextField type="tel" required value={inp.percent} onChange={(e) => handleChange(e, 'percent')} fullWidth label="Percent"
                             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) { event.preventDefault(); } }}
@@ -222,13 +222,13 @@ const Voucher = () => {
                                 <MenuItem value={false}>Expired</MenuItem>
                             </Select>
                         </FormControl>
-                        <div style={{ width: '100%' }}>
-                            {!isedit && <Button startIcon={<FaSave />} type="submit" variant="contained"> Submit</Button>}
-                            {isedit && <Button startIcon={<FaSave />} onClick={edit} variant="contained"> Update</Button>}
-                            <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
-                        </div>
-                    </span>
-                </form>
+                    </form>
+                </div>
+                <div className="modalfooter">
+                    {!isedit && <Button startIcon={<FaSave />} form="form" type="submit" variant="contained"> Submit</Button>}
+                    {isedit && <Button startIcon={<FaSave />} onClick={edit} variant="contained"> Update</Button>}
+                    <Button onClick={() => { setmodal(false); setinp(init) }} variant="outlined"> cancel</Button>
+                </div>
             </div>
         </Modalbox>
     </>

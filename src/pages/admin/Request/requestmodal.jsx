@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { toast } from 'react-toastify';
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { memshipentry } from "../../../store/admin";
 import { FaSave } from "react-icons/fa";
 
@@ -65,10 +65,10 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
     return (
         <>
             <Modalbox open={membermodal} onClose={() => setmembermodal(false)}>
-                <div className="membermodal">
-                    <form onSubmit={(e) => handlee(e, inp._id)}>
-                        <h2>Create Membership</h2>
-                        <span className="modalcontent">
+                <div className="content w-120">
+                    <p className="header ">Create Membership</p>
+                    <div className="modalbody ">
+                        <form id="formtag" onSubmit={(e) => handlee(e, inp._id)}>
                             <section>
                                 <TextField value={inp.plan_id.plan_name || "None"} sx={{ width: '48%' }} label="Plan" size="small" />
                                 <TextField value={inp.coupon || "None"} sx={{ width: '48%' }} label="Voucher" size="small" />
@@ -95,12 +95,12 @@ const Membermodal = ({ setinp, inp, membermodal, setmembermodal }) => {
                                 </FormControl>
                             </section>
                             <TextField multiline rows={2} required={inp.status == 'rejected'} onChange={(e) => handleChange(e, 'remarks')} value={other.remarks} sx={{ width: '100%' }} label="Remarks" size="small" />
-                            <div className="btn">
-                                <Button startIcon={<FaSave />} disabled={isloading} type="submit" variant="contained"> Submit</Button>
-                                <Button onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
-                            </div>
-                        </span>
-                    </form>
+                        </form>
+                    </div>
+                    <div className="modalfooter">
+                        <Button form='formtag' startIcon={<FaSave />} disabled={isloading} type="submit" variant="contained"> Submit</Button>
+                        <Button onClick={() => setmembermodal(false)} variant="outlined"> cancel</Button>
+                    </div>
                 </div>
             </Modalbox>
         </>

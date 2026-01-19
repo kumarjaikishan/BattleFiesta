@@ -116,7 +116,7 @@ const BackupScheduleAdmin = () => {
             });
 
             const data = await res.json();
-            console.log(data)
+            // console.log(data)
 
             setSchedules(data.schedules || []);
             setDatabaselist((data.database || []));
@@ -149,7 +149,8 @@ const BackupScheduleAdmin = () => {
     };
 
     /* ---------------- SAVE ---------------- */
-    const saveSchedule = async () => {
+    const saveSchedule = async (e) => {
+        e.preventDefault();
         const { valid, message } = validateCron(form.cron);
         if (!valid) {
             toast.error(message);
@@ -415,10 +416,10 @@ const BackupScheduleAdmin = () => {
 
             {/* ---------------- MODAL ---------------- */}
             <Modalbox open={modal} onClose={() => ''}>
-                <div className="membermodal">
-                    <form onSubmit={saveSchedule}>
-                        <h2>Schedules</h2>
-                        <span className="modalcontent">
+                <div className="content w-100">
+                    <p className="header">Schedules</p>
+                    <div className="modalbody">
+                        <form id='form' onSubmit={saveSchedule}>
                             {editId &&
                                 <FormControlLabel
                                     control={
@@ -522,55 +523,53 @@ const BackupScheduleAdmin = () => {
                                 />
                             )}
 
-                            <div style={{ width: "100%" }}>
-                                <Button
-                                    disabled={loading}
-                                    variant="contained"
-                                    size="small"
-                                    onClick={saveSchedule}
-                                >
-                                    SAVE
-                                </Button>
-                                <Button variant="outlined" onClick={() => setModal(false)}>
-                                    Cancel
-                                </Button>
-                            </div>
-                        </span>
-                    </form>
+                        </form>
+                    </div>
+                    <div className="modalfooter">
+                        <Button
+                            disabled={loading}
+                            variant="contained"
+                            size="small"
+                            form="form"
+                            type="submit"
+                        >
+                            SAVE
+                        </Button>
+                        <Button variant="outlined" onClick={() => setModal(false)}>
+                            Cancel
+                        </Button>
+                    </div>
                 </div>
             </Modalbox>
 
             <Modalbox open={cronLogs?.length > 0} onClose={() => setCronLogs(null)}>
-                <div className="membermodal">
-                    <form onSubmit={saveSchedule}>
-                        <h2>Schedules</h2>
-                        <span className="modalcontent">
-                            <DataTable
-                                columns={editcolumns}
-                                data={cronLogs}
-                                pagination
-                                customStyles={useCustomStyles()}
-                                highlightOnHover
-                            />
-                        </span>
-                    </form>
+                <div className="content w-120 ">
+                    <p className="header ">Schedules</p>
+                    <div className="modalbody ">
+                        <DataTable
+                            columns={editcolumns}
+                            data={cronLogs}
+                            pagination
+                            customStyles={useCustomStyles()}
+                            highlightOnHover
+                        />
+                       
+                    </div>
                 </div>
             </Modalbox>
 
             <Modalbox open={inMemoryJob?.length > 0} onClose={() => setinMemoryJob(null)}>
-                <div className="membermodal">
-                    <form onSubmit={saveSchedule}>
-                        <h2>Task History Stats</h2>
-                        <span className="modalcontent">
-                            <DataTable
-                                columns={inmomoryJobs}
-                                data={inMemoryJob}
-                                // pagination
-                                customStyles={useCustomStyles()}
-                                highlightOnHover
-                            />
-                        </span>
-                    </form>
+                <div className="content w-100 h-300">
+                    <p className="header">Task History Stats</p>
+                    <div className="modalbody">
+                        <DataTable
+                            columns={inmomoryJobs}
+                            data={inMemoryJob}
+                            // pagination
+                            customStyles={useCustomStyles()}
+                            highlightOnHover
+                        />
+                    </div>
                 </div>
             </Modalbox>
 
