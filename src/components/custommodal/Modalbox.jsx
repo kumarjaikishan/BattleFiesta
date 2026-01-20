@@ -5,27 +5,27 @@ import './modalbox.css'
 
 const Modalbox = ({ open, onClose, children, shadow = true }) => {
 
-   useEffect(() => {
-          if (open) {
-              const getScrollbarWidth = () => {
-                  return window.innerWidth - document.documentElement.clientWidth;
-              };
-  
-              const scrollbarWidth = getScrollbarWidth();
-  
-              // Set body styles to compensate for scrollbar disappearance
-              document.body.style.overflowY = 'hidden';
-              document.body.style.paddingRight = `${scrollbarWidth}px`;
-  
-  
-              return () => {
-                  setTimeout(() => {
-                      document.body.style.overflowY = 'scroll';
-                      document.body.style.paddingRight = '0px'; // Reset padding
-                  }, 100); // Adjust delay to match your modal’s transition timing
-              };
-          }
-      }, [open])
+  useEffect(() => {
+    if (open) {
+      const getScrollbarWidth = () => {
+        return window.innerWidth - document.documentElement.clientWidth;
+      };
+
+      const scrollbarWidth = getScrollbarWidth();
+
+      // Set body styles to compensate for scrollbar disappearance
+      document.body.style.overflowY = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+
+      return () => {
+        setTimeout(() => {
+          document.body.style.overflowY = 'scroll';
+          document.body.style.paddingRight = '0px'; // Reset padding
+        }, 100); // Adjust delay to match your modal’s transition timing
+      };
+    }
+  }, [open])
 
   if (!open) return null;
 
