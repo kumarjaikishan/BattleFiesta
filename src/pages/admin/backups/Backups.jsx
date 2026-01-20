@@ -354,7 +354,7 @@ const BackupScheduleAdmin = () => {
     ]
 
     return (
-        <div className=" min-h-screen p-1 bg-amber-50 backup">
+        <div className=" min-h-screen p-1 bg-white backup">
             <div className="inner w-full">
                 {/* Controller */}
                 <div className="controler px-1 py-2 relative flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ">

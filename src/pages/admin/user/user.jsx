@@ -362,6 +362,7 @@ const User = () => {
 
             <CustomModal
              open={modal} 
+             backdrop={3}
              onClose={() => setmodal(false)}
              width={420}
              animation={true}

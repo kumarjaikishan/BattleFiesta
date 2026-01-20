@@ -6,6 +6,7 @@ const CustomModal = ({
   open, onClose,
   tapOutsidemodal = false,
   children,
+  shadow=true,
   animation = false,
   width = 400, backdrop = 0 }) => {
 
@@ -32,7 +33,8 @@ const CustomModal = ({
     >
       <div
         style={{
-          width: width,
+          width,
+          ...(shadow && { boxShadow: "0 10px 20px rgba(0,0,0,0.4)" })
         }}
         onClick={(e) => e.stopPropagation()}
         className={`modalbox ${animation && "animation"}`}>

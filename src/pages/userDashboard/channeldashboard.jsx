@@ -31,6 +31,8 @@ import confetti from 'canvas-confetti';
 import { Helmet } from "react-helmet-async";
 import { LuGamepad2 } from "react-icons/lu";
 import { cloudinaryUrl } from '../../utils/imageurlsetter';
+import TournamentCard from '../findtournament/FindTournCard';
+import dayjs from 'dayjs';
 
 const Channeldashboard = () => {
   const dispatch = useDispatch();
@@ -77,6 +79,7 @@ const Channeldashboard = () => {
 
       setPro(result.data);
       settournas(result.tournaments);
+      console.log(result.tournaments)
       if (log.islogin) {
         setisfollowing(result.isfollowed);
       }
@@ -277,58 +280,128 @@ const Channeldashboard = () => {
         </div>
       </div>
 
-      <div className="tournamentss">
-        {tournas && tournas.filter((tourn) => tourn.visibility).map((tourn, ind) => {
-          const formattedDate = new Date(tourn.createdAt).toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          });
+      <div className="tournamentss relative w-full max-w-[1000px] mt-5 grid 
+         grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 
+           **:  justify-items-center mx-auto">
+        {tournas &&
+          tournas
+            .filter((tourn) => tourn.visibility)
+            .map((tourn, ind) => {
+              return (
+                <div
+                  key={tourn._id || ind}
+                  className="relative w-60 bg-white rounded-lg overflow-hidden h-fit pb-2
+                            shadow-[6px_6px_16px_rgba(0,0,0,0.25)]
+                            hover:shadow-[10px_10px_24px_rgba(0,0,0,0.3)]
+                            transition-all duration-300 hover:-translate-y-1 "
+                >
+                  {/* IMAGE */}
+                  <div className="relative h-56 w-full overflow-hidden bg-[radial-gradient(circle_at_center,transparent_30%,#6d6f71)]">
+                    <img
+                      loading="lazy"
+                      src={
+                        cloudinaryUrl(tourn?.tournment_logo, {
+                          format: "webp",
+                          width: 300,
+                        }) || logo
+                      }
+                      alt={tourn.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
 
-          const formattedTime = new Date(tourn.createdAt).toLocaleTimeString("en-US", {
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          });
+                    {/* TITLE OVERLAY */}
+                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent px-3 pt-6 pb-1">
+                      <h3
+                        title={tourn.title}
+                        className="text-white text-sm font-bold tracking-wide truncate uppercase"
+                      >
+                        {tourn.title}
+                      </h3>
+                    </div>
+                  </div>
 
-          return <div className="card" key={ind}>
-            <div className="img">
-              <img
-                loading="lazy"
-                // src={tourn.tournment_logo || logo}
-                src={cloudinaryUrl(tourn?.tournment_logo, {
-                  format: "webp",
-                  width: 300,
-                  //   height: 300,
-                }) || logo}
-                alt="logo"
-              />
-              <span title={tourn.title}>{tourn.title}</span>
-            </div>
-            <h3 className="organiser">- {tourn.organiser}</h3>
-            <div className="time">
-              {formattedDate}, {formattedTime} <span>{tourn.type}</span>
-            </div>
-            <div className="tournId">
-              ID :- {tourn.tournid}
-              <MdContentCopy title="Copy Id" onClick={() => copyfunc(tourn.tournid)} />
-            </div>
-            <div className="controller">
-              <Button size="small" onClick={() => navigate(`/tournaments/${tourn._id}`)} variant="contained" endIcon={<MdMenuOpen />}>
-                READ MORE
-              </Button>
-              <p className="status" title="Status">{tourn.status}</p>
-            </div>
-          </div>
-        })}
+                  {/* STATUS */}
+                  <span
+                    className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-semibold uppercase
+                    ${tourn.status === "ongoing"
+                        ? "bg-green-100 text-green-700"
+                        : tourn.status === "completed"
+                          ? "bg-indigo-100 text-indigo-700"
+                          : "bg-blue-100 text-blue-700"
+                      }`}
+                    title="Status"
+                  >
+                    {tourn.status}
+                  </span>
+
+                  {/* CONTENT */}
+                  <div className="px-3 py-2 space-y-1 text-sm text-slate-800">
+                    <p className="font-medium text-gray-800">
+                      - {tourn.organiser}
+                    </p>
+
+                    <div className="flex justify-between items-center text-xs text-gray-500">
+                      <span className="flex items-center gap-1">
+                        ID-{tourn.tournid}
+                        <MdContentCopy
+                          title="Copy ID"
+                          className="cursor-pointer hover:text-teal-600"
+                          onClick={() => copyfunc(tourn.tournid)}
+                        />
+                      </span>
+
+                      <span>
+                        {dayjs(tourn.createdAt).format('DD MMM, YYYY')}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="px-2 py-0.5 rounded bg-slate-800 text-white uppercase">
+                        {tourn.type}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* ACTION */}
+                  <button
+                    onClick={() => navigate(`/tournaments/${tourn._id}`)}
+                    className="
+                 mt-1 w-40 h-8 text-white
+                bg-[url('/btn-bg1.webp')]
+                bg-contain bg-no-repeat bg-center
+                transition-all duration-200
+                flex items-center justify-center gap-2
+                hover:-translate-y-0.5
+              "
+                  >
+                    <span className="flex items-center gap-1 text-sm font-semibold">
+                      Read More <MdMenuOpen className="text-base" />
+                    </span>
+                  </button>
+                </div>
+              );
+            })}
       </div>
+
       {tournas?.filter((tourn) => tourn.visibility).length < 1 &&
-        <div className='notfoundtourn'>
-          <TbMoodSad className="sad" />
-          <h2>No Public Tournament Found</h2>
-          {/* <p>Please Add Tournament.</p> */}
+        <div className=" col-span-full flex justify-center">
+          <div
+            className="
+                                    w-95vw lg:w-120  text-center rounded-xl p-2
+                                    shadow-md border border-dashed border-gray-400
+                                    hover:shadow-lg transition
+                                    hover:-translate-y-1
+                                  "
+          >
+            <TbMoodSad className="text-8xl mx-auto text-gray-600 mb-2" />
+
+            <p className="text-sm text-gray-700 mt-1 mb-4">
+              No Public Tournament Found
+            </p>
+          </div>
         </div>
       }
+      
     </div >
   );
 };
