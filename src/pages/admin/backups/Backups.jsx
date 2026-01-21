@@ -19,6 +19,7 @@ import Modalbox from "../../../components/custommodal/Modalbox";
 import dayjs from "dayjs";
 import AllDbModal, { useCustomStyles } from "./AllDbModal";
 import DataTable from "react-data-table-component";
+import Projects from "./Projects";
 
 const API = `${import.meta.env.VITE_API_ADDRESS}backup-schedules`;
 
@@ -97,6 +98,7 @@ const BackupScheduleAdmin = () => {
     const [editId, setEditId] = useState(null);
     const [modal, setModal] = useState(false);
     const [dbmodal, setdbmodal] = useState(false);
+    const [deploymodal, setdeploymodal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [cronLogs, setCronLogs] = useState(null);
     const [inMemoryJob, setinMemoryJob] = useState(null);
@@ -384,6 +386,13 @@ const BackupScheduleAdmin = () => {
                         >
                             ADD Jobs
                         </Button>
+                        <Button
+                            size="small"
+                            variant="contained"
+                            onClick={() => { setdeploymodal(true) }}
+                        >
+                            Redeploy
+                        </Button>
 
                         <Button
                             size="small"
@@ -413,6 +422,7 @@ const BackupScheduleAdmin = () => {
 
             </div>
 
+            <Projects open={deploymodal} onClose={()=> setdeploymodal(false)} />
 
             {/* ---------------- MODAL ---------------- */}
             <Modalbox open={modal} onClose={() => ''}>
@@ -553,7 +563,7 @@ const BackupScheduleAdmin = () => {
                             customStyles={useCustomStyles()}
                             highlightOnHover
                         />
-                       
+
                     </div>
                 </div>
             </Modalbox>
