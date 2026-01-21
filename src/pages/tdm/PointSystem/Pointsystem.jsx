@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -230,7 +230,7 @@ const Pointsystem = ({ setting }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <LoadingButton
+          <Button
             sx={{ m: 1, minWidth: 110 }}
             type="submit"
             loading={isloading}
@@ -239,7 +239,7 @@ const Pointsystem = ({ setting }) => {
             variant="contained"
           >
             SUBMIT
-          </LoadingButton>
+          </Button>
         </Grid>
       </form>
     </Container>

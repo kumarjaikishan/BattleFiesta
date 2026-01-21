@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { alltourna } from '../../store/api'
 import { profilefetch } from '../../store/profile'
 import { toast } from 'react-toastify';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { memshipentry, contactusform, voucher, membership, Users } from '../../store/admin';
 import GoogleLoginBtn from './GoogleLoginBtn';
 
@@ -216,7 +216,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                             </div>
                         )}
                     </div>
-                    {!forget && <LoadingButton
+                    {!forget && <Button
                         loading={btnclick}
                         fullWidth
                         type='submit'
@@ -225,8 +225,8 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         variant="contained"
                     >
                         Login
-                    </LoadingButton>}
-                    {forget && <LoadingButton
+                    </Button>}
+                    {forget && <Button
                         fullWidth
                         loading={btnclick}
                         onClick={emailset}
@@ -235,7 +235,7 @@ const Signin = ({ showmsg, setshowmsg }) => {
                         variant="contained"
                     >
                         Send Email
-                    </LoadingButton>}
+                    </Button>}
 
 
                     <div

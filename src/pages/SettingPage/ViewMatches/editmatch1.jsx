@@ -13,7 +13,6 @@ import { FaArrowDown } from "react-icons/fa";
 import { MdCloudUpload } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
-import LoadingButton from '@mui/lab/LoadingButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { classicfetch } from '../../../store/classic';
 
@@ -458,7 +457,7 @@ const EditEnterResult = ({ match, feteche, setcalleditmatch }) => {
                         <Box display="flex"
                             justifyContent="center"
                             alignItems="center">
-                            <LoadingButton
+                            <Button
                                 sx={{ m: 1, minWidth: 110 }}
                                 onClick={savecloud}
                                 loading={isloading}
@@ -468,7 +467,7 @@ const EditEnterResult = ({ match, feteche, setcalleditmatch }) => {
                                 size='small'
                             >
                                 Save Changes
-                            </LoadingButton>
+                            </Button>
                             <Button size='small' startIcon={<FaUndoAlt />} onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
                             <Button size='small' onClick={() => setcalleditmatch(false)} variant="contained" color="secondary" sx={{ m: 1, maxWidth: 110 }} >Go Back</Button>
                         </Box>

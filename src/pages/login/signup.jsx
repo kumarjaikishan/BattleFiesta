@@ -8,7 +8,7 @@ import { FaHandsHoldingCircle } from "react-icons/fa6";
 import { setadmin, setloader, setlogin } from '../../store/login';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import swal from 'sweetalert';
 import GoogleLoginBtn from './GoogleLoginBtn';
 import { Tooltip } from '@mui/material';
@@ -198,7 +198,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                     />
                     <Tooltip title="Please Proceed with Google Signup">
                         <span style={{ width: '100%' }}>
-                            <LoadingButton
+                            <Button
                                 fullWidth
                                 loading={btnclick}
                                 type='submit'
@@ -208,7 +208,7 @@ const Signup = ({ setlog, setshowmsg }) => {
                                 startIcon={<FaHandsHoldingCircle />}
                             >
                                 Signup
-                            </LoadingButton>
+                            </Button>
                         </span>
                     </Tooltip>
                 </form>

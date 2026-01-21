@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import Membermodal from "./requestmodal";
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { IoMdRefresh } from "react-icons/io";
 import { motion } from 'framer-motion';
 import { memshipentry } from "../../../store/admin";
@@ -131,7 +131,7 @@ const Request = () => {
             <h2 className="text-center text-lg font-semibold sm:text-left">
                Membership Requests
             </h2>
-            <LoadingButton
+            <Button
                loading={admin.loading}
                onClick={() => dispatch(memshipentry())}
                loadingPosition="end"
@@ -141,7 +141,7 @@ const Request = () => {
                size="small"
             >
                REFRESH
-            </LoadingButton>
+            </Button>
          </div>
          
          <DataTable

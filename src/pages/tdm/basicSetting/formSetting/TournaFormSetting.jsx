@@ -1,6 +1,6 @@
 import { FormLabel, RadioGroup, Radio, Box, TextField, FormControlLabel, Switch } from '@mui/material';
 import './TournaFormSetting.css'
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { FaSave } from "react-icons/fa";
 
 const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
@@ -117,7 +117,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                     {renderSwitch("Ask for Device Name", "ask_devicename")}
                     
 
-                    <LoadingButton
+                    <Button
                         onClick={submit}
                         loading={isloading}
                         loadingPosition="start"
@@ -126,7 +126,7 @@ const TournaFormSetting = ({ all, handleChange, submit, isloading }) => {
                         type="submit"
                     >
                         SAVE
-                    </LoadingButton>
+                    </Button>
                 </Box>
             </div>
         </>

@@ -9,7 +9,6 @@ import { FaUndoAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { MdCloudUpload } from "react-icons/md";
-import LoadingButton from '@mui/lab/LoadingButton';
 import { useEffect, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { toast } from "react-toastify";
@@ -279,7 +278,7 @@ const EditEnterResult = ({ match, setcalleditmatch,feteche }) => {
                 </div>
                 <Divider variant="middle" />
                 <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
-                    <LoadingButton
+                    <Button
                         onClick={savecloud}
                         loading={isloading}
                         loadingPosition="start"
@@ -289,7 +288,7 @@ const EditEnterResult = ({ match, setcalleditmatch,feteche }) => {
                         sx={{ m: 1 }}
                     >
                         Save Changes
-                    </LoadingButton>
+                    </Button>
                     <Button size='small' startIcon={<FaUndoAlt />} onClick={reset} variant="outlined" color="warning" sx={{ m: 1 }}>Reset</Button>
                     <Button size='small' onClick={() => setcalleditmatch(false)} variant="contained" color="secondary" sx={{ m: 1 }}>Go Back</Button>
                 </Box>

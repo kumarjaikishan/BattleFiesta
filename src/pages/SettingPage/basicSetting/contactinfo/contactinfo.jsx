@@ -6,7 +6,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
 import { FaPlus } from "react-icons/fa6";
 import { MdDescription } from "react-icons/md";
 import { IoArrowDownOutline } from "react-icons/io5";
@@ -14,7 +13,7 @@ import { IoArrowUpOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { classicfetch } from '../../../../store/classic';
 
@@ -200,7 +199,7 @@ const Contactinfo = ({ all }) => {
                             </Button>
                         </Stack>
                         <Stack direction="row" sx={{ mt: 1 }} spacing={2}>
-                            <LoadingButton
+                            <Button
                                 type='submit'
                                 loading={isloading}
                                 loadingPosition="start"
@@ -208,7 +207,7 @@ const Contactinfo = ({ all }) => {
                                 variant="contained"
                             >
                                 SUBMIT
-                            </LoadingButton>
+                            </Button>
                         </Stack>
                     </form>
                 </div>

@@ -224,7 +224,7 @@ const BackupScheduleAdmin = () => {
                 <div className="controler">
                     <h2>Admin Dashboard</h2>
                     <div>
-                        <LoadingButton
+                        <Button
                             loading={loading}
                             onClick={fetchSchedules}
                             endIcon={<IoMdRefresh />}
@@ -232,7 +232,7 @@ const BackupScheduleAdmin = () => {
                             size="small"
                         >
                             REFRESH
-                        </LoadingButton>
+                        </Button>
 
                         <Button
                             size="small"

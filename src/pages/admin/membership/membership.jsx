@@ -2,11 +2,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdRefresh } from "react-icons/io";
-import LoadingButton from '@mui/lab/LoadingButton';
 import { membership } from "../../../store/admin";
 import { toast } from "react-toastify";
 import DataTable from "react-data-table-component";
 import { useCustomStyles } from "../backups/AllDbModal";
+import {  Button} from "@mui/material";
 
 const Membership = () => {
   const admin = useSelector((state) => state.admin);
@@ -73,7 +73,7 @@ const Membership = () => {
             Active Memberships
           </h2>
 
-          <LoadingButton
+          <Button
             loading={admin.loading}
             onClick={async () => {
               try {
@@ -90,7 +90,7 @@ const Membership = () => {
             size="small"
           >
             REFRESH
-          </LoadingButton>
+          </Button>
         </div>
 
 

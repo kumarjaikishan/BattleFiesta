@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import swal from 'sweetalert';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { IoMdRefresh } from "react-icons/io";
 import { Users } from "../../../store/admin";
 import { toast } from 'react-toastify';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -262,7 +261,7 @@ const User = () => {
                     Users
                 </h2>
 
-                <LoadingButton
+                <Button
                     loading={userprofile.loading}
                     onClick={async () => {
                         try {
@@ -279,7 +278,7 @@ const User = () => {
                     size="small"
                 >
                     REFRESH
-                </LoadingButton>
+                </Button>
             </div>
 
             <DataTable

@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TextField from '@mui/material/TextField';
-// import './query.css'
-import Button from '@mui/material/Button';
 import { IoIosSend, IoMdRefresh } from "react-icons/io";
 import { toast } from 'react-toastify';
 import { contactusform } from "../../../store/admin";
-import { motion } from 'framer-motion';
 import swal from 'sweetalert';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -150,7 +147,7 @@ const Query = () => {
                     <h2 className="text-center text-lg font-semibold sm:text-left">Query List</h2>
 
                     <div className="flex flex-wrap justify-center gap-2 sm:flex-nowrap sm:justify-end">
-                        <LoadingButton
+                        <Button
                             loading={admin.loading}
                             onClick={() => dispatch(contactusform())}
                             variant="contained"
@@ -158,9 +155,9 @@ const Query = () => {
                             size="small"
                         >
                             Custom
-                        </LoadingButton>
+                        </Button>
 
-                        <LoadingButton
+                        <Button
                             loading={admin.loading}
                             onClick={() => dispatch(contactusform())}
                             loadingPosition="end"
@@ -170,7 +167,7 @@ const Query = () => {
                             size="small"
                         >
                             REFRESH
-                        </LoadingButton>
+                        </Button>
                     </div>
                 </div>
 
@@ -197,7 +194,7 @@ const Query = () => {
                             </form>
                         </div>
                         <div className="modalfooter">
-                            <LoadingButton
+                            <Button
                                 sx={{ mr: 2 }}
                                 loading={isload}
                                 loadingPosition="end"
@@ -207,7 +204,7 @@ const Query = () => {
                                 form="replyForm"
                             >
                                 Send Email
-                            </LoadingButton>
+                            </Button>
                             <Button size="small" onClick={() => setopenmodal(false)} variant="outlined"> cancel</Button>
 
                         </div>

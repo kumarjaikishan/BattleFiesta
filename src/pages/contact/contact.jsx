@@ -1,7 +1,7 @@
 import './contact.css'
 import { useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { useEffect, useState } from 'react';
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -120,7 +120,7 @@ const Contact = () => {
                         variant="outlined"
                         rows={10}
                     />
-                    <LoadingButton
+                    <Button
                         type='submit'
                         className='inp'
                         loading={isloading}
@@ -130,7 +130,7 @@ const Contact = () => {
                         sx={{ width: "100%" }}
                     >
                         SUBMIT
-                    </LoadingButton>
+                    </Button>
                 </form>
             </div>
         </div>

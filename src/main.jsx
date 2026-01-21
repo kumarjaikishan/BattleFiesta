@@ -17,7 +17,7 @@ let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <HelmetProvider>
-      <BrowserRouter >
+      <BrowserRouter future={{ v7_startTransition: true }} >
         <PersistGate persistor={persistor} >
           <ThemeProvider theme={theme}>
             <GoogleOAuthProvider clientId={clientId}>

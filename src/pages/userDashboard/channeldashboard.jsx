@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import './channeldashboard.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MdMenuOpen, MdContentCopy } from "react-icons/md";
-import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { setloader } from '../../store/login';
 import { SlUserFollow } from "react-icons/sl";
@@ -23,7 +22,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { TbTournament } from "react-icons/tb";
 import { IoMdRefresh } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { TbMoodSad } from "react-icons/tb";
 import logo from '../../assets/logowebp_250.webp'
 import { useSelector } from 'react-redux';
@@ -240,7 +239,7 @@ const Channeldashboard = () => {
                     Edit Profile
                   </Button>
                 ) : (
-                  <LoadingButton
+                  <Button
                     ref={followBtnRef}
                     loading={loading}
                     sx={{ fontWeight: 600 }}
@@ -250,7 +249,7 @@ const Channeldashboard = () => {
                     onClick={() => dofollow(!isfollowing)}
                   >
                     {isfollowing ? "Following" : "Follow"}
-                  </LoadingButton>
+                  </Button>
                 )}
               </div>
             </div>

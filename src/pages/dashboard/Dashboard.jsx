@@ -9,9 +9,8 @@ import { settournaid } from "../../store/api";
 import { alltourna } from '../../store/api'
 import swal from 'sweetalert';
 import { Helmet } from "react-helmet-async";
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { NavLink } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -318,8 +317,9 @@ const Dashboard = () => {
                 New
               </Button>
 
-              <LoadingButton
+              <Button
                 loading={tournacenter.loading}
+                loadingPosition="end"
                 onClick={async () => {
                   try {
                     await dispatch(alltourna()).unwrap();
@@ -333,7 +333,7 @@ const Dashboard = () => {
                 className="w-1/2"
               >
                 Refresh
-              </LoadingButton>
+              </Button>
             </div>
 
             <FormControl size="small" fullWidth>
@@ -445,7 +445,7 @@ const Dashboard = () => {
                 </FormControl>
               </section>
               <Stack spacing={2} direction="row" sx={{ mr: 2, mt: 2 }}>
-                <LoadingButton
+                <Button
                   loading={load}
                   loadingPosition="start"
                   startIcon={<LuSaveAll />}
@@ -453,7 +453,7 @@ const Dashboard = () => {
                   type="submit"
                 >
                   CREATE
-                </LoadingButton>
+                </Button>
                 <Button variant="outlined" onClick={() => dispatch(setcreatenewmodal(false))}>Cancel</Button>
               </Stack>
             </form>

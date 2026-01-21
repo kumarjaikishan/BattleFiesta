@@ -2,7 +2,7 @@ import './password.css'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { FaSave } from "react-icons/fa";
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { toast } from "react-toastify";
@@ -59,7 +59,7 @@ const PasswordReset = () => {
                         onChange={handlechange}
                         error={inp.cpass.length ? inp.pass != inp.cpass : false}
                         helperText="Password must be same" name='cpass' value={inp.cpass} sx={{ width: '90%', mt: 2, mb: 2 }} id="outlined-basic" label="Confirm Password" variant="outlined" />
-                    <LoadingButton
+                    <Button
                         loading={isloading}
                         disabled={inp.pass != inp.cpass || !inp.pass.length}
                         // onClick={() => dispatch(alltourna())}
@@ -70,7 +70,7 @@ const PasswordReset = () => {
                         type="submit"
 
                     >  Change Password
-                    </LoadingButton>
+                    </Button>
                 </form>
             </div>
         </div>

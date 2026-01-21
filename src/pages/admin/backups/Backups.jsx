@@ -11,7 +11,6 @@ import {
     Switch,
     TextField
 } from "@mui/material";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { IoMdRefresh } from "react-icons/io";
 import { MdEdit, MdDelete, MdSearch, MdInfo } from "react-icons/md";
 import { toast } from "react-toastify";
@@ -365,15 +364,16 @@ const BackupScheduleAdmin = () => {
                     </h2>
 
                     <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:gap-[10px] ">
-                        <LoadingButton
+                        <Button
                             loading={loading}
+                            loadingPosition="end"
                             onClick={fetchSchedules}
                             endIcon={<IoMdRefresh />}
                             variant="outlined"
                             size="small"
                         >
-                            REFRESH
-                        </LoadingButton>
+                            Refresh
+                        </Button>
 
                         <Button
                             size="small"
@@ -422,7 +422,7 @@ const BackupScheduleAdmin = () => {
 
             </div>
 
-            <Projects open={deploymodal} onClose={()=> setdeploymodal(false)} />
+            <Projects open={deploymodal} onClose={() => setdeploymodal(false)} />
 
             {/* ---------------- MODAL ---------------- */}
             <Modalbox open={modal} onClose={() => ''}>

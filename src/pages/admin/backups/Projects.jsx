@@ -7,10 +7,9 @@ import { Button } from '@mui/material';
 
 const Projects = ({ open, onClose }) => {
 
-    const [currDeploy, setcurrdeploy] = useState(false)
+    const [currDeploy, setcurrdeploy] = useState(null)
 
     const deploy = async (project) => {
-
         swal({
             title: `Are you sure you want to Deploy ${project}?`,
             icon: "warning",
@@ -79,13 +78,15 @@ const Projects = ({ open, onClose }) => {
                         {projects.map((v, i) => {
                             return <div key={i} className='flex my-1 p-2 justify-between  w-full '>
                                 <div>{v.name}</div>
-                                <button
+                                <Button
                                     onClick={() => deploy(v.project)}
-                                    loading={currDeploy === v.project}
-                                    className="px-4 py-1.5 text-sm font-semibold text-white bg-emerald-600 rounded-md transition-all duration-200 hover:bg-emerald-700 active:scale-95 focus:ring-2 focus:ring-emerald-400"
+                                    variant='contained'
+                                    loadingPosition="end"
+                                    loading={currDeploy == v.project ? true : false}
+                                //  loading={true}
                                 >
                                     Deploy
-                                </button>
+                                </Button>
 
                             </div>
                         })}

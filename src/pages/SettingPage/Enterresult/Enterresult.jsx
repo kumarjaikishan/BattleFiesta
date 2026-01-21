@@ -9,7 +9,6 @@ import { IoMdAdd } from "react-icons/io";
 import { MdCloudUpload } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
-import LoadingButton from '@mui/lab/LoadingButton';
 import { useSelector } from 'react-redux';
 
 const EnterResult = () => {
@@ -371,7 +370,7 @@ const EnterResult = () => {
             <Box display="flex"
               justifyContent="center"
               alignItems="center">
-              <LoadingButton
+              <Button
                 sx={{ m: 1, minWidth: 110 }}
                 onClick={savecloud}
                 loading={isloading}
@@ -381,7 +380,7 @@ const EnterResult = () => {
                 size='small'
               >
                 Save To Cloud
-              </LoadingButton>
+              </Button>
               <Button size='small' startIcon={<FaUndoAlt />} onClick={reset} variant="outlined" color="warning" sx={{ m: 1, maxWidth: 110 }} >Reset</Button>
             </Box>
           </FormControl>

@@ -5,10 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setloader, header } from '../../store/login';
 import { toast } from "react-toastify";
 import { styled, TextField, Box } from '@mui/material';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { GrOverview } from "react-icons/gr";
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import Teams from "./teams";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { IoMdCloudUpload } from "react-icons/io";
@@ -558,7 +557,7 @@ const Register = () => {
                                         </Button>
                                     </div>
 
-                                    <LoadingButton
+                                    <Button
                                         loading={isloading}
                                         loadingPosition="start"
                                         startIcon={<IoMdCloudUpload />}
@@ -567,7 +566,7 @@ const Register = () => {
                                         className="registerbtn"
                                     >
                                         Register
-                                    </LoadingButton>
+                                    </Button>
 
                                 </form>}
 

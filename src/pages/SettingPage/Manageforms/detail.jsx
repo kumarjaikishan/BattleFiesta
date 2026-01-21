@@ -6,8 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import "./detail.css";
 import useImageUpload from '../../utils/imageresizer';
 import { toast } from "react-toastify";
@@ -235,7 +234,7 @@ const Detail = () => {
                         onChange={handleChange}
                     />
 
-                    <LoadingButton
+                    <Button
                         loading={loading}
                         loadingPosition="start"
                         startIcon={<MdCloudUpload />}
@@ -243,7 +242,7 @@ const Detail = () => {
                         onClick={submit}
                     >
                         UPDATE
-                    </LoadingButton>
+                    </Button>
                 </div>
                 <div className="right">
                     <div className="logos">

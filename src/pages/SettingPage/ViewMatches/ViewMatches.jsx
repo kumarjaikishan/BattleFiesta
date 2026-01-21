@@ -4,11 +4,10 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { useSelector, useDispatch } from "react-redux";
-import LoadingButton from '@mui/lab/LoadingButton';
+import {  Button} from "@mui/material";
 import { setloader } from "../../../store/login";
 import './viewmatches.css'
 import swal from 'sweetalert';
-import Button from '@mui/material/Button';
 import { TbMoodSad } from "react-icons/tb";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
@@ -191,7 +190,7 @@ const PointSystem = () => {
                   startIcon={<IoMdCreate />}>
                   Edit
                 </Button>
-                <LoadingButton
+                <Button
                   onClick={() => deletee(match._id)}
                   loading={isloading}
                   color='error'
@@ -201,7 +200,7 @@ const PointSystem = () => {
                   type="submit"
                 >
                   DELETE
-                </LoadingButton>
+                </Button>
               </Stack>
             </AccordionDetails>
           </Accordion>
