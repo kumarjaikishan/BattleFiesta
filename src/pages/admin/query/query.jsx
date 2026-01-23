@@ -9,8 +9,8 @@ import {  Button} from "@mui/material";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useCustomStyles } from "../backups/AllDbModal";
 import DataTable from "react-data-table-component";
+import { useCustomStyles } from "../../../components/Datatablecustomstyle";
 
 const Query = () => {
     const dispatch = useDispatch();

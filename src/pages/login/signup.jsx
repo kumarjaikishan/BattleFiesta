@@ -111,7 +111,6 @@ const Signup = ({ setlog, setshowmsg }) => {
             <div className="singup">
                 <form onSubmit={submite}>
                     <TextField
-
                         label="Name"
                         size="small"
                         autoComplete='off'

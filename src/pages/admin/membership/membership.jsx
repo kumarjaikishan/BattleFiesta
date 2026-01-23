@@ -5,8 +5,8 @@ import { IoMdRefresh } from "react-icons/io";
 import { membership } from "../../../store/admin";
 import { toast } from "react-toastify";
 import DataTable from "react-data-table-component";
-import { useCustomStyles } from "../backups/AllDbModal";
 import {  Button} from "@mui/material";
+import { useCustomStyles } from "../../../components/Datatablecustomstyle";
 
 const Membership = () => {
   const admin = useSelector((state) => state.admin);

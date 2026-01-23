@@ -9,9 +9,9 @@ import { memshipentry } from "../../../store/admin";
 import swal from 'sweetalert';
 import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useCustomStyles } from "../backups/AllDbModal";
 import dayjs from "dayjs";
 import DataTable from "react-data-table-component";
+import { useCustomStyles } from "../../../components/Datatablecustomstyle";
 
 const Request = () => {
    const admin = useSelector((state) => state.admin);

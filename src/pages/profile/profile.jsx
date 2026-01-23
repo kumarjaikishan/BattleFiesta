@@ -151,6 +151,7 @@ const Profile = () => {
         setinp({ ...inp, [naam]: value });
     }
     const [isloadinge, setisloadinge] = useState(false);
+
     const submit = async (e) => {
         e.preventDefault();
         setisloadinge(true)
@@ -176,7 +177,7 @@ const Profile = () => {
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
             // console.log(data);
         } catch (error) {
-            toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 1600 });
+            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
             console.log(error);
             setisloadinge(false)
         }
@@ -227,6 +228,7 @@ const Profile = () => {
             }
         }
     }
+
     const resetpassword = async () => {
         try {
             setisloadinge(true)
@@ -243,21 +245,23 @@ const Profile = () => {
             setisloadinge(false)
 
             if (!res.ok) {
-                return toast.update(id, { render: data.message, type: "warn", isLoading: false, autoClose: 2100 });
+                return toast.update(id, { render: data.message, type: "warning", isLoading: false, autoClose: 2100 });
             }
             setmessagesent(data.extramessage)
             toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 2100 });
         } catch (error) {
-            toast.update(id, { render: error.message, type: "warn", isLoading: false, autoClose: 2200 });
+            toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 2200 });
             setisloadinge(false)
             console.log(error);
         }
     }
+
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
         const date = new Date(dateString);
         return date.toLocaleDateString('en-GB', options);
     };
+
     function getTimeDifference(dateString) {
         const givenDate = new Date(dateString);
         const currentDate = new Date();
@@ -271,6 +275,17 @@ const Profile = () => {
     }
     const glass =
         "bg-gradient-to-br from-white/70 to-white/20 backdrop-blur-[12px] rounded-xl px-4 py-3";
+
+    const SOCIAL_OPTIONS = [
+        { value: "facebook", label: "Facebook", icon: <CiFacebook /> },
+        { value: "youtube", label: "Youtube", icon: <FaYoutube /> },
+        { value: "instagram", label: "Instagram", icon: <FaInstagram /> },
+        { value: "discord", label: "Discord", icon: <LuGamepad2 /> },
+        { value: "telegram", label: "Telegram", icon: <FaTelegramPlane /> },
+        { value: "twitter", label: "Twitter", icon: <FaTwitter /> },
+        { value: "website", label: "Website", icon: <IoMdLink /> },
+    ];
+
 
 
     return (
@@ -297,8 +312,7 @@ const Profile = () => {
             <motion.div
                 animate={{ scale: [1, 1.1, 1.1, 1] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="
-    absolute rounded-full
+                className=" absolute rounded-full
     w-[300px] h-[300px]
     bg-gradient-to-tr from-pink-400 to-blue-700
     top-[5%] right-[10%]
@@ -458,55 +472,87 @@ const Profile = () => {
                     </Button>
                 </div>
 
-                <div className={`social  ${glass}`}>
-                    <h2>Social Links</h2>
+                <div className={`min-h-[340px] col-span-8 md:col-span-5 ${glass}`}>
+                    <h2 className="mb-4 text-lg font-semibold">Social Links</h2>
                     <form onSubmit={submit}>
-                        {inp.sociallinks && inp.sociallinks.map((val, ind) => {
-                            return <div key={ind} className='link'>
-                                <span>
-                                    <FormControl fullWidth size='small'>
-                                        <InputLabel >Name*</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
+                        {inp.sociallinks &&
+                            inp.sociallinks.map((val, ind) => (
+                                <div
+                                    key={ind}
+                                    className="flex flex-wrap md:flex-nowrap items-center justify-between gap-3 md:gap-2
+                                            h-fit p-3 md:p-1  md:h-[55px] px-[2px] my-2  rounded-md
+                                               lg:border-none border border-gray-400"
+                                >
+                                    {/* Platform select */}
+                                    <span className="inline-block w-full  md:w-[28%]">
+                                        <FormControl fullWidth size="small">
+                                            <InputLabel id={`platform-label-${ind}`}>Name*</InputLabel>
+                                            <Select
+                                                labelId={`platform-label-${ind}`}
+                                                value={val.name}
+                                                required
+                                                label="Name"
+                                                name="name"
+                                                onChange={(e) => handleChange(e, ind)}
+                                            >
+                                                {SOCIAL_OPTIONS.map(({ value, label, icon }) => (
+                                                    <MenuItem key={value} value={value}>
+                                                        <span className="flex items-center gap-2">
+                                                            {icon}
+                                                            {label}
+                                                        </span>
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+                                    </span>
 
-                                            value={val.name}
+                                    {/* URL input */}
+                                    <span className="inline-block w-[85%] md:w-[65%]">
+                                        <TextField
                                             required
-                                            label="Name"
-                                            name='name'
+                                            value={val.link}
+                                            name="link"
+                                            fullWidth
+                                            size="small"
                                             onChange={(e) => handleChange(e, ind)}
-                                        >
-                                            <MenuItem value={'facebook'}><CiFacebook /> &nbsp; Facebook</MenuItem>
-                                            <MenuItem value={'youtube'}><FaYoutube /> &nbsp; Youtube</MenuItem>
-                                            <MenuItem value={'instagram'}><FaInstagram />&nbsp; Instagram</MenuItem>
-                                            <MenuItem value={'discord'}><LuGamepad2 />&nbsp; Discord</MenuItem>
-                                            <MenuItem value={'telegram'}><FaTelegramPlane />&nbsp; Telegram</MenuItem>
-                                            <MenuItem value={'twitter'}><FaTwitter />&nbsp; Twitter</MenuItem>
-                                            <MenuItem value={'website'}><IoMdLink />&nbsp; Website</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </span>
-                                <span>
-                                    <TextField required value={val.link} name='link' fullWidth size='small'
-                                        onChange={(e) => handleChange(e, ind)}
-                                        className="half" label="Url" variant="outlined" />
-                                </span>
-                                <span title='Remove This' onClick={() => deletelink(ind)}> <IoCloseSharp /> </span>
-                            </div>
-                        })}
+                                            label="Url"
+                                            variant="outlined"
+                                        />
+                                    </span>
 
-                        <div>
+                                    {/* Remove icon */}
+                                    <span
+                                        title="Remove This"
+                                        onClick={() => deletelink(ind)}
+                                        className="inline-flex items-center justify-center
+                       w-[25px] h-[25px]
+                       cursor-pointer
+                       text-red-500
+                       hover:bg-red-100
+                       rounded-full
+                       transition"
+                                    >
+                                        <IoCloseSharp />
+                                    </span>
+                                </div>
+                            ))}
+
+                        {/* Add button */}
+                        <div className="my-3">
                             <Button variant="outlined" onClick={newlink} startIcon={<MdAdd />}>
                                 Add
                             </Button>
                         </div>
-                        {/* <button disabled={isloadinge} type='submit'>Save</button> */}
+
+                        {/* Save button */}
                         <Button
                             disabled={isloadinge}
                             variant="contained"
                             startIcon={<IoMdSave />}
-                            className='splbtn'
-                            type='submit'
-                            size='small'
+                            type="submit"
+                            size="small"
+                            className="mt-2"
                         >
                             Save
                         </Button>

@@ -153,42 +153,7 @@
             grid-column: span 5;
         }
 
-        .social {
-            min-height: 340px;
-            grid-column: span 5;
-
-            .link {
-                padding: 0px 10px;
-                height: 55px;
-                margin: 8px 0px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border-radius: 5px;
-
-
-                & span:nth-child(1) {
-                    width: 28%;
-                    display: inline-block;
-                    /* border: 1px solid red; */
-                }
-
-                span:nth-child(2) {
-                    width: 65%;
-                    display: inline-block;
-                    /* border: 1px solid red; */
-                }
-
-                span:nth-child(3) {
-                    width: 25px;
-                    cursor: pointer;
-                    height: 25px;
-                    display: inline-block;
-                    /* border: 1px solid red; */
-                }
-            }
-        }
-
+       
         .privacy {
             height: 340px;
             grid-column: span 3;

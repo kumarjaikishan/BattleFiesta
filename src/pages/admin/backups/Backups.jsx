@@ -16,9 +16,10 @@ import { MdEdit, MdDelete, MdSearch, MdInfo } from "react-icons/md";
 import { toast } from "react-toastify";
 import Modalbox from "../../../components/custommodal/Modalbox";
 import dayjs from "dayjs";
-import AllDbModal, { useCustomStyles } from "./AllDbModal";
 import DataTable from "react-data-table-component";
 import Projects from "./Projects";
+import {AllDbModal} from './AllDbModal'
+import { useCustomStyles } from "../../../components/Datatablecustomstyle";
 
 const API = `${import.meta.env.VITE_API_ADDRESS}backup-schedules`;
 

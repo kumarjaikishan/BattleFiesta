@@ -3,11 +3,15 @@ import Modalbox from '../../../components/custommodal/Modalbox'
 import { toast } from 'react-toastify'
 import { Button } from '@mui/material'
 import DataTable from 'react-data-table-component'
+import { useCustomStyles } from '../../../components/Datatablecustomstyle'
 
-const AllDbModal = ({ databaselist, dbmodal, setdbmodal }) => {
+export const AllDbModal = ({ databaselist, dbmodal, setdbmodal }) => {
     const [loading, setloading] = useState(false)
+    const [dbselected, setdbselected] = useState(null)
 
-    const createBackup = async (dbname) => {
+    const createBackup = async () => {
+        if (dbselected.length < 1) return toast.warn('Select Atlest One DataBase')
+
         const token = localStorage.getItem("token");
         const toaste = toast.loading("Please wait...");
         setloading(true)
@@ -18,15 +22,17 @@ const AllDbModal = ({ databaselist, dbmodal, setdbmodal }) => {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ dbname })
+                body: JSON.stringify({ dbname: dbselected })
             });
             const data = await responsee.json();
             setloading(false)
+            setdbselected(null)
             if (responsee.ok) {
                 toast.update(toaste, { render: data.message, type: "success", isLoading: false, autoClose: 1700 });
             } else {
                 return toast.update(toaste, { render: data.message, type: "warning", isLoading: false, autoClose: 2100 });
             }
+
         } catch (error) {
             setloading(false)
             console.log(error);
@@ -58,35 +64,53 @@ const AllDbModal = ({ databaselist, dbmodal, setdbmodal }) => {
             selector: (row) => formatSize(row.sizeOnDisk),
             width: '120px'
         },
-        {
-            name: "Action",
-            cell: (row) => (
-                <Button
-                    disabled={loading}
-                    size="small"
-                    variant="contained"
-                    onClick={() => createBackup(row?.name)}
-                >
-                    Backup
-                </Button>
-            ),
-            width: '90px',
-            ignoreRowClick: true,
-            allowOverflow: true,
-            button: true
-        }
+        // {
+        //     name: "Action",
+        //     cell: (row) => (
+        //         <Button
+        //             disabled={loading}
+        //             size="small"
+        //             variant="contained"
+        //             onClick={() => createBackup(row?.name)}
+        //         >
+        //             Backup
+        //         </Button>
+        //     ),
+        //     width: '90px',
+        //     ignoreRowClick: true,
+        // }
 
     ]
+
+    const handleSelectedRows = ({ selectedRows }) => {
+        console.log(selectedRows);
+        setdbselected(selectedRows.map((e) => e.name))
+    };
 
     return (
         <Modalbox open={dbmodal} onClose={() => setdbmodal(false)}>
             <div className="content w-140">
                 <p className="header">Data Base</p>
                 <div className="modalbody">
+                    {dbselected?.length > 0 &&
+                        <div className='mb-2 text-end'>
+                            <Button
+                                disabled={loading}
+                                size="small"
+                                variant="outlined"
+                                onClick={createBackup}
+                            >
+                                Backup ({dbselected?.length})
+                            </Button>
+                        </div>
+                    }
+
                     <DataTable
                         columns={columns}
                         data={databaselist}
                         pagination
+                        selectableRows
+                        onSelectedRowsChange={handleSelectedRows}
                         customStyles={useCustomStyles()}
                         highlightOnHover
                     />
@@ -96,40 +120,3 @@ const AllDbModal = ({ databaselist, dbmodal, setdbmodal }) => {
     )
 }
 
-export default AllDbModal;
-
-export const useCustomStyles = () => {
-    // const primaryColor = useSelector((state) => state.user.primaryColor) || "#115e59";
-
-    return {
-        headCells: {
-            style: {
-                backgroundColor: "#115e59",
-                fontWeight: "bold",
-                fontSize: "14px",
-                color: "white",
-                justifyContent: "flex-start",
-                paddingLeft: "8px",
-                paddingRight: "0px",
-            },
-        },
-        headRow: {
-            style: {
-                borderBottom: "2px solid #ccc",
-            },
-        },
-        rows: {
-            style: {
-                minHeight: "45px",
-                borderBottom: "1px solid #eee",
-            },
-        },
-        cells: {
-            style: {
-                justifyContent: "flex-start",
-                paddingLeft: "8px",
-                paddingRight: "0px",
-            },
-        },
-    };
-};

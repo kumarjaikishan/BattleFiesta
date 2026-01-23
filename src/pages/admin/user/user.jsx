@@ -18,9 +18,9 @@ import { HiPencilSquare } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import DataTable from "react-data-table-component";
-import { useCustomStyles } from "../backups/AllDbModal";
 import { Avatar, Box } from "@mui/material";
 import CustomModal from "../../../components/modalBox/Modal";
+import { useCustomStyles } from "../../../components/Datatablecustomstyle";
 
 
 const User = () => {
