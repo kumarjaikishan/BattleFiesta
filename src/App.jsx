@@ -22,6 +22,7 @@ import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
 import { Helmet } from "react-helmet-async";
 import { profilefetch } from './store/profile';
+// import { Findtournament } from './pages/findtournament/findtournament';
 
 // off this for disable notification
 import { messaging } from './firebase';
@@ -29,8 +30,8 @@ import { getToken, onMessage } from 'firebase/messaging';
 import LoginSuccess from './pages/login/LoginSucess';
 
 // Lazy loaded components
-const Profile = lazy(() => import('./pages/profile/profile'));
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
+const Profile = lazy(() => import('./pages/profile/profile'));
 const AllFindtournament = lazy(() => import('./pages/findtournament/allFindtournament'));
 const BackupSchedulePage = lazy(() => import('./pages/admin/backups/Backups'));
 const Membershiprequest = lazy(() => import('./pages/admin/Request/Request'));
