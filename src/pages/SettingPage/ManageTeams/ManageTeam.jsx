@@ -15,7 +15,7 @@ const ManageTeam = ({ setting, showss }) => {
   const { tid } = useParams();
 
   useEffect(() => {
-  //  console.log("clasic teams:",classic.classicplayers);
+    //  console.log("clasic teams:",classic.classicplayers);
   }, [])
 
 
@@ -28,28 +28,41 @@ const ManageTeam = ({ setting, showss }) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
-        const id = toast.loading("Please wait...")
-
+        const id = toast.loading("Please wait...");
         const url = `${import.meta.env.VITE_API_ADDRESS}teamdelete`;
         const method = 'POST';
         const body = { teamid };
 
-        const successAction = (data) => {
-          // console.log(data);
-          dispatch(alltourna());
-          dispatch(classicfetch(tid));
-          toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
-        };
+        try {
+          const token = localStorage.getItem("token");
+          const options = {
+            method,
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+            body: body ? JSON.stringify(body) : null,
+          };
 
-        // const loaderAction = (isLoading) => dispatch(setloader(isLoading));
+          const response = await fetch(url, options);
+          const responseData = await response.json();
 
-        await apiWrapper(url, method, body, successAction);
+          if (!response.ok) {
+            throw new Error(responseData.message || 'Something went wrong');
+          }
 
-      } else {
-        // swal('Your data is safe!');
+          successAction(responseData);
+          toast.update(id, { render: responseData.message, type: "success", isLoading: false, autoClose: 1600 });
+          return responseData;
+        } catch (error) {
+          console.error(" Error:", error);
+          toast.update(id, { render: error.message, type: "warning", isLoading: false, autoClose: 1600 });
+          throw error;
+        }
       }
     });
   }
+
   const [calledit, setcalledit] = useState(false);
   const [teamdetail, setteamdeatl] = useState("");
 
@@ -69,8 +82,8 @@ const ManageTeam = ({ setting, showss }) => {
           {calledit && <Teamedit teamdetail={teamdetail} setcalledit={setcalledit} />}
 
           {classic.classicplayers.length < 1 && <div className="middle">
-            <div> <TbMoodSad className='emoji' /> </div>
-            <h2>Nothing To Show</h2>
+            <div className=' flex justify-center'> <TbMoodSad className='emoji' /> </div>
+            <strong>Nothing To Show</strong>
             <p>The List is Empty. Form Resposes will start to appear once teams starts Registering</p>
           </div>}
         </div>

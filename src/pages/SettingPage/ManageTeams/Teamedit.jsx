@@ -10,10 +10,11 @@ import { IoMdAdd } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import useImageUpload from "../../utils/imageresizer";
 import { classicfetch } from "../../../store/classic";
+import './teamedit.css'
 
 const Teamedit = ({ teamdetail, setcalledit }) => {
 
-     const group1 = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group1_oxfqan.webp'
+    const group1 = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/group1_oxfqan.webp'
     const user = 'https://res.cloudinary.com/dusxlxlvm/image/upload/v1718950087/battlefiesta/assets/icon/user_p5egd9.webp'
     const dispatch = useDispatch();
     const { handleImage } = useImageUpload();
@@ -208,6 +209,7 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
         document.querySelector(`#${id}`).appendChild(new_image);
         setinp({ ...inp, selectedTeamLogo: resizedfile });
     }
+
     const common2 = async (event, id, index) => {
         let image_file = event.target.files[0];
 
@@ -300,7 +302,12 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                         </Box>
 
                         <h4>Set a logo for the Team* </h4>
-                        <div id="teamlogo"><img src={inp.selectedTeamLogo || group1} alt="team logo" /></div>
+                        <div id="teamlogo "                       >
+                            <img
+                                className=" border-dashed rounded-2xl border-2  border-gray-400 "
+                                src={inp.selectedTeamLogo || group1} alt="team logo"
+                            />
+                        </div>
                         <Button sx={{ mb: 3 }} component="label" variant="contained" startIcon={<MdCloudUpload />}>
                             Upload Logo
                             <VisuallyHiddenInput
@@ -326,7 +333,12 @@ const Teamedit = ({ teamdetail, setcalledit }) => {
                                     <TextField size="small" id={`in-game-id-${index}`} value={inp.players[index].inGameID} onChange={(e) => realplayerchange(e, index, 'inGameID')} label="In Game ID" variant="outlined" />
 
                                     <h4>Set a logo for the player</h4>
-                                    <div id={`playerLogo${index}`}> <img src={inp?.players[index]?.playerLogo || user} alt="playerLogo" /></div>
+                                    <div id={`playerLogo${index}`}>
+                                        <img
+                                            className=" border-dashed rounded-2xl border-2  border-gray-400 "
+                                            src={inp?.players[index]?.playerLogo || user} alt="playerLogo"
+                                        />
+                                    </div>
                                     <Button component="label" variant="contained" startIcon={<MdCloudUpload />}>
                                         Upload Logo
                                         <VisuallyHiddenInput

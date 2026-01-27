@@ -11,12 +11,14 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme.js';
 import { HelmetProvider } from "react-helmet-async";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { ToastContainer } from 'react-toastify';
 
 const clientId = import.meta.env.VITE_API_GOOGLE_CLIENTID
 let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <HelmetProvider>
+      <ToastContainer closeOnClick autoClose={1800} />
       <BrowserRouter future={{ v7_startTransition: true }} >
         <PersistGate persistor={persistor} >
           <ThemeProvider theme={theme}>

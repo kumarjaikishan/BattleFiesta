@@ -50,6 +50,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
             }
         }
     }
+
     return (<>
         {teamarray.length > 0 && teamarray.map((player, ind) => {
             return (
@@ -74,7 +75,7 @@ const Teamlists = ({ teamarray, statuschange, callfrom, deletee, edetee, showss,
                                 }) || group}
                                 alt="Team logo" />
                         </Badge>
-                        <span>{player.teamName} </span>
+                        <p className=' text-lg'>{player.teamName} </p>
                     </AccordionSummary>
                     <AccordionDetails className='details' sx={{ pb: 1 }}>
                         <div className="teamdata">

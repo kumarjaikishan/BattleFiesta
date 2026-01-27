@@ -6,30 +6,20 @@ import Footbar from './components/footer/footbar';
 import Home from './pages/Home/home';
 import { useEffect, lazy, Suspense } from 'react';
 import Login from './pages/login/login';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Errorpage } from './pages/Error/Errorpage';
 import Logout from './pages/login/logout';
-import Tournasetting from './pages/SettingPage/tournasetting';
-import Register from './pages/RegistrationPage/Register';
-import Tournamentstatpage from './pages/findtournament/tournamentstat/tournamentstatpage';
 import Contact from './pages/contact/contact';
 import Faq from './pages/faq/faq';
 import AboutUs from './pages/aboutus/aboutus';
 import PrivacyPolicy from './pages/privacy/privacy';
 import TermsAndConditions from './pages/terms/terms';
 import RefundAndCancellationPolicy from './pages/refund/refund';
-import Subscription from './pages/Subscription/subscription';
 import PasswordReset from './pages/password/password';
-import Tdmsetting from './pages/tdm/main';
-import TdmRegister from './pages/TdmRegistrationPage/TdmRegister';
-import Stats from './pages/stats/Stats';
 import { toast } from 'react-toastify';
-import Modalbox from './components/custommodal/Modalbox';
 import AdminRoutes from './utils/AdminRoutes';
 import UserRoute from './utils/UserRoute';
-import Channeldashboard from './pages/userDashboard/channeldashboard';
 import { Helmet } from "react-helmet-async";
 import { profilefetch } from './store/profile';
 
@@ -48,6 +38,15 @@ const Query = lazy(() => import('./pages/admin/query/query'));
 const Voucher = lazy(() => import('./pages/admin/voucher/voucher'));
 const Membership = lazy(() => import('./pages/admin/membership/membership'));
 const User = lazy(() => import('./pages/admin/user/user'));
+const Register = lazy(() => import('./pages/RegistrationPage/Register'));
+const TdmRegister = lazy(() => import('./pages/TdmRegistrationPage/TdmRegister'));
+const Tournasetting = lazy(() => import('./pages/SettingPage/tournasetting'));
+const Tdmsetting = lazy(() => import('./pages/tdm/main'));
+const Stats = lazy(() => import('./pages/stats/Stats'));
+const Tournamentstatpage = lazy(() => import('./pages/findtournament/tournamentstat/tournamentstatpage'));
+const Channeldashboard = lazy(() => import('./pages/userDashboard/channeldashboard'));
+const Subscription = lazy(() => import('./pages/Subscription/subscription'));
+
 
 function App() {
   const log = useSelector((state) => state.login);
@@ -151,7 +150,6 @@ function App() {
 
   return (
     <>
-      <ToastContainer closeOnClick />
       <div className="App">
         <Helmet>
           <title>BattleFiesta - Esports Tournament Management Service</title>
@@ -161,91 +159,79 @@ function App() {
             content="BattleFiesta is India's best platform for PUBG, BGMI, and Free Fire tournaments organiser. Create & manage real-time esports
                            events with an advanced points table maker, automated rankings." />
         </Helmet>
+
         <Navbar />
+
         <div className={log.loader ? 'main loader' : 'main'}>
-          <Routes>
-            <Route element={<UserRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route
-                path="/profile"
-                element={
-                  <Suspense fallback={<Preloader />}>
+          <Suspense fallback={<Preloader />}>
+            <Routes>
+              <Route element={<UserRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route
+                  path="/profile"
+                  element={
                     <Profile />
-                  </Suspense>
-                }
-              />
-              <Route path="/setting/:tid" element={<Tournasetting />} />
-              <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
-            </Route>
-
-            {log.isadmin && (
-              <Route
-                path="/admin"
-                element={
-                  <Suspense fallback={<Preloader />}>
-                    <AdminRoutes />
-                  </Suspense>
-                }
-              >
-                <Route path="" element={<BackupSchedulePage />} />
-                <Route path="request" element={<Membershiprequest />} />
-                <Route path="query" element={<Query />} />
-                <Route path="voucher" element={<Voucher />} />
-                <Route path="membership" element={<Membership />} />
-                <Route path="users" element={<User />} />
+                  }
+                />
+                <Route path="/setting/:tid" element={<Tournasetting />} />
+                <Route path="/tdmsetting/:tid" element={<Tdmsetting />} />
               </Route>
-            )}
-            <Route
-              path="/admin/*"
-              element={<Navigate to="/dashboard" replace />}
-            />
 
-
-            <Route path="/" element={<Home />} />
-            <Route path="/tournaments">
+              {log.isadmin && (
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminRoutes />
+                  }
+                >
+                  <Route path="" element={<BackupSchedulePage />} />
+                  <Route path="request" element={<Membershiprequest />} />
+                  <Route path="query" element={<Query />} />
+                  <Route path="voucher" element={<Voucher />} />
+                  <Route path="membership" element={<Membership />} />
+                  <Route path="users" element={<User />} />
+                </Route>
+              )}
               <Route
-                index
-                element={
-                  <Suspense fallback={<Preloader />}>
-                    <Findtournament />
-                  </Suspense>
-                }
+                path="/admin/*"
+                element={<Navigate to="/dashboard" replace />}
               />
-              <Route path=":tid" element={<Tournamentstatpage />} />
-            </Route>
-            <Route path="/admintournaments">
-              <Route
-                index
-                element={
-                  <Suspense fallback={<Preloader />}>
-                    <AllFindtournament />
-                  </Suspense>
-                }
+              <Route path="/admintournaments"
+                element={<AdminRoutes> <AllFindtournament /> </AdminRoutes>}
               />
-            </Route>
-            <Route path="/stat/:tid" element={<Stats />} />
-            <Route path="/channel/:uid" element={<Channeldashboard />} />
-            <Route path="/register/:registerId" element={<Register />} />
-            <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/resetpassword/:token" element={<PasswordReset />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/subscription" element={<Subscription />} />
-            <Route path="/refund" element={<RefundAndCancellationPolicy />} />
-            <Route path="/faq" element={<Faq />} />
 
-            <Route path="/login/success" element={<LoginSuccess />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="*" element={<Errorpage />} />
 
-            {log.islogin ? (
-              <Route path="/login" element={<Navigate to="/dashboard" />} />
-            ) : (
-              <Route path="/login" element={<Login />} />
-            )}
-          </Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/tournaments">
+                <Route index element={<Findtournament />} />
+                <Route path=":tid" element={<Tournamentstatpage />} />
+              </Route>
+
+
+              <Route path="/stat/:tid" element={<Stats />} />
+              <Route path="/channel/:uid" element={<Channeldashboard />} />
+              <Route path="/register/:registerId" element={<Register />} />
+              <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsAndConditions />} />
+              <Route path="/resetpassword/:token" element={<PasswordReset />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/subscription" element={<Subscription />} />
+              <Route path="/refund" element={<RefundAndCancellationPolicy />} />
+              <Route path="/faq" element={<Faq />} />
+
+              <Route path="/login/success" element={<LoginSuccess />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="*" element={<Errorpage />} />
+
+              {log.islogin ? (
+                <Route path="/login" element={<Navigate to="/dashboard" />} />
+              ) : (
+                <Route path="/login" element={<Login />} />
+              )}
+            </Routes>
+          </Suspense>
           {log.loader && <Preloader />}
         </div>
         <Footbar />
