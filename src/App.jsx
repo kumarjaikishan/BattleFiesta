@@ -28,6 +28,7 @@ import { profilefetch } from './store/profile';
 import { messaging } from './firebase';
 import { getToken, onMessage } from 'firebase/messaging';
 import LoginSuccess from './pages/login/LoginSucess';
+import CheckAdmin from './utils/CheckAdmin';
 
 // Lazy loaded components
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
@@ -197,17 +198,18 @@ function App() {
                 path="/admin/*"
                 element={<Navigate to="/dashboard" replace />}
               />
-              <Route path="/admintournaments"
-                element={<AdminRoutes> <AllFindtournament /> </AdminRoutes>}
-              />
 
+              <Route element={<CheckAdmin />}>
+                <Route path="/admintournaments"
+                  element={<AllFindtournament />}
+                />
+              </Route>
 
               <Route path="/" element={<Home />} />
               <Route path="/tournaments">
                 <Route index element={<Findtournament />} />
                 <Route path=":tid" element={<Tournamentstatpage />} />
               </Route>
-
 
               <Route path="/stat/:tid" element={<Stats />} />
               <Route path="/channel/:uid" element={<Channeldashboard />} />
