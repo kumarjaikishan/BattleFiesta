@@ -16,7 +16,6 @@ const AdminRoutes = () => {
   }
 
   return <>
-    <Adminnavbar />
     <Outlet />
   </>
 

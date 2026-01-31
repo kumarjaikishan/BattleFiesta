@@ -28,7 +28,7 @@ import { profilefetch } from './store/profile';
 import { messaging } from './firebase';
 import { getToken, onMessage } from 'firebase/messaging';
 import LoginSuccess from './pages/login/LoginSucess';
-import CheckAdmin from './utils/CheckAdmin';
+import AdminLayout from './utils/AdminLayout';
 
 // Lazy loaded components
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
@@ -180,6 +180,19 @@ function App() {
               </Route>
 
               {log.isadmin && (
+                <Route element={<AdminRoutes />}>
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<BackupSchedulePage />} />
+                    <Route path="request" element={<Membershiprequest />} />
+                    <Route path="query" element={<Query />} />
+                    <Route path="voucher" element={<Voucher />} />
+                    <Route path="membership" element={<Membership />} />
+                    <Route path="users" element={<User />} />
+                  </Route>
+                </Route>
+              )}
+
+              {/* {log.isadmin && (
                 <Route
                   path="/admin"
                   element={
@@ -193,13 +206,14 @@ function App() {
                   <Route path="membership" element={<Membership />} />
                   <Route path="users" element={<User />} />
                 </Route>
-              )}
+              )} */}
+              
               <Route
                 path="/admin/*"
                 element={<Navigate to="/dashboard" replace />}
               />
 
-              <Route element={<CheckAdmin />}>
+              <Route element={<AdminRoutes />}>
                 <Route path="/admintournaments"
                   element={<AllFindtournament />}
                 />
