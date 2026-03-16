@@ -57,6 +57,7 @@ const Projects = ({ open, onClose }) => {
         { name: 'Battlefiesta', project: 'battlefiesta' },
         { name: 'Office', project: 'office' },
         { name: 'Portfolio', project: 'portfolio' },
+        { name: 'Study Notes', project: 'studynotes' },
     ]
 
     return (
