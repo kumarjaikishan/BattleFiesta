@@ -21,7 +21,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.2",
-    "canvas-confetti": "^1.9.3",
+    "canvas-confetti": "^1.9.4",
     "dayjs": "^1.11.10",
     "firebase": "^9.10.0",
     "framer-motion": "^11.0.3",

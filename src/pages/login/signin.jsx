@@ -20,7 +20,6 @@ const Signin = ({ showmsg, setshowmsg }) => {
     const dispatch = useDispatch();
     let location = useLocation();
 
-    const tournacenter = useSelector((state) => state.tournacenter);
     const init = {
         email: "",
         password: ""

@@ -29,6 +29,7 @@ import { messaging } from './firebase';
 import { getToken, onMessage } from 'firebase/messaging';
 import LoginSuccess from './pages/login/LoginSucess';
 import AdminLayout from './utils/AdminLayout';
+import PaymentSuccess from './pages/Subscription/PaymentSuccess';
 
 // Lazy loaded components
 const Findtournament = lazy(() => import('./pages/findtournament/findtournament'));
@@ -191,22 +192,6 @@ function App() {
                   </Route>
                 </Route>
               )}
-
-              {/* {log.isadmin && (
-                <Route
-                  path="/admin"
-                  element={
-                    <AdminRoutes />
-                  }
-                >
-                  <Route path="" element={<BackupSchedulePage />} />
-                  <Route path="request" element={<Membershiprequest />} />
-                  <Route path="query" element={<Query />} />
-                  <Route path="voucher" element={<Voucher />} />
-                  <Route path="membership" element={<Membership />} />
-                  <Route path="users" element={<User />} />
-                </Route>
-              )} */}
               
               <Route
                 path="/admin/*"
@@ -231,6 +216,7 @@ function App() {
               <Route path="/tdmregister/:registerId" element={<TdmRegister />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/payment_success" element={<PaymentSuccess />} />
               <Route path="/terms" element={<TermsAndConditions />} />
               <Route path="/resetpassword/:token" element={<PasswordReset />} />
               <Route path="/contact" element={<Contact />} />
