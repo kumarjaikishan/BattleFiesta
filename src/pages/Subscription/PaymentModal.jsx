@@ -91,7 +91,7 @@ export const PaymentModal = ({
             }
 
             const options = {
-                key: 'rzp_live_SSEdhM9TsH0zjZ',
+                key: import.meta.env.VITE_API_RAZORPAY_KEY,
                 amount: order.amount,
                 currency: "INR",
                 name: "EMS Pro Solutions",
