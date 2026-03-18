@@ -30,19 +30,22 @@ export const PaymentModal = ({
         {
             id: "razorpay",
             name: "Razorpay",
-            desc: "Cards & Netbanking",
+            desc: "Instant Activation",
+            status: 'Active',
             icon: SiRazorpay,
         },
         {
             id: "upi",
             name: "UPI Express",
-            desc: "Instant Activation",
+            desc: "Approval within 24 hours",
+            status: 'Coming soon',
             icon: FiZap,
         },
         {
             id: "paytm",
             name: "Paytm Wallet",
             desc: "Quick Payment",
+            status: 'Coming soon',
             icon: SiPaytm,
         },
     ];
@@ -78,7 +81,7 @@ export const PaymentModal = ({
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    plan_detail:plan
+                    plan_detail: plan
                 })
             });
 
@@ -94,13 +97,13 @@ export const PaymentModal = ({
                 key: import.meta.env.VITE_API_RAZORPAY_KEY,
                 amount: order.amount,
                 currency: "INR",
-                name: "EMS Pro Solutions",
+                name: "Battlefiesta Subscription",
                 description: plan.name,
                 order_id: order.id,
 
                 // ✅ SUCCESS
                 handler: async function (response) {
-                    console.log("✅ PAYMENT SUCCESS:", response);
+                    // console.log("✅ PAYMENT SUCCESS:", response);
 
                     try {
                         const verifyRes = await fetch(`${import.meta.env.VITE_API_ADDRESS}verify_payment`, {
@@ -114,11 +117,21 @@ export const PaymentModal = ({
 
                         const data = await verifyRes.json();
 
-                        console.log("🔐 VERIFY RESPONSE:", data);
+                        // console.log("🔐 VERIFY RESPONSE:", data);
 
                         if (data.success) {
                             toast.success("Payment Successful 🎉");
-                            setTimeout(() => navigate("/payment_success"), 3000);
+
+                            setTimeout(() => {
+                                navigate("/payment_success", {
+                                    state: {
+                                        transactionId: response.razorpay_payment_id,
+                                        order_id: response.order_id,
+                                        data
+                                    }
+                                });
+                            }, 3000);
+
                         } else {
                             toast.error("Verification Failed ❌");
                         }
@@ -126,7 +139,6 @@ export const PaymentModal = ({
                         console.error("❌ VERIFY ERROR:", err);
                         toast.error("Server verification failed");
                     }
-
                     setIsProcessing(false);
                 },
 
@@ -172,11 +184,11 @@ export const PaymentModal = ({
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-md">
-            <div className="bg-white w-full max-w-md max-h-[95vh] flex flex-col rounded-[2.5rem] shadow-2xl overflow-hidden">
+        <div className="fixed inset-0 z-500 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-md">
+            <div className="bg-white w-full max-w-md max-h-[90vh] flex flex-col rounded-[1.5rem] shadow-2xl overflow-hidden">
 
                 {/* HEADER */}
-                <div className="px-8 pt-8 pb-4">
+                <div className="px-4 pt-4 pb-4">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center">
@@ -195,10 +207,10 @@ export const PaymentModal = ({
                 </div>
 
                 {/* BODY */}
-                <div className="flex-1 overflow-y-auto px-8 pb-4 space-y-8">
+                <div className="flex-1 overflow-y-auto px-8 pb-4 space-y-8 custom-scroll">
 
                     {/* PRICE */}
-                    <div className="bg-gray-50 rounded-[2rem] p-6 text-center border">
+                    <div className="bg-gray-100 rounded-3xl p-4 text-center ">
                         <p className="text-xs font-bold text-gray-400 uppercase mb-1">
                             Final Amount
                         </p>
@@ -229,17 +241,17 @@ export const PaymentModal = ({
                                             ? setSelectedMethod(method.id)
                                             : toast.info("Coming soon!")
                                     }
-                                    className={`group cursor-pointer p-4 rounded-2xl border-2 flex items-center gap-4 transition-all
-                  ${selectedMethod === method.id
+                                    className={`group cursor-pointer p-3 rounded-2xl border-2 flex items-center gap-4 transition-all
+                                     ${selectedMethod === method.id
                                             ? "border-indigo-600 bg-indigo-50/50"
                                             : "border-gray-100 hover:border-indigo-200"
                                         }
-                  ${method.id !== "razorpay" ? "opacity-50 cursor-not-allowed" : ""}
-                  `}
+                                     ${method.id !== "razorpay" ? "opacity-50 cursor-not-allowed" : ""}
+                                     `}
                                 >
                                     <div
                                         className={`w-12 h-12 rounded-2xl flex items-center justify-center transition
-                    ${selectedMethod === method.id
+                                     ${selectedMethod === method.id
                                                 ? "bg-indigo-600 text-white"
                                                 : "bg-gray-50 text-gray-400"
                                             }`}
@@ -251,8 +263,8 @@ export const PaymentModal = ({
                                         <p className="font-black text-gray-900 text-sm">
                                             {method.name}
                                         </p>
-                                        <p className="text-[10px] font-bold uppercase text-gray-400">
-                                            {method.id === "upi" ? method.desc : "Coming Soon"}
+                                        <p className="text-[10px] mt-1 font-bold uppercase text-gray-500">
+                                            {method.desc}
                                         </p>
                                     </div>
 
@@ -268,7 +280,7 @@ export const PaymentModal = ({
                 </div>
 
                 {/* FOOTER */}
-                <div className="px-8 pb-8">
+                <div className="px-4 pb-4">
                     <div className="flex items-center justify-center gap-2 py-3">
                         <FiLock className="text-green-500" size={16} />
                         <span className="text-[10px] font-bold text-gray-400 uppercase">

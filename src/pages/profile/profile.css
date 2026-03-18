@@ -199,8 +199,8 @@
                 }
 
                 .status.active {
-                    color: rgb(1, 59, 1);
-                    background-color: rgba(52, 233, 52, 0.712);
+                    color: rgb(8, 65, 8);
+                    background-color: rgba(52, 233, 52, 0.5);
                 }
 
                 .status.expired {

@@ -282,10 +282,10 @@ const Dashboard = () => {
               <span className="font-semibold w-[160px] text-gray-600">Expire In</span>
               <span className="text-gray-400">:</span>
               <span className="ml-2 font-medium text-gray-900">
-                {userprofile?.membership?.expire_date &&
-                  (getTimeDifference(userprofile?.membership?.expire_date) < 0
+                {userprofile?.membership?.endDate &&
+                  (getTimeDifference(userprofile?.membership?.endDate) < 0
                     ? 'Expired'
-                    : `${getTimeDifference(userprofile?.membership?.expire_date)} Days`)}
+                    : `${getTimeDifference(userprofile?.membership?.endDate)} Days`)}
               </span>
             </div>
 

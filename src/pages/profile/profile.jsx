@@ -11,7 +11,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { NavLink } from 'react-router-dom';
 import { toast } from "react-toastify";
-import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { setloader } from '../../store/login';
@@ -29,6 +28,7 @@ import { LuGamepad2 } from "react-icons/lu";
 import { IoMdLink } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
 import { cloudinaryUrl } from '../../utils/imageurlsetter';
+import dayjs from 'dayjs';
 
 const Profile = () => {
     const userprofile = useSelector((state) => state.userprofile);
@@ -56,7 +56,7 @@ const Profile = () => {
     const [membership, setmembership] = useState({
         plan: 'N/A',
         planprice: 'N/A',
-        buydate: 'N/A',
+        startdate: 'N/A',
         expirydate: 'N/A',
         expire_in: 'N/A',
         status: 'N/A',
@@ -64,7 +64,6 @@ const Profile = () => {
     })
     useEffect(() => {
         userprofile.userprofile && fetche();
-        // console.log(userprofile.userprofile)
     }, [userprofile])
 
 
@@ -81,12 +80,11 @@ const Profile = () => {
     });
 
     const fetche = async () => {
-        if (!userprofile.membership) {
+        if (!userprofile.userprofile) {
             return;
         }
         let data = userprofile.userprofile;
-        let membere = userprofile.membership
-        // console.log(membere)
+
         setinp({
             ...inp,
             name: data.name,
@@ -102,17 +100,20 @@ const Profile = () => {
             profile: data.imgsrc,
             cover: data.coversrc
         })
-        if (!userprofile.membership.planid.plan_name) {
+
+        if (!userprofile.membership?.planid) {
             return;
         }
+        let membere = userprofile.membership
+
         setmembership({
-            plan: membere.planid.plan_name,
-            planprice: membere.planid.price,
+            plan: membere.planid?.plan_name,
+            planprice: membere.planid?.price,
             tournament: membere.planid.create_limit > 500 ? 'Unlimited' : membere.planid.create_limit,
-            buydate: membere.buy_date,
-            expirydate: membere.expire_date,
-            expire_in: getTimeDifference(membere.expire_date),
-            status: membere.isActive ? 'active' : 'expired'
+            startdate: dayjs(membere.startDate).format('DD MMM, YY'),
+            expirydate: dayjs(membere.endDate).format('DD MMM, YY'),
+            expire_in: getTimeDifference(membere.endDate),
+            status: membere.status 
         })
     }
     const newlink = () => {
@@ -168,7 +169,6 @@ const Profile = () => {
                 body: JSON.stringify(inp)
             })
             const data = await res.json();
-            console.log(data)
             setisloadinge(false)
             if (!res.ok) {
                 return toast.update(id, { render: data.message, type: "warning", isLoading: false, autoClose: 1600 });
@@ -195,8 +195,6 @@ const Profile = () => {
         }
 
 
-        // console.log(resizedfile);
-
         if (resizedfile) {
             const id = toast.loading("Uploading Please wait...")
             setisloadinge(true)
@@ -215,7 +213,6 @@ const Profile = () => {
                 const data = await res.json();
                 setisloadinge(false)
                 if (res.ok) {
-                    // console.log(data);
                     toast.update(id, { render: data.message, type: "success", isLoading: false, autoClose: 1600 });
                     dispatch(profilefetch());
                     return;
@@ -241,7 +238,6 @@ const Profile = () => {
                 }
             })
             const data = await res.json();
-            // console.log(data);
             setisloadinge(false)
 
             if (!res.ok) {
@@ -266,7 +262,6 @@ const Profile = () => {
         const givenDate = new Date(dateString);
         const currentDate = new Date();
         // const currentDate = new Date('2024-04-04');
-        // console.log(currentDate);
 
         const differenceInMilliseconds = givenDate - currentDate;
         const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
@@ -418,10 +413,10 @@ const Profile = () => {
                         <p><span> Plan</span> <span>:</span> <span>{membership.plan} Plan</span> </p>
                         <p><span> Plan price</span> <span>:</span> <span>₹ {membership.planprice}.00</span> </p>
                         <p><span> Tournament</span> <span>:</span> <span>{membership.tournament}</span> </p>
-                        <p><span> Buy Date</span> <span>:</span> <span>{formatDate(membership.buydate)}</span> </p>
+                        <p><span> Start Date</span> <span>:</span> <span>{formatDate(membership.startdate)}</span> </p>
                         <p><span> Expiry Date</span> <span>:</span> <span>{formatDate(membership.expirydate)} </span> </p>
                         <p><span> Expire In</span> <span>:</span> <span style={{ color: membership.expire_in < 6 && 'red' }}>{membership.expire_in} Days </span> </p>
-                        <p><span> Status</span> <span>:</span> <span className={`status ${membership.status}`}>{membership.status}</span> </p>
+                        <p><span> Status</span> <span>:</span> <span className={`status ${membership.status.toLowerCase()}`}>{membership.status}</span> </p>
                         <NavLink className="navlink" to='/subscription'>  <Button variant="contained" className='splbtn' startIcon={<MdOutlineAddShoppingCart />}>
                             Buy Membership
                         </Button></NavLink>

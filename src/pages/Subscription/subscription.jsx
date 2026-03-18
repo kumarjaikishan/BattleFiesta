@@ -3,30 +3,11 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { PaymentModal } from './PaymentModal';
+import Membershipheader from './component/header';
+import { PlanCard } from './component/PlanCard';
+import { useDispatch, useSelector } from 'react-redux';
 
-/**
- * MOCK REDUX & STORE (To resolve compilation errors in preview)
- * In your actual project, replace these with:
- * import { useSelector, useDispatch } from "react-redux";
- * import { setloader } from "../../store/login";
- */
-const mockState = {
-  userprofile: {
-    userprofile: {
-      name: "John Doe",
-      phone: "9876543210",
-      email: "john@example.com",
-      city: "Mumbai"
-    }
-  },
-  login: {
-    islogin: true
-  }
-};
 
-const useSelector = (fn) => fn(mockState);
-
-const useDispatch = () => (action) => console.log("Dispatching:", action);
 const setloader = (val) => ({ type: "SET_LOADER", payload: val });
 
 /**
@@ -99,10 +80,8 @@ const Icons = {
   )
 };
 
-// --- ENHANCED UI COMPONENTS ---
-
 const Card = ({ children, className = "", noPadding = false }) => (
-  <div className={`bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50 overflow-hidden ${noPadding ? '' : 'p-6 md:p-8'} ${className}`}>
+  <div className={`bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-gray-100/50 overflow-hidden ${noPadding ? '' : 'p-6 md:p-8'} ${className}`}>
     {children}
   </div>
 );
@@ -116,70 +95,13 @@ const InputField = ({ label, icon: Icon, ...props }) => (
     <div className="relative">
       <input
         {...props}
-        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-800 placeholder:text-gray-400 font-medium"
+        className="w-full px-4 py-3 bg-gray-100/50 border border-gray-400 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-800 placeholder:text-gray-400 font-medium"
       />
     </div>
   </div>
 );
 
-const PlanCard = ({ plan, isSelected, onClick }) => {
-  const savings = (plan.baseprice * plan.into) - plan.price;
-  const savingsPercent = Math.round((savings / (plan.baseprice * plan.into)) * 100);
-
-  return (
-    <div
-      onClick={onClick}
-      className={`relative cursor-pointer group transition-all duration-500 
-      ${isSelected
-          ? 'ring-2 ring-indigo-600 shadow-[0_20px_50px_rgba(79,70,229,0.15)] scale-[1.02] z-10'
-          : 'hover:border-indigo-400 border border-gray-300 hover:shadow-xl hover:-translate-y-1'
-        } 
-      bg-white p-6 rounded-[2.5rem] flex flex-col items-center text-center h-full overflow-hidden`}
-    >
-      <div className={`absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 rounded-full transition-colors duration-500 ${isSelected ? 'bg-indigo-50/50' : 'bg-gray-50/30'}`} />
-
-      {plan.popular && (
-        <div className="absolute -top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-b-xl shadow-lg z-20">
-          Most Popular
-        </div>
-      )}
-
-      <div className="relative z-10 w-full">
-        <div className={`w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center transition-all duration-500 ${isSelected ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'bg-indigo-50 text-indigo-500'}`}>
-          {plan.into >= 12 ? <Icons.Trophy size={28} /> : plan.into >= 3 ? <Icons.AutoAwesome size={28} /> : <Icons.Calendar size={26} />}
-        </div>
-
-        <span className="block text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">{plan.into >= 12 ? 'Ultimate' : plan.into >= 3 ? 'Recommended' : 'Basic'}</span>
-        <h3 className="text-lg font-bold text-gray-900 mb-4">{plan.duration}</h3>
-
-        <div className="mb-4">
-          <span className="text-gray-400 text-xs font-semibold line-through block mb-0.5">₹{plan.baseprice * plan.into}</span>
-          <div className="flex items-baseline justify-center">
-            <span className="text-3xl font-black text-gray-900">₹{plan.price}</span>
-            <span className="text-xs font-bold text-gray-500 ml-1">/total</span>
-          </div>
-        </div>
-
-        <div className={`inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-tight py-1.5 px-3 rounded-full transition-all duration-500 ${isSelected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
-          <Icons.Percent size={14} />
-          Save {savingsPercent}%
-        </div>
-      </div>
-
-      {isSelected && (
-        <div className="absolute top-4 right-4 animate-in zoom-in duration-300">
-          <div className="bg-indigo-600 rounded-full p-1 shadow-md shadow-indigo-200">
-            <Icons.Check size={16} className="text-white" />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-
 // --- MAIN PAGE ---
-
 const SubscriptionPage = () => {
   const userprofile = useSelector((state) => state.userprofile);
   const log = useSelector((state) => state.login);
@@ -189,8 +111,6 @@ const SubscriptionPage = () => {
   const init = {
     fullname: '',
     phone: '',
-    city: '',
-    email: '',
     couponname: '',
     coupon: 0,
     txn_no: '',
@@ -212,29 +132,18 @@ const SubscriptionPage = () => {
   }, []);
 
   useEffect(() => {
+    // console.log(log)
     if (userprofile?.userprofile) {
       setinp((prev) => ({
         ...prev,
         fullname: userprofile.userprofile.name || '',
         phone: userprofile.userprofile.phone || '',
-        email: userprofile.userprofile.email || '',
-        city: userprofile.userprofile.city || ''
+
       }));
     }
   }, [userprofile?.userprofile]);
 
-  // ❌ REMOVE THIS FUNCTION (or don't call it inside effect)
-  // const setprofile = () => { ... }
 
-  const setprofile = () => {
-    setinp((prev) => ({
-      ...prev,
-      fullname: userprofile.userprofile.name || '',
-      phone: userprofile.userprofile.phone || '',
-      email: userprofile.userprofile.email || '',
-      city: userprofile.userprofile.city || ''
-    }));
-  };
 
   const fetche = async () => {
     dispatch(setloader(true));
@@ -337,17 +246,13 @@ const SubscriptionPage = () => {
       </Helmet>
 
       {/* Header */}
-      <div className="relative overflow-hidden bg-indigo-600 pt-16 pb-32 px-4 text-center">
-        <div className="relative max-w-4xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/30 backdrop-blur-md rounded-full border border-white/10 text-white text-[10px] font-black uppercase tracking-widest">
-            <Icons.AutoAwesome size={12} /> BattleFiesta Premium
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight">Ready to level up?</h1>
-          <p className="text-indigo-100 text-sm md:text-lg font-medium opacity-80">Choose the duration that fits your tournament needs.</p>
-        </div>
+      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-700 pt-10 pb-16 px-4 text-center">
+        <Membershipheader Icons={Icons} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 -mt-16">
+
+      {/* display plan cards */}
+      <div className="max-w-7xl mx-auto px-4 -mt-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
           <div className="lg:col-span-8 space-y-10">
@@ -360,6 +265,7 @@ const SubscriptionPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {plandetail.map((plan) => (
                   <PlanCard
+                    Icons={Icons}
                     key={plan._id}
                     plan={plan}
                     isSelected={planchoosed?._id === plan._id}
@@ -377,16 +283,175 @@ const SubscriptionPage = () => {
               </div>
 
               <form id="billing-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <InputField label="Full Name" icon={Icons.Person} name="fullname" value={inp.fullname} onChange={handleinput} required />
-                <InputField label="Email Address" icon={Icons.Email} type="email" name="email" value={inp.email} onChange={handleinput} required />
-                <InputField label="Contact Number" icon={Icons.Smartphone} name="phone" value={inp.phone} onChange={handleinput} required />
-                <InputField label="City" icon={Icons.Location} name="city" value={inp.city} onChange={handleinput} required />
+                <InputField label="Full Name" icon={Icons.Person} placeholder='Enter your Name here..' name="fullname" value={inp.fullname} onChange={handleinput} required />
+                <InputField label="Contact Number" icon={Icons.Smartphone} placeholder='Your contact no' name="phone" value={inp.phone} onChange={handleinput} required />
               </form>
             </Card>
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 ">
+            <div className="sticky top-8 space-y-6">
+              <div className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-[1.5rem] p-8 text-gray-900 shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-gray-200 overflow-hidden">
+
+                {/* 🔥 Soft Glow */}
+                <div className="absolute -top-20 -right-20 w-72 h-72 bg-indigo-200 opacity-40 blur-3xl rounded-full pointer-events-none"></div>
+                <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-purple-200 opacity-40 blur-3xl rounded-full pointer-events-none"></div>
+
+                {/* Header */}
+                <h2 className="text-xl font-extrabold mb-8 flex items-center gap-3">
+                  <Icons.Payment className="text-indigo-500" />
+                  Checkout Summary
+                </h2>
+
+                {/* Pricing */}
+                <div className="space-y-5 mb-8 text-sm">
+                  <div className="flex justify-between items-center text-gray-500">
+                    <span>{planchoosed?.duration || 'Plan'} Price</span>
+                    <span className="text-gray-900 font-bold">₹{calculation.base}.00</span>
+                  </div>
+
+                  <div className="flex justify-between items-center text-gray-500">
+                    <span>Tax (0% Round off)</span>
+                    <span className="text-gray-900 font-bold">₹0.00</span>
+                  </div>
+
+                  {inp.coupon > 0 && (
+                    <div className="flex justify-between items-center p-3 bg-green-100 rounded-xl border border-green-200 text-green-700">
+                      <span className="flex items-center gap-2">
+                        <Icons.Percent size={16} /> Discount ({inp.coupon}%)
+                      </span>
+                      <span className="font-black">-₹{calculation.discount}.00</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-8" />
+
+                {/* Total */}
+                <div className="mb-10">
+                  <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.25em] block mb-2">
+                    Total to Pay
+                  </span>
+
+                  <div className="text-5xl font-extrabold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                    ₹{calculation.total}.00
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="space-y-6">
+
+                  {/* Coupon */}
+                  <div className="relative group">
+                    <input
+                      type="text"
+                      placeholder="Promo Code"
+                      className="w-full pl-5 pr-28 py-4 bg-white border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-500 transition-all text-sm font-bold placeholder:text-gray-400 uppercase tracking-widest shadow-sm"
+                      value={inp.couponname}
+                      name="couponname"
+                      onChange={handleinput}
+                      readOnly={inp.coupon > 0}
+                    />
+
+                    <button
+                      onClick={inp.coupon > 0 ? couponreset : checkcoupon}
+                      disabled={fetchCouponData || (!inp.couponname && inp.coupon === 0)}
+                      className="absolute right-2 top-2 bottom-2 px-5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-md"
+                    >
+                      {fetchCouponData ? '...' : (inp.coupon > 0 ? 'Reset' : 'Apply')}
+                    </button>
+                  </div>
+
+                  {couponerror && (
+                    <p className="text-red-500 text-[10px] font-bold uppercase mt-1">
+                      Code {couponerror}
+                    </p>
+                  )}
+
+                  {/* Terms */}
+                  <div className="flex items-start gap-3 px-1 cursor-pointer select-none">
+
+                    {/* Hidden Native Checkbox */}
+                    <input
+                      type="checkbox"
+                      id="terms-checkbox"
+                      name="agreed"
+                      checked={inp.agreed}
+                      onChange={handleinput}
+                      className="hidden peer"
+                    />
+
+                    {/* Custom Checkbox */}
+                    <label
+                      htmlFor="terms-checkbox"
+                      className="flex items-center gap-3 cursor-pointer"
+                    >
+                      {/* Box */}
+                      <div className={`mt-1 w-5 h-5 rounded-sm border flex items-center justify-center transition-all duration-300
+                        ${inp.agreed
+                          ? "bg-gradient-to-r from-indigo-600 to-purple-600 border-indigo-600 shadow-md"
+                          : "border-gray-600 bg-white"
+                        }`}
+                      >
+                        {/* Check Icon */}
+                        <svg
+                          className={`w-3 h-3 text-white transition-all duration-300 ${inp.agreed ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                            }`}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                        >
+                          <path d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+
+                      {/* Text */}
+                      <span className="text-[11px] text-gray-500 leading-relaxed font-medium">
+                        I agree to{" "}
+                        <NavLink
+                          to="/terms"
+                          className="text-indigo-600 hover:text-indigo-500 font-bold transition-colors"
+                        >
+                          Terms and Conditions
+                        </NavLink>.
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* 🔥 CTA */}
+                  {log.islogin ? <button
+                    form="billing-form"
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black py-5 rounded-2xl shadow-[0_10px_25px_rgba(99,102,241,0.3)] transition-all flex items-center justify-center gap-3 group"
+                  >
+                    UPGRADE NOW
+                    <Icons.ArrowForward
+                      size={22}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </button> :
+                    <div
+                      form="billing-form"
+                      onClick={() => navigate('/login')}
+                      className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black py-5 rounded-2xl shadow-[0_10px_25px_rgba(99,102,241,0.3)] transition-all flex items-center justify-center gap-3 group"
+                    >
+                      Login Required
+                      <Icons.ArrowForward
+                        size={22}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </div>
+                  }
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <div className="lg:col-span-4">
             <div className="sticky top-8 space-y-6">
               <div className="relative bg-gray-900 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-gray-200 overflow-hidden">
                 <h2 className="text-xl font-black mb-8 flex items-center gap-3">
@@ -463,7 +528,7 @@ const SubscriptionPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
