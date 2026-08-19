@@ -60,6 +60,7 @@ const Projects = ({ open, onClose }) => {
         { name: 'Study Notes', project: 'studynotes' },
         { name: 'Goodnature', project: 'goodnature_ems' },
         { name: 'RiseOwn', project: 'riseown' },
+        { name: 'Webnex', project: 'webnex' },
     ]
 
     return (
